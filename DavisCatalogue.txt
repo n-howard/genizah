@@ -1452,8 +1452,7 @@ On folio 1v at 1 Samuel 5:6 there is a decorated ם .
 T-S A8.19
 1 Samuel 3:11–4:7; 12:14–13:2; 18:18–19:1; 25:20–37; 2 Samuel 2:5–23; 12:31–16:3
 Hebrew; standard Tiberian, cantillated; Massorah Magna and Parva.
-Parchment; 38.7cm. x 68.5cm. = average size of
-conjoined leaves, 38.7cm. x 35.3cm. = size of whole fragment; 3 columns (complete); 11 leaves with 8 leaves conjoined in 4 pairs and folios 6–11 consecutive; 19 lines (complete), except on folio 10, which has 20 lines; mutilated with many pieces of text missing.
+Parchment; 38.7cm. x 68.5cm. = average size of conjoined leaves, 38.7cm. x 35.3cm. = size of whole fragment; 3 columns (complete); 11 leaves with 8 leaves conjoined in 4 pairs and folios 6–11 consecutive; 19 lines (complete), except on folio 10, which has 20 lines; mutilated with many pieces of text missing.
 Parts of the text on folios 2v, 3v, 4v, and 5r have been overwritten. On folio 4r in the upper margin are written the words [?]אבי מנצור , while a decorated יא appears in the top righthand corner, a gathering number, and in the lefthand margin there are two Arabic jottings, one being the Basmala, the other uncertain. On folio 7v at 2 Samuel 13:36 בני has been written twice and the first בני has been deleted. On folio lOr at 2 Samuel 15:12 אל may have been written for את by mistake and corrected.
 #
 T-S A8.20
@@ -1546,8 +1545,7 @@ On folio 2r at 1 Kings 22:24 עבר, which has been omitted from the text, is su
 T-S A9.10
 1 Kings 15:20–20:27
 Hebrew; standard Tiberian, cantillated; Massorah Magna and Parva.
-Parchment; 30cm. x 40.4cm., 28cm. x 38.5cm., 29.8cm. x 45.8cm., and 29.8cm. x 45.5cm.; 3 columns
-(complete); 8 leaves conjoined in 4 pairs and consecutive; 18 lines; badly mutilated with many large pieces of text missing.
+Parchment; 30cm. x 40.4cm., 28cm. x 38.5cm., 29.8cm. x 45.8cm., and 29.8cm. x 45.5cm.; 3 columns (complete); 8 leaves conjoined in 4 pairs and consecutive; 18 lines; badly mutilated with many large pieces of text missing.
 On folio 1r at 1 Kings 15:20 the beginning of the verse וישמע בן הדד אל המלך is added in the upper margin in a different hand with a different colour of ink. On folio 5r at 1 Kings 18:13 ומים is written in the margin beside a mutilated text in a different hand with a different colour of ink. On folio 6r at 1 Kings 18:39 there is a decorated ם in the margin.
 #
 T-S A9.11
@@ -4503,8 +4501,7 @@ Paper; 17.4cm. x 13.1cm. and 17.4cm. x 13cm.; 1 column; 2 leaves separate; 14 li
 Examples of non-standard vocalization are: ~=~ for–and–for-ד=-and־ ־. Verso of both folios is blank except for an א scribbled on folio 1v. On folio 2r at Genesis 31:25 תעק written in the text is deleted and תקע supplied in the margin.
 #
 T-S A22.69
-See T-S A22.54, of which it forms
-the middle two leaves.
+See T-S A22.54, of which it forms the middle two leaves.
 #
 T-S A22.70
 Genesis 22:15–23:2; 24:4–14
@@ -7358,7 +7355,8 @@ Folio 1 is probably written in a different hand from that of folios 2–3 and ha
 T-S A26.53
 Leviticus 26:9–30; 26:19–28; 27:1–26
 Hebrew; standard Tiberian, uncantillated, on folios 1–2r, unpointed on folios 2v–4.
-Paper; 15.9cm. x 23.2cm. and 16.1cm. x 23.2cm.; 1 column; 4 leaves conjoined in 2 pairs with folios 1–2 and 3–4 consecutive; 12–15 lines; slightly mutilated. The tetragrammaton is abbreviated to .
+Paper; 15.9cm. x 23.2cm. and 16.1cm. x 23.2cm.; 1 column; 4 leaves conjoined in 2 pairs with folios 1–2 and 3–4 consecutive; 12–15 lines; slightly mutilated. 
+The tetragrammaton is abbreviated to .
 #
 T-S A26.54
 Leviticus 5:17–22
@@ -74677,31 +74675,34 @@ Hebrew; Tiberian, cantillated, but not legible throughout; Parchment; 19.6 X 8.9
 #
 T-S AS 18.128
 Psalms 127:2-130:2; 130:5-132:11
-Hebrew; standard Tiberian where legible, cantillated; Parchment; 18.7 x 17.1; 1 leaf; 20 lines (incomplete); mutilated and rubbed with pieces of text missing.
+Hebrew; standard Tiberian where legible, cantillated
+Parchment; 18.7 x 17.1; 1 leaf; 20 lines (incomplete); mutilated and rubbed with pieces of text missing.
 There is poetic spacing. The decorated Psalm numbers 127-131 are written beside the first verses of Psalms 128-132 respectively.
 [3816]
 #
 T-S AS 18.129
 Zechariah 2:17-4:2
-Hebrew; standard Tiberian, cantillated; Parchment; 15.7 x 11.7;
-1 leaf; 18 lines on recto, 16 lines on verso; mutilated and rubbed with many pieces of text missing.
+Hebrew; standard Tiberian, cantillated
+Parchment; 15.7 x 11.7; 1 leaf; 18 lines on recto, 16 lines on verso; mutilated and rubbed with many pieces of text missing.
 [3817]
 #
 T-S AS 18.130
 Numbers 23:17
-Hebrew; standard Tiberian, uncantillated; Masorah Magna; Parchment; 7.4 x 21.6; 1 leaf; 1 column (incomplete); 1 line; badly mutilated with only a few words preserved in the upper margin above the main text, which is now lost.
+Hebrew; standard Tiberian, uncantillated; Masorah Magna
+Parchment; 7.4 x 21.6; 1 leaf; 1 column (incomplete); 1 line; badly mutilated with only a few words preserved in the upper margin above the main text, which is now lost.
 [3818]
 #
 T-S AS 18.131
 Deuteronomy 31:29-32:6
-Hebrew; unvocalized; Parchment; 12.2 x 11.6; 1 leaf, part of a scroll; 13 lines; badly mutilated and rubbed with many pieces of text missing.
+Hebrew; unvocalized
+Parchment; 12.2 x 11.6; 1 leaf, part of a scroll; 13 lines; badly mutilated and rubbed with many pieces of text missing.
 There is poetic spacing in Deuteronomy 32.
 [3819]
 #
 T-S AS 18.132
 Zechariah 14:1-9
-Hebrew; standard Tiberian, cantillated; Parchment; 7.8 x 10.7;
-1 leaf; 9 lines (incomplete); badly mutilated and rubbed with many pieces of text missing.
+Hebrew; standard Tiberian, cantillated
+Parchment; 7.8 x 10.7; 1 leaf; 9 lines (incomplete); badly mutilated and rubbed with many pieces of text missing.
 [3820]
 #
 T-S AS 18.133
@@ -74754,8 +74755,7 @@ Hebrew; unvocalized; Parchment; 8.5 x 5.6; 1 leaf, part of a scroll; 8 lines (in
 #
 T-S AS 18.141
 1 Kings 8:30-32; 8:36-38
-Hebrew; standard Tiberian, uncantillated; Parchment; 5.8 X 10.8;
-1 leaf; 6 lines (incomplete); badly mutilated and rubbed with only small pieces of text preserved.
+Hebrew; standard Tiberian, uncantillated; Parchment; 5.8 X 10.8; 1 leaf; 6 lines (incomplete); badly mutilated and rubbed with only small pieces of text preserved.
 The non-standard vocalization - for occurs. The שר of אשר in 1 Kings 8;36 and 38 is abbreviated to P. This fragment probably derives from the same manuscript as T-S AS 18.139, and, because of a variant reading in the parallel text which is preserved here, probably determines which passage is represented there.
 [3829]
 #
@@ -74775,8 +74775,8 @@ Hebrew; standard Tiberian where legible, cantillated; Masorah Magna and Parva; P
 #
 T-S AS 18.145
 Genesis 17:14-15; 17:20; 17:27-18:1; 18:7-9
-Hebrew; standard Tiberian where preserved, cantillated;
-Masorah Parva; Parchment; 7 x 6.5; 1 leaf; 2 columns; 8 lines (incomplete); badly mutilated and rubbed with only small pieces of text preserved.
+Hebrew; standard Tiberian where preserved, cantillated; Masorah Parva; 
+Parchment; 7 x 6.5; 1 leaf; 2 columns; 8 lines (incomplete); badly mutilated and rubbed with only small pieces of text preserved.
 On verso at Genesis 18:1, the beginning of seder 4, there is a decorated note of the number of verses contained in seder 3, namely 127, which exceeds by one the number given in BHS.
 [3833]
 #
