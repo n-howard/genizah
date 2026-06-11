@@ -16,13 +16,27 @@ import re
 # M – associated fragments (to discuss!) 
 def main():
     file = open("DavisCatalogue.txt")
+    bibFile = open("DavisBibliography.txt")
     catalogue = file.read()
+    bib = bibFile.read()
     entries = catalogue.split("#")
     entries[:] = [x for x in entries if x]
+    bibEntries = bib.split("\n\n\n")
+    bibEntries[:] = [x for x in bibEntries if x]
+    file.close()
+    bibFile.close()
+    bibDict = {}
+    problems = []
+    for bibEntry in bibEntries:
+        bibEntry = bibEntry.replace("\n", "; ")
+        label = re.findall(r"(?<=Label: \S)([^\n]*)", bibEntry)
+        label = label[0]
+        bibDict[label] = bibEntry
+
     rows = []
     for entry in entries:
+        
         dict = {}
-       
         entry = (
             entry
                 .replace(". Parchment", ".\nParchment")
@@ -40,26 +54,48 @@ def main():
         entry = re.sub(pattern2, r"\1\n", entry)
         lines = entry.split("\n")
         lines[:] = [x for x in lines if x]
+
+        titlePattern = r"(T-S\s\S*\s*\d+\.\d+)|(Or\.\s*\d+(\.\d+)*)" # fix this!!
+
         if len(lines)==0:
             continue
-        print(lines)
-        if len(lines) < 3:
-            dict['A'] = lines[0]
-            dict['K'] = lines[1] if len(lines)>1 else ''
-            rows.append(dict)
-            continue
 
-        if "archment" in lines[2] or "aper" in lines[2]:
-            lines.insert(2, "")
+
+        dict['A'] = lines[0]
+
+        dict['L'] = bibDict[lines[0]] if lines[0] in bibDict else ''
+        
+
+        if re.findall(r"\[\d+\]", lines[-1]):
+            lines.remove(lines[-1])
 
         if "tetragrammaton" in entry:
             dict.update({'B': "Bible-Related"})
             
         else:
             dict.update({'B': "Bible"})
+
+        if len(lines) < 3:
+            dict['K'] = lines[1] if len(lines)>1 else ''
+            if "See" in entry and "Klein" not in entry:
+                problems.append(",".join(lines))
+            elif "Klein" in entry and len(lines[1])<20:
+                continue
+            else:
+                rows.append(dict)
+            continue
+
+        if "archment" in lines[2] or "aper" in lines[2]:
+            lines.insert(2, "")
                 
-        dict.update({'A': lines[0]})
         K = lines[1] + "; " + lines[4] if len(lines)==5 else lines[1]
+
+        refs = re.findall(titlePattern, K)
+        refs[:] = [x for x in refs if x]
+        print(refs)
+        refString = ";".join(refs)
+        dict['M'] = refString
+
         dict.update({'K': K, 'J': lines[2]})
         if len(lines) >= 4:
             vals = lines[3].split(";")
@@ -82,7 +118,9 @@ def main():
                 vals.append("")
             dict.update({'C': vals[0], 'F': vals[3], 
                         'G': vals[2],'H': vals[4], 'I': vals[5]})
-            dims = vals[1].split("x")
+            if "average" in vals[1]:
+                vals[1] = re.sub(r"([^,]*)\sx\s([^,]*)\s=\s([^,]*)", r"\1 = \3 x \2 = \3", vals[1])
+            dims = re.split(r"x|and|,", vals[1])
             if len(dims)==2:
                 dict.update({'D': dims[0],'E':  dims[1]})
             else:
@@ -93,10 +131,11 @@ def main():
                 width = delim.join(w)
                 dict.update({'D': height,'E': width})
         rows.append(dict)
-    
     df = pd.DataFrame(rows, 
         columns=['A','B','C','D','E','F','G','H','I','J','K','L','M'])
     df.to_csv("test.csv")
+
+    # print(len(problems), problems)
 
 if __name__ == '__main__':
     main()
