@@ -55,7 +55,7 @@ def main():
         lines = entry.split("\n")
         lines[:] = [x for x in lines if x]
 
-        titlePattern = r"(T-S\s\S*\s*\d+\.\d+)|(Or\.\s*\d+(\.\d+)*)" # fix this!!
+        
 
         if len(lines)==0:
             continue
@@ -69,7 +69,7 @@ def main():
         if re.findall(r"\[\d+\]", lines[-1]):
             lines.remove(lines[-1])
 
-        if "tetragrammaton" in entry:
+        if "tetragrammaton" in entry or "iturgy" in entry:
             dict.update({'B': "Bible-Related"})
             
         else:
@@ -88,15 +88,13 @@ def main():
         if "archment" in lines[2] or "aper" in lines[2]:
             lines.insert(2, "")
                 
-        K = lines[1] + "; " + lines[4] if len(lines)==5 else lines[1]
+        K = lines[1] + '; ' + lines[4] if len(lines)==5 else lines[1]
 
+        titlePattern = r"(T-S\s*\w*\s*\d+\.\d+|Or\.\s*\d+(?:\.\d+)*|Wm.\s*\S*\s*\d+(?:\.\d+)*)"
         refs = re.findall(titlePattern, K)
-        refs[:] = [x for x in refs if x]
-        print(refs)
-        refString = ";".join(refs)
-        dict['M'] = refString
+        refString = "; ".join(refs)
 
-        dict.update({'K': K, 'J': lines[2]})
+        dict.update({'M': refString, 'K': K, 'J': lines[2]})
         if len(lines) >= 4:
             vals = lines[3].split(";")
             if len(vals)==1:
@@ -122,7 +120,7 @@ def main():
                 vals[1] = re.sub(r"([^,]*)\sx\s([^,]*)\s=\s([^,]*)", r"\1 = \3 x \2 = \3", vals[1])
             dims = re.split(r"x|and|,", vals[1])
             if len(dims)==2:
-                dict.update({'D': dims[0],'E':  dims[1]})
+                dict.update({'D': dims[0].strip(),'E':  dims[1].strip()})
             else:
                 h = dims[::2]
                 w = dims[1::2]
