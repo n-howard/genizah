@@ -39,23 +39,29 @@ def main():
         dict = {}
         entry = (
             entry
-                .replace(". Parchment", ".\nParchment")
-                .replace("; Pa", "\nPa")
-                .replace("; pa", "\npa")
+                # .replace(". Pa", ".\nPa")
+                # .replace(". pa", "\npa")
+                # .replace("; Pa", "\nPa")
+                # .replace("; pa", "\npa")
                 .replace("mutilated", "damaged")
                 .replace(";\n", "; ")
                 .replace("\n;", ";")
                 
         )
+        paPattern = r"([.;])\s(Parchment|Paper)"
+        entry = re.sub(paPattern, r"\1\n\2",entry, flags=re.IGNORECASE)
         entry = re.sub(r"(?<=;)\n(?=\d)", " ", entry)
-        pattern = rf"({re.escape("The tetragrammaton is abbreviated")})[^.]*"
-        entry = re.sub(pattern, r"\1", entry)
+        pattern = r"(The tetragrammaton is abbreviated)[^.]*"
+        entry = re.sub(pattern, r"\1", entry, flags=re.IGNORECASE)
         pattern2 = r"(damaged.*?\.) "
-        entry = re.sub(pattern2, r"\1\n", entry)
+        entry = re.sub(pattern2, r"\1\n", entry, flags=re.IGNORECASE)
+
+
+        
+        
         lines = entry.split("\n")
         lines[:] = [x for x in lines if x]
 
-        
 
         if len(lines)==0:
             continue
@@ -69,7 +75,7 @@ def main():
         if re.findall(r"\[\d+\]", lines[-1]):
             lines.remove(lines[-1])
 
-        if "tetragrammaton" in entry or "iturgy" in entry:
+        if "tetragrammaton is abbreviated" in entry or "iturgical poetry" in entry:
             dict.update({'B': "Bible-Related"})
             
         else:
@@ -87,8 +93,14 @@ def main():
 
         if "archment" in lines[2] or "aper" in lines[2]:
             lines.insert(2, "")
-                
-        K = lines[1] + '; ' + lines[4] if len(lines)==5 else lines[1]
+        
+        if len(lines)>5:
+            last = " ".join(lines[4:])
+            lines[4] = last
+        K = lines[1] + '; ' + lines[4] if len(lines)>=5 else lines[1]
+
+        # nonPattern = r"(standard\s?\w*\s?vocalization)[^\.]*"
+        # K = re.sub(nonPattern, r"\1", K)
 
         titlePattern = r"(T-S\s*\w*\s*\d+\.\d+|Or\.\s*\d+(?:\.\d+)*|Wm.\s*\S*\s*\d+(?:\.\d+)*)"
         refs = re.findall(titlePattern, K)
@@ -131,7 +143,7 @@ def main():
         rows.append(dict)
     df = pd.DataFrame(rows, 
         columns=['A','B','C','D','E','F','G','H','I','J','K','L','M'])
-    df.to_csv("test.csv")
+    df.to_csv("test.csv", index=False)
 
     # print(len(problems), problems)
 
