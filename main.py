@@ -39,13 +39,10 @@ def main():
         dict = {}
         entry = (
             entry
-                # .replace(". Pa", ".\nPa")
-                # .replace(". pa", "\npa")
-                # .replace("; Pa", "\nPa")
-                # .replace("; pa", "\npa")
                 .replace("mutilated", "damaged")
                 .replace(";\n", "; ")
                 .replace("\n;", ";")
+                .replace(",", ";")
                 
         )
         paPattern = r"([.;])\s(Parchment|Paper)"
@@ -94,16 +91,22 @@ def main():
         if "archment" in lines[2] or "aper" in lines[2]:
             lines.insert(2, "")
         
+        if len(lines)>=4:
+            if "archment" not in lines[3] and "aper" not in lines[3]:
+                lines[2] = " ".join([lines[2], lines[3]])
+                lines.remove(lines[3])
+        
         if len(lines)>5:
             last = " ".join(lines[4:])
             lines[4] = last
         K = lines[1] + '; ' + lines[4] if len(lines)>=5 else lines[1]
 
-        nonPattern = r"(vocalization).+?(?=become|occur|\.\s[A-Z]|\.\s\[|\[|$)"
+        nonPattern = r"(non\s*-standard\s*\w*vocalization).+?(?=become|occur|\.\s[A-Z]|\.\s\[|\[[à-ü]|$)"
         K = re.sub(nonPattern, r"\1", K)
-        K = re.sub(r"vocalization$", "vocalization.", K)
-        # K = re.sub(r"vocalization\s*\[[A-zÀ-ú]", "vocalization are [", K)
+        K = re.sub(r"(vocalization)$", r"vocalization.", K)
+        K = re.sub(r"(vocalization)\s*\[(?=[à-ü])", r"vocalization are: \[", K)
 
+        # (\w{2,3}:?[A-Za-z]*)
 
         titlePattern = r"(T-S\s*\w*\s*\d+\.\d+|Or\.\s*\d+(?:\.\d+)*|Wm.\s*\S*\s*\d+(?:\.\d+)*)"
         refs = re.findall(titlePattern, K)
@@ -121,16 +124,31 @@ def main():
                 vals = vals + vals2
                 lines[3] =  lines[3]+lines[4]
                 lines.remove(lines[4])
-            if len(vals)<3 or "col" not in vals[2]:
-                vals.insert(2, "")
-            if  len(vals)<4 or "lea" not in vals[3] :
-                vals.insert(3, "")
-            if  len(vals)<5 or "line" not in vals[4] :
-                vals.insert(4, "")
-            if len(vals) < 6:
-                vals.append("")
-            dict.update({'C': vals[0], 'F': vals[3], 
-                        'G': vals[2],'H': vals[4], 'I': vals[5]})
+            # if len(vals)<3 or "col" not in vals[2]:
+            #     vals.insert(2, "")
+            # if  len(vals)<4 or "lea" not in vals[3] :
+            #     vals.insert(3, "")
+            # if  len(vals)<5 or "line" not in vals[4] :
+            #     vals.insert(4, "")
+            # if len(vals) < 6:
+            #     vals.append("")
+            G = []
+            F = []
+            H = []
+            delim = "; "
+            for val in vals:
+                if "col" in val:
+                    G.append(val.strip())
+                elif "lea" in val:
+                    F.append(val.strip())
+                elif "line" in val:
+                    H.append(val.strip())
+            G = delim.join(G)
+            F = delim.join(F)
+            H = delim.join(H)
+            dict.update({'C': vals[0], 'F': F, 
+                        'G': F,'H': H, 'I': vals[-1]})
+
             if "average" in vals[1]:
                 vals[1] = re.sub(r"([^,]*)\sx\s([^,]*)\s=\s([^,]*)", r"\1 = \3 x \2 = \3", vals[1])
             dims = re.split(r"x|and|,", vals[1])
@@ -139,7 +157,6 @@ def main():
             else:
                 h = dims[::2]
                 w = dims[1::2]
-                delim = "; "
                 height = delim.join(h)
                 width = delim.join(w)
                 dict.update({'D': height,'E': width})

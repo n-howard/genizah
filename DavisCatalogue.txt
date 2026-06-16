@@ -6821,7 +6821,7 @@ Folios 1r and 2v are blank, while folio 1v contains an א written large and the 
 T-S A25.164
 Leviticus 4:7–18; 5:4–16
 Hebrew; predominantly standard Tiberian, cantillated.
-Paner; 18.2cm. x 27.3cm.; 1 column; 2 leaves conjoined; 14–16 lines; mutilated.
+Paper; 18.2cm. x 27.3cm.; 1 column; 2 leaves conjoined; 14–16 lines; mutilated.
 Examples of non-standard vocalization are:–for–and–; ־=־־for–and–. On folio 1r at Leviticus 4:8 ממנו , which has been omitted from the text, is supplied in the margin. On folio 1v at Leviticus 4:16 מועד is likewise supplied in the margin. On folio 2r at Leviticus 5:6 כשבה, which has been omitted from the text, is supplied in the margin, as is תרים at Leviticus 5:7. The inexpert character of the script suggests that the fragment is a child’s writing exercise.
 #
 T-S A25.165
@@ -9193,7 +9193,7 @@ T-S A29.7
 Deuteronomy 11:8–12:14
 Hebrew, predominantly standard Tiberian, uncantillated.
 Paper; 16.6cm. x 22.8cm., 16.5cm. x 25.1cm., and 16.3cm. x 24.9cm.; 1 column; 6 leaves conjoined in 3 pairs and consecutive; 11–13 lines; mutilated with many pieces of text missing.
-Examples of non-standrd vocalization are: כ ־-for–; -77־ and––for זך־ ; ־7=7־–for -כך- and––. The tetragrammaton is abbreviated to . Folios 2v, 3v, and 5v are blank except for parts of Leviticus 1:14 and 1:3 on folio 2v written in a different hand from that of the text. On folio 3r at Deuteronomy 11:26, the beginning of Seder 47, there is a decorated Parashah heading. On folio 6v at Deuteronomy 12:13 מקום, which has been omitted from the text, is supplied in the margin.
+Examples of non-standard vocalization are: כ ־-for–; -77־ and––for זך־ ; ־7=7־–for -כך- and––. The tetragrammaton is abbreviated to . Folios 2v, 3v, and 5v are blank except for parts of Leviticus 1:14 and 1:3 on folio 2v written in a different hand from that of the text. On folio 3r at Deuteronomy 11:26, the beginning of Seder 47, there is a decorated Parashah heading. On folio 6v at Deuteronomy 12:13 מקום, which has been omitted from the text, is supplied in the margin.
 #
 T-S A29.8
 Deuteronomy 1:4–15; 2:18–26
