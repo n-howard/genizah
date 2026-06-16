@@ -99,8 +99,11 @@ def main():
             lines[4] = last
         K = lines[1] + '; ' + lines[4] if len(lines)>=5 else lines[1]
 
-        # nonPattern = r"(standard\s?\w*\s?vocalization).+?(?=become|occur|\.|are \[)"
-        # K = re.sub(nonPattern, r"\1", K)
+        nonPattern = r"(vocalization).+?(?=become|occur|\.\s[A-Z]|\.\s\[|\[|$)"
+        K = re.sub(nonPattern, r"\1", K)
+        K = re.sub(r"vocalization$", "vocalization.", K)
+        # K = re.sub(r"vocalization\s*\[[A-zÀ-ú]", "vocalization are [", K)
+
 
         titlePattern = r"(T-S\s*\w*\s*\d+\.\d+|Or\.\s*\d+(?:\.\d+)*|Wm.\s*\S*\s*\d+(?:\.\d+)*)"
         refs = re.findall(titlePattern, K)
