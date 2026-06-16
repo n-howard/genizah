@@ -4859,7 +4859,7 @@ T-S A22.131
 Genesis 3:19–4:25
 Hebrew; predominantly standard Tiberian, uncantillated.
 Paper; 17.5cm. x 25.2cm.; 1 column; 2 leaves conjoined and consecutive; 16 lines; mutilated.
-Examples of hon-standard vocalization are: for–;  =-for–;–for–;–for–;-ך–for–and On folio 1r at Genesis 3:19 לתם , which has been omitted from the text, is supplied above the line, at Genesis 3:20 ת י תה , which has been omitted from the text, is supplied in the margin, and at Genesis 3:22 ויאמר has been erased and rewritten after a space. On folio 2r at Genesis 4:16 ב of בארץ is supplied above the line. On folio 2v at Genesis 4:19 צלה, which has been omitted from the text, is supplied in the margin, at Genesis 4:23 קולי is likewise supplied in the margin, as is עוד at Genesis 4:25.
+Examples of non-standard vocalization are: for–;  =-for–;–for–;–for–;-ך–for–and On folio 1r at Genesis 3:19 לתם , which has been omitted from the text, is supplied above the line, at Genesis 3:20 ת י תה , which has been omitted from the text, is supplied in the margin, and at Genesis 3:22 ויאמר has been erased and rewritten after a space. On folio 2r at Genesis 4:16 ב of בארץ is supplied above the line. On folio 2v at Genesis 4:19 צלה, which has been omitted from the text, is supplied in the margin, at Genesis 4:23 קולי is likewise supplied in the margin, as is עוד at Genesis 4:25.
 #
 T-S A22.132
 Genesis 1:16–21
@@ -15665,7 +15665,7 @@ On verso before Isaiah 54:1 the rubric כי תצא בישעיה indicates that t
 T-S B14.76
 2 Kings 22:9–13; 23:21–25; Isaiah 10:32–11:4
 Hebrew; predominantly standard Tiberian, cantillated. Paper; 17.1cm. x 24.6cm.; 1 column; 2 leaves conjoined and consecutive; 12 lines; mutilated with a few pieces of text missing.
-Examples of nQn-standard vocalization are: -=־ for–; ¬הד¬ for . On folio 2r before Isaiah 10:32 the decorated Aramaic rubric די ומא קמא דכסא תינינא בישע indicates that the passage which follows is the Haphtorah for the seventh day of Passover. In Snaith’s edition this Haphtorah is for the eighth day.
+Examples of non-standard vocalization are: -=־ for–; ¬הד¬ for . On folio 2r before Isaiah 10:32 the decorated Aramaic rubric די ומא קמא דכסא תינינא בישע indicates that the passage which follows is the Haphtorah for the seventh day of Passover. In Snaith’s edition this Haphtorah is for the eighth day.
 #
 T-S B14.77
 2 Kings 7:1–8
@@ -44798,8 +44798,7 @@ Hebrew; predominantly standard Tiberian, uncantillated.
 Paper; 15.5cm. x 22.4cm.; 1 column; 2 leaves conjoined; 9 lines; mutilated.
 The text comprises the following passages:-
 On folio 1v: Psalms 5:8-9; Isaiah 58:13.
-On folio 2: Proverbs 4:18; Psalms 36:8-10; 84:1-11. Examples of non-standard vocalization are:-for-and
-tetragrammaton is abbreviated to [] or T . Folio 1r is blank. On folio 1v the text is introduced by the liturgical rubric.wy. בינו עמי.
+On folio 2: Proverbs 4:18; Psalms 36:8-10; 84:1-11. Examples of non-standard vocalization are:-for-and. The tetragrammaton is abbreviated to [] or T . Folio 1r is blank. On folio 1v the text is introduced by the liturgical rubric.wy. בינו עמי.
 #
 T-S NS 281.173
 Genesis 1:1-3; 6:6-7; 1:1-2

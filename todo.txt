@@ -1,0 +1,1 @@
+-[] Fix issue where the text comes before the problem section (if there is just one, maybe just reorganize the text but keep a note of it)

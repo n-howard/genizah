@@ -53,8 +53,6 @@ def main():
         pattern2 = r"(damaged.*?\.) "
         entry = re.sub(pattern2, r"\1\n", entry, flags=re.IGNORECASE)
 
-
-        
         
         lines = entry.split("\n")
         lines[:] = [x for x in lines if x]
@@ -96,23 +94,21 @@ def main():
                 lines[2] = " ".join([lines[2], lines[3]])
                 lines.remove(lines[3])
         
-        if len(lines)>5:
-            last = " ".join(lines[4:])
-            lines[4] = last
-        K = lines[1] + '; ' + lines[4] if len(lines)>=5 else lines[1]
+        # K = lines[1] + '; ' + lines[4] if len(lines)>=5 else lines[1]
 
-        nonPattern = r"(non\s*-standard\s*\w*vocalization).+?(?=become|occur|\.\s[A-Z]|\.\s\[|\[[à-ü]|$)"
-        K = re.sub(nonPattern, r"\1", K)
-        K = re.sub(r"(vocalization)$", r"vocalization.", K)
-        K = re.sub(r"(vocalization)\s*\[(?=[à-ü])", r"vocalization are: \[", K)
+        # nonPattern = r"(non)\s*(-)\s*(standard\s*\w*\s*vocalization).+?(?=become|occur|\.\s[A-Z]|\.\s\[|\[[à-ü]|$)"
+        # K = re.sub(nonPattern, r"\1\2\3", K)
+        # K = re.sub(r"(vocalization)$", r"\1\.", K)
+        # K = re.sub(r"(vocalization)\s*\[(?=[à-ü])", r"\1 are: \[", K)
+        # K = re.sub(r"(vocalization)(?=[A-Za-z])", r"\1 ", K)
 
-        # (\w{2,3}:?[A-Za-z]*)
+        # # (\w{2,3}:?[A-Za-z]*)
 
-        titlePattern = r"(T-S\s*\w*\s*\d+\.\d+|Or\.\s*\d+(?:\.\d+)*|Wm.\s*\S*\s*\d+(?:\.\d+)*)"
-        refs = re.findall(titlePattern, K)
-        refString = "; ".join(refs)
+        # titlePattern = r"(T-S\s*\w*\s*\d+\.\d+|Or\.\s*\d+(?:\.\d+)*|Wm.\s*\S*\s*\d+(?:\.\d+)*)"
+        # refs = re.findall(titlePattern, K)
+        # refString = "; ".join(refs).strip()
 
-        dict.update({'M': refString, 'K': K, 'J': lines[2]})
+        # dict.update({'M': refString, 'K': K.strip(), 'J': lines[2]})
         if len(lines) >= 4:
             vals = lines[3].split(";")
             if len(vals)==1:
@@ -124,6 +120,9 @@ def main():
                 vals = vals + vals2
                 lines[3] =  lines[3]+lines[4]
                 lines.remove(lines[4])
+            if len(lines)>5:
+                last = " ".join(lines[4:])
+                lines[4] = last
             # if len(vals)<3 or "col" not in vals[2]:
             #     vals.insert(2, "")
             # if  len(vals)<4 or "lea" not in vals[3] :
@@ -143,23 +142,39 @@ def main():
                     F.append(val.strip())
                 elif "line" in val:
                     H.append(val.strip())
-            G = delim.join(G)
-            F = delim.join(F)
-            H = delim.join(H)
-            dict.update({'C': vals[0], 'F': F, 
-                        'G': F,'H': H, 'I': vals[-1]})
+            G = delim.join(G).strip()
+            F = delim.join(F).strip()
+            H = delim.join(H).strip()
+            dict.update({'C': vals[0].strip(), 'F': F, 
+                        'G': G,'H': H, 'I': vals[-1].strip()})
 
             if "average" in vals[1]:
                 vals[1] = re.sub(r"([^,]*)\sx\s([^,]*)\s=\s([^,]*)", r"\1 = \3 x \2 = \3", vals[1])
             dims = re.split(r"x|and|,", vals[1])
+            dims = [s.strip() for s in dims]
             if len(dims)==2:
-                dict.update({'D': dims[0].strip(),'E':  dims[1].strip()})
+                dict.update({'D': dims[0],'E':  dims[1]})
             else:
                 h = dims[::2]
                 w = dims[1::2]
                 height = delim.join(h)
                 width = delim.join(w)
                 dict.update({'D': height,'E': width})
+        K = lines[1] + '; ' + lines[4] if len(lines)>=5 else lines[1]
+
+        nonPattern = r"(non)\s*(-)\s*(standard\s*\w*\s*vocalization).+?([;:][A-Za-z]*dagesh[A-Za-z][;:.])?.+?(?=become|occur|\.\s\[|[a-zA-z:]\s\[[^0-9]|\.\s[A-Z]|$)"
+        K = re.sub(nonPattern, r"\1\2\3\4", K)
+        K = re.sub(r"(vocalization)$", r"\1.", K)
+        K = re.sub(r"(vocalization)\s*[a-zA-z:]\s\[", r"vocalization are: [", K)
+        K = re.sub(r"(vocalization)(?=[A-Za-z])", r"\1 ", K)
+
+        # (\w{2,3}:?[A-Za-z]*)
+
+        titlePattern = r"(T-S\s*\w*\s*\d+\.\d+|Or\.\s*\d+(?:\.\d+)*|Wm.\s*\S*\s*\d+(?:\.\d+)*)"
+        refs = re.findall(titlePattern, K)
+        refString = "; ".join(refs).strip()
+
+        dict.update({'M': refString, 'K': K.strip(), 'J': lines[2]})
         rows.append(dict)
     df = pd.DataFrame(rows, 
         columns=['A','B','C','D','E','F','G','H','I','J','K','L','M'])
