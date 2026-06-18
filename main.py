@@ -162,13 +162,18 @@ def main():
                 dict.update({'D': height,'E': width})
         K = lines[1] + '; ' + lines[4] if len(lines)>=5 else lines[1]
 
-        nonPattern = r"(non)\s*(-)\s*(standard\s*\w*\s*vocalization).+?([;:][A-Za-z]*dagesh[A-Za-z][;:.])?.+?(?=become|occur|\.\s\[|[a-zA-z:]\s\[[^0-9]|\.\s[A-Z]|$)"
-        K = re.sub(nonPattern, r"\1\2\3\4", K)
+        nonPattern = r"(non)\s*(-)\s*(standard\s*\w*\s*vocalization).+?(?=become|occur|\.\s\[|[a-zA-z:]\s\[[^0-9]\]\s|\.\s[A-Z]|$)"
+
+        K = re.sub(nonPattern, r"\1\2\3", K)
         K = re.sub(r"(vocalization)$", r"\1.", K)
         K = re.sub(r"(vocalization)\s*[a-zA-z:]\s\[", r"vocalization are: [", K)
         K = re.sub(r"(vocalization)(?=[A-Za-z])", r"\1 ", K)
+        K = K.replace("The non-standard vocalization.", "Examples of non-standard vocalization.")
+        formPattern = r"(non-standard form[a-z]?)[^.]*(\.)?"
+        K = re.sub(formPattern, r"\1.", K)
+        vocPattern = r"(vocalized with the non-standard)[^.]*(\.)?"
+        K = re.sub(vocPattern, r"\1 form.", K)
 
-        # (\w{2,3}:?[A-Za-z]*)
 
         titlePattern = r"(T-S\s*\w*\s*\d+\.\d+|Or\.\s*\d+(?:\.\d+)*|Wm.\s*\S*\s*\d+(?:\.\d+)*)"
         refs = re.findall(titlePattern, K)
