@@ -53,7 +53,7 @@ On folio 3r at Genesis 37:22 ציל אתו מידם[ה] is added in the margins 
 T-S A1.10
 Genesis 7:24–9:8
 Hebrew; standard Tiberian, cantillated; Massorah Magna and Parva.
-Parchment; 19.6cm. x 36.8cm.; 3 columns; 1 leaf; 14 lines (incomplete); mutilated with .large pieces of text missing.
+Parchment; 19.6cm. x 36.8cm.; 3 columns; 1 leaf; 14 lines (incomplete); mutilated with large pieces of text missing.
 There is a decorated ס on recto.
 #
 T-S A1.11
@@ -937,7 +937,7 @@ T-S A4.8
 Numbers 22:22–23:24
 Hebrew; standard Tiberian, cantillated; Massorah Parva on folio 1.
 Parchment; 36.5cm. x 53.3cm.; 2 columns; 2 leaves conjoined and consecutive; 23 lines; mutilated with large pieces of text missing.
-Much of the text has been overwritten and some words apparently lost from the text at an early stage of mutilation have been supplied in the margins with the same colour of ink as that used for the overwriting. These are, on folio 1r, נצב in Numbers 22:31, the whole of Numbers 22:31 from וחרבו and ויאמר אליו מלאך from Numbers 22:32; on folio 1v ,ואפס אשר , and בלעם from Numbers 22:35, וישמע בלק כי בא from Numbers 22:36; on folio 2r ישרים ,תמת, and כמהו from Numbers 23:10, בלעם and לקב from Numbers 23:11; on folio 2v the end of Numbers 23:11 from ויעו ,לקחתיך from Numbers 23:12, אקרה from Numbers 23:15, ויאמר ,וישם, and וכה from Numbers 23:16, אלי וtoמואבfrom Numbers 23:17, and ס1ישכב the end of the verse from Numbers 23:24. Line-endings are filled up with the sign V־.
+Much of the text has been overwritten and some words apparently lost from the text at an early stage of mutilation have been supplied in the margins with the same colour of ink as that used for the overwriting. These are, on folio 1r, נצב in Numbers 22:31, the whole of Numbers 22:31 from וחרבו and ויאמר אליו מלאך from Numbers 22:32; on folio 1v ,ואפס אשר , and בלעם from Numbers 22:35, וישמע בלק כי בא from Numbers 22:36; on folio 2r ישרים ,תמת, and כמהו from Numbers 23:10, בלעם and לקב from Numbers 23:11; on folio 2v the end of Numbers 23:11 from ויעו ,לקחתיך from Numbers 23:12, אקרה from Numbers 23:15, ויאמר ,וישם, and וכה from Numbers 23:16, אליו to מואב from Numbers 23:17, and ישכב to the end of the verse from Numbers 23:24. Line-endings are filled up with the sign V־.
 #
 T-S A4.9
 Numbers 14:29–15:40; 17:11–18:5
@@ -1635,7 +1635,7 @@ Verso is blank on all 3 leaves.
 T-S A10.5
 Isaiah 47:2–51:18
 Hebrew; predominantly standard Tiberian, cantillated; Massorah Magna and Parva.
-Parchment; 21.3cm. x 21.4cm. and 27.4cm. x 21.8cm.; 2 columns; 2 leaves separate, but consecutive; 30 lines (complete); mutilated with large pieces of text missing. In a few places–is used for -ד=- before a guttural, as in ייתלוו at Isaiah 51:5 and in מנהל at Isaiah 51:1.8, and–for–, as in כבל at Isaiah 48:20. On folio 1r the number מת in the margin written in a different hand marks the beginning of chapter 48, as do נ on folio 2r at chapter 50 and נא on folio 2v at chapter 51. On folio 2r in the same hand is written the word ישעיה.
+Parchment; 21.3cm. x 21.4cm. and 27.4cm. x 21.8cm.; 2 columns; 2 leaves separate, but consecutive; 30 lines (complete); mutilated with large pieces of text missing. In a few places ָ is used for ַ before a guttural, as in ייתלוו at Isaiah 51:5 and in מנהל at Isaiah 51:1.8, and ֵ for ֶ, as in בּבל at Isaiah 48:20. On folio 1r the number מת in the margin written in a different hand marks the beginning of chapter 48, as do נ on folio 2r at chapter 50 and נא on folio 2v at chapter 51. On folio 2r in the same hand is written the word ישעיה.
 #
 T-S A10.6
 Isaiah 37:7–24; 42:20–24; 43:11–14; 47:2–48:6
@@ -2041,7 +2041,7 @@ Parchment; 23.7cm. x 17.9cm.; 1 column; 1 leaf; 26 lines; mutilated with much of
 T-S A13.6
 Psalms 18:13–20:2; 22:30–27:2
 Hebrew; predominantly standard Tiberian, cantillated. Parchment; 13.6cm. x 32.6cm. and 13.8cm. x 32.2cm.; 1 column; 4 leaves conjoined in 2 pairs with folios 1–2 and 3–4 consecutive; 12–13 lines; worn, but almost whole.
-Examples of non-standard vocalization are: -ף=- for-=-;–for–. There is some poetic spacing. Parts of the text and vocalization on all the leaves have been overwritten. The Psalm numbers 19–20, 23–27 are written in the margins at the beginnings of their respective Psalms. On folio 3r at Psalms 23:1 below the Psalm number are written in a different hand the words :ע5 יום א, which, if they stand for עד כאן יום' א:, are probably a rubric indicating that the Psalm reading for the first day of a (weekly?) cycle of Psalm readings ends at Psalms 22:32. On folio 3v at the end of Psalms 24 the same hand has written יום א עב, which is here a rubric referring to the recitation of Psalms 24 at the conclusion of the morning service on Sundays. See Plate 3.
+Examples of non-standard vocalization are: -ף=- for-=-;–for–. There is some poetic spacing. Parts of the text and vocalization on all the leaves have been overwritten. The Psalm numbers 19–20, 23–27 are written in the margins at the beginnings of their respective Psalms. On folio 3r at Psalms 23:1 below the Psalm number are written in a different hand the words :עכ יום א, which, if they stand for עד כאן יום' א:, are probably a rubric indicating that the Psalm reading for the first day of a (weekly?) cycle of Psalm readings ends at Psalms 22:32. On folio 3v at the end of Psalms 24 the same hand has written יום א עב, which is here a rubric referring to the recitation of Psalms 24 at the conclusion of the morning service on Sundays. See Plate 3.
 #
 T-S A13.7
 Psalms 16:11–18:45
@@ -3536,7 +3536,7 @@ T-S A21.66
 Genesis 3:17–24
 Hebrew; non-standard Tiberian, uncantillated.
 Paper; 16.7cm. x 12cm.; 1 column; 1 leaf; 13 lines; slightly mutilated.
-–is used for-=r.and - consistently throughout the fragment and sometimes also for–for–also occurs. On verso the word והאדם from Genesis 4:1 is used as a catchword and decorated with the signV, similar to the line endingV, which is also used.
+ֶ is used for ֲ and ַ consistently throughout the fragment and sometimes also for ֱ.  ַ for ֶ also occurs. On verso the word והאדם from Genesis 4:1 is used as a catchword and decorated with the signV, similar to the line endingV, which is also used.
 #
 T-S A21.67
 Genesis 5:8–17
@@ -3833,7 +3833,7 @@ The sign V is used several times to fill up line endings.
 T-S A21.117
 Genesis 1:7–18
 Hebrew; standard Tiberian, cantillated on recto only. Paper; 19.9cm. x 13.8cm.; 1 column; 1 leaf; 12 lines; mutilated with pieces of text missing.
-On recto at Genesis 1:12–is used for-=7־in זרע.
+On recto at Genesis 1:12 ֶ is used for ַ in זרע.
 #
 T-S A21.118
 Genesis 20:17–21:23
@@ -8067,7 +8067,7 @@ T-S A26.174
 Leviticus 1:1–5
 Hebrew; predominantly standard Tiberian, uncantillated.
 Paper; 20.6cm. x 14.4cm.; 1 column; 1 leaf; 8 lines; mutilated with pieces of text missing.
-Examples of non-standard vocalization are:–for ה=ר and–;־■״■־ for ־־=־. The tetragrammaton is abbreviated to . On recto in the upper margin there is a mutilated superscription בש1ם  1'] אלהי ישראל and at Leviticus 1:2 מן הבקר, which has been omitted from the text, is supplied above the line. On verso in the lower margin a few Hebrew letters are scribbled.
+Examples of non-standard vocalization are:–for ה=ר and–;־■״■־ for ־־=־. The tetragrammaton is abbreviated to . On recto in the upper margin there is a mutilated superscription בש[ם ] אלהי ישראל and at Leviticus 1:2 מן הבקר, which has been omitted from the text, is supplied above the line. On verso in the lower margin a few Hebrew letters are scribbled.
 #
 T-S A26.175
 Leviticus 24:11–23
@@ -14019,7 +14019,7 @@ Deuteronomy 33:18–34:12
 Hebrew; standard Tiberian, cantillated; Massorah Magna and Parva.
 Parchment; 29cm. x 16.7cm.; 2 columns; 1 leaf; 26 lines; mutilated with many pieces of text missing.
 On verso there is the following colophon:
-זה הספר למר/ פרחיה הכהן בן הלל נע/ הקבה יזכהו לקראות בו/_הוא ובניו ובני בניו אמן/ נצח סלה/ נעתק מו מרב פרחיה זה 5/ במקנת כסף לכגק מרי ורבנא/ צדקה הזקן המלמד המכין/ סימן טוב יהי עליו ויזכה לראות/ מחלציו בן חכם קורא ושונה/ ומשלש לקיים עליו מקרא/ שכתוב לא ימוש ספר התורה/ הזה מפיר וג ואני זאת בריתי אתם אמר!   רוחי אשר עליך/ ודברי אשר שמתי בפיך לא/ ימושו מפיך ומפי זרעך ומפי/ זרע זרעך וג אמן ואמן בן בגל!/ מרנ ורב5 חלפון הזקן החסיד זצל/
+זה הספר למר/ פרחיה הכהן בן הלל נע/ הקבה יזכהו לקראות בו/_הוא ובניו ובני בניו אמן/ נצח סלה/ נעתק מו מרב פרחיה זה ב/ במקנת כסף לכגק מרי ורבנא/ צדקה הזקן המלמד המכין/ סימן טוב יהי עליו ויזכה לראות/ מחלציו בן חכם קורא ושונה/ ומשלש לקיים עליו מקרא/ שכתוב לא ימוש ספר התורה/ הזה מפיר וג ואני זאת בריתי אתם אמר!   רוחי אשר עליך/ ודברי אשר שמתי בפיך לא/ ימושו מפיך ומפי זרעך ומפי/ זרע זרעך וג אמן ואמן בן בגל!/ מרנ ורנ חלפון הזקן החסיד זצל/
 The quotations are from Joshua 1:8 and Isaiah 59:21.
 #
 T-S A41.29
@@ -132529,7 +132529,7 @@ T-S AS 67.141
 Exodus 21:13-18; 21:22-30; 21:32-22:2; 22:6-9
 Hebrew; predominantly standard Tiberian, cantillated; Parchment;
 25.1 x 14.2; 1 leaf; 2 columns; 22 lines (incomplete); mutilated and rubbed with many pieces of text missing or illegible.
-Examples of non-standard vocalization are: - for -! and : ; ■. for and - . Shewa is often used under א and some other consonants when the presence of a vowel letter means that there is no other sign under the consonant, e.g., 1א at Exodus 21:36, איש at 21:18 and הוא at 22:8. By extension of this practice the unusual vocalization אם occurs at Exodus 22:2, where BHS reads □ .א]
+Examples of non-standard vocalization are: - for -! and : ; ■. for and - . Shewa is often used under א and some other consonants when the presence of a vowel letter means that there is no other sign under the consonant, e.g., אְוֹ at Exodus 21:36, איש at 21:18 and הוא at 22:8. By extension of this practice the unusual vocalization אם occurs at Exodus 22:2, where BHS reads אם.
 [6928]
 #
 T-S AS 67.142

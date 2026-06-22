@@ -29,6 +29,7 @@ def main():
     problems = []
     for bibEntry in bibEntries:
         bibEntry = bibEntry.replace("\n", "; ")
+        bibEntry = bibEntry.replace("  ", " ")
         label = re.findall(r"(?<=Label: \S)([^\n]*)", bibEntry)
         label = label[0]
         bibDict[label] = bibEntry
@@ -43,6 +44,11 @@ def main():
                 .replace(";\n", "; ")
                 .replace("\n;", ";")
                 .replace(",", ";")
+                .replace("  ", " ")
+                .replace("Song of Solomon", "Song of Songs")
+                .replace("Massorah", "Masora")
+                .replace("- ", "-")
+                .replace(" ;", ";")
                 
         )
         paPattern = r"([.;])\s(Parchment|Paper)"
@@ -53,6 +59,8 @@ def main():
         pattern2 = r"(damaged.*?\.) "
         entry = re.sub(pattern2, r"\1\n", entry, flags=re.IGNORECASE)
 
+
+
         
         lines = entry.split("\n")
         lines[:] = [x for x in lines if x]
@@ -62,7 +70,7 @@ def main():
             continue
 
 
-        dict['A'] = lines[0]
+        dict['A'] = lines[0].strip()
 
         dict['L'] = bibDict[lines[0]] if lines[0] in bibDict else ''
         
@@ -94,21 +102,7 @@ def main():
                 lines[2] = " ".join([lines[2], lines[3]])
                 lines.remove(lines[3])
         
-        # K = lines[1] + '; ' + lines[4] if len(lines)>=5 else lines[1]
 
-        # nonPattern = r"(non)\s*(-)\s*(standard\s*\w*\s*vocalization).+?(?=become|occur|\.\s[A-Z]|\.\s\[|\[[à-ü]|$)"
-        # K = re.sub(nonPattern, r"\1\2\3", K)
-        # K = re.sub(r"(vocalization)$", r"\1\.", K)
-        # K = re.sub(r"(vocalization)\s*\[(?=[à-ü])", r"\1 are: \[", K)
-        # K = re.sub(r"(vocalization)(?=[A-Za-z])", r"\1 ", K)
-
-        # # (\w{2,3}:?[A-Za-z]*)
-
-        # titlePattern = r"(T-S\s*\w*\s*\d+\.\d+|Or\.\s*\d+(?:\.\d+)*|Wm.\s*\S*\s*\d+(?:\.\d+)*)"
-        # refs = re.findall(titlePattern, K)
-        # refString = "; ".join(refs).strip()
-
-        # dict.update({'M': refString, 'K': K.strip(), 'J': lines[2]})
         if len(lines) >= 4:
             vals = lines[3].split(";")
             if len(vals)==1:
@@ -123,14 +117,6 @@ def main():
             if len(lines)>5:
                 last = " ".join(lines[4:])
                 lines[4] = last
-            # if len(vals)<3 or "col" not in vals[2]:
-            #     vals.insert(2, "")
-            # if  len(vals)<4 or "lea" not in vals[3] :
-            #     vals.insert(3, "")
-            # if  len(vals)<5 or "line" not in vals[4] :
-            #     vals.insert(4, "")
-            # if len(vals) < 6:
-            #     vals.append("")
             G = []
             F = []
             H = []
@@ -148,7 +134,7 @@ def main():
             dict.update({'C': vals[0].strip(), 'F': F, 
                         'G': G,'H': H, 'I': vals[-1].strip()})
 
-            if "average" in vals[1]:
+            if "average" in vals[1] or "size" in vals[1]:
                 vals[1] = re.sub(r"([^,]*)\sx\s([^,]*)\s=\s([^,]*)", r"\1 = \3 x \2 = \3", vals[1])
             dims = re.split(r"x|and|,", vals[1])
             dims = [s.strip() for s in dims]
@@ -169,10 +155,19 @@ def main():
         K = re.sub(r"(vocalization)\s*[a-zA-z:]\s\[", r"vocalization are: [", K)
         K = re.sub(r"(vocalization)(?=[A-Za-z])", r"\1 ", K)
         K = K.replace("The non-standard vocalization.", "Examples of non-standard vocalization.")
-        formPattern = r"(non-standard form[a-z]?)[^.]*(\.)?"
+        formPattern = r"(non-standard form[s]?)[^.]*(\.)?"
         K = re.sub(formPattern, r"\1.", K)
         vocPattern = r"(vocalized with the non-standard)[^.]*(\.)?"
         K = re.sub(vocPattern, r"\1 form.", K)
+        signsPattern = r"(?:This|the)\s*(sign|line ending)([s])?.+?(\.|,|\sare|\sis)"
+        K = re.sub(signsPattern, lambda match: match.group(1)+"s"+match.group(3) if (match.group(3)==" are" or match.group(2)=="s") else "a "+match.group(1)+match.group(3), K, flags=re.IGNORECASE)
+        # sPattern2 = r"(?:the)\s*(sign|line ending)"
+        # K = re.sub(sPattern2, r"a \1", K, flags=re.IGNORECASE)
+        # sPattern3 = r"(?:the)\s*(signs|line endings)"
+        # K = re.sub(sPattern3, r"\1", K, flags=re.IGNORECASE)
+        K = re.sub(r"[\.]\s+[a-z]", lambda match: match.group(0).upper(), K)
+        K = re.sub(r"\[\s*1\s*(?=[^\]])|(?<=[^\[])\s*1\s*\]", "[ ]", K)
+        
 
 
         titlePattern = r"(T-S\s*\w*\s*\d+\.\d+|Or\.\s*\d+(?:\.\d+)*|Wm.\s*\S*\s*\d+(?:\.\d+)*)"
