@@ -1,5 +1,6 @@
 import pandas as pd
 import re
+from spellchecker import SpellChecker
 
 # A – classmark
 # B – title (90% of cases = 'Bible' — to discuss!)
@@ -14,7 +15,9 @@ import re
 # K – content (= second line + fifth line + if possible, masoretic notes– to discuss!)
 # L – bibliography (to discuss!)
 # M – associated fragments (to discuss!) 
+
 def main():
+    spell = SpellChecker()
     file = open("DavisCatalogue.txt")
     bibFile = open("DavisBibliography.txt")
     catalogue = file.read()
@@ -35,6 +38,7 @@ def main():
         bibDict[label] = bibEntry
 
     rows = []
+   
     for entry in entries:
         
         dict = {}
@@ -58,7 +62,14 @@ def main():
         entry = re.sub(pattern, r"\1", entry, flags=re.IGNORECASE)
         pattern2 = r"(damaged.*?\.) "
         entry = re.sub(pattern2, r"\1\n", entry, flags=re.IGNORECASE)
-
+        
+      
+        realWords = ["non", "Judaeo", "Kittel", "prayer", "writ", "megillah", "pen", "branch", "Strauss", "right", "line", "one", "prev", "page", "title", 
+                     "century","poll", "book", "al-Rida", "Dhual", "folio", "wa", "week", "ha-", "quarter", "drawn", "word", "half", "Tel", "end", "crossed", "pre", "Kittle", "al-", "Kttel", 
+                     "Mosin", "wide", "he-", "ad-", "hand", "Judeao", "ink", "double", "space", "standard", "small", "side", "bibl"]
+        entry = re.sub(r"([A-z]{2,})-\s*([A-z]{2,})", lambda match: match.group(1)+ "-" +match.group(2) if match.group(1)+ "-" +match.group(2) in spell or any(real.lower() in (match.group(1)+ "-" +match.group(2)).lower() for real in realWords) else match.group(1)+match.group(2), entry, flags=re.IGNORECASE)
+        
+     
 
 
         
@@ -73,7 +84,7 @@ def main():
         dict['A'] = lines[0].strip()
 
         dict['L'] = bibDict[lines[0]] if lines[0] in bibDict else ''
-        
+    
 
         if re.findall(r"\[\d+\]", lines[-1]):
             lines.remove(lines[-1])
@@ -149,26 +160,26 @@ def main():
         K = lines[1] + '; ' + lines[4] if len(lines)>=5 else lines[1]
 
         nonPattern = r"(non)\s*(-)\s*(standard\s*\w*\s*vocalization).+?(?=become|occur|\.\s\[|[a-zA-z:]\s\[[^0-9]\]\s|\.\s[A-Z]|$)"
-
         K = re.sub(nonPattern, r"\1\2\3", K)
         K = re.sub(r"(vocalization)$", r"\1.", K)
         K = re.sub(r"(vocalization)\s*[a-zA-z:]\s\[", r"vocalization are: [", K)
         K = re.sub(r"(vocalization)(?=[A-Za-z])", r"\1 ", K)
         K = K.replace("The non-standard vocalization.", "Examples of non-standard vocalization.")
+
         formPattern = r"(non-standard form[s]?)[^.]*(\.)?"
         K = re.sub(formPattern, r"\1.", K)
         vocPattern = r"(vocalized with the non-standard)[^.]*(\.)?"
         K = re.sub(vocPattern, r"\1 form.", K)
+
         signsPattern = r"(?:This|the)\s*(sign|line ending)([s])?.+?(\.|,|\sare|\sis)"
         K = re.sub(signsPattern, lambda match: match.group(1)+"s"+match.group(3) if (match.group(3)==" are" or match.group(2)=="s") else "a "+match.group(1)+match.group(3), K, flags=re.IGNORECASE)
-        # sPattern2 = r"(?:the)\s*(sign|line ending)"
-        # K = re.sub(sPattern2, r"a \1", K, flags=re.IGNORECASE)
-        # sPattern3 = r"(?:the)\s*(signs|line endings)"
-        # K = re.sub(sPattern3, r"\1", K, flags=re.IGNORECASE)
         K = re.sub(r"[\.]\s+[a-z]", lambda match: match.group(0).upper(), K)
-        K = re.sub(r"\[\s*1\s*(?=[^\]])|(?<=[^\[])\s*1\s*\]", "[ ]", K)
-        
 
+        K = re.sub(r"\[\s*1\s*(?=[^\]])|(?<=[^\[])\s*1\s*\]", "[ ]", K)
+        onePattern = r"([\u0590-\u05fe]|\s)(1)([\u0590-\u05fe])" # [
+        onePattern2 = r"([\u0590-\u05fe])(1)([\u0590-\u05fe]|\s)" # ]
+        K = re.sub(onePattern, r"\1[\3", K)
+        K = re.sub(onePattern2, r"\1\]\3", K)
 
         titlePattern = r"(T-S\s*\w*\s*\d+\.\d+|Or\.\s*\d+(?:\.\d+)*|Wm.\s*\S*\s*\d+(?:\.\d+)*)"
         refs = re.findall(titlePattern, K)
@@ -176,6 +187,8 @@ def main():
 
         dict.update({'M': refString, 'K': K.strip(), 'J': lines[2]})
         rows.append(dict)
+        
+
     df = pd.DataFrame(rows, 
         columns=['A','B','C','D','E','F','G','H','I','J','K','L','M'])
     df.to_csv("test.csv", index=False)

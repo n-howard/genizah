@@ -1,0 +1,2 @@
+-[ ] figure out what to do about situations where [ ] exist instead of any Arabic/Hebrew at all (it is fine when it is replacing missing text)
+-[ ] figure out dashes replaced with symbol issue

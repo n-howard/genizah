@@ -587,7 +587,7 @@ T-S A2.40
 Exodus 14:30–16:15; 20:2–21:31
 Hebrew; standard Tiberian, cantillated; Massorah Magna and Parva.
 Parchment; 32.2cm. x 58.5cm.; 3 columns on folios 1v and 2, 2 columns on folio 1r; 2 leaves conjoined; 24 lines (complete); mutilated with large pieces missing.
-On folio 1r there is poetic spacing in Exodus 15 and in the side margin a pen exercise, which includes the beginning of a Hebrew alphabet, the opening words of Exodus 15:1, the names מטה ואהרן , and the Arabic iupc; , i.e. ‘pen-exercise of Murad Ahmad.’
+On folio 1r there is poetic spacing in Exodus 15 and in the side margin a pen exercise, which includes the beginning of a Hebrew alphabet, the opening words of Exodus 15:1, the names מטה ואהרן, and Arabic translating to ‘pen-exercise of Murad Ahmad.’
 #
 T-S A2.41
 Exodus 18:7–19:13; 21:35–22:29; 23:32–25:15
@@ -3610,7 +3610,7 @@ T-S A21.79
 Catena of Biblical passages
 Hebrew; predominantly standard Tiberian, cantillated, but not fully pointed throughout.
 Paper; 19.7cm. x29cm.; 1 column; 2 leaves conjoined; 11–14 lines; mutilated and rubbed.
-Folio 1 consists of the first verses of Massoretic divisions in Genesis, including Sedarim and sub- divisions of Sedarim, as follows: Genesis 8:1; 9:18; 11:1; 12:1, which is also the beginning of Seder 3; 14:1; 15:1; 16:1; 18:1, which is also the beginning of Seder 4; 19:1. There are decorated ם s in the margins beside the first verses of the Massoretic sub-divisions, but decorated Parashah headings beside the first verses of the Sedarim. Folio 2 consists of the first verses of Sedarim 21–28 in Exodus and Leviticus, as follows: Exodus 30:12; 35:1; 38:21; Leviticus 1:1; 6:1–2; 9:1; 12:1–2; 14:1. There are decorated Parashah headings beside the first verses of the Sedarim. After the last Seder of Exodus there is a line of Arabic which reads as follows: 'Ay A-" Ab   -
+Folio 1 consists of the first verses of Massoretic divisions in Genesis, including Sedarim and sub- divisions of Sedarim, as follows: Genesis 8:1; 9:18; 11:1; 12:1, which is also the beginning of Seder 3; 14:1; 15:1; 16:1; 18:1, which is also the beginning of Seder 4; 19:1. There are decorated ם s in the margins beside the first verses of the Massoretic sub-divisions, but decorated Parashah headings beside the first verses of the Sedarim. Folio 2 consists of the first verses of Sedarim 21–28 in Exodus and Leviticus, as follows: Exodus 30:12; 35:1; 38:21; Leviticus 1:1; 6:1–2; 9:1; 12:1–2; 14:1. There are decorated Parashah headings beside the first verses of the Sedarim. After the last Seder of Exodus there is a line of Arabic.
 ‘The Book of Exodus has finished; now begins the Book of Leviticus’.
 #
 T-S A21.80
@@ -4841,7 +4841,7 @@ T-S A22.128
 Genesis 8:16–9:2; 11:6–16
 Hebrew; predominantly standard Tiberian, cantillated, on folio 1, unpointed on folio 2; Massorah Parva on folio 1.
 Paper; 16cm. x 23.4cm.; 1 column; 2 leaves conjoined; 12 lines on folio 1, 13 lines on folio 2; slightly mutilated.
-Examples of non-standard vocalization are: -=- for and–;-הך-for • =~. On folio 1r at Genesis 8:17 the error ה before בשר is deleted. In the top righthand corner of folio 1r there is a ד , probably a gathering number, and in the top lefthand corner is written the Arabic wordi-J,1, ‘fourth’. On folio 1v at Genesis 9:1 את, which has been omitted from the text, is supplied in the margin. On folio 2v in the lower margin ושלטים is a catchword to the first word of the text on a following folio.
+Examples of non-standard vocalization are: -=- for and–;-הך-for • =~. On folio 1r at Genesis 8:17 the error ה before בשר is deleted. In the top righthand corner of folio 1r there is a ד , probably a gathering number, and in the top lefthand corner is written the Arabic word ‘fourth’. On folio 1v at Genesis 9:1 את, which has been omitted from the text, is supplied in the margin. On folio 2v in the lower margin ושלטים is a catchword to the first word of the text on a following folio.
 #
 T-S A22.129
 Genesis 12:1–4; 16:9–16
@@ -9567,7 +9567,7 @@ T-S A29.72
 Deuteronomy 1:1–5
 Hebrew; unpointed, but with verse divisions.
 Paper; 17.8cm. x 13.1cm.; 1 column; 1 leaf; 11 lines; slightly mutilated.
-On recto is written the Arabic: ur*. CO־  dJ  Jltl JLUL־. . ‘This book is the property of Sheikh Abu Hananel. May God prolong his life, and continue to honour him and fav [our him].’ On verso there is a heading written large above the first verse of Deuteronomy and reading: בשם י ו י אל עולם.
+On recto is written the Arabic, ‘This book is the property of Sheikh Abu Hananel. May God prolong his life, and continue to honour him and fav [our him].’ On verso there is a heading written large above the first verse of Deuteronomy and reading: בשם י ו י אל עולם.
 #
 T-S A29.73
 Deuteronomy 33:1–28
@@ -9979,7 +9979,7 @@ T-S A30.12
 Joshua 2:12–15
 Hebrew; unpointed, but with verse divisions.
 Paper; 20.5cm. x 12.7cm.; 1 column; 1 leaf; 8 lines; mutilated with pieces of text missing, cut vertically down the middle of the fragment.
-On recto in the upper margin there is the Arabic (-klc■ •
+On recto in the upper margin there is Arabic.
 #
 T-S A30.13
 Joshua 1:1–15
@@ -10001,7 +10001,7 @@ Paper; 17.8cm. x 13.8cm.; 1 column; 1 leaf; 13 lines; mutilated.
 T-S A30.16
 Joshua 3:16–4:5
 Hebrew; predominantly standard Tiberian, cantillated. Paper; 18cm. x 13.6cm.; 1 column; 1 leaf; 12 lines; slightly mutilated.
-Examples of non-standard vocalization are: -=- for -=ךך–, and–; -=״- for–;–for–. On recto in the top righthand corner is written a ב , probably a gathering number, and the corresponding Arabic .
+Examples of non-standard vocalization are: -=- for -=ךך–, and–; -=״- for–;–for–. On recto in the top righthand corner is written a ב , probably a gathering number, and the corresponding Arabic.
 #
 T-S A30.17
 Joshua 6:5–13
@@ -10807,7 +10807,7 @@ T-S A31.76
 Zechariah 7:2–8:6
 Hebrew; predominantly standard Tiberian, cantillated; Massorah Magna and Parva.
 Paper; 16.9cm. x 26.5cm.; 1 column; 2 leaves conjoined and consecutive; 10 lines; mutilated with a few small pieces of text missing.
-Examples of non-standard vocalizations are:–=~ for ~;־7־ for7־rr־. The tetragrammaton is abbreviated to . On folio 1r at Zechariah 7:3 צבאות is rewritten in the margin, as are ואת הדברים at Zechariah 7:12 and נשמה at Zechariah 7:14 on folio 2r. On folio 2v at Zechariah 8:2 קנאתי is rewritten in the margin. The colour of the ink used for rewriting these words is probably different from that of the text. On folio 1 there’ are two marginal Arabic glosses. On folio 1r לחלות of Zechariah 7:2 is rendered .*■*■■J and on folio 1v cr-VJl evidently refers to שמיר of Zechariah 7:12. On folio 2r in the upper margin is written JJ.1 [•••] r1־ A-JSJ* Jjl ,probably referring to משט ו ע of Zechariah 7:11 and 12.
+Examples of non-standard vocalizations are:–=~ for ~;־7־ for7־rr־. The tetragrammaton is abbreviated to . On folio 1r at Zechariah 7:3 צבאות is rewritten in the margin, as are ואת הדברים at Zechariah 7:12 and נשמה at Zechariah 7:14 on folio 2r. On folio 2v at Zechariah 8:2 קנאתי is rewritten in the margin. The colour of the ink used for rewriting these words is probably different from that of the text. On folio 1 there’ are two marginal Arabic glosses. On folio 1r לחלות of Zechariah 7:2 is rendered [ ] on folio 1v cr-VJl evidently refers to שמיר of Zechariah 7:12. On folio 2r in the upper margin is written [ ], probably referring to משט ו ע of Zechariah 7:11 and 12.
 #
 T-S A31.77
 Zechariah 8:12–20; 9:15–10:6
@@ -12542,7 +12542,7 @@ T-S A35.68
 Esther 2:4–13
 Hebrew; unpointed, but with verse divisions, except in column 1, which has predominantly standard Tiberian, uncantillated.
 Paper; 20cm. x 38cm.; 3 columns; 1 leaf, part of a scroll; 12–14 lines; mutilated.
-Examples of non-standard vocalization are:–for–;–for–and–;–for–. On recto at Esther 2:5 there is a decorated ס . In column 1 at 2:7 לה , which has been omitted from the text, is supplied above the line. On verso there is part of a Hebrew alphabet written out as an exercise and few lines of Arabic, widely spaced and written in a flowing calligraphic hand. It is apparently part of a document reporting on a financial case which had come before the courts. The first of the four lines reads: 1'  )י j
+Examples of non-standard vocalization are:–for–;–for–and–;–for–. On recto at Esther 2:5 there is a decorated ס . In column 1 at 2:7 לה , which has been omitted from the text, is supplied above the line. On verso there is part of a Hebrew alphabet written out as an exercise and few lines of Arabic, widely spaced and written in a flowing calligraphic hand. It is apparently part of a document reporting on a financial case which had come before the courts. 
 LjJLJI.
 #
 T-S A35.69
@@ -13549,7 +13549,7 @@ The text comprises the first and last verses of Sedarim 12–17. The tetragramma
 T-S A40.40
 Leviticus 14:2; 16:1; 19:1–2; 21:1; 25.1 2‘, 26.3
 Hebrew; predominantly standard Tiberian, cantillated. Paper; 19.7cm. x 14.4cm.; 1 column; 1 leaf; 15 lines on recto, 4 lines on verso; mutilated and rubbed with a few small pieces of text missing or illegible.
-The text comprises the first verses of Sedarim 28–33. Examples of non-standard vocalization are:–for–;–for–. On verso after Leviticus 26:3 there is the Arabic which reads: [   ]
+The text comprises the first verses of Sedarim 28–33. Examples of non-standard vocalization are:–for–;–for–. On verso after Leviticus 26:3 there is Arabic.]
 #
 T-S A40.41
 Biblical passages
@@ -14189,7 +14189,7 @@ T-S A41.53
 Genesis 1:1–8
 Hebrew; predominantly standard Tiberian, uncantillated.
 Paper; 18.8cm. x 14cm.; 1 column; 1 leaf; 16 lines; mutilated.
-Examples of non-standard vocalization are:–for–and דד- ;-ך־-for–,–, and–. On recto, before the beginning of the text on verso, there is the following Arabic: L&  
+Examples of non-standard vocalization are:–for–and דד- ;-ך־-for–,–, and–. On recto, before the beginning of the text on verso, there is Arabic.
 #
 T-S A41.54
 Isaiah 19:8–17
@@ -14207,7 +14207,7 @@ T-S A41.56
 Psalms 119:1–8; 119:113–126
 Hebrew; standard Tiberian, uncantillated.
 Paper; 15.5cm. x 22.9cm.; 1 column; 2 leaves conjoined; 11 lines; worn, but whole.
-On folio 1r there is the following Arabic (V ) UXJ1 owUS • On folio 2v in the lower
+On folio 1r there is Arabic. On folio 2v in the lower
 margin תורת י ך is a catchword to the first word of the text on a following folio.
 #
 T-S A41.57
@@ -15422,7 +15422,7 @@ T-S B14.43
 Isaiah 42:1–3
 Hebrew; standard Tiberian, uncantillated.
 Paper; 8.5cm. x 13cm.; 1 column; 1 leaf; 6 lines (incomplete); mutilated.
-On recto before Isaiah 42:1 the Aramaic rubric אפטרתא דבראשית בישעיה indicates that the passage which follows is the Haphtorah for Seder 1 at Genesis 1:1. There are many pen-exercises in Hebrew and Arabic in the margins, including the phrase ויקם שמואל The Arabic scribbling consists mainly of repetitions of the phrase ־■–ס■' • There is also part of
+On recto before Isaiah 42:1 the Aramaic rubric אפטרתא דבראשית בישעיה indicates that the passage which follows is the Haphtorah for Seder 1 at Genesis 1:1. There are many pen-exercises in Hebrew and Arabic in the margins, including the phrase ויקם שמואל The Arabic scribbling consists mainly of repetitions of a phrase. There is also part of
 Genesis 49:18. On verso Isaiah 42:1 is repeated twice, Joshua 10:14 is written in the margin, and there are three lines in Judaeo-Arabic of an epistolary formula as follows:
 אלדי אעלם בה אלמולי/ אלשיך אלאגל אטאל אללה/ במאה ואדאם עזה/
 #
@@ -20796,7 +20796,7 @@ Or. 1080.A1.12 (formerly Or. 1080.12.13)
 Genesis 11:31–12:6
 Hebrew; standard Tiberian, cantillated.
 Parchment; 19.1cm. x 11.3cm.; 1 column; 1 leaf; 12 lines; slightly mutilated.
-On recto at Genesis 12:1, the beginning of Seder 3, there is a decorated Parashah heading. There are many jottings in the margins in Arabic, probably writing practice for draughting an important letter. They consist mainly of set phrases, such as the Basmala, (X aJI Jli' L a*–, etc. The sign is used to fill up line-endings.
+On recto at Genesis 12:1, the beginning of Seder 3, there is a decorated Parashah heading. There are many jottings in the margins in Arabic, probably writing practice for draughting an important letter. They consist mainly of set phrases, such as the Basmala, etc. The sign is used to fill up line-endings.
 #
 Or. 1080.A1.13 (formerly Or. 1080.12.17)
 Genesis 46:5–18
@@ -32799,7 +32799,7 @@ Parchment; 7.6cm. x 4.7cm.; 2 columns; 1 leaf; 4 lines (incomplete); badly mutil
 T-S NS 58.68
 Jeremiah 6:1-8:11
 Hebrew; standard Tiberian where legible, cantillated; Massorah Parva.
-Parchment; 14cm. x 22.7cm., 14.3cm. x 22.5cm., 14cm. x 23.5cm., and 14.3cm. x 24cm.; 1 column; 8 leaves conjoined in 4 pairs and consecutive; 1011־ lines; mutilated and rubbed with many pieces of text missing or illegible.
+Parchment; 14cm. x 22.7cm., 14.3cm. x 22.5cm., 14cm. x 23.5cm., and 14.3cm. x 24cm.; 1 column; 8 leaves conjoined in 4 pairs and consecutive; 10-11 lines; mutilated and rubbed with many pieces of text missing or illegible.
 The sign V is used to fill up line-endings. On folio 1r at Jeremiah 6:2 there is a decorated t ;
 #
 T-S NS 59.1
@@ -33217,7 +33217,7 @@ T-S NS 61.28
 Song of Solomon 3:10-4:3
 Hebrew; unpointed, but with verse divisions and isolated examples of Tiberian vocalization.
 Paper; 11.1cm. x 8.7cm.; 1 column; 1 leaf; 10 lines on recto, 9 lines on verso; mutilated with pieces of text missing.
-On verso in the top righthand corner there is Arabic: iiU (?) = !63.
+On verso in the top righthand corner there is Arabic.
 #
 T-S NS 61.30
 Genesis 43:11-12; 43:15-16
@@ -88632,7 +88632,7 @@ T-S AS 27.179
 Leviticus 6:9-11; 7:25-27; 10:14-16; 11:1-3;
 11:27-30; 11:34-38
 Hebrew; standard Tiberian where legible, cantillated; Masorah Parva; Parchment; 13.8 x 18.3; 2 leaves conjoined; 2 columns (incomplete); 11 lines (incomplete); badly mutilated and rubbed with only small pieces of text preserved.
-On folio lr parts of the text which have been lost through mutilation are written in the margin. On folio 2r at Leviticus 10:16 there is a decorated note of the חצי הת1[רה] בתיבות in the margin, and at Leviticus 11:1 there is a decorated 0. The text on folio 2r appears to have been overwritten.
+On folio lr parts of the text which have been lost through mutilation are written in the margin. On folio 2r at Leviticus 10:16 there is a decorated note of the חצי התו[רה] בתיבות in the margin, and at Leviticus 11:1 there is a decorated 0. The text on folio 2r appears to have been overwritten.
 See plate 16.
 [6407]
 #
@@ -100617,7 +100617,7 @@ Psalms 92:15-93:3; 93:5; 91:16, for liturgical use.
 Hebrew; standard Tiberian, uncantillated; paper; 10.1 x 5.6;
 1 leaf; 11 lines (incomplete); badly mutilated and rubbed with only a few small pieces of text preserved sufficiently clearly to permit identification.
 The tetragrammaton is abbreviated to ?י on verso. The Judaeo- Arabic rubric
-[יק1[ל □JI occurs on verso before Psalms 91:16.
+תם יקו[ל] occurs on verso before Psalms 91:16.
 [1301]
 #
 T-S AS 42.131
@@ -129238,8 +129238,7 @@ Hebrew; Palestinian, cantillated, with traces of Tiberian vocalization; Parchmen
 [6369]
 #
 T-S AS 63.151
-Joshua 5:15-6:6; 6:8-11; 7:6-7; 7:12-17;
-20:8-21:2 ;19:49-20:4 ;44־19:32 ;19:18-27
+Joshua 5:15-6:6; 6:8-11; 7:6-7; 7:12-17; 19:18-27; 19:32-44; 19:49-20:4; 20:8-21:2
 Hebrew; Palestinian, cantillated, with some Tiberian vocalization; Masorah Parva; Parchment; 23 x 33.7; 2 leaves conjoined; 2 columns; 27 lines; mutilated and rubbed with many pieces of text missing or illegible.
 [6370]
 #
