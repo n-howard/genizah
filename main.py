@@ -55,19 +55,23 @@ def main():
                 .replace(" ;", ";")
                 
         )
-        paPattern = r"([.;])\s(Parchment|Paper)"
+        paPattern = r"([.;])\s*(Parchment|Paper)"
         entry = re.sub(paPattern, r"\1\n\2",entry, flags=re.IGNORECASE)
         entry = re.sub(r"(?<=;)\n(?=\d)", " ", entry)
         pattern = r"(The tetragrammaton is abbreviated)[^.]*"
         entry = re.sub(pattern, r"\1", entry, flags=re.IGNORECASE)
+        entry = re.sub(r"(The tetragrammaton is abbreviated.)\s*[\u0590-\u05fe\[\]\.]*(?=\s[A-Za-z]|$)", r"\1", entry, flags=re.IGNORECASE)
         pattern2 = r"(damaged.*?\.) "
         entry = re.sub(pattern2, r"\1\n", entry, flags=re.IGNORECASE)
-        
+        entry = re.sub(r"(decorated)\s*[\u25a0-\u25ff]", r"\1 ס", entry, flags=re.IGNORECASE)
+        specialPattern = r"([A-Za-z])[־׳]"
+        entry = re.sub(specialPattern, r"\1", entry)
+        entry = re.sub(r"([A-Za-z0-9])([\u0590-\u05fe])", r"\1 \2", entry)
       
         realWords = ["non", "Judaeo", "Kittel", "prayer", "writ", "megillah", "pen", "branch", "Strauss", "right", "line", "one", "prev", "page", "title", 
-                     "century","poll", "book", "al-Rida", "Dhual", "folio", "wa", "week", "ha-", "quarter", "drawn", "word", "half", "Tel", "end", "crossed", "pre", "Kittle", "al-", "Kttel", 
+                     "century","poll", "book", "al-Rida", "Dhual", "folio", "wa", "week", "ha-", "quarter", "drawn", "word", "half", "Tel", "end", "crossed", "pre", "al-", 
                      "Mosin", "wide", "he-", "ad-", "hand", "Judeao", "ink", "double", "space", "standard", "small", "side", "bibl"]
-        entry = re.sub(r"([A-z]{2,})-\s*([A-z]{2,})", lambda match: match.group(1)+ "-" +match.group(2) if match.group(1)+ "-" +match.group(2) in spell or any(real.lower() in (match.group(1)+ "-" +match.group(2)).lower() for real in realWords) else match.group(1)+match.group(2), entry, flags=re.IGNORECASE)
+        entry = re.sub(r"([A-Za-z]{2,})-\s*([A-Za-z]{2,})", lambda match: match.group(1)+ "-" +match.group(2) if match.group(1)+ "-" +match.group(2) in spell or any(real.lower() in (match.group(1)+ "-" +match.group(2)).lower() for real in realWords) else match.group(1)+match.group(2), entry, flags=re.IGNORECASE)
         
      
 
@@ -81,7 +85,7 @@ def main():
             continue
 
 
-        dict['A'] = lines[0].strip()
+        dict['A'] = lines[0].strip().rstrip(';')
 
         dict['L'] = bibDict[lines[0]] if lines[0] in bibDict else ''
     
@@ -96,6 +100,12 @@ def main():
             dict.update({'B': "Bible"})
 
         if len(lines) < 3:
+            if "archment" and "aper" in entry:
+                dict['C'] = "parchment; paper"
+            elif "archment" in entry:
+                dict['C'] = "parchment"
+            elif "paper" in entry:
+                dict['C'] = "paper"
             dict['K'] = lines[1] if len(lines)>1 else ''
             if "See" in entry and "Klein" not in entry:
                 problems.append(",".join(lines))
@@ -107,17 +117,23 @@ def main():
 
         if "archment" in lines[2] or "aper" in lines[2]:
             lines.insert(2, "")
+            
         
         if len(lines)>=4:
             if "archment" not in lines[3] and "aper" not in lines[3]:
                 lines[2] = " ".join([lines[2], lines[3]])
                 lines.remove(lines[3])
         
-
         if len(lines) >= 4:
+            lines[3] = re.sub(r"(?<=\d)־", "-", lines[3])
             vals = lines[3].split(";")
-            if len(vals)==1:
-                dict['K'] = K + vals[0]
+            if len(vals)<=1:
+                if "aper" or "archment" in lines[3]:
+                    dict['C'] = lines[3].strip().rstrip(';')
+                    dict['K'] = lines[1].strip().rstrip(';')
+                    rows.append(dict)
+                    continue
+                dict['K'] = lines[1] + vals[3]
                 rows.append(dict)
                 continue
             if len(vals) <5 and len(lines)>4 and ";" in lines[4]:
@@ -139,11 +155,11 @@ def main():
                     F.append(val.strip())
                 elif "line" in val:
                     H.append(val.strip())
-            G = delim.join(G).strip()
-            F = delim.join(F).strip()
-            H = delim.join(H).strip()
-            dict.update({'C': vals[0].strip(), 'F': F, 
-                        'G': G,'H': H, 'I': vals[-1].strip()})
+            G = delim.join(G).strip().rstrip(';')
+            F = delim.join(F).strip().rstrip(';')
+            H = delim.join(H).strip().rstrip(';')
+            dict.update({'C': vals[0].strip().rstrip(';'), 'F': F, 
+                        'G': G,'H': H, 'I': vals[-1].strip().rstrip(';')})
 
             if "average" in vals[1] or "size" in vals[1]:
                 vals[1] = re.sub(r"([^,]*)\sx\s([^,]*)\s=\s([^,]*)", r"\1 = \3 x \2 = \3", vals[1])
@@ -159,10 +175,10 @@ def main():
                 dict.update({'D': height,'E': width})
         K = lines[1] + '; ' + lines[4] if len(lines)>=5 else lines[1]
 
-        nonPattern = r"(non)\s*(-)\s*(standard\s*\w*\s*vocalization).+?(?=become|occur|\.\s\[|[a-zA-z:]\s\[[^0-9]\]\s|\.\s[A-Z]|$)"
+        nonPattern = r"(non)\s*(-)\s*(standard\s*\w*\s*vocalization).+?(?=become|occur|\.\s\[|[a-zA-Za-z:]\s\[[^0-9]\]\s|\.\s[A-Z]|$)"
         K = re.sub(nonPattern, r"\1\2\3", K)
         K = re.sub(r"(vocalization)$", r"\1.", K)
-        K = re.sub(r"(vocalization)\s*[a-zA-z:]\s\[", r"vocalization are: [", K)
+        K = re.sub(r"(vocalization)\s*[a-zA-Za-z:]\s\[", r"vocalization are: [", K)
         K = re.sub(r"(vocalization)(?=[A-Za-z])", r"\1 ", K)
         K = K.replace("The non-standard vocalization.", "Examples of non-standard vocalization.")
 
@@ -181,11 +197,16 @@ def main():
         K = re.sub(onePattern, r"\1[\3", K)
         K = re.sub(onePattern2, r"\1\]\3", K)
 
+        K = re.sub(r"(?<=\d)־", ",", K)
+
+        K = re.sub(r"(\w) (\.)", r"\1\2", K)
+        
+
         titlePattern = r"(T-S\s*\w*\s*\d+\.\d+|Or\.\s*\d+(?:\.\d+)*|Wm.\s*\S*\s*\d+(?:\.\d+)*)"
         refs = re.findall(titlePattern, K)
         refString = "; ".join(refs).strip()
 
-        dict.update({'M': refString, 'K': K.strip(), 'J': lines[2]})
+        dict.update({'M': refString, 'K': K.strip().rstrip(';'), 'J': lines[2].rstrip(';')})
         rows.append(dict)
         
 
