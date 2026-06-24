@@ -1,6 +1,6 @@
--[ ] figure out what to do about situations where [ ] exist instead of any Arabic/Hebrew at all (it is fine when it is replacing missing text)
+-[ x ] figure out what to do about situations where [ ] exists instead of any Arabic/Hebrew at all (it is fine when it is replacing missing text)
 -[ x ] figure out dashes replaced with symbol issue
--[ ] deal with geometric shapes replacing symbols (e.g., "decorated" or replacing a Hebrew word)
+-[ x ] deal with geometric shapes replacing symbols (e.g., "decorated" or replacing a Hebrew word)
 - [ ] fix numbers replacing Hebrew letters (14-ish left to fix)
 
 # Hebrew
