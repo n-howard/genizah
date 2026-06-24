@@ -117,8 +117,7 @@ def main():
                 problems.append(",".join(lines))
             elif "Klein" in entry and len(lines[1])<20:
                 continue
-            else:
-                rows.append(dict)
+            rows.append(dict)
             continue
 
         if "archment" in lines[2] or "aper" in lines[2]:
@@ -194,6 +193,7 @@ def main():
         K = re.sub(r"(vocalization)\s*[a-zA-Za-z:]\s\[", r"vocalization are: [", K)
         K = re.sub(r"(vocalization)(?=[A-Za-z])", r"\1 ", K)
         K = K.replace("The non-standard vocalization.", "Examples of non-standard vocalization.")
+        K = re.sub(r"(vocalized).+?(?=$|\.)", r"\1", K)
 
         formPattern = r"(non-standard form[s]?)[^.]*(\.)?"
         K = re.sub(formPattern, r"\1.", K)
@@ -215,6 +215,10 @@ def main():
         K = re.sub(r"(\w) (\.)", r"\1\2", K)
 
         K = re.sub(r"(\.\s*\.)|\s*\.", ".", K)
+
+        K = re.sub(r"(as follows)[:,]\s*([~=&\)\-0-9–—])+(?=\.|$|\s*[A-Za-z])", "", K, flags=re.IGNORECASE)
+
+        K = re.sub(r"(?<=[A-Za-z0-9])([^A-Za-z0-9]+for[^A-Za-z0-9\s][^.]*)+(?=\.|$)", "", K)
         
         # bracketPattern = r"([A-Za-z]{3,})\s*\[\s?\](\s*[A-Za-z.])"
 
