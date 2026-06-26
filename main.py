@@ -39,6 +39,9 @@ def main():
         bibDict[label] = bibEntry
 
     rows = []
+
+    # hebCount = 0
+    # hebList = []
    
     for entry in entries:
         
@@ -49,13 +52,15 @@ def main():
                 .replace("mutilation", "damage")
                 .replace(";\n", "; ")
                 .replace("\n;", ";")
-                .replace(",", ";")
+                # .replace(",", ";")
                 .replace("  ", " ")
                 .replace("Song of Solomon", "Song of Songs")
                 .replace("Massorah", "Masora")
                 .replace("- ", "-")
                 .replace(" ;", ";")
+                .replace(" ,", ",")
                 .replace("®", "")
+                .replace("ר lines", "7 lines")
                 
         )
         entry = re.sub(r"(?<=\.)\s*י+\]", "", entry)
@@ -67,37 +72,39 @@ def main():
         entry = re.sub(r"(The tetragrammaton is abbreviated.)\s*[\u0590-\u05fe]*\]", r"\1", entry, flags=re.IGNORECASE)
         pattern2 = r"(damaged.*?\.) "
         entry = re.sub(pattern2, r"\1\n", entry, flags=re.IGNORECASE)
-        entry = re.sub(r"(decorated)\s*[0\u25a0-\u25ff]", r"\1 ס", entry, flags=re.IGNORECASE)
         specialPattern = r"([A-Za-z])[־׳]"
         entry = re.sub(specialPattern, r"\1", entry)
+        entry = re.sub(r"\s([\u0590-\u05fe])\s([\u0590-\u05fe])", r"\1\2", entry)
         entry = re.sub(r"([A-Za-z0-9])([\u0590-\u05fe])", r"\1 \2", entry)
+        entry = re.sub(r"([\u0590-\u05fe])([A-Za-z0-9])", r"\1 \2", entry)
       
         realWords = ["non", "Judaeo", "Kittel", "prayer", "writ", "megillah", "pen", "branch", "Strauss", "right", "line", "one", "prev", "page", "title", 
                      "century","poll", "book", "al-Rida", "Dhual", "folio", "wa", "week", "ha-", "quarter", "drawn", "word", "half", "Tel", "end", "crossed", "pre", "al-", 
                      "Mosin", "wide", "he-", "ad-", "hand", "Judeao", "ink", "double", "space", "standard", "small", "side", "bibl"]
         entry = re.sub(r"([A-Za-z]{2,})-\s*([A-Za-z]{2,})", lambda match: match.group(1)+ "-" +match.group(2) if match.group(1)+ "-" +match.group(2) in spell or any(real.lower() in (match.group(1)+ "-" +match.group(2)).lower() for real in realWords) else match.group(1)+match.group(2), entry, flags=re.IGNORECASE)
         
-        entry = re.sub(r"(?<=[^\u25a0-\u25ff])[\u25a0-\u25ff](?=[^\u25a0-\u25ff])", "", entry)
+        entry = re.sub(r"(?<=[^\u25a0-\u25ff\s\[\]])[\u25a0-\u25ff](?=[^\u25a0-\u25ff\s\[\]])", "", entry)
 
+        entry = re.sub(r"(\d{1,2})(\d{1,2})\s*[\u0590-\u05fe]\s*lines", r"\1-\2 lines", entry)
 
+        entry = re.sub(r"([\u0590-\u05fe])\s*([;,])\s*([\u0590-\u05fe])", r"\1 \2\3", entry)
         
         lines = entry.split("\n")
         lines[:] = [x for x in lines if x]
 
-
         if len(lines)==0:
             continue
-
-
+        
+        
         dict['A'] = lines[0].strip().rstrip(';')
 
         dict['L'] = bibDict[lines[0]] if lines[0] in bibDict else ''
     
 
-        if re.findall(r"\[\d+\]", lines[-1]):
+        if re.findall(r"$\[\d+\]$", lines[-1]):
             lines.remove(lines[-1])
 
-        if "tetragrammaton is abbreviated" in entry or "iturgical poetry" in entry or "child's" in entry:
+        if "tetragrammaton is abbreviated" in entry or "iturgical poetry" in entry or bool(re.search(r"writing[\-\s]*exercise", entry)):
             dict.update({'B': "Bible-Related"})
             
         else:
@@ -115,21 +122,23 @@ def main():
             dict['K'] = lines[1] if len(lines)>1 else ''
             if "See" in entry and "Klein" not in entry:
                 problems.append(",".join(lines))
+                continue
             elif "Klein" in entry and len(lines[1])<20:
                 continue
             rows.append(dict)
             continue
 
-        if "archment" in lines[2] or "aper" in lines[2]:
+        if "archment" in lines[2] or "aper" in lines[2] or "eather" in lines[2]:
             lines.insert(2, "")
             
         
-        if len(lines)>=4:
-            if "archment" not in lines[3] and "aper" not in lines[3]:
-                lines[2] = " ".join([lines[2], lines[3]])
-                lines.remove(lines[3])
+        # if len(lines)>=4:
+        #     if "archment" not in lines[3] and "aper" not in lines[3]:
+        #         lines[2] = " ".join([lines[2], lines[3]])
+        #         lines.remove(lines[3])
         
         if len(lines) >= 4:
+            lines[3] = lines[3].replace(",", ";")
             lines[3] = re.sub(r"(?<=\d)־", "-", lines[3])
             vals = lines[3].split(";")
             if len(vals)<=1:
@@ -152,6 +161,9 @@ def main():
             G = []
             F = []
             H = []
+            C = []
+            if "archment" not in entry and "aper" not in entry and "eather" not in entry:
+                vals.insert(0, "")
             delim = "; "
             for val in vals:
                 if "dama" in val:
@@ -162,10 +174,13 @@ def main():
                     F.append(val.strip())
                 elif "line" in val:
                     H.append(val.strip())
+                elif "archment" in val or "aper" in val or "eather" in val:
+                    C.append(val.strip())
             G = delim.join(G).strip().rstrip(';')
             F = delim.join(F).strip().rstrip(';')
             H = delim.join(H).strip().rstrip(';')
-            dict.update({'C': vals[0].strip().rstrip(';'), 'F': F, 
+            C = delim.join(C).strip().rstrip(';')
+            dict.update({'C': C, 'F': F, 
                         'G': G,'H': H, 'I': vals[-1].strip().rstrip(';')})
 
             if "average" in vals[1] or "size" in vals[1]:
@@ -180,20 +195,24 @@ def main():
                 height = delim.join(h)
                 width = delim.join(w)
                 dict.update({'D': height,'E': width})
-
+        
         if len(lines)>=5:
-            pattern4 = r"([a-z])\s[^a-z0-9\s]+\s*([\u0590-\u05fe])"
+            pattern4 = r"([a-z])\s[^a-z0-9\u0590-\u05fe\s\[\]]+\s*([\u0590-\u05fe])"
             lines[4] = re.sub(pattern4, r"\1 \2", lines[4])
+            
             lines[4] = re.sub(r"\b\S*JL\S*\b", r" ", lines[4], flags=re.IGNORECASE)
+        
         K = lines[1] + '; ' + lines[4] if len(lines)>=5 else lines[1]
 
-        nonPattern = r"(non)\s*(-)\s*(standard\s*\w*\s*vocalization).+?(?=become|occur|\.\s\[|[a-zA-Za-z:]\s\[[^0-9]\]\s|\.\s[A-Z]|$)"
+        
+        nonPattern = r"(non)\s*(-)\s*(standard\s*\w*\s*vocalization).+?(?=become|occur|\.\s\[|[a-zA-Z:]\s\[[^0-9]\]\s|\.\s+[A-Z\u05d0-\u05ea]|$)"
         K = re.sub(nonPattern, r"\1\2\3", K)
         K = re.sub(r"(vocalization)$", r"\1.", K)
         K = re.sub(r"(vocalization)\s*[a-zA-Za-z:]\s\[", r"vocalization are: [", K)
         K = re.sub(r"(vocalization)(?=[A-Za-z])", r"\1 ", K)
-        K = K.replace("The non-standard vocalization.", "Examples of non-standard vocalization.")
-        K = re.sub(r"(vocalized).+?(?=$|\.)", r"\1", K)
+        # K = K.replace("The non-standard vocalization.", "Examples of non-standard vocalization occur.")
+        K = re.sub(r"(The|Examples of) (non-standard\s*\w*\s*vocalization)(?:\s*occur)?[s]?(\.)", r"Examples of \2 occur.", K)
+        
 
         formPattern = r"(non-standard form[s]?)[^.]*(\.)?"
         K = re.sub(formPattern, r"\1.", K)
@@ -219,9 +238,31 @@ def main():
         K = re.sub(r"(as follows)[:,]\s*([~=&\)\-0-9–—])+(?=\.|$|\s*[A-Za-z])", "", K, flags=re.IGNORECASE)
 
         K = re.sub(r"(?<=[A-Za-z0-9])([^A-Za-z0-9]+for[^A-Za-z0-9\s][^.]*)+(?=\.|$)", "", K)
+
+        K = re.sub(r"BH\W", "BH3", K)
+
+        K = re.sub(r"(decorated)\s*[&0ם\u25a0-\u25ff]", r"\1 ס", K, flags=re.IGNORECASE)
+
+        K = re.sub(r"See Plate \d+\.*", "", K, flags=re.IGNORECASE)
+
+        K = re.sub(r"[\[]\s*(\S)\s*[\]]", r"[\1]", K)
+
+        K = K.replace(" ס s ", " סs ")
+
+        
+        
+        # if bool(re.search(r"[\u0590-\u05fe]", K)):
+        #     hebCount+=1
+        #     hebList.append(lines[0])
         
         # bracketPattern = r"([A-Za-z]{3,})\s*\[\s?\](\s*[A-Za-z.])"
 
+        if (K.count("]")==1 and "[" not in K) or (K.count("[")==1 and "]" not in K):
+            K = (
+                K
+                    .replace("]", "")
+                    .replace("[", "")
+            )
 
 
         titlePattern = r"((?:T-S\s*\w*\s*\d+\.\d+|Or\.\s*\d+(?:\.\d+)*|Wm.\s*\S*\s*\d+(?:\.\d+)*)(?:\sand\s\d+)*)"
