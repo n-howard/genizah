@@ -40,6 +40,9 @@ def main():
 
     rows = []
 
+    realWords = ["non", "Judaeo", "Kittel", "prayer", "writ", "megillah", "pen", "branch", "Strauss", "right", "line", "one", "prev", "page", "title", 
+                     "century","poll", "book", "al-Rida", "Dhual", "folio", "wa", "week", "ha-", "quarter", "drawn", "word", "half", "Tel", "end", "crossed", "pre", "al-", 
+                     "Mosin", "wide", "he-", "ad-", "hand", "Judeao", "ink", "double", "space", "standard", "small", "side", "bibl"]
     # hebCount = 0
     # hebList = []
    
@@ -61,6 +64,8 @@ def main():
                 .replace(" ,", ",")
                 .replace("®", "")
                 .replace("ר lines", "7 lines")
+                .replace("׳,", ";")
+                .replace("ו־", "ר")
                 
         )
         entry = re.sub(r"(?<=\.)\s*י+\]", "", entry)
@@ -75,12 +80,10 @@ def main():
         specialPattern = r"([A-Za-z])[־׳]"
         entry = re.sub(specialPattern, r"\1", entry)
         entry = re.sub(r"\s([\u0590-\u05fe])\s([\u0590-\u05fe])", r"\1\2", entry)
+        entry = re.sub(r"([\u0590-\u05fe])\s([\u0590-\u05fe])\s", r"\1\2", entry)
         entry = re.sub(r"([A-Za-z0-9])([\u0590-\u05fe])", r"\1 \2", entry)
         entry = re.sub(r"([\u0590-\u05fe])([A-Za-z0-9])", r"\1 \2", entry)
-      
-        realWords = ["non", "Judaeo", "Kittel", "prayer", "writ", "megillah", "pen", "branch", "Strauss", "right", "line", "one", "prev", "page", "title", 
-                     "century","poll", "book", "al-Rida", "Dhual", "folio", "wa", "week", "ha-", "quarter", "drawn", "word", "half", "Tel", "end", "crossed", "pre", "al-", 
-                     "Mosin", "wide", "he-", "ad-", "hand", "Judeao", "ink", "double", "space", "standard", "small", "side", "bibl"]
+        
         entry = re.sub(r"([A-Za-z]{2,})-\s*([A-Za-z]{2,})", lambda match: match.group(1)+ "-" +match.group(2) if match.group(1)+ "-" +match.group(2) in spell or any(real.lower() in (match.group(1)+ "-" +match.group(2)).lower() for real in realWords) else match.group(1)+match.group(2), entry, flags=re.IGNORECASE)
         
         entry = re.sub(r"(?<=[^\u25a0-\u25ff\s\[\]])[\u25a0-\u25ff](?=[^\u25a0-\u25ff\s\[\]])", "", entry)
@@ -101,7 +104,7 @@ def main():
         dict['L'] = bibDict[lines[0]] if lines[0] in bibDict else ''
     
 
-        if re.findall(r"$\[\d+\]$", lines[-1]):
+        if re.findall(r"\[\d+\]$", lines[-1]):
             lines.remove(lines[-1])
 
         if "tetragrammaton is abbreviated" in entry or "iturgical poetry" in entry or bool(re.search(r"writing[\-\s]*exercise", entry)):
@@ -138,7 +141,7 @@ def main():
         #         lines.remove(lines[3])
         
         if len(lines) >= 4:
-            lines[3] = lines[3].replace(",", ";")
+            # lines[3] = lines[3].replace(",", ";")
             lines[3] = re.sub(r"(?<=\d)־", "-", lines[3])
             vals = lines[3].split(";")
             if len(vals)<=1:
@@ -168,6 +171,8 @@ def main():
             for val in vals:
                 if "dama" in val:
                     continue
+                elif "size" in val or "cm" in val:
+                    continue
                 elif "col" in val:
                     G.append(val.strip())
                 elif "lea" in val:
@@ -182,11 +187,12 @@ def main():
             C = delim.join(C).strip().rstrip(';')
             dict.update({'C': C, 'F': F, 
                         'G': G,'H': H, 'I': vals[-1].strip().rstrip(';')})
-
             if "average" in vals[1] or "size" in vals[1]:
-                vals[1] = re.sub(r"([^,]*)\sx\s([^,]*)\s=\s([^,]*)", r"\1 = \3 x \2 = \3", vals[1])
-            dims = re.split(r"x|and|,", vals[1])
+                vals[1] = re.sub(r"([0-9a-zA-Z\.\s]*)\sx\s([0-9a-zA-Z\.\s]*)\s[=\()]+\s*([0-9a-zA-Z\.\s]*)[\)]*", r"\1 = \3 x \2 = \3", vals[1])
+            vals[1] = re.sub(r"(\d)\.\s[l]", r"\1.1", vals[1])
+            dims = re.split(r"and|x|,", vals[1])
             dims = [s.strip() for s in dims]
+            dims[:] = [x for x in dims if x]
             if len(dims)==2:
                 dict.update({'D': dims[0],'E':  dims[1]})
             else:
@@ -205,13 +211,14 @@ def main():
         K = lines[1] + '; ' + lines[4] if len(lines)>=5 else lines[1]
 
         
-        nonPattern = r"(non)\s*(-)\s*(standard\s*\w*\s*vocalization).+?(?=become|occur|\.\s\[|[a-zA-Z:]\s\[[^0-9]\]\s|\.\s+[A-Z\u05d0-\u05ea]|$)"
-        K = re.sub(nonPattern, r"\1\2\3", K)
+        nonPattern = r"(non)\s*(-)\s*(standard\s*\w*\s*vocalization)(\s*in (?:[^,](?!are))*)*.+?(?=\s*become|\s*occur|\.\s\[|[a-zA-Z:]\s\[[^0-9\s]\]\s|\.\s+[A-Z\u05d0-\u05ea]|$)"
+        K = re.sub(nonPattern, r"\1\2\3\4", K)
         K = re.sub(r"(vocalization)$", r"\1.", K)
+        K = re.sub(r"([^\.])$", r"\1.", K)
         K = re.sub(r"(vocalization)\s*[a-zA-Za-z:]\s\[", r"vocalization are: [", K)
         K = re.sub(r"(vocalization)(?=[A-Za-z])", r"\1 ", K)
         # K = K.replace("The non-standard vocalization.", "Examples of non-standard vocalization occur.")
-        K = re.sub(r"(The|Examples of) (non-standard\s*\w*\s*vocalization)(?:\s*occur)?[s]?(\.)", r"Examples of \2 occur.", K)
+        K = re.sub(r"(The|Examples of|An example of) (non-standard\s*\w*\s*vocalization)(?:\s*occur)?[s]?(\sin the over[^\.]*|\sin the rem[^\.]*|\sin folio[^\.]*)?(\.)", r"Examples of \2\3 occur.", K)
         
 
         formPattern = r"(non-standard form[s]?)[^.]*(\.)?"
@@ -219,9 +226,9 @@ def main():
         vocPattern = r"(vocalized with the non-standard)[^.]*(\.)?"
         K = re.sub(vocPattern, r"\1 form.", K)
 
-        signsPattern = r"(?:This|the)\s*(sign|line ending)([s])?.+?(\.|,|\sare|\sis)"
+        signsPattern = r"(?:This|the)\s*(sign|line ending)([s])?.*?(\.|,|\sare|\sis|$)"
         K = re.sub(signsPattern, lambda match: match.group(1)+"s"+match.group(3) if (match.group(3)==" are" or match.group(2)=="s") else "a "+match.group(1)+match.group(3), K, flags=re.IGNORECASE)
-        K = re.sub(r"[\.]\s+[a-z]", lambda match: match.group(0).upper(), K)
+        K = re.sub(r"[;\.]\s+[a-z](?=[^\.]{3,})", lambda match: match.group(0).upper(), K)
 
         K = re.sub(r"\[\s*1\s*(?=[^\]])|(?<=[^\[])\s*1\s*\]", "[ ]", K)
         onePattern = r"([\u0590-\u05fe]|\s)(1)([\u0590-\u05fe])" # [
@@ -233,23 +240,26 @@ def main():
 
         K = re.sub(r"(\w) (\.)", r"\1\2", K)
 
-        K = re.sub(r"(\.\s*\.)|\s*\.", ".", K)
+        if not bool(re.search(r"\s*\.\s*\.\s*\.", K)):
+            K = re.sub(r"(\.\s*\.)|\s*\.", ".", K)
 
         K = re.sub(r"(as follows)[:,]\s*([~=&\)\-0-9–—])+(?=\.|$|\s*[A-Za-z])", "", K, flags=re.IGNORECASE)
 
         K = re.sub(r"(?<=[A-Za-z0-9])([^A-Za-z0-9]+for[^A-Za-z0-9\s][^.]*)+(?=\.|$)", "", K)
 
-        K = re.sub(r"BH\W", "BH3", K)
+        K = re.sub(r"BH[jJ\W]", "BH3", K)
 
-        K = re.sub(r"(decorated)\s*[&0ם\u25a0-\u25ff]", r"\1 ס", K, flags=re.IGNORECASE)
+        K = re.sub(r"(decorated)\s*[&0oם\u25a0-\u25ff]", r"\1 ס", K, flags=re.IGNORECASE)
 
         K = re.sub(r"See Plate \d+\.*", "", K, flags=re.IGNORECASE)
 
         K = re.sub(r"[\[]\s*(\S)\s*[\]]", r"[\1]", K)
 
-        K = K.replace(" ס s ", " סs ")
+        K = K.replace(" ס s", " סs")
 
-        
+        K = re.sub(r"(?<=[\u05d0-\u05ea])(\s*is often vocalized)\s*([\u05d0-\u05ea]+)", r"\1 in a non-standard form", K)
+
+        K = re.sub(r" n([\s,])", r" ח\1", K)
         
         # if bool(re.search(r"[\u0590-\u05fe]", K)):
         #     hebCount+=1
@@ -267,12 +277,14 @@ def main():
 
         titlePattern = r"((?:T-S\s*\w*\s*\d+\.\d+|Or\.\s*\d+(?:\.\d+)*|Wm.\s*\S*\s*\d+(?:\.\d+)*)(?:\sand\s\d+)*)"
         refs = re.findall(titlePattern, K)
+
+        
         refString = "; ".join(refs).strip()
+
 
         dict.update({'M': refString, 'K': K.strip().rstrip(';'), 'J': lines[2].rstrip(';')})
         rows.append(dict)
         
-
     df = pd.DataFrame(rows, 
         columns=['A','B','C','D','E','F','G','H','I','J','K','L','M'])
     df.to_csv("test.csv", index=False)

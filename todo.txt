@@ -15,5 +15,8 @@
 
 [\u0590-\u05fe]\w
 
+# Hebrew Letters Only
+[\u05d0-\u05ea]
+
 # Geometric Characters
 [\u25a0-\u25ff]
