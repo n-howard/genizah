@@ -1,7 +1,7 @@
 -[ x ] figure out what to do about situations where [ ] exists instead of any Arabic/Hebrew at all (it is fine when it is replacing missing text)
 -[ x ] figure out dashes replaced with symbol issue
 -[ x ] deal with geometric shapes replacing symbols (e.g., "decorated" or replacing a Hebrew word)
-- [ x? ] fix numbers replacing Hebrew letters (14-ish left to fix)
+- [ x? ] fix numbers replacing Hebrew letters
 - [ ] determine what to do about entries that say "see" another entry
 
 # Hebrew
@@ -17,6 +17,9 @@
 
 # Hebrew Letters Only
 [\u05d0-\u05ea]
+
+# Hebrew Vowels Only
+[\u05b0-\u05b8]
 
 # Geometric Characters
 [\u25a0-\u25ff]

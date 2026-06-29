@@ -79,14 +79,15 @@ def main():
         entry = re.sub(pattern2, r"\1\n", entry, flags=re.IGNORECASE)
         specialPattern = r"([A-Za-z])[־׳]"
         entry = re.sub(specialPattern, r"\1", entry)
-        entry = re.sub(r"\s([\u0590-\u05fe])\s([\u0590-\u05fe])", r"\1\2", entry)
-        entry = re.sub(r"([\u0590-\u05fe])\s([\u0590-\u05fe])\s", r"\1\2", entry)
-        entry = re.sub(r"([A-Za-z0-9])([\u0590-\u05fe])", r"\1 \2", entry)
-        entry = re.sub(r"([\u0590-\u05fe])([A-Za-z0-9])", r"\1 \2", entry)
+        entry = re.sub(r"\s([\u05d0-\u05ea])\s([\u05d0-\u05ea])", r"\1\2", entry)
+        entry = re.sub(r"([\u05d0-\u05ea])\s([\u05d0-\u05ea])\s", r"\1\2", entry)
+        entry = re.sub(r"([A-Za-z])([\u0590-\u05fe])", r"\1 \2", entry)
+        entry = re.sub(r"([\u0590-\u05fe])([A-Za-z])", r"\1 \2", entry)
         
         entry = re.sub(r"([A-Za-z]{2,})-\s*([A-Za-z]{2,})", lambda match: match.group(1)+ "-" +match.group(2) if match.group(1)+ "-" +match.group(2) in spell or any(real.lower() in (match.group(1)+ "-" +match.group(2)).lower() for real in realWords) else match.group(1)+match.group(2), entry, flags=re.IGNORECASE)
         
-        entry = re.sub(r"(?<=[^\u25a0-\u25ff\s\[\]])[\u25a0-\u25ff](?=[^\u25a0-\u25ff\s\[\]])", "", entry)
+        # entry = re.sub(r"(?<=[^\u25a0-\u25ff\s\[\]])[\u25a0-\u25ff](?=[^\u25a0-\u25ff\s\[\]])", "", entry)
+        entry = re.sub(r"[\u25a0-\u25ff•]", "", entry)
 
         entry = re.sub(r"(\d{1,2})(\d{1,2})\s*[\u0590-\u05fe]\s*lines", r"\1-\2 lines", entry)
 
@@ -97,17 +98,20 @@ def main():
 
         if len(lines)==0:
             continue
-        
-        
+    
         dict['A'] = lines[0].strip().rstrip(';')
 
-        dict['L'] = bibDict[lines[0]] if lines[0] in bibDict else ''
-    
+        tPattern = r"(T-S\s*\w*\s*\d+\.\d+|Or\.\s*\d+(?:\.\d+)*|Wm.\s*\S*\s*\d+(?:\.\d+)*)"
+        titles =  re.findall(tPattern, lines[0])
+        if len(titles) == 0:
+            titles.append(lines[0])
+        dict['L'] = bibDict[titles[0]] if titles[0] in bibDict else ''
+        
 
         if re.findall(r"\[\d+\]$", lines[-1]):
             lines.remove(lines[-1])
 
-        if "tetragrammaton is abbreviated" in entry or "iturgical poetry" in entry or bool(re.search(r"writing[\-\s]*exercise", entry)):
+        if "tetragrammaton is abbreviated" in entry or "iturgical poetry" in entry or "child" in entry or "children" in entry or bool(re.search(r"writing[\-\s]*exercise", entry)):
             dict.update({'B': "Bible-Related"})
             
         else:
@@ -171,7 +175,7 @@ def main():
             for val in vals:
                 if "dama" in val:
                     continue
-                elif "size" in val or "cm" in val:
+                elif "size" in val or "cm" in val or bool(re.search(r"\d\s*x\s*\d", val)):
                     continue
                 elif "col" in val:
                     G.append(val.strip())
@@ -181,10 +185,10 @@ def main():
                     H.append(val.strip())
                 elif "archment" in val or "aper" in val or "eather" in val:
                     C.append(val.strip())
-            G = delim.join(G).strip().rstrip(';')
-            F = delim.join(F).strip().rstrip(';')
-            H = delim.join(H).strip().rstrip(';')
-            C = delim.join(C).strip().rstrip(';')
+            G = delim.join(G).rstrip(';').replace(".", "").strip()
+            F = delim.join(F).rstrip(';').replace(".", "").strip()
+            H = delim.join(H).rstrip(';').replace(".", "").strip()
+            C = delim.join(C).rstrip(';').replace(".", "").strip()
             dict.update({'C': C, 'F': F, 
                         'G': G,'H': H, 'I': vals[-1].strip().rstrip(';')})
             if "average" in vals[1] or "size" in vals[1]:
@@ -203,7 +207,7 @@ def main():
                 dict.update({'D': height,'E': width})
         
         if len(lines)>=5:
-            pattern4 = r"([a-z])\s[^a-z0-9\u0590-\u05fe\s\[\]]+\s*([\u0590-\u05fe])"
+            pattern4 = r"([a-z])\s[^a-z0-9\u0590-\u05fe\s\[\]\(\)]+\s*([\u0590-\u05fe])"
             lines[4] = re.sub(pattern4, r"\1 \2", lines[4])
             
             lines[4] = re.sub(r"\b\S*JL\S*\b", r" ", lines[4], flags=re.IGNORECASE)
@@ -211,37 +215,40 @@ def main():
         K = lines[1] + '; ' + lines[4] if len(lines)>=5 else lines[1]
 
         
-        nonPattern = r"(non)\s*(-)\s*(standard\s*\w*\s*vocalization)(\s*in (?:[^,](?!are))*)*.+?(?=\s*become|\s*occur|\.\s\[|[a-zA-Z:]\s\[[^0-9\s]\]\s|\.\s+[A-Z\u05d0-\u05ea]|$)"
+        nonPattern = r"(non)\s*(-)\s*(standard\s*)(Tiberian\s*vocalization|Tiberian|vocalization)(\s*in (?:[^,](?!are))*)*.+?(?=\s*become|\s*occur|\.\s\[|[a-zA-Z:]\s\[[^0-9\s]\]\s|\.\s+[A-Z\u05d0-\u05ea]|$)"
         K = re.sub(nonPattern, r"\1\2\3\4", K)
         K = re.sub(r"(vocalization)$", r"\1.", K)
-        K = re.sub(r"([^\.])$", r"\1.", K)
+        K = re.sub(r"([A-Za-z0-9])$", r"\1.", K)
         K = re.sub(r"(vocalization)\s*[a-zA-Za-z:]\s\[", r"vocalization are: [", K)
-        K = re.sub(r"(vocalization)(?=[A-Za-z])", r"\1 ", K)
+        K = re.sub(r"(vocalization)(?=[A-Za-z]{2,})", r"\1 ", K)
         # K = K.replace("The non-standard vocalization.", "Examples of non-standard vocalization occur.")
-        K = re.sub(r"(The|Examples of|An example of) (non-standard\s*\w*\s*vocalization)(?:\s*occur)?[s]?(\sin the over[^\.]*|\sin the rem[^\.]*|\sin folio[^\.]*)?(\.)", r"Examples of \2\3 occur.", K)
+        K = re.sub(r"(?:The|Examples of|An example of|Example of|the)(?:\sconsistently)* (non-standard\s*)(Tiberian\s*vocalization|Tiberian|vocalization)(?:\s*occur)?[s]?(\sin the over[^\.]*|\sin the rem[^\.]*|\sin folio[^\.]*)?(\.)", r"examples of \1\2\3 occur.", K, flags=re.IGNORECASE)
+        K = re.sub(r"(non-standard vocalization)\.", r"\1s.", K)
         
-
+        
         formPattern = r"(non-standard form[s]?)[^.]*(\.)?"
         K = re.sub(formPattern, r"\1.", K)
         vocPattern = r"(vocalized with the non-standard)[^.]*(\.)?"
         K = re.sub(vocPattern, r"\1 form.", K)
 
-        signsPattern = r"(?:This|the)\s*(sign|line ending)([s])?.*?(\.|,|\sare|\sis|$)"
+        signsPattern = r"(?:This|the)\s*(sign|line ending)([s])?.*?(\.|,|\sare|\sis|\smarks|$)"
         K = re.sub(signsPattern, lambda match: match.group(1)+"s"+match.group(3) if (match.group(3)==" are" or match.group(2)=="s") else "a "+match.group(1)+match.group(3), K, flags=re.IGNORECASE)
         K = re.sub(r"[;\.]\s+[a-z](?=[^\.]{3,})", lambda match: match.group(0).upper(), K)
 
         K = re.sub(r"\[\s*1\s*(?=[^\]])|(?<=[^\[])\s*1\s*\]", "[ ]", K)
-        onePattern = r"([\u0590-\u05fe]|\s)(1)([\u0590-\u05fe])" # [
-        onePattern2 = r"([\u0590-\u05fe])(1)([\u0590-\u05fe]|\s)" # ]
+        onePattern = r"([\u0590-\u05fe\s])(1)([\u0590-\u05fe])" # [
+        onePattern2 = r"([\u0590-\u05fe])(1)([\u0590-\u05fe\s])" # ]
+        
+        
         K = re.sub(onePattern, r"\1[\3", K)
-        K = re.sub(onePattern2, r"\1\]\3", K)
+        K = re.sub(onePattern2, r"\1]\3", K)
 
         K = re.sub(r"(?<=\d)־", ",", K)
-
-        K = re.sub(r"(\w) (\.)", r"\1\2", K)
+ 
+        # K = re.sub(r"([A-Za-z]) (\.)(?=\s|$)", r"\1\2", K)
 
         if not bool(re.search(r"\s*\.\s*\.\s*\.", K)):
-            K = re.sub(r"(\.\s*\.)|\s*\.", ".", K)
+            K = re.sub(r"(\.\s*\.)|(?<=[A-Za-z0-9])(\s+\.)|\s+\.$|(?<=[\u05d0-\u05ea])\s+\.(?=\s[A-Za-z])", ".", K)
 
         K = re.sub(r"(as follows)[:,]\s*([~=&\)\-0-9–—])+(?=\.|$|\s*[A-Za-z])", "", K, flags=re.IGNORECASE)
 
@@ -253,14 +260,15 @@ def main():
 
         K = re.sub(r"See Plate \d+\.*", "", K, flags=re.IGNORECASE)
 
-        K = re.sub(r"[\[]\s*(\S)\s*[\]]", r"[\1]", K)
+        K = re.sub(r"[\[\]]\s*(\S)\s*[\]\[]", r"[\1]", K)
 
         K = K.replace(" ס s", " סs")
 
         K = re.sub(r"(?<=[\u05d0-\u05ea])(\s*is often vocalized)\s*([\u05d0-\u05ea]+)", r"\1 in a non-standard form", K)
 
         K = re.sub(r" n([\s,])", r" ח\1", K)
-        
+
+  
         # if bool(re.search(r"[\u0590-\u05fe]", K)):
         #     hebCount+=1
         #     hebList.append(lines[0])
@@ -274,15 +282,16 @@ def main():
                     .replace("[", "")
             )
 
+        K = K.replace("  ", " ")
 
         titlePattern = r"((?:T-S\s*\w*\s*\d+\.\d+|Or\.\s*\d+(?:\.\d+)*|Wm.\s*\S*\s*\d+(?:\.\d+)*)(?:\sand\s\d+)*)"
         refs = re.findall(titlePattern, K)
-
-        
+        if len(titles)>1:
+            refs = refs + titles[1:]
         refString = "; ".join(refs).strip()
 
 
-        dict.update({'M': refString, 'K': K.strip().rstrip(';'), 'J': lines[2].rstrip(';')})
+        dict.update({'M': refString, 'K': K.strip().rstrip(';'), 'J': lines[2].rstrip(';').replace(".","").strip()})
         rows.append(dict)
         
     df = pd.DataFrame(rows, 
