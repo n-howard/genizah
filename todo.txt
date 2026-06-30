@@ -1,5 +1,7 @@
--[] maybe automate non-standard vocalization missing a period (or add "On" as an option)
--[] update so three yuds sumbol is bible-related
+-[x] maybe automate non-standard vocalization missing a period (or add "On" as an option)
+-[] update so three yuds symbol and "Liturgy" (not just liturgical) are bible-related
+-[] ellipses to have no spaces in the middle
+-[] Maimonides and other commentators are Bible-Related
 
 # Hebrew
 [\u0590-\u05fe]

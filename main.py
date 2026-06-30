@@ -215,8 +215,9 @@ def main():
         K = lines[1] + '; ' + lines[4] if len(lines)>=5 else lines[1]
 
         
-        nonPattern = r"(non)\s*(-)\s*(standard\s*)(Tiberian\s*vocalization|Tiberian|vocalization)(\s*in (?:[^,](?!are))*)*.+?(?=\s*become|\s*occur|\.\s\[|[a-zA-Z:]\s\[[^0-9\s]\]\s|\.\s+[A-Z\u05d0-\u05ea]|$)"
+        nonPattern = r"(non)\s*(-)\s*(standard\s*)(Tiberian\s*vocalization|Tiberian|vocalization)(\s*in (?:[^,](?!are))*)*.+?(?=\s*become|\s*occur|\s*On|\.\s\[|[a-zA-Z:]\s\[[^0-9\s]\]\s|\.\s+[A-Z\u05d0-\u05ea]|$)"
         K = re.sub(nonPattern, r"\1\2\3\4", K)
+        K = re.sub(r"(vocalization)\s*(On)", r"\1. \2", K)
         K = re.sub(r"(vocalization)$", r"\1.", K)
         K = re.sub(r"([A-Za-z0-9])$", r"\1.", K)
         K = re.sub(r"(vocalization)\s*[a-zA-Za-z:]\s\[", r"vocalization are: [", K)
@@ -298,6 +299,8 @@ def main():
     df = pd.DataFrame(rows, 
         columns=['A','B','C','D','E','F','G','H','I','J','K','L','M'])
     df.to_csv("test.csv", index=False)
+
+    # print(hebList, "\n", hebCount)
 
     # print(len(problems), problems)
 
