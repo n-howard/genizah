@@ -1,8 +1,5 @@
--[ x ] figure out what to do about situations where [ ] exists instead of any Arabic/Hebrew at all (it is fine when it is replacing missing text)
--[ x ] figure out dashes replaced with symbol issue
--[ x ] deal with geometric shapes replacing symbols (e.g., "decorated" or replacing a Hebrew word)
-- [ x? ] fix numbers replacing Hebrew letters
-- [ ] determine what to do about entries that say "see" another entry
+-[] maybe automate non-standard vocalization missing a period (or add "On" as an option)
+-[] update so three yuds sumbol is bible-related
 
 # Hebrew
 [\u0590-\u05fe]

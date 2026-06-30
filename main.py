@@ -111,7 +111,7 @@ def main():
         if re.findall(r"\[\d+\]$", lines[-1]):
             lines.remove(lines[-1])
 
-        if "tetragrammaton is abbreviated" in entry or "iturgical poetry" in entry or "child" in entry or "children" in entry or bool(re.search(r"writing[\-\s]*exercise", entry)):
+        if "tetragrammaton is abbreviated" in entry or bool(re.search(r"liturgical poetry", entry, flags=re.IGNORECASE)) or "child" in entry or "children" in entry or bool(re.search(r"writing[\-\s]*exercise", entry)):
             dict.update({'B': "Bible-Related"})
             
         else:
@@ -267,6 +267,7 @@ def main():
         K = re.sub(r"(?<=[\u05d0-\u05ea])(\s*is often vocalized)\s*([\u05d0-\u05ea]+)", r"\1 in a non-standard form", K)
 
         K = re.sub(r" n([\s,])", r" ח\1", K)
+        K = re.sub(r"\s([\u0590-\u05fe])\s(s)([\s,\.])", r" \1\2\3", K)
 
   
         # if bool(re.search(r"[\u0590-\u05fe]", K)):
@@ -284,7 +285,7 @@ def main():
 
         K = K.replace("  ", " ")
 
-        titlePattern = r"((?:T-S\s*\w*\s*\d+\.\d+|Or\.\s*\d+(?:\.\d+)*|Wm.\s*\S*\s*\d+(?:\.\d+)*)(?:\sand\s\d+)*)"
+        titlePattern = r"((?:T-S\s*\w*\s*\d+\.\d+|Or\.\s*\d+(?:\.\d+)*|Wm.\s*\S*\s*\d+(?:\.\d+)*)(?:[a-z])?(?:\sand\s\d+)*)"
         refs = re.findall(titlePattern, K)
         if len(titles)>1:
             refs = refs + titles[1:]
