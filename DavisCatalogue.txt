@@ -6655,14 +6655,14 @@ T-S A25.137
 Leviticus 25:12–18; 25:21–28
 Hebrew; standard Tiberian, uncantillated.
 Paper; 13.1cm. x 12cm.; 1 column; 1 leaf; 13 lines (incomplete); mutilated with pieces of text missing.
-On recto part of Leviticus 25:20, השביעת הו לא [ 1בזרע ולא נא , is written in the margin beside a
+On recto part of Leviticus 25:20, [ ]השביעת הן לא נזרע ולא נא , is written in the margin beside a
 mutilated text.
 #
 T-S A25.138
 Leviticus 3:10–4:2
 Hebrew; predominantly standard Tiberian, uncantillated.
 Paper; 18.3cm. x 13.5cm.; 1 column; 1 leaf; 12 lines on recto, 10 lines on verso; mutilated.
-Examples of non-standard vocalization are: for–; –for-?-;-ך–for–; 1־ for•!–. Verse divisions are marked by three dots. On verso at Leviticus 3:17 תאכלו is spelt plene, thus: האכילו.’
+Examples of non-standard vocalization are: for–; –for-?-;-ך–for–; 1־ for•!–. Verse divisions are marked by three dots. On verso at Leviticus 3:17 תאכלו is spelt plene, thus: תאכילו.
 #
 T-S A25.139
 Leviticus 13:12–22
@@ -6685,7 +6685,7 @@ T-S A25.142
 Leviticus 9:16–10:1
 Hebrew; predominantly standard Tiberian, uncantillated.
 Paper; 21.6cm. x 12.4cm.; 1 column; 1 leaf; 12 lines on recto, 13 lines on verso; mutilated with pieces of text missing.
-An example of non-standard vocalization is:-=־־for–. Verse divisions are marked by three dots. On recto at Leviticus 9:18 ו י זרקה ו is spelt plene, thus: ויזרקיהו .
+An example of non-standard vocalization is:-=־־for–. Verse divisions are marked by three dots. On recto at Leviticus 9:18 ויזרקהו is spelt plene, thus: ויזרקיהו .
 #
 T-S A25.143
 Leviticus 15:8–14
@@ -6709,13 +6709,13 @@ T-S A25.146
 Leviticus 17:5–18:18
 Hebrew; standard Tiberian, uncantillated and written partly with a different colour of ink from that of the remainder of the vocalization.
 Paper; 16.5cm. x 24.5cm.; 1 column; 2 leaves conjoined and consecutive; 14 lines; mutilated and rubbed with a few small pieces of text missing or illegible.
-On folio 1r in the upper margin there are jottings written in a different hand from that of the text and related to the first two words of the text, למעו אשר , and the first word of Leviticus, ויקרא. The tetragrammaton is abbreviated to or 1*1 .
+On folio 1r in the upper margin there are jottings written in a different hand from that of the text and related to the first two words of the text, למען אשר , and the first word of Leviticus, ויקרא. The tetragrammaton is abbreviated to or 1*1 .
 #
 T-S A25.147
 Numbers 19:1–6
 Hebrew; standard Tiberian, cantillated.
 Paper; 15.7cm. x 12cm.; 1 column; 1 leaf; 15 lines; mutilated with pieces of text missing.
-On recto is written-זאת חקת, the title of Seder 39, from Numbers 19:2. Parts of several words above this are illegible and below this the only part of a word which is legible is [ ?שלט [ה, possibly part of the scribe’s name. On verso at Numbers 19:2 the first occurrence of אשר, which has been omitted from the text, is supplied in the margin, as is אל at Numbers 19:4. The non-standard vocalization ־ forהך־-occurs once.
+On recto is written זאת חקת, the title of Seder 39, from Numbers 19:2. Parts of several words above this are illegible and below this the only part of a word which is legible is [ ?שלמ[ה, possibly part of the scribe’s name. On verso at Numbers 19:2 the first occurrence of אשר, which has been omitted from the text, is supplied in the margin, as is אל at Numbers 19:4. Non-standard vocalization occurs once.
 #
 T-S A25.148
 Leviticus 1:15–2:2
@@ -6778,13 +6778,13 @@ T-S A25.158
 Leviticus 10:6–10
 Hebrew; standard Tiberian, cantillated.
 Paper; 16.1cm. x 12.4cm.; 1 column; 1 leaf; 8 lines; mutilated with pieces of text missing.
-On recto at Leviticus 10:6 א of ראשיכם is supplied above the line, as is תפרוט ו ולא . The tetragrammaton is abbreviated to ,b .
+On recto at Leviticus 10:6 א of ראשיכם is supplied above the line, as is תפרומו ולא . The tetragrammaton is abbreviated to ,b .
 #
 T-S A25.159
 Leviticus 3:17–4:3; 4:8–12; 4:18–20
 Hebrew; predominantly standard Tiberian, uncantillated.
 Paper; 13.4cm. x 17.7cm. and 13.5cm. x 9cm.; 1 column; 3 leaves with 2 leaves conjoined; 11–12 lines (complete); mutilated with pieces of text missing.
-Examples of non-standard vocalization are: ־=־־ for–and–; -7- for 77=־ Folios 1v, 2r, and 3v are blank.
+Examples of non-standard vocalization are: ־=־־ for–and–; -7- for 77=־. Folios 1v, 2r, and 3v are blank.
 #
 T-S A25.160
 Leviticus 21:20–22:8
@@ -6831,7 +6831,7 @@ T-S A25.167
 Leviticus 5:6–9; 5:21–23
 Hebrew; standard Tiberian, cantillated, but folio 1v is unpointed.
 Paper; 16.5cm. x 22.2cm.; 1 column; 2 leaves conjoined; 8 lines; mutilated with small pieces of text missing.
-There are many jottings in the margins written in a different hand from that of the main text. They include a halakhic annotation referring to Babylonian Talmud: Hullin, chapter 3 and a Hebrew translation of part of the Qaddish Prayer: /לעלה מכל הברכות השרות והניאמות(sic) האמורות בעולם/ ואימרו אב/ .
+There are many jottings in the margins written in a different hand from that of the main text. They include a halakhic annotation referring to Babylonian Talmud: Hullin, chapter 3 and a Hebrew translation of part of the Qaddish Prayer: (sic) /לעלה מכל הברכות השרות/ והניאמות האמורות בעולם/ ואימרו אב.
 #
 T-S A25.168
 Leviticus 10:17–11:4
@@ -6937,12 +6937,12 @@ T-S A25.185
 Leviticus 9:24–10:9; 10:12–20; 11:2–12
 Hebrew; predominantly standard Tiberian, uncantillated.
 Paper; 14.4cm. x 12.4cm. and 17.2cm. x 28.1cm.; 1 column; 3 leaves consecutive with 2 conjoined; 10–13 lines (incomplete); mutilated with many large pieces of text missing and the join between folios 2 and 3 strengthened by thin strips of paper pasted on.
-Examples of non-standard vocalization are: for–; –r-for-zrr ; 7 ־–for-=-. The tetragrammaton is sometimes abbreviated to 'h . Verse divisions are marked by three dots in most cases. On folio 2r at Leviticus 10:12 אל אהרן is supplied before the first word of the text with a different colour of ink from that of the remainder of the fragment and at Leviticus 10:14 טהור is repeated in the margin and then deleted by being crossed through. On folio 2v at Leviticus 10:17 כי קדט קדטים הוא , which has been omitted from the text, is supplied in the margin. On folio 3v at Leviticus 11:8 הם is supplied above the line.
+Examples of non-standard vocalization are: for–; –r-for-zrr ; 7 ־–for-=-. The tetragrammaton is sometimes abbreviated. Verse divisions are marked by three dots in most cases. On folio 2r at Leviticus 10:12 אל אהרן is supplied before the first word of the text with a different colour of ink from that of the remainder of the fragment and at Leviticus 10:14 טהור is repeated in the margin and then deleted by being crossed through. On folio 2v at Leviticus 10:17 כי קדש קדשים הוא , which has been omitted from the text, is supplied in the margin. On folio 3v at Leviticus 11:8 הם is supplied above the line.
 #
 T-S A25.186
 Leviticus 7:20–8:21
 Hebrew; predominantly standard Tiberian, cantillated. Paper; 14cm. x 18.5cm. and 14cm. x 18.7cm.; 1 column; 4 leaves conjoined in 2 pairs and consecutive; 12 lines; slightly mutilated.
-Examples of non-standard vocalization are: ־=־־ for–;–for On folio 1r at Leviticus 7:20 the error מלפני אני יהוה is deleted by dots above the line. On folio 2v at Leviticus 7:35 ומטחת בניו, which has been omitted from the text, is supplied in the margin. On folio 3r at Leviticus 8:2 ט of המטהה is altered and repeated above the line and at Leviticus 8:5 יה ו ה, which has been omitted from the text, is supplied in the margin. On folio 3v at Leviticus 8:10 אטר, which has been omitted from the text, is supplied in the margin. On folio 4r at Leviticus 8:13 u• צו ה, which has been omitted from the text, is supplied in the margin, as is אה ידיהם at Leviticus 8:18 on folio 4v. In the lower margin of folios 1v, 2v, and 3v there is a catchword to the first word of the text on the following folio.
+Examples of non-standard vocalization are: ־=־־ for–;–for On folio 1r at Leviticus 7:20 the error מלפני אני יהוה is deleted by dots above the line. On folio 2v at Leviticus 7:35 ומשחת בניו, which has been omitted from the text, is supplied in the margin. On folio 3r at Leviticus 8:2 ש of המשחה is altered and repeated above the line and at Leviticus 8:5 יהוה, which has been omitted from the text, is supplied in the margin. On folio 3v at Leviticus 8:10 אשר, which has been omitted from the text, is supplied in the margin. On folio 4r at Leviticus 8:13 צוה ׯ, which has been omitted from the text, is supplied in the margin, as is את ידיהם at Leviticus 8:18 on folio 4v. In the lower margin of folios 1v, 2v, and 3v there is a catchword to the first word of the text on the following folio.
 #
 T-S A25.187
 Leviticus 4:35–5:8; 7:22–34
@@ -6965,7 +6965,7 @@ T-S A25.190
 Leviticus 13:25–32
 Hebrew; predominantly standard Tiberian, uncantillated.
 Paper; 10.7cm. x 12.6cm.; 1 column; 1 leaf; 6 lines recto, 11 lines on verso; badly mutilated with many pieces of text missing and a small piece of paper pasted on to verso.
-Examples of non-standard vocalization are: for–; –for r-. Verse divisions are marked by three dots. On recto at Leviticus 13:28 בעור is written in the margin beside a mutilated text. On verso at Leviticus 13:31 איו, which has been omitted from the text, is supplied in the margin.
+Examples of non-standard vocalization are: for–; –for r-. Verse divisions are marked by three dots. On recto at Leviticus 13:28 בעור is written in the margin beside a mutilated text. On verso at Leviticus 13:31 אין, which has been omitted from the text, is supplied in the margin.
 #
 T-S A25.191
 Leviticus 6:3–7
@@ -6977,7 +6977,7 @@ T-S A25.192
 Leviticus 1:12–5:26
 Hebrew; predominantly standard Tiberian, uncantillated.
 Paper; 16.6cm. x 24.8cm. = average size of conjoined leaves, 16.6cm. x 13.3cm. = size of whole fragment; 1 column; 13 leaves consecutive with 6 leaves conjoined in 3 pairs; 11–14 lines; slightly mutilated.
-Examples of non-standard vocalization are: ־=־־ for–; –for ד־= . The tetragrammaton is abbreviated to . The inexpert character of the script suggests that the fragment is a child’s writing exercise. On folio 8r at Leviticus 4:20 עליהם, which has been omitted from the text, is supplied in the margin. On folio 13v after Leviticus 5:26, the end of Seder 24, the scribal note נגמרה הפרטה, which is written or drawn in a primitive decorative hand, indicates that the Seder is completed.
+Examples of non-standard vocalization are: ־=־־ for–; –for ד־= . The tetragrammaton is abbreviated to . The inexpert character of the script suggests that the fragment is a child’s writing exercise. On folio 8r at Leviticus 4:20 עליהם, which has been omitted from the text, is supplied in the margin. On folio 13v after Leviticus 5:26, the end of Seder 24, the scribal note נגמרה הפרשה, which is written or drawn in a primitive decorative hand, indicates that the Seder is completed.
 #
 T-S A25.193
 Leviticus 3:1–5
@@ -6989,7 +6989,7 @@ T-S A25.194
 Leviticus 4:6–32
 Hebrew; predominantly standard Tiberian, uncantillated.
 Paper; 18.7cm. x 28.4cm.; 1 column; 2 leaves conjoined and consecutive; 15 lines on folio 1, 16 lines on folio 2; mutilated with a few small pieces of text missing.
-Examples of non-standard vocalization are:–=~ for–and–;–for–,ד=-, and–;–for–. On folio 1r at Leviticus 4:7 קרנות, which hs been omitted from the text, is supplied in the margin and יהוו׳ is supplied above the line. On folio 2r at Leviticus 4:26 there is a deletion after יקטיר. On folio 2v at Leviticus 4:28 חטא, which has been omitted from the text, is supplied in the margin.
+Examples of non-standard vocalization are:–=~ for–and–;–for–,ד=-, and–;–for–. On folio 1r at Leviticus 4:7 קרנות, which hs been omitted from the text, is supplied in the margin and יהוה is supplied above the line. On folio 2r at Leviticus 4:26 there is a deletion after יקטיר. On folio 2v at Leviticus 4:28 חטא, which has been omitted from the text, is supplied in the margin.
 #
 T-S A25.195
 Leviticus 13:3–8; 13:51–56
@@ -7043,7 +7043,7 @@ T-S A26.2
 Leviticus 18:29–19:11
 Hebrew; predominantly standard Tiberian, uncantillated and probably added later with a different colour of ink from that of the consonantal text.
 Paper; 16.2cm. x 11.8cm.; 1 column; 1 leaf; 15 lines; mutilated with a few small pieces of text missing.
-Examples of non-standard vocalization are:-=r- for–, and–;77- for–. On recto at Leviticus 19:1, the beginning of Seder 30, there is a decorated Parashah heading. On verso in the upper margin there is Judaeo-Arabic which reads אלא ה ו נא כתבת, ‘I have written as far as here’.
+Examples of non-standard vocalization are:-=r- for–, and–;77- for–. On recto at Leviticus 19:1, the beginning of Seder 30, there is a decorated Parashah heading. On verso in the upper margin there is Judaeo-Arabic which reads אלא הונא כתבת, ‘I have written as far as here’.
 #
 T-S A26.3
 Leviticus 22:6–15
@@ -7095,7 +7095,7 @@ T-S A26.11
 Leviticus 7:3–16
 Hebrew; predominantly standard Tiberian, uncantillated.
 Paper; 17.2cm. x 25.9cm.; 1 column; 2 leaves conjoined and consecutive; 11–13 lines; mutilated with a few small pieces of text missing.
-Examples of non-standard vocalization are: דדד־- for–;–for–. On folio 1v at Leviticus 7:9לכהן המקריב is repeated in the margin. The inexpert character of the script suggests that the fragment is a child’s writing exercise.
+Examples of non-standard vocalization are: דדד־- for–;–for–. On folio 1v at Leviticus 7:9 לכהן המקריב is repeated in the margin. The inexpert character of the script suggests that the fragment is a child’s writing exercise.
 #
 T-S A26.12
 Leviticus 7:11–30
@@ -7112,7 +7112,7 @@ T-S A26.14
 Leviticus 4:3–8
 Hebrew; standard Tiberian, uncantillated.
 Paper; 13.5cm. x 17.7cm.; 1 column; 2 leaves conjoined and consecutive; 12 lines; mutilated with a few pieces of text missing.
-Folios 1r and 2v are blank. On folio 2r at Leviticus 4:6 the error לפני יהרה is deleted by being crossed through and at Leviticus 4:8 על הקרב, which forms part of the text followed in Kittel-Kahle BH3, is likewise deleted.
+Folios 1r and 2v are blank. On folio 2r at Leviticus 4:6 the error לפני יהוה is deleted by being crossed through and at Leviticus 4:8 על הקרב, which forms part of the text followed in Kittel-Kahle BH3, is likewise deleted.
 #
 T-S A26.15
 Leviticus 4:20–22
@@ -7213,7 +7213,7 @@ T-S A26.31
 Leviticus 20:25–21:2; 26:3–5; 27:32–34
 Hebrew; unpointed, but with verse divisions.
 Paper; 14.1cm. x 18.9cm.; 1 column; 2 leaves conjoined; 10 lines; mutilated.
-The text comprises the last few verses of Seder 30 and the first two verses of Seder 31, the first few verses of Seder 33, and the last few verses of Seder 33. On folio 1r at Leviticus 20:26 כי קדט אני יהרה, which has been omitted from the text, is supplied in the margin. On folio 1v at Leviticus 21:1, the beginning of Seder 31, there is a Parashah heading. On folio 2v at Leviticus 27:32 ליהוה, which has been omitted from the text, is supplied in the margin.
+The text comprises the last few verses of Seder 30 and the first two verses of Seder 31, the first few verses of Seder 33, and the last few verses of Seder 33. On folio 1r at Leviticus 20:26 כי קדש אני יהוה, which has been omitted from the text, is supplied in the margin. On folio 1v at Leviticus 21:1, the beginning of Seder 31, there is a Parashah heading. On folio 2v at Leviticus 27:32 ליהוה, which has been omitted from the text, is supplied in the margin.
 #
 T-S A26.32
 Leviticus 20:27–21:16
@@ -7235,7 +7235,7 @@ T-S A26.35
 Exodus 39:25–36
 Hebrew; standard Tiberian, cantillated.
 Paper; 16.1cm. x 12.3cm.; 1 column; 1 leaf; 11 lines; mutilated with pieces of text missing.
-On recto at Exodus 39:28 [ואת מ[כנסי] הבד [שט , which has been omitted from the text by homoioteleu- ton with שש, is supplied in the margin. On verso at Exodus 39:33 כל, which has been omitted from the text, is supplied in the margin.
+On recto at Exodus 39:28 [ואת מ[כנסי] הבד [שש , which has been omitted from the text by homoioteleuton with שש, is supplied in the margin. On verso at Exodus 39:33 כל, which has been omitted from the text, is supplied in the margin.
 #
 T-S A26.36
 Leviticus 26:16–26
@@ -7275,7 +7275,7 @@ T-S A26.42
 Leviticus 7:11–8:35; 9:15–10:6; 10:19–11:17
 Hebrew; predominantly standard Tiberian, uncantillated.
 Paper; 14.2cm. x 23.8cm. = average size of conjoined leaves, 14.2cm. x 12.4cm. = size of whole fragment; 1 column; 12 leaves conjoined in 6 pairs with folios 1–8, 9–10, and 11–12 consecutive; mutilated with many pieces of text missing.
-Examples of non-standard vocalization are:–for and-TT-j-ry- for On folio 2r at Leviticus 7:20 [הנפ [ש, which has been omitted from the text, is supplied in the margin and at Leviticus 7:21 זבח, which has been omitted from the text, is supplied in the margin, as is על at Leviticus 8:9 on folio 5r.
+Examples of non-standard vocalization are:–for and-TT-j-ry- for On folio 2r at Leviticus 7:20 [הנפ[ש, which has been omitted from the text, is supplied in the margin and at Leviticus 7:21 זבח, which has been omitted from the text, is supplied in the margin, as is על at Leviticus 8:9 on folio 5r.
 #
 T-S A26.43
 Leviticus 8:22–25
@@ -7430,13 +7430,13 @@ T-S A26.68
 Leviticus 3:4–4:7
 Hebrew; predominantly standard Tiberian, partly cantillated; Massorah Magna on folio 1r.
 Paper; 17.3cm. x 26.1cm.; 1 column; 2 leaves conjoined and consecutive; 11 lines lines; mutilated.
-Examples of non-standard vocalization are: ~=~ for ךתב־■–and–;–for–and–. The tetragrammaton is abbreviated to ' 1 . On folio 1r at Leviticus 3:4 the error החלב is deleted both by dots above the line and by being crossed through, at Leviticus 3:7 the error כבש is similarly deleted and corrected immediately afterwards, and at Leviticus 3:8 את, which has been omitted from the text, is supplied above the line and את ד, which has been written before אתרו, is deleted and corrected immediately afterwards.
+Examples of non-standard vocalization are: ~=~ for ךתב־■–and–;–for–and–. The tetragrammaton is abbreviated to ' 1 . On folio 1r at Leviticus 3:4 the error החלב is deleted both by dots above the line and by being crossed through, at Leviticus 3:7 the error כבש is similarly deleted and corrected immediately afterwards, and at Leviticus 3:8 את, which has been omitted from the text, is supplied above the line and את ד, which has been written before אהרן, is deleted and corrected immediately afterwards.
 #
 T-S A26.69
 Leviticus 1:13–2:2
 Hebrew; predominantly standard Tiberian, uncantillated.
 Paper; 17.6cm. x 12.7cm.; 1 column; 1 leaf; 13 lines; mutilated and rubbed with a few small pieces of text missing.
-An example of non-standard vocalization is:־–for 7=־ and7־~. The tetragrammaton is abbreviated to . On recto inverted in relation to the text, written in a different hand and with a different colour of ink from that of the main text, and partly intermingling with the letters of the words in line 13 of recto there are the words בשמ/ באדר שנת אקבר. לחרב , which gives the date 8th (?) Adar, year 1107 to the destruction [of the Temple], that is, 1177 A.D. The relationship between this date and the text is unclear.
+An example of non-standard vocalization is:־–for 7=־ and7־~. The tetragrammaton is abbreviated to . On recto inverted in relation to the text, written in a different hand and with a different colour of ink from that of the main text, and partly intermingling with the letters of the words in line 13 of recto there are the words בשמ/ באדר שנת אקבה לחרב , which gives the date 8th (?) Adar, year 1107 to the destruction [of the Temple], that is, 1177 A.D. The relationship between this date and the text is unclear.
 #
 T-S A26.70
 Leviticus 16:32–17:4
@@ -7474,19 +7474,19 @@ T-S A26.75
 Leviticus 6:15–23; 7:19–27
 Hebrew; standard Tiberian, uncantillated.
 Paper; 18.7cm. x 27.6cm.; 1 column; 2 leaves conjoined; 10–14 lines; mutilated.
-The first five lines of folio 1r are written with a different colour of ink from that of the rest of the fragment. On folio 1r at Leviticus 6:18 the error בניו יטם is deleted by being crossed through and corrected immediately afterwards, as are the error החטת later in the same verse and the errors וחבטו־ at Leviticus 7:20 and הנפט at Leviticus 7:21, the latter of which is a dittograph.
+The first five lines of folio 1r are written with a different colour of ink from that of the rest of the fragment. On folio 1r at Leviticus 6:18 the error בניו ישם is deleted by being crossed through and corrected immediately afterwards, as are the error החטת later in the same verse and the errors והבשו־ at Leviticus 7:20 and הנפש at Leviticus 7:21, the latter of which is a dittograph.
 #
 T-S A26.76
 Leviticus 25:10–36
-Hebrew; standard Tiberian, uncantillated, on folio 1r, unpointed on folios lv–3.
+Hebrew; standard Tiberian, uncantillated, on folio 1r, unpointed on folios 1v–3.
 Paper; 16.3cm. x 11.5cm., 16.1cm. x 11.5cm., and 16.1cm. x 11.5cm.; 1 column; 3 leaves separate, but consecutive; 10–11 lines; slightly mutilated.
-The text on folio 1r is written with a different colour of ink from that of the text on folios lv–3.
+The text on folio 1r is written with a different colour of ink from that of the text on folios 1v–3.
 #
 T-S A26.77
 Leviticus 22:3–8
 * Hebrew; predominantly standard Tiberian, uncantillated.
 Paper; 13cm. x 23.5cm.; 1 column; 2 leaves conjoined and consecutive; 12 lines on folio 1v, 6 lines on folio 2r (incomplete); mutilated.
-Folios 1r and 2v are blank. Examples of non-standard vocalization are: - for-zrrand–;   for and–;–for-rr-. On folio 1r at Leviticus 22:5 the error נפט is deleted both by dots above the line and by being crossed through.
+Folios 1r and 2v are blank. Examples of non-standard vocalization are: - for-zrrand–;   for and–;–for-rr-. On folio 1r at Leviticus 22:5 the error נפש is deleted both by dots above the line and by being crossed through.
 #
 T-S A26.78
 Leviticus 3:2–9
@@ -7557,7 +7557,7 @@ Examples of non-standard vocalization are: ־תכך־ for–and-ך-;-ת- for ־�
 T-S A26.89
 Leviticus 2:8–14
 Hebrew; predominantly standard Tiberian, cantillated. Paper; 16.7cm. x 12.8cm.; 1 column; 1 leaf; 10 lines; mutilated.
-Examples of non-standard vocalization are: for–; –for–and–. The inexpert character of the script suggests that the fragment is a child’s writing exercise. On recto at Leviticus 2:10 קדשים, which has been omitted from the text, is supplied in the margin and at the foot of the page תקריבו is marked by dots above the line to indicate that it is a catchword for the first word of the text on verso. On verso at Leviticus 2:14 קלוי, which has been omitted from the text, is supplied in both margins, once correctly and once incorrectly, thus: קלי ו.
+Examples of non-standard vocalization are: for–; –for–and–. The inexpert character of the script suggests that the fragment is a child’s writing exercise. On recto at Leviticus 2:10 קדשים, which has been omitted from the text, is supplied in the margin and at the foot of the page תקריבו is marked by dots above the line to indicate that it is a catchword for the first word of the text on verso. On verso at Leviticus 2:14 קלוי, which has been omitted from the text, is supplied in both margins, once correctly and once incorrectly, thus: קליו.
 #
 T-S A26.90
 Leviticus 6:14–22
@@ -7574,7 +7574,7 @@ T-S A26.92
 Leviticus 6:12–7:2
 Hebrew; standard Tiberian, cantillated.
 Paper; 19.1cm. x 14cm.; 1 column; 1 leaf; 15 lines on recto, 13 lines on verso; mutilated with pieces of text missing.
-On recto at Leviticus 6:13 תמיד, which has been omitted from the text, is supplied in the margin and a line is drawn diagonally through the next few words in the text, Leviticus 6:16, which has been entirely omitted from the text, is supplied above the line, and at Leviticus 6:18 לאמר, which has also been omitted from the text, is supplied between two widely spaced lines. On verso at Leviticus 6:20 אשר יזה עליה, which has been omitted’ from the text, is supplied in the margin in a different hand with a different colour of ink from that of the text.
+On recto at Leviticus 6:13 תמיד, which has been omitted from the text, is supplied in the margin and a line is drawn diagonally through the next few words in the text, Leviticus 6:16, which has been entirely omitted from the text, is supplied above the line, and at Leviticus 6:18 לאמר, which has also been omitted from the text, is supplied between two widely spaced lines. On verso at Leviticus 6:20 אשר יזה עליה, which has been omitted from the text, is supplied in the margin in a different hand with a different colour of ink from that of the text.
 #
 T-S A26.93
 Leviticus 7:12–18
@@ -7599,8 +7599,7 @@ Hebrew; unpointed, but with verse divisions.
 Paper; 14.3cm. x 13.9cm.; 1 column; 1 leaf; 9 lines; mutilated.
 #
 T-S A26.97
-Solomon ben Judah Ibn Gabirol Poems
-See שירי שלמה , ed. Bialik and Ravnitsky, Tel-Aviv, 1927, vol. iii, no. 28 and vol. v, no. 46, with variants, and part of a damaged and faded Judaeo-Arabic Letter to a certain Saadya on a medical subject.
+Solomon ben Judah Ibn Gabirol Poems. See שירי שלמה , ed. Bialik and Ravnitsky, Tel-Aviv, 1927, vol. iii, no. 28 and vol. v, no. 46, with variants, and part of a damaged and faded Judaeo-Arabic Letter to a certain Saadya on a medical subject.
 #
 T-S A26.98
 Leviticus 8:21–28
@@ -7662,7 +7661,7 @@ T-S A26.108
 Leviticus 16:34–18:12
 Hebrew; unpointed, but with verse divisions.
 Paper; 18.8cm. x 28.2cm.; 1 column; 2 leaves conjoined and consecutive; 16 lines; mutilated and rubbed with pieces of text missing or illegible.
-On folio 1v at Leviticus 17:8 עול ]ה], which has been omitted from the text, is supplied in the margin.
+On folio 1v at Leviticus 17:8 עול]ה], which has been omitted from the text, is supplied in the margin.
 #
 T-S A26.109
 Leviticus 6:3–8
@@ -7730,7 +7729,7 @@ T-S A26.119
 Exodus 29:4–13
 Hebrew; standard Tiberian, cantillated.
 Paper; 19.2cm. x 15.1cm.; 1 column; 1 leaf; 10 lines; mutilated with pieces of text missing.
-On recto at Exodus 29:5 ולקחת את and אהרן are supplied above the line beside a mutilated text and :אהדו ואת בניו תקריב אל פתח אהל מועד from Exodus 29:4 is supplied in the margin. On verso Exodus 29:8 is supplied in the margin beside a mutilated text, at Exodus 29:9 והיתה להם ,אהרן ובניו, and יד אהדו are likewise supplied beside a mutilated text, and at Exodus 29:12 in the lower margin the words immediately following the last word of the text, אל יסוד המזבח: ולקחת , are added. The nature of the pieces of added text indicates that they were added after the fragment had been mutilated.
+On recto at Exodus 29:5 ולקחת את and אהרן are supplied above the line beside a mutilated text and :אהרן ואת בניו תקריב אל פתח אהל מועד from Exodus 29:4 is supplied in the margin. On verso Exodus 29:8 is supplied in the margin beside a mutilated text, at Exodus 29:9 והיתה להם ,אהרן ובניו, and יד אהדו are likewise supplied beside a mutilated text, and at Exodus 29:12 in the lower margin the words immediately following the last word of the text, אל יסוד המזבח: ולקחת , are added. The nature of the pieces of added text indicates that they were added after the fragment had been mutilated.
 #
 T-S A26.120
 Leviticus 1:4–12
@@ -7770,7 +7769,7 @@ T-S A26.126
 Leviticus 23:19–31
 Hebrew; standard Tiberian, cantillated, but some lines of verso are unpointed.
 Paper; 20cm. x 14.7cm.; 1 column; 1 leaf; 13 lines; slightly mutilated.
-Several omissions are supplied in a different hand with a different colour of ink from that of the text. On recto at Leviticus 23:20 לפני is supplied above the line near the margin. On verso at Leviticus 23:24 זכר ו ו is supplied above' the line and at Leviticus 23:28–30 כי יום כפרים הוא לכפר עליכם לפני יהוה אלהיכם: כי and לא תענה בעצם היום הזה ונכרתה מעמיה: וכל are supplied above the lines in an attempt to correct the error in the original text which has resulted from the homoioteleuton בעצם היום הזה in Leviticus 23:28 and 23:29. Too much has been supplied, however, which may indicate that the corrector failed to understand the nature of the error.
+Several omissions are supplied in a different hand with a different colour of ink from that of the text. On recto at Leviticus 23:20 לפני is supplied above the line near the margin. On verso at Leviticus 23:24 זכרון is supplied above the line and at Leviticus 23:28–30 כי יום כפרים הוא לכפר עליכם לפני יהוה אלהיכם: כי and לא תענה בעצם היום הזה ונכרתה מעמיה: וכל are supplied above the lines in an attempt to correct the error in the original text which has resulted from the homoioteleuton בעצם היום הזה in Leviticus 23:28 and 23:29. Too much has been supplied, however, which may indicate that the corrector failed to understand the nature of the error.
 #
 T-S A26.127
 Leviticus 13:26–28; 13:30–42
@@ -7833,19 +7832,19 @@ Leviticus 5:7–11
 and Responsa relating to marriage and divorce.
 Hebrew; predominantly standard Tiberian, uncantillated, on folio 1, unpointed on folio 2.
 Paper; 17.4cm. x 26cm.; 1 column; 2 leaves conjoined; 10–17 lines; mutilated.
-Examples of non-standard vocalization are:–for -=7• and77-;–־- for–and–. On folio 1r at 5:8 אשר, which has been omitted from the text, is supplied in the margin and ומ of ומלק is repeated in the margin. This fragment is related to T.S. Misc. 25.6, which contains the earlier part of the first responsum found in T-S A26.136. This latter discusses the circumstances under which a man might marry additional wives and the competency of the original wife to have a divorce if she refuses to accept a second wife. A second responsum in T-S A26.136 discusses the status of a betrothed woman whose husband to be goes abroad and writes her a letter indicating that unless he returns by a certain date to complete the marriage ceremony she may regard herself as free to make other marital arrangements.
+Examples of non-standard vocalization are:–for -=7• and77-;–־- for–and–. On folio 1r at 5:8 אשר, which has been omitted from the text, is supplied in the margin and ומ of ומלק is repeated in the margin. This fragment is related to T-S Misc. 25.6, which contains the earlier part of the first responsum found in T-S A26.136. This latter discusses the circumstances under which a man might marry additional wives and the competency of the original wife to have a divorce if she refuses to accept a second wife. A second responsum in T-S A26.136 discusses the status of a betrothed woman whose husband to be goes abroad and writes her a letter indicating that unless he returns by a certain date to complete the marriage ceremony she may regard herself as free to make other marital arrangements.
 #
 T-S A26.137
 Leviticus 4:4–5:26
 Hebrew; predominantly standard Tiberian, uncantillated.
 Paper; 22.2cm. x 30.4cm., 22.4cm. x 14.8cm., 22.3cm. x 14.9cm., and 21.5cm. x 15.5cm.; 1 column; 5 leaves consecutive with 2 leaves conjoined; 8–17 lines; mutilated.
-Examples of non-standard vocalization are: - =- for–and–;–for ־כ־. The tetragrammaton is abbreviated to ,h. . On folio 1r at Leviticus 4:5 the error והביא is deleted by dots above the line and ולקה, the reading followed in Kittel-Kahle BH3, is supplied in the margin. On folio 2v at Leviticus 4:27 תחטא , which has been omitted from the text, is supplied in the margin. On folio 3v at Leviticus 5:4 מאלה , which has been omitted from the text, is supplied in the margin. On folio 5v after Leviticus 5:26, the end of Seder 24, the scribe has written הזק. This and the inexpert character of the script suggest that the fragment is a child’s writing exercise. Part of folio 4v is blank.
+Examples of non-standard vocalization are: - =- for–and–;–for ־כ־. The tetragrammaton is abbreviated to ,h. . On folio 1r at Leviticus 4:5 the error והביא is deleted by dots above the line and ולקח, the reading followed in Kittel-Kahle BH3, is supplied in the margin. On folio 2v at Leviticus 4:27 תחטא , which has been omitted from the text, is supplied in the margin. On folio 3v at Leviticus 5:4 מאלה , which has been omitted from the text, is supplied in the margin. On folio 5v after Leviticus 5:26, the end of Seder 24, the scribe has written חזק. This and the inexpert character of the script suggest that the fragment is a child’s writing exercise. Part of folio 4v is blank.
 #
 T-S A26.138
 Leviticus 4:8–5:2
 Hebrew; unpointed, but with verse divisions.
 Paper; 18.4cm. x 29.4cm.; 1 column; 2 leaves conjoined and consecutive; 17 lines; mutilated with pieces of text missing.
-On folio 1r at Leviticus 4:13 the error na nis deleted by dots above the line and corrected immediately afterwards to תעשינה, the reading followed in Kittel-Kahle BH3. On folio 1v at Leviticus 4:16 the error לפני is deleted by dots above the line and corrected immediately afterwards, at Leviticus 4:18 ה of אהל is supplied above the line, and at Leviticus 4:19 the error מזבח is also deleted by dots above the line and corrected immediately afterwards. On folio 2r at Leviticus 4:24 the error העלה is deleted by dots above the line and corrected to (sic)הסעיר , the reading followed in Kittel-Kahle BH3, immediately afterwards.
+On folio 1r at Leviticus 4:13 the error תענה is deleted by dots above the line and corrected immediately afterwards to תעשינה, the reading followed in Kittel-Kahle BH3. On folio 1v at Leviticus 4:16 the error לפני is deleted by dots above the line and corrected immediately afterwards, at Leviticus 4:18 ה of אהל is supplied above the line, and at Leviticus 4:19 the error מזבח is also deleted by dots above the line and corrected immediately afterwards. On folio 2r at Leviticus 4:24 the error העלה is deleted by dots above the line and corrected to (sic)הסעיר , the reading followed in Kittel-Kahle BH3, immediately afterwards.
 #
 T-S A26.139
 Leviticus 7:17–29
@@ -7873,13 +7872,13 @@ T-S A26.143
 Leviticus 5:11–15
 Hebrew; standard Tiberian, cantillated.
 Paper; 20.2cm. x 14.7cm.; 1 column; 1 leaf; 10 lines; mutilated with pieces of text missing.
-On recto at Leviticus 5:11 לבנה, which has been written for טמן by homoioteleuton with עליה, is deleted by marks above the line and corrected immediately afterwards. On verso in the lower margin איל is a catchword to the first word of the text on a following folio.
+On recto at Leviticus 5:11 לבנה, which has been written for שמן by homoioteleuton with עליה, is deleted by marks above the line and corrected immediately afterwards. On verso in the lower margin איל is a catchword to the first word of the text on a following folio.
 #
 T-S A26.144
 Leviticus 1:1–7; 1:1–2
 Hebrew; unpointed, except on 6 lines of recto, which have predominantly standard Tiberian, uncantillated.
 Paper; 21.6cm. x 14.6cm.; 1 column; 1 leaf; 16 lines on recto, 3 lines on verso; mutilated.
-Examples of non-standard vocalization are: דד■ for–;–for–. On recto at Leviticus 1:2 the error ותקבנכם the text is corrected to קרבנכם in the margin. The fragment is probably a writing exercise. The tetragrammaton is abbreviated to 1 l.
+Examples of non-standard vocalization are: דד■ for–;–for–. On recto at Leviticus 1:2 the error קבנכם in the text is corrected to קרבנכם in the margin. The fragment is probably a writing exercise. The tetragrammaton is abbreviated to 1 l.
 #
 T-S A26.145
 Leviticus 11:34–12:2
@@ -7891,7 +7890,7 @@ T-S A26.146
 Leviticus 8:16–11:20
 Hebrew; standard Tiberian, cantillated; Massorah Parva on folio 4r.
 Paper; 19.2cm. x 14.6cm., 19.1cm. x 13.2cm.; 19.8cm. x 26.8cm., and 19.9cm. x 24.7cm.; 1 column; 6 leaves consecutive with 4 leaves conjoined in 2 pairs; 15–20 lines; mutilated with many pieces of text missing.
-On folio 1r the first two words are deleted by dots and at Leviticus 8:22 ויסמכו , which has been omitted from the text, is supplied in the margin. On folio 1v at Leviticus 8:24 [ועל בהו ידם הי [מנית , which has been omitted from the text, is supplied in the upper margin. On folio 2r at Leviticus 8:30 ...את אהרן את בגדיו ואת בניו... [ב]גדי בניו אתו, which may have been omitted by homoioteleuton with את ו , is supplied in the upper margin. Folio 2v is blank. The whole of this folio may be intended to fill a gap in the manuscript. On folio 3r at Leviticus 8:36 את with מטה has been deleted by being crossed through and ביד, the reading followed in Kittel-Kahle BH3, is supplied in the margin in a different hand from that of the text. At Leviticus 9:1, the beginning of Seder 26, there is a decorated Parashah heading and at Leviticus 9:2–3 the whole passage between תמימים in 9:2 and תמימה in 9:3, which has been omitted by homoioteleuton, is supplied in the margin. On folio 3v at Leviticus 9:9 אליו, which has been omitted from the text, is supplied in the upper margin. On folio 5r at Leviticus 10:4 1אתה ובניו ובנתיך] אתך, which has been omitted from the text, is probably all supplied in the margin, although most of the correction is missing through mutilation, and כי תקך, the next words in the text appear to be repeated in the margin.
+On folio 1r the first two words are deleted by dots and at Leviticus 8:22 ויסמכו , which has been omitted from the text, is supplied in the margin. On folio 1v at Leviticus 8:24 [ועל בהו ידם הי [מנית , which has been omitted from the text, is supplied in the upper margin. On folio 2r at Leviticus 8:30 ...את אהרן את בגדיו ואת בניו... [ב]גדי בניו אתו, which may have been omitted by homoioteleuton with אתו , is supplied in the upper margin. Folio 2v is blank. The whole of this folio may be intended to fill a gap in the manuscript. On folio 3r at Leviticus 8:36 את with משה has been deleted by being crossed through and ביד, the reading followed in Kittel-Kahle BH3, is supplied in the margin in a different hand from that of the text. At Leviticus 9:1, the beginning of Seder 26, there is a decorated Parashah heading and at Leviticus 9:2–3 the whole passage between תמימים in 9:2 and תמימה in 9:3, which has been omitted by homoioteleuton, is supplied in the margin. On folio 3v at Leviticus 9:9 אליו, which has been omitted from the text, is supplied in the upper margin. On folio 5r at Leviticus 10:4 [אתה ובניך ובנתיך] אתך, which has been omitted from the text, is probably all supplied in the margin, although most of the correction is missing through mutilation, and כי חקך, the next words in the text appear to be repeated in the margin.
 #
 T-S A26.147
 Leviticus 19:17–32
@@ -7943,19 +7942,19 @@ T-S A26.154
 Leviticus 6:1–8:26; 10:13–11:42
 Hebrew; standard Tiberian, cantillated; Massorah Parva on folios 1r and 7v.
 Paper; 16cm. x 15.2cm., 16.8cm. x 12.8cm., 16.5cm. x 13.8cm., 16.8cm. x 26.3cm., 16.8cm. x 27.5cm., and 16.8cm. x 14.6cm.; 1 column; 8 leaves with 4 leaves conjoined in 2 pairs and folios 1–5 and 6–8 consecutive; 16–21 lines; mutilated with a few pieces of text missing and a tear in folio 3 sewn together.
-On folio 1r at Leviticus 6:1, the beginning of Seder 25, there is a decorated Parashah heading and at Leviticus 6:4 the dittograph of the first half of the verse is deleted by dots above and below the line and also in the letters. On folio 1v at Leviticus 6:10 כה]טאת וכאשם], which has been omitted from the text, is supplied in the upper margin in a different hand from that of the text and at Leviticus 6:12 there is a decorated ם . On folios 1–4 some isolated words from the text are repeated in the margins in a different hand with a different colour of ink from that of the text. On folio 4r at Leviticus 8:1 there is a decorated ם . On folio 6r at Leviticus 10:16 there is a decorated הצי התורה in the margin. On folio 6v at Leviticus 11:1 there is a decorated ם .
+On folio 1r at Leviticus 6:1, the beginning of Seder 25, there is a decorated Parashah heading and at Leviticus 6:4 the dittograph of the first half of the verse is deleted by dots above and below the line and also in the letters. On folio 1v at Leviticus 6:10 כח]טאת וכאשם], which has been omitted from the text, is supplied in the upper margin in a different hand from that of the text and at Leviticus 6:12 there is a decorated ם . On folios 1–4 some isolated words from the text are repeated in the margins in a different hand with a different colour of ink from that of the text. On folio 4r at Leviticus 8:1 there is a decorated ם . On folio 6r at Leviticus 10:16 there is a decorated חצי התורה in the margin. On folio 6v at Leviticus 11:1 there is a decorated ם .
 #
 T-S A26.155
 Leviticus 23:32–25:45
 Hebrew; predominantly standard Tiberian, uncantillated.
 Paper; 13.8cm. x 7.3cm.,14.lcm. x 13.2cm., 18cm. x 13.5cm., 17.4cm. x 13.4cm., 17.9cm. x 13.5cm., 17.9cm. x 14cm., 17.4cm. x 13.7cm., and 16.1cm. x 13.6cm.; 1 column; 8 leaves separate, but consecutive; 12–14 lines (complete); mutilated with many pieces of text missing.
-Examples of non-standard vocalization are: ־=־־ for ךך=ך–and–;- y-for חך-. On folio 5v at Leviticus 25:11 the error ספיהת is deleted by being crossed through and corrected immediately afterwards. On folio 6v at Leviticus 25:21 the error השביעית is deleted by being crossed through and corrected to ה שש י ת in the margin. On folio 8r at Leviticus 25:35 the error אחזתכם גאולה תתנו לארץ is deleted by dots above the line.
+Examples of non-standard vocalization are: ־=־־ for ךך=ך–and–;- y-for חך-. On folio 5v at Leviticus 25:11 the error ספיחת is deleted by being crossed through and corrected immediately afterwards. On folio 6v at Leviticus 25:21 the error השביעית is deleted by being crossed through and corrected to ה שש י ת in the margin. On folio 8r at Leviticus 25:35 the error אחזתכם גאולה תתנו לארץ is deleted by dots above the line.
 #
 T-S A26.156
 Leviticus 22:25–23:11
 Hebrew; predominantly standard Tiberian, uncantillated.
 Paper; 22.4cm. x 15.1cm. and 22.3cm. x 15cm.; 1 column; 2 leaves separate, but consecutive; 11–14 lines; mutilated with pieces of text missing.
-Examples of non-standard vocalization are:־x־ for–; T־for–;–for–. Verse divisions are marked by three dots. On folio 2 there is a piece of paper pasted on to the text containing both the Bible text and other Hebrew words, including a name on folio 2r which appears to read שמעון בו גמליאל.
+Examples of non-standard vocalization are:־x־ for–; T־for–;–for–. Verse divisions are marked by three dots. On folio 2 there is a piece of paper pasted on to the text containing both the Bible text and other Hebrew words, including a name on folio 2r which appears to read שמעון בן גמליאל.
 #
 T-S A26.157
 Leviticus 1:12–2:2; 3:4–8; 3:17–4:8
@@ -7983,13 +7982,13 @@ T-S A26.161
 Leviticus 23:10–19
 Hebrew; standard Tiberian, cantillated, but 1 line of recto and most of verso is unpointed.
 Paper; 19.7cm. x 14.6cm.; 1 column; 1 leaf; 13 lines; mutilated and rubbed with a few pieces of text missing or illegible.
-On verso at Leviticus 23:18 ריח גיחת, which has been omitted from the text, is supplied in the margin and above the line.
+On verso at Leviticus 23:18 ריח ניחח, which has been omitted from the text, is supplied in the margin and above the line.
 #
 T-S A26.162
 Leviticus 4:13–18
 Hebrew; standard Tiberian, cantillated.
 Paper; 18.6cm. x 15.9cm.; 1 column; 1 leaf; 8 lines; mutilated with pieces of text missing.
-The tetragrammaton is abbreviated to . The non-standard vocalization ־=־־ for ך־־-occurs once. On recto in the upper margin at Leviticus 4:13 ואם כל, the words which immediately precede the first words of the text, are supplied in a different hand with a different colour of ink from that of the text. On verso in the upper margin at Leviticus 4:14–15 :.אחל מועד וסמכו זקני, which constitute the mutilated last line of recto, are repeated in the same hand with the same colour of ink as that of the addition on recto. On recto at Leviticus 4:13 the dittograph מכל is deleted by dots above the line.
+The tetragrammaton is abbreviated to . The non-standard vocalization ־=־־ for ך־־-occurs once. On recto in the upper margin at Leviticus 4:13 ואם כל, the words which immediately precede the first words of the text, are supplied in a different hand with a different colour of ink from that of the text. On verso in the upper margin at Leviticus 4:14–15 :אהל מועד וסמכו זקני, which constitute the mutilated last line of recto, are repeated in the same hand with the same colour of ink as that of the addition on recto. On recto at Leviticus 4:13 the dittograph מכל is deleted by dots above the line.
 #
 T-S A26.163
 Leviticus 26:34–41
@@ -8058,7 +8057,7 @@ T-S A26.174
 Leviticus 1:1–5
 Hebrew; predominantly standard Tiberian, uncantillated.
 Paper; 20.6cm. x 14.4cm.; 1 column; 1 leaf; 8 lines; mutilated with pieces of text missing.
-Examples of non-standard vocalization are:–for ה=ר and–;־■״■־ for ־־=־. The tetragrammaton is abbreviated to . On recto in the upper margin there is a mutilated superscription בש[ם ] אלהי ישראל and at Leviticus 1:2 מן הבקר, which has been omitted from the text, is supplied above the line. On verso in the lower margin a few Hebrew letters are scribbled.
+Examples of non-standard vocalization are:–for ה=ר and–;־■״■־ for ־־=־. The tetragrammaton is abbreviated to . On recto in the upper margin there is a mutilated superscription בש[ם ׯ] אלהי ישראל and at Leviticus 1:2 מן הבקר, which has been omitted from the text, is supplied above the line. On verso in the lower margin a few Hebrew letters are scribbled.
 #
 T-S A26.175
 Leviticus 24:11–23
@@ -8077,7 +8076,7 @@ Leviticus 6:6–11:24
 Hebrew; predominantly standard Tiberian, uncantillated.
 Paper; 21.7cm. x 29.5cm. = average size of conjoined leaves, 21.8cm. x 14.8cm. = size of whole fragment; 1 column; 10 leaves consecutive with 8 leaves conjoined in 4 pairs; 16–19 lines; mutilated and rubbed with a few small pieces of text missing or illegible.
 Examples of non-standard vocalization are:“ for~;––fOj. an£j .––fOj.–• -ך  fO]-–ק Thg
-tetragrammaton is abbreviated to ‘.Jj. . On folio 1v at Leviticus 6:15–16 [ כליל תקטר: וכל מנחת כ[הן , which has been omitted from the text by homoioteleuton with כליל, is supplied in the margin. On folio 2v at Leviticus 7:7–8 אשר יכפר בו לו יהוה: והכהן, which has been omitted from the text by homoioteleuton with the similar words הכהן and והכהן, is supplied in the margin. On folio 4r at Leviticus 7:30 the error יביאנו את החלב על החזה is deleted by being crossed through and corrected immediately afterwards and at Leviticus 7:34–35 מאת בני ישראל, which has been omitted together with the text of 7:35 as far as מאשי , is supplied above the line and in the margins, the remainder of 7:35 in the text is deleted, and the whole of 7:35 written in the margin. On folio 5r at Leviticus 8:11 the error המזבח is deleted by a line drawn above it and corrected to הכיור immediately after- wards, at Leviticus 8:12 the addition משה is deleted by a line drawn round it, and at Leviticus 8:14–15 ו יסמר אהרן, which has been added in error by homoioteleuton with פר החטאת , is deleted by a line drawn above it. On folio 5v at Leviticus 8:22 את ידיהם, which has been omitted from the text, is supplied in the margin. On folio 6r at Leviticus 8:27 הכל על is deleted by a line drawn through it and את, which has been omitted, is supplied above the line and in the margin before the corrected reading. On folio 6v at Leviticus 8:33 מ ]לאות [י ]מי], which has been omitted from the text by homoioteleuton with מלאיכם, is supplied in the margin. On folio 7r at Leviticus 9:1, the beginning of Seder 26, there is a decorated Parashah heading. On folio 7v at Leviticus 9:14 the error ויקטר is deleted by a line drawn above it and corrected immediately afterwards to וירחץ and at Leviticus 9:15 the error המנחה is deleted by dots above the line and corrected immediately afterwards to קרבן and the addition את is deleted by a line drawn above it. On folio 9r at Leviticus 10:10 הקדש, which had been omitted at first by homoioteleuton with בין , is supplied above the line and החל is deleted by a line drawn above it and rewritten in its place according to the text followed in Kittel-Kahle BH3, and at Leviticus 10:16 החטאת, which has been omitted from the text, is supplied in the margin. On folio 9v at Leviticus 10:19 היום , which has been omitted from the text, is supplied in the margin. On folio lOr at Leviticus 11:4 איננו מפריס , which has been partly omitted from the text, is supplied in the margin.
+tetragrammaton is abbreviated to ‘.Jj. . On folio 1v at Leviticus 6:15–16 [ כליל תקטר: וכל מנחת כ[הן , which has been omitted from the text by homoioteleuton with כליל, is supplied in the margin. On folio 2v at Leviticus 7:7–8 אשר יכפר בו לו יהוה: והכהן, which has been omitted from the text by homoioteleuton with the similar words הכהן and והכהן, is supplied in the margin. On folio 4r at Leviticus 7:30 the error יביאנו את החלב על החזה is deleted by being crossed through and corrected immediately afterwards and at Leviticus 7:34–35 מאת בני ישראל, which has been omitted together with the text of 7:35 as far as מאשי , is supplied above the line and in the margins, the remainder of 7:35 in the text is deleted, and the whole of 7:35 written in the margin. On folio 5r at Leviticus 8:11 the error המזבח is deleted by a line drawn above it and corrected to הכיור immediately afterwards, at Leviticus 8:12 the addition משה is deleted by a line drawn round it, and at Leviticus 8:14–15 ויסמך אהרן, which has been added in error by homoioteleuton with פר החטאת , is deleted by a line drawn above it. On folio 5v at Leviticus 8:22 את ידיהם, which has been omitted from the text, is supplied in the margin. On folio 6r at Leviticus 8:27 הכל על is deleted by a line drawn through it and את, which has been omitted, is supplied above the line and in the margin before the corrected reading. On folio 6v at Leviticus 8:33 מ ]לאות [י ]מי], which has been omitted from the text by homoioteleuton with מלאיכם, is supplied in the margin. On folio 7r at Leviticus 9:1, the beginning of Seder 26, there is a decorated Parashah heading. On folio 7v at Leviticus 9:14 the error ויקטר is deleted by a line drawn above it and corrected immediately afterwards to וירחץ and at Leviticus 9:15 the error המנחה is deleted by dots above the line and corrected immediately afterwards to קרבן and the addition את is deleted by a line drawn above it. On folio 9r at Leviticus 10:10 הקדש, which had been omitted at first by homoioteleuton with בין , is supplied above the line and החל is deleted by a line drawn above it and rewritten in its place according to the text followed in Kittel-Kahle BH3, and at Leviticus 10:16 החטאת, which has been omitted from the text, is supplied in the margin. On folio 9v at Leviticus 10:19 היום , which has been omitted from the text, is supplied in the margin. On folio lOr at Leviticus 11:4 איננו מפריס , which has been partly omitted from the text, is supplied in the margin.
 #
 T-S A26.178
 Leviticus 5:21–6:3
@@ -8099,7 +8098,7 @@ T-S A26.181
 Leviticus 2:7–3:6
 Hebrew; predominantly standard Tiberian, uncantillated.
 Paper; 19.2cm. x 15.7cm.; 1 column; 1 leaf; 16 lines on recto, 15 lines on verso; slightly mutilated.
-Examples of non-standard vocalization are:–for–;–for–;–for–,-:ע,–, and–• The inexpert character of the script suggests that the fragment is a child’s writing exercise.
+Examples of non-standard vocalization are:–for–;–for–;–for–,-:ע,–, and–•. The inexpert character of the script suggests that the fragment is a child’s writing exercise.
 #
 T-S A26.182
 Leviticus 6:4–11

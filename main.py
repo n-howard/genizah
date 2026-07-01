@@ -286,8 +286,9 @@ def main():
 
         K = K.replace("  ", " ")
 
-        titlePattern = r"((?:T-S\s*\w*\s*\d+\.\d+|Or\.\s*\d+(?:\.\d+)*|Wm.\s*\S*\s*\d+(?:\.\d+)*)(?:[a-z])?(?:\sand\s\d+)*)"
+        titlePattern = r"((?:T-S\s*[\w\.]*\s*\d+\.\d+|Or\.\s*\d+(?:\.\d+)*|Wm.\s*\S*\s*\d+(?:\.\d+)*)(?:[a-z])?(?:\sand\s\d+)*)"
         refs = re.findall(titlePattern, K)
+        refs = list(set(refs))
         if len(titles)>1:
             refs = refs + titles[1:]
         refString = "; ".join(refs).strip()

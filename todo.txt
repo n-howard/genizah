@@ -2,6 +2,10 @@
 -[] update so three yuds symbol and "Liturgy" (not just liturgical) are bible-related
 -[] ellipses to have no spaces in the middle
 -[] Maimonides and other commentators are Bible-Related
+-[] "The non-standard vocalization occurs \x\ times" -> "Non-standard vocalization occurs \x\ times"
+-[] "tetragrammaton is sometimes abbreviated to \x\" needs fixing
+-[] fix when there is l instead of 1
+-[] filter a list of references so it doesn't include the fragment that the list is associated with
 
 # Hebrew
 [\u0590-\u05fe]
