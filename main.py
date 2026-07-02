@@ -47,6 +47,7 @@ def main():
     hebList = []
    
     for entry in entries:
+        
         dict = {}
         entry = (
             entry
@@ -137,7 +138,8 @@ def main():
 
         if "archment" in lines[2] or "aper" in lines[2] or "eather" in lines[2]:
             lines.insert(2, "")
-            
+        
+
         
         # if len(lines)>=4:
         #     if "archment" not in lines[3] and "aper" not in lines[3]:
@@ -246,7 +248,7 @@ def main():
         K = re.sub(onePattern2, r"\1]\3", K)
 
         K = re.sub(r"(?<=\d)־", ",", K)
- 
+        
         # K = re.sub(r"([A-Za-z]) (\.)(?=\s|$)", r"\1\2", K)
 
         if not bool(re.search(r"\s*\.\s*\.\s*\.", K)):
@@ -262,6 +264,7 @@ def main():
 
         K = re.sub(r"See Plate \d+\.*", "", K, flags=re.IGNORECASE)
 
+    
         K = re.sub(r"[\[\]]\s*(\S)\s*[\]\[]", r"[\1]", K)
 
         K = K.replace(" ס s", " סs")
@@ -280,6 +283,7 @@ def main():
         # HEBCOUNT END
         
         # bracketPattern = r"([A-Za-z]{3,})\s*\[\s?\](\s*[A-Za-z.])"
+        
 
         if (K.count("]")==1 and "[" not in K) or (K.count("[")==1 and "]" not in K):
             K = (
@@ -288,7 +292,7 @@ def main():
                     .replace("[", "")
             )
 
-        K = K.replace("  ", " ")
+     
 
         titlePattern = r"((?:T-S\s*[\w\.]*\s*\d+\.\d+|Or\.\s*\d+(?:\.\d+)*|Wm.\s*\S*\s*\d+(?:\.\d+)*)(?:[a-z])?(?:\sand\s\d+)*)"
         refs = re.findall(titlePattern, K)
@@ -305,7 +309,7 @@ def main():
         columns=['A','B','C','D','E','F','G','H','I','J','K','L','M'])
     df.to_csv("test.csv", index=False)
     
-    curr = "T-S A32.175"
+    curr = "T-S A41.13"
     completeSoFar = hebList.index(curr)+1
     percent = (completeSoFar/len(hebList))*100
     print(hebList, "\n", hebCount, "\n",completeSoFar , "\n", str(percent)+"%" )

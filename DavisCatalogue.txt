@@ -11918,7 +11918,7 @@ T-S A32.183
 Psalms 136:2; 137:1–9; 106:44
 Hebrew and Judaeo-Arabic; unpointed, but with verse divisions.
 Paper; 18.4cm. x 14.6cm.; 1 column; 1 leaf; 17 lines; mutilated and rubbed.
-The tetragrammaton is abbreviated to ’,1 . There are Judaeo-Arabic rubrics before and after the Biblical text. The first of these reads: ואדא בלגת אלי הודו תקול (Psalms 136:26) לאל השמים. Verso is blank.
+The tetragrammaton is abbreviated to ’,1 . There are Judaeo-Arabic rubrics before and after the Biblical text. The first of these reads:  הקול (Psalms 136:26) ואדא בלגת אלי הודו לאל השמים. Verso is blank.
 #
 T-S A32.184
 Catena of Biblical passages in shorthand
@@ -11940,7 +11940,7 @@ T-S A32.186
 Psalms 15:1–16:10
 Hebrew; unpointed, but with verse divisions.
 Paper; 18.9cm. x 14.2cm.; 1 column; 1 leaf; 16 lines; mutilated and rubbed with a few small pieces of text missing.
-There is poetic spacing which does not always correspond to that followed in Kittel-Kahle BH3. The sign is used to fill up line-endings’.
+There is poetic spacing which does not always correspond to that followed in Kittel-Kahle BH3. The sign is used to fill up line-endings.
 #
 T-S A32.187
 Psalms 59:1–64:7
@@ -11964,14 +11964,13 @@ T-S A32.190
 Biblical passages
 Hebrew; standard Tiberian, uncantillated.
 Paper; 13.8cm. x 18.8cm. and 13.8cm. x 18.6cm.; 1 column; 2 leaves separate; 11 lines; mutilated with a few small pieces of text missing.
-The text comprises the following passages: Psalms 9:7–10:7; 51:3–14; 122:2–9; 1 Chronicles 16:35–36; Psalms 118:28–29.There is poetic spacing which does not always correspond to that followed in Kittel-Kahle BH3. On folio 2 there are Judaeo-Arabic rubrics, as, for example, on folio 2r before Psalms 51:3:
-. תם קום עלי רכבך וקול
+The text comprises the following passages: Psalms 9:7–10:7; 51:3–14; 122:2–9; 1 Chronicles 16:35–36; Psalms 118:28–29.There is poetic spacing which does not always correspond to that followed in Kittel-Kahle BH3. On folio 2 there are Judaeo-Arabic rubrics, as, for example, on folio 2r before Psalms 51:3: תם קום עלי רכבך וקול.
 #
 T-S A32.191
 Psalms 103:1–11; Leviticus 1:1
 Hebrew; predominantly standard Tiberian, uncantillated.
 Paper; 18.8cm. x 13.9cm.; 1 column; 1 leaf; 15 lines on recto, 3 lines on verso; mutilated with a few small pieces of text missing.
-Examples of non-standard vocalization are: ת=ר־ for–and–. The tetragrammaton is abbreviated to d! . On verso there is a Judaeo-Arabic rubric which reads צלאה ללוזול . This indicates that the fragment was part of a prayer-book for weekdays.
+Examples of non-standard vocalization are: ת=ר־ for–and–. The tetragrammaton is abbreviated to d! . On verso there is a Judaeo-Arabic rubric which reads צלאה ללחול . This indicates that the fragment was part of a prayer-book for weekdays.
 #
 T-S A32.192
 Psalms, selected passages
@@ -12046,7 +12045,7 @@ T-S A34.5
 Proverbs 19:14–20:3; 24:25–25:7
 Hebrew; standard Tiberian, cantillated; Massorah Parva on folio 1r.
 Paper; 18.8cm. x 27.6cm.; 1 column; 2 leaves conjoined; 12 lines; mutilated and rubbed with a few small pieces of text missing or illegible.
-There is poetic spacing which does not always correspond to that followed in Kittel-Kahle BH3. On folio 1r at Proverbs 19:22 הסדו, which has been omitted from the text, is supplied in the margin.
+There is poetic spacing which does not always correspond to that followed in Kittel-Kahle BH3. On folio 1r at Proverbs 19:22 חסדו, which has been omitted from the text, is supplied in the margin.
 #
 T-S A34.6
 Proverbs 2:13–3:22
@@ -12081,12 +12080,12 @@ T-S A34.11
 Proverbs 23:13–24:7
 Hebrew; unpointed, but with verse divisions.
 Paper; 26.3cm. x 14.5cm.; 1 column; 1 leaf; 30 lines; mutilated with a few small pieces of text missing.
-There is poetic spacing which almost corresponds to that followed in Kittel-Kahle BH3. On recto at Proverbs 23:27 זונה is deleted in the text and [זונה ובא1ר is written in the margin in a different hand with a different colour of ink from that of the text. Verso contains two inexpertly written lines of Hebrew largely unclear, but probably connected with the Grace after Meals, since אכלנו מטל ו occurs in the second line.
+There is poetic spacing which almost corresponds to that followed in Kittel-Kahle BH3. On recto at Proverbs 23:27 זונה is deleted in the text and [זונה ובא1ר is written in the margin in a different hand with a different colour of ink from that of the text. Verso contains two inexpertly written lines of Hebrew largely unclear, but probably connected with the Grace after Meals, since אכלנו משל ו occurs in the second line.
 #
 T-S A34.12
 Proverbs 24:26–28:12
 Hebrew; predominantly standard Tiberian, cantillated. Paper; 19.7cm. x 15.8cm., 19.7cm. x 15.8cm., and 19.8cm. x 31cm.; 1 column; 4 leaves consecutive with 2 leaves conjoined; 20 lines on folios 1–2, 19 lines on folios 3–4; mutilated with a few small pieces of text missing.
-Examples of non-standard vocalization are:~ for–;–for–and–;–for–and–. Dagesh is often written in ה . There is poetic spacing which does not always correspond to that followed in Kittel-Kahle BH3. On folio 1v at Proverbs 25:13 there is a decorated ם corresponding to the numbered ס in Kittel-Kahle BH3. On folio 3v beside Proverbs 27:8–10 is written the Greek(?) תרניטואקוט in a different hand with a different colour of ink from that of the text.
+Examples of non-standard vocalization are:~ for–;–for–and–;–for–and–. Dagesh is often written in ה . There is poetic spacing which does not always correspond to that followed in Kittel-Kahle BH3. On folio 1v at Proverbs 25:13 there is a decorated ם corresponding to the numbered ס in Kittel-Kahle BH3. On folio 3v beside Proverbs 27:8–10 is written the Greek(?) תרנישואקוש in a different hand with a different colour of ink from that of the text.
 #
 T-S A34.13
 Job 1:8–2:2
@@ -12097,20 +12096,20 @@ On recto in the upper margin there are Hebrew jottings, probably pen-exercises.
 T-S A34.14
 Job 40:28–42:11
 Hebrew; standard Tiberian, cantillated, but the vocalization is incomplete.
-Paper; 16.5cm. x 25.3cm.; 1 column; 2 leaves conjoined and consecutive; 14 lines; slightly mutilated. On folio 1r at Job 40:31 בטכות, the reading followed in Kittel-Kahle BH3, is written witho for ט, but ט is added above the line. On folio 2r at Job 42:7 דבר יהוה את, which has been omitted from the text, is supplied in the margin.
+Paper; 16.5cm. x 25.3cm.; 1 column; 2 leaves conjoined and consecutive; 14 lines; slightly mutilated. On folio 1r at Job 40:31 בשכות, the reading followed in Kittel-Kahle BH3, is written with ס for ש, but ש is added above the line. On folio 2r at Job 42:7 דבר יהוה את, which has been omitted from the text, is supplied in the margin.
 #
 T-S A34.15
 Job 36:13–39:15
 Hebrew; unpointed, but with verse divisions marked by a single dot.
 Paper; 14cm. x 16.7cm., 14cm. x 16.6cm., and 14.1cm. x 16.9cm.; 1 column; 6 leaves conjoined in 3 pairs and consecutive; 10 lines; slightly mutilated.
-On folio 3v at Job 38:5–6 יטה עליה קו על מה אדניה הטבע ו או מי ירה , which has been omitted from the text by homoioteleuton with מי, is supplied in the margins with the repetition of ירה. On folio 6v at Job 39:11–12 all 39:11 and התאמיך בו in 39:12, which has been omitted from the text by homoioteleuton with ב ו , is supplied in the margin with the repetition of ה תבטח .
+On folio 3v at Job 38:5–6 יטה עליה קו על מה אדניה הטבעו או מי ירה , which has been omitted from the text by homoioteleuton with מי, is supplied in the margins with the repetition of ירה. On folio 6v at Job 39:11–12 all 39:11 and התאמין בו in 39:12, which has been omitted from the text by homoioteleuton with ב ו , is supplied in the margin with the repetition of ה תבטח .
 #
 T-S A34.16
 Job 12:9–14:7
 Hebrew; standard Tiberian, cantillated; Massorah Parva on folio lv(?).
 Paper; 16.1cm. x 25cm.; 1 column; 2 leaves conjoined and consecutive; 14 lines; mutilated with pieces of text missing.
 There is poetic spacing which almost corresponds to that followed in Kittel-Kahle BH3. There is Judaeo- Arabic in the margins of folios 1r and 2r. That on folio 2r is the longest and compares the construction of Job 13:13 with that of 2 Samuel 18:23. It reads:
-/וליבן גאיה מא ימכן אן יכו!־ מתל ויהי מה ארוץ דעני אמצי ו יכו ן מא כאן/. On folio 2v in the margin and inverted in relation to the text is the Judaeo-Arabic gloss פלקה , ‘stocks’, referring to בסד of Job 13:27.
+/וליכן גאיה מא ימכן אן יכון מתל ויהי מה ארוץ דעני אמצי ויכון מא כאן/. On folio 2v in the margin and inverted in relation to the text is the Judaeo-Arabic gloss פלקה , ‘stocks’, referring to בסד of Job 13:27.
 #
 T-S A34.17
 Job 25:2–6; 4:18–19; 15:15–16; 26:5–14; 28:24–28; 33:14–23
@@ -12144,14 +12143,14 @@ T-S A35.1
 Esther 1:5–11; 3:10–12
 Hebrew; unpointed, but with some verse divisions and traces of Tiberian vocalization on folio 1v.
 Paper; 18.1cm. x 13.1cm. and 12.1cm. x 13cm.; 1 column; 2 leaves separate; 14 lines (complete); mutilated and rubbed with many pieces of text missing or illegible.
-On folio 1r at Esther 1:7 המלך is repeated twice in the margin and in the lower margin there are two lines of Arabic, mentioning one מ-ל-ס  dJ'
-Folio 2v is blank, except for traces of a benediction inverted in relation to the text on folio 2r and the first two letters of a mutilated word, namely, טב .
+On folio 1r at Esther 1:7 המלך is repeated twice in the margin and in the lower margin there are two lines of Arabic.
+Folio 2v is blank, except for traces of a benediction inverted in relation to the text on folio 2r and the first two letters of a mutilated word, namely, שב .
 #
 T-S A35.2
 Lamentations 3:59–4:5
 Hebrew; standard Tiberian, cantillated and probably added later with a different colour of ink from that of the consonantal text; Massorah Parva on verso.
 Paper; 14.3cm. x 10.2cm.; 1 column; 1 leaf; 12 lines on recto, 11 lines on verso; mutilated.
-The non-standard vocalization ־=־־ for ־7־־occurs. There is poetic spacing which almost corresponds to that followed in Kittel-Kahle BH3. On recto at Lamentations 3:64 the error דמות is deleted by being crossed through and corrected immediately afterwards. On verso at Lamentations 4:3 the error עלים in the text is corrected to עב י ם in the margin with the same colour of ink as that of the vocalization.
+The non-standard vocalization ־=־־ for ־7־־occurs. There is poetic spacing which almost corresponds to that followed in Kittel-Kahle BH3. On recto at Lamentations 3:64 the error דמות is deleted by being crossed through and corrected immediately afterwards. On verso at Lamentations 4:3 the error עלים in the text is corrected to ענ י ם in the margin with the same colour of ink as that of the vocalization.
 #
 T-S A35.3
 Lamentations 1:1; 1:3–15; 1:22–2:10; 2:17–20
@@ -12258,7 +12257,7 @@ T-S A35.21
 Esther 1:6–12; 4:12–5:1
 Hebrew; unpointed, but with verse divisions.
 Paper; 17.4cm. x 27.5cm.; 1 column; 2 leaves conjoined; 12–16 lines; mutilated.
-The margins are filled with lines of Hebrew liturgical poetry. On folio 1v at Esther 1:10 טבעת, which has been omitted from the text, is supplied above the line and at Esther 1:11 the dittograph מראה is deleted by a line drawn above it. On folio 2v at Esther 4:16 the error נתן לו is deleted by a line drawn above it,
+The margins are filled with lines of Hebrew liturgical poetry. On folio 1v at Esther 1:10 שבעת, which has been omitted from the text, is supplied above the line and at Esther 1:11 the dittograph מראה is deleted by a line drawn above it. On folio 2v at Esther 4:16 the error נתן לו is deleted by a line drawn above it,
 #
 T-S A35.22
 Lamentations 2:19–22
@@ -12275,7 +12274,7 @@ T-S A35.24
 Esther 4:6–14
 Hebrew; predominantly standard Tiberian, uncantillated.
 Paper; 16.7cm. x 12.9cm.; 1 column; 1 leaf; 10 lines; mutilated with small pieces of text missing.
-Examples of non-standard vocalization are:–for77־;–for־7=־ ,-=r-,־77־ , and ך־–. On recto in the upper margin is written ,ר in a different hand with a different colour of ink from that of the text and in the lower margin in the same hand is written הטב. On verso in the upper margin the same hand has written  ט
+Examples of non-standard vocalization are:–for77־;–for־7=־ ,-=r-,־77־ , and ך־–. On recto in the upper margin is written ה in a different hand with a different colour of ink from that of the text and in the lower margin in the same hand is written הטב. On verso in the upper margin the same hand has written ט.
 #
 T-S A35.25
 Esther 8:3–6; 9:12–15
@@ -12298,7 +12297,7 @@ T-S A35.28
 Lamentations 1:1–6
 Hebrew; unpointed, but with verse divisions; Massorah Parva on recto.
 Paper; 17.8cm. x 13.8cm.; 1 column; 1 leaf; 13 lines; slightly mutilated.
-On verso in the upper margin there is the decorated heading urn בטט. Verso contains only some Hebrew letters and Greek numerals.
+On verso in the upper margin there is the decorated heading בשמ רחמ. Verso contains only some Hebrew letters and Greek numerals.
 #
 T-S A35.29
 Esther 7:9–8:8
@@ -12309,13 +12308,13 @@ T-S A35.30
 Esther 8:1–11
 Hebrew; unpointed, but with verse divisions.
 Paper; 17.5cm. x 27.5cm.; 1 column; 2 leaves conjoined and consecutive; 15 lines, except on folio 2r, which has 17 lines; mutilated and rubbed with pieces of text missing or illegible.
-The righthand margins are filled with lines of Hebrew liturgical poetry. On folio 1r at Esther 8:2 the error ויתנה is deleted by a line drawn above it and אטד העביר , which has been omitted from the text, is supplied above the line. On folio 2r at Esther 8:9 the error הראשון is deleted by a line drawn above it and corrected ■immediately afterwards.
+The righthand margins are filled with lines of Hebrew liturgical poetry. On folio 1r at Esther 8:2 the error ויתנה is deleted by a line drawn above it and אשר העביר , which has been omitted from the text, is supplied above the line. On folio 2r at Esther 8:9 the error הראשון is deleted by a line drawn above it and corrected ■immediately afterwards.
 #
 T-S A35.31
 Esther 5:5–8
 Hebrew; unpointed, but with verse divisions.
 Paper; 12.6cm. x 12cm.; 1 column; 1 leaf; 10 lines; mutilated.
-On verso and written transversely in relation to the text on recto there are five lines of Arabic written in an inexpert jiand. The somewhat cryptic text which it contains is read very tentatively as follows: [   ]
+On verso and written transversely in relation to the text on recto there are five lines of Arabic written in an inexpert hand. The text is somewhat cryptic.
 #
 T-S A35.32
 Lamentations 3:1–32
@@ -12369,8 +12368,8 @@ T-S A35.40
 Ecclesiastes 5:18–6:10; 11:6–12:6
 Hebrew; standard Tiberian, cantillated; Massorah Parva.
 Paper; 16.2cm. x 24.2cm.; 1 column; 2 leaves conjoined; 14 lines; mutilated with a few small pieces of text missing.
-On folio 1v at Ecclesiastes 6:10 there is a decorated חצי הספר. On folios 1r and 2v there are jottings in Hebrew, probably pen-exercises, some of which repeat words frdm the text. These are written in a different hand from that of the text. In third and fourth hands there are Judaeo-Arabic notes. A Judaeo-Arabic note in the upper margin of folio 1v reads:...כמא קד קאל ואכלאץ ניה אלעמל אלתי י ותא בה . In the upper margin of folio 2v another Judaeo-Arabic note begins:
-. אלחמד ללה חמד מא אולאנא מן נעמתה
+On folio 1v at Ecclesiastes 6:10 there is a decorated חצי הספר. On folios 1r and 2v there are jottings in Hebrew, probably pen-exercises, some of which repeat words frdm the text. These are written in a different hand from that of the text. In third and fourth hands there are Judaeo-Arabic notes. A Judaeo-Arabic note in the upper margin of folio 1v reads:...כמא קד קאל ואכלאץ ניה אלעמל אלתי יותא בה . In the upper margin of folio 2v another Judaeo-Arabic note begins:
+אלחמד ללה חמד מא אולאנא מן נעמתה.
 #
 T-S A35.41
 Esther 5:6–11; 8:5–9
@@ -12419,7 +12418,7 @@ T-S A35.48
 Esther 3:7–8; 5:1–5
 Hebrew; predominantly standard Tiberian, uncantillated.
 Paper; 13.9cm. x 20.6cm.; 1 column; 2 leaves conjoined; 8 lines on folio 1, 9 lines on folio 2; mutilated with a few small pieces of text missing.
-Examples of non-standard vocalization are: ־=־־ for–and–;ך ־-forר־=-. On folio 1r at Esther 3:7 חדש, which has been omitted from the text, is supplied in the margin. On folio 2r at Esther 5:2 the error ת for ה in נשאת is corrected in the margin, as is the error ב for ט in ויושט. On folio 2v at Esther 5:2 the error ל for ה in השרביט is corrected in the margin, at Esther 5:4 היום, which has been omitted from the text in accordance with some other Hebrew manuscripts, is supplied in the margin (cf. Kittel-Kahle BH5. ad. loc.) and in the lower margin there is a scribble, possibly a pen-exercise.
+Examples of non-standard vocalization are: ־=־־ for–and–;ך ־-forר־=-. On folio 1r at Esther 3:7 חדש, which has been omitted from the text, is supplied in the margin. On folio 2r at Esther 5:2 the error ת for ה in נשאה is corrected in the margin, as is the error ב for ט in ויושט. On folio 2v at Esther 5:2 the error ל for ה in השרביט is corrected in the margin, at Esther 5:4 היום, which has been omitted from the text in accordance with some other Hebrew manuscripts, is supplied in the margin (cf. Kittel-Kahle BH5. ad. loc.) and in the lower margin there is a scribble, possibly a pen-exercise.
 #
 T-S A35.49
 Lamentations 4:8–17
@@ -12487,7 +12486,7 @@ On verso at Esther 4:6 התך , which has been omitted from the text, is supplie
 T-S A35.60
 Esther 4:3–8; 5:2–8
 Hebrew; unpointed, but with verse divisions.
-Paper; 13.4cm. x 18.1cm.; 1 column; 2 leaves conjoined; 13 lines, except on folio fr, which has 12 lines; mutilated with a few small pieces of text missing. The sign is used to fill up line-endings. On folio 2v at Esther 5:5 there is a deletion in the text and at Esther 5:6 the error בקשתך, which has been written too soon, is deleted by being crossed through, as is the addition אסתר before ו י נתך.
+Paper; 13.4cm. x 18.1cm.; 1 column; 2 leaves conjoined; 13 lines, except on folio fr, which has 12 lines; mutilated with a few small pieces of text missing. The sign is used to fill up line-endings. On folio 2v at Esther 5:5 there is a deletion in the text and at Esther 5:6 the error בקשתך, which has been written too soon, is deleted by being crossed through, as is the addition אסתר before וינתן.
 #
 T-S A35.61
 Lamentations 3:20–39
@@ -12503,7 +12502,7 @@ T-S A35.63
 Esther 9:15–22
 Hebrew; predominantly standard Tiberian, uncantillated and probably added later with a different colour of ink from that of the consonantal text.
 Paper; 18.3cm. x 13.8cm.; 1 column; 1 leaf; 13 lines; mutilated with a few small pieces of text missing.
-An example of non-standard vocalization is:–for דבב־ On recto the state of the text on the fragment is confused. The original problem in the unvocalized text was a dittograph of the whole of Esther 9:16 by homoioteleuton with ובבזה לא שלחו את ידם in 9:15. Probably the scribe who vocalized the manuscript deleted the dittograph by crossing each word through, but a second and probably inexpert hand has deleted the first half of the copy of 9:16 which remained in the text as corrected by the scribe who vocalized the manuscript, and substituted for it the opening words of 9:17, namely, ביום שלשה עטר לחדש אדר. This is an error by homoioteleuton with ונוח, which occurs in both 9:16 and 9:17. Thus in the text as we have it, the first half of Esther 9:16 is missing. At Esther 9:18 בו, which has been omitted from the text before ובארבעה, is supplied above the line and the dittograph ונוח בחמשה עשר בו is deleted by being crossed through, probably by the scribe who vocalized the manuscript, since the dittograph is not vocalized. ועשה, which had also wrongly been deleted is rewritten, above the line in a different hand and with the same colour of ink as that of the vocalization and deletions.
+An example of non-standard vocalization is:–for דבב־ On recto the state of the text on the fragment is confused. The original problem in the unvocalized text was a dittograph of the whole of Esther 9:16 by homoioteleuton with ובבזה לא שלחו את ידם in 9:15. Probably the scribe who vocalized the manuscript deleted the dittograph by crossing each word through, but a second and probably inexpert hand has deleted the first half of the copy of 9:16 which remained in the text as corrected by the scribe who vocalized the manuscript, and substituted for it the opening words of 9:17, namely, ביום שלשה עשר לחדש אדר. This is an error by homoioteleuton with ונוח, which occurs in both 9:16 and 9:17. Thus in the text as we have it, the first half of Esther 9:16 is missing. At Esther 9:18 בו, which has been omitted from the text before ובארבעה, is supplied above the line and the dittograph ונוח בחמשה עשר בו is deleted by being crossed through, probably by the scribe who vocalized the manuscript, since the dittograph is not vocalized. ועשה, which had also wrongly been deleted is rewritten, above the line in a different hand and with the same colour of ink as that of the vocalization and deletions.
 #
 T-S A35.64
 Esther 9:12–26
@@ -12518,7 +12517,7 @@ Paper; 13.5cm. x 9.2cm.; 1 column; 1 leaf; 9 lines on recto, 8 lines on verso; w
 T-S A35.66
 Lamentations 1:6–2:19; 3:40–5:1
 Hebrew; predominantly standard Tiberian, cantillated. Paper; 16.5cm. x 25cm. = average size of a conjoined leaf, 17cm. x 13.2cm. = size of whole fragment; 1 column; 12 leaves with 10 leaves conjoined in 5 pairs and folios 1–7 and 8–12 consecutive; 8–11 lines; mutilated and rubbed with many pieces of text missing or illegible.
-Examples of non-standard vocalization are:–=■ for–and–;–forך־;־־=־־–for–and–. On folios 2v, 3v, 6v, and 7v in the lower margin there is a catchword to the first word of the text on the following folio. On folio 1r at Lamentations 1:8 הי תה, which has been omitted from the text, is supplied in the margin. On folio 2v at Lamentations 1:14 בידו, which has been omitted from the text, is supplied in the margin. On folio 6v at Lamentations 2:13 אדמה לך הבת ירושלם מה, which has been omitted from the text by homoioteleuton with מה, is supplied in the margin. On folio 7v at Lamentations 2:19 אשמרות, which has been omitted from the text, is supplied in the margin. On folio 8v at Lamentations 3:49 the dittograph תדמה is deleted by a line drawn above it and Lamentations 3:50, which has been omitted from the text, is supplied in the margin together with עני from 3:51, but has been mutilated. On folio 10v at Lamentations 4:7 the error מיין is deleted by a line drawn above it and משלג , the reading followed in Kittel-Kahle BH3, is written in the margin. All these corrections are written with a different colour of ink from that of the text. On folio 9r at Lamentations 3:60 the error עלי is deleted by being crossed through with the same colour of ink as that of the text and corrected to לי immediately afterwards. The signs V or V and / are used to fill up a few line-endings or whole lines at the foot of the page. On folios 5v and 11v in the lower margin the word written as a catchword is not the first word of the text on the following folio but the word between the last word of the main text of the page on which it is written and the first word of the text on the following folio.
+Examples of non-standard vocalization are:–=■ for–and–;–forך־;־־=־־–for–and–. On folios 2v, 3v, 6v, and 7v in the lower margin there is a catchword to the first word of the text on the following folio. On folio 1r at Lamentations 1:8 היתה, which has been omitted from the text, is supplied in the margin. On folio 2v at Lamentations 1:14 בידו, which has been omitted from the text, is supplied in the margin. On folio 6v at Lamentations 2:13 אדמה לך הבת ירושלם מה, which has been omitted from the text by homoioteleuton with מה, is supplied in the margin. On folio 7v at Lamentations 2:19 אשמרות, which has been omitted from the text, is supplied in the margin. On folio 8v at Lamentations 3:49 the dittograph תדמה is deleted by a line drawn above it and Lamentations 3:50, which has been omitted from the text, is supplied in the margin together with עני from 3:51, but has been mutilated. On folio 10v at Lamentations 4:7 the error מיין is deleted by a line drawn above it and משלג , the reading followed in Kittel-Kahle BH3, is written in the margin. All these corrections are written with a different colour of ink from that of the text. On folio 9r at Lamentations 3:60 the error עלי is deleted by being crossed through with the same colour of ink as that of the text and corrected to לי immediately afterwards. The signs V or V and / are used to fill up a few line-endings or whole lines at the foot of the page. On folios 5v and 11v in the lower margin the word written as a catchword is not the first word of the text on the following folio but the word between the last word of the main text of the page on which it is written and the first word of the text on the following folio.
 #
 T-S A35.67
 Esther 1:14–20; 2:14–20
@@ -12531,7 +12530,6 @@ Esther 2:4–13
 Hebrew; unpointed, but with verse divisions, except in column 1, which has predominantly standard Tiberian, uncantillated.
 Paper; 20cm. x 38cm.; 3 columns; 1 leaf, part of a scroll; 12–14 lines; mutilated.
 Examples of non-standard vocalization are:–for–;–for–and–;–for–. On recto at Esther 2:5 there is a decorated ס . In column 1 at 2:7 לה , which has been omitted from the text, is supplied above the line. On verso there is part of a Hebrew alphabet written out as an exercise and few lines of Arabic, widely spaced and written in a flowing calligraphic hand. It is apparently part of a document reporting on a financial case which had come before the courts. 
-LjJLJI.
 #
 T-S A35.69
 Esther 1:7–2:2
@@ -12634,7 +12632,7 @@ T-S A35.86
 Esther 1:6–10; 2:1–4
 Hebrew; unpointed, but with some verse divisions.
 Paper; 10.5cm. x 13.9cm.; 1 column; 2 leaves conjoined; 8–10 lines; worn, but whole.
-On folio 1r there are two as written in the lower margin.
+On folio 1r there are two בs written in the lower margin.
 #
 T-S A35.87
 Lamentations 4:9–12
@@ -12645,19 +12643,19 @@ The tetragrammaton is abbreviated to •'  . Folios lv–2 are blank.
 T-S A35.88
 Lamentations 1:1–13
 Hebrew; unpointed, but with verse divisions.
-Paper; 9cm. x 12.7cm., 8.9cm. x 12.6cm., and 8.9cm. x 12.5cm.; 1 column; 6 leaves conjoined in 3 pairs and consecutive; 6 lines, except on folio 4r, which has 7 lines; mutilated with a few small pieces of text missing. The sign V is used to fill up line-endings. On folio 2r before ג in the acrostic the letter ג is written, and similarly on folio 3v before r in the acrostic the letter r is written. On folio 3r at Lamentations 1:5 the error היו ל is deleted by dots above and below the line and corrected immediately afterwards.
+Paper; 9cm. x 12.7cm., 8.9cm. x 12.6cm., and 8.9cm. x 12.5cm.; 1 column; 6 leaves conjoined in 3 pairs and consecutive; 6 lines, except on folio 4r, which has 7 lines; mutilated with a few small pieces of text missing. The sign V is used to fill up line-endings. On folio 2r before ג in the acrostic the letter ג is written, and similarly on folio 3v before ז in the acrostic the letter ז is written. On folio 3r at Lamentations 1:5 the error היו   ל is deleted by dots above and below the line and corrected immediately afterwards.
 #
 T-S A35.89
 Lamentations 1:2–2:19
 Hebrew; predominantly standard Tiberian, uncantillated.
 Paper; 11.2cm. x 15.6cm., 11.8cm. x 15.6cm., 11.4cm. x 15.7cm., 11.2cm. x 15.7cm., and 11.2cm. x 8.6cm.; 1 column; 9 leaves consecutive with 8 leaves conjoined in 4 pairs; 9–12 lines; worn, but almost whole.
-Examples of non-standard vocalization are: ־= ־ for–and–;–for–and–;–for ~,–, and–. On verso in the lower margin of each folio there is a catchword to the first word of the text on the following folio. On folios 2r, 6r, and 9r in the lower margin there is a similar catchword. The tetragrammaton is abbreviated to . On folio 2v at Lamentations 1:10 the second מ of מהמדיה, which has been omitted from the text, is supplied in the margin and marked p. On folio 1r in the upper margin the sign V is used as a decoration.
+Examples of non-standard vocalization are: ־= ־ for–and–;–for–and–;–for ~,–, and–. On verso in the lower margin of each folio there is a catchword to the first word of the text on the following folio. On folios 2r, 6r, and 9r in the lower margin there is a similar catchword. The tetragrammaton is abbreviated to . On folio 2v at Lamentations 1:10 the second מ of מהמדיה, which has been omitted from the text, is supplied in the margin and marked ק. On folio 1r in the upper margin the sign V is used as a decoration.
 #
 T-S A35.90
 Song of Solomon 3:3–11
 Hebrew; standard Tiberian, cantillated.
 Paper; 14.2cm. x 9.3cm.; 1 column; 1 leaf; 11 lines; mutilated.
-On recto in the top righthand corner there is a decorated ג, probably a gathering number, and את שאהבה נפשי ראיתם from Song of Solomon 3:3 and מי זאת ע from Song of Solomon 3:6 are repeated in the margin. The sign is used to fill up line-endings.
+On recto in the top righthand corner there is a decorated ג, probably a gathering number, and את שאהבה נפשי ראיתם from Song of Solomon 3:3 and מי זאת   ע from Song of Solomon 3:6 are repeated in the margin. The sign is used to fill up line-endings.
 #
 T-S A35.91
 Lamentations 3:37–63
@@ -12716,13 +12714,13 @@ T-S A35.100
 Esther 9:11–17; 9:29–10:3
 Hebrew; unpointed, but with verse divisions; Massorah Parva on folio 2.
 Paper; 11.8cm. x 18cm.; 1 column; 2 leaves conjoined; 12 lines (incomplete); mutilated with pieces of text missing.
-The sign / is used to fill up line-endings. On folio 1r at Esther 9:14 ויאמר, which is the last word on the page, is deleted by being crossed through. On folio 2v after Esther 10:3 there is a note of the number of verses in Esther which appears to read קבה, but may be an error for ק סה , the number followed in Kittel-Kahle BH3.
+The sign / is used to fill up line-endings. On folio 1r at Esther 9:14 ויאמר, which is the last word on the page, is deleted by being crossed through. On folio 2v after Esther 10:3 there is a note of the number of verses in Esther which appears to read קכה, but may be an error for ק סה , the number followed in Kittel-Kahle BH3.
 #
 T-S A35.101
 Esther 1:6–11
 Hebrew; standard Tiberian, cantillated.
 Paper; 9.9cm. x 8.2cm.; 1 column; 1 leaf; 10 lines; mutilated.
-The non-standard vocalization -־-״ foroccurs. On recto the last letter or letters of the last words on lines 3, 7, and 9 are written in the margin with a space between them and the remainder of the words of which they form part. On verso at Esther 1:9 אטר, which has been repeated after .למלך, is deleted by dots written round it and in the lower margin a decorated ב is a catchword to the first letter of the first word on a following folio.
+The non-standard vocalization -־-״ foroccurs. On recto the last letter or letters of the last words on lines 3, 7, and 9 are written in the margin with a space between them and the remainder of the words of which they form part. On verso at Esther 1:9 אשר, which has been repeated after .למלך, is deleted by dots written round it and in the lower margin a decorated ב is a catchword to the first letter of the first word on a following folio.
 #
 T-S A35.102
 Lamentations 3:12–25
@@ -12757,7 +12755,7 @@ T-S A35.107
 Lamentations 1:11–16
 Hebrew; unpointed, but with verse divisions.
 Paper; 14cm. x 10.5cm.; 1 column; 1 leaf; 13 lines; slightly mutilated.
-The signV is used to fill up a line-ending. On verso in the lower margin מטיב is a catchword to the first word of the text on a following folio.
+The signV is used to fill up a line-ending. On verso in the lower margin משיב is a catchword to the first word of the text on a following folio.
 #
 T-S A35.108
 Song of Solomon 3:6–4:3
@@ -12814,20 +12812,20 @@ T-S A35.117
 Ruth 2:14–19; 3:5–11
 Hebrew; unpointed, but with verse divisions.
 Paper; 20.3cm. x 29cm.; 1 column; 2 leaves conjoined; 10 lines; mutilated with pieces of text missing.
-On folio 1r at Ruth 2:15 [ ] ויצו בעז את נערי ו לאמר,
+On folio 1r at Ruth 2:15 [ ] ויצו בעז את נעריו לאמר,
 which has been omitted from the text, is supplied in the margin. On folio 1v at Ruth 2:18 לה את אשר, which has been omitted from the text, is supplied in the margin. The sign y is used to fill up line-endings. On folio 2v in the lower margin תאמרי is a decorated catchword to the first word of the text of a following folio.
 #
 T-S A35.118
 Ruth 3:17–4:9
 Hebrew; unpointed, but with verse divisions.
 Paper; 19.4cm. x 28.6cm.; 1 column; 2 leaves conjoined and consecutive; 10–11 lines; mutilated and rubbed with a few small pieces of text missing.
-The sign V is used to fill up line-endings. On folio 1v at Ruth 4:4 ת is written above יגאל. On folio 2r at Ruth 4:5 בחם is written for בי ום and עת is written above as an attempted correction.
+The sign V is used to fill up line-endings. On folio 1v at Ruth 4:4 ת is written above יגאל. On folio 2r at Ruth 4:5 בחם is written for ביום and עת is written above as an attempted correction.
 #
 T-S A35.119
 Esther 6:11–7:10; 8:11–9:6
 Hebrew; unpointed, but with verse divisions.
 Paper; 17.9cm. x 27.6cm. and 17.5cm. x 27.7cm.; 1 column; 4 leaves conjoined in 2 pairs with folios 1–2 and 3–4 consecutive; 10–15 lines; mutilated with pieces of text missing.
-The margins are filled with lines of Hebrew liturgical poetry. On folio 1r at Esther 6:11 the error ויזעק זעקה is deleted by a line drawn above it. On folio 1v at Esther 7:2 ותנתן לך, which has been omitted from the text, is supplied above the line. On folio 2r at Esther 7:4 החרשתי, which has been omitted from the text, is supplied above the line and at Esther 7:7 מאסתר המלכה, which has been omitted from the text, is supplied above the line. On folio 2v at Esther 7:8 the error מלפני המלר והמלכה is deleted by a line drawn above it. On folio 3r at Esther 8:14 בדבר המלך, which has been mitted from the text, is supplied above the line. On folio 3v at Esther 8:15 the error וארגמן is deleted by a line drawn above it.
+The margins are filled with lines of Hebrew liturgical poetry. On folio 1r at Esther 6:11 the error ויזעק זעקה is deleted by a line drawn above it. On folio 1v at Esther 7:2 ותנתן לך, which has been omitted from the text, is supplied above the line. On folio 2r at Esther 7:4 החרשתי, which has been omitted from the text, is supplied above the line and at Esther 7:7 מאסתר המלכה, which has been omitted from the text, is supplied above the line. On folio 2v at Esther 7:8 the error מלפני המלך והמלכה is deleted by a line drawn above it. On folio 3r at Esther 8:14 בדבר המלך, which has been omitted from the text, is supplied above the line. On folio 3v at Esther 8:15 the error וארגמן is deleted by a line drawn above it.
 #
 T-S A35.120
 Song of Solomon 1:9–4:1
@@ -12842,7 +12840,7 @@ On folio 4v in the lower margin אין is a catchword to the first word of the t
 #
 T-S A35.122
 Song of Solomon 6:1–8:5
-Hebrew; predominantly standard Tiberian, cantillated. Paper; 18.8cm. x 14.6cm. and 19.1cm. x 14.6cm.; 1 column; 2 leaves separate, but consecutive; 14–15 lines; mutilated with a few small pieces of text missing. Examples of non-standard vocalization are: -7- for–;–for–. The sign V is used to fill up line-endings. On folio 1v at Song of Solomon 6:10 the error מט ו is deleted by being crossed through and corrected to כמו immediately afterwards.
+Hebrew; predominantly standard Tiberian, cantillated. Paper; 18.8cm. x 14.6cm. and 19.1cm. x 14.6cm.; 1 column; 2 leaves separate, but consecutive; 14–15 lines; mutilated with a few small pieces of text missing. Examples of non-standard vocalization are: -7- for–;–for–. The sign V is used to fill up line-endings. On folio 1v at Song of Solomon 6:10 the error ממ ו is deleted by being crossed through and corrected to כמו immediately afterwards.
 #
 T-S A35.123
 Ruth 1:8–13
@@ -12878,7 +12876,7 @@ T-S A35.128
 Zephaniah 3:8; Esther 2:5–7
 Hebrew; unpointed, but with a verse divisions. [? gm]
 Paper; 27.9cm. x 17.9cm.; 1 column; 1 leaf; 16 lines; mutilated with pieces of text missing.
-At the top of recto there are three lines of the alphabetical structure in which groups of three consecutive letters are written in a series with each group beginning with the letter following that with which the previous one began, thus: ז חט חטי טי ך. Below this there is a line of the alphabetical code את בש גר דק. Verso is blank. The fragment is possibly a writing exercise.
+At the top of recto there are three lines of the alphabetical structure in which groups of three consecutive letters are written in a series with each group beginning with the letter following that with which the previous one began, thus: ז חט חטי טיך. Below this there is a line of the alphabetical code את בש גר דק. Verso is blank. The fragment is possibly a writing exercise.
 #
 T-S A35.129
 Esther 2:3–18
@@ -13069,7 +13067,7 @@ Verso is blank.
 T-S A37.8
 Ezra 2:43–69; Nehemiah 7:70–8:12
 Hebrew; predominantly standard Tiberian, cantillated . Paper; 16cm. x 30.2cm., 14cm. x 30cm., 14.5cm. x 30cm., and 15.6cm. x 30.6cm.; 1 column; 8 leaves conjoined in 4 pairs with folios 1–4 and 5–8 consecutive; 7–9 lines; mutilated and rubbed with a few small pieces of text missing or illegible.
-Examples of non-standard vocalization are: =- for–; “for הב־■ and~. On folio 3v at Ezra 2:65 ואמהתיהם, which has been omitted from the text, is supplied in the margin. On folio 4v the error דרכונים, which occurs in a passage which differs from the text followed in Kittel-Kahle BH3, is deleted by being crossed through and corrected immediately afterwards. On folio 5r at Nehemiah 7:23 ש of והמשדרים, which has been omitted from the text, is supplied above the line. On T-S A38–39 See Introduction, Paragraph 12.
+Examples of non-standard vocalization are: =- for–; “for הב־■ and~. On folio 3v at Ezra 2:65 ואמהתיהם, which has been omitted from the text, is supplied in the margin. On folio 4v the error דרכונים, which occurs in a passage which differs from the text followed in Kittel-Kahle BH3, is deleted by being crossed through and corrected immediately afterwards. On folio 5r at Nehemiah 7:23 ש of והמשררים, which has been omitted from the text, is supplied above the line. 
 #
 T-S A38.1
 Exodus 7:28–8:20; 25:6–18; 25:20–29
@@ -13086,7 +13084,7 @@ T-S A38.3
 Psalms 22:13–25:12
 Hebrew; Babylonian, cantillated.
 Parchment; 18.2cm. x 19cm.; 1 column; 1 leaf; 23 lines (incomplete); badly mutilated with many pieces of text missing.
-There is poetic spacing which does not always correspond to that followed in Kittel-Kahle BH3. Small circles or os have been drawn either at the ends of verses or at the ends of lines of text on the manuscript with a different colour of ink from that of the text.
+There is poetic spacing which does not always correspond to that followed in Kittel-Kahle BH3. Small circles or סs have been drawn either at the ends of verses or at the ends of lines of text on the manuscript with a different colour of ink from that of the text.
 #
 T-S A38.4
 Song of Solomon 4:12–6:8; Ecclesiastes 9:3–10:9
@@ -13120,8 +13118,7 @@ T-S A38.10
 Exodus 36:20–29; Leviticus 14:51–15:5; 15:24–26; 15:28–31; 16:22–30; 21:23–22:6; Numbers 9:18–10:3; 10:33–11:6
 Hebrew; Babylonian, cantillated; Massorah Magna on folio 3, Massorah Parva.
 Parchment; 22.6cm. x 19cm., 23.6cm. x 38.8cm., 13cm. x 20.5cm., 23.2cm. x 19cm., 24cm. x 19.6cm., and 20.6cm. x 19.9cm.; 1 column; 7 leaves with 2 leaves conjoined in a pair; 11 lines (complete); mutilated with pieces of text missing.
-On folio 4v at Leviticus 16:30 הזה is added in the margin as the last word of the text in a different hand from that of the rest of the text. On folio 5r in the lower margin and written transversely in relation to the text in a different hand with a different colour of ink from that of the text there is the following scribal note: 1 1 /[?עיבור/ שמואל בר פרחי [ה I ?[ע? ]שה 1את
-סט בן/ אברהם נח עדן/ [ ] בנו/ . On folio 5v there are jottings in the margin. On folio 6r at Numbers 10:1 the first half of Isaiah 27:13 is written in the margin with two decorations which include the letters אפ and a note of the source of reference, ישעיה. On folio 7r at Numbers 10:34 ויהי בנסעם וענן ייי is written in the margin. See Plate 10.
+On folio 4v at Leviticus 16:30 הזה is added in the margin as the last word of the text in a different hand from that of the rest of the text. On folio 5r in the lower margin and written transversely in relation to the text in a different hand with a different colour of ink from that of the text there is the following scribal note: /ע?שה את? עיבור/ שמואל בר פרחי ה?/ [  ] סט בן/ אברהם נח עדן/ [  ] בנו. On folio 5v there are jottings in the margin. On folio 6r at Numbers 10:1 the first half of Isaiah 27:13 is written in the margin with two decorations which include the letters אפ and a note of the source of reference, ישעיה. On folio 7r at Numbers 10:34 ויהי בנסעם וענן ייי is written in the margin. See Plate 10.
 #
 T-S A38.11
 Deuteronomy 2:9–30
@@ -13185,7 +13182,7 @@ T-S A39.1
 Genesis 50:26; Exodus 1:1–2:24
 Hebrew; standard Tiberian, cantillated, and Babylonian, cantillated; Massorah Magna and Parva.
 Parchment; 25.5cm. x 19.9cm.; 2 columns; 1 leaf; 24 lines; mutilated with a few small pieces of text missing.
-On recto after Genesis 50:26, the end of Seder 12, the note אלמם תיבות gives the number of words in Seder 12, namely, 1160, the ligature representing .100 = אלף ספר is also written after the end of Genesis and there is a decorated Parashah heading at Exodus 1:1, the beginning of Seder 13. The margin of recto contains isolated letters and words of Arabic and Hebrew as pen exercises. On verso in the lower margin Exodus 2:24–25 is continued from the last word of the text in a different hand with a different colour of ink from that of the text, probably in order to complete the chapter.
+On recto after Genesis 50:26, the end of Seder 12, the note אלקס תיבות gives the number of words in Seder 12, namely, 1160, the ligature representing 100 = אלף ספר. is also written after the end of Genesis and there is a decorated Parashah heading at Exodus 1:1, the beginning of Seder 13. The margin of recto contains isolated letters and words of Arabic and Hebrew as pen exercises. On verso in the lower margin Exodus 2:24–25 is continued from the last word of the text in a different hand with a different colour of ink from that of the text, probably in order to complete the chapter.
 #
 T-S A39.2
 Exodus 10:27–12:18; 14:27–16:3
@@ -13197,7 +13194,7 @@ Numbers 32:41–35:14; Deuteronomy 1:45–4:10
 Hebrew; standard Tiberian, cantillated, and Baby- Ionian, cantillated; Massorah Magna and Parva.
 Parchment; 25cm. x 36.8cm. and 25.3cm. x 40.2cm.; 2 columns, except on folio 1, which has 1 column; 4 leaves conjoined in 2 pairs with folios 1–2 and 3–4 consecutive; 23–24 lines; mutilated with a few small pieces of text missing and a tear in folio 1 sewn together.
 On folio 1r at Numbers 33:1, the beginning of Seder
-43, there is a decorated Parashah heading and notes both of the number of verses in Seder 42, namely, 112, and of the number of words in the same Seder, thus, אלקה מלין , that is, 1105, if the ligature represents (1000 = אל(ף. On folio 1v at Numbers 33:50 לאמר, which has been omitted from the text, is supplied above the line. On folio 4r at Deuteronomy 3:23, the beginning of Seder 45, there is a decorated Parashah heading and a note of the number of verses in Seder
+43, there is a decorated Parashah heading and notes both of the number of verses in Seder 42, namely, 112, and of the number of words in the same Seder, thus, אלקה מלין , that is, 1105, if the ligature represents 1000 = (אל(ף. On folio 1v at Numbers 33:50 לאמר, which has been omitted from the text, is supplied above the line. On folio 4r at Deuteronomy 3:23, the beginning of Seder 45, there is a decorated Parashah heading and a note of the number of verses in Seder
 44, namely, 105.
 #
 T-S A39.4
@@ -13248,7 +13245,7 @@ Parchment; 23.7cm. x 19.7cm.; 2 columns; 1 leaf; 20–22 lines; mutilated with m
 T-S A39.12
 Psalms 10:13–18; 12:1–7; 118:12–15; 118:28–119:3; 119:77–83; 119:93–99; Job 15:4–6; 15:22–24; 26:2–4; 27:6–8; 40:10–15; 40:28–41:1
 Hebrew; Babylonian, cantillated; Massorah Magna and Parva.
-Parchment; 12.9cm. x 21.7cm., 14.6cm. x 20.2cm., 8.7cm. x 33.1cm., and 13cm. x 18.2cm.; 1 column; 6 leaves with 4 leaves conjoined in 2 pairs; 8 lines (incomplete); badly mutilated with many large pieces of text missing. There is poetic spacing in the centre of each line of text which gives the effect on the page of two columns and does not always correspond to that followed in Kittel-Kahle BH3. On folio 2 there are jottings in the margins written in a different hand with a different colour of ink from that of the text. They include part of an alphabet on folio 2r and the Judaeo-Arabic פטם אללה אלרחמו אלרחים on folio 2v.
+Parchment; 12.9cm. x 21.7cm., 14.6cm. x 20.2cm., 8.7cm. x 33.1cm., and 13cm. x 18.2cm.; 1 column; 6 leaves with 4 leaves conjoined in 2 pairs; 8 lines (incomplete); badly mutilated with many large pieces of text missing. There is poetic spacing in the centre of each line of text which gives the effect on the page of two columns and does not always correspond to that followed in Kittel-Kahle BH3. On folio 2 there are jottings in the margins written in a different hand with a different colour of ink from that of the text. They include part of an alphabet on folio 2r and the Judaeo-Arabic בשם אללה אלרחמן אלרחים on folio 2v.
 #
 T-S A39.13
 Psalms 65:1–66:13; 83:12–85:7; 99:8–103:7
@@ -13303,7 +13300,7 @@ T-S A40.1
 Psalms 1:1–2:8; 5:4–6:2
 Hebrew; predominantly standard Tiberian, uncantillated.
 Paper; 15.2cm. x 12.9cm. and 17.2cm. x 12.8cm.; 1 column; 2 leaves separate; 12 lines; mutilated with pieces of text missing.
-Examples of non-standard vocalization are: ~=~ for–and–. The tetragrammaton is abbreviated to . On folio 2r at Psalms 5:8 אטתחוה (sic)בתך, which has been omitted from the text, is supplied in the margin.
+Examples of non-standard vocalization are: ~=~ for–and–. The tetragrammaton is abbreviated to . On folio 2r at Psalms 5:8 אשתחוה (sic)בתך, which has been omitted from the text, is supplied in the margin.
 #
 T-S A40.2
 Jeremiah 23:15–24; Deuteronomy 14:29–15:8
@@ -13339,7 +13336,7 @@ T-S A40.7
 Jeremiah 2:18–19; 9:22–23; 6:16–17; 8:13–9:3; 9:13–23
 Hebrew; unpointed on folios 1r and 3, standard Tiberian, uncantillated and added later with a different colour of ink from that of the consonantal text, on folios lv–2.
 Paper; 18.6cm. x 13.6cm., 18.7cm. x 13.8cm., and 18.7cm. x 13.7cm.; 1 column; 3 leaves separate, but with folios 1–2 consecutive; 13 lines; mutilated with pieces of text missing or illegible.
-The non-standard vocalization–for ־ך"־ occurs. On folio 1r the rubric תטעה באב בירמיה introduces a series of readings for the Ninth of Ab. On folio 3v in the lower margin the Haphtorah is completed in a different hand with a different colour of ink from that of the text. On folio 1v at Jeremiah 6:16 בה, which has been omitted from the text, js supplied above the line with the same colour of ink as that of the vocalization.
+The non-standard vocalization–for ־ך"־ occurs. On folio 1r the rubric תשעה באב בירמיה introduces a series of readings for the Ninth of Ab. On folio 3v in the lower margin the Haphtorah is completed in a different hand with a different colour of ink from that of the text. On folio 1v at Jeremiah 6:16 בה, which has been omitted from the text, is supplied above the line with the same colour of ink as that of the vocalization.
 #
 T-S A40.8
 Psalms 22:12–27; 31:14–32:1
@@ -13447,7 +13444,7 @@ Genesis 6:4–7:4
 with Targum Onqelos after the first word or words of each verse
 Hebrew and Aramaic; standard Tiberian where legible, uncantillated.
 Paper; 17.2cm. x 12.7cm., 17.3cm. x 12.7cm., and 17.2cm. x 25.4cm.; 1 column; 4 leaves consecutive with 2 leaves conjoined; 10 lines; badly mutilated and rubbed with many pieces of text illegible.
-Targum Onqelos contains variants from the texts of our printed editions. On folio 1v at Genesis 6:9, the beginning of Seder 2, there is a decorated Parashah heading, a note of the number of verses in Seder 1, namely, 146, with the arithmograms אמצי ה (cf. 2 Kings 12:22 etc.) and אקדם (cf. Micah 6:6.).
+Targum Onqelos contains variants from the texts of our printed editions. On folio 1v at Genesis 6:9, the beginning of Seder 2, there is a decorated Parashah heading, a note of the number of verses in Seder 1, namely, 146, with the arithmograms אמציה (cf. 2 Kings 12:22 etc.) and אקדם (cf. Micah 6:6.).
 #
 T-S A40.26
 Biblical passages
@@ -13482,13 +13479,10 @@ Paper; 15.6cm. x 20.4cm.; 1 column; 1 leaf; 16 lines (incomplete); mutilated.
 The Judaeo-Arabic translation is that of Saadya, offering a text which differs slightly from any of the printed editions.
 #
 T-S A40.31
-Targum Onqelos on Leviticus 18:1–30 with a Judaeo-Arabic rubric reading
-אלקול פי תצפית לחם אלחיואו לאן בתצפיתה/ יחל
-. אכלה...ודלך יכון אכלה/
+Targum Onqelos on Leviticus 18:1–30 with a Judaeo-Arabic rubric reading אלקול פי תצפית לחם אלחיואן לאן בתצפיתה/ יחל אכלה...ודלך יכון אכלה/
 #
 T-S A40.32
-Exodus 22:15–31; 23:4–16
-with Targum Onqelos after each verse
+Exodus 22:15–31; 23:4–16 with Targum Onqelos after each verse
 Hebrew and Aramaic; standard Tiberian, cantillated, for the Hebrew, Babylonian, uncantillated, for the Aramaic.
 Paper; 24.6cm. x 15.3cm.; 1 column; 1 leaf; 28 lines (incomplete); mutilated with pieces of text missing.
 #
@@ -13526,7 +13520,7 @@ T-S A40.38
 Jeremiah 15:14–16:5
 Hebrew; standard Tiberian, cantillated; Massorah Magna and Parva.
 Paper; 17.9cm. x 13.3cm.; 1 column; 1 leaf; 15 lines; mutilated with pieces of text missing.
-The tetragrammaton is abbreviated to *״ . On verso at Jeremiah 16:5 there is a decorated ם . n the margins of both recto and verso there are Arabic glosses, for example, on verso at Jeremiah 16:4 ממותי is glossed as UL• .
+The tetragrammaton is abbreviated to *״ . On verso at Jeremiah 16:5 there is a decorated ם . In the margins of both recto and verso there are Arabic glosses, for example, on verso at Jeremiah 16:4 ממותי is glossed.
 #
 T-S A40.39
 Genesis 47:28–29; 50:24–26; Exodus 1:1–3; 5:22–6:4; 9:33–10:1; 13:14–18; 17:14–18:3; 20:24–26
@@ -13560,7 +13554,7 @@ The non-standard vocalization ־ ־ for ־ך=ך־ occurs.
 T-S A40.44
 Psalms 35:14–28
 Hebrew; predominantly standard Tiberian, cantillated. Paper; 19.2cm. x 14cm.; 1 column; 1 leaf; 12 lines; mutilated.
-Examples of non-standard vocalization are: ־= ־ for–and There is poetic spacing which does not always correspond to that followed in Kittel-Kahle BH3. On recto in the top righthand corner there is a ה , probably a gathering number, and in the top lefthand corner the corresponding Arabic i–U. , ‘fifth’. At Psalms 35:16 עלי, which has been omitted from the text, is supplied in the margin. On verso at Psalms 35:28 there is a decorated ם .
+Examples of non-standard vocalization are: ־= ־ for–and There is poetic spacing which does not always correspond to that followed in Kittel-Kahle BH3. On recto in the top righthand corner there is a ה , probably a gathering number, and in the top lefthand corner the corresponding Arabic, ‘fifth’. At Psalms 35:16 עלי, which has been omitted from the text, is supplied in the margin. On verso at Psalms 35:28 there is a decorated ם .
 #
 T-S A40.45
 Biblical passages
@@ -13578,7 +13572,7 @@ Hebrew; standard Tiberian, uncantillated.
 Paper; 23.8cm. x 12.5cm.; 1 column; 1 leaf; 17 lines; worn, but whole.
 The text comprises part of the first pre-Shema benediction (?Karaite) concluding יוצר המאורות containing and followed by Biblical verses, often abbreviated as follows:
 Isaiah 45:7; Genesis 1:16; Psalms 145:12; 145:4; 145:10; Nehemiah 9:5; Psalms 115:18; 148:3; 148:2; Isaiah 6:3; Psalms 104:31; 113:2–4; Ezekiel 43:2; 1:14; 3:12 or 43:5; 1 Chronicles 17:20; Deuteronomy 6:3–5; Leviticus 18:2 and many other identical pass- ages; Psalms 66:2–4; 86:8–9; 22:28; Ezekiel 46:1.
-The tetragrammaton is abbreviated to '  . In the margins of both recto and verso there are a few exercises written in square Hebrew characters and in Arabic. The Arabic exercises are mostly based on epistolary formulae, for example, f U J*-*׳
+The tetragrammaton is abbreviated to '  . In the margins of both recto and verso there are a few exercises written in square Hebrew characters and in Arabic. The Arabic exercises are mostly based on epistolary formulae.
 #
 T-S A40.47
 Exodus 29:33–40
@@ -13616,7 +13610,7 @@ Folio 2v includes 2 Chronicles 7:14–16
 Folio 3r includes 2 Chronicles 29:7–10; Jeremiah 4:8; 23:11; Ezekiel 23:38–39
 Folio 3v includes Jeremiah 15:1; Micah 2:10; Hosea 9:15
 Folio 4r includes Job 30:31, Hosea 5:15, Job 19:10; 17:15; 30:15
-Folio 4v includes Job 3:25; Jeremiah 50:17; 51:34–35 The tetragrammaton is abbreviated to . On folio 4r there are short Judaeo-Arabic rubrics, liturgical directions ויקול נאם ,ויקול, etc.
+Folio 4v includes Job 3:25; Jeremiah 50:17; 51:34–35 The tetragrammaton is abbreviated to . On folio 4r there are short Judaeo-Arabic rubrics, liturgical directions ויקול נאס ,ויקול, etc.
 #
 T-S A40.52
 Esther 1:16–2:6
@@ -13651,7 +13645,7 @@ T-S A40.57
 Deuteronomy 1:36–2:12
 Hebrew; unpointed.
 Paper; 23cm. x 22.1cm.; 1 column; 1 leaf; 23 lines (incomplete); mutilated with pieces of text missing.
-Verso contains a number of pen exercises. Among them is the following passage modelled on Maimonides, Mishneh Torah, Book 3 ספר זמנים, introductory remarks to chapter 1 of: /הלכות שביתת/ יום טוב מצוות עשה ושתי (sic)שבכללן ארבע(0!3) מצוות/ שתי מצוות לא תעשה/ וזה הוא פרטן א/ (sic) ; a testing of ink: /תגרבת חבר/ מרכב/ מליח טאיל and a Judeao-Arabic doxology: /אלחמד ללה אלדי/ כלה נוע אלאנסאו ושרפה באלנטק/ואלאדראך/ עלי גמיע אלחיואן/. Cf.T-S A41.102
+Verso contains a number of pen exercises. Among them is the following passage modelled on Maimonides, Mishneh Torah, Book 3 ספר זמנים, introductory remarks to chapter 1 of: (sic) /הלכות שביתת/ יום טוב שבכללן ארבע מצוות/ שתי מצוות עשה ושתי  / מצוות לא תעשה/ וזה הוא פרטן א/  ; a testing of ink: /תגרבת חבר/ מרכב/ מליח טאיל and a Judeao-Arabic doxology: /אלחמד ללה אלדי/ כלק נוע אלאנסאן ושרפה באלנטק/ואלאדראך/ עלי גמיע אלחיואן/. Cf.T-S A41.102
 #
 T-S A40.58
 Biblical passages
@@ -13729,13 +13723,13 @@ T-S A40.70
 Numbers 15:35–16:17; 19:14–20:16
 Hebrew; standard Tiberian, cantillated; Massorah Parva on folio 1v.
 Paper; 26.8cm. x 35.6cm.; 1 column; 2 leaves conjoined; 20 lines; slightly mutilated.
-The sign is used to fill up line-endings. On folio 1r at Numbers 15:39 וראיתם אתו, which has been omitted from the text, is supplied in the margin and at Numbers 16:1, the beginning of Seder 38, there is a decorated note of the number of verses in Seder 37. On folio 1r there are abbreviated Judaeo-Arabic glosses written in the margins: for example, at Numbers 15:38 כנפי בגדיהם is glossed as = אט אזר אטראף אזרהם and פתיל תכלת as = % אסט סלך אסמנגון. On folio 1v at Numbers 16:5 ואת אשר יבחר בו יקריב אליו , which has been omitted from the text by homoioteleuton with אליו, is supplied in the margin in a different hand with a different colour of ink from that of the text and in the margin at Numbers 16:6 מחתות, which has been omitted from the text, is supplied. On folio 2r at Numbers 19:21 הערב, which has been omitted from the text, is supplied in the margin. On folio 2v at Numbers 20:8 את, which has been omitted from the text, is supplied above the line, at Numbers 20:9 כאשר , which has been omitted from the text, is supplied in the margin, at Numbers 20:10 נא, which has been omitted from the text, is supplied above the line, and at Numbers 20:11 במטהו, which has been omitted from the text, is supplied above the line.
+The sign is used to fill up line-endings. On folio 1r at Numbers 15:39 וראיתם אתו, which has been omitted from the text, is supplied in the margin and at Numbers 16:1, the beginning of Seder 38, there is a decorated note of the number of verses in Seder 37. On folio 1r there are abbreviated Judaeo-Arabic glosses written in the margins: for example, at Numbers 15:38 כנפי בגדיהם is glossed as = אט אזר אטראף אזרהם and פתיל תכלת as =  סל אסמ סלך אסמנגון. On folio 1v at Numbers 16:5 ואת אשר יבחר בו יקריב אליו , which has been omitted from the text by homoioteleuton with אליו, is supplied in the margin in a different hand with a different colour of ink from that of the text and in the margin at Numbers 16:6 מחתות, which has been omitted from the text, is supplied. On folio 2r at Numbers 19:21 הערב, which has been omitted from the text, is supplied in the margin. On folio 2v at Numbers 20:8 את, which has been omitted from the text, is supplied above the line, at Numbers 20:9 כאשר , which has been omitted from the text, is supplied in the margin, at Numbers 20:10 נא, which has been omitted from the text, is supplied above the line, and at Numbers 20:11 במטהו, which has been omitted from the text, is supplied above the line.
 #
 T-S A40.71
 Isaiah 50:3–7; 50:11–51:3; 51:6–10; 51:14–17
 Hebrew; standard Tiberian, cantillated; Massorah Magna.
 Paper; 16.5cm. x 21.5cm.; 2 columns; 1 leaf; 15 lines (incomplete); mutilated with many pieces of text missing.
-On verso at Isaiah 51:9 there is a decorated Haphtorah heading. According to Snaith’s edition the Haphtorah for Seder 48 at Deuteronomy 16:18 begins at Isaiah 51:12. On verso in the lower margin איו is a catchword to the first word of the text on a following folio.
+On verso at Isaiah 51:9 there is a decorated Haphtorah heading. According to Snaith’s edition the Haphtorah for Seder 48 at Deuteronomy 16:18 begins at Isaiah 51:12. On verso in the lower margin אין is a catchword to the first word of the text on a following folio.
 #
 T-S A40.72
 Genesis 3:19–4:10
@@ -13753,7 +13747,7 @@ T-S A40.74
 Esther 3:8–4:1
 Hebrew; unpointed, but with verse divisions.
 Paper; 13.5cm. x 28.4cm.; 3 columns; 1 leaf, being part of a Megillah scroll; 11–13 lines; mutilated with pieces of text missing.
-At Esther 3:12 ואל טרי עם ועם מדינה ומדינה , which has been omitted by homoioteleuton with מדינה ומדינה , is supplied in the margin between the first and second columns.
+At Esther 3:12 ואל שרי עם ועם מדינה ומדינה , which has been omitted by homoioteleuton with מדינה ומדינה , is supplied in the margin between the first and second columns.
 #
 T-S A40.75
 Psalms 1:4–5; 2:10–12; Song of Solomon 1:1–2:7
@@ -13772,7 +13766,7 @@ Leviticus 13:19–33; 13:50–14:5; Numbers 4:37–5:6; 5:20–6:7; 31:1–36:13
 Hebrew; unpointed; Massorah.
 Paper; 38.1cm. x 28.2cm. = average size of conjoined leaves, 38.7cm. x 15.2cm. = size of whole fragment; 1 column; 19 leaves with 14 leaves conjoined in 7 pairs and folios 3–9 and 10–19 consecutive; 48 lines (complete); mutilated with pieces of text missing.
 Many letters in the text have tagim. Small circles in the margins possibly mark divisions in the text. In the upper margins there are folio numbers 48, 59, and 72–86, although folio 19 appears to be given the same number as folio 18, that is, פו, and this may be an error for פז, that is, 87. Also in the upper margin of each folio there is the title of the Seder of which the text on that folio forms part. Folios 9v, 16v, 17v, and 18v are blank. On folio 7v at Deuteronomy 3:13–14
-לכל הבטן ההוא יקרא ארץ רפאים יאיר בו מנטה לקח כל חבל ארגב , which has been omitted by virtual homoioteleuton with חבל (ה)ארגב, is supplied in the margin with the overlapping addition of עד גבול. On folio 8v at Deuteronomy 5:17–18 the order of the ten commandments is corrected. On folio 9r in the lower margin there are Massoretic notes dealing with tagim here and on phylacteries, that is, on Tephillin scrolls.
+לכל הבשן ההוא יקרא ארץ רפאים יאיר בו מנשה לקח כל חבל ארגב , which has been omitted by virtual homoioteleuton with חבל (ה)ארגב, is supplied in the margin with the overlapping addition of עד גבול. On folio 8v at Deuteronomy 5:17–18 the order of the ten commandments is corrected. On folio 9r in the lower margin there are Massoretic notes dealing with tagim here and on phylacteries, that is, on Tephillin scrolls.
 #
 T-S A40.78
 Genesis 47:29–49:7; Numbers 28:19–29:1; 29:19–38; 30:13–17; Deuteronomy 3:13–4:10; 4:39–7:18
@@ -13805,16 +13799,15 @@ Paper; 16.8cm. x 10.6cm.; 1 column; 1 leaf; 18 lines on recto, 5 lines on verso;
 The text comprises the following passages: Jeremiah 17:7–8; Proverbs 11:30; 14:16; 11:28; Psalms 72:7; 89:38; Proverbs 11:8; 10:30; 29:18; Psalms 41:2; 119:1–2.
 #
 T-S A41.3
-Targum Onqelos of Exodus 12:21–24
-for Passover use with Judaeo-Arabic rubrics followed by a mnemonic in Hebrew and Judaeo- Arabic for calendar calculating, part of a compilation of Targum passages for use on various festivals.
+Targum Onqelos of Exodus 12:21–24 for Passover use with Judaeo-Arabic rubrics followed by a mnemonic in Hebrew and Judaeo- Arabic for calendar calculating, part of a compilation of Targum passages for use on various festivals.
 #
 T-S A41.4
 Genesis 1:1–5
 with Targum Onqelos after the first word of each verse
 Hebrew and Aramaic; standard Tiberian, uncantillated, for Targum, unpointed for the Hebrew.
 Paper; 19cm. x 12.2cm.; 1 column; 1 leaf; 15 lines on recto, 11 lines on verso; mutilated with pieces of text missing.
-Verso contains the following colophon: "זה הכתב/ לר אברהם/ המלמד/ החכם והנבון/ האלוהים יברכו/ אמן נ ם/
-Beside and below this and written with a different colour of ink from that of the colophon is the following: /אנתקל בהכם אשרי/ לעלי בר ישועה הה נע אנתקל בחכם/ אלשיך עלי[ ]/ ה[ ]/.
+Verso contains the following colophon: זה הכתב/ לר אברהם/ המלמד/ החכם והנבון/ האלוהים יברכו/ אמן   נ   ס/
+Beside and below this and written with a different colour of ink from that of the colophon is the following: /[]אנתקל בחכם אשרי/ לעלי בר ישועה הח נע אנתקל בחכם/ אלשיך עלי[ ]/ ה/.
 #
 T-S A41.5
 Isaiah 60:4–6; 62:1–2; Jeremiah 17:14; Malachi 3:20; 3:23
@@ -13832,37 +13825,37 @@ T-S A41.7a
 Leviticus 26:25–27:28
 Hebrew; standard Tiberian, uncantillated.
 Paper; 21.5cm. x 28.4cm., 20.6cm. x 14.2cm., 20cm. x 13.6cm., 17.8cm. x 14.1cm., 20.9cm. x 14.7cm., and 19.8cm. x 14.1cm.; 1 column; 7 leaves consecutive with 2 leaves conjoined; 12 leaves (complete); mutilated and rubbed with pieces of text missing or illegible, folio 2 torn into 2 pieces, and a tear in folio 7 sewn together.
-On folio 1v at Leviticus 26:30 ונתתי את פגריכם על פגרי גליליכם[ ], which has been omitted from the text by homoioteleuton with ונתתי, is supplied in the margin, but the correction is incomplete through mutilation. On folio 2r at Leviticus 26:34 טבתותיה is twice repeated in the margin. On folio 2v at Leviticus 26:38–39 אויביכם: והנטארים is repeated in the margin beside a mutilated text. On folio 3r in the upper margin at Leviticus 26:40 הלכו, the last word of folio 2v, although lost through mutilation, is written above the first word of the text.
+On folio 1v at Leviticus 26:30 [] ונתתי את פגריכם על פגרי גליליכם, which has been omitted from the text by homoioteleuton with ונתתי, is supplied in the margin, but the correction is incomplete through mutilation. On folio 2r at Leviticus 26:34 שבתותיה is twice repeated in the margin. On folio 2v at Leviticus 26:38–39 אויביכם: והנשארים is repeated in the margin beside a mutilated text. On folio 3r in the upper margin at Leviticus 26:40 הלכו, the last word of folio 2v, although lost through mutilation, is written above the first word of the text.
 #
 T-S A41.7b
 Leviticus 27:6–8; 27:10–34
 Hebrew; standard Tiberian, cantillated.
 Parchment; 18.6cm. x 29.5cm. and 19.1cm. x 29.8cm.; 1 column; 4 leaves conjoined in 2 pairs and consecutive; 12 lines (complete); mutilated and rubbed with pieces of text missing or illegible.
-On folio 3v after the end of Leviticus there is a Massoretic note of the number of verses contained in the book, namely, 895, which appears to be an error by metathesis for 859 (cf. Kittel-Kahle BH3 ad loc) together with the mnemonic נטף. On folio 4r there is the following colophon: וכתב קטן הסופרים יעקב הכהן בר/ מטה הכהן דית למ הלל הרחמן/ יזכהו להגות ביום ובלילה טנ והגית/ בו י ומם ולילה וכן יהיה בחיי יט/ אנס/ On folio 4v is written אתה גחי צור מבטן כל ז, a writing exercise.
+On folio 3v after the end of Leviticus there is a Massoretic note of the number of verses contained in the book, namely, 895, which appears to be an error by metathesis for 859 (cf. Kittel-Kahle BH3 ad loc) together with the mnemonic נטף. On folio 4r there is the following colophon: וכתב קטן הסופרים יעקב הכהן בר/ משה הכהן דית למ הלל הרחמן/ יזכהו להגות ביום ובלילה שנ והגית/ בו יומם ולילה וכן יהיה בחיי יש/ אנס/ On folio 4v is written אתה גחי צור מבטן כלז, a writing exercise.
 #
 T-S A41.8
 Genesis 1:10–12
 Hebrew; standard Tiberian, cantillated, on recto, unpointed on verso; Massorah Magna and Parva.
 Parchment; 18.1cm. x 13.5cm.; 2 columns; 1 leaf; 9 lines on recto (incomplete), 12 lines on verso (incomplete); badly mutilated with many pieces of text missing.
 On verso there is the following colophon:
-[הק]דיט א[ ]/ 1 ] נדיב חב1 ]/[ ] בר מר ור[ ]/
+[] הק] דיש א[ ]/ [] נדיב חב  []/[ ] בר מר ור/
 [ ] בר מו־ ור יפת[ ]/[ ]יים במצרים לה[ ]/
-[ח]בורה טהיא אצל ה1 ]/I[ ] קדט ליי׳ אלהי יטר [אל ]/[ אר]ור גונבו וארור[ ]/[ ]וציאו מבית הכנסת אלא על פי[ ]/[ ] המחליף זו התנאי ארור הוא ל[ ]/ יטראל אמן/ ליי* אל [הי ] יטראל לא ימכר ולא יגאל: ה[ ]/
+[ח]בורה טהיא אצל ה1 ]/[ ] קדט לׯ אלהי ישר [אל ]/[ אר]ור גונבו וארור[ ]/[ ]וציאו מבית הכנסת אלא על פי[ ]/[ ] המחליף זו התנאי ארור הוא ל[ ]/ יטראל אמן/ לׯ אל [הי ] יטראל לא ימכר ולא יגאל: ה[ ]/
 #
 T-S A41.9
 2 Kings 22:13–23:2; 25:24–30
 With Targum Jonathan after the first word of each verse
 Hebrew and Aramaic; unpointed, but with verse divisions.
 Paper; 16.2cm. x 24cm.; 1 column; 2 leaves conjoined; 17 lines; mutilated with a few small pieces of text missing.
-The tetragrammaton is abbreviated to '1'. On folio 2r at 2 Kings 25:27 בטנת מימלכיה is added in the margin. On folio 2v 2 Kings 25:30 is written with decreasing lengths of lines and after the end of the book there is the following colophon:
-נטלמו ארבעה ספרים יהוטע/ וטפטים וטמואל ומלכים בסייע/ דטמייא בריך רחמנא דסייע/ בהדן: ברוך נותן ליעף כח ולאין אונים/ עצמה ירבה: ברוך הכותב וחזק/ הקורא אמן סלה:/
+The tetragrammaton is abbreviated to '1'. On folio 2r at 2 Kings 25:27 בשנת מימלכיה is added in the margin. On folio 2v 2 Kings 25:30 is written with decreasing lengths of lines and after the end of the book there is the following colophon:
+נשלמו ארבעה ספרים יהושע/ ושפטים ושמואל ומלכים בסייע/ דשמייא בריך רחמנא דסייע/ בהדן: ברוך נותן ליעף כח ולאין אונים/ עצמה ירבה: ברוך הכותב וחזק/ הקורא אמן סלה:/
 #
 T-S A41.10
 Psalms 143:11–145:1; 145:13–150:6
 Hebrew; predominantly standard Tiberian, uncantillated.
 Paper; 16.6cm. x 12.8cm., 16.8cm. x 25.7cm., 16.9cm. x 25.6cm., 16.9cm. x 25.7cm., and 16.9cm. x 25.6cm.; 1 column; 9 leaves with 8 leaves conjoined in 4 pairs and folios 1–2 and 3–9 consecutive; 11 lines; mutilated and rubbed with pieces of text missing or illegible.
 An example of non-standard vocalization is:–for–. There is poetic spacing which does not always correspond to that followed in Kittel-Kahle BH3. On verso in the lower margin of each folio there is a catchword to the first word of the text on the following folio. The signs , V , and V" are used to fill up line-endings. On folio 9v after the end of the book there is the following colophon:
-אלמרחום אלמנתקל לחיא עאד/[ ]ט כב גד קד 1ה ]ד¬יל! צפ/ תפ מו־ ור הו ו וה צפ M ועט/ ראט מרינו ורבינו אור עינינו/ מטר! זכרו מגנעיו־ו לא ינטא/ הסר היקר הכהן הנחמד עטרט(310)/ הכהנים הנפטר בטם טוב/■ומעטים טוביים רוח הטם תניחנו/ בתיריך יום אלאתנייו כאמם/ עטריו טהר כה תמוז באלערבבי (sic)/ כאמס ועטרן טהר אלחיה סנת ראבע וסבעין/ ו[ ]מחה/[ ]מאיה/ וכאן פי ב[ ]ת יר(דט?) וידבר מטה/ אל ראטי המטות/ אלה מסעא(ס!3)/
+אלמרחום אלמנתקל לחיא עאד/]ש כב גד קד הד יק צפ/ תפ מו־ ור הו   ד   וה צפ ועט/ ראש מרינו ורבינו אור עינינו/ משה זכרו מגנעידן לא ינשא/ הסר היקר הכהן הנחמד עטרט/ הכהנים הנפטר בשם טוב/ומעשים טוביים רוח השם תניחנו/ בתיריך יום אלאתניין כאמס/ עשרין שהר כה תמוז באלערבבי / כאמס ועשרן שהר אלחיה סנת ראבע וסבעין/ ו[]מחה/מאיה/ וכאן פי ב[ ]ת יר(דש?) וידבר משה/ אל ראשי המטות/ אלה מסעא/
 #
 T-S A41.11
 Deuteronomy 32:37–34:12
@@ -13876,8 +13869,8 @@ T-S A41.12
 Leviticus 1:1–8
 Hebrew; standard Tiberian, cantillated and added later with red ink.
 Parchment; 19.2cm. x 30.2cm.; 1 column; 2 leaves conjoined and consecutive; 8 lines; mutilated with pieces of text missing and a torn piece of folio 1 sewn on.
-On folio 1v at Leviticus 1:2 '11 קרבן ל is supplied in the margin beside a mutilated text. On folio 2r in the upper margin at Leviticus 1:3 [ יקריב את [ו is supplied beside a mutilated text and in the lower margin זבח is scribbled. On folio 2v in the upper margin at Leviticus 1:15 אהל מועד is supplied beside a mutilated text. On folio 1r there is the following Judaeo-Arabic note referring to the provision of texts against payment for one Abu Mansur:
-ענד אבו מנצור טמרו צור חן תפסיד/ אלארבעה אלאול מן אלנבי גמיעה וכאן/ ידפע כל גמעה דרהמין ויקבץ פי כל/ גמעה תלתה אסדאר תם בעד כמאל דלר/ בדא יקרא תפסיר פי אלארבעה אלסגיר(?)/ ארבעה גמע/
+On folio 1v at Leviticus 1:2 קרבן לׯ is supplied in the margin beside a mutilated text. On folio 2r in the upper margin at Leviticus 1:3 [ יקריב את[ו is supplied beside a mutilated text and in the lower margin זבח is scribbled. On folio 2v in the upper margin at Leviticus 1:15 אהל מועד is supplied beside a mutilated text. On folio 1r there is the following Judaeo-Arabic note referring to the provision of texts against payment for one Abu Mansur:
+ענד אבו מנצור שמרו צור חן תפסיר/ אלארבעה אלאול מן אלנבי גמיעה וכאן/ ידפע כל גמעה דרהמין ויקבץ פי כל/ גמעה תלתה אסדאר תם בעד כמאל דלך/ בדא יקרא תפסיר פי אלארבעה אלסגיר(?)/ ארבעה גמע/
 #
 T-S A41.13
 Ezekiel 23:22–25
