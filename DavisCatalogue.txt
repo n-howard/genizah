@@ -10142,7 +10142,7 @@ On recto at 1 Kings 18:4 איש , which has been omitted from the text, is suppl
 #
 T-S A30.42
 1 Kings 7:51–8:1; 8:3–4
-Hebrew; unpointed, but with a verse division and an isolated–under אשר .
+Hebrew; unpointed, but with a verse division and an isolated Segol under אשר .
 Paper; 14.2cm. x 9.4cm.; 1 column; 1 leaf; 9 lines on recto, 3 lines on verso; slightly mutilated.
 The inexpert character of the script suggests that the fragment is a child’s writing exercise.
 #
@@ -10162,7 +10162,7 @@ T-S A30.45
 1 Kings 8:12–36
 Hebrew; predominantly standard Tiberian, uncantillated.
 Paper; 13cm. x 16.8cm. = average size of conjoined leaves, 13.1cm. x 8.9cm. = size of whole fragment; 1 column; 12 leaves conjoined in 6 pairs and consecutive; 10–12 lines; mutilated.
-Examples of non-standard vocalization are: ~=~ for–and–;ך־–for–. Folios 1r and 5v–12 are blank. On folio 1v in the upper margin is written בשט ר חט. On folio 2r at 1 Kings 8:16 the reading בעיר is deleted by being crossed through and שם, the reading followed in Kittel-Kahle BH3, is written above the line.
+Examples of non-standard vocalization are: ~=~ for–and–;ך־–for–. Folios 1r and 5v–12 are blank. On folio 1v in the upper margin is written בשמ רחמ. On folio 2r at 1 Kings 8:16 the reading בעיר is deleted by being crossed through and שם, the reading followed in Kittel-Kahle BH3, is written above the line.
 #
 T-S A30.46
 1 Kings 1:16–24
@@ -10190,7 +10190,7 @@ T-S A30.50
 2 Kings 12:1–5; 12:7–11
 Hebrew; standard Tiberian, cantillated.
 Paper; 14.8cm. x 14cm.; 1 column; 1 leaf; 12 lines (incomplete); mutilated with pieces of text missing.
-On recto at 2 Kings 12:1 the heading פרשת שקלים ב [מלכים?] indicates that the passage which follows is the Haphtorah for Exodus 30:11–16 to be recited on the Sabbath before Rosh Hodesh Adar.
+On recto at 2 Kings 12:1 the heading פרשת שקלים ב[מלכים?] indicates that the passage which follows is the Haphtorah for Exodus 30:11–16 to be recited on the Sabbath before Rosh Hodesh Adar.
 #
 T-S A30.51
 2 Kings 4:5–20
@@ -10256,7 +10256,7 @@ T-S A30.62
 2 Kings 4:5–10; 4:22–27
 Hebrew; unpointed, but with verse divisions.
 Paper; 17.7cm. x 26.6cm.; 1 column; 2 leaves conjoined; 9 lines; mutilated with small pieces of text missing.
-On folio 2v in the margin is written in a different hand from that of the text the Judaeo-Arabic ופי דלן קאלו אלהכמים/ אלדי אעלם בה אלמולא is written in the margin of folio 2v opposite 2 Kings 4:26.
+On folio 2v in the margin is written in a different hand from that of the text the Judaeo-Arabic ופי דלך קאלו אלחכמים/ אלדי אעלם בה אלמולא is written in the margin of folio 2v opposite 2 Kings 4:26.
 #
 T-S A30.63
 1 Kings 1:1–15
@@ -10274,7 +10274,7 @@ T-S A30.65
 1 Kings 1:20–25
 Hebrew; unpointed, but with verse divisions.
 Paper; 17.5cm. x 12.7cm.; 1 column; 1 leaf; 9 lines on recto, 5 lines on verso; mutilated with pieces of text missing.
-The sign 1? is used to fill up line-endings. On verso in the upper margin and inverted in relation to the text are written the words כי א הו (sic = כי אדני ה ו) in a different hand from that of the text.
+The sign 1? is used to fill up line-endings. On verso in the upper margin and inverted in relation to the text are written the words כי אׯהו (sic = כי אדניהו) in a different hand from that of the text.
 #
 T-S A30.66
 2 Kings 7:10–20
@@ -10286,7 +10286,7 @@ T-S A30.67
 2 Kings 4:3–12
 Hebrew; standard Tiberian, cantillated; Massorah Parva.
 Paper; 15.8cm. x 11.1cm.; 1 column; 1 leaf; 11 lines on recto, 12 lines on verso; mutilated with pieces of text missing.
-On verso at 2 Kings 4:8 אל ש ו נם, which has been omitted from the text, is supplied in the margin.
+On verso at 2 Kings 4:8 אל שונם, which has been omitted from the text, is supplied in the margin.
 #
 T-S A30.68
 1 Kings 19:4–11; 20:22–28
@@ -10366,7 +10366,7 @@ T-S A31.2
 Isaiah 50:2–51:1; 52:7–12; 60:1–6
 Hebrew; predominantly standard Tiberian, uncantillated, on folio 1, unpointed on folio 2.
 Paper; 17.8cm. x 27.2cm.; 1 column; 2 leaves conjoined; 14 lines; mutilated with pieces of text missing.
-Examples of non-standard vocalization are: ־=־־ for–and–. The tetragrammaton is abbreviated to (A' or On folio 1r at Isaiah 50:3 דגתם מאיו מים, which has been repeated from 50:2, is deleted by being crossed through and by dots above the line. On folio 2v ״between Isaiah 52:12 and Isaiah 60:1 there is a rubric which, though partly mutilated, reads והיה בישעיה (sic) כי ת]באו], referring to Isaiah 60:lff. as the Haphtorah for Seder 50 at Deuteronomy 26:1.
+Examples of non-standard vocalization are: ־=־־ for–and–. The tetragrammaton is abbreviated to (A or. On folio 1r at Isaiah 50:3 דגתם מאין מים, which has been repeated from 50:2, is deleted by being crossed through and by dots above the line. On folio 2v between Isaiah 52:12 and Isaiah 60:1 there is a rubric which, though partly mutilated, reads (sic) והיה [כי ת]באו בישעיה, referring to Isaiah 60:1ff as the Haphtorah for Seder 50 at Deuteronomy 26:1.
 #
 T-S A31.3
 Isaiah 41:1–10; 42:5–13
@@ -10412,13 +10412,13 @@ T-S A31.10
 Biblical passages
 Hebrew and Judaeo-Arabic; unpointed.
 Paper; 16.1cm. x 12.1cm.; 1 column; 1 leaf; 17 lines; mutilated and rubbed.
-The following Biblical passages are abbreviated for liturgical use: Deuteronomy 28:59–68; Jeremiah 10:19; Isaiah 22:4; 21:3; Jeremiah 6:11; 4:20; 45:3; Isaiah 35:5–10; 51:3; 65:18–19. The tetragrammaton is abbreviated to and also marked with the sign''/ . On recto lines 1, 9, 10–11 there are Judaeo-Arabic rubrics, the first two of which are marked by "V placed above each word.
+The following Biblical passages are abbreviated for liturgical use: Deuteronomy 28:59–68; Jeremiah 10:19; Isaiah 22:4; 21:3; Jeremiah 6:11; 4:20; 45:3; Isaiah 35:5–10; 51:3; 65:18–19. The tetragrammaton is marked with a sign and abbreviated. On recto lines 1, 9, 10–11 there are Judaeo-Arabic rubrics, the first two of which are marked by a sign placed above each word.
 #
 T-S A31.11
 Jeremiah 30:21–22; Isaiah 40:1–4; 40:7–12; 40:14–21; 49:14–19
 Hebrew; standard Tiberian, cantillated; Massorah Parva on folio 1r.
 Paper; 10.9cm. x 12.6cm. and 11.4cm. and 12.6cm.; 1 column; 2 leaves separate, but consecutive; 10 lines (incomplete); mutilated with pieces of text missing.
-The tetragrammaton is abbreviated to 4׳' . On folio 1r before Isaiah 40:1 there is a mutilated rubric which reads [ואתחנן ביש[עיה , indicating that Isaiah 40.Iff. is the Haphtorah for Seder 45 at Deuteronomy 3:23. On folio 2v before Isaiah 49:14 there is a mutilated Judaeo-Arabic rubric which reads [ אפטארה והי [ה עקב בישעיה, indicating that Isaiah 49:14 is the Haphtorah for Seder 46 at Deuteronomy 7:12 and at Isaiah 49:18 נאם, which has been omitted from the text, is supplied above the line.
+The tetragrammaton is abbreviated to 4׳' . On folio 1r before Isaiah 40:1 there is a mutilated rubric which reads [ואתחנן ביש[עיה , indicating that Isaiah 40.1ff is the Haphtorah for Seder 45 at Deuteronomy 3:23. On folio 2v before Isaiah 49:14 there is a mutilated Judaeo-Arabic rubric which reads אפטארה והי[ה] עקב בישעיה, indicating that Isaiah 49:14 is the Haphtorah for Seder 46 at Deuteronomy 7:12 and at Isaiah 49:18 נאם, which has been omitted from the text, is supplied above the line.
 #
 T-S A31.12
 Isaiah 19:3–14
@@ -10580,7 +10580,7 @@ T-S A31.39
 Ezekiel 34:27; Jeremiah 9:22–23
 Hebrew; unpointed.
 Paper; 17.8cm. x 13cm.; 1 column; 1 leaf; 12 lines; mutilated and rubbed.
-The tetragrammaton is abbreviated to '1' or '1' . On recto in the lower margin there is written a p. Verso is blank.
+The tetragrammaton is abbreviated to '1' or '1' . On recto in the lower margin there is written a ק. Verso is blank.
 #
 T-S A31.40
 Jeremiah 31:1–15
@@ -10596,7 +10596,7 @@ All three leaves contain marginal translations/glosses in Arabic. The tetragramm
 T-S A31.42
 Jeremiah 32:21–25; 32:36–44
 Hebrew; predominantly standard Tiberian, cantillated. Paper; 16.5cm. x 25.4cm.; 1 column; 2 leaves conjoined; 13 lines; mutilated.
-Examples of non-standard vocalization are: _=־ forד=י־- and–;–for־ ך־. On folio 1r at Jeremiah 32:23 the dittograph את כל אטר צויתה להם לעטות ולא עטו, which is the result of homoioarchton with את כל , is deleted by being crossed through. On folio 1v at Jeremiah 32:25 the error אל נ י is deleted by being crossed through and corrected to אדני in the margin. On folio 2r at Jeremiah 32:38 להם, which has been omitted from the text, is supplied above the line and in the lower margin are written a few letters of the Hebrew alphabet.
+Examples of non-standard vocalization are: _=־ forד=י־- and–;–for־ ך־. On folio 1r at Jeremiah 32:23 the dittograph את כל אשר צויתה להם לעשות ולא עשו, which is the result of homoioarchton with את כל , is deleted by being crossed through. On folio 1v at Jeremiah 32:25 the error אל נ י is deleted by being crossed through and corrected to אדני in the margin. On folio 2r at Jeremiah 32:38 להם, which has been omitted from the text, is supplied above the line and in the lower margin are written a few letters of the Hebrew alphabet.
 #
 T-S A31.43
 Jeremiah 8:9–9:7; 12:11–13:13
@@ -10661,7 +10661,7 @@ T-S A31.54
 Ezekiel 1:27–2:2; 3:12; Habakkuk 2:20–3:6
 Hebrew; standard Tiberian, cantillated.
 Paper; 16.8cm. x 12.1cm.; 1 column; 1 leaf; 13 lines; mutilated and rubbed with small pieces of text missing or illegible.
-Ezekiel 1 is the Haphtorah for the first day of Pentecost and Habakkuk 2:20ff. is headed with the Aramaic rubric יומא תינינא בתרי עטר as the Haphtorah for the second day of Pentecost.
+Ezekiel 1 is the Haphtorah for the first day of Pentecost and Habakkuk 2:20ff is headed with the Aramaic rubric יומא תינינא בתרי עשר as the Haphtorah for the second day of Pentecost.
 #
 T-S A31.55
 Ezekiel 7:11–27
@@ -10672,7 +10672,7 @@ T-S A31.56
 Ezekiel 16:9–28; 16:58–63; Psalms 89:53 with Liturgy
 Hebrew; predominantly standard Tiberian, uncantillated.
 Paper; 18.1cm. x 26.5cm.; 1 column; 2 leaves conjoined; 13–19 lines; mutilated with many pieces of text missing.
-Examples of non-standard vocalization are:–for–; -7־-for-=-;––for-=7יח לתענית .־, written in a different hand with a different colour of ink from that of the Bible text, follows Psalms 89:53 and introduces a liturgical passage.
+Examples of non-standard vocalization are:–for–; -7־-for-=-;–r-=7. יח לתענית, written in a different hand with a different colour of ink from that of the Bible text, follows Psalms 89:53 and introduces a liturgical passage.
 #
 T-S A31.57
 Ezekiel 22:15–28; 24:27–25:13
@@ -10718,7 +10718,7 @@ T-S A31.63
 Nahum 2:5–3:19; Habakkuk 1:1–3:19; Zephaniah 1:1–18
 Hebrew; standard Tiberian, cantillated; Massorah Parva on folio 1r.
 Paper; 16.2cm. x 25.1cm., 16.2cm. x 25.2cm., 16.1cm. x 25cm., and 16.1cm. x 24.8cm.; 1 column; 8 leaves conjoined in 4 pairs and consecutive; 13 lines; slightly mutilated.
-On folio 3r after Nahum 3:19 there is a note of the number of verses in Nahum, namely, 47, and at Habakkuk 1:1 there is a decorated ם . On folio 6r at Habakkuk 3:1 there is a decorated Aramaic rubric in the margin which reads הפטר יומא תינינ רחג הטבועות On folio 7r after Habakkuk 3:19 there is a note of the number of verses in Habakkuk, namely, 56.
+On folio 3r after Nahum 3:19 there is a note of the number of verses in Nahum, namely, 47, and at Habakkuk 1:1 there is a decorated ם . On folio 6r at Habakkuk 3:1 there is a decorated Aramaic rubric in the margin which reads הפטר יומא תינינ דחג השבועות On folio 7r after Habakkuk 3:19 there is a note of the number of verses in Habakkuk, namely, 56.
 #
 T-S A31.64
 Jonah 4:5–11; Micah 7:18–20; Zechariah 13:9
@@ -10742,7 +10742,7 @@ T-S A31.67
 Amos 3:1–2; 3:7–8; 4:9; 4:11
 Hebrew; predominantly standard Tiberian, uncantillated.
 Paper; 12.7cm. x 9.5cm.; 1 column; 1 leaf; 11 lines on recto, 9 lines on verso; mutilated and rubbed.
-Examples of non-standard vocalization are:~=- for ־״=־ and–;-־־״ for ־־zr־ and ־ךד־. The selections are headed on recto 1גמ [ ] נבואת עמום ].
+Examples of non-standard vocalization are:~=- for ־״=־ and–;-־־״ for ־־zr־ and ־ךד־. The selections are headed on recto גמ[ ] נבואת עמוס[ ].
 #
 T-S A31.68
 Jonah 2:10–3:9
@@ -10789,13 +10789,13 @@ T-S A31.75
 Hosea 14:4–10; Obadiah 1–5; Jonah 4:6–11
 Hebrew; unpointed, but with verse divisions.
 Paper; 16.7cm. x 25.1cm.; 1 column; 2 leaves conjoined; 6–14 lines; mutilated.
-On folios 1v and 2v the ends of the books of Hosea and Jonah are marked in each case by a decorated ספר . On folio 1v at Obadiah 12 the words אב יהרה and אנ are enclosed in two circles and אדני יהרה is written in full at the beginning of the next line.
+On folios 1v and 2v the ends of the books of Hosea and Jonah are marked in each case by a decorated ספר . On folio 1v at Obadiah 12 the words אב יהוה and אנ are enclosed in two circles and אדני יהוה is written in full at the beginning of the next line.
 #
 T-S A31.76
 Zechariah 7:2–8:6
 Hebrew; predominantly standard Tiberian, cantillated; Massorah Magna and Parva.
 Paper; 16.9cm. x 26.5cm.; 1 column; 2 leaves conjoined and consecutive; 10 lines; mutilated with a few small pieces of text missing.
-Examples of non-standard vocalizations are:–=~ for ~;־7־ for7־rr־. The tetragrammaton is abbreviated to . On folio 1r at Zechariah 7:3 צבאות is rewritten in the margin, as are ואת הדברים at Zechariah 7:12 and נשמה at Zechariah 7:14 on folio 2r. On folio 2v at Zechariah 8:2 קנאתי is rewritten in the margin. The colour of the ink used for rewriting these words is probably different from that of the text. On folio 1 there’ are two marginal Arabic glosses. On folio 1r לחלות of Zechariah 7:2 Arabic is rendered and on folio 1v Arabic text evidently refers to שמיר of Zechariah 7:12. On folio 2r in the upper margin Arabic text is written, probably referring to משט ו ע of Zechariah 7:11 and 12.
+Examples of non-standard vocalizations are:–=~ for ~;־7־ for7־rr־. The tetragrammaton is abbreviated to . On folio 1r at Zechariah 7:3 צבאות is rewritten in the margin, as are ואת הדברים at Zechariah 7:12 and נשמה at Zechariah 7:14 on folio 2r. On folio 2v at Zechariah 8:2 קנאתי is rewritten in the margin. The colour of the ink used for rewriting these words is probably different from that of the text. On folio 1 there are two marginal Arabic glosses. On folio 1r לחלות of Zechariah 7:2 is rendered in Arabic and on folio 1v Arabic text evidently refers to שמיר of Zechariah 7:12. On folio 2r in the upper margin Arabic text is written, probably referring to משמוע of Zechariah 7:11 and 12.
 #
 T-S A31.77
 Zechariah 8:12–20; 9:15–10:6
@@ -10899,7 +10899,7 @@ T-S A32.10
 Psalms 73:28–74:3
 Hebrew; unpointed, but with verse divisions.
 Paper; 11.8cm. x 12.3cm.; 1 column; 1 leaf; 8 lines; slightly mutilated.
-On recto at Psalms 74:2 גאלת טבט נחלתך, which has been omitted from the text, is supplied in the margin. Verso is blank.
+On recto at Psalms 74:2 גאלת שבט נחלתך, which has been omitted from the text, is supplied in the margin. Verso is blank.
 #
 T-S A32.11
 Psalms 116:2–118:15
@@ -10916,7 +10916,7 @@ T-S A32.13
 Psalms 26:1–27:2
 Hebrew; unpointed, but with verse divisions.
 Paper; 18.2cm. x 12.8cm.; 1 column; 1 leaf; 14 lines on recto, 13 lines on verso; mutilated and rubbed with pieces of text illegible.
-There is poetic spacing which does not always correspond to that followed in Kittel-Kahle BH3. On recto in the top righthand corner there is a n, probably a gathering number. On verso at Psalms 27:1 the error אירא is deleted by dots above the line and corrected to אפחד immediately afterwards.
+There is poetic spacing which does not always correspond to that followed in Kittel-Kahle BH3. On recto in the top righthand corner there is a ה, probably a gathering number. On verso at Psalms 27:1 the error אירא is deleted by dots above the line and corrected to אפחד immediately afterwards.
 #
 T-S A32.14
 Psalms 27:6–28:9; 34:13–22
@@ -11000,7 +11000,7 @@ T-S A32.27
 Psalms 115:18–116:3; 116:14–118:4
 Hebrew; predominantly standard Tiberian, uncantillated.
 Paper; 14.1cm. x 10.6cm.; 1 column; 1 leaf; 12 lines; mutilated and rubbed.
-Examples of non-standard vocalization are: -=~ for 7=־ and–;–for The tetragrammaton is abbreviated to . On recto at Psalms 116:2 the error כי חטא is deleted by a line drawn above it and corrected immediately afterwards and in the top righthand corner there is a ג , probably a gathering number.
+Examples of non-standard vocalization are: -=~ for 7=־ and–;–for The tetragrammaton is abbreviated to . On recto at Psalms 116:2 the error כי הטא is deleted by a line drawn above it and corrected immediately afterwards and in the top righthand corner there is a ג , probably a gathering number.
 #
 T-S A32.28
 Psalms 79:10–89:4
@@ -11023,7 +11023,7 @@ T-S A32.31
 Psalms 21:3–25:10; 27:11–28:4; 30:10–31:3; 38:13–40:7; 42:8–43:2
 Hebrew; predominantly standard Tiberian, uncantillated; Massorah Magna on folios 14r and 15r, Massorah Parva on folios 3r, 9r, 12r, and 15.
 Paper; 11.3cm. x 17.7cm. = average size of conjoined leaves, 11.3cm. x 9.5cm. = size of whole fragment; 1 column; 15 leaves with 12 leaves conjoined in 6 pairs and folios 1–8 and 11–14 consecutive; 9 lines (complete); badly mutilated and rubbed with many pieces of text missing or illegible.
-Examples of non-standard vocalization are: for–; –for and–. Some of the vocalization and Massoretic notes are written with a different colour of ink from that of the remainder of the text. This colour of ink is used as for the Psalm numbers which either differ by one from the numbering followed in Kittel-Kahle BH3 or have been placed at the ends of the Psalms to which they refer rather than at the beginnings. On folio 2v at the beginning of Psalms 22 the number is given as 21, on folio 6r at the beginning of Psalms 23 the number is given as 22 in both margins with that in the righthand margin surrounded by a decoration, on folio 6v at the beginning of Psalms 24 the number is given as 23, while on folio 7v at the beginning of Psalms 25 the number is probably to be read ידכ that is, 24. On folio 14r at the beginning of Psalms 40 the number is given in both margins as 39. On folio 15v at the beginning of Psalms 43 the number is given in the righthand margin as 42, but the number in the lefthand margin is unclear. In all the Psalm numbers written with the different colour of ink the digit precedes the ten, but in the Psalm number written in the righthand margin for Psalms 43 the ten precedes the digit.
+Examples of non-standard vocalization are: for–; –for and–. Some of the vocalization and Massoretic notes are written with a different colour of ink from that of the remainder of the text. This colour of ink is used as for the Psalm numbers which either differ by one from the numbering followed in Kittel-Kahle BH3 or have been placed at the ends of the Psalms to which they refer rather than at the beginnings. On folio 2v at the beginning of Psalms 22 the number is given as 21, on folio 6r at the beginning of Psalms 23 the number is given as 22 in both margins with that in the righthand margin surrounded by a decoration, on folio 6v at the beginning of Psalms 24 the number is given as 23, while on folio 7v at the beginning of Psalms 25 the number is probably to be read דכ, that is, 24. On folio 14r at the beginning of Psalms 40 the number is given in both margins as 39. On folio 15v at the beginning of Psalms 43 the number is given in the righthand margin as 42, but the number in the lefthand margin is unclear. In all the Psalm numbers written with the different colour of ink the digit precedes the ten, but in the Psalm number written in the righthand margin for Psalms 43 the ten precedes the digit.
 #
 T-S A32.32
 Psalms 27:6–14; 34:1–23; 42:1–12; 85:1–14; 84:1–13; 109:1–31
@@ -11082,7 +11082,7 @@ T-S A32.41
 Psalms 103:22–104:35; 122:1–9; 148:1–5
 Hebrew; predominantly standard Tiberian, uncantillated.
 Paper; 14.3cm. x 19.5cm. and 14.2cm. x 19.5cm.;1 column; 4 leaves conjoined in 2 pairs and consecutive; 10 lines; mutilated and rubbed with pieces of text missing or illegible.
-Examples of non-standard vocalization are: ־=־־ for–and–;–for~. The tetragrammaton is abbreviated to . On folio 3v at the beginning of Psalms 122 there is a rubric written with red ink which reads מזמור שלחג הסכות and on folio 4v at the beginning of Psalms 148 there is a similar red rubric which reads מזמור שמיני עצר [ת ] .
+Examples of non-standard vocalization are: ־=־־ for–and–;–for~. The tetragrammaton is abbreviated to . On folio 3v at the beginning of Psalms 122 there is a rubric written with red ink which reads מזמור שלחג הסכות and on folio 4v at the beginning of Psalms 148 there is a similar red rubric which reads מזמור שמיני עצר[ת] .
 #
 T-S A32.42
 Missing
@@ -11126,13 +11126,13 @@ T-S A32.49
 Psalms 38:13–41:5; 42:5–47:6; 49:5–50:13
 Hebrew; predominantly standard Tiberian, uncantillated and written with a different colour of ink from that of the consonantal text.
 Paper; 14.7cm. x 22.6cm. = average size of conjoined leaves, 15.3cm. x 11.6cm. = size of whole fragment; 1 column; 21 leaves with 18 leaves conjoined in 9 pairs and folios 1–7, 8–17, and 18–21 consecutive; 9 lines, except on folio 3v, which has 10 lines; mutilated with a few small pieces of text missing.
-Examples of non-standard vocalization are: ־=־־ for–;–for דך־-. There is poetic spacing which does not always correspond to that followed in Kittel-Kahle BH3. The tetragrammaton is abbreviated to '!}. or 'יי . The sign V is used to fill up some line-endings. On folio 9v at Psalms 43:3 אב, the beginning of an alphabet, is jotted in the margin. On folio 13v at Psalms 45:2 the Judaeo-Arabic כלאם written in the margin evidently refers to דבר of the text. The lefthand margin of the same page contains only the Arabic ‘in the name of’. On folio 15v at Psalms 45:16 the reading תוכלנה in the text is deleted by being crossed through and תבואנה, the reading followed in Kittel-Kahle BH3, is written in the margin with the same colour of ink as that used for the vocalization. On folio 16r at Psalms 45:17 the reading נדי במו in the text is deleted by a line drawn above it and לשרים, the reading followed in Kittel-Kahle BH3, is written in the margin with the same colour of ink as that used for the vocalization. On folio 17r Psalms 46:9–12 is repeated in the margin and at Psalms 47:1 מזמור, which has been miswritten in the text, is repeated in the margin, possibly in a different hand. On folio 17v at Psalms 47:5 אשר אהב, which has been omitted from the text, is supplied faintly in the margin. On folio 18r at Psalms 49:6 אירא, the reading followed in Kittel-Kahle BH3, is written faintly in the margin beside אבטח in the text. On folio 20v at Psalms 50:3 the error לפינו ו in the text is corrected in the margin to לפניו with the same colour of ink as that used for the vocalization.
+Examples of non-standard vocalization are: ־=־־ for–;–for דך־-. There is poetic spacing which does not always correspond to that followed in Kittel-Kahle BH3. The tetragrammaton is abbreviated. The sign V is used to fill up some line-endings. On folio 9v at Psalms 43:3 אב, the beginning of an alphabet, is jotted in the margin. On folio 13v at Psalms 45:2 the Judaeo-Arabic כלאם written in the margin evidently refers to דבר of the text. The lefthand margin of the same page contains only the Arabic ‘in the name of’. On folio 15v at Psalms 45:16 the reading תוכלנה in the text is deleted by being crossed through and תבואנה, the reading followed in Kittel-Kahle BH3, is written in the margin with the same colour of ink as that used for the vocalization. On folio 16r at Psalms 45:17 the reading נדיבמו in the text is deleted by a line drawn above it and לשרים, the reading followed in Kittel-Kahle BH3, is written in the margin with the same colour of ink as that used for the vocalization. On folio 17r Psalms 46:9–12 is repeated in the margin and at Psalms 47:1 מזמור, which has been miswritten in the text, is repeated in the margin, possibly in a different hand. On folio 17v at Psalms 47:5 אשר אהב, which has been omitted from the text, is supplied faintly in the margin. On folio 18r at Psalms 49:6 אירא, the reading followed in Kittel-Kahle BH3, is written faintly in the margin beside אבטח in the text. On folio 20v at Psalms 50:3 the error לפינוו in the text is corrected in the margin to לפניו with the same colour of ink as that used for the vocalization.
 #
 T-S A32.50
 Psalms 27:11–33:14
 Hebrew; unpointed, but with verse divisions.
 Paper; 14.4cm. x 10.4cm., 14.6cm. x 10.7cm., 14.8cm. x 10.7cm., and 14.7cm. x 10.9cm.; 1 column; 4 separate, but consecutive; 13 lines; mutilated with pieces of text missing.
-The tetragrammaton is abbreviated to dh. There are Psalm numbers in the margins which differ from those followed in Kittel-Kahle BH3. Most of the numbers appear to have been revised with a different colour of ink from that of the text and original Psalm numbers. On folio 1r Psalms 28 is numbered 27 and the number has not been revised. On folio 1v Psalms 29 was originally numbered 28, but has been revised to 27. On folio 2r Psalms 30 was originally numbered 29, but has been revised to 28. On folio 2v Psalms 31 was originally numbered 30, but has been revised to 29 with the digit preceding the ten. On folio 3v Psalms 32 was originally numbered 31, but has been revised to 30 by the partial erasure of 1 = א. On folio 4r Psalms 33 was originally numbered 32, but has been revised to 31. On folios 2v, 3v, and 4v in the lower margin there is a catchword to the first word of the text on the following folio.
+The tetragrammaton is abbreviated to dh. There are Psalm numbers in the margins which differ from those followed in Kittel-Kahle BH3. Most of the numbers appear to have been revised with a different colour of ink from that of the text and original Psalm numbers. On folio 1r Psalms 28 is numbered 27 and the number has not been revised. On folio 1v Psalms 29 was originally numbered 28, but has been revised to 27. On folio 2r Psalms 30 was originally numbered 29, but has been revised to 28. On folio 2v Psalms 31 was originally numbered 30, but has been revised to 29 with the digit preceding the ten. On folio 3v Psalms 32 was originally numbered 31, but has been revised to 30 by the partial erasure of א = 1. On folio 4r Psalms 33 was originally numbered 32, but has been revised to 31. On folios 2v, 3v, and 4v in the lower margin there is a catchword to the first word of the text on the following folio.
 #
 T-S A32.51
 Psalms 115:18–118:26
@@ -11274,7 +11274,7 @@ T-S A32.74
 Psalms 4:7–5:2; 5:12–6:5
 Hebrew; unpointed, but with verse divisions.
 Paper; 10.9cm. x 13.9cm.; 1 column; 2 leaves conjoined; 8 lines (complete); mutilated with pieces of text missing.
-The tetragrammaton is abbreviated to ' 1 . On folio 1v between Psalms 4 and 5 are written the decorated letters ילדי and at Psalms 4:9 לבדד is written in the margin beside a mutilated text. On folio 2r at Psalms 6:1 בנגינות על השמינות, which has been omitted from the text, is supplied in the margin. On folio 2v in the top lefthand corner there is the Arabic , ‘second’, written twice and in the lower margin there is a catchword to the first word of the text on the following folio.
+The tetragrammaton is abbreviated to ' 1 . On folio 1v between Psalms 4 and 5 are written the decorated letters ידי and at Psalms 4:9 לבדד is written in the margin beside a mutilated text. On folio 2r at Psalms 6:1 בנגינות על השמינות, which has been omitted from the text, is supplied in the margin. On folio 2v in the top lefthand corner there is the Arabic, ‘second’, written twice and in the lower margin there is a catchword to the first word of the text on the following folio.
 #
 T-S A32.75
 Psalms 68:7–22
@@ -11309,7 +11309,7 @@ T-S A32.80
 Psalms 131:2–132:9; 139:9–20
 Hebrew; unpointed.
 Paper; 14.5cm. x 17.8cm.; 1 column; 2 leaves conjoined; 11 lines (complete); mutilated with large pieces of text missing.
-On folio 2v in the lower margin נטו א is a catchword to the first word of the text on a following folio.
+On folio 2v in the lower margin נשו א is a catchword to the first word of the text on a following folio.
 #
 T-S A32.81
 Biblical passages
@@ -11411,7 +11411,7 @@ T-S A32.98
 Psalms 24:7–10; Isaiah 26:2; Psalms 87:2; Hosea 14:3
 Hebrew; unpointed, but with verse divisions marked by a single dot.
 Paper; 11.4cm. x 9.8cm.; 1 column; 1 leaf; 10 lines; mutilated and rubbed.
-The tetragrammaton is abbreviated to . On verso on lines 6–7 there is a Judaeo-Arabic liturgical rubric יעלי באב אל בקר י קול introducing the verses to be recited on entry into Jerusalem.
+The tetragrammaton is abbreviated to . On verso on lines 6–7 there is a Judaeo-Arabic liturgical rubric יעלי באב אלבקר יקול introducing the verses to be recited on entry into Jerusalem.
 #
 T-S A32.99
 Psalms 118:2–17
@@ -11435,7 +11435,7 @@ T-S A32.102
 Psalms 98:4–99:8; 105:44–107:18
 Hebrew; standard Tiberian, uncantillated.
 Paper; 14.7cm. x 11.1cm., 14.8cm. x 22.6cm., and 14.7cm. x 22.3cm.; 1 column; 5 leaves with 4 leaves conjoined in 2 pairs and consecutive; 12 lines; mutilated with a few pieces of text missing.
-On folio 2r at the beginning of Psalms 106 there is the Psalm number 106. On folio 5r at the beginning of Psalms 107 there is the Psalm number 107. On verso in the lower margin of each folio there is a catchword to the first word of the text on the following folio. On folio 4v at Psalms 106:43 the error רבים in the text is corrected to רבות in the margin. On folio 5v at Psalms 107:2 there is a decoration in the margin resembling a ט with a line linking the first and second strokes of the letter.
+On folio 2r at the beginning of Psalms 106 there is the Psalm number 106. On folio 5r at the beginning of Psalms 107 there is the Psalm number 107. On verso in the lower margin of each folio there is a catchword to the first word of the text on the following folio. On folio 4v at Psalms 106:43 the error רבים in the text is corrected to רבות in the margin. On folio 5v at Psalms 107:2 there is a decoration in the margin resembling a ש with a line linking the first and second strokes of the letter.
 #
 T-S A32.103
 Psalms 9:14–10:5
@@ -11489,7 +11489,7 @@ T-S A32.111
 Psalms 126:2–134:2; 138:5–139:12; 143:4–144:2
 Hebrew; standard Tiberian, uncantillated.
 Paper; 12.5cm. x 25.5cm., 12.8cm. x 25.3cm., and 12.8cm. x 25.8cm.; 1 column; 6 leaves with 4 leaves conjoined in 2 pairs and consecutive; 9–10 lines; mutilated.
-The tetragrammaton is abbreviated to י .! . On folio 2v at Psalms 130:6 the reading ליהוה in the text is deleted by a line drawn above it and the alternative reading לאדני is supplied in the margin; cf. Kittel-Kahle BH3 ad loc. On folio 3v at Psalms 132:8 יהוה, which has been omitted from the text, is supplied in the margin. On folio 5v at Psalms 139:9 ים, which has been miswritten in the text, is supplied in the margin. On folio 6r at Psalms 143:8 חסדך, which has been partly omitted from the text, is partly supplied above the line, but supplied again completely in the margin.
+The tetragrammaton is abbreviated to י . On folio 2v at Psalms 130:6 the reading ליהוה in the text is deleted by a line drawn above it and the alternative reading לאדני is supplied in the margin; cf. Kittel-Kahle BH3 ad loc. On folio 3v at Psalms 132:8 יהוה, which has been omitted from the text, is supplied in the margin. On folio 5v at Psalms 139:9 ים, which has been miswritten in the text, is supplied in the margin. On folio 6r at Psalms 143:8 חסדך, which has been partly omitted from the text, is partly supplied above the line, but supplied again completely in the margin.
 #
 T-S A32.112
 Psalms 27:11–29:3
@@ -11512,13 +11512,13 @@ T-S A32.115
 Psalms 50:14–63:4
 Hebrew; unpointed, but with verse divisions, except for isolated examples of Tiberian vocalization; Massorah Parva on folios 1v, 9v, and lOr.
 Paper; 15.5cm. x 22.4cm. = average size of conjoined leaves, 15.8cm. x 11.5cm. = size of whole fragment; 1 column; 12 leaves conjoined in 6 pairs and consecutive; 12 lines; mutilated with pieces of text missing.
-The non-standard vocalizations–for -77־ and ־77־ occur. On verso in the lower margin of each folio there is a decorated catchword to the first word of the text on the following folio. There are Psalm numbers which differ by one less from the numbering followed in Kittel-Kahle BH3 with a geometrical decoration drawn above each number. In the numbers the digit precedes the ten. On folio 3r at the beginning of Psalms 52 the number 51 is written, and this differential is maintained with all the subsequent numbers. Psalm titles are written large and decorated with the sign \  . This sign is also used on the last lines of folio 2v to complete the page of text. On folio 3r at Psalms 52:3 כל , which has been omitted from the text, is supplied above the line. On folio 6r at Psalms 55:24 אלה י ם, which has been omitted from the text, is supplied in the margin. On folio 7v at Psalms 57:4 ישלח משמים ויושיעני חרף שאפי סלה, which has been omitted from the text by homoioteleuton with ישלח , is supplied in the margin and at Psalms 57:8 the haplograph נכון לבי is supplied above the line. On folio 9r at Psalms 59:6 אוו סלה, which has been omitted from the text, is supplied above the line. On folio lOv at Psalms 60:10 the haplograph עלי is supplied above the line, Psalms 60:11, which has been omitted from the text, is supplied in the lower margin, and at Psalms 60:12 אתה, which has been omitted from the text, is supplied above the line.
+The non-standard vocalizations–for -77־ and ־77־ occur. On verso in the lower margin of each folio there is a decorated catchword to the first word of the text on the following folio. There are Psalm numbers which differ by one less from the numbering followed in Kittel-Kahle BH3 with a geometrical decoration drawn above each number. In the numbers the digit precedes the ten. On folio 3r at the beginning of Psalms 52 the number 51 is written, and this differential is maintained with all the subsequent numbers. Psalm titles are written large and decorated with the sign \  . This sign is also used on the last lines of folio 2v to complete the page of text. On folio 3r at Psalms 52:3 כל , which has been omitted from the text, is supplied above the line. On folio 6r at Psalms 55:24 אלה י ם, which has been omitted from the text, is supplied in the margin. On folio 7v at Psalms 57:4 ישלח משמים ויושיעני חרף שאפי סלה, which has been omitted from the text by homoioteleuton with ישלח , is supplied in the margin and at Psalms 57:8 the haplograph נכון לבי is supplied above the line. On folio 9r at Psalms 59:6 און סלה, which has been omitted from the text, is supplied above the line. On folio lOv at Psalms 60:10 the haplograph עלי is supplied above the line, Psalms 60:11, which has been omitted from the text, is supplied in the lower margin, and at Psalms 60:12 אתה, which has been omitted from the text, is supplied above the line.
 #
 T-S A32.116
 Psalms 120:6–136:8; 137:2–139:16; 140:5–147:7
 Hebrew; unpointed, but with verse divisions, in most of the fragments, standard Tiberian vocalization in isolated words and phrases.
 Paper; 13.2cm. x 19.5cm. = average size of conjoined leaves, 13.4cm. x 10cm. = size of whole fragment; 1 column; 18 leaves conjoined in 9 pairs with folios 1–8, 9–10, and 11–18 consecutive; 12–15 lines; mutilated with small pieces of text missing.
-On folio 4v at Psalms 129:1–2 יאמר נא ישראל רבת צררוני מנעורי, which has been omitted from the text by homoioteleuton with מנעורי, is supplied partly above and partly below the line. On folio 5v Psalms 131 is deleted completely by lines drawn through it and rewritten immediately afterwards. On folio 6v at Psalms 132:9 רינן is written in the margin and deleted by being crossed through. On folio 8v at Psalms 136:2 [לאלהי האלהי[ם] כי לעולם חסד1ו, which has been omitted from the text by homoioteleuton with הודו , is supplied in the margin, at Psalms 136:5–7 the whole passage between לעשה in 136:5 and לעשה in 136:7, which has been omitted by homoioteleuton, is supplied partly above the line and partly in the margin. On folio lOr at Psalms 139:2–3 the whole passage between אתה in 139:2 and ורבעי in 139:3, which has been omitted from the text, is supplied above the line. Folio 15v is blank. On folio 16r a Judaeo-Arabic note written in a different hand indicates the ownership of the pamphlet. It reads: לשיך אבו / (sic)הדה אלכרשה אלמעא[לי]/ כר/ . Perhaps כר is the beginning of an attempt to rewrite כרשה in the normal fashion. On folio 16v part of Isaiah 21:16–17 is written in a third hand.
+On folio 4v at Psalms 129:1–2 יאמר נא ישראל רבת צררוני מנעורי, which has been omitted from the text by homoioteleuton with מנעורי, is supplied partly above and partly below the line. On folio 5v Psalms 131 is deleted completely by lines drawn through it and rewritten immediately afterwards. On folio 6v at Psalms 132:9 רינן is written in the margin and deleted by being crossed through. On folio 8v at Psalms 136:2 [לאלהי האלהי[ם] כי לעולם חסד1ו, which has been omitted from the text by homoioteleuton with הודו , is supplied in the margin, at Psalms 136:5–7 the whole passage between לעשה in 136:5 and לעשה in 136:7, which has been omitted by homoioteleuton, is supplied partly above the line and partly in the margin. On folio lOr at Psalms 139:2–3 the whole passage between אתה in 139:2 and ורבעי in 139:3, which has been omitted from the text, is supplied above the line. Folio 15v is blank. On folio 16r a Judaeo-Arabic note written in a different hand indicates the ownership of the pamphlet. It reads: (sic) /הדה אלכרשה/ לשיך אבו אלמעא[לי]/ כר . Perhaps כר is the beginning of an attempt to rewrite כרשה in the normal fashion. On folio 16v part of Isaiah 21:16–17 is written in a third hand.
 #
 T-S A32.117
 Psalms 90:10–102:2
@@ -11566,7 +11566,7 @@ T-S A32.124
 Psalms 147:6–11; 147:13–148:1
 Hebrew; unpointed.
 Paper; 15.4cm. x 13.1cm.; 1 column; 1 leaf; 8 lines (incomplete); mutilated with pieces of text missing.
-The tetragrammaton is abbreviated to 'יי . The line ~ is used several times to fill up line-endings. On verso Psalms 148:1 is written in the margin transversely in relation to the remainder of the text.
+The tetragrammaton is abbreviated to 'יי . The line 〜 is used several times to fill up line-endings. On verso Psalms 148:1 is written in the margin transversely in relation to the remainder of the text.
 #
 T-S A32.125
 Psalms 47:1–10
@@ -11681,7 +11681,7 @@ T-S A32.143
 Psalms 116:15–118:29 followed by Liturgy
 Hebrew; predominantly standard Tiberian, uncantillated.
 Paper; 17.2cm. x 12.9cm.; 1 column; 1 leaf; 18 lines on recto, 19 lines on verso; slightly mutilated.
-Examples of non-standard vocalization are:--=- for–and–;–for–. The tetragrammaton is abbreviated to . On verso at Psalms 118:16 רוממה, which has been repeated by assimilation to the earlier part of the verse, is deleted by being crossed through and עוטה תיל , which has been omitted because of this, is supplied in the margin.
+Examples of non-standard vocalization are:--=- for–and–;–for–. The tetragrammaton is abbreviated to . On verso at Psalms 118:16 רוממה, which has been repeated by assimilation to the earlier part of the verse, is deleted by being crossed through and עושה חיל , which has been omitted because of this, is supplied in the margin.
 #
 T-S A32.144
 Psalms 30:1–13; 98:1–9
@@ -11746,13 +11746,13 @@ T-S A32.154
 Psalms 56:7–59:6; 60:13–62:3; 64:3–65:6
 Hebrew; standard Tiberian where legible, uncantillated, but with unpointed sections.
 Paper; 16.2cm. x 12.1cm., 16.2cm. x 12.2cm., 16cm. x 12.4cm., and 16.2cm. x 24.9cm.; 1 column; 5 leaves with 2 leaves conjoined and folios 1–3 consecutive; 12 lines; mutilated and rubbed with a few small pieces of text missing.
-On folio 2v at the beginning of Psalms 58 there is the decorated Psalm number 58. Similarly, on folio 3v at the beginning of Psalms 59 there is the decorated Psalm number 59. On folio 4v at Psalms 61:8 מן, which has been omitted from the text, is supplied in the margin. On folio 5r at Psalms 64:10 ו י ירא ו, which has been omitted from the text, is supplied in the margin.
+On folio 2v at the beginning of Psalms 58 there is the decorated Psalm number 58. Similarly, on folio 3v at the beginning of Psalms 59 there is the decorated Psalm number 59. On folio 4v at Psalms 61:8 מן, which has been omitted from the text, is supplied in the margin. On folio 5r at Psalms 64:10 וייראו, which has been omitted from the text, is supplied in the margin.
 #
 T-S A32.155
 Psalms 4:4–5:8
 Hebrew; predominantly standard Tiberian, cantillated; Massorah Parva on recto.
 Paper; 16.3cm. x 13.3cm.; 1 column; 1 leaf; 13 lines; mutilated with many pieces of text missing.
-Examples of non-standard vocalization are: ־=ד־ for -ך־ך–for–. There is poetic spacing which does not always correspond to that followed in Kittel-Kahle BH3. On recto at the beginning of Psalms 5 there is the Psalm number 5. On verso in the lower margin [ סדך] n is a catchword to the first word of the text on a following folio.
+Examples of non-standard vocalization are: ־=ד־ for -ך־ך–for–. There is poetic spacing which does not always correspond to that followed in Kittel-Kahle BH3. On recto at the beginning of Psalms 5 there is the Psalm number 5. On verso in the lower margin [סדך]ח is a catchword to the first word of the text on a following folio.
 #
 T-S A32.156
 Psalms 33:14–34:19
@@ -11770,19 +11770,19 @@ T-S A32.158
 Psalms 102:16–103:15
 Hebrew; standard Tiberian, cantillated.
 Paper; 14.9cm. x 24.5cm.; 1 column; 2 leaves conjoined and consecutive; 12 lines; mutilated and rubbed with pieces of text missing or illegible.
-There is poetic spacing which does not always correspond to that followed in Kittel-Kahle BH3. On folio 1v in the lower margin there are four ns and a decoration written with a different colour of ink from that of the text.
+There is poetic spacing which does not always correspond to that followed in Kittel-Kahle BH3. On folio 1v in the lower margin there are four מs and a decoration written with a different colour of ink from that of the text.
 #
 T-S A32.159
 Psalms 116:2–118:15
 Hebrew; predominantly standard Tiberian, uncantillated.
 Paper; 15.9cm. x 23.6cm.; 1 column; 2 leaves conjoined and consecutive; 11 lines; mutilated.
-Examples of non-standard vocalization are: for–,–,–, and–; -ך- for ־=ך־. The tetragrammaton is abbreviated to m • On folio 1r at Psalms 116:3 מצאוני is both erased and deleted by dots above the line in the text and rewritten in the margin and at Psalms 116:7 למנוחיכי , which has been omitted from the text, is supplied in the margin. On folio 1v at Psalms 116:13 אשא , which has been omitted from the text, is supplied in the margin. On folio 2v at Psalms 118:8–9 the text between באדם in 118:8 and מבטח in 118:9 has been omitted by homoioteleuton with ,טוב לחסות ביר! יוה מבטח בנדיבים is deleted in the text by being crossed through, and באדם is supplied in the margin in a different hand from that of the text. Thus the whole of 118:9 is left missing from the text.
+Examples of non-standard vocalization are: for–,–,–, and–; -ך- for ־=ך־. The tetragrammaton is abbreviated to m. On folio 1r at Psalms 116:3 מצאוני is both erased and deleted by dots above the line in the text and rewritten in the margin and at Psalms 116:7 למנוחיכי , which has been omitted from the text, is supplied in the margin. On folio 1v at Psalms 116:13 אשא , which has been omitted from the text, is supplied in the margin. On folio 2v at Psalms 118:8–9 the text between באדם in 118:8 and מבטח in 118:9 has been omitted by homoioteleuton with ,טוב לחסות ביהוה מבטח בנדיבים is deleted in the text by being crossed through, and באדם is supplied in the margin in a different hand from that of the text. Thus the whole of 118:9 is left missing from the text.
 #
 T-S A32.160
 Psalms 144:1–13
 Hebrew; standard Tiberian, cantillated; Massorah Parva on verso.
 Paper; 16.3cm. x 12.6cm.; 1 column; 1 leaf; 13 lines; mutilated with a few small pieces of text missing.
-On recto at Psalms 144:6 שלח חציך ותחמם, which has been omitted from the text by homoioteleuton with שלח , is supplied in the margin.
+On recto at Psalms 144:6 שלח חציך ותהמם, which has been omitted from the text by homoioteleuton with שלח , is supplied in the margin.
 #
 T-S A32.161
 Psalms 115:18–116:13; 118:8–23
@@ -11829,7 +11829,7 @@ T-S A32.168
 Psalms 148:3–150:3
 Hebrew; unpointed, but with a triangle of three dots between Psalms 149 and 150.
 Paper; 16.9cm. x 12.6cm.; 1 column; 1 leaf; 15 lines; mutilated.
-The tetragrammaton is abbreviated to . On verso in the upper margin there is an א and in the lower margin בנבל is a catchword to the first word of the 1 ext on a following folio.
+The tetragrammaton is abbreviated to . On verso in the upper margin there is an א and in the lower margin בנבל is a catchword to the first word of the text on a following folio.
 #
 T-S A32.169
 Psalms 7:8–8:6
@@ -11853,7 +11853,7 @@ T-S A32.172
 Psalms 4:1–7:5
 Hebrew; unpointed, but with verse divisions and isolated examples of Tiberian vocalization.
 Paper; 17.5cm. x 25cm.; 1 column; 2 leaves conjoined and consecutive; 16 lines; mutilated with a few pieces of text missing.
-The tetragrammaton is sometimes abbreviated to 11' or . On folio 1v at Psalms 5:4 לולי, which has been omitted from the text, is supplied in the margin. On folio 2r at Psalms 6:2 אל באפך תוכיחני, which has been omitted from the text by homoioteleuton with אל Ct ל , is supplied in the margin. There are various ink smudges and minor alterations.
+The tetragrammaton is sometimes abbreviated to 11' or . On folio 1v at Psalms 5:4 קולי, which has been omitted from the text, is supplied in the margin. On folio 2r at Psalms 6:2 אל באפך תוכיחני, which has been omitted from the text by homoioteleuton with ו)אל), is supplied in the margin. There are various ink smudges and minor alterations.
 #
 T-S A32.173
 Psalms 119:62–83; 119:171–121:7
@@ -11871,7 +11871,7 @@ T-S A32.175
 Psalms 4:2–5:11; 11:1–13:6
 Hebrew; predominantly standard Tiberian, uncantillated.
 Paper; 17.4cm. x 26.2cm.; 1 column; 2 leaves conjoined; 14 lines; mutilated with a few pieces of text missing.
-Examples of non-standard vocalization are: ־=־־ for–;–for-=־ע and–;ך־–for ך3־-and יך־-. On folio 1r in the margin at Psalms 4:3 there is a word which is smudged illegible except for an initial ת . On folio 1v at Psalms 5:5 לא יגרד רע, which has been omitted from the text by homoioteleuton with לא , is supplied in the margin. On folio 2r at Psalms 11:3–4 צדיל מה פעל יהוה בהיכל לדשו יהוה בשמים כסאו , which has been omitted from the text, is supplied in the margin. In the correction the tetragrammaton is abbreviated to  'ו . On folio 2v in the margin there is scribbling in a different hand with a different colour of ink from that of the text.
+Examples of non-standard vocalization are: ־=־־ for–;–for-=־ע and–;ך־–for ך3־-and יך־-. On folio 1r in the margin at Psalms 4:3 there is a word which is smudged illegible except for an initial ה . On folio 1v at Psalms 5:5 לא יגרך רע, which has been omitted from the text by homoioteleuton with לא , is supplied in the margin. On folio 2r at Psalms 11:3–4 צדיק מה פעל יהוה בהיכל קדשו יהוה בשמים כסאו , which has been omitted from the text, is supplied in the margin. In the correction the tetragrammaton is abbreviated to  'ו . On folio 2v in the margin there is scribbling in a different hand with a different colour of ink from that of the text.
 #
 T-S A32.176
 Psalms 44:20–45:9

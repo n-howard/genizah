@@ -305,7 +305,7 @@ def main():
         columns=['A','B','C','D','E','F','G','H','I','J','K','L','M'])
     df.to_csv("test.csv", index=False)
     
-    curr = "T-S A30.41"
+    curr = "T-S A32.175"
     completeSoFar = hebList.index(curr)+1
     percent = (completeSoFar/len(hebList))*100
     print(hebList, "\n", hebCount, "\n",completeSoFar , "\n", str(percent)+"%" )
