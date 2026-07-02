@@ -1,12 +1,16 @@
--[x] maybe automate non-standard vocalization missing a period (or add "On" as an option)
+-[x] automate non-standard vocalization to have "On" as an option)
 -[] update so three yuds symbol and "Liturgy" (not just liturgical) are bible-related
 -[] ellipses to have no spaces in the middle
 -[] Maimonides and other commentators are Bible-Related
--[] "The non-standard vocalization occurs \x\ times" -> "Non-standard vocalization occurs \x\ times"
--[] "tetragrammaton is sometimes abbreviated to \x\" needs fixing
+-[x] "The non-standard vocalization occurs \x\ times" -> "Non-standard vocalization occurs \x\ times" (I didn't hand fix all of them, so this needs fixing)
+-[] "the non-standard vocalization \gibberish\, but" check if common enough to need fixing so "but..." stays included
+-[x] "tetragrammaton is sometimes abbreviated to \x\" needs fixing
 -[] fix when there is l instead of 1
 -[] filter a list of references so it doesn't include the fragment that the list is associated with
-
+-[] erroneous spaces in brackets
+-[] non-standard vocalization missing a period?
+-[] fix so bible-related for child/children only if child[\W]s or children[\W]s
+-[] currently And after semicolon is capitalized by my code, fix?
 # Hebrew
 [\u0590-\u05fe]
 

@@ -43,11 +43,10 @@ def main():
     realWords = ["non", "Judaeo", "Kittel", "prayer", "writ", "megillah", "pen", "branch", "Strauss", "right", "line", "one", "prev", "page", "title", 
                      "century","poll", "book", "al-Rida", "Dhual", "folio", "wa", "week", "ha-", "quarter", "drawn", "word", "half", "Tel", "end", "crossed", "pre", "al-", 
                      "Mosin", "wide", "he-", "ad-", "hand", "Judeao", "ink", "double", "space", "standard", "small", "side", "bibl"]
-    # hebCount = 0
-    # hebList = []
+    hebCount = 0
+    hebList = []
    
     for entry in entries:
-        
         dict = {}
         entry = (
             entry
@@ -68,11 +67,12 @@ def main():
                 .replace("ו־", "ר")
                 
         )
+        
         entry = re.sub(r"(?<=\.)\s*י+\]", "", entry)
         paPattern = r"([.;])\s*(Parchment|Paper|leather)"
         entry = re.sub(paPattern, r"\1\n\2",entry, flags=re.IGNORECASE)
         entry = re.sub(r"(?<=;)\n(?=\d)", " ", entry)
-        pattern = r"(The tetragrammaton is abbreviated)[^.]*"
+        pattern = r"(The tetragrammaton is (?:sometimes\s|once\s)*abbreviated)[^.]*"
         entry = re.sub(pattern, r"\1", entry, flags=re.IGNORECASE)
         entry = re.sub(r"(The tetragrammaton is abbreviated.)\s*[\u0590-\u05fe]*\]", r"\1", entry, flags=re.IGNORECASE)
         pattern2 = r"(damaged.*?\.) "
@@ -224,6 +224,7 @@ def main():
         K = re.sub(r"(vocalization)(?=[A-Za-z]{2,})", r"\1 ", K)
         # K = K.replace("The non-standard vocalization.", "Examples of non-standard vocalization occur.")
         K = re.sub(r"(?:The|Examples of|An example of|Example of|the)(?:\sconsistently)* (non-standard\s*)(Tiberian\s*vocalization|Tiberian|vocalization)(?:\s*occur)?[s]?(\sin the over[^\.]*|\sin the rem[^\.]*|\sin folio[^\.]*)?(\.)", r"examples of \1\2\3 occur.", K, flags=re.IGNORECASE)
+        K = re.sub(r"[tT]he (non-standard) (Tiberian\s*vocalization|Tiberian|vocalization) (occurs [a-z\s,\u05d0-\u05ea]+\.)", r"non-standard \2 \3", K)
         K = re.sub(r"(non-standard vocalization)\.", r"\1s.", K)
         
         
@@ -270,10 +271,13 @@ def main():
         K = re.sub(r" n([\s,])", r" ח\1", K)
         K = re.sub(r"\s([\u0590-\u05fe])\s(s)([\s,\.])", r" \1\2\3", K)
 
-  
-        # if bool(re.search(r"[\u0590-\u05fe]", K)):
-        #     hebCount+=1
-        #     hebList.append(lines[0])
+        K = K.replace("יטראל", "ישראל")
+
+        # HEBCOUNT START
+        if bool(re.search(r"[\u0590-\u05fe]", K)):
+            hebCount+=1
+            hebList.append(lines[0]) 
+        # HEBCOUNT END
         
         # bracketPattern = r"([A-Za-z]{3,})\s*\[\s?\](\s*[A-Za-z.])"
 
@@ -300,8 +304,11 @@ def main():
     df = pd.DataFrame(rows, 
         columns=['A','B','C','D','E','F','G','H','I','J','K','L','M'])
     df.to_csv("test.csv", index=False)
-
-    # print(hebList, "\n", hebCount)
+    
+    curr = "T-S A29.111"
+    completeSoFar = hebList.index(curr)+1
+    percent = (completeSoFar/len(hebList))*100
+    print(hebList, "\n", hebCount, "\n",completeSoFar , "\n", str(percent)+"%" )
 
     # print(len(problems), problems)
 
