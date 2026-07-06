@@ -1,10 +1,7 @@
--[x] automate non-standard vocalization to have "On" as an option)
 -[] update so three yuds symbol and "Liturgy" (not just liturgical) are bible-related
 -[] ellipses to have no spaces in the middle
 -[] Maimonides and other commentators are Bible-Related
--[x] "The non-standard vocalization occurs \x\ times" -> "Non-standard vocalization occurs \x\ times" (I didn't hand fix all of them, so this needs fixing)
 -[] "the non-standard vocalization \gibberish\, but" check if common enough to need fixing so "but..." stays included
--[x] "tetragrammaton is sometimes abbreviated to \x\" needs fixing
 -[] fix when there is l instead of 1 (big common problem)!!!
 -[] filter a list of references so it doesn't include the fragment that the list is associated with
 -[] erroneous spaces in brackets
@@ -14,10 +11,20 @@
 -[] Capitalization after Section Chapter:Verseword. is a problem
 -[] Consider "Haphtaroth", "Ab", etc.
 -[] If it's just a Targum, not a Targum after lines of texts/in margins, it should probably be bible-related
+-[] Fix problem that sometimes occurs where brackets become very wrong in the CSV when they are correct in the catalogue
+-[] Haggadah is probably Bible-Related
+-[] make sure word- word works with spell-check
+-[] for K at end, 2 or more spaces = 1 space not just 2 spaces = 1 space
 
 
 List to manually do brackets
-- 
+- Anything with [/] (though maybe this can be fixed by fixing code)
+-A41.19
+- Earlier ones (need to check)
+- Anything with sic
+- T-S A41.23 (needs to say "erased")
+- T-S A41.35 (erased)
+- T-S A42.1 (erased and strikethrough)
 # Hebrew
 [\u0590-\u05fe]
 

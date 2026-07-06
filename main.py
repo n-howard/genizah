@@ -239,7 +239,7 @@ def main():
         K = re.sub(signsPattern, lambda match: match.group(1)+"s"+match.group(3) if (match.group(3)==" are" or match.group(2)=="s") else "a "+match.group(1)+match.group(3), K, flags=re.IGNORECASE)
         K = re.sub(r"[;\.]\s+[a-z](?=[^\.]{3,})", lambda match: match.group(0).upper(), K)
 
-        K = re.sub(r"\[\s*1\s*(?=[^\]])|(?<=[^\[])\s*1\s*\]", "[ ]", K)
+        K = re.sub(r"\[\s*1\s*(?=[^\]0-9])|(?<=[^\[0-9])\s*1\s*\]", "[ ]", K)
         onePattern = r"([\u0590-\u05fe\s])(1)([\u0590-\u05fe])" # [
         onePattern2 = r"([\u0590-\u05fe])(1)([\u0590-\u05fe\s])" # ]
         
@@ -309,7 +309,7 @@ def main():
         columns=['A','B','C','D','E','F','G','H','I','J','K','L','M'])
     df.to_csv("test.csv", index=False)
     
-    curr = "T-S A41.13"
+    curr = "T-S B14.38"
     completeSoFar = hebList.index(curr)+1
     percent = (completeSoFar/len(hebList))*100
     print(hebList, "\n", hebCount, "\n",completeSoFar , "\n", str(percent)+"%" )
