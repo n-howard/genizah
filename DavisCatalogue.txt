@@ -15373,7 +15373,7 @@ T-S B14.39
 Hosea 2:20–22; Judges 13:2–9
 Hebrew; standard Tiberian, cantillated.
 Paper; 18.2cm. x 13.7cm.; 1 column; 1 leaf; 14 lines; mutilated and rubbed with pieces of text missing or illegible.
-The non-standard vocalization־ ־ for-ת–occurs. On recto before Judges 13:2 the rubric נשא בטפטים indicates that the passage which follows is the Haphtorah for Seder 35 at Numbers 4:21.
+The non-standard vocalization־ ־ for-ת–occurs. On recto before Judges 13:2 the rubric נשא בשפטים indicates that the passage which follows is the Haphtorah for Seder 35 at Numbers 4:21.
 #
 T-S B14.40
 1 Samuel 1:16–28; Habakkuk 3:1–14
@@ -15399,7 +15399,7 @@ Hebrew; standard Tiberian, uncantillated.
 Paper; 8.5cm. x 13cm.; 1 column; 1 leaf; 6 lines (incomplete); mutilated.
 On recto before Isaiah 42:1 the Aramaic rubric אפטרתא דבראשית בישעיה indicates that the passage which follows is the Haphtorah for Seder 1 at Genesis 1:1. There are many pen-exercises in Hebrew and Arabic in the margins, including the phrase ויקם שמואל The Arabic scribbling consists mainly of repetitions of a phrase. There is also part of
 Genesis 49:18. On verso Isaiah 42:1 is repeated twice, Joshua 10:14 is written in the margin, and there are three lines in Judaeo-Arabic of an epistolary formula as follows:
-אלדי אעלם בה אלמולי/ אלשיך אלאגל אטאל אללה/ במאה ואדאם עזה/
+אלדי אעלם בה אלמולי/ אלשיך אלאגל אטאל אללה/ בקאה ואדאם עזה/
 #
 T-S B14.44
 Ezekiel 34:11–22
@@ -15424,19 +15424,19 @@ T-S B14.49
 Jeremiah 31:17–19; Hosea 14:2; 14:8–10; Isaiah 57:14–15
 Hebrew; standard Tiberian, cantillated.
 Paper; 9.6cm. x 7cm.; 1 column; 1 leaf; 10 lines (incomplete); badly mutilated with many pieces of text missing.
-On recto before Hosea 14:2 the Aramaic rubric 1 ]א לצומא/[ ]י עשר probably indicates that the passage which follows is the Haphtorah for the Sabbath between these two festivals, i.e., שבת שובה.The Jeremiah passage is probably part of the Haphtorah for the second day of New Year, and on verso before Isaiah 57:14 the Aramaic rubric דצפרא indicates that the passage which follows is the Haphtorah for the morning of the Day of Atonement.
+On recto before Hosea 14:2 the Aramaic rubric א   לצומא/[ ]י עשר[ ] probably indicates that the passage which follows is the Haphtorah for the Sabbath between these two festivals, i.e., שבת שובה.The Jeremiah passage is probably part of the Haphtorah for the second day of New Year, and on verso before Isaiah 57:14 the Aramaic rubric דצפרא indicates that the passage which follows is the Haphtorah for the morning of the Day of Atonement.
 #
 T-S B14.50
 1 Samuel 2:6–11; 3:19–21; Jeremiah 30:25–31:3
 Hebrew; predominantly standard Tiberian, cantillated. Paper; 17.2cm. x 13.2cm.; 1 column; 1 leaf; 13 lines on recto, 12 lines on verso; mutilated with a few small pieces of text missing.
-Examples of non-standard vocalization are:–for–and–־־. On verso before Jeremiah 30:25 there is a decorated Haphtorah heading, אפט , in the margin and the Aramaic rubric יומא תני נא דריש שתא בירמי indicates that the passage which follows is the Haphtorah for the second day of New Year.
+Examples of non-standard vocalization are:–for–and–־־. On verso before Jeremiah 30:25 there is a decorated Haphtorah heading, אפט , in the margin and the Aramaic rubric יומא תנינא דריש שתא בירמי indicates that the passage which follows is the Haphtorah for the second day of New Year.
 #
 T-S B14.51
 Numbers 36:13; Hosea 2:1–4
 Hebrew; unpointed, but with verse divisions.
 Paper; 18.9cm. x 13.7cm.; 1 column; 1 leaf; 11 lines on recto, 6 lines on verso; slightly mutilated.
 On recto the phrase על ירדן ירחו precedes a colophon and rubric which read:
-נשלם/ הסיפר בעזרת שדי/ ההפטרה של פרשת במי/ בתרי עשר
+נשלם/ הסיפר בעזרת שדי/ ההפטרה של פרשת במ'/ בתרי עשר
 The colophon confirms that the phrase is the last verse of Numbers, and the rubric that the passage which follows is the Haphtorah for Seder 34 at Numbers 1:1.
 #
 T-S B14.52
@@ -15485,25 +15485,25 @@ T-S B14.59
 Jeremiah 35:18–19; 1 Kings 5:26–6:13
 Hebrew; standard Tiberian, cantillated; Massorah Parva on verso.
 Paper; 19.5cm. x 16.9cm.; 2 columns; 1 leaf; 20 lines on recto, 21 lines on verso; mutilated with a few small pieces of text missing.
-On recto before 1 Kings 5:26 the rubric ו י קח ו לי במלכי indicates that the passage which follows is the Haphtorah for Seder 19 at Exodus 25:1.
+On recto before 1 Kings 5:26 the rubric ויקחו לי במלכי indicates that the passage which follows is the Haphtorah for Seder 19 at Exodus 25:1.
 #
 T-S B14.60
 1 Kings 3:25–4:1; Ezekiel 37:15–18
 Hebrew; standard Tiberian, uncantillated; Massorah Parva on verso.
 Paper; 16.7cm. x 26.2cm.; 1 column; 2 leaves mutilated.
-On verso before Ezekiel 37:15 the rubric ו י גש אליו ביחזקאל indicates that the passage which follows is the Haphtorah for Seder 11 at Genesis 44:18.
+On verso before Ezekiel 37:15 the rubric ויגש אליו ביחזקאל indicates that the passage which follows is the Haphtorah for Seder 11 at Genesis 44:18.
 #
 T-S B14.61
 Ezekiel 37:22–28; 1 Kings 2:1–3
 Hebrew; unpointed, but with verse divisions.
 Paper; 18.7cm. x 14cm.; 1 column; 1 leaf; 13 lines; mutilated.
-On verso before 1 Kings 2:1 there is a decorated heading אפט in the margin and the decorated Aramaic rubric דו יחי יעקב/ במלכים indicates that the passage which follows is the Haphtorah for Seder 12 at Genesis 47:28. The signs V and / are used to fill up line-endings. See Plate 17.
+On verso before 1 Kings 2:1 there is a decorated heading אפט in the margin and the decorated Aramaic rubric דויחי יעקב/ במלכים indicates that the passage which follows is the Haphtorah for Seder 12 at Genesis 47:28. The signs V and / are used to fill up line-endings. See Plate 17.
 #
-T-S B14.623
+T-S B14.62a
 2 Kings 5:16–19; 7:1–11
 Hebrew; standard Tiberian, uncantillated.
 Paper; 16.7cm. x 26.2cm.; 1 column; 2 leaves conjoined and consecutive; 13 lines; mutilated and rubbed.
-On folio 1r at 2 Kings 5:17 משא, which has been omitted from the text, is supplied above the line and before 2 Kings 7:1 the decorated rubric /זאת תחיה במלכים indicates that the passage which follows is the Haphtorah for Seder 28 at Leviticus 14:1. In Snaith’s edition the Haphtorah begins at 2 Kings 7:3, but see Talmudic Encyclopedia, vol. 10 ad loc.
+On folio 1r at 2 Kings 5:17 משא, which has been omitted from the text, is supplied above the line and before 2 Kings 7:1 the decorated rubric זאת תהיה / במלכים indicates that the passage which follows is the Haphtorah for Seder 28 at Leviticus 14:1. In Snaith’s edition the Haphtorah begins at 2 Kings 7:3, but see Talmudic Encyclopedia, vol. 10 ad loc.
 #
 T-S B14.62b
 Joshua 10:13–14; 24:1–7
@@ -15556,26 +15556,26 @@ T-S B14.62j
 Jonah 4:5–11; Micah 7:18–20; Zechariah 13:9–14:8
 Hebrew; standard Tiberian where legible, cantillated.
 Paper; 17cm. x 25.5cm.; 1 column; 2 leaves conjoined and consecutive; 13 lines; badly mutilated and rubbed with many pieces of text illegible.
-On folio 2r before Zechariah 13:9 the Aramaic rubric דיומא קמא/ דמטללתא בתרי עש׳ indicates that the passage which follows is the Haphtorah for the first day of Tabernacles. In Snaith’s edition this Haphtorah begins at Zechariah 14:1, but see Talmudic Encyclopedia, vol. 10 ad loc. At Zechariah 14:2 ויצא הצי העיר בגולה , which has been omitted from the text, is supplied in the margin.
+On folio 2r before Zechariah 13:9 the Aramaic rubric דיומא קמא/ דמטללתא בתרי עש׳ indicates that the passage which follows is the Haphtorah for the first day of Tabernacles. In Snaith’s edition this Haphtorah begins at Zechariah 14:1, but see Talmudic Encyclopedia, vol. 10 ad loc. At Zechariah 14:2 ויצא חצי העיר בגולה , which has been omitted from the text, is supplied in the margin.
 #
 T-S B14.63
 1 Kings 8:4–15; 8:56–66
 Hebrew; unpointed, but with verse divisions.
 Paper; 17.9cm. x 25cm.; 1 column; 2 leaves conjoined; 14–16 lines; mutilated with a few pieces of text missing.
-On folio 1r at 1 Kings 8:6 ברית, which has been omitted from the text, is supplied above the line. On folio 1v after 1 Kings 8:15 the Aramaic rubric דשבתא דחולא/ ביחזקאל indicates that the Haphtorah for שבת חוה׳ מ סכות followed on the next folio and that the whole fragment comprises parts of the Haphtaroth for the second day of Tabernacles and
+On folio 1r at 1 Kings 8:6 ברית, which has been omitted from the text, is supplied above the line. On folio 1v after 1 Kings 8:15 the Aramaic rubric דשבתא דחולא/ ביחזקאל indicates that the Haphtorah for שבת חוה׳מ  סכות followed on the next folio and that the whole fragment comprises parts of the Haphtaroth for the second day of Tabernacles and
 .שמיני עצרת
 #
 T-S B14.64
 Ezekiel 34:21–27; Hosea 2:1–11; Judges 13:8–25; Zechariah 2:14
 Hebrew; predominantly standard Tiberian, uncantillated.
 Paper; 18.8cm. x 28cm. and 18.4cm. x 28cm.; 1 column; 4 leaves conjoined in 2 pairs with folios 1–2 and 3–4 consecutive; 15 lines; badly mutilated with both conjoined leaves torn into 2 pieces and many pieces of text missing.
-Examples of non-standard vocalization are: ־־=־־ for–, ~,״־r, and-r-. On folio 1v before Hosea 2:1 the Aramaic rubric במדבר סיני בתרי עשר indicates that the passage which follows is the Haphtorah for Seder 34 at Numbers 1;1. On folio 4v before Zechariah 2:14 the decorated Aramaic rubric בהעלתך בתרי עשי indicates that the passage which follows is the Haphtorah for Seder 36 at Numbers 8:1. In the margins of folios 1–3r there are jottings written, in a single hand, some of which appear to be related to the text, but others of which are probably unrelated to it and even sometimes inverted in relation to it.
+Examples of non-standard vocalization are: ־־=־־ for–, ~,״־r, and-r-. On folio 1v before Hosea 2:1 the Aramaic rubric במדבר סיני בתרי עשר indicates that the passage which follows is the Haphtorah for Seder 34 at Numbers 1;1. On folio 4v before Zechariah 2:14 the decorated Aramaic rubric 'בהעלתך בתרי עש indicates that the passage which follows is the Haphtorah for Seder 36 at Numbers 8:1. In the margins of folios 1–3r there are jottings written, in a single hand, some of which appear to be related to the text, but others of which are probably unrelated to it and even sometimes inverted in relation to it.
 #
 T-S B14.65
 Isaiah 43:24–44:6; Jeremiah 7:21
 Hebrew; unpointed, but with verse divisions.
 Paper; 16.4cm. x 10.9cm.; 1 column; 1 leaf; 13 lines; mutilated with pieces of text missing.
-On verso before Jeremiah 7:21 the decorated rubric צו את אהרו/ בירמיה indicates that the passage which follows is the Haphtorah for Seder 25 at Leviticus 6:1.
+On verso before Jeremiah 7:21 the decorated rubric צו את אהרן/ בירמיה indicates that the passage which follows is the Haphtorah for Seder 25 at Leviticus 6:1.
 #
 T-S B14.66
 Ezekiel 20:1–6
@@ -15587,25 +15587,25 @@ T-S B14.67
 Micah 7:18–20; Zechariah 13:9–14:5
 Hebrew; predominantly standard Tiberian, uncantillated.
 Paper; 13cm. x 12.2cm.; 1 column; 1 leaf; 11 lines (incomplete); mutilated with pieces of text missing.
-Examples of non-standard vocalization are: -=-for–and–; -=״-and––forהך-. The tetragrammaton is abbreviated to O . On recto before Zechariah 13:9 the decorated Aramaic rubric דהג הסוכות indicates that the passage which follows is the Haphtorah for the first day of Tabernacles. In Snaith’s edition this Haphtorah begins at Zechariah 14:1, but see Talmudic Encyclopedia, vol. 10 ad loc.
+Examples of non-standard vocalization are: -=-for–and–; -=״-and––forהך-. The tetragrammaton is abbreviated to O . On recto before Zechariah 13:9 the decorated Aramaic rubric דחג הסוכות indicates that the passage which follows is the Haphtorah for the first day of Tabernacles. In Snaith’s edition this Haphtorah begins at Zechariah 14:1, but see Talmudic Encyclopedia, vol. 10 ad loc.
 #
 T-S B14.68
 Isaiah 52:2–10; 54:1–4; 2 Samuel 21:21–22:13
 Hebrew; unpointed; Massorah Parva on folios 1r and 2v.
 Paper; 17.8cm. x 26.5cm.; 1 column; 2 leaves conjoined; 13 lines, except on folio 1v, which has 14 lines; mutilated with a few pieces of text missing.
-On folio 1v before Isaiah 54:1 the mutilated decorated Aramaic rubric דכי ו1צ [ ]/ בישעיה indicates that the passage which follows is the Haphtorah for Seder 49 at Deuteronomy 21:10. On folio 2 in 2 Samuel 22 there is poetic spacing which does not always correspond to that followed in Kittel-Kahle BH3.
+On folio 1v before Isaiah 54:1 the mutilated decorated Aramaic rubric דכי תצ [ ]/ בישעיה indicates that the passage which follows is the Haphtorah for Seder 49 at Deuteronomy 21:10. On folio 2 in 2 Samuel 22 there is poetic spacing which does not always correspond to that followed in Kittel-Kahle BH3.
 #
 T-S B14.69
 Judges 13:14–25; Zechariah 2:14–4:7; Joshua 2:1–4
 Hebrew; standard Tiberian, cantillated.
 Paper; 15.1cm. x 12.4cm. and 15.1cm. x 23.9cm.; 1 column; 3 leaves consecutive with 2 leaves conjoined in a pair; 15 lines; mutilated and rubbed with many pieces of text missing or illegible.
-On folio 1v before Zechariah 2:14 the mutilated decorated rubric 1 ]לתך [ ]רי עשר indicates that the passage which follows is the Haphtorah for Seder 36 at Numbers 8:1. On folio 2r at Zechariah 3.1 לפני מלאך יהוה והשטן עמד , which has been omitted from the text by homoioteleuton with עמד, is supplied in the margin. On folio 3v before Joshua 2:1 the decorated rubric שלח לן* ביהושע indicates that the passage which follows is the Haphtorah for Seder 37 at Numbers 13:1.
+On folio 1v before Zechariah 2:14 the mutilated decorated rubric [ ]לתך [ ]רי עשר indicates that the passage which follows is the Haphtorah for Seder 36 at Numbers 8:1. On folio 2r at Zechariah 3.1 לפני מלאך יהוה והשטן עמד , which has been omitted from the text by homoioteleuton with עמד, is supplied in the margin. On folio 3v before Joshua 2:1 the decorated rubric שלח לך ביהושע indicates that the passage which follows is the Haphtorah for Seder 37 at Numbers 13:1.
 #
 T-S B14.70
 Zechariah 4:6–9; Joshua 2:1–14
 Hebrew; predominantly standard Tiberian, partly cantillated, and probably added later with a different colour of ink from that of the consonantal text, on folio 1r and 2 lines of folio 1v, unpointed on folio lv–2.
 Paper; 16.6cm. x 25.2cm.; 1 column; 2 leaves conjoined and consecutive; 13 lines; mutilated and rubbed with a few small pieces of text missing.
-Examples of non-standard vocalization are:–for–; for תך־ and–; -=־״for־=-. On folio 1r before Joshua 2:1 the rubric שלה לך ביהושע indicates that the passage which follows is the Haphtorah for Seder 37 at Numbers 13:1.
+Examples of non-standard vocalization are:–for–; for תך־ and–; -=־״for־=-. On folio 1r before Joshua 2:1 the rubric שלח לך ביהושע indicates that the passage which follows is the Haphtorah for Seder 37 at Numbers 13:1.
 #
 T-S B14.71
 Joshua 24:14–22; Judges 5:2–6; Psalms 68:27; Judges 5:9; 6:8–10; 6:12–14
@@ -15640,7 +15640,7 @@ On verso before Isaiah 54:1 the rubric כי תצא בישעיה indicates that t
 T-S B14.76
 2 Kings 22:9–13; 23:21–25; Isaiah 10:32–11:4
 Hebrew; predominantly standard Tiberian, cantillated. Paper; 17.1cm. x 24.6cm.; 1 column; 2 leaves conjoined and consecutive; 12 lines; mutilated with a few pieces of text missing.
-Examples of non-standard vocalization are: -=־ for–; ¬הד¬ for . On folio 2r before Isaiah 10:32 the decorated Aramaic rubric די ומא קמא דכסא תינינא בישע indicates that the passage which follows is the Haphtorah for the seventh day of Passover. In Snaith’s edition this Haphtorah is for the eighth day.
+Examples of non-standard vocalization are: -=־ for–; ¬הד¬ for . On folio 2r before Isaiah 10:32 the decorated Aramaic rubric דיומא קמא דכסא תינינא בישע indicates that the passage which follows is the Haphtorah for the seventh day of Passover. In Snaith’s edition this Haphtorah is for the eighth day.
 #
 T-S B14.77
 2 Kings 7:1–8
@@ -15716,7 +15716,7 @@ T-S B14.89
 Ezekiel 36:16–30; 45:9–13; 43:16–24; Jeremiah 7:27–28; 9:22–23; Joshua 3:5–6; 5:2–5; 1 Kings 18:44–45; 7:13–22; 7:40–45
 Hebrew; predominantly standard Tiberian, uncantillated.
 Paper; 21cm. x 30.6cm., 21.3cm. x 30.5cm., and 21.3cm. x 30.6cm.; 1 column; 6 leaves conjoined in 3 pairs with folios 1–2 and 5–6 consecutive; 12–15 lines; mutilated and rubbed with pieces of text missing or illegible.
-The text includes the Haphtaroth for , החדש , פרה יום ראשון של פסח, and Sedarim 22–23 with headings, of which that for החדש is decorated. Examples of non-standard vocalization are: -=■ for–,–, -דד-, and–; --rr-for-7p- and–;-דך-for ־דדך.
+The text includes the Haphtaroth for החדש , פרה, יום ראשון של פסח, and Sedarim 22–23 with headings, of which that for החדש is decorated. Examples of non-standard vocalization are: -=■ for–,–, -דד-, and–; --rr-for-7p- and–;-דך-for ־דדך.
 #
 T-S B14.90
 Jeremiah 23:24; 1 Samuel 8:1–22; 17:1–54; Joshua 8:30–32
@@ -15728,7 +15728,7 @@ T-S B14.91
 Isaiah 57:14–58:14; 59:20–21
 Hebrew; unpointed, but with verse divisions and isolated examples of Tiberian vocalization.
 Paper; 20.5cm. x 29.6cm.; 1 column; 2 leaves conjoined and consecutive; 20–22 lines; mutilated and rubbed with pieces of text illegible.
-The tetragrammaton is abbreviated to . On folio 1r before Isaiah 57:14 the Aramaic rubric דצפרא דיומא בישעיה (sic) דכי פ ו רה indicates that the passage which follows is the Haphtorah for the morning of the Day of Atonement. On folio 2r after Isaiah 59:21 there is liturgical poetry commencing יום ששוו יום שמחה ויום טוב. Folio 2v is blank.
+The tetragrammaton is abbreviated to . On folio 1r before Isaiah 57:14 the Aramaic rubric (sic) דצפרא דיומא דכיפורה בישעיה indicates that the passage which follows is the Haphtorah for the morning of the Day of Atonement. On folio 2r after Isaiah 59:21 there is liturgical poetry commencing יום ששון יום שמחה ויום טוב. Folio 2v is blank.
 #
 T-S B14.92
 2 Kings 4:18–37; 1 Kings 1:1–10
@@ -15752,7 +15752,7 @@ T-S B14.95
 Obadiah 1–14
 Hebrew; predominantly standard Tiberian, cantillated; Massorah Parva on recto.
 Paper; 15.4cm. x 11.5cm.; 1 column; 1 leaf; 15 lines on recto, 14 lines on verso; mutilated and rubbed.
-Examples of non-standard vocalization are: for–; –for–. The sign is used to fill up line-endings. On recto before Obadiah 1 the decorated rubric וישלה/ תרי עשר indicates that the passage which follows is the Haphtorah for Seder 8 at Genesis 32:4. This accords with the Sephardi rite. On recto at Obadiah 1 עליה, which has been omitted from the text, is supplied in the margin and at Obadiah 2 the error עזבתיך וברחמים גדולים אקבצך , which assimilates the verse to Isaiah 54:7, is deleted by being crossed through and corrected immediately afterwards. On verso at Obadiah 11 the error גדול in the text is corrected to 1ג ] ורל in the margin and at Obadiah 13 אל תרא גם אתה ברעתו ביום אידו , which has been omitted from the text by virtual homoioteleuton with אידם אל and אידו ואל, is supplied in the margin.
+Examples of non-standard vocalization are: for–; –for–. The sign is used to fill up line-endings. On recto before Obadiah 1 the decorated rubric וישלח/ תרי עשר indicates that the passage which follows is the Haphtorah for Seder 8 at Genesis 32:4. This accords with the Sephardi rite. On recto at Obadiah 1 עליה, which has been omitted from the text, is supplied in the margin and at Obadiah 2 the error עזבתיך וברחמים גדולים אקבצך , which assimilates the verse to Isaiah 54:7, is deleted by being crossed through and corrected immediately afterwards. On verso at Obadiah 11 the error גדול in the text is corrected to ג]ורל] in the margin and at Obadiah 13 אל תרא גם אתה ברעתו ביום אידו , which has been omitted from the text by virtual homoioteleuton with אידם אל and אידו ואל, is supplied in the margin.
 #
 T-S B14.96
 Jeremiah 31:12–20; Isaiah 57:14–16
@@ -15776,26 +15776,26 @@ T-S B14.99
 Isaiah 42:1–8; Numbers 28:16–25
 Hebrew; unpointed, but with verse divisions.
 Paper; 21.8cm. x 7.3cm.; 1 column; 1 leaf; 18 lines on recto, 16 lines on verso; mutilated with many pieces of text missing.
-The text on recto is written in a different hand with a different colour of ink from that of the text on verso. On recto before Isaiah 42:1 the mutilated rubric [ ] הפטרת ב indicates that the passage which follows
+The text on recto is written in a different hand with a different colour of ink from that of the text on verso. On recto before Isaiah 42:1 the mutilated rubric [ ]הפטרת   ב indicates that the passage which follows
 is the Haphtorah for Seder 1 at Genesis 1:1.
 #
 T-S B14.100
 1 Kings 18:1–30
 Hebrew; predominantly standard Tiberian, uncantillated.
 Paper; 18.1cm. x 26.6cm.; 1 column; 2 leaves conjoined and consecutive; 19–20 lines; mutilated with a few small pieces of text missing.
-Examples of non-standard vocalization are: for–and–;for-7-. The tetragrammaton is abbreviated to ' 1 . On folio 1r before 1 Kings 18:1 the rubric כי תשא במלכי indicates that the passage which follows is the Haphtorah for Seder 21 at Exodus 30:11 and in the upper margin is written שי בא ר(?) ת כבר כתח ינצן (?). On folio 2r at 1 Kings 18:16 אחאב ויגד לו וילד ארואב לקראת אליהו, which has been omitted from the text by homoioteleuton with לקראת, is supplied in the upper margin. On folio 2v at 1 Kings 18:26 ואין, which has been omitted from the text after קול , is supplied in the margin.
+Examples of non-standard vocalization are: for–and–;for-7-. The tetragrammaton is abbreviated to ' 1 . On folio 1r before 1 Kings 18:1 the rubric כי תשא במלכי indicates that the passage which follows is the Haphtorah for Seder 21 at Exodus 30:11 and in the upper margin is written (?) שיבא   ר(?)ת   כבר כתח ינצן. On folio 2r at 1 Kings 18:16 אחאב ויגד לו וילך אחאב לקראת אליהו, which has been omitted from the text by homoioteleuton with לקראת, is supplied in the upper margin. On folio 2v at 1 Kings 18:26 ואין, which has been omitted from the text after קול , is supplied in the margin.
 #
 T-S B14.101
 Ezekiel 29:21; Isaiah 19:1–11
 Hebrew; unpointed, but with verse divisions, except for a few isolated examples of standard Tiberian vocalization.
 Paper; 16.2cm. x 12.6cm.; 1 column; 1 leaf; 14 lines on recto, 13 lines on verso; mutilated and rubbed with a few pieces of text missing or illegible.
-On recto before Isaiah 19:1 the rubric /בא אל פרעה ביחזקאל בישעיה indicates that the passage which follows is the Haphtorah for Seder 15 at Exodus 10:1. This differs from the Haphtorah given in Snaith’s edition, but see Talmudic Encyclopedia, vol. 10 ad loc.
+On recto before Isaiah 19:1 the rubric בא אל פרעה/ ביחזקאל בישעיה indicates that the passage which follows is the Haphtorah for Seder 15 at Exodus 10:1. This differs from the Haphtorah given in Snaith’s edition, but see Talmudic Encyclopedia, vol. 10 ad loc.
 #
 T-S B14.102
 Haphtaroth, a list
 Hebrew; unpointed.
 Paper; 19.8cm. x 28.3cm.; 1 column; 2 leaves conjoined and consecutive; 17 lines on folio 1, 16 lines on folio 2; mutilated and rubbed with a few pieces of text missing or illegible.
-The text comprises the first and last verses of the Haphtaroth for Sedarim 41–42, 44–53 and for פרה אדומה ,פרשת זכור , פרשת שקלים, and החדש הזה, namely: 1 Kings 18:46; 19:21; Jeremiah 1:1; 2:28; Isaiah 1:1; 1:27; 40:1; 40:26; 49:14; 51:3; 54:11; 55:13; 51:12; 52:2; 54:1; 60:1; 60:22; 61:10; Hosea 14:10; 2 Samuel 22:1; 22:51; 2 Kings 11:17; 12:17; 1 Samuel 15:1; 15:33; Ezekiel 36:16–17; 36:36; 45:18. The last verse of most of the Haphtaroth is introduced by the Judaeo-Arabic אבר, ‘last’. The last verse of the Haphtorah for Seder 51 and the first verse of the Haphtorah for Seder 52 are omitted together with the heading for Seder 52. The tetragrammaton is abbrevia- ted to ז*י . On folio 1r in the top righthand corner there is a decorated ז, probably a gathering number. On folio 1v at Isaiah 54:1 there is a note to the effect that the Haphtorah for Seder 49 is the same as that for Seder 2 at Genesis 6:9. On folio 2r 2 Samuel 22:51, the last verse of the Haphtorah for Seder 53, which has been omitted from the text, is supplied in the margin.
+The text comprises the first and last verses of the Haphtaroth for Sedarim 41–42, 44–53 and for פרה אדומה ,פרשת זכור , פרשת שקלים, and החדש הזה, namely: 1 Kings 18:46; 19:21; Jeremiah 1:1; 2:28; Isaiah 1:1; 1:27; 40:1; 40:26; 49:14; 51:3; 54:11; 55:13; 51:12; 52:2; 54:1; 60:1; 60:22; 61:10; Hosea 14:10; 2 Samuel 22:1; 22:51; 2 Kings 11:17; 12:17; 1 Samuel 15:1; 15:33; Ezekiel 36:16–17; 36:36; 45:18. The last verse of most of the Haphtaroth is introduced by the Judaeo-Arabic אבר, ‘last’. The last verse of the Haphtorah for Seder 51 and the first verse of the Haphtorah for Seder 52 are omitted together with the heading for Seder 52. The tetragrammaton is abbreviated to ז*י . On folio 1r in the top righthand corner there is a decorated ז, probably a gathering number. On folio 1v at Isaiah 54:1 there is a note to the effect that the Haphtorah for Seder 49 is the same as that for Seder 2 at Genesis 6:9. On folio 2r 2 Samuel 22:51, the last verse of the Haphtorah for Seder 53, which has been omitted from the text, is supplied in the margin.
 #
 T-S B14.103
 Isaiah 54:16–17; 40:25–41:10
@@ -15807,7 +15807,7 @@ T-S B14.104
 Isaiah 66:11–14; 66:22–24; 1 Samuel 20:18–42
 Hebrew; predominantly standard Tiberian, uncantillated.
 Paper; 20.4cm. x 28.1cm. and 20.5cm. x 27.6cm.; 1 column; 4 leaves conjoined in 2 pairs and consecutive; 11–12 lines (complete); mutilated with pieces of text missing.
-Examples of non-standard vocalization are:––for–and–; -yr- for -y; 3–for–; ך־–for . The tetragrammaton is abbreviated to 'J/ . On folio 1v before 1 Samuel 20:18 the rubric והיה מדי חדש וגי מחר חדש indicates that the passage which follows is the Haphtorah for מחר חדש.
+Examples of non-standard vocalization are:––for–and–; -yr- for -y; 3–for–; ך־–for . The tetragrammaton is abbreviated to 'J/ . On folio 1v before 1 Samuel 20:18 the rubric והיה מדי חדש וג' מחר חדש indicates that the passage which follows is the Haphtorah for מחר חדש.
 #
 T-S B14.105
 Joshua 24:14–15; 24:24–26; 2 Samuel 21:15–19
@@ -15825,7 +15825,7 @@ T-S B14.107
 2 Samuel 22:24–46; 22:49–51; Joshua 1:1–8
 Hebrew; predominantly standard Tiberian, cantillated; Massorah Parva on recto.
 Paper; 20.5cm. x 16.2cm.; 1 column; 1 leaf; 19 lines (incomplete); mutilated and rubbed with pieces of text missing or illegible.
-Examples of non-standard vocalization are:־=־־ fory and–. On verso before Joshua 1:1 there is a ם in the margin and the. rubric וזאת הברכה ביהושע indicates that the passage which follows is the Haphtorah for Seder 54 at Deuteronomy 33:1.
+Examples of non-standard vocalization are:־=־־ fory and–. On verso before Joshua 1:1 there is a ס in the margin and the rubric וזאת הברכה ביהושע indicates that the passage which follows is the Haphtorah for Seder 54 at Deuteronomy 33:1.
 #
 T-S B14.108
 1 Kings 5:26–6:3; Isaiah 6:2–12
@@ -15837,7 +15837,7 @@ T-S B14.109
 2 Kings 23:21–24; Ezekiel 36:37–37:14; Isaiah 10:32–12:6; Ezekiel 1:1–28; 2:2; 3:12; Habakkuk 2:20–3:2; 3:4–10; 3:14–19
 Hebrew; predominantly standard Tiberian, uncantillated, on folios 1–4r, unpointed, but with verse divisions on folios 4v–7.
 Paper; 12cm. x 9cm., 17.6cm. x 23.9cm., 17.5cm. x 25.9cm., and 17.6cm. x 25.7cm.; 1 column; 7 leaves consecutive with 6 leaves conjoined in 3 pairs; 15–17 lines (complete); mutilated and rubbed with many pieces of text missing or illegible.
-The text comprises the Haphtaroth for the second, sabbath, and eighth days of Passover and the first and second days of Pentecost. Examples of non-standard vocalization are: ~ for–,–, and ~~ for–. On folio 2v before Isaiah 10:32 the decorated Aramaic rubric ויושע כתובה בפרשת/ האזינו יומא/ תנינא בישעיה indicates in cryptic style that the Haphtorah for the seventh day of Passover, for which part of the festival the reading is Exodus 14:3 ff., is written not here but in the section containing Seder 53, Deuteronomy 33:1 ff, because 2 Samuel 22:1–51 is also the Haphtorah for Seder 53, and therefore need not be copied again. It further states that the Haphtorah for the second day of the second part of Passover, that is, the eighth day according to the usual terminology, is found in Isaiah. On folio 3r at Isaiah 11:6 י הד ו, which has been omitted from the text, is supplied in the margin. Gn folio 3v at Isaiah 11:14 קדם, which has been omitted from the text, is supplied in the margin J On folio 4r before Ezekiel 1:1 the decorated Aramaic rubric יומא קמא דעצרתא ביחזקאל indicates that the Haphtorah for the first day of Pentecost is in Ezekiel. On folio 5v at Ezekiel 1:19 אצלם, which has been omitted from the text, is supplied in the margin and האופנים אצלם, which has been repeated in error, is deleted by being crossed through. On folio 6v before Habakkuk 2:20 the decorated Aramaic rubric יומא תני נא דעצרתא/ בתרי עשר indicates that the Haphtorah for the second day of Pentecost is in the Minor Prophets.
+The text comprises the Haphtaroth for the second, sabbath, and eighth days of Passover and the first and second days of Pentecost. Examples of non-standard vocalization are: ~ for–,–, and ~~ for–. On folio 2v before Isaiah 10:32 the decorated Aramaic rubric ויושע כתובה בפרשת/ האזינו יומא/ תנינא בישעיה indicates in cryptic style that the Haphtorah for the seventh day of Passover, for which part of the festival the reading is Exodus 14:3 ff., is written not here but in the section containing Seder 53, Deuteronomy 33:1 ff, because 2 Samuel 22:1–51 is also the Haphtorah for Seder 53, and therefore need not be copied again. It further states that the Haphtorah for the second day of the second part of Passover, that is, the eighth day according to the usual terminology, is found in Isaiah. On folio 3r at Isaiah 11:6 יחדו, which has been omitted from the text, is supplied in the margin. On folio 3v at Isaiah 11:14 קדם, which has been omitted from the text, is supplied in the margin. On folio 4r before Ezekiel 1:1 the decorated Aramaic rubric יומא קמא דעצרתא ביחזקאל indicates that the Haphtorah for the first day of Pentecost is in Ezekiel. On folio 5v at Ezekiel 1:19 אצלם, which has been omitted from the text, is supplied in the margin and האופנים אצלם, which has been repeated in error, is deleted by being crossed through. On folio 6v before Habakkuk 2:20 the decorated Aramaic rubric יומא תנינא דעצרתא/ בתרי עשר indicates that the Haphtorah for the second day of Pentecost is in the Minor Prophets.
 #
 T-S B14.110
 1 Kings 1:25–31; Malachi 1:1–2
@@ -15849,7 +15849,7 @@ T-S B14.111
 Amos 2:12–3:8; 1 Kings 3:15–4:1; Ezekiel 37:15–20
 Hebrew; predominantly standard Tiberian, uncantillated.
 Paper; 20cm. x 28.4cm.; 1 column; 2 leaves conjoined and consecutive; 16 lines; mutilated and rubbed with small pieces of text missing or illegible.
-Examples of non-standard vocalization are: ־־zrfor–;–for-rz־. On folio 1v at Amos 3:7 אדני, which has been omitted from the text, is supplied in the margin, at Amos 3:8 יה ו ה, which has been omitted from the text, is supplied in the margin, and before 1 Kings 3:15 the rubric ויהי מקץ במלכים indicates that the passage which follows is the Haphtorah for Seder 10 at Genesis 41:1. On folio 2v before Ezekiel 37:15 the rubric (sic) ו י גש אליו בחזקיל indicates that the passage which follows is the Haphtorah for Seder 11 at Genesis 44:18 and at Ezekiel 37:18 הלוא, which has been omitted from the text, is supplied in the margin.
+Examples of non-standard vocalization are: ־־zrfor–;–for-rz־. On folio 1v at Amos 3:7 אדני, which has been omitted from the text, is supplied in the margin, at Amos 3:8 יה ו ה, which has been omitted from the text, is supplied in the margin, and before 1 Kings 3:15 the rubric ויהי מקץ במלכים indicates that the passage which follows is the Haphtorah for Seder 10 at Genesis 41:1. On folio 2v before Ezekiel 37:15 the rubric (sic) ויגש אליו בחזקיל indicates that the passage which follows is the Haphtorah for Seder 11 at Genesis 44:18 and at Ezekiel 37:18 הלוא, which has been omitted from the text, is supplied in the margin.
 #
 T-S B14.112
 Isaiah 54:17; 40:25–41:13
@@ -15911,20 +15911,20 @@ T-S B14.120
 Micah 7:19–20; Zechariah 13:9–14:9
 Hebrew; predominantly standard Tiberian, uncantillated.
 Paper; 17.8cm. x 13.9cm.; 1 column; 1 leaf; 15 lines on recto, 16 lines on verso; mutilated and rubbed with a few small pieces of text missing or illegible.
-Examples of non-standard vocalization are: -=־ for־v,–and–; -rr-for–,־ ־, and־7־r. On recto before Zechariah 13:9 the Judaeo-Arabic rubric /אול אלסוכה בתרי עשר indicates that the passage which follows is the Haphtorah for the first day of Tabernacles. In Snaith’s edition this Haphtorah begins at Zechariah 14:1, but see Talmudic Encyclopedia, vol. 10 ad loc.
+Examples of non-standard vocalization are: -=־ for־v,–and–; -rr-for–,־ ־, and־7־r. On recto before Zechariah 13:9 the Judaeo-Arabic rubric אול אלסוכה/ בתרי עשר indicates that the passage which follows is the Haphtorah for the first day of Tabernacles. In Snaith’s edition this Haphtorah begins at Zechariah 14:1, but see Talmudic Encyclopedia, vol. 10 ad loc.
 #
 T-S B14.121
 Isaiah 54:17–55:5; 40:26–41:2
 Hebrew; unpointed, but with verse divisions.
 Paper; 14.4cm. x 25.4cm.; 1 column; 2 leaves
 conjoined and consecutive; 9 lines (incomplete); mutilated with many pieces of text missing.
-On folio 1v before Isaiah 40:26 the Aramaic rubric דלר לר בישעיה indicates that the passage which follows is the Haphtorah for Seder 3 at Genesis 12:1.
+On folio 1v before Isaiah 40:26 the Aramaic rubric דלך לך בישעיה indicates that the passage which follows is the Haphtorah for Seder 3 at Genesis 12:1.
 #
 T-S B14.122
 Isaiah 6:5–13; 9:5–6; Jeremiah 34:8–12
 Hebrew; standard Tiberian, cantillated.
 Paper; 17.2cm. x ,13cm.; 1 column; 1 leaf; 16 lines; mutilated with small pieces of text missing.
-On verso before Jeremiah 34:8 the decorated rubric *ואלה המשפטים בירמי indicates that the passage which follows is the Haphtorah for Seder 18 at Exodus 21:1 and at Jeremiah 34:10 לבלתי עבד בם עוד , which has been omitted from the text, is supplied in the margin.
+On verso before Jeremiah 34:8 the decorated rubric 'ואלה המשפטים בירמי indicates that the passage which follows is the Haphtorah for Seder 18 at Exodus 21:1 and at Jeremiah 34:10 לבלתי עבד בם עוד , which has been omitted from the text, is supplied in the margin.
 #
 T-S B14.123
 Jeremiah 17:13–14; Ezekiel 34:1–8; 20:6–14
@@ -15936,7 +15936,7 @@ T-S B14.124
 2 Kings 4:34–37; 1 Kings 1:1–9
 Hebrew; standard Tiberian, uncantillated.
 Paper; 22.2cm. x 14.5cm.; 1 column; 1 leaf; 17 lines; mutilated and rubbed.
-The non-standard vocalizations -=■ for ־לדה־ and–7- for–occur. On recto before 1 Kings 1:1 the decorated rubric ויהיו חיי טרה במלכים indicates that the passage which follows is the Haphtorah for Seder 5 at Genesis 23:1.
+The non-standard vocalizations -=■ for ־לדה־ and–7- for–occur. On recto before 1 Kings 1:1 the decorated rubric ויהיו חיי שרה במלכים indicates that the passage which follows is the Haphtorah for Seder 5 at Genesis 23:1.
 #
 T-S B14.125
 1 Kings 1:22–31; Malachi 1:1–2:7; Hosea 11:7–10
@@ -15953,13 +15953,13 @@ The non-standard vocalizationfor occurs. On folio 1v before Ezekiel 38:1 the rub
 T-S B14.127
 2 Kings 23:23–25; Ezekiel 36:37–38; 37:8–13; Isaiah 11:2–10; 11:16–12:6; Ezekiel 1:1
 Hebrew; predominantly standard Tiberian, cantillated. Paper; 12.3cm. x 17.5cm. and 12.4cm. x 17.4cm.; 1 column; 2 leaves separate; 10 lines (incomplete); mutilated with many pieces of text missing.
-Examples of non-standard vocalization are: ־=3־ for–and7־–. On folio 1r at 2 Kings 23:24 יאשיהו and אשר מצא, which have been mutilated in the text, are repeated in the margin and before Ezekiel 36:37 there is a decorated ם and the Aramaic rubric דטבתא דבחולא דפיסחא ביחזקאל indicates that the passage which follows is the Haphtorah for the Intermediate Sabbath of Passover. In Snaith’s edition this Haphtorah begins at Ezekiel 37:1, but see Talmudic Encyclopedia, vol. 10 ad loc. On folio 2v before Ezekiel 1:1 the Aramaic rubric דיומא קמא דעצרתא ביחזקאל indicates that the passage which follows is the Haphtorah for the first day of Pentecost.
+Examples of non-standard vocalization are: ־=3־ for–and7־–. On folio 1r at 2 Kings 23:24 יאשיהו and אשר מצא, which have been mutilated in the text, are repeated in the margin and before Ezekiel 36:37 there is a decorated ם and the Aramaic rubric דשבתא דבחולא דפיסחא ביחזקאל indicates that the passage which follows is the Haphtorah for the Intermediate Sabbath of Passover. In Snaith’s edition this Haphtorah begins at Ezekiel 37:1, but see Talmudic Encyclopedia, vol. 10 ad loc. On folio 2v before Ezekiel 1:1 the Aramaic rubric דיומא קמא דעצרתא ביחזקאל indicates that the passage which follows is the Haphtorah for the first day of Pentecost.
 #
 T-S B14.129
 Ezekiel 22:4–16; 20:1–13; Joshua 2:10–24; 1 Samuel 11:14–12:5
 Hebrew; standard Tiberian, cantillated; Massorah Parva on folio 2r.
 Paper; 26.8cm. x 37.2cm.; 1 column; 2 leaves conjoined; 19 lines; mutilated and rubbed with many pieces of text missing.
-On folio 1r before Ezekiel 20:1 the Aramaic rubric דקדשים ביחזקאל indicates that the passage which follows is the Haphtorah for Seder 30 at Leviticus 19:1. This Haphtorah almost corresponds to that of the Sephardi rite. On folio 1v at Ezekiel 20:6 להם, which has been omitted from the text, is supplied in the margin. On folio 2v before 1 Samuel 11:14 the Aramaic rubric דויקח קרח ב [שמו ]אל indicates that the passage which follows is the Haphtorah for Seder 38 at Numbers 16:1.
+On folio 1r before Ezekiel 20:1 the Aramaic rubric דקדשים ביחזקאל indicates that the passage which follows is the Haphtorah for Seder 30 at Leviticus 19:1. This Haphtorah almost corresponds to that of the Sephardi rite. On folio 1v at Ezekiel 20:6 להם, which has been omitted from the text, is supplied in the margin. On folio 2v before 1 Samuel 11:14 the Aramaic rubric דויקח קרח   ב[שמו ]אל indicates that the passage which follows is the Haphtorah for Seder 38 at Numbers 16:1.
 #
 T-S B14.130
 Hosea 2:1–22; Judges 13:2–25; Zechariah 2:14–4:9; Joshua 2:1–24; 1 Samuel 11:14–12:3
@@ -15997,7 +15997,7 @@ T-S B16.5
 Isaiah 51:12–52:3; 60:12–22; 61:10–11
 Hebrew; standard Tiberian where legible, cantillated.
 Parchment; 18cm. x 26.3cm.; 1 column; 2 leaves conjoined; 17 lines; mutilated and rubbed with many pieces of text missing or illegible.
-The non-standard vocalizations -=ך- for -ך–and–occur. On folio 1r at Isaiah 51:1 חמתו את הבעת כוס , which has been omitted from the text by homoioteleuton with כוס, is supplied in the margin. On folio 2r at Isaiah 60:16 there is a marginal gloss which possibly reads שהר/ מחרס. On folio 2v before Isaiah 61:10 the mutilated rubric [ ] אתם נצ indicates that the passage
+The non-standard vocalizations -=ך- for -ך–and–occur. On folio 1r at Isaiah 51:1 חמתו את קבעת כוס , which has been omitted from the text by homoioteleuton with כוס, is supplied in the margin. On folio 2r at Isaiah 60:16 there is a marginal gloss which possibly reads שהר/ מחרס. On folio 2v before Isaiah 61:10 the mutilated rubric [ ] אתם נצ indicates that the passage
 which follows is the Haphtorah for Seder 51 at Deuteronomy 29:9.
 #
 T-S B16.6
@@ -16016,7 +16016,7 @@ T-S B16.8
 Obadiah 11–17; Amos 2:6–8
 Hebrew; standard Tiberian where legible, cantillated.
 Parchment; 17.9cm. x 15.8cm.; 1 column; 1 leaf; 13 lines; mutilated and rubbed with a few small pieces of text missing or illegible.
-On recto there are the words רכמה אמה יאיש גדא in the margin, evidently just writing practice and in the upper margin inverted in relation to the text there are three Arabic words apparently reading , but
+On recto there are the words רכמה אמה יאיש גדא in the margin, evidently just writing practice and in the upper margin inverted in relation to the text there are three Arabic words apparently
 without reference to the main text. On verso before Amos 2:6 the rubric וישב יעקב בתרי עשר indicates that the passage which follows is the Haphtorah for Seder 9 at Genesis 37:1, the word מצחייה, and in the lower margin חבלים is a catchword to the first word of the text on a following folio.
 #
 T-S B16.9
@@ -16055,7 +16055,7 @@ T-S B16.14
 Isaiah 40:20–21; 49:14–50:9; 54:11–17; 55:2–3
 Hebrew; standard Tiberian, cantillated.
 Parchment; 30.9cm. x 23.2cm.; 3 columns; 1 leaf; 22 lines (complete); mutilated with many pieces of text missing. On verso Isaiah 50:10 is added in the margin between the first and second columns in a different hand with a different colour of ink from that of the text and before Isaiah 54:11 the rubric ראה אנכי/ בישעיה indicates that the passage which follows is the Haphtorah for Seder 47 at Deuteronomy 11:26. Beside this rubric there is a mutilated note written in a third hand which possibly reads
-ב  ]/ כאם[ ]/ צמח צ(?) 1 ]/ את[ ]שמו[ ]/
+/[ ]ב[ ]/ נאם[ ]/ צמח צ(?)[ ]/ את[ ]שמו[ ]/אש
 The first three lines of this note possibly represent part of Jeremiah 23:5, but this is unclear.
 #
 T-S B16.15a
@@ -16074,13 +16074,13 @@ T-S B16.16a
 1 Samuel 15:4–9; 15:31; Ezekiel 36:25–32; 37:14; Isaiah 41:27–42:9
 Hebrew; unpointed, but with verse divisions.
 Parchment; 30.6cm. x 19cm.; 2 columns; 1 leaf, probably part of a scroll; 30–31 lines; mutilated with many pieces of text missing.
-On recto before Ezekiel 36:25 the rubric פרה אדומה indicates that the passage which follows is the Haphtorah for שבת פרה and before Isaiah 41:27 the rubric החדש ה [ז? ]ה indicates that the passage which follows is the Haphtorah for שבת החדש . Both of these Haphtaroth differ from those given in Snaith’s edition, but see Talmudic Encyclopedia, vol. 10 ad loc. Verso is blank.
+On recto before Ezekiel 36:25 the rubric פרה אדומה indicates that the passage which follows is the Haphtorah for שבת פרה and before Isaiah 41:27 the rubric החדש   ה[ז? ]ה indicates that the passage which follows is the Haphtorah for שבת החדש . Both of these Haphtaroth differ from those given in Snaith’s edition, but see Talmudic Encyclopedia, vol. 10 ad loc. Verso is blank.
 #
 T-S B16.16b
 Amos 2:12–3:8; 1 Kings 3:15–4:1; Ezekiel 37:15–21; 1 Kings 2:1–7
 Hebrew; unpointed.
 Parchment; 28.2cm. x 25.3cm.; 3 columns; 1 leaf, probably part of a scroll; 27 lines (incomplete); mutilated with many pieces of text missing.
-The text comprises the Haphtaroth for Sedarim 9–12. Before Ezekiel 37:15 there is a decorated יחזקאל in the margin between the first and second columns and the decorated rubric ו י גש אליו indicates that the passage which follows is the Haphtorah for Seder 11 at Genesis 44:18. Verso is blank.
+The text comprises the Haphtaroth for Sedarim 9–12. Before Ezekiel 37:15 there is a decorated יחזקאל in the margin between the first and second columns and the decorated rubric ויגש אליו indicates that the passage which follows is the Haphtorah for Seder 11 at Genesis 44:18. Verso is blank.
 #
 T-S B16.17
 Judges 13:5–25; Zechariah 2:9–12; Jeremiah 1:14–2:28; 4:1–2; Isaiah 22:1–14; 40:1–4
@@ -16105,15 +16105,15 @@ T-S B16.19b
 1 Kings 3:22–4:1; Ezekiel 37:17–28; 1 Kings 2:1–12; Isaiah 27:6–11; 40:14–26; 49:14–50:10; 51:12–52:3; Joshua 5:4–6:1; 6:27; 2 Kings 23:1–6; 23:21–25; Ezekiel 37:2–12
 Hebrew; non-standard Tiberian, cantillated.
 Parchment; 25.4cm. x 28.2cm. and 34.1cm. x 57cm.; 2 columns; 3 leaves with 2 leaves conjoined; 29 lines (complete); badly mutilated with many large pieces of text missing.
-An example of non-standard vocalization is the unusual use of dagesh. Hataph is written inside ה . On folio 1 the text comprises parts of the Haphtaroth for Sedarim 10–13. On folio 1v before 1 Kings 2:1 a decorated 1 ]כים is the mutilated heading for the Haphtorah for Seder 12 at Genesis 47:28 and before Isaiah 27:6 the decorated rubric ואלה שמות בישעיה heads the Haphtorah for Seder 13 at Exodus 1:1. This Haphtorah corresponds to that of the Ashkenazi rite. On folio 2 the text comprises the Haphtaroth for Sedarim 45–48. On folio 2r before Isaiah 49:14 the decorated rubric והיה עקב בישעיה heads the Haphtorah for Seder 46 at Deuteronomy 7:12. On folio 2v before Isaiah 51:12 the decorated rubric
-ראה אנכי בישעיה עניה סוערה והיא כתובה כאלה תולדות נח explains that the Haphtorah for Seder 47 at Deuteronomy 11:26, namely, Isaiah 54:11 ff., is not written here, because it is the same as that for Seder 2 at Genesis 6:9, and therefore has already been written out there, the decorated rubric שפטים בישעיה heads the Haphtorah for Seder 48 at Deuteronomy 16:18, and at Isaiah 52:1 בך, which has been omitted from the text, is supplied in the margin. On folio 3 the text comprises the Haphtaroth for the first, second, and intermediate sabbath days of Passover. On folio 3r at Joshua 5:10 בראשון, which has been omitted from the text, is supplied in the margin between the columns and at 2 Kings 23:3 הספר, which has been omitted from the text, is supplied in the margin between the columns. On folio 3v at 2 Kings 23:6 or 23:21 אל is written in the margin beside a mutilated text.
+An example of non-standard vocalization is the unusual use of dagesh. Hataph is written inside ח . On folio 1 the text comprises parts of the Haphtaroth for Sedarim 10–13. On folio 1v before 1 Kings 2:1 a decorated כים[ ] is the mutilated heading for the Haphtorah for Seder 12 at Genesis 47:28 and before Isaiah 27:6 the decorated rubric ואלה שמות בישעיה heads the Haphtorah for Seder 13 at Exodus 1:1. This Haphtorah corresponds to that of the Ashkenazi rite. On folio 2 the text comprises the Haphtaroth for Sedarim 45–48. On folio 2r before Isaiah 49:14 the decorated rubric והיה עקב בישעיה heads the Haphtorah for Seder 46 at Deuteronomy 7:12. On folio 2v before Isaiah 51:12 the decorated rubric
+ראה אנכי בישעיה עניה סוערה והיא כתובה באלה תולדות נח explains that the Haphtorah for Seder 47 at Deuteronomy 11:26, namely, Isaiah 54:11 ff., is not written here, because it is the same as that for Seder 2 at Genesis 6:9, and therefore has already been written out there, the decorated rubric שפטים בישעיה heads the Haphtorah for Seder 48 at Deuteronomy 16:18, and at Isaiah 52:1 בך, which has been omitted from the text, is supplied in the margin. On folio 3 the text comprises the Haphtaroth for the first, second, and intermediate sabbath days of Passover. On folio 3r at Joshua 5:10 בראשון, which has been omitted from the text, is supplied in the margin between the columns and at 2 Kings 23:3 הספר, which has been omitted from the text, is supplied in the margin between the columns. On folio 3v at 2 Kings 23:6 or 23:21 אל is written in the margin beside a mutilated text.
 #
 T-S B16.19c
 Joshua 2:19–24; 1 Samuel 11:14–15; 12:14–19; Judges 11:1–5; 11:9–12; 11:16–19; Micah 5:6–11
 Hebrew; non-standard Tiberian, cantillated, but barely legible.
 Parchment; 24.1cm. x 32.7cm.; 2 columns; 2 leaves conjoined and consecutive; 20 lines (incomplete); badly mutilated with many pieces of text missing. T-S B16.19c is possibly part of the same manuscript as T-S B16.19b. 
 An example of non-standard vocalization is the unusual use of dagesh. The text comprises parts of the Haphtaroth for Sedarim 37–40. On folio 1r before 1 Samuel 11:14 the mutilated decorated rubric [ ]ו י קח קר heads the Haphtorah
-for Seder 38 at Numbers 16:1 and at 1 Samuel 11:15 את, which has been omitted from the text, is supplied above the line. On folio 2r before Judges 11:1 the mutilated rubric [ ] פט י[ ] heads the Haphtorah for Seder 39 at Numbers 19:1. On folio 2v in the lower margin Judges 11:22–28 is added in a different hand with a different colour of ink from that of the text and at Micah 5:6 ייחל, which has been omitted from the text, is supplied in the margin between the columns with the same colour of ink as that of this addition.
+for Seder 38 at Numbers 16:1 and at 1 Samuel 11:15 את, which has been omitted from the text, is supplied above the line. On folio 2r before Judges 11:1 the mutilated rubric [ ] פטי[ ] heads the Haphtorah for Seder 39 at Numbers 19:1. On folio 2v in the lower margin Judges 11:22–28 is added in a different hand with a different colour of ink from that of the text and at Micah 5:6 ייחל, which has been omitted from the text, is supplied in the margin between the columns with the same colour of ink as that of this addition.
 #
 T-S B16.19d
 Jeremiah 2:28; 4:1–2; 1 Kings 18:46–19:17; Isaiah 40:26; 49:14–50:11
@@ -16125,19 +16125,19 @@ T-S B16.19e
 2 Samuel 22:38–51; Isaiah 10:32–12:6; 1 Kings 18:20–21; Jeremiah 32:20–23; 16:19–17:2; 17:5–11; Hosea 2:1–5
 Hebrew; standard Tiberian, cantillated.
 Parchment; 24.2cm. x 18.6cm. and 14.6cm. x 18.4cm.; 2 columns; 2 leaves separate; 25 lines (complete); mutilated and rubbed with many pieces of text missing or illegible.
-On folio 1r in 2 Samuel 22 there is one column across the page and poetic spacing which does not correspond to that followed in Kittel-Kahle BH3 and before Isaiah 10:32 the mutilated rubric יום אהרון לפסח, which is written large, indicates that the passage which follows is the Haphtorah for the last, i.e. eighth, day of Passover. On folio 1v before 1 Kings 18:20 the rubric כי תשא. which is written large, indicates that the passage which follows is the Haphtorah for Seder 21 at Exodus 30:11. This corresponds to the Haphtorah in the Sephardi rite. On folio 2r at Jeremiah 32:21 את, which has been omitted from the text before ישראל, is supplied in the margin between the columns and before Jeremiah 16:19 the decorated rubric אם בחקתי תלכו, which is written large, indicates that the passage which follows is the Haphtorah for Seder 33 at Leviticus 26:3.
+On folio 1r in 2 Samuel 22 there is one column across the page and poetic spacing which does not correspond to that followed in Kittel-Kahle BH3 and before Isaiah 10:32 the mutilated rubric יום אחרון לפסח, which is written large, indicates that the passage which follows is the Haphtorah for the last, i.e. eighth, day of Passover. On folio 1v before 1 Kings 18:20 the rubric כי תשא. which is written large, indicates that the passage which follows is the Haphtorah for Seder 21 at Exodus 30:11. This corresponds to the Haphtorah in the Sephardi rite. On folio 2r at Jeremiah 32:21 את, which has been omitted from the text before ישראל, is supplied in the margin between the columns and before Jeremiah 16:19 the decorated rubric אם בחקתי תלכו, which is written large, indicates that the passage which follows is the Haphtorah for Seder 33 at Leviticus 26:3.
 #
 T-S B16.19f
 Isaiah 1:24–27; Jeremiah 8:13–9:23; Hosea 14:2; Isaiah 40:1–24
 Hebrew; standard Tiberian, cantillated.
 Parchment; 26.8cm. x 39.4cm.; 2 columns; 2 leaves conjoined and consecutive; 23 lines (complete); mutilated with many pieces of text missing.
-On folio 1r before Jeremiah 8:13 the rubric בתשעה באב , which is written large, indicates that the passage which follows is the Haphtorah for the morning of the ninth of Ab. On folio 1v at Jeremiah 9:3 אה עקוב, which has been omitted from the text, is supplied in the margin. On folio 2r after Jeremiah 9:23 the mutilated rubric [ ]מנחה שובה/ ישראל/ והיא כת 1 ]ה בסדר וילך, the first part of which is written large and the last part of which is decorated, explains that the Haphtorah for the afternoon of the ninth of Ab, namely, Hosea, 14:2 ff., is written not here, but at Seder 52 at Deuteronomy 31:1, for which the same Haphtorah is used. This corresponds to the Haphtorah in the Sephardi rite. Before Isaiah 40:1 the rubric ואתחנן , which is written large, indicates that the passage which follows is the Haphtorah for Seder 45 at Deuteronomy 3:23.
+On folio 1r before Jeremiah 8:13 the rubric בתשעה באב , which is written large, indicates that the passage which follows is the Haphtorah for the morning of the ninth of Ab. On folio 1v at Jeremiah 9:3 אח עקוב, which has been omitted from the text, is supplied in the margin. On folio 2r after Jeremiah 9:23 the mutilated rubric מנחה שובה/ ישראל/ והיא כת [ ]ה   בסדר וילך[ ], the first part of which is written large and the last part of which is decorated, explains that the Haphtorah for the afternoon of the ninth of Ab, namely, Hosea, 14:2 ff., is written not here, but at Seder 52 at Deuteronomy 31:1, for which the same Haphtorah is used. This corresponds to the Haphtorah in the Sephardi rite. Before Isaiah 40:1 the rubric ואתחנן , which is written large, indicates that the passage which follows is the Haphtorah for Seder 45 at Deuteronomy 3:23.
 #
 T-S B16.19g
 2 Samuel 6:8–19; 2 Kings 4:42–5:6; Ezekiel 44:15–31; Jeremiah 32:6–8
 Hebrew; unpointed, but with verse divisions.
 Parchment; 15.4cm. x 21.5cm.; 2 columns; 2 leaves conjoined; 19 lines; mutilated.
-On folio 1v before 2 Kings 4:42 the rubric אטה כי תזריע, which is written large, indicates that the passage which follows is the Haphtorah for Seder 27 at Leviticus 12:1. On folio 2v before Jeremiah 32:6 the rubric בהר סיני, which is written large, indicates that the passage which follows is the Haphtorah for Seder 32 at Leviticus 25:1.
+On folio 1v before 2 Kings 4:42 the rubric אשה כי תזריע, which is written large, indicates that the passage which follows is the Haphtorah for Seder 27 at Leviticus 12:1. On folio 2v before Jeremiah 32:6 the rubric בהר סיני, which is written large, indicates that the passage which follows is the Haphtorah for Seder 32 at Leviticus 25:1.
 #
 T-S B16.19h
 Isaiah 43:24–44:8; 44:21–23; Jeremiah 7:21–31; 2 Samuel 6:1–8; Amos 9:8–15; Ezekiel 20:2–20; 44:15–17
@@ -16156,14 +16156,14 @@ Isaiah 61:9–62:5; Jeremiah 11:16–12:15; Ezekiel 45:12–46:2; Hosea 10:7–1
 Hebrew; non-standard Tiberian where legible, cantillated.
 Parchment; 27.2cm. x 23cm. and 26.4cm. x 16.8cm.; 2 columns; 2 leaves separate; 31 lines; badly mutilated and rubbed with many pieces of text missing or illegible.
 An example of non-standard vocalization is the unusual use of dagesh. Hataph is written inside ח . On folio 1r before Jeremiah 11:16 the decorated rubric ואתה תצוה ירמיה indicates that the passage which follows is the Haphtorah for Seder 20 at Exodus 27:20.
-On folio 1v before Ezekiel 45:12 the decorated rubric כי תטא יחזקאל indicates that the passage which follows is the Haphtorah for Seder 21 at Exodus 30:11. These Haphtaroth differ from those given in Snaith’s edition, but for the Haphtorah for Seder 20 see Talmudic Encyclopedia, vol. 10 ad loc. On folio 2r before Judges 11:1 the mutilated decorated rubric [ ] חקת התור indicates that the passage which follows
-is the Haphtorah for Seder 39 at Numbers 19:1. On folio 2v before Micah 5:6 the mutilated decorated rubric וירא בלק תר י עש indicates that the passage which follows is the Haphtorah for Seder 40 at Numbers 22:2.
+On folio 1v before Ezekiel 45:12 the decorated rubric כי תשא יחזקאל indicates that the passage which follows is the Haphtorah for Seder 21 at Exodus 30:11. These Haphtaroth differ from those given in Snaith’s edition, but for the Haphtorah for Seder 20 see Talmudic Encyclopedia, vol. 10 ad loc. On folio 2r before Judges 11:1 the mutilated decorated rubric [ ] חקת התור indicates that the passage which follows
+is the Haphtorah for Seder 39 at Numbers 19:1. On folio 2v before Micah 5:6 the mutilated decorated rubric וירא בלק תרי עש indicates that the passage which follows is the Haphtorah for Seder 40 at Numbers 22:2.
 #
 T-S B16.19k
 1 Kings 18:22–39; 2 Kings 11:17; 12:9–17; 1 Samuel 15:1–33; Ezekiel 36:16–22
 Hebrew; standard Tiberian, cantillated.
 Parchment; 25.1cm. x 40cm. and 18.1cm. x 20.1cm.; 2 columns; 3 leaves with 2 leaves conjoined and folios 2-3 consecutive; 19 lines (complete); mutilated and rubbed with pieces of text missing or illegible.
-The text includes the Haphtaroth for ,שבת שקלים שבת זכור, and טבת פרה with headings before each written large. The one for שבת שקלים corresponds to that of the Sephardi rite.
+The text includes the Haphtaroth for שבת שקלים ,שבת זכור, and שבת פרה with headings before each written large. The one for שבת שקלים corresponds to that of the Sephardi rite.
 #
 T-S B16.191
 Isaiah 65:17–66:14; 54:9–17
@@ -16175,7 +16175,7 @@ T-S B16.19m
 Joshua 5:13–6:1; 6:27; 2 Kings 23:1–9; 1 Samuel 15:9–26
 Hebrew; standard Tiberian, cantillated.
 Parchment; 17.2cm. x 29.2cm.; 2 columns; 2 leaves conjoined; 20 lines; mutilated and rubbed with many pieces of text missing or illegible.
-On folio 1r before 2 Kings 23:1 the rubric ליום שני, which is written large, indicates that the passage which follows is the Haphtorah for the second day of Passover. On folio 1v at 2 Kings 23:6 קדר ו ו ו י טרף אתה בנחל , which has been omitted from the text by homoioteleuton with קדר ו ו, is supplied in the lower margin.
+On folio 1r before 2 Kings 23:1 the rubric ליום שני, which is written large, indicates that the passage which follows is the Haphtorah for the second day of Passover. On folio 1v at 2 Kings 23:6 קדרון וישרף אתה בנחל , which has been omitted from the text by homoioteleuton with קדרון, is supplied in the lower margin.
 #
 T-S B16.21
 2 Kings 4:36–37; 1 Kings 1:1–4; 1:45–46; Malachi 1:1–4; Hosea 13:2–4; Obadiah 1–11; 13–21; Jeremiah 37:12–38:2
@@ -16217,7 +16217,7 @@ T-S B17.15
 Isaiah 35:5–8; 1:21–24; 1:30–2:1; 2:5; Judges 11:30; 11:33–36
 Hebrew; standard Tiberian, cantillated.
 Parchment; 26.5cm. x 15.6cm.; 2 columns (incomplete); 14 lines (incomplete); badly mutilated with many pieces of text missing. T-S B17.15 is part of the same leaf as T-S B17.14. 
-The text, which has been overwritten throughout, comprises parts of the Haphtaroth for Sedarim 98–100 in the Palestinian Triennial Cycle with a heading, accompanied by a decorated marginal ם , on verso before Judges 11:30, the beginning of the Haphtorah for Seder 100 at Leviticus 27:1. On recto small circles have been scribbled in the margins in an inexpert hand.
+The text, which has been overwritten throughout, comprises parts of the Haphtaroth for Sedarim 98–100 in the Palestinian Triennial Cycle with a heading, accompanied by a decorated marginal ס , on verso before Judges 11:30, the beginning of the Haphtorah for Seder 100 at Leviticus 27:1. On recto small circles have been scribbled in the margins in an inexpert hand.
 #
 T-S B17.16
 Isaiah 65:23–66:2; 66:5–7; 66:10–11; Ezekiel 44:25–27
@@ -16235,7 +16235,7 @@ T-S B17.18
 Ezekiel 44:6–9; 44:30; 44:21–28
 Hebrew; standard Tiberian, cantillated; Massorah Magna and Parva.
 Parchment; 16.7cm. x 21.3cm.; 1 column; 1 leaf; 12 lines; badly mutilated and rubbed with many pieces of text missing or illegible.
-On recto before Ezekiel 44:21 there is a decorated ביחזקאל in the margin and a rubric which reads י יו ושכר indicates that the passage which follows is a Haphtorah in the Palestinian Triennial Cycle, possibly for Seder 80 at Leviticus 10:8. On verso the sign Y is used to fill up line-endings.
+On recto before Ezekiel 44:21 there is a decorated ביחזקאל in the margin and a rubric which reads י ין ושכר indicates that the passage which follows is a Haphtorah in the Palestinian Triennial Cycle, possibly for Seder 80 at Leviticus 10:8. On verso the sign Y is used to fill up line-endings.
 #
 T-S B17.19
 Isaiah 33:16–22; 61:6–62:1; 66:8–11; Ezekiel 16:10–19
@@ -16247,15 +16247,15 @@ T-S B17.20
 Isaiah 52:12; 56:7–57:5; 57:19; 40:21–31; Malachi 3:4–9
 Hebrew; standard Tiberian, cantillated; Massorah Magna and Parva.
 Parchment; 17.2cm. x 20.2cm. and 17.2cm. x 20.2cm.; 1 column; 2 leaves separate; 12 lines; mutilated and rubbed with many pieces of text missing or illegible.
-The sign V" is used to fill up line-endings. On folio 1r in the top righthand corner there is a decorated כד, probably a gathering number, and before Isaiah 56:7 the rubric אטה (sic) ועט י ת indicates that the passage which follows is the Haphtorah in the Palestinian Triennial Cycle for a Seder beginning at Numbers 15:3. On folio 1v after Isaiah 57:19 ויקח קרח is the heading for the Haphtorah of the next Seder in this cycle at Numbers 16:1. On folio 2r after Isaiah 40:31 וביום הבכורים is the heading for the Haphtorah of a Seder in the same cycle beginning at Numbers 28:26. On folio 2v at Malachi 3:4 there is a decorated בתרי/ עטר in the margin.
+The sign V" is used to fill up line-endings. On folio 1r in the top righthand corner there is a decorated כד, probably a gathering number, and before Isaiah 56:7 the rubric אשה (sic) ועש י ת indicates that the passage which follows is the Haphtorah in the Palestinian Triennial Cycle for a Seder beginning at Numbers 15:3. On folio 1v after Isaiah 57:19 ויקח קרח is the heading for the Haphtorah of the next Seder in this cycle at Numbers 16:1. On folio 2r after Isaiah 40:31 וביום הבכורים is the heading for the Haphtorah of a Seder in the same cycle beginning at Numbers 28:26. On folio 2v at Malachi 3:4 there is a decorated בתרי/ עשר in the margin.
 #
 T-S B17.21
 Joshua 1:1–9; Ezekiel 46:1
 Hebrew; standard Tiberian, cantillated; Massorah Magna and Parva.
 Parchment; 16.7cm. x 16.4cm.; 1 column; 1 leaf; 12 lines; mutilated and rubbed with many pieces of text missing or illegible.
 On recto the sign V is used to fill up line-endings and before Joshua 1:1 the rubric וזאת הברכה indicates that the passage which follows is the Haphtorah for a
-Seder which begins at Deuteronomy 33:1. On verso at Joshua 1:6 את העם הזה, which has been omitted from the text by homoioteleuton with את, is supplied above the line and after Joshua 1:9 there is a decorated ביחזקאל in the margin beside a mutilated rubric [ ] טבת and text [ 1 כה אמר אד . A comparison
-between this fragment, T-S B17.24, and T-S NS45.30 confirms that the passage represented here is Ezekiel 46:1 and that it is the Haphtorah for the special טבת החדש in the Palestinian Triennial Cycle.
+Seder which begins at Deuteronomy 33:1. On verso at Joshua 1:6 את העם הזה, which has been omitted from the text by homoioteleuton with את, is supplied above the line and after Joshua 1:9 there is a decorated ביחזקאל in the margin beside a mutilated rubric [ ] שבת and text [ 1 כה אמר אד . A comparison
+between this fragment, T-S B17.24, and T-S NS45.30 confirms that the passage represented here is Ezekiel 46:1 and that it is the Haphtorah for the special שבת החדש in the Palestinian Triennial Cycle.
 #
 T-S B17.22
 Isaiah 40:21; 40:31; 54:1–10; Jeremiah 33:25–34:8; Isaiah 33:17–22; Judges 19:16–24; 20:27; Isaiah 61:9–62:5; 1 Samuel 2:21–22; Joshua 14:9–13; Zechariah 10:16–12; 2 Kings 13:14–23; Isaiah 43:22–44:2; 44:5; 27:6–13; 40:11–19; 40:31; 55:12
@@ -16273,7 +16273,7 @@ T-S B17.24
 Joshua 24:1–2; Isaiah 48:18–49:3; 49:13; 1 Kings 2:1–5; Isaiah 1:2–8; 2:3; Joshua 1:1–9; Ezekiel 46:1–2
 Hebrew; predominantly standard Tiberian, cantillated; Massorah Parva.
 Parchment; 23.7cm. x 17.8cm.; 3 columns; 1 leaf; 24–29 lines (complete); badly mutilated and rubbed with many pieces of text missing or illegible.
-The text comprises Haphtaroth probably for the last five Sedarim in Deuteronomy in the Palestinian Triennial Cycle and for a special occasion, probably טבת החדש. Cf. T-S B17.21 and T-S NS45.30. Headings are preserved from Deuteronomy 32:1 before Isaiah 1:2 and from Deuteronomy 33:1 before Joshua 1:1. Examples of non-standard vocalization are:–for ךך;–for–. The fragment probably derives from the same manuscript as T-S B17.23.
+The text comprises Haphtaroth probably for the last five Sedarim in Deuteronomy in the Palestinian Triennial Cycle and for a special occasion, probably שבת החדש. Cf. T-S B17.21 and T-S NS45.30. Headings are preserved from Deuteronomy 32:1 before Isaiah 1:2 and from Deuteronomy 33:1 before Joshua 1:1. Examples of non-standard vocalization are:–for ךך;–for–. The fragment probably derives from the same manuscript as T-S B17.23.
 #
 T-S B17.25
 Isaiah 53:3; 56:3–5; Hosea 10:6–9; Isaiah 11:8–11; 63:7–9; Micah 7:17–18
@@ -16338,7 +16338,7 @@ T-S B17.36
 Isaiah 66:19–24; 31:5–32:1; 1:16–27; 19.21–21:5; 22:22–23; Hosea 10:12–11:2; 11:4; Ezekiel 44:30–45:8; Isaiah 55:2–56:2; Joshua 24:1–13
 Hebrew; unpointed, but with verse divisions.
 Parchment; 31cm. x 54cm.; 3 columns; 2 leaves conjoined and consecutive; 23 lines (incomplete); mutilated and rubbed with pieces of text missing.
-The text comprises the Haphtaroth for eight Sedarim in the Palestinian Triennial Cycle from Deuteronomy, including headings with decorated ם s for those beginning at 23:10, 23:22, 24:19, 26:1, and 29:9. On folio 2 there are decorated rs in the margins. The sign Vis used to fill up line-endings. Cf. T-S B17.32. See Plate 19.
+The text comprises the Haphtaroth for eight Sedarim in the Palestinian Triennial Cycle from Deuteronomy, including headings with decorated ם s for those beginning at 23:10, 23:22, 24:19, 26:1, and 29:9. On folio 2 there are decorated זs in the margins. The sign V is used to fill up line-endings. Cf. T-S B17.32. See Plate 19.
 #
 T-S B17.37
 Malachi 2:6–7; Isaiah 43:7–15; 2 Samuel 22:10–33; Jeremiah 31:32; Isaiah 48:20–49:3; Ezekiel 18:4–17; Zechariah 5:3–8
@@ -16370,7 +16370,7 @@ T-S B18.20
 2 Kings 4:42–5:4
 Hebrew; standard Tiberian where legible, uncantillated.
 Paper; 13.4cm. x 9.1cm.; 1 column; 1 leaf; 11 lines; mutilated and rubbed with pieces of text missing or illegible.
-On recto before 2 Kings 4:42 the decorated rubric אשה במלכי׳ indicates that the passage which follows is the Haphtorah for Seder 27 at Leviticus 12:1, at 2 Kings 4:42 להם שערים, which has been omitted from the text, is supplied in the margin, and at 2 Kings 4:43 נביאים is added in the margin.
+On recto before 2 Kings 4:42 the decorated rubric אשה במלכי׳ indicates that the passage which follows is the Haphtorah for Seder 27 at Leviticus 12:1, at 2 Kings 4:42 לחם שערים, which has been omitted from the text, is supplied in the margin, and at 2 Kings 4:43 נביאים is added in the margin.
 #
 T-S H10.167
 Deuteronomy 9:5–11:2
@@ -16382,7 +16382,7 @@ T-S H10.209
 Jeremiah 14:19–22; Psalms 79:1–2; 137:3–9; Isaiah 64:7–11; Psalms 126:1–6; Isaiah 62:6–9; Jeremiah 30:18–31:19
 Hebrew; unpointed, but with verse divisions.
 Parchment; 15.2cm. x 24cm., 13.9cm. x 24.3cm., 12cm. x 19.1cm., and 15.2cm. x 23.1cm.; 1 column; 8 leaves conjoined in 4 pairs and consecutive; 13–17 lines; mutilated.
-The conjoined leaves lr and 8v bear writing in Arabic of which very little is now legible and which is considerably older than the Hebrew for which the same sheet was later used. The Arabic text(s?) is a legal document, but most of what remains to be read are the names of some of the witnesses. On folio 2r at Isaiah 64:7 ומעשה ידו כלנו, which has been omitted from the text, is supplied in the margin. Folios 3r and 6v contain the Basmala running from one leaf to the other. Folio 6v is otherwise blank. Folio 7r contains only an א . Folios 7v–8r are blank.
+The conjoined leaves lr and 8v bear writing in Arabic of which very little is now legible and which is considerably older than the Hebrew for which the same sheet was later used. The Arabic text(s?) is a legal document, but most of what remains to be read are the names of some of the witnesses. On folio 2r at Isaiah 64:7 ומעשה ידך כלנו, which has been omitted from the text, is supplied in the margin. Folios 3r and 6v contain the Basmala running from one leaf to the other. Folio 6v is otherwise blank. Folio 7r contains only an א . Folios 7v–8r are blank.
 #
 T-S H10.210
 Psalms 77:10–78:5
@@ -16407,7 +16407,7 @@ Catena of Biblical passages on the Sabbath, Karaite liturgy
 Hebrew; unpointed, but with verse divisions, except on lines 18–20 of recto, which have standard Tiberian, cantillated.
 Paper; 24.6cm. x 18.3cm.; 1 column; 1 leaf; 20 lines; mutilated and rubbed with a few small pieces of text missing.
 The text comprises the following Biblical passages: Genesis 2:3; Exodus 31:12–17; 35:1–3; Numbers 28:1–8; Leviticus 23:1–3; Numbers 28:9–10; Psalms 89:53; 72:18–19; Ecclesiastes 12:13; Psalms 112:1(?).
-The tetragrammaton is abbreviated to 'י' . On verso before Psalms 89:53 a Judaeo-Arabic liturgical rubric שרא תטייע אלתורה refers to the benediction which was to be said at the conclusion of the reading of the Torah.
+The tetragrammaton is abbreviated to 'י' . On verso before Psalms 89:53 a Judaeo-Arabic liturgical rubric שרא תשייע אלתורה refers to the benediction which was to be said at the conclusion of the reading of the Torah.
 See J. Mann; Anan’s liturgy and his half-yearly cycle of the reading of the law inJournal of Jewish Lore and Philosophy, vol. 1, 1919, p.333.
 Also, see Margoliouth, G.: Catalogue of the Hebrew and Samaritan manuscripts in the British Museum. London, Longmans etc. 1905. Part 2, p.451, col. 2 footnote for the meaning of תטי י ע .
 #
@@ -16450,7 +16450,7 @@ T-S K5.34
 Exodus 1:1; Genesis 25:19–22
 Hebrew; unpointed.
 Paper; 15cm. x 21.9cm.; 1 column; 2 leaves conjoined; 8 lines on folio 1, 10 lines on folio 2; mutilated with pieces of text missing.
-Folio 1 contains writing exercises, including אתבט and the alphabet.
+Folio 1 contains writing exercises, including אתבש and the alphabet.
 #
 T-S K5.35
 Leviticus 1:3–5
@@ -16486,13 +16486,13 @@ T-S K5.55
 Leviticus 1:1–4; 1:11–14
 Hebrew; predominantly standard Tiberian, uncantillated.
 Parchment; 14.3cm. x 24.4cm.; 1 column; 2 leaves conjoined; 8–9 lines (complete); mutilated and rubbed with pieces of text missing or illegible.
-On folio 1r before Leviticus 1:1 there are writing exercises, which consist of 4 lines, each of an individual letter of the alphabet with the range of vowel signs–to -1- below it.
+On folio 1r before Leviticus 1:1 there are writing exercises, which consist of 4 lines, each of an individual letter of the alphabet with the range of vowel signs below it.
 #
 T-S K5.56
 Leviticus 1:1–3; 1:15–2:3
 Hebrew; standard Tiberian, cantillated.
 Parchment; 12.3cm. x 24.2cm.; 1 column; 2 leaves conjoined; 9 lines (incomplete); mutilated with many pieces of text missing.
-On folio 1r there are writing exercises, which consist of 4 lines, each of individual letters of the alphabet with the range of vowel signs–to •(–below them, and the first Torah benediction. The tetragrammaton is abbreviated to .
+On folio 1r there are writing exercises, which consist of 4 lines, each of individual letters of the alphabet with the range of vowel signs below them, and the first Torah benediction. The tetragrammaton is abbreviated to .
 #
 T-S K5.58
 Leviticus 1.2–3
@@ -16504,7 +16504,7 @@ Genesis 1:1–9; 1:21–28
 Hebrew; unpointed, but with verse divisions.
 Paper; 9.8cm. x 14.6cm., 9cm. x 14.9cm., and 9.3cm. x 14.5cm.; 1 column; 6 leaves conjoined in 3 pairs with folios 1–3 and 4–6 consecutive; 8–9 lines; mutilated and rubbed. '׳
 The sign V is used to fill up line-endings. Folio 1r contains 8 lines of very unclear Judaeo-Arabic, as follows:
-ברסם/ אל 1שי? 1ד(?)/ מנצו(ר?)/ רב 1 ]/ אכ1 1ך/ אב[ ]/ אס(?)[ ]/ חסן ססם(?)/
+/(?)ברסם/ אל [שי?] ך(?)/ מנצו(ר?)/ רב 1 ]/ אכ[ ]ך/ אב[ ]/ אס(?)[ ]/ חסן ססם
 #
 T-S K5.62
 Psalms 1:1–2:3
@@ -16601,7 +16601,7 @@ T-S K10.9
 Isaiah 54:17–57:4; 66:18–24; Jeremiah 1:1–16
 Hebrew; standard Tiberian, cantillated; Massorah Magna and Parva.
 Parchment; 27.3cm. x 49.6cm.; 3 columns; 2 leaves conjoined; 19 lines; mutilated and rubbed with a few small pieces of text missing.
-The sign V is used to fill up line-endings. On folio 1r at Isaiah 55:6 the rubric ביו ראש/ שנה לכיפור indicates that the passage which follows is the Haphtorah for Shabbat Shubah and at Isaiah 55:13 there is a decorated ם . On folio 2r in the third column after Isaiah 66:24 there are decorated Massoretic notes, the first on the number of verses in Isaiah, namely, 1291, the second a bibliographical note on Jeremiah. The Judaeo-Arabic אכרהא, ‘the end’, is written in the margins at Isaiah 54:17, 56:4, and 66:24 in a different hand with a different colour of ink from that of the text. Other jottings on folios 1r and 2v are in the same hand as this.
+The sign V is used to fill up line-endings. On folio 1r at Isaiah 55:6 the rubric בין ראש/ שנה לכיפור indicates that the passage which follows is the Haphtorah for Shabbat Shubah and at Isaiah 55:13 there is a decorated ם . On folio 2r in the third column after Isaiah 66:24 there are decorated Massoretic notes, the first on the number of verses in Isaiah, namely, 1291, the second a bibliographical note on Jeremiah. The Judaeo-Arabic אכרהא, ‘the end’, is written in the margins at Isaiah 54:17, 56:4, and 66:24 in a different hand with a different colour of ink from that of the text. Other jottings on folios 1r and 2v are in the same hand as this.
 #
 T-S K10.11
 Numbers 35:27–31; 35:33–34; 36:3–4; 36:7–9; 36:13; Deuteronomy 1:1; 1:4–7
@@ -16625,7 +16625,7 @@ T-S K10.19
 Joshua 9:22–23; 9:25–10:3; 10:5–6; 10:9–13; 16:5–17:16
 Hebrew; standard Tiberian, cantillated; Massorah Magna and Parva.
 Parchment; 18cm. x 28.2cm. and 32.5cm. x 32cm.; 3 columns; 2 leaves separate; 20 lines (complete); badly mutilated with many pieces of text missing.
-The sign V" or V' is used to fill up line-endings. On folio 2r at Joshua 17:4 there is an illuminated מ in the margin between the second and third columns.
+The sign V" or V' is used to fill up line-endings. On folio 2r at Joshua 17:4 there is an illuminated ס in the margin between the second and third columns.
 #
 T-S K10.23
 Leviticus 1:9–5:23
@@ -16637,7 +16637,7 @@ T-S K10.25
 Judges 3:20–4:14
 Hebrew; standard Tiberian, cantillated; Massorah Magna and Parva.
 Parchment; 32.2cm. x 13.4cm. and 31.8cm. x 18.9cm.; 3 columns; 1 leaf; 21 lines; mutilated with pieces of text missing and the fragment torn into 2 pieces.
-On recto at Judges 3:31 there is an illuminated ם in the margin between the second and thi d columns.
+On recto at Judges 3:31 there is an illuminated ס in the margin between the second and third columns.
 #
 T-S K11.4
 Psalms 38:22-39:5
@@ -16672,7 +16672,7 @@ T-S K11.18
 Psalms 1:1–3; Joshua 1:11–17
 Hebrew; unpointed, but with verse divisions, in the Biblical passages.
 Paper; 17.5cm. x 27cm.; 1 column; 2 leaves conjoined; 9–12 lines; mutilated.
-Both folios contain in the margins much idle scribbling of pen-exercises (תגרבת חבר etc.) in Hebrew, Judaeo- Arabic, and a little in Arabic, such as: שררו מסכת אבות/ שמעון הצדיק הו היה מאנשי כנסת הגדולה
+Both folios contain in the margins much idle scribbling of pen-exercises (תגרבת חבר etc.) in Hebrew, Judaeo- Arabic, and a little in Arabic, such as: שרח מסכת אבות/ שמעון הצדיק הו היה מאנשי כנסת הגדולה
 #
 T-S K11.19
 Psalms 1:1; Ecclesiastes 1:2–4; Song of Solomon 1:1; Ruth 1:1–2; Isaiah 1:2–3; Genesis 1:1–2; Psalms 34:15
@@ -16699,8 +16699,7 @@ Paper; 25cm. x 17.4cm.; 1 column; 1 leaf; 11 lines; mutilated and rubbed with pi
 Repetitions of parts of the text indicate that the fragment is a writing exercise. Verso is blank.
 #
 T-S K23.3
-Leviticus 26:3–8
-and a Rabbinic text, a palimpsest
+Leviticus 26:3–8 and a Rabbinic text, a palimpsest
 Hebrew and Aramaic; unpointed for the Biblical text, Tiberian vocalization for the Rabbinic text.
 Parchment; 17.1cm. x 14.2cm.; 1 column; 1 leaf; 10 lines (Biblical text), 14 lines (Rabbinic text); mutilated and rubbed with many pieces of text missing or illegible.
 On verso there are writing exercises of letters of the Hebrew alphabet. The Rabbinic text, composed in the Talmudic style, with Tiberian vocalization seems to deal with Passover Laws and may be a Geonic responsum. It is written transversely in relation to the Biblical text. T-S K23.2 is noted as missing on 18.7.1928 by H. L [= Herbert Loewe]. It is possible that this fragment, which is one of three at T-S K23.3, is the one in question (See Introduction, Paragraph 10).
@@ -16796,7 +16795,7 @@ Leviticus 11:1–2; 11:27–28; 14:24–52
 Hebrew; unpointed, but with verse divisions.
 Parchment; 31.2cm. x 38.3cm.; 2 columns (complete); 2 leaves conjoined; 19–22 lines (complete); mutilated with many pieces of text missing.
 #
-T-S 8J9[1]
+T-S 8J9[18]
 Genesis 18:16–19
 Hebrew; unpointed, but with verse divisions.
 Paper; 18cm. x 13.9cm.; 1 column; 1 leaf; 8 lines; mutilated.
@@ -16806,28 +16805,28 @@ T-S 8J17[17]
 Leviticus 8:30–31; 8:26–27
 Hebrew; predominantly standard Tiberian, uncantillated.
 Paper; 10.5cm. x 16.5cm.; 2 columns; 1 leaf; 9 lines (complete); mutilated and rubbed with pieces of text missing or illegible.
-Examples of non-standard vocalization are: ־=־־ for–and–;–for ־?=־. Verso contains a Judaeo-Arabic text of 19 lines forming the lower part of an official document issued under the authority of a Nagid to the effect that the recipient of the communication is to meet certain persons to receive from them what is due to a widow and an orphan. Lines 5–7 read:
-ויקבץ מא (sic)או יגתמע באלמואלי אלמדכורון ענדוזם ללאלמנה ולליתימה בעד מרואסבתתמא
+Examples of non-standard vocalization are: ־=־־ for–and–;–for ־?=־. Verso contains a Judaeo-Arabic text of 19 lines forming the lower part of an official document issued under the authority of a Nagid to the effect that the recipient of the communication is to meet certain persons to receive from them what is due to a widow and an orphan. Lines 5–7 read: (sic)
+אן יגתמע באלמואלי אלמדכורון ויקבץ מא ענדהם ללאלמנה ולליתימה בעד מחאסבתהמא 
 The name of the Nagid has been lost.
 #
 T-S 8J20[22]
 Leviticus 8:9–11; 8:4–6
 Hebrew; predominantly standard Tiberian, uncantillated.
 Paper; 12.4cm. x 16.6cm.; 2 columns; 1 leaf; 7–9 lines; mutilated and rubbed with a few small pieces of text missing.
-Examples of non-standard vocalization are: ~=- for–and–;–for -z=-. The tetragrammaton is abbreviated to 1'׳ . Verso contains Judaeo-Arabic texts. It begins with 4 faint lines forming the end of a piece evidently concerning a halakhic problem. It begins: שליח בית ביו תהצרהם גמיע ותערפהם מוגב אלשרע פי דלך . The expression ישע רב with which this text ends is characteristic of Solomon ben Judah. This is continued in a later hand in 7 lines and the margin by a letter dealing with the status of orphans, and is noteworthy for an interpretation of Babylonian Talmud Baba Metsia 70a and Arakhin 22a as follows: 
-ואל חכמים זל יקולו יתמי ז־אכלי דלא רדהו ליזול באתר שבקיה ומעני דלך אן אלאיתאם אדא טלבו גיר מסתחקהם יסתחקו אל מות וילהקו מן כלפהם
+Examples of non-standard vocalization are: ~=- for–and–;–for -z=-. The tetragrammaton is abbreviated to 1'׳ . Verso contains Judaeo-Arabic texts. It begins with 4 faint lines forming the end of a piece evidently concerning a halakhic problem. It begins: שליח בית בין תחצרהם גמיע ותערפהם מוגב אלשרע פי דלך . The expression ישע רב with which this text ends is characteristic of Solomon ben Judah. This is continued in a later hand in 7 lines and the margin by a letter dealing with the status of orphans, and is noteworthy for an interpretation of Babylonian Talmud Baba Metsia 70a and Arakhin 22a as follows: 
+ואל חכמים זל יקולו יתמי דאכלי דלא דדהו ליזול באתר שבקיה ומעני דלך אן אלאיתאם אדא טלבו גיר מסתחקהם יסתחקו אל מות וילחקו מן כלפהם
 #
 T-S 10H6[9]
 Lamentations 1:8–21
 Hebrew; standard Tiberian, cantillated; Massorah Magna.
 Parchment; 18.6cm. x 33.3cm.; 2 columns; 2 leaves conjoined; 16 lines; mutilated and rubbed with pieces of text missing or illegible.
-Folio 2 contains liturgical poetry beginning למה ארכת שלות with the decorated heading שבעה לשבת and a decorated ם written beside it.
+Folio 2 contains liturgical poetry beginning למה ארכה שלות with the decorated heading שבעה לשבת and a decorated ם written beside it.
 #
 T-S 13J3[23]
 Leviticus 4:1–5; 2:13–3:2
 Hebrew; predominantly standard Tiberian, uncantillated.
 Paper; 16.5cm. x 25.7cm.; 2 columns; 1 leaf; 11–12 lines; mutilated and rubbed.
-Examples of non-standard vocalization are: ־=־־ for -=ד-,–, and–; דד־- for . The tetragrammaton is abbreviated to1'׳ . Yerso contains a Judaeo-Arabic record drawn up in Bilbays and dated 1215 A.D. of court proceedings between אלשיך חיוו מגרבי בן מוטי and his former fiancee מלאה ברת אליהו הזקן. Hayyun claims against her a sum of over 4 dinars (אכתר מן ארבעה דנאניר, lines 8/9), which he had spent on her during their engagement. She, however, will agree to pay only 48 dirhams. The righteous elders ( זהב י י.ושר, line 10) mediate between the two parties and a settlement of 58 dirhams is reached. See Goitein, S.D. A Mediterranean Society, vol. 1. California University Press, 1967. p.383, section 63.
+Examples of non-standard vocalization are: ־=־־ for -=ד-,–, and–; דד־- for . The tetragrammaton is abbreviated to1'׳ . Yerso contains a Judaeo-Arabic record drawn up in Bilbays and dated 1215 A.D. of court proceedings between אלשיך חיון מגרבי בן מוסי and his former fiancee מלאח ברת אליהו הזקן. Hayyun claims against her a sum of over 4 dinars (אכתר מן ארבעה דנאניר, lines 8/9), which he had spent on her during their engagement. She, however, will agree to pay only 48 dirhams. The righteous elders ( זקני יושר, line 10) mediate between the two parties and a settlement of 58 dirhams is reached. See Goitein, S.D. A Mediterranean Society, vol. 1. California University Press, 1967. p.383, section 63.
 #
 T-S 13J5[5]
 Leviticus 3:9–13; 3:6–9
@@ -16959,13 +16958,13 @@ T-S Arabic 42.52
 1 Kings 7:15–17
 Hebrew; standard Tiberian, cantillated.
 Paper; 17cm. x 12.7cm.; 1 column; 1 leaf; 12 lines; slightly mutilated and rubbed.
-Both recto and verso contain three lines of liturgical poetry and Arabic exercises and jottings of no substance. The longest of these is the beginning of a letter on verso, which reads [ ]
+Both recto and verso contain three lines of liturgical poetry and Arabic exercises and jottings of no substance. The longest of these is the beginning of a letter on verso.
 #
 T-S Arabic 53.54
 Leviticus 25:25–29; 25:38–44; 26:26–30; 26:40–43
 Hebrew; predominantly standard Tiberian, cantillated.
 Parchment; 15.8cm. x 12.9cm.; 1 column; 2 leaves conjoined; 15 lines (incomplete); mutilated and rubbed with many pieces of text missing or illegible.
-An example of non-standard vocalization is: בד־- for–. On folios 1r and 2v in the inside margins and inverted in relation to the Bible text there are 13 lines including Judaeo-Arabic as follows: תפסיר עטרת/ הדברים מצופה/ בגמיע מא/ תחויה בואטנהא/ ותפסיר/ מגלת בני/ חשמונאי גמיע/ דלו מלכא/ ללטיך אבוסעד/ הנדיב והשוע/[ ] יפתח לו/ מאוצרו הטוב/ אמן סלה
+An example of non-standard vocalization is: בד־- for–. On folios 1r and 2v in the inside margins and inverted in relation to the Bible text there are 13 lines including Judaeo-Arabic as follows: תפסיר עשרת/ הדברים מצופה/ בגמיע מא/ תחויה בואטנהא/ ותפסיר/ מגלת בני/ חשמונאי גמיע/ דלך מלכא/ ללשיך אבוסעד/ הנדיב והשוע/[] יפתח לו/ מאוצרו הטוב/ אמן סלה
 #
 T-S Misc. 1.1
 Numbers 3:12–33:19
@@ -17020,7 +17019,7 @@ T-S Misc. 1.9
 Psalms 78:63–71; 79:2–5; 79:8–80:8
 Hebrew; predominantly standard Tiberian, cantillated. Parchment; 14cm. x 26.2cm.; 1 column; 2 leaves conjoined and consecutive; 11–14 lines (complete); mutilated with many pieces of text missing.
 Examples of non-standard vocalization are:–for–;–for־ ־. There is poetic spacing which does not always correspond to that followed in Kittel-Kahle
-BH3. On folio 1v there are jottings in the margins in Hebrew and Arabic including ויבקשו from Psalms 38:13, האקדמנו from Micah 6:6, and Arabic text. On folio 2r there are
+BH3. On folio 1v there are jottings in the margins in Hebrew and Arabic including וינקשו from Psalms 38:13, האקדמנו from Micah 6:6, and Arabic text. On folio 2r there are
 further jottings, including the name פינחס and Arabic text On folio 2v גמלתי from Psalms 7:5 is jotted twice.
 #
 T-S Misc. 1.10
@@ -17116,7 +17115,7 @@ T-S Misc. 1.25
 Joshua 24:3–15; 24:24–25; Jeremiah 52:11–16; 52:31–34; 1 Samuel 1:1–7
 Hebrew; standard Tiberian where legible, cantillated; Massorah Parva.
 Parchment; 15.1cm. x 23.7cm.; 1 column; 2 leaves conjoined; 19 lines; badly mutilated with many pieces of text missing.
-On folio 2v before 1 Samuel 1:1 the rubric אפאטירא ל [מ] ועדים ראש השנה מפטיריו בשמואל indicates that the following passage is a Haphtorah for the first day of New Year, the first in a collection of festival Haphtaroth. The sign V is used to fill up line-endings.
+On folio 2v before 1 Samuel 1:1 the rubric אפאטירא   ל[מ]ועדים ראש השנה מפטירין בשמואל indicates that the following passage is a Haphtorah for the first day of New Year, the first in a collection of festival Haphtaroth. The sign V is used to fill up line-endings.
 #
 T-S Misc. 1.26
 1 Samuel 1:27–2:6; 2:10–11; 3:19–20; Jeremiah 30:25–31:2
@@ -17176,7 +17175,7 @@ T-S Misc. 1.36
 Leviticus 1:1–4
 Hebrew; standard Tiberian, uncantillated.
 Parchment; 22.7cm. x 15.3cm.; 1 column; 1 leaf; 6 lines; mutilated with a few small pieces of text missing.
-On verso Leviticus 1:4 is followed by חזק וברור תהיה, a congratulatory benediction, probably indicating that the piece was part of a child’s primer. A similar piece occurs in the upper margin: /[ 1חזק וברור [ 1ול
+On verso Leviticus 1:4 is followed by חזק וברוך תהיה, a congratulatory benediction, probably indicating that the piece was part of a child’s primer. A similar piece occurs in the upper margin: /[ 1חזק וברוך [ 1ול
 The tetragrammaton is abbreviated to '1,1.
 #
 T-S Misc. 1.37
@@ -17298,7 +17297,7 @@ T-S Misc. 1.56
 Ezekiel 22:11–16; 20:1–3
 Hebrew; unpointed, but with verse divisions.
 Parchment; 16.7cm. x 15.9cm.; 1 column; 1 leaf; 11 lines; mutilated with a few small pieces of text missing.
-On recto in the lower margin there are Hebrew jottings written in a different hand with a different colour of ink from that of the text. On verso in the same hand the last words of Ezekiel 22:16 are repeated twice in the margins and at Ezekiel 20:1 there is a decoration containing the letters שרפ (sic), possibly פרט written backwards. Also at Ezekiel 20:1 the rubric דקדטים תהיו/ ביחזקאל indicates that the following passage is the Haphtorah for Seder 30 at Leviticus 19:1. In Snaith’s edition this Haphtorah begins at Ezekiel 20:2 in the Sephardi rite, but see Talmudic Encyclopedia, vol. 10 ad loc.
+On recto in the lower margin there are Hebrew jottings written in a different hand with a different colour of ink from that of the text. On verso in the same hand the last words of Ezekiel 22:16 are repeated twice in the margins and at Ezekiel 20:1 there is a decoration containing the letters שרפ (sic), possibly פרש written backwards. Also at Ezekiel 20:1 the rubric דקדשים תהיו/ ביחזקאל indicates that the following passage is the Haphtorah for Seder 30 at Leviticus 19:1. In Snaith’s edition this Haphtorah begins at Ezekiel 20:2 in the Sephardi rite, but see Talmudic Encyclopedia, vol. 10 ad loc.
 #
 T-S Misc. 1.57
 Isaiah 42:1–5; 41:2–13
@@ -17322,7 +17321,7 @@ There is poetic spacing which does not always correspond to that followed in Kit
 T-S Misc. 1.60
 Biblical passages
 Hebrew; predominantly standard Tiberian, cantillated. Parchment; 17.3cm. x 14.7cm., 17.9cm. x 14.7cm., 17.9cm. x 15.5cm., and 17.5cm. x 13.9cm.; 1 column; 4 leaves separate; 17 lines; mutilated with a few small pieces of text missing.
-The text comprises the following passages: Ezekiel 1:18–2:2; 3:12; 37:13–14; 36:37–38; Isaiah 10:32–11:9; Ezekiel 34:14–27; Isaiah 63:1–9; 1 Samuel 1:1–5. Examples of non-standard vocalization are: ר־=- for–;–for־=־־. On folio 1v at Ezekiel 1:27 ממראה, which has been omitted from the text, is supplied in the margin and after Ezekiel 2:2 the Haphtorah heading 'יום שני עצרת בתר עש . On folio 2r after Ezekiel 37:14 the rubric שביעי של פסה הפטרת האזינה וידבר ליהוה דוד indicates that Ezekiel 37:1–14 was the Haphtorah for the seventh day of Passover together with 2 Samuel 22:1, which is also the Haphtorah for Seder 53 at Deuteronomy 32:1. The larger rubric below this before Isaiah 10:32 שמיני של פסה בישעי indicates that the following passage is the Haphtorah for the eighth day of Passover. On folio 3r in the top righthand corner there is a decorated ו , probably a gathering number. On folio 3v after Ezekiel 34:27 there is the Haphtorah heading הפטרת במדבר סיני, which in the complete manuscript probably introduced Hosea 2:1–22 as the Haphtorah for Seder 34 at Numbers 1:1. On folio 4r there are various marginal scribblings. On folio 4v before 1 Samuel 1:1 the rubric יום ראשון של ראש השנה בשמואל indicates that the following passage is the Haphtorah for the first day of New Year. אול יום in the margin at this point is Judaeo-Arabic translation of יום ראשון. It is written in a different hand with a different colour of ink from that of the text.'
+The text comprises the following passages: Ezekiel 1:18–2:2; 3:12; 37:13–14; 36:37–38; Isaiah 10:32–11:9; Ezekiel 34:14–27; Isaiah 63:1–9; 1 Samuel 1:1–5. Examples of non-standard vocalization are: ר־=- for–;–for־=־־. On folio 1v at Ezekiel 1:27 ממראה, which has been omitted from the text, is supplied in the margin and after Ezekiel 2:2 the Haphtorah heading 'יום שני עצרת בתר עש . On folio 2r after Ezekiel 37:14 the rubric שביעי של פסח הפטרת האזינה וידבר ליהוה דוד indicates that Ezekiel 37:1–14 was the Haphtorah for the seventh day of Passover together with 2 Samuel 22:1, which is also the Haphtorah for Seder 53 at Deuteronomy 32:1. The larger rubric below this before Isaiah 10:32 שמיני של פסח בישעי indicates that the following passage is the Haphtorah for the eighth day of Passover. On folio 3r in the top righthand corner there is a decorated ו , probably a gathering number. On folio 3v after Ezekiel 34:27 there is the Haphtorah heading הפטרת במדבר סיני, which in the complete manuscript probably introduced Hosea 2:1–22 as the Haphtorah for Seder 34 at Numbers 1:1. On folio 4r there are various marginal scribblings. On folio 4v before 1 Samuel 1:1 the rubric יום ראשון של ראש השנה בשמואל indicates that the following passage is the Haphtorah for the first day of New Year. אול יום in the margin at this point is Judaeo-Arabic translation of יום ראשון. It is written in a different hand with a different colour of ink from that of the text.
 #
 T-S Misc. 1.61
 Exodus 9:5–6; 9:8–9; 9:12–13; 9:16–17
@@ -17354,8 +17353,7 @@ Parchment; 16cm. x 11.4cm.; 1 column; 1 leaf; 13 lines; worn, but almost whole.
 There is poetic spacing which does not always correspond to that followed in Kittel-Kahle BH5.
 #
 T-S Misc. 1.66
-Genesis 31:19–24; 31:27–30
-with Targum Onqelos and Judaeo-Arabic translation ;Saadyanic) after the first word of each verse, a trilingual version
+Genesis 31:19–24; 31:27–30with Targum Onqelos and Judaeo-Arabic translation (Saadyanic) after the first word of each verse, a trilingual version
 Hebrew, Aramaic, and Judaeo-Arabic; standard Tiberian where legible, cantillated, for the Hebrew and Aramaic, unpointed for the Judaeo-Arabic.
 Paper; 11.6cm. x 10.8cm.; 1 column; 1 leaf; 12 lines; badly mutilated with many pieces of text missing.
 #
@@ -17462,13 +17460,13 @@ T-S Misc. 1.84
 Isaiah 42:16; 54:1–6; 40:29–41:7
 Hebrew; unpointed.
 Parchment; 15.2cm. x 28.4cm.; 2 columns; 1 leaf; 13 lines (incomplete); badly mutilated with many pieces of text missing.
-On recto before Isaiah 54:1 the rubric /אלת תולדת נח בישעיה indicates that the following passage is the Haphtorah for Seder 2 at Genesis 6:9. Verso is blank.
+On recto before Isaiah 54:1 the rubric אלה תולדת נח/ בישעיה indicates that the following passage is the Haphtorah for Seder 2 at Genesis 6:9. Verso is blank.
 #
 T-S Misc. 1.85
 Nehemiah 8:17–9:16; 12:25–46
 Hebrew; predominantly standard Tiberian, uncantillated.
 Parchment; 22.6cm. x 33.9cm.; 1 column; 2 leaves conjoined; 19 lines; mutilated with many pieces of text missing.
-Examples of non-standard vocalization are: -=7־ for–;–for–;–ל–for–and–. On folio 1v at Nehemiah 9:14 להם , which has been omitted from the text after [ ], is supplied above the line. On folio 2r at Nehemiah 12:30 there is a ג in the margin.
+Examples of non-standard vocalization are: -=7־ for–;–for–;–ל–for–and–. On folio 1v at Nehemiah 9:14 להם , which has been omitted from the text after צויתה (sic), is supplied above the line. On folio 2r at Nehemiah 12:30 there is a ג in the margin.
 #
 T-S Misc. 1.86
 Psalms 64:10–68:5; 78:67–81:6
@@ -17502,7 +17500,7 @@ Examples of non-standard vocalization are:–for־=־; 1-for–; the unusual use
 T-S Misc. 1.91
 Psalms 103:17–104:24; 115:8–118:1
 Hebrew; predominantly standard Tiberian, cantillated. Parchment; 11.4cm. x 34.1cm.; 1 column; 2 leaves conjoined; 13 lines; mutilated with pieces of text missing.
-Examples of non-standard vocalization are:–for–; -r־ for–;-77-for דד־-;–for ״ד•. There is poetic spacing which does not always correspond to that followed in Kittel-Kahle BH3. On folio 1r at the beginning of Psalms 104 the Psalm number ,קר differs by one more from the numbering followed in Kittel-Kahle BH3. On folio 2r at the beginning of Psalms 116 there is the Psalm number 116 and at Psalms 115:14 עליכם is repeated in the margin in a different hand with a different colour of ink from that of the text. On folio 2v at the beginning of Psalms 117 and 118 there are the Psalm numbers 117 and 118 respectively.
+Examples of non-standard vocalization are:–for–; -r־ for–;-77-for דד־-;–for ״ד•. There is poetic spacing which does not always correspond to that followed in Kittel-Kahle BH3. On folio 1r at the beginning of Psalms 104 the Psalm number קה differs by one more from the numbering followed in Kittel-Kahle BH3. On folio 2r at the beginning of Psalms 116 there is the Psalm number 116 and at Psalms 115:14 עליכם is repeated in the margin in a different hand with a different colour of ink from that of the text. On folio 2v at the beginning of Psalms 117 and 118 there are the Psalm numbers 117 and 118 respectively.
 #
 T-S Misc. 1.92a
 Genesis 33:8–34:14; 39:15–40:17
@@ -17594,7 +17592,7 @@ T-S Misc. 1.107
 Judges 6:33–7:9
 Hebrew; standard Tiberian, cantillated; Massorah Magna and Parva.
 Parchment; 14.7cm. x 33.9cm.; 3 columns; 1 leaf with a small piece of another leaf conjoined; 8 lines (incomplete); badly mutilated with many pieces of text missing.
-On recto in the margin between the first and second columns there is the beginning of a Hebrew alphabet. On verso Judges 7:8 is repeated in the lower margin and האיש and מדין* from that verse are written in the margins between the second and third columns beside a mutilated text.
+On recto in the margin between the first and second columns there is the beginning of a Hebrew alphabet. On verso Judges 7:8 is repeated in the lower margin and האיש and מדין from that verse are written in the margins between the second and third columns beside a mutilated text.
 #
 T-S Misc. 1.108
 Leviticus 5:19–6:19
@@ -17617,13 +17615,13 @@ T-S Misc. 1.111
 Exodus 22:7–24:6
 Hebrew; standard Tiberian where legible, cantillated.
 Parchment; 27.3cm. x 51.7cm.; 2 columns; 2 leaves conjoined and consecutive; 19 lines; mutilated and rubbed with many pieces of text missing or illegible.
-On folio 1v in the upper margin there is a n . Parts of the text have been overwritten.
+On folio 1v in the upper margin there is a ח. Parts of the text have been overwritten.
 #
 T-S Misc. 1.112a
 Numbers 3:40–4:4; 4:31–46; 9:8–11:12
 Hebrew; unpointed.
 Parchment; 22cm. x 33.2cm.; 2 columns (complete); 2 leaves conjoined; 33 lines; badly mutilated with many pieces of text missing.
-On the join between folios 1r and 2v there is the following note (of ownership?) written in a different hand from that of the text and vocalized: הלל בר רבעא יוסף אבן עוכל ריש כלה. This man is known from other Genizah documents, for example, T-S Misc. 28.250 (See S.D. Goitein in Tarbiz, vol. 38, no. 1,1968, pp.26–7), and his appearance here provides for this fragment a date in or before the eleventh century. Note that the name here is pointed עוכל.
+On the join between folios 1r and 2v there is the following note (of ownership?) written in a different hand from that of the text and vocalized: הלל בר רבעא יוסף אבן עוכל ריש כלה. This man is known from other Genizah documents, for example, T-S Misc. 28.250 (See S.D. Goitein in Tarbiz, vol. 38, no. 1,1968, pp.26–7), and his appearance here provides for this fragment a date in or before the eleventh century. Note that the name here is pointed עוֹכֵל.
 #
 T-S Misc. 1.112b
 Numbers 33:55–34:15; 34:24–28; 35:8–21
@@ -17642,10 +17640,10 @@ Genesis 11:21–26
 Hebrew; standard Tiberian, uncantillated.
 Parchment; 32.4cm. x 7.6cm.; 1 column; 1 leaf; 21 lines; mutilated with many pieces of text missing.
 The text on recto is written transversely in relation to that on verso. Verso contains the signatures concluding a now lost court document, reading:
-[ ] בר משולם נעגא/1 ] בר יצחק נע אפרים בר
-משולם גע/[הלל] בר צדוק אב בית דין 5jrr/ נתן ב [ר שט] ואל החבר דל/ [ ]הן ניע/
+ בר משולם נעגא/[ ] בר יצחק נע אפרים בר [ ]
+משולם גע/[הלל] בר צדוק אב בית דין זקל/ נתן   ב[ר שמ]ואל החבר זל/ [ ]הן נע/
 These names are known from other Genizah docu- ments and provide for this fragment a date in the middle of the twelfth century. See, for example, J. Mann: Jews in Egypt etc., vol. 2, p.366, where a document dated 1463 Seleucid era (= 1151 A.D.) with some of these signatures is mentioned. (Note that T-S 8J33.2 given there is an error for T-S 8J32.2). On the lefthand side of verso there are 5 lines scored out which read:
-בשעה מעולה/ מעולה מהוללה/ ושמחה וצהלה/ ורנה וגילה וחד[וה?]/ וגאולה וירושה(?)/
+/(?)בשעה מעולה/ מעולה מהוללה/ ושמחה וצהלה/ ורנה וגילה וחד[וה?]/ וגאולה וירושה
 Beside this is preserved part of an inscribed circular design written in very small script. It includes Deuteronomy 28:6.
 #
 T-S Misc. 1.114
@@ -17726,7 +17724,7 @@ Parchment; 32.5cm. x 53.5cm.; 3 columns; 2 leaves conjoined; 24 lines; mutilated
 T-S Misc. 1.127
 Zephaniah 3:8; Psalms 136:1–16
 Hebrew; standard Tiberian, cantillated.
-Parchment; 42.1cm. x 20cm.; 1 column; 1 leaf; 20 lines; badly mutilated with many large pieces of text missing. On recto at Psalms 136:14 ונער פרעה, which has been written too soon from 136:15, is deleted by a line drawn above it and corrected immediately afterwards. On verso there are 3 short and mutilated lines written in Arabic in a different hand with a different colour of ink from that of the text on recto, as follows [ ]
+Parchment; 42.1cm. x 20cm.; 1 column; 1 leaf; 20 lines; badly mutilated with many large pieces of text missing. On recto at Psalms 136:14 ונער פרעה, which has been written too soon from 136:15, is deleted by a line drawn above it and corrected immediately afterwards. On verso there are 3 short and mutilated lines written in Arabic in a different hand with a different colour of ink from that of the text on recto, as follows (Arabic text)/[ ]מז מליח כט [ ] /  [ ]אלרייס אבי אל[ ]
 #
 T-S Misc. 1.128
 Exodus 26:19–28:8
@@ -17738,7 +17736,7 @@ Numbers 17:21–28; 18:9–15
 with Targum Onqelos after each verse
 Hebrew and Aramaic; unpointed, but with verse divisions.
 Parchment; 27cm. x 11.7cm.; 1 column; 1 leaf; 27 lines; mutilated with pieces of text missing.
-On recto in the upper margin טניו בם is written twice.
+On recto in the upper margin טנין בם is written twice.
 #
 T-S Misc. 1.130
 Hosea 10:2–6; Isaiah 11:4–8; 63:3–7; Obadiah 11–15; Isaiah 49:23–25
@@ -17755,7 +17753,7 @@ T-S Misc. 1.132
 Numbers 33:50–34:29; Psalms 115:1–18
 Hebrew; unpointed, except for isolated examples of standard Tiberian vocalization.
 Parchment; 45.1cm. x 12.8cm.; 1 column; 1 leaf; 46 lines; mutilated.
-On recto at Numbers 34:16 וידבר יחוה is supplied above the line beside a mutilated text in a different hand from that of the text. On verso Psalms 115 is headed בשמי רחמי and there are various trifling jottings and scribblings in Arabic and Judaeo-Arabic.
+On recto at Numbers 34:16 וידבר יהוה is supplied above the line beside a mutilated text in a different hand from that of the text. On verso Psalms 115 is headed 'בשמ' רחמ and there are various trifling jottings and scribblings in Arabic and Judaeo-Arabic.
 #
 T-S Misc. 1.133
 Genesis 15:10–17:4
@@ -17973,7 +17971,7 @@ T-S Misc. 2.37
 2 Samuel 22:8–27; 22:35–47; Isaiah 10:32–11:2
 Hebrew; standard Tiberian, cantillated; Massorah Parva on recto.
 Parchment; 22.3cm. x 29.2cm.; 1 column on recto, 2 columns on verso; 1 leaf; 15 lines (incomplete); mutilated with pieces of text missing.
-There is poetic spacing which does not always correspond to that followed in Kittel-Kahle BH3. On verso the second narrower column containing Isaiah 10:32–11:2 is headed יום שני של יום טוב האחרון של פסה בישעיה , indicating that it is the Haphtorah for the eighth day of Passover.
+There is poetic spacing which does not always correspond to that followed in Kittel-Kahle BH3. On verso the second narrower column containing Isaiah 10:32–11:2 is headed יום שני של יום טוב האחרון של פסח בישעיה , indicating that it is the Haphtorah for the eighth day of Passover.
 #
 T-S Misc. 2.38
 Psalms 72:13–17; 73:1–74:1
@@ -17985,7 +17983,7 @@ T-S Misc. 2.39
 Psalms 10:8–11; 11:3–6; 12:7–13:2; 14:4–7
 Hebrew; standard Tiberian, cantillated; Massorah Magna and Parva.
 Parchment; 17.5cm.x 30.1cm.; 2 columns; 1 leaf; 7 lines (incomplete); mutilated with many pieces of text missing and the fragment torn into 2 pieces.
-There is poetic spacing which does not always correspond to that followed in Kittel-Kahle BH3. On recto part of the text has been overwritten and at Psalms 10:10 15ישח written in the margin between the columns with the same colour of ink as that of the overwriting. There are various jottings in the lower margin. On verso at Psalms 12:8 תשמרם is repeated in the margin between the columns beside a mutilated text. Similarly, at Psalms 14:4 כל פעלי is written in the margin beside a mutilated text.
+There is poetic spacing which does not always correspond to that followed in Kittel-Kahle BH3. On recto part of the text has been overwritten and at Psalms 10:10 ישח written in the margin between the columns with the same colour of ink as that of the overwriting. There are various jottings in the lower margin. On verso at Psalms 12:8 תשמרם is repeated in the margin between the columns beside a mutilated text. Similarly, at Psalms 14:4 כל פעלי is written in the margin beside a mutilated text.
 #
 T-S Misc. 2.40
 1 Samuel 2:28–3:12
@@ -18002,8 +18000,8 @@ T-S Misc. 2.42
 Biblical passages
 Hebrew; unpointed on recto, predominantly standard Tiberian, uncantillated, on verso.
 Paper; 32.7cm. x 14.5cm.; 3 columns on recto, 1 column on verso; 1 leaf; 9 lines on recto, 22 lines on verso; mutilated and rubbed with pieces of text missing or illegible.
-The text on recto comprises Genesis 1:1–5; 6:9–12, the first few verses of Sedarim 1 and 2. The text on verso, which is written transversely in relation to that on recto, comprises the following passages with the theme of the praise of the Lord, commencing with various forms of the root ברך and concluding with a Judaeo-Arabic rubric, which introduces a voluntary additional recitation: Psalms 89:53; 118:26; Jeremiah 17:7; Psalms 41:13; 1 Chronicles 16:36; 1 Kings 8:56; Psalms 103:20–21; 68:27; 135:19–20; 115:15; 103:1–2; 104:1; 103:22. Examples of non-standard vocalization are:־zr־ for–; ך־- for ־דך־. On verso the tetragrammaton is abbreviated to 'h . On recto beside the Bible text there is a Judaeo-Arabic exegetical gloss on the meaning of שלח which reads as follows:
-יקול אלחסיד רבי אברהם זצל פיקול ואל אצילי/ בני אלשליחה (Exodus 24:11)ישראל לו(310) שלח ידו הונא/ מעני אתצאל ואנקטא[ע]/
+The text on recto comprises Genesis 1:1–5; 6:9–12, the first few verses of Sedarim 1 and 2. The text on verso, which is written transversely in relation to that on recto, comprises the following passages with the theme of the praise of the Lord, commencing with various forms of the root ברך and concluding with a Judaeo-Arabic rubric, which introduces a voluntary additional recitation: Psalms 89:53; 118:26; Jeremiah 17:7; Psalms 41:13; 1 Chronicles 16:36; 1 Kings 8:56; Psalms 103:20–21; 68:27; 135:19–20; 115:15; 103:1–2; 104:1; 103:22. Examples of non-standard vocalization are:־zr־ for–; ך־- for ־דך־. On verso the tetragrammaton is abbreviated to 'h . On recto beside the Bible text there is a Judaeo-Arabic exegetical gloss on the meaning of שלח which reads as follows: (Exodus 24:11) (sic)
+/יקול אלחסיד רבי אברהם זצל פיקול ואל אצילי/ בני ישראל לו שלח ידו אלשליחה הונא/ מעני אתצאל ואנקטא[ע]
 The Abraham mentioned here is quoted by Abraham b. Maimonides in several of his works; on him see Steinschneider, M.: Die arabische Literatur der Juden. Kauffmann, Frankfurt a. M. 1902. p.193, paragraph 150. Perhaps he is identical with Abraham b. Hillel (died A.D. 1223), the author of Megillath. Zuta, see Encyclopedia Judaica, vol. 2, 143.
 #
 T-S Misc. 2.43
@@ -18063,10 +18061,10 @@ Aramaic and Hebrew; standard Tiberian, cantillated.
 Parchment; 16.4cm. x 55.4cm.; 3 columns; 2 leaves conjoined; 12 lines (incomplete); badly mutilated and rubbed with many pieces of text missing or illegible.
 #
 T-S Misc. 2.53
-Ezra 10:6–21 10:25–41; Nehemiah 1:1–ר
+Ezra 10:6–21 10:25–41; Nehemiah 1:1–7
 Hebrew; standard Tiberian, cantillated; Massorah Magna and Parva.
 Parchment; 23.9cm. x 21.8cm.; 2 columns; 1 leaf; 24 lines; mutilated with many pieces of text missing.
-On verso at Nehemiah 1:5 לאהבי ו, which has been omitted from the text, is supplied above the line.
+On verso at Nehemiah 1:5 לאהביו, which has been omitted from the text, is supplied above the line.
 #
 T-S Misc. 2.54
 Daniel 4:22–25; 4:30–31; 5:2–5; 5:9–11
@@ -18115,7 +18113,7 @@ T-S Misc. 2.62
 Malachi 1:4–8; 1:13; 2:2–3:17; 3:22–23
 Hebrew; standard Tiberian, cantillated; Massorah Magna and Parva.
 Parchment; 27.7cm. x 18cm.; 2 columns; 1 leaf; 31 lines; mutilated with many pieces of text missing.
-On verso in the upper margin Massorah Magna is formed into a pattern and at Malachi 3:1 מבקשים ומלאך הברית אשר אתם , which has been omitted from the text by homoioteleuton with אתים , is supplied in the margin between the columns in small script.
+On verso in the upper margin Massorah Magna is formed into a pattern and at Malachi 3:1 מבקשים ומלאך הברית אשר אתם , which has been omitted from the text by homoioteleuton with אתם , is supplied in the margin between the columns in small script.
 #
 T-S Misc. 2.63
 Zechariah 7:8–14; 8:12–13; 8:15–19
@@ -18185,7 +18183,7 @@ T-S Misc. 2.75
 Deuteronomy 24:9–26:1
 Hebrew; non-standard Tiberian, cantillated; Massorah Parva on recto.
 Parchment; 26.6cm. x 22.7cm.; 2 columns; 1 leaf; 26 lines; mutilated with a few small pieces of text missing.
-An example of non-standard vocalization is the unusual use of dagesh. Hataph is written in n. On verso at Deuteronomy 26:1, the beginning of Seder 59, there is a decorated Parashah heading.
+An example of non-standard vocalization is the unusual use of dagesh. Hataph is written in ח. On verso at Deuteronomy 26:1, the beginning of Seder 59, there is a decorated Parashah heading.
 #
 T-S Misc. 2.76
 Exodus 9:7–12:11
@@ -18214,7 +18212,7 @@ Isaiah 65:23–25; 51:8–11; 51:16; Ezekiel 28:13–14; 28:19–23; Isaiah 29:2
 Hebrew; standard Tiberian, cantillated; Massorah Magna and Parva.
 Parchment; 18.4cm. x 31.6cm.; 3 columns; 1 leaf; 12 lines (incomplete); mutilated and rubbed with pieces of text missing or illegible.
 On recto in the lefthand margin is written the following note in a different hand from that of the text:
-[ ]עד[ ]דקה ז [פ? ]דה/[ ]ד הכהן[ ]חד לי י י/
+/עד[ ]דקה   ז[פ? ]דה/[ ]ד   הכהן[ ]חד לי י י[ ]
 #
 T-S Misc. 2.81
 Malachi 3:3–5; 3:8–10; 3:12–14; 3:17–18; 3:21–22
@@ -18465,7 +18463,7 @@ On folio 1 a network of vertical and horizontal lines has been drawn through the
 T-S Misc. 3.8
 Genesis 1:9–21
 Hebrew; standard Tiberian where legible, cantillated. Paper; 16.5cm. x 13.8cm.; 1 column; 1 leaf; 13 lines; mutilated and rubbed with pieces of text missing.
-On recto at Genesis 1:9 ויאמר אלה י ם is repeated in the margin and ו י מר is written above the line.
+On recto at Genesis 1:9 ויאמר אלה י ם is repeated in the margin and וימר is written above the line.
 #
 T-S Misc. 3.9
 Deuteronomy 20:8–19; 21:18–22:5
@@ -18482,7 +18480,7 @@ T-S Misc. 3.11
 Genesis 12:7–19; 14:5–15
 Hebrew; standard Tiberian, uncantillated and probably added later with a different colour of ink from that of the consonantal text.
 Paper; 17.5cm. x 25.4cm.; 1 column; 2 leaves conjoined; 13 lines; mutilated with a few small pieces of text missing.
-On folio 1r at Genesis 12:9 אברם, which has been omitted from the text, is supplied in the margin with the. same colour of ink as that of the vocalization. On folio 1v at Genesis 12:17 the error פרע before ביתו is deleted by being crossed through with the same colour of ink as that of the vocalization. On folio 2r at Genesis 14:7 את, which has been omitted from the text before תאמרי, is supplied above the line. The sign '7 is used to fill up line-endings.
+On folio 1r at Genesis 12:9 אברם, which has been omitted from the text, is supplied in the margin with the. same colour of ink as that of the vocalization. On folio 1v at Genesis 12:17 the error פרע before ביתו is deleted by being crossed through with the same colour of ink as that of the vocalization. On folio 2r at Genesis 14:7 את, which has been omitted from the text before האמרי, is supplied above the line. The sign '7 is used to fill up line-endings.
 #
 T-S Misc. 3.12
 Genesis 1:28–2:4
@@ -18494,7 +18492,7 @@ T-S Misc. 3.13
 Genesis 1:21–2:14
 Hebrew; standard Tiberian, cantillated.
 Paper; 18.9cm. x 28cm.; 1 column; 2 leaves conjoined and consecutive; 13 lines; slightly mutilated.
-On folio 1r at Genesis 1:23 ויתי, which has been omitted from the text, is supplied in the margin. The sign V is used to fill up line-endings.
+On folio 1r at Genesis 1:23 ויהי, which has been omitted from the text, is supplied in the margin. The sign V is used to fill up line-endings.
 #
 T-S Misc. 3.14
 Ruth 2:18–3:3
@@ -18523,7 +18521,7 @@ T-S Misc. 3.18
 Leviticus 1:1–2; 1:3–7; 1:5–6; 1:8–9
 Hebrew; standard Tiberian, uncantillated.
 Paper; 16.5cm. x 12cm., 10.8cm. x 11.9cm., and 9.3cm. x 8.4cm.; 1 column; 3 leaves separate; 5–7 lines (incomplete); badly mutilated with many pieces of text missing.
-The fragment appears to be written in a single hand, but the three pieces may not all be part of a single manuscript. The non-standard vocalization for־־=? occurs. The tetragrammaton is abbreviated to . On folio 1v there are 10 damaged lines, incomplete at both ends, of an Arabic document written in a very cursive hand and concerning flax ( 5).
+The fragment appears to be written in a single hand, but the three pieces may not all be part of a single manuscript. The non-standard vocalization for־־=? occurs. The tetragrammaton is abbreviated to . On folio 1v there are 10 damaged lines, incomplete at both ends, of an Arabic document written in a very cursive hand and concerning flax.
 #
 T-S Misc. 3.19
 Genesis 29:13–30:1
@@ -18592,7 +18590,7 @@ T-S Misc. 3.30
 Lamentations 1:1–8
 Hebrew; unpointed, but with verse divisions marked by a single dot and isolated examples of Babylonian vocalization.
 Parchment; 14.9cm. x 24.1cm.; 1 column; 2 leaves conjoined; 17 lines; mutilated with a few small pieces of text missing and tears in the fragment sewn together.
-Folio 1r contains only three unclear words, probably Aramaic, of which the middle one is perhaps to be read מדינתא. On folio 1v before Lamentations 1:1 there are the brief benedictions בשמך רחמנא and ברכה ותודה. Folio 2 contains altogether about 15 lines of most inexpertly written Arabic of superstitious content. Folio 2v lines 2 and 3 will serve as an example:
+Folio 1r contains only three unclear words, probably Aramaic, of which the middle one is perhaps to be read מדינתא. On folio 1v before Lamentations 1:1 there are the brief benedictions בשמך רחמנא and ברכה ותודה. Folio 2 contains altogether about 15 lines of most inexpertly written Arabic of superstitious content. 
 #
 T-S Misc. 3.31
 Lamentations 1:18–22; 2:9–13
@@ -18640,7 +18638,7 @@ T-S Misc. 3.38
 Ezekiel 34:28 or 39:26 (end only); Habakkuk 1:14–17; Deuteronomy 32:29–35; Exodus 16:13–22
 Hebrew; standard Tiberian where legible, uncantillated.
 Paper; 12.9cm. x 18.3cm.; 1 column; 2 leaves conjoined; 13 lines; mutilated and rubbed with pieces of text missing or illegible.
-On folio 1r after Habakkuk 1:17 there are three lines of liturgical rubric, as follows: ואומי סדר המערכה ותרומת/ הדשן כמו שהם כתו'.טם ביום/ ראשון ואומי מהאזינו/
+On folio 1r after Habakkuk 1:17 there are three lines of liturgical rubric, as follows: ואומ' סדר המערכה ותרומת/ הדשן כמו שהם כתו' שם ביום/ ראשון ואומ' מהאזינו
 #
 T-S Misc. 3.39
 Lamentations 2:3–12; 2:21–3:24
@@ -18706,7 +18704,7 @@ T-S Misc. 3.49
 Leviticus 14:13–36; 19:15–20:5
 Hebrew; standard Tiberian, cantillated; Massorah Magna and Parva.
 Parchment; 14.7cm. x 25.5cm.; 2 columns; 2 leaves conjoined; 21 lines; mutilated and rubbed.
-On folio 1r at Leviticus 14:16 הטמן אטר על כפו וזטמאלית, which has been omitted from the text, is supplied in the margin between the columns.
+On folio 1r at Leviticus 14:16 השמן אשר על כפו השמאלית, which has been omitted from the text, is supplied in the margin between the columns.
 #
 T-S Misc. 3.50
 Ecclesiastes 6:2–3; 6:6–7:5; 7:8–11
@@ -18776,7 +18774,7 @@ T-S Misc. 3.60c
 Job 38:34(?)
 Hebrew; no pointing preserved; Massorah Parva.
 Parchment; 8.6cm. x 4.5cm.; 1 column; 1 leaf; indeterminate number of lines; badly mutilated with only a piece of a margin preserved.
-The only clue to the identification of this fragment is a decorated 0. which appears to have the decorated number n below it. If this is so, the fragment belongs to the same leaf as T-S Misc. 3.60a, which would include the ם numbered n at Job 38:34 according to the text followed in Kittel-Kahle BH3.
+The only clue to the identification of this fragment is a decorated 0. which appears to have the decorated number n below it. If this is so, the fragment belongs to the same leaf as T-S Misc. 3.60a, which would include the ס numbered n at Job 38:34 according to the text followed in Kittel-Kahle BH3.
 #
 T-S Misc. 3.61
 Ezekiel 16:13–14; 16:60; 28:24–29:12
@@ -18826,7 +18824,7 @@ T-S Misc. 3.69
 Deuteronomy 12:17–28
 Hebrew; standard Tiberian, cantillated; Massorah Magna and Parva.
 Parchment; 16.9cm. x 11.2cm.; 1 column; 1 leaf; 18 lines; mutilated with pieces of text missing.
-On verso Deuteronomy 12:24, which has been omitted from the text by homoioteleuton with לא תאכל נא, is supplied in the margin, but rubbed partly illegible.
+On verso Deuteronomy 12:24, which has been omitted from the text by homoioteleuton with לא תאכלנא, is supplied in the margin, but rubbed partly illegible.
 #
 T-S Misc. 3.70
 Deuteronomy 29:24–31:3; 32:52–33:29
@@ -18965,8 +18963,7 @@ Paper; 18.6cm. x 13.8cm., 1 column; 1 leaf; 11 lines on recto, 10 lines on verso
 The Hebrew is written in a larger script than that of the Judaeo-Arabic.
 #
 T-S Misc. 3.93
-Genesis 45:18–46:1; 46:30–47:1
-with Targum Onqelos and Judaeo-Arabic translation (Saadya’s) after each verse, a trilingual version
+Genesis 45:18–46:1; 46:30–47:1 with Targum Onqelos and Judaeo-Arabic translation (Saadya’s) after each verse, a trilingual version
 Hebrew, Aramaic, and Judaeo-Arabic; Tiberian, cantillated, for the Hebrew and Aramaic, unpointed for the Judaeo-Arabic, but the pointed sections are barely legible.
 Paper; 23.1cm. x 15.5cm. and 23cm. x 30.5cm.; 1 column; 3 leaves with 2 leaves conjoined and folios 1–2 consecutive; 17–18 lines; badly mutilated and rubbed with many large pieces of text missing or illegible.
 The condition of the text has been seriously impaired by what appears to be mirrored text on most of the leaves.
@@ -19015,7 +19012,7 @@ T-S Misc. 3.100
 Genesis 5.26–6:1
 Hebrew; predominantly standard Tiberian, partly cantillated.
 Paper; 14cm. x 10.1cm.; 1 column; 1 leaf; 9 lines; mutilated and rubbed.
-Examples of non-standard vocalization are:-=- and–for–;-7־ך for-ד=-. On verso at Genesis 5:30 שנת, which has been omitted from the text after מאות, is supplied in the margin.
+Examples of non-standard vocalization are:-=- and–for–;-7־ך for-ד=-. On verso at Genesis 5:30 שנה, which has been omitted from the text after מאות, is supplied in the margin.
 #
 T-S Misc. 3.101
 Genesis 23:14–24:7
@@ -19038,7 +19035,7 @@ T-S Misc. 3.105
 Psalms 116:2–117:2
 Hebrew; unpointed, but with verse divisions.
 Paper; 18.5cm. x 28cm.; 1 column; 2 leaves conjoined; 17 lines on folio 2r for the Bible text; badly mutilated and rubbed with many pieces of text missing or illegible.
-The tetragrammaton is abbreviated to . Folios 1r and 2v contain part of a Judaeo-Arabic text arranged in stanzas, of which however much is lost and the remainder too faint to decipher completely. The top of folio 1r begins: לא תעמלי לו יא מ[ ]/ ואללה אלעטים[ ]/. on folio 2v above this text and written in a different hand there is a pen-exercise giving the heading of an official document, which supplies the date 1125 A.D.
+The tetragrammaton is abbreviated to . Folios 1r and 2v contain part of a Judaeo-Arabic text arranged in stanzas, of which however much is lost and the remainder too faint to decipher completely. The top of folio 1r begins: /[ ]לא תעמלי לך יא מ[ ]/ ואללה אלעטים. on folio 2v above this text and written in a different hand there is a pen-exercise giving the heading of an official document, which supplies the date 1125 A.D.
 #
 T-S Misc. 3.106
 Psalms 3:9–5:1
@@ -19056,7 +19053,7 @@ T-S Misc. 3.108
 Isaiah 61:1–3; 61:9–10; 63:10–12; 63:19–64:3
 Hebrew; standard Tiberian, cantillated; Massorah Parva.
 Parchment; 10.9cm. x 17.3cm.; 2 columns; 1 leaf; 9 lines (incomplete); badly mutilated with many pieces of text missing.
-On recto at Isaiah 61:9 there is a decorated ם with ו י סע משם אברהם from Genesis 20:1 written in the margin below it, probably indicating that Isaiah 61 included the Haphtorah for Seder 17 in the Palestinian Triennial Cycle; cf. Mann, vol. 1. ad loc.
+On recto at Isaiah 61:9 there is a decorated ם with ויסע משם אברהם from Genesis 20:1 written in the margin below it, probably indicating that Isaiah 61 included the Haphtorah for Seder 17 in the Palestinian Triennial Cycle; cf. Mann, vol. 1. ad loc.
 #
 T-S Misc. 3.109
 Job 30:13–32:2
@@ -19084,7 +19081,7 @@ T-S Misc. 3.113
 Song of Solomon 1:1–2:8; Lamentations 1:9–21
 Hebrew; unpointed, but with verse divisions.
 Parchment; 18.3cm. x 32cm.; 1 column; 2 leaves conjoined; 16 lines; mutilated and rubbed with a few pieces of text missing or illegible.
-On folio 1v at Song of Solomon 1:15 הנך יפה עיניו יונים, which has been omitted from the text by homoioteleuton with הנך, is supplied in the margin and at Song of Solomon 1:2 כשושנה ביו ההוחים, which has been erased in the text, is supplied in the margin. On folio 2r Lamentations 1:12–13 is deleted in the text by being crossed through and corrected in the margin.
+On folio 1v at Song of Solomon 1:15 הנך יפה עיניך יונים, which has been omitted from the text by homoioteleuton with הנך, is supplied in the margin and at Song of Solomon 1:2 כשושנה בין החוחים, which has been erased in the text, is supplied in the margin. On folio 2r Lamentations 1:12–13 is deleted in the text by being crossed through and corrected in the margin.
 #
 T-S Misc. 3.114
 Ruth 1:1–8
@@ -19292,13 +19289,13 @@ T-S Misc. 9.65
 Psalms 11–2:7
 Hebrew; unpointed, but with isolated examples of Tiberian vocalization.
 Paper; 16.6cm. x 12.7cm.; 1 column; 1 leaf; 14 lines; mutilated with many pieces of text missing.
-On recto בטט is written in the upper margin.
+On recto בשמ is written in the upper margin.
 #
 T-S Misc. 9.71
 Genesis 18:27–30; 19:19–22
 Hebrew; standard Tiberian, cantillated.
 Parchment; 15.6cm. x 12.1cm.; 1 column (incomplete); 1 leaf; 12 lines (incomplete); badly mutilated and rubbed with many pieces of text missing or illegible.
-On recto at Genesis 18:30 the reading .ליהוד, instead of לאדני according to Kittel-Kahle BH3, is deleted by a circle of dots and in the margin before the second column there is a decorated ם .
+On recto at Genesis 18:30 the reading ליהוה, instead of לאדני according to Kittel-Kahle BH3, is deleted by a circle of dots and in the margin before the second column there is a decorated ם .
 #
 T-S Misc. 9.74
 Numbers 12:14–13:2; 14:1–4
@@ -19310,7 +19307,7 @@ T-S Misc. 9.76
 Zechariah 8:6–7; 8:11–13; 8:18–21; 9:1–4
 Hebrew; non-standard Tiberian, cantillated; Massorah Parva.
 Parchment; 13cm. x 19.8cm.; 3 columns; 1 leaf; 12 lines (incomplete); badly mutilated and rubbed with many pieces of text missing or illegible.
-An example of non-standard vocalization is the unusual use of dagesh. Hataph is inserted in n.
+An example of non-standard vocalization is the unusual use of dagesh. Hataph is inserted in ח.
 #
 T-S Misc. 9.79
 1 Samuel 1:27–2:1; 2:13–16
@@ -19358,7 +19355,7 @@ T-S Misc. 9.93
 2 Chronicles 23:6–24:1
 Hebrew; standard Tiberian, cantillated; Massorah Parva.
 Parchment; 21.9cm. x 15.6cm.; 1 column; 1 leaf; 20 lines; mutilated.
-On recto at 2 Chronicles 23:11 there is a numbered ם and at 2 Chronicles 23:12 את המלך, which has been omitted from the text, is supplied in the margin.
+On recto at 2 Chronicles 23:11 there is a numbered ס and at 2 Chronicles 23:12 את המלך, which has been omitted from the text, is supplied in the margin.
 #
 T-S Misc. 9.95
 Psalms 94:15–96:10
@@ -19654,7 +19651,7 @@ T-S Misc. 11.74
 Numbers 10:10–15; 10:21–28
 Hebrew; predominantly standard Tiberian, uncantillated.
 Paper; 12.2cm. x 11cm.; 1 column; 1 leaf; 11 lines (incomplete); mutilated and rubbed with pieces of text missing or illegible.
-Examples of non-standard vocalization are:–for–,–, and–. On verso at Numbers 10:21 [ונסע 1ו is written in the upper margin in a different hand with a different colour of ink from that of the text.
+Examples of non-standard vocalization are:–for–,–, and–. On verso at Numbers 10:21 ונסע[ו] is written in the upper margin in a different hand with a different colour of ink from that of the text.
 #
 T-S Misc. 11.78
 Numbers 2:27–3:4
@@ -19671,7 +19668,7 @@ T-S Misc. 11.95
 Job 11:6–12:9
 Hebrew; standard Tiberian, cantillated.
 Paper; 15.8cm. x 12.6cm.; 1 column; 1 leaf; 14 lines; mutilated with pieces of text missing.
-There is poetic spacing which does not always correspond to that followed in Kittel-Kahle BH3. On verso at Job 11:19 there is a decorated ם which corresponds to the numbered ם in Kittel-Kahle BH3. The margins of both recto and verso contain Judaeo- Arabic glosses and the lower margins of each side Judaeo-Arabic annotations. On recto in the lower margin there is a translation of Job 11:14: פאן רפעת וגהך ען אלעי וב פאלמציק לא תראה(?). On verso in the lower margin כל הדא למו יאתי במעבודה פי ידה refers to Job 12:6.
+There is poetic spacing which does not always correspond to that followed in Kittel-Kahle BH3. On verso at Job 11:19 there is a decorated ם which corresponds to the numbered ס in Kittel-Kahle BH3. The margins of both recto and verso contain Judaeo- Arabic glosses and the lower margins of each side Judaeo-Arabic annotations. On recto in the lower margin there is a translation of Job 11:14: (?)פאן רפעת וגהך ען אלעיוב פאלמציק לא תראה. On verso in the lower margin כל הדא למן יאתי במעבודה פי ידה refers to Job 12:6.
 #
 T-S Misc. 11.98
 Leviticus 2:4–9
@@ -19820,7 +19817,7 @@ T-S Misc. 20.118
 Habakkuk 3:16–19
 Hebrew; standard Tiberian where legible, cantillated.
 Paper; 14.8cm. x 10.1cm.; 1 column; 1 leaf; 9 lines; mutilated and rubbed with pieces of text missing or illegible.
-The non-standard vocalizations–for–and–for–occur. On verso after Habakkuk 3:19 Psalms 89:53 is employed as a concluding benediction and is followed by a colophon, which reads as follows: כתב תלמיד/ יהודה [בר] כגק/ מור טמ[ו]אל בר(?)/ [ ] ויום1ף] בר/1
+The non-standard vocalizations–for–and–for–occur. On verso after Habakkuk 3:19 Psalms 89:53 is employed as a concluding benediction and is followed by a colophon, which reads as follows: ]/כתב תלמיד/ יהודה [בר] כגק/ מור שמ[ו]אל בר(?)/ [ ] ויוס[ף] בר
 #
 T-S Misc. 20.124a
 Ruth 2:3–21
@@ -19986,7 +19983,7 @@ T-S Misc. 22.121
 Leviticus 26:45; Judges 1:1
 Hebrew; unpointed.
 Paper; 13.6cm. x 10.2cm.; 1 column; 1 leaf; 3 lines on recto, 2 lines on verso; mutilated with pieces of text missing.
-The fragment is probably a writing exercise. On verso below Judges 1:1 there is an Arabic doxology, which reads as follows: [ ]
+The fragment is probably a writing exercise. On verso below Judges 1:1 there is an Arabic doxology.
 #
 T-S Misc. 22.134
 Esther 1:19–22
@@ -20071,7 +20068,7 @@ T-S Misc. 24.17
 Genesis 1:14–21; 2:4–10
 Hebrew; unpointed, but with verse divisions, except on a few lines of folio 1, which have Tiberian vocalization.
 Paper; 14.1cm. x 19.5cm.; 1 column; 2 leaves conjoined; 12 lines; mutilated.
-The non-standard vocalizations–for ־7=־ and -7־ for–occur. On folio 1v at Genesis 1:20 the error למינה. בהמה ורמש וחיתו is deleted by dots in the letters and corrected immediately afterwards. On folio 2v at Genesis 2:9 the dittograph החיים בתוך הגן ועץ is deleted by dots above the line.
+The non-standard vocalizations–for ־7=־ and -7־ for–occur. On folio 1v at Genesis 1:20 the error למינה בהמה ורמש וחיתו is deleted by dots in the letters and corrected immediately afterwards. On folio 2v at Genesis 2:9 the dittograph החיים בתוך הגן ועץ is deleted by dots above the line.
 #
 T-S Misc. 24.33
 Deuteronomy 22:24–27; 24:1–4
@@ -20087,7 +20084,7 @@ T-S Misc. 24.45
 Leviticus 1:12–2:1
 Hebrew; standard Tiberian where legible, uncantillated, on folios 2–3r, unpointed on folios 1 and 3v–4.
 Paper; 8.5cm. x 7.8cm. and 7.4cm. x 12.5cm.; 1 column; 4 leaves conjoined in 2 pairs with folios 2–4 consecutive; 10–12 lines on folio 1, 5–7 lines on folios 2–4; mutilated with pieces of text missing.
-The tetragrammaton is abbreviated to . Oil folio 2v before Leviticus 1:14 and on folio 4r after Leviticus 1:17 there are decorated פתוח headings. The text is written in an inexpert hand.
+The tetragrammaton is abbreviated to . On folio 2v before Leviticus 1:14 and on folio 4r after Leviticus 1:17 there are decorated פתוח headings. The text is written in an inexpert hand.
 #
 T-S Misc. 24.47
 Esther 2:2–8
@@ -20124,7 +20121,7 @@ T-S Misc. 24.86
 Leviticus 20:26–25:52
 Hebrew; predominantly standard Tiberian, cantillated; Massorah Parva on folios 1r and 5r.
 Paper; 18.1cm. x 14cm. = size of whole fragment, 18cm. x 27.8cm. = average size of conjoined leaves; 10 leaves conjoined in 5 pairs and consecutive; 15 lines; slightly mutilated and rubbed.
-Examples of non-standard vocalization are:–for–;–and -rr- for-דת-. The sign V is used to fill up line-endings. On folio 1r at Leviticus 21:1, the beginning of Seder 31, there are decorated Parashah headings in the text and in the margin and at Leviticus 21:7 חוא, which has been omitted from the text, is supplied in the margin. On folio 1v at Leviticus 21:14 אשה , which has been omitted from the text, is supplied in the margin. On folio 2r at Leviticus 21:21 the error [ ] לא is deleted by lines and את לחם, which has been
+Examples of non-standard vocalization are:–for–;–and -rr- for-דת-. The sign V is used to fill up line-endings. On folio 1r at Leviticus 21:1, the beginning of Seder 31, there are decorated Parashah headings in the text and in the margin and at Leviticus 21:7 הוא, which has been omitted from the text, is supplied in the margin. On folio 1v at Leviticus 21:14 אשה , which has been omitted from the text, is supplied in the margin. On folio 2r at Leviticus 21:21 the error [ ] לא is deleted by lines and את לחם, which has been
 omitted from the text, is supplied in the margin. On folio 6v at Leviticus 23:43 מצרים, which has been omitted from the text, is supplied in the margin. On folio 8r at Leviticus 25:1, the beginning of Seder 32, there are decorated Parashah headings in the text and in the margin. On folios 9v and lOr there is scribbling in the margins. On folios 9v and lOv in the lower margins there are catchwords to the first word of the text on the following folio.
 #
 T-S Misc. 24.90
@@ -20160,13 +20157,13 @@ T-S Misc. 24.104
 Hebrew; predominantly standard Tiberian, cantillated; Massorah Parva on folios 2r, 5v, 7v, and 9v.
 Paper; 17.7cm. x 13cm. = size of whole fragment, 17.6cm. x 25.7cm. = average size of conjoined leaves; 1 column; 10 leaves conjoined in 5 pairs and consecutive; 14–16 lines; slightly mutilated.
 Examples of non-standard vocalization are: ־=־־ for–; ¬דד¬for-=-. On folio 1r in the top righthand corner there is a decorated ד, probably a gathering number . On folio 1v at 2 Samuel 1:21 עליכם, which has been omitted from the text, is supplied in the margin. On folio 2r at 2 Samuel 2:2 וגם, which has been omitted from the text, is supplied in the margin. On folio 2v at
-2 Samuel 2:8 there is a decorated ם and אטד and בו טאול, which have been omitted from the text, are supplied above the line and in the margin respective .y. On folio 3r at 2 Samuel 2:14 יואב is repeated in the margin. On folio 3v at 2 Samuel 2:23 אל החמט ותצא החנית, which has been omitted from the text by homoioteleuton with החנית, is supplied in the lower margin. On folio 4v at 2 Samuel 2:30 טב, which has been omitted from the text, is supplied in the margin and at 2 Samuel 3:3 אבטל ו ם, which has been omitted from the text, is supplied in the lower margin. On folio 5r at 2 Samuel 3:8–10 the passage between בית טאול in 3:8 and בית טאול in 3:10, which has been omitted by homoioteleuton, is supplied in the lower margin. On folio 6v at 2 Samuel 3:21 אבנר , which has been omitted from the text, is supplied in the margin and there is a decorated 0. On folio 7r at 2 Samuel 3:27 הטער , which has been omitted from the text, is supplied in the margin and at 2 Samuel 3:29 מבית’, which has also been omitted from the text, is supplied in the margin. On folio 7v at 2 Samuel 3:34 לפני, which has been omitted from the text, is supplied in the margin. On folio 8v at 2 Samuel 4:5–פלגו/ בני written in the margin indicates that Maqqeph is inserted in בני by the glossator. On folio lOr at 2 Samuel 5:11 there is a decorated ם in the margin and לדוד and וידע דוד כי הכינו יוזוה, which have been omitted from the text, are supplied in the margins and at 2 Samuel 5:12 יטראל and ממלכתו, which have been omitted from the text, are also supplied in the margins. On folio lOv at 2 Samuel 5:20 טם המקום ההוא, which has been omitted from the text, is supplied in the margins and in the lower margin עצביהם is a catchword to the first word of the text on a following folio.
+2 Samuel 2:8 there is a decorated ם and אשד and בן שאול, which have been omitted from the text, are supplied above the line and in the margin respectively. On folio 3r at 2 Samuel 2:14 יואב is repeated in the margin. On folio 3v at 2 Samuel 2:23 אל החמש ותצא החנית, which has been omitted from the text by homoioteleuton with החנית, is supplied in the lower margin. On folio 4v at 2 Samuel 2:30 שב, which has been omitted from the text, is supplied in the margin and at 2 Samuel 3:3 אבשלום, which has been omitted from the text, is supplied in the lower margin. On folio 5r at 2 Samuel 3:8–10 the passage between בית שאול in 3:8 and בית שאול in 3:10, which has been omitted by homoioteleuton, is supplied in the lower margin. On folio 6v at 2 Samuel 3:21 אבנר , which has been omitted from the text, is supplied in the margin and there is a decorated 0. On folio 7r at 2 Samuel 3:27 השער , which has been omitted from the text, is supplied in the margin and at 2 Samuel 3:29 מבית, which has also been omitted from the text, is supplied in the margin. On folio 7v at 2 Samuel 3:34 לפני, which has been omitted from the text, is supplied in the margin. On folio 8v at 2 Samuel 4:5–פלגו/ בני written in the margin indicates that Maqqeph is inserted in בני by the glossator. On folio lOr at 2 Samuel 5:11 there is a decorated ם in the margin and לדוד and וידע דוד כי הכינו יהוה, which have been omitted from the text, are supplied in the margins and at 2 Samuel 5:12 ישראל and ממלכתו, which have been omitted from the text, are also supplied in the margins. On folio lOv at 2 Samuel 5:20 שם המקום ההוא, which has been omitted from the text, is supplied in the margins and in the lower margin עצביהם is a catchword to the first word of the text on a following folio.
 #
 T-S Misc. 24.117
 Psalms 40:13–56:1
 Hebrew; unpointed, but with verse divisions.
 Parchment; 14.6cm. x 13.3cm. = size of whole fragment, 14.5cm. x 26.1cm. = average size of conjoined leaves; 1 column; 10 leaves conjoined in 5 pairs and consecutive; 15–17 lines; mutilated with pieces of text missing.
-On folio 1v before Psalms 42:1 ספר טני marks the beginning of the Second Book of the Psalms. On folio lOv in the lower margin בגת is a catchword to the first word of the text on a following folio.
+On folio 1v before Psalms 42:1 ספר שני marks the beginning of the Second Book of the Psalms. On folio lOv in the lower margin בגת is a catchword to the first word of the text on a following folio.
 #
 T-S Misc. 24.122
 Psalms 144:5–149:9
@@ -20178,7 +20175,7 @@ Numbers 35:34–36:3; 36:10–13
 Hebrew; standard Tiberian, cantillated; Massorah Magna on folio 2.
 Parchment; 15.3cm. x 21.6cm.; 1 column; 2 leaves conjoined; 8 lines; mutilated and rubbed with many pieces of text missing.
 On folio 2v after Numbers 36:13 there is a decorated 0, a decorated note of the number of verses in Seder 43, namely, 132, and a mutilated note of the number of verses in Numbers, namely, 1288. Below this the Judaeo-Arabic colophon
-[ )ל עלי מצחף אל תאג דבכנסת ירוטלמיין/ דבמצרים ובה
+ל   עלי מצחף אל תאג דבכנסת ירושלמיין/ דבמצרים ובה[]
 indicates that this Pentateuch belonged to the ‘Jerusalemite’ congregation in Fustat.
 #
 T-S Misc. 24.144
@@ -20277,7 +20274,7 @@ T-S Misc. 26.58
 Jeremiah 29:11–31:8; 41:9–44:2
 Hebrew; non-standard Tiberian, cantillated; Massorah Parva.
 Parchment; 24.6cm. x 43.5cm.; 2 columns; 2 leaves conjoined; 33–34 lines; mutilated and rubbed with a few pieces of text missing or illegible.
-Examples of non-standard vocalization are: the peculiar use of dagesh and the insertion of Hataph in n. On folio 1v in the lower margin is written אלה פקודי המשכן. On folio 2r at Jeremiah 42:12 there is a decorated ־» in the margin between the columns.
+Examples of non-standard vocalization are: the peculiar use of dagesh and the insertion of Hataph in n. On folio 1v in the lower margin is written אלה פקודי המשכן. On folio 2r at Jeremiah 42:12 there is a decorated ס in the margin between the columns.
 #
 T-S Misc. 26.62
 Ezekiel 18:10; 18:32; Zechariah 5:3–8; 6:15; Malachi 3:4–9; 3:23; 1 Samuel 2:28–31; 2:35; 3:20; Ezekiel 43:27–44:5; 44:30; 44:21–27; 46:3; Isaiah 40:16–21; 9:6; 57:17–21
@@ -20301,8 +20298,9 @@ T-S Misc. 27.1.3
 Isaiah 1:4–27; 40:1–19
 Hebrew; standard Tiberian, cantillated.
 Parchment; 35cm. x 31.5cm.; 3 columns; 1 leaf; 21 lines; mutilated with pieces of text missing.
-On verso before Isaiah 40:1 there is the rubric ואתחנן בישעיה indicating that the following passage is the Haphtorah for Seder 45 at Deuteronomy 3:23. Also at this point there is the following liturgical rubric written in a different hand with a different colour of ink from that of the text:
-בירמיה/ ואתחנן ואתפלל אל י יי / אחרי תתי את ספר המקנה/ כי אשיב את שבותם נאם ׳'׳/ ירמיה סדר כי זאת/ הברית יח/
+On verso before Isaiah 40:1 there is the rubric ואתחנן בישעיה indicating that the following passage is the Haphtorah for Seder 45 at Deuteronomy 3:23. Also at this point there is the following liturgical rubric written in a different hand with a different colour of ink f
+rom that of the text:
+/בירמיה/ ואתחנן ואתפלל אל ׯ / אחרי תתי את ספר המקנה/ כי אשיב את שבותם נאם ׯ/ ירמיה סדר כי זאת/ הברית יח
 This includes quotations from Jeremiah 32:16, 32:44, and 31:32 and is apparently an alternative portion to that in the body of the text.
 #
 T-S Misc. 27.1.4
@@ -20310,7 +20308,7 @@ Genesis 46:26–47:6; 47:29–48:8
 with Targum Jerushalmi II after each verse
 Hebrew and Aramaic; standard Tiberian, cantillated; Massorah Magna and Parva.
 Parchment; 34.8cm. x 57cm.; 3 columns; 2 leaves conjoined; 24 lines; mutilated.
-On folio 1r at Genesis 46:28 there is a decorated ס with 2 Kings 13:14 written below it, indicating that this was the Haphtorah for Seder 42 *in the Palestinian Triennial Cycle; cf. Mann, vol. 1 ad loc. The decorated number 38 written after Genesis 46:27 indicates the number of verses in Seder 41 from Genesis 44:18 in the Palestinian Triennial Cycle; cf. Mann, vol. 1 ad loc. On folio 2r at Genesis 48:1 there is a similar decorated
+On folio 1r at Genesis 46:28 there is a decorated ס with 2 Kings 13:14 written below it, indicating that this was the Haphtorah for Seder 42 in the Palestinian Triennial Cycle; cf. Mann, vol. 1 ad loc. The decorated number 38 written after Genesis 46:27 indicates the number of verses in Seder 41 from Genesis 44:18 in the Palestinian Triennial Cycle; cf. Mann, vol. 1 ad loc. On folio 2r at Genesis 48:1 there is a similar decorated
 . ס
 #
 T-S Misc. 27.1.5
@@ -20335,7 +20333,7 @@ T-S Misc. 27.1.8
 Leviticus 1:7–2:13
 Hebrew; predominantly standard Tiberian, uncantillated.
 Parchment; 12.7cm. x 31.5cm.; 1 column; 2 leaves conjoined and consecutive; 10 lines, except on folio 2r, which has 11 lines; mutilated.
-Examples of non-standard vocalization are:–for–and–. Parts of the text have been overwritten. On folio 1r at Leviticus 1:8 את הארט (sic), which has been omitted from the text, is supplied above the line. On folio 2r at Leviticus 2:2 [ומבי [אח, written with the same colour of ink as that of the overwriting, is supplied in the margin beside the deletion of what appears to be the correct text as followed in Kittel-Kahle BH3.
+Examples of non-standard vocalization are:–for–and–. Parts of the text have been overwritten. On folio 1r at Leviticus 1:8 את הארש (sic), which has been omitted from the text, is supplied above the line. On folio 2r at Leviticus 2:2 [והבי [אה, written with the same colour of ink as that of the overwriting, is supplied in the margin beside the deletion of what appears to be the correct text as followed in Kittel-Kahle BH3.
 #
 T-S Misc. 27.1.9
 Psalms 47:5–49:9
@@ -20463,7 +20461,7 @@ T-S 8.112
 Genesis 4:8–12
 Hebrew; predominantly standard Tiberian, uncantillated.
 Paper; 16.7cm. x 12.5cm.; 1 column; 1 leaf; 12 lines; mutilated with a few small pieces of text missing. Examples of non-standard vocalization are: -=-for–and־ 7־. Verso contains a Judaeo-Arabic text of 13 lines, representing the top part of an agreement concerning the future .marriage of a girl who has not yet reach her majority ( אלגיר באלג והי קטנה ברשות אביה , line 7). The opening lines are as follows:
-שידר מרנו ורבנו טהור הכהן הבחור היקר בר מרנו ורבנו/ יהודה הכהן הזקן הנכבד בר מרנו ורבנו סעדיה הכהן הזקן נע/ בינה ובין מרנו ורבנו מהדב הזקו הנכבד הנדיב והושע בר [מרנו]/ ורבנו שמואל השר הגדול הנכבד נע/
+שידך מרנו ורבנו טהור הכהן הבחור היקר בר מרנו ורבנו/ יהודה הכהן הזקן הנכבד בר מרנו ורבנו סעדיה הכהן הזקן נע/ בינה ובין מרנו ורבנו מהדב הזקן הנכבד הנדיב והושע בר [מרנו]/ ורבנו שמואל השר הגדול הנכבד נע
 The text is mentioned briefly by M. Friedman in Religion in a Religious Age, edited by S.D. Goitein. Cambridge, Mass. 1974. pp.87 and 99, note 27.
 #
 T-S 8.186
@@ -20473,13 +20471,13 @@ Parchment; 10cm. x 8.5cm.; 1 column; 1 leaf; 9 lines; mutilated.
 On recto there are writing exercises in the margins. Verso contains a brief Judaeo-Arabic business note to a certain Sheikh Makin, beginning:
 אלשיך אלמכין שצ יתפצל עלי אלממלוך יחצל לי אלפצה
 and going on to mention one Abu Sa‘d:
-ואן כאן אלשיך אבו סעד אלחזאן לה גרץ פי אלדבאן קול לה...
+ואן כאן אלשיך אבו סעד אלחזאן לה גרץ פי אלדכאן קול לה...
 #
 T-S 12.195
 Psalms 51:21–55:18
 Hebrew; Palestinian, cantillated.
 Parchment; 15.1cm. x 19.1cm.; 1 column; 1 leaf; 17 lines (incomplete); mutilated and rubbed with pieces of text missing.
-There is poetic spacing which does not a!  ays correspond to that followed in Kittel-Kahle BH3. On recto at Psalms 53:1 there is a Psalm number which differs by one less from that followed in Kittel-Kahle BH3, namely, 52.
+There is poetic spacing which does not always correspond to that followed in Kittel-Kahle BH3. On recto at Psalms 53:1 there is a Psalm number which differs by one less from that followed in Kittel-Kahle BH3, namely, 52.
 #
 T-S 12.196
 Psalms 69:21–72:4
@@ -20490,7 +20488,7 @@ There is poetic spacing which does not always correspond to that followed in Kit
 T-S 12.197
 Jeremiah 1:1–2:29
 Hebrew; Palestinian, uncantillated; Massorah Parva. Parchment; 20.2cm. x 15.5cm.; 2 columns; 1 leaf; 31 lines; mutilated with a few pieces of text missing.
-On recto in the upper margin are the title ירמיה and the decorated heading אשת , which is written large. On verso in the upper margin there are jottings.
+On recto in the upper margin are the title ירמיה and the decorated heading אשה , which is written large. On verso in the upper margin there are jottings.
 #
 T-S 12.486
 Deuteronomy 34:4–12
@@ -20564,9 +20562,9 @@ Genesis 1:1–16
 Hebrew; standard Tiberian where legible, cantillated; Massorah Magna and Parva.
 Parchment; 37.4cm. x 32cm.; 3 columns; 1 leaf; 22 lines; mutilated and rubbed with pieces of text missing.
 The text on verso has been overwritten. On recto there are three colophons, of which only the largest may be clearly read, as follows:
-הדיו דפתרה מה שקנה[ ]/ יעקב סט בר עלי נע
-[ ] ממנו [ ]/ שני באחד עשר יום בהחדש אב שנת
-ד/ אל וש מא וא וא לב עו' האלהים/ יזכהו לראות בניו ובני בניו הוגים/ בו לקיים עליהם מקרא שכתוב/ לא ימוש ספר התורה הזה מפיך/ והגיתה בו יומם ולילה למען תשמר/ לעטות ככל הכתוב בו כי אז [ת]צליח/ את דרכיך ואז תשכיל/ ויקים עליו מקרא/ שכ1תוב] וראה ב1נים]/ לבני[ך] של[ום]/ על [ישראל]/ אמן/
+הדין דפתרה מה שקנה[ ]/ יעקב סט בר עלי נע
+ ממנו [ ]/ שני באחד עשר יום בהחדש אב שנת[ ]
+ד/ אל וש מא וא וא לב עו האלהים/ יזכהו לראות בניו ובני בניו הוגים/ בו לקיים עליהם מקרא שכתוב/ לא ימוש ספר התורה הזה מפיך/ והגיתה בו יומם ולילה למען תשמר/ לעשות ככל הכתוב בו כי אז [ת]צליח/ את דרכיך ואז תשכיל/ ויקים עליו מקרא/ שכ[תוב] וראה ב[נים]/ לבני[ך] של[ום]/ על [ישראל]/ אמן/
 For the proof that the date abbreviated in lines 3–4 is 4841 A.M. = 1081 A.D. See Kirjath Sepher, vol. 43 (1967–8), p413. The Bible verses quoted are Joshua 1:8 and Psalms 128:6.
 #
 T-S 20.52
@@ -20610,7 +20608,7 @@ Parchment; 35cm. x 17.5cm. and 35.5cm. x 41.5cm.; 4 columns; 1 leaf, part of a s
 Or. 1080.2.42
 Deuteronomy 20:1–23:3
 Hebrew; standard Tiberian, cantillated.
-Paper; 20.6cm. x 30.6cm., 20.6cm. x 30.4cm., and 20.6cm. x 30.1cm.; 1 column; 6 leaves conjoined in 3 pairs and consecutive; 15 lines; mutilated and rubbed. The sign NZ is used to fill up line-endings. On folio 1r at Deuteronomy 20:3 ואל תערצו, which has been omitted from the text by homoioteleuton with ואל , is supplied in the margin and עם and י ה ו ה are also written in the margins. On folio 2r at Deuteronomy 20:16 a decorated מ is written in the margin. On folio 3r at Deuteronomy 21:10, the beginning of Seder 49, there is a decorated Parashah heading and a note of the number of verses in Seder 48 which differs by one less from that according to the numbering in Kittel-Kahle BH3, namely, 96, instead of 97. On folio 4v at Deuteronomy 22:2 תוך, which has been omitted from the text, is supplied in the margin and the dittograph of the first part of the verse is deleted by a line drawn above it. On folio 6v at Deuteronomy 22:28 איט, which has been omitted from the text, is supplied in the margin.
+Paper; 20.6cm. x 30.6cm., 20.6cm. x 30.4cm., and 20.6cm. x 30.1cm.; 1 column; 6 leaves conjoined in 3 pairs and consecutive; 15 lines; mutilated and rubbed. The sign NZ is used to fill up line-endings. On folio 1r at Deuteronomy 20:3 ואל תערצו, which has been omitted from the text by homoioteleuton with ואל , is supplied in the margin and עם and י ה ו ה are also written in the margins. On folio 2r at Deuteronomy 20:16 a decorated מ is written in the margin. On folio 3r at Deuteronomy 21:10, the beginning of Seder 49, there is a decorated Parashah heading and a note of the number of verses in Seder 48 which differs by one less from that according to the numbering in Kittel-Kahle BH3, namely, 96, instead of 97. On folio 4v at Deuteronomy 22:2 תוך, which has been omitted from the text, is supplied in the margin and the dittograph of the first part of the verse is deleted by a line drawn above it. On folio 6v at Deuteronomy 22:28 איש, which has been omitted from the text, is supplied in the margin.
 #
 Or. 1080.2.43
 Habakkuk 1:3–3:3
@@ -20633,7 +20631,7 @@ Or. 1080.2.61
 1 Kings 17:12–22:54; 2 Kings 1:1–2:15
 Hebrew; unpointed, but with verse divisions and some Tiberian vocalization and cantillation.
 Parchment; 21cm. x 37.5cm. = size of whole gathering; 1 column; 9 leaves consecutive with 8 leaves conjoined in 4 pairs; 19–23 lines; mutilated and rubbed with pieces of text missing or illegible and the gathering sewn together.
-Parts of the text have been overwritten. There are decorated os on folio 1r at 1 Kings 18:1, on folio 2v at 1 Kings 18:39, on folio 4r at 1 Kings 20:13, on folio 5v at 1 Kings 21:1, on folio 6v at 1 Kings 21:17, on folio 8r at 1 Kings 22:42, and on folio 9v at 2 Kings 2:15. On folio 7v at 1 Kings 22:30 ואתת לבש בגדיך ויתחפש מלך ישראל ויבוא במלחמת , which has been omitted from the text by homoioteleuton with במלחמה, is supplied in the margin.
+Parts of the text have been overwritten. There are decorated os on folio 1r at 1 Kings 18:1, on folio 2v at 1 Kings 18:39, on folio 4r at 1 Kings 20:13, on folio 5v at 1 Kings 21:1, on folio 6v at 1 Kings 21:17, on folio 8r at 1 Kings 22:42, and on folio 9v at 2 Kings 2:15. On folio 7v at 1 Kings 22:30 ואתה לבש בגדיך ויתחפש מלך ישראל ויבוא במלחמה , which has been omitted from the text by homoioteleuton with במלחמה, is supplied in the margin.
 #
 Or. 1080.2.62
 Genesis 1:1–5; 1:14–15; 1:18; 1:26; 1:1–7
@@ -20694,7 +20692,7 @@ Hebrew; unpointed, but with verse divisions, except on folio 1, which has predom
 parchment and paper; 14.5cm. x 17.5cm. = size of whole fragment; 1 column; 98 leaves conjoined in 6 gatherings and consecutive; 11–13 lines; mutilated and rubbed with pieces of text illegible.
 The physical composition of the fragment is as follows: parchment is used for folios 1, 4, 9–10, 15–16, 23, 25, 29–30, 34, 40–41, 51–52, 61–62, 71–72, 81–82, 87–88, 93–94.
 Paper is used for folios 2–3, 5–8, 11–14, 17–22, 24, 26–28, 31–33, 35–39, 42–50, 53–60, 63–70, 73–80, 83–86, 89–92, 95–98. Examples of non- standard vocalization are: ־יך־ for־r=־; -zr-for–;-דד- for–;–for The tetragrammaton is abbreviated to ״ , except on folio 1.
-On folio 5v at Genesis 6:9, the beginning of Seder 2, there are decorations in both margins. On folio 6v at Genesis 6:21 ואספת אליך, which has been omitted from the text, is supplied in the margin and ואספת again above the line with a different colour of ink from that of the text, while in the lower margin דכאר ונקבא is Targum Onqelos of Genesis 7:2 with variant orthography and written with a similar colour of ink. On folio 7v at Genesis 7:9 אל התבה, which has been omitted from the text, is supplied in the margin. On folio 11v at Genesis 9:29 כל, which has been omitted from the text, is supplied in the lower margin and שנה, the last word of the text on the page, is also written in the lower margin. On folio 16v part of Genesis 12:11 has been overwritten. On folio 17v Genesis 13:2, which has been omitted from the text, is supplied in the margin and at Genesis 13:8 וביו רועי, which has been omitted from the text by homoioteleuton with וביו, is supplied in the margin. On folio 19r at Genesis 14:8 ומלך, which has been omitted from the text before עמרה., is supplied in the margin. On folio 20v Genesis 15:8, which has been omitted from the text by homoioteleuton with ויאמר, is supplied in the margin. On folio 22v at Genesis 16:13 there are two Targums of the second half of the verse in the upper and side margins, both of which differ from Targum Onqelos in several readings. On folio 24r at Genesis 17:20 והפריתי אתו, which has been omitted from the text because of its similarity to והרביתי אתו, is supplied in the margin. On folio 24v at Genesis 18:1, the beginning of Seder 4, there is a decorated Parashah heading. On folio 27v at Genesis 19:6 there is Judaeo-Arabic paraphrastic translation in the margin. On folio 31 v at Genesis 20:7 אתה וכל אשר לך, which has been omitted from the text, is supplied in the margin. On folio 32v at Genesis 21:8 the error אלה י ם for אברהם in the text is deleted by a line drawn round it and corrected in the margin in a different hand with a different colour of ink from that of the text. On folio 33v at Genesis 21:20 וישב במדבר , which has been omitted from the text, is supplied in the margin. On folio 35v at Genesis 22:8 there is Targum Onqelos in the margin for part of the verse, but the orthography is unusual or incorrect. On folio 36r at Genesis 22:14 there is Targum Onqelos in the margin. On folio 37r at Genesis 23:1, the beginning of Seder 5, there is a decorated Parashah heading. On folio 38r at Genesis 23:13 there is Targum Onqelos with variants for part of the verse. On folio 39r at Genesis 24:3 the reading ממשפחות in the text is corrected to מבנות followed in Kittel-Kahle BH3 in the margin. On folio 42r at Genesis 24:36 אחרי זקנתה , which has been omitted from the text, is supplied above the line, and אדני, which has also been omitted from the text, is supplied in the margin. On folio 44 v at Genesis 24:67 there is Targum Onqelos in the margin with variant orthography. On folio 46r at Genesis 25:9, the beginning of Seder 6, there is a decorated Parashah heading. On folio 49v at Genesis 26:24 כי אתך, which has been omitted from the text, is supplied in the margin and at Genesis 26:28 there is Targum Onqelos of ונאמר in the margin. On folio 54v at Genesis 28:10, the beginning of Seder 7, there is a decorated Parashah heading. On folio 58r Genesis 30:5, which has been omitted from the text, is supplied in the margin. On folio 60r at Genesis 30:33 נקוד, which has been omitted from the text, is supplied above the line, Genesis 30:34, which has been omitted from the text, is supplied in the margin, and at Genesis 30:35 כל אשר לבן בו, which has been omitted from the text, is supplied in the margin. On folio 64v Genesis 31:49–51 are written in the margins, but all are deleted by being crossed through except for the first half of 31:49, which has been omitted from the text. In the text there are dots written above the second half of 31:49. On folio 65r at Genesis 32:4, the beginning of Seder 8, there is a decorated Parashah heading. On folio 67r at Genesis 32:30 וישאל יעקב, which has been omitted from the text, is supplied in the margin. On folio 70v at Genesis 34:24 וימלו כל זכר כל יצא שער עירו, which has been omitted from the text, is supplied in the margin. On folio 75v at Genesis 36:39 the dittograph וימת בעלחנן בן עכבור is deleted by being crossed through. On folio 76r at Genesis 37:1, the beginning of Seder 9, there is a decorated Parashah heading. On folio 76v at Genesis 37:9 חלום, which has been omitted from the text, is supplied in the margin. On folio 77r at Genesis 37:14 אחיך , which has been omitted from the text, is supplied in the margin with a different colour of ink from that of the text. On folio 82r at Genesis 39:9 הזה , which has been omitted from the text, is supplied in the margin with a different colour of ink from that of the text. On folio 83r at Genesis 39:22 the error בבית אדניו המצרי by assimilation to Genesis 39:2 is deleted by being crossed through and corrected immediately afterwards. On folio 83v at Genesis 40:5 איש חלומו, which has been omitted from the text, is supplied in the margin. On folio 85r at Genesis 41:1, the beginning of Seder 10, there is a decorated Parashah heading. On folio 85v at Genesis 41:3 there is Targum Onqelos of רעות with orthography differing from that followed in Kittel-Kahle BH3, at Genesis 41:6 שבלים, which has been omitted from the text, is supplied in the margin with a different colour of ink from that of the text and there is Targum Onqelos of דקות in the margin with orthography differing from that followed in Kittel-Kahle BH3, and at Genesis 41:8 there is Targum Onqelos of ותפעם. On folio 86r at Genesis 41:14 there is Targum Onqelos of ויגלח in the margin. On folio 86v at Genesis 41:16 there is Targum Onqelos of part of the verse in the margins. On folio 90v at Genesis 42:13 ויאמרו, which has been omitted from the text, is supplied in the margin. On folio 92v Genesis 43:6, which has been omitted from the text, is supplied in the margin. On folio 95v Genesis 43:34, which has been omitted from the text, is supplied in the margin. On folio 96v at Genesis 44:18, the beginning of Seder 11, there is a decorated Parashah heading.
+On folio 5v at Genesis 6:9, the beginning of Seder 2, there are decorations in both margins. On folio 6v at Genesis 6:21 ואספת אליך, which has been omitted from the text, is supplied in the margin and ואספת again above the line with a different colour of ink from that of the text, while in the lower margin דכאר ונקבא is Targum Onqelos of Genesis 7:2 with variant orthography and written with a similar colour of ink. On folio 7v at Genesis 7:9 אל התבה, which has been omitted from the text, is supplied in the margin. On folio 11v at Genesis 9:29 כל, which has been omitted from the text, is supplied in the lower margin and שנה, the last word of the text on the page, is also written in the lower margin. On folio 16v part of Genesis 12:11 has been overwritten. On folio 17v Genesis 13:2, which has been omitted from the text, is supplied in the margin and at Genesis 13:8 ובין רועי, which has been omitted from the text by homoioteleuton with ובין, is supplied in the margin. On folio 19r at Genesis 14:8 ומלך, which has been omitted from the text before עמרה, is supplied in the margin. On folio 20v Genesis 15:8, which has been omitted from the text by homoioteleuton with ויאמר, is supplied in the margin. On folio 22v at Genesis 16:13 there are two Targums of the second half of the verse in the upper and side margins, both of which differ from Targum Onqelos in several readings. On folio 24r at Genesis 17:20 והפריתי אתו, which has been omitted from the text because of its similarity to והרביתי אתו, is supplied in the margin. On folio 24v at Genesis 18:1, the beginning of Seder 4, there is a decorated Parashah heading. On folio 27v at Genesis 19:6 there is Judaeo-Arabic paraphrastic translation in the margin. On folio 31 v at Genesis 20:7 אתה וכל אשר לך, which has been omitted from the text, is supplied in the margin. On folio 32v at Genesis 21:8 the error אלהים for אברהם in the text is deleted by a line drawn round it and corrected in the margin in a different hand with a different colour of ink from that of the text. On folio 33v at Genesis 21:20 וישב במדבר , which has been omitted from the text, is supplied in the margin. On folio 35v at Genesis 22:8 there is Targum Onqelos in the margin for part of the verse, but the orthography is unusual or incorrect. On folio 36r at Genesis 22:14 there is Targum Onqelos in the margin. On folio 37r at Genesis 23:1, the beginning of Seder 5, there is a decorated Parashah heading. On folio 38r at Genesis 23:13 there is Targum Onqelos with variants for part of the verse. On folio 39r at Genesis 24:3 the reading ממשפחות in the text is corrected to מבנות followed in Kittel-Kahle BH3 in the margin. On folio 42r at Genesis 24:36 אחרי זקנתה , which has been omitted from the text, is supplied above the line, and אדני, which has also been omitted from the text, is supplied in the margin. On folio 44 v at Genesis 24:67 there is Targum Onqelos in the margin with variant orthography. On folio 46r at Genesis 25:9, the beginning of Seder 6, there is a decorated Parashah heading. On folio 49v at Genesis 26:24 כי אתך, which has been omitted from the text, is supplied in the margin and at Genesis 26:28 there is Targum Onqelos of ונאמר in the margin. On folio 54v at Genesis 28:10, the beginning of Seder 7, there is a decorated Parashah heading. On folio 58r Genesis 30:5, which has been omitted from the text, is supplied in the margin. On folio 60r at Genesis 30:33 נקוד, which has been omitted from the text, is supplied above the line, Genesis 30:34, which has been omitted from the text, is supplied in the margin, and at Genesis 30:35 כל אשר לבן בו, which has been omitted from the text, is supplied in the margin. On folio 64v Genesis 31:49–51 are written in the margins, but all are deleted by being crossed through except for the first half of 31:49, which has been omitted from the text. In the text there are dots written above the second half of 31:49. On folio 65r at Genesis 32:4, the beginning of Seder 8, there is a decorated Parashah heading. On folio 67r at Genesis 32:30 וישאל יעקב, which has been omitted from the text, is supplied in the margin. On folio 70v at Genesis 34:24 וימלו כל זכר כל יצא שער עירו, which has been omitted from the text, is supplied in the margin. On folio 75v at Genesis 36:39 the dittograph וימת בעלחנן בן עכבור is deleted by being crossed through. On folio 76r at Genesis 37:1, the beginning of Seder 9, there is a decorated Parashah heading. On folio 76v at Genesis 37:9 חלום, which has been omitted from the text, is supplied in the margin. On folio 77r at Genesis 37:14 אחיך , which has been omitted from the text, is supplied in the margin with a different colour of ink from that of the text. On folio 82r at Genesis 39:9 הזה , which has been omitted from the text, is supplied in the margin with a different colour of ink from that of the text. On folio 83r at Genesis 39:22 the error בבית אדניו המצרי by assimilation to Genesis 39:2 is deleted by being crossed through and corrected immediately afterwards. On folio 83v at Genesis 40:5 איש חלומו, which has been omitted from the text, is supplied in the margin. On folio 85r at Genesis 41:1, the beginning of Seder 10, there is a decorated Parashah heading. On folio 85v at Genesis 41:3 there is Targum Onqelos of רעות with orthography differing from that followed in Kittel-Kahle BH3, at Genesis 41:6 שבלים, which has been omitted from the text, is supplied in the margin with a different colour of ink from that of the text and there is Targum Onqelos of דקות in the margin with orthography differing from that followed in Kittel-Kahle BH3, and at Genesis 41:8 there is Targum Onqelos of ותפעם. On folio 86r at Genesis 41:14 there is Targum Onqelos of ויגלח in the margin. On folio 86v at Genesis 41:16 there is Targum Onqelos of part of the verse in the margins. On folio 90v at Genesis 42:13 ויאמרו, which has been omitted from the text, is supplied in the margin. On folio 92v Genesis 43:6, which has been omitted from the text, is supplied in the margin. On folio 95v Genesis 43:34, which has been omitted from the text, is supplied in the margin. On folio 96v at Genesis 44:18, the beginning of Seder 11, there is a decorated Parashah heading.
 #
 Or. 1080.A1.2 (formerly Or. 1080.2.8)
 Genesis 37:28–38:19; 41:44–42:13
@@ -20722,7 +20720,7 @@ Or. 1080.A1.6 (formerly Or. 1080.12.52)
 Genesis 16:8–17:1
 Hebrew; standard Tiberian, cantillated.
 Parchment; 16.9cm. x 12.7cm.; 1 column; 1 leaf; 11 lines; slightly mutilated.
-On recto at Genesis 16:11 עב י ך of Kittel-Kahle BH3 is spelt עוניו.
+On recto at Genesis 16:11 ענ י ך of Kittel-Kahle BH3 is spelt עוניך.
 #
 Or. 1080.A1.7 (formerly Or. 1080.12.50)
 Genesis 18:8–19; 20.3–11
@@ -20846,7 +20844,7 @@ Or. 1080.A3.2 (formerly Or. 1080.11.29)
 Leviticus 13:2–12; 14:20–31
 Hebrew; standard Tiberian, cantillated.
 Parchment; 17.4cm. x 25.7cm.; 1 column; 2 leaves conjoined; 13 lines; mutilated.
-On folio 1v at Leviticus 13:10 וראה הכהו, which has been omitted from the text, is supplied above the line. On folio 2v Leviticus 14:30–31 are supplied in the margin to replace Leviticus 14:19–20, which has been written in error and is deleted by dots.
+On folio 1v at Leviticus 13:10 וראה הכהן, which has been omitted from the text, is supplied above the line. On folio 2v Leviticus 14:30–31 are supplied in the margin to replace Leviticus 14:19–20, which has been written in error and is deleted by dots.
 #
 Or. 1080.A3.3 (formerly Or. 1080.11.31)
 Leviticus 13:12–14:20
@@ -20869,7 +20867,7 @@ Or. 1080.A3.6 (formerly Or. 1080.11.54)
 Leviticus 14:14–40
 Hebrew; Tiberian cantillation.
 Parchment; 20.4cm. x 19.6cm.; 2 columns; 1 leaf; 20 lines; mutilated and rubbed.
-On verso at Leviticus 14:29  ״׳, which has been omitted from the text, is supplied above the line and at Leviticus 14:33 ואל אהרו, which has been omitted from the text, is supplied above the line in a different hand from that of the text.
+On verso at Leviticus 14:29  ״׳, which has been omitted from the text, is supplied above the line and at Leviticus 14:33 ואל אהרן, which has been omitted from the text, is supplied above the line in a different hand from that of the text.
 #
 Or. 1080.A3.7 (formerly Or. 1080.11.43)
 Exodus 29:2–28
@@ -20964,7 +20962,7 @@ Or. 1080.A4.1 (formerly Or. 1080.12.10)
 Numbers 16:1–12
 Hebrew; unpointed, but with verse divisions.
 Parchment; 18.2cm. x 10.1cm.; 1 column; 1 leaf; 13 lines; mutilated.
-On verso the sign is used to fill up line-endings and in the upper margin there is a short and cryptic Arabic note referring to (f j and preceded by .וידבר
+On verso the sign is used to fill up line-endings and in the upper margin there is a short and cryptic Arabic note preceded by וידבר ׯ
 #
 Or. 1080.A4.2 (formerly Or. 1080.12.4)
 Numbers 26:9–26
@@ -20987,14 +20985,14 @@ Or. 1080.A4.5 (formerly Or. 1080.10.10)
 Deuteronomy 1:30–29:23
 Hebrew; predominantly standard Tiberian, cantillated; Massorah Parva on folios 40r, 42v, 43, 53v, 54r, and 58v.
 Parchment; 15.5cm. x 17.7cm. = size of whole fragment; 1 column; 58 leaves conjoined in 8 gatherings and consecutive; 13 lines; mutilated, rubbed, and stained with pieces of text missing or illegible and tears in lolios 14, 24, 33, and 45 sewn together.
-Examples of non-standard vocalization are:–for–; -zr for–and–; ץ=ך־ for ־=־;–for ך־–and–;•I–tori–. On folio 4r in the margin there are two lines of what appears to be a Rabbinic commentary, probably on Deuteronomy 2:21, which occurs on folio 3r. On folio 5v at Deuteronomy 3:17 there is Targum Onqelos for אטדת above the line. On folio 13v in the upper margin there is Targum Onqelos of חצובים אשר לא חצבת in Deuteronomy 6:11. On folio 14r in the top righthand corner there is a decorated ג, the gathering number, and in the lower margin there is Targum Onqelos of וצדקה in Deuteronomy 6:25. On folio 15r at Deuteronomy 7:12, the beginning of Seder 46, there is a decorated Parashah heading and in the lower margin two lines of Targum Onqelos on Deuteronomy 7:10. On folio 16v there is an א jotted in the upper margin. On folio 17r in the margins there is Targum Onqelos on ללכת in Deuteronomy 8:6, and נחלי in Deuteronomy 8:7. On folio 18r at Deuteronomy 9:3 מהר, which has been omitted from the text, is supplied in the margin. On folio 21 r in the top righthand corner there is a decorated ד , the next gathering number, and at Deuteronomy 10:12 there is a note which is not clearly legible, but possibly includes the words מצותיו ולעבד. On folio 21 v at Deuteronomy 10:20 there is Targum Onqelos for תירא. On folio 23r in the lower margin there is Targum Onqelos of ובשערי ך in Deuteronomy 11:20. On folio 29r in the top righthand corner there is ;1 decorated ה, the next gathering number, and in the lower margin there is Targum Onqelos of Deuteronomy 14:13. On folio 30r in the lower margin there is Targum Onqelos of Deuteronomy 15:2. On folio 33r at Deuteronomy 16:18, the beginning of Seder 48, there are traces of a decorated Parashah heading. On folio 34r at Deuteronomy 17:10 there is a decorated חצי הספר in the margin. On folio 36v in the lower margin there is Targum Onqelos of Deuteronomy 19:5. On folio 38r at Deuteronomy 19:17 there is Targum Onqelos of הריב in the margin. The text on folio 39r has been overwritten and at Deuteronomy 20:11 there is Targum Onqelos of למם in the margin. On folio 40r at Deuteronomy 21:10, the beginning of Seder 49, there is a decorated Parashah heading and in the lower margin there is Targum Onqelos, possibly of הערופה in Deuteronomy 21:6. On folio 45r in the top righthand corner there are traces of a r, the next gathering number. On folio 46r there is Targum Onqelos of לעבט in Deuteronomy 24:10. On folio 53r in the top righthand corner there is a n , the next gathering number. On folio 53v at Deuteronomy 28:21 there is a decorated tetragrammaton in the margin beside an erasure, presumably of the tetragrammaton, in the text. On folio 54v in the upper margin there is what appears to be Targum Onqelos, namely the Aramaic פלחין, which does not occur in this form in Sperber’s edition, which has ותפלח, but may be related to ועבדת in Deuteronomy 28:36. On folio 57v at Deuteronomy 29:9, the beginning of Seder 51, there is a trace of a decorated Parashah heading in the righthand margin and a second decoration in the lefthand margin. There are a number of other notes in the margins of several other folios which may be based on Targum Onqelos,
-but are hardly legible. There are catchwords to the first word of the text on the following folio in the lower margins of folios 5v, 7v, 11v, 12v, 13v, 20v, 28v, 36v, 41v, 44v, 52v, and 58v. At the end of each gathering of the manuscript the catchword is accompanied by the number of the gathering of which the folio on which it occurs is the last leaf. Thus an א occurs on folios 5v, a ב on folio 13v, a ג on folio 20v, a ד on folio 28v, a ו on folio 44v, a ז on folio 52v, and there are traces of a n on folio 58v and possibly of a n on folio 36v. The marginal translations from Targum Onqelos are written in a different hand, possibly several different hands, from that of the text.
+Examples of non-standard vocalization are:–for–; -zr for–and–; ץ=ך־ for ־=־;–for ך־–and–;•I–tori–. On folio 4r in the margin there are two lines of what appears to be a Rabbinic commentary, probably on Deuteronomy 2:21, which occurs on folio 3r. On folio 5v at Deuteronomy 3:17 there is Targum Onqelos for אשדת above the line. On folio 13v in the upper margin there is Targum Onqelos of חצובים אשר לא חצבת in Deuteronomy 6:11. On folio 14r in the top righthand corner there is a decorated ג, the gathering number, and in the lower margin there is Targum Onqelos of וצדקה in Deuteronomy 6:25. On folio 15r at Deuteronomy 7:12, the beginning of Seder 46, there is a decorated Parashah heading and in the lower margin two lines of Targum Onqelos on Deuteronomy 7:10. On folio 16v there is an א jotted in the upper margin. On folio 17r in the margins there is Targum Onqelos on ללכת in Deuteronomy 8:6, and נחלי in Deuteronomy 8:7. On folio 18r at Deuteronomy 9:3 מהר, which has been omitted from the text, is supplied in the margin. On folio 21 r in the top righthand corner there is a decorated ד , the next gathering number, and at Deuteronomy 10:12 there is a note which is not clearly legible, but possibly includes the words מצותיו ולעבד. On folio 21 v at Deuteronomy 10:20 there is Targum Onqelos for תירא. On folio 23r in the lower margin there is Targum Onqelos of ובשעריך in Deuteronomy 11:20. On folio 29r in the top righthand corner there is a decorated ה, the next gathering number, and in the lower margin there is Targum Onqelos of Deuteronomy 14:13. On folio 30r in the lower margin there is Targum Onqelos of Deuteronomy 15:2. On folio 33r at Deuteronomy 16:18, the beginning of Seder 48, there are traces of a decorated Parashah heading. On folio 34r at Deuteronomy 17:10 there is a decorated חצי הספר in the margin. On folio 36v in the lower margin there is Targum Onqelos of Deuteronomy 19:5. On folio 38r at Deuteronomy 19:17 there is Targum Onqelos of הריב in the margin. The text on folio 39r has been overwritten and at Deuteronomy 20:11 there is Targum Onqelos of למס in the margin. On folio 40r at Deuteronomy 21:10, the beginning of Seder 49, there is a decorated Parashah heading and in the lower margin there is Targum Onqelos, possibly of הערופה in Deuteronomy 21:6. On folio 45r in the top righthand corner there are traces of a ז, the next gathering number. On folio 46r there is Targum Onqelos of לעבט in Deuteronomy 24:10. On folio 53r in the top righthand corner there is a ח , the next gathering number. On folio 53v at Deuteronomy 28:21 there is a decorated tetragrammaton in the margin beside an erasure, presumably of the tetragrammaton, in the text. On folio 54v in the upper margin there is what appears to be Targum Onqelos, namely the Aramaic פלחין, which does not occur in this form in Sperber’s edition, which has ותפלח, but may be related to ועבדת in Deuteronomy 28:36. On folio 57v at Deuteronomy 29:9, the beginning of Seder 51, there is a trace of a decorated Parashah heading in the righthand margin and a second decoration in the lefthand margin. There are a number of other notes in the margins of several other folios which may be based on Targum Onqelos,
+but are hardly legible. There are catchwords to the first word of the text on the following folio in the lower margins of folios 5v, 7v, 11v, 12v, 13v, 20v, 28v, 36v, 41v, 44v, 52v, and 58v. At the end of each gathering of the manuscript the catchword is accompanied by the number of the gathering of which the folio on which it occurs is the last leaf. Thus an א occurs on folios 5v, a ב on folio 13v, a ג on folio 20v, a ד on folio 28v, a ו on folio 44v, a ז on folio 52v, and there are traces of a ח on folio 58v and possibly of a ה on folio 36v. The marginal translations from Targum Onqelos are written in a different hand, possibly several different hands, from that of the text.
 #
 Or. 1080.A4.6 (formerly Or. 1080.2.30)
 Numbers 6:27–7:24
 Hebrew; standard Tiberian, cantillated.
 Parchment; 12.5cm. x 29.3cm.; 1 column; 2 leaves conjoined and consecutive; 11 lines; worn, but almost whole.
-A few parts of the text have been overwritten. On folio 2r at Numbers 7:12 there is a decorated ם and את, which has been omitted from the text, is supplied in the margin with a different colour of ink from that of the text, while at Numbers 7:17 חמשי ם, which has been omitted from the text, is supplied in the margin with the same colour of ink as that of the text. On folio 2v there are pen-exercises in the margin written with the same colour of ink as that of the overwriting. The sign V is used to fill up line-endings.
+A few parts of the text have been overwritten. On folio 2r at Numbers 7:12 there is a decorated ם and את, which has been omitted from the text, is supplied in the margin with a different colour of ink from that of the text, while at Numbers 7:17 חמשים, which has been omitted from the text, is supplied in the margin with the same colour of ink as that of the text. On folio 2v there are pen-exercises in the margin written with the same colour of ink as that of the overwriting. The sign V is used to fill up line-endings.
 #
 Or. 1080.A4.7 (formerly Or. 1080.2.24)
 Numbers 19:12–22; 21:11–24

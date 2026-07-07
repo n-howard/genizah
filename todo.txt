@@ -1,6 +1,6 @@
 -[] update so three yuds symbol and "Liturgy" (not just liturgical) are bible-related
 -[] ellipses to have no spaces in the middle
--[] Maimonides and other commentators are Bible-Related
+-[] Maimonides, other commentators, and Midrash are Bible-Related
 -[] "the non-standard vocalization \gibberish\, but" check if common enough to need fixing so "but..." stays included
 -[] fix when there is l instead of 1 (big common problem)!!!
 -[] filter a list of references so it doesn't include the fragment that the list is associated with
@@ -15,6 +15,9 @@
 -[] Haggadah is probably Bible-Related
 -[] make sure word- word works with spell-check
 -[] for K at end, 2 or more spaces = 1 space not just 2 spaces = 1 space
+-[] problem where symbol at end/beginning of Hebrew gets deleted (probably remnant code of tetragrammaton problem that is perhaps no longer necessary)
+-[] The sign Vis -> The sign V is
+-[] with Targum... on new line after books (needs to be on same line)
 
 
 List to manually do brackets
@@ -25,6 +28,8 @@ List to manually do brackets
 - T-S A41.23 (needs to say "erased")
 - T-S A41.35 (erased)
 - T-S A42.1 (erased and strikethrough)
+- T-S B16.14
+- T-S Misc 1.127
 # Hebrew
 [\u0590-\u05fe]
 
