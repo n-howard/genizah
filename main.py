@@ -260,7 +260,7 @@ def main():
 
         K = re.sub(r"BH[jJ\W]", "BH3", K)
 
-        K = re.sub(r"(decorated)\s*[&0oם\u25a0-\u25ff]", r"\1 ס", K, flags=re.IGNORECASE)
+        K = re.sub(r"(decorated)\s*[&0obptם\u25a0-\u25ff](s)*(?=\.|,|\s|'|\=|$)", r"\1 ס\2", K, flags=re.IGNORECASE)
 
         K = re.sub(r"See Plate \d+\.*", "", K, flags=re.IGNORECASE)
 
@@ -309,10 +309,10 @@ def main():
         columns=['A','B','C','D','E','F','G','H','I','J','K','L','M'])
     df.to_csv("test.csv", index=False)
     
-    curr = "Or. 1080.A4.10 (formerly Or. 1080.12.46)"
+    curr = "T-S NS 58.5"
     completeSoFar = hebList.index(curr)+1
     percent = (completeSoFar/len(hebList))*100
-    print(hebList, "\n", hebCount, "\n",completeSoFar , "\n", str(percent)+"%" )
+    # print(hebList, "\n", hebCount, "\n",completeSoFar , "\n", str(percent)+"%" )git 
 
     # print(len(problems), problems)
 

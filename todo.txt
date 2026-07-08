@@ -18,6 +18,11 @@
 -[] problem where symbol at end/beginning of Hebrew gets deleted (probably remnant code of tetragrammaton problem that is perhaps no longer necessary)
 -[] The sign Vis -> The sign V is
 -[] with Targum... on new line after books (needs to be on same line)
+-[] word #word (such as folio #[v/r]at) needs a space
+-[] Check if Or. references are missing because of previous name (or some other formatting issue) or if they actually don't exist
+-[] erronenous '
+-[] check to see if "see the appendix" is an issue and remove it
+
 
 
 List to manually do brackets
@@ -30,6 +35,8 @@ List to manually do brackets
 - T-S A42.1 (erased and strikethrough)
 - T-S B16.14
 - T-S Misc 1.127
+- Or. 1080.A5.2 (formerly Or. 1080.10.9)
+- T-S NS 7.66
 # Hebrew
 [\u0590-\u05fe]
 
