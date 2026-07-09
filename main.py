@@ -225,8 +225,10 @@ def main():
         K = re.sub(r"(vocalization)\s*[a-zA-Za-z:]\s\[", r"vocalization are: [", K)
         K = re.sub(r"(vocalization)(?=[A-Za-z]{2,})", r"\1 ", K)
         # K = K.replace("The non-standard vocalization.", "Examples of non-standard vocalization occur.")
-        K = re.sub(r"(?:The|Examples of|An example of|Example of|the)(?:\sconsistently)* (non-standard\s*)(Tiberian\s*vocalization|Tiberian|vocalization)(?:\s*occur)?[s]?(\sin the over[^\.]*|\sin the rem[^\.]*|\sin folio[^\.]*)?(\.)", r"examples of \1\2\3 occur.", K, flags=re.IGNORECASE)
+
+        K = re.sub(r"(?:The|Examples of|An example of|Example of|the|contains the)(?:\sconsistently)* (non-standard\s*)(Tiberian\s*vocalization|Tiberian|vocalization)(?:\s*occur)?[s]?(\sin the over[^\.]*|\sin the rem[^\.]*|\sin folio[^\.]*)?(\.)", r"examples of \1\2\3 occur.", K, flags=re.IGNORECASE)
         K = re.sub(r"[tT]he (non-standard) (Tiberian\s*vocalization|Tiberian|vocalization) (occurs [a-z\s,\u05d0-\u05ea]+\.)", r"non-standard \2 \3", K)
+        K = re.sub(r"[tT]he (non-standard) (Tiberian\s*vocalization|Tiberian|vocalization) (occur [a-z\s,\u05d0-\u05ea]+\.)", r"non-standard \2s \3", K)
         K = re.sub(r"(non-standard vocalization)\.", r"\1s.", K)
         
         
@@ -235,7 +237,7 @@ def main():
         vocPattern = r"(vocalized with the non-standard)[^.]*(\.)?"
         K = re.sub(vocPattern, r"\1 form.", K)
 
-        signsPattern = r"(?:This|the)\s*(sign|line ending)([s])?.*?(\.|,|\sare|\sis|\smarks|$)"
+        signsPattern = r"(?:This|the)\s*(sign|line ending)([s])?.*?(\.|,|\s*are|\s*is|\s*marks|$)"
         K = re.sub(signsPattern, lambda match: match.group(1)+"s"+match.group(3) if (match.group(3)==" are" or match.group(2)=="s") else "a "+match.group(1)+match.group(3), K, flags=re.IGNORECASE)
         K = re.sub(r"[;\.]\s+[a-z](?=[^\.]{3,})", lambda match: match.group(0).upper(), K)
 
@@ -260,7 +262,7 @@ def main():
 
         K = re.sub(r"BH[jJ\W]", "BH3", K)
 
-        K = re.sub(r"(decorated)\s*[&0obptם\u25a0-\u25ff](s)*(?=\.|,|\s|'|\=|$)", r"\1 ס\2", K, flags=re.IGNORECASE)
+        K = re.sub(r"(decorated)\s*[&0obptם\u25a0-\u25ff](s)*(?=\.|,|\s|'|\=|\)|\!|$)", r"\1 ס\2", K, flags=re.IGNORECASE)
 
         K = re.sub(r"See Plate \d+\.*", "", K, flags=re.IGNORECASE)
 
@@ -309,10 +311,10 @@ def main():
         columns=['A','B','C','D','E','F','G','H','I','J','K','L','M'])
     df.to_csv("test.csv", index=False)
     
-    curr = "T-S NS 58.5"
+    curr = "T-S NS 106.2"
     completeSoFar = hebList.index(curr)+1
     percent = (completeSoFar/len(hebList))*100
-    # print(hebList, "\n", hebCount, "\n",completeSoFar , "\n", str(percent)+"%" )git 
+    print(hebList, "\n", hebCount, "\n",completeSoFar , "\n", str(percent)+"%" )
 
     # print(len(problems), problems)
 

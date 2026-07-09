@@ -16,13 +16,17 @@
 -[] make sure word- word works with spell-check
 -[] for K at end, 2 or more spaces = 1 space not just 2 spaces = 1 space
 -[] problem where symbol at end/beginning of Hebrew gets deleted (probably remnant code of tetragrammaton problem that is perhaps no longer necessary)
--[] The sign Vis -> The sign V is
 -[] with Targum... on new line after books (needs to be on same line)
 -[] word #word (such as folio #[v/r]at) needs a space
 -[] Check if Or. references are missing because of previous name (or some other formatting issue) or if they actually don't exist
 -[] erronenous '
 -[] check to see if "see the appendix" is an issue and remove it
-
+-[] fix problem that occurs when contents/bible verses go into a second line
+-[] erronenous *
+-[] non-standard vocalizations blabla The (The... gets cut out which can be a problem)
+-[] ייי ← ׯ(?)
+-[] transformed to A sign. (this is a problem)
+-[] there is a 0 -> there is a ס
 
 
 List to manually do brackets
@@ -37,6 +41,8 @@ List to manually do brackets
 - T-S Misc 1.127
 - Or. 1080.A5.2 (formerly Or. 1080.10.9)
 - T-S NS 7.66
+- T-S NS 66.14
+- T-S NS 82.59
 # Hebrew
 [\u0590-\u05fe]
 
