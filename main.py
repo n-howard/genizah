@@ -237,7 +237,7 @@ def main():
         vocPattern = r"(vocalized with the non-standard)[^.]*(\.)?"
         K = re.sub(vocPattern, r"\1 form.", K)
 
-        signsPattern = r"(?:This|the)\s*(sign|line ending)([s])?.*?(\.|,|\s*are|\s*is|\s*marks|$)"
+        signsPattern = r"(?:This|the)\s*(sign|line ending)([s])?.*?(\.|,|\s?are|\s?is|\s?marks|$)"
         K = re.sub(signsPattern, lambda match: match.group(1)+"s"+match.group(3) if (match.group(3)==" are" or match.group(2)=="s") else "a "+match.group(1)+match.group(3), K, flags=re.IGNORECASE)
         K = re.sub(r"[;\.]\s+[a-z](?=[^\.]{3,})", lambda match: match.group(0).upper(), K)
 
@@ -273,7 +273,7 @@ def main():
 
         K = re.sub(r"(?<=[\u05d0-\u05ea])(\s*is often vocalized)\s*([\u05d0-\u05ea]+)", r"\1 in a non-standard form", K)
 
-        K = re.sub(r" n([\s,])", r" ח\1", K)
+        K = re.sub(r" n([\s,\.])", r" ח\1", K)
         K = re.sub(r"\s([\u0590-\u05fe])\s(s)([\s,\.])", r" \1\2\3", K)
 
         K = K.replace("יטראל", "ישראל")
@@ -311,10 +311,12 @@ def main():
         columns=['A','B','C','D','E','F','G','H','I','J','K','L','M'])
     df.to_csv("test.csv", index=False)
     
-    curr = "T-S NS 106.2"
+    curr = "T-S NS 335.56"
+    # curr = "T-S NS 335.56"
     completeSoFar = hebList.index(curr)+1
     percent = (completeSoFar/len(hebList))*100
-    print(hebList, "\n", hebCount, "\n",completeSoFar , "\n", str(percent)+"%" )
+    # print(hebList, "\n", hebCount, "\n",completeSoFar , "\n", str(percent)+"%" )
+    print(hebCount, "\n",completeSoFar , "\n", str(percent)+"%" )
 
     # print(len(problems), problems)
 

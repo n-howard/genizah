@@ -27,7 +27,22 @@
 -[] ייי ← ׯ(?)
 -[] transformed to A sign. (this is a problem)
 -[] there is a 0 -> there is a ס
-
+-[] if a fragment is mentioned/referenced somewhere other than "K" it should go to associated fragments anyways
+-[] Mezuzah is Bible-Related
+-[] A signVis currently transforms to A signis which needs fixing
+-[] ,, -> ,
+-[] 0f ([zero]f) -> of
+-[] ,word or ,Hebrew -> , word or , Hebrew
+-[] erroneous .
+-[] fix when there is I instead of 1
+-[] . which -> , which
+-[] comma instead of period in class numbers
+-[] non-standard vocalization is dagesh etc. (non-standard vocalization but no gibberish), consider options
+-[] Hebrew# or #Hebrew -> should have space (perhaps add to A-ZHeb add space)
+-[] Signs V, V, and V (replace cuts off at the comma which is a problem)
+-[] , On -> . On
+-[] e.g., On verso tetragrammaton is twice abbreviated to (doesn't remove the to but needs to)
+-[] erronenous ,
 
 List to manually do brackets
 - Anything with [/] (though maybe this can be fixed by fixing code)
