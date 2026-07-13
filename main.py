@@ -88,6 +88,7 @@ def main():
         entry = re.sub(r"([A-Za-z]{2,})-\s*([A-Za-z]{2,})", lambda match: match.group(1)+ "-" +match.group(2) if match.group(1)+ "-" +match.group(2) in spell or any(real.lower() in (match.group(1)+ "-" +match.group(2)).lower() for real in realWords) else match.group(1)+match.group(2), entry, flags=re.IGNORECASE)
         
         # entry = re.sub(r"(?<=[^\u25a0-\u25ff\s\[\]])[\u25a0-\u25ff](?=[^\u25a0-\u25ff\s\[\]])", "", entry)
+        entry = re.sub(r"decorated\s*[\u25a0-\u25ff]", r"decorated ס", entry)
         entry = re.sub(r"[\u25a0-\u25ff•]", "", entry)
 
         entry = re.sub(r"(\d{1,2})(\d{1,2})\s*[\u0590-\u05fe]\s*lines", r"\1-\2 lines", entry)
@@ -311,7 +312,7 @@ def main():
         columns=['A','B','C','D','E','F','G','H','I','J','K','L','M'])
     df.to_csv("test.csv", index=False)
     
-    curr = "T-S NS 335.56"
+    curr = "T-S AS 19.161"
     # curr = "T-S NS 335.56"
     completeSoFar = hebList.index(curr)+1
     percent = (completeSoFar/len(hebList))*100

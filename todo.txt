@@ -1,6 +1,7 @@
--[] update so three yuds symbol and "Liturgy" (not just liturgical) are bible-related
+-[] update so three yuds symbol and "[Ll]iturgy" (as well as "liturgical") are bible-related
+-[] unidentified is bible-related if not containing "Hebrew Bible"
 -[] ellipses to have no spaces in the middle
--[] Maimonides, other commentators, and Midrash are Bible-Related
+-[] Maimonides, other commentators, and Midrash/Talmud/Mishnah are Bible-Related
 -[] "the non-standard vocalization \gibberish\, but" check if common enough to need fixing so "but..." stays included
 -[] fix when there is l instead of 1 (big common problem)!!!
 -[] filter a list of references so it doesn't include the fragment that the list is associated with
@@ -43,6 +44,22 @@
 -[] , On -> . On
 -[] e.g., On verso tetragrammaton is twice abbreviated to (doesn't remove the to but needs to)
 -[] erronenous ,
+-[] folios # r/v (remove space)
+-[] tex! -> text
+-[] The non-standard vocalizations-gibberish-occur needs to be processed so "The" is replaced with "Examples of"
+-[] The tetragrammaton is abbreviated. [symbols] (e.g., T, yud, ') (perhaps make it only \.\s[A-Z][a-z] and investigate if there is ever heb after the sentence that should be kept)
+-[] A sign is used t -> A sign is used to
+-[] [\Title\ continued] needs to be removed
+-[] language (e.g., Hebrew) not on new line after contents
+-[] make material capitalization consistent
+-[] standardize spelling of haftorah/haftorot
+-[] More than three lines but they are all description that accidentally got broken up (maybe if final line ends with the word parchment or paper, merge all lines except line 1)
+-[] ;; -> ;
+-[].Heb$ -> Heb.$
+-[] resh -> 7 when in a section/context w/ numbers
+-[] "no text" = bible-related
+-[] condition ends up on two lines
+-[] ; in verse numbers instead of : needs to be fixed
 
 List to manually do brackets
 - Anything with [/] (though maybe this can be fixed by fixing code)
@@ -58,6 +75,7 @@ List to manually do brackets
 - T-S NS 7.66
 - T-S NS 66.14
 - T-S NS 82.59
+- T-S AS 19.61
 # Hebrew
 [\u0590-\u05fe]
 
