@@ -120,6 +120,9 @@ def main():
             dict.update({'B': "Bible"})
 
         if len(lines) < 3:
+            if bool(re.search(r"[\u0590-\u05fe]", entry)):
+                hebCount+=1
+                hebList.append(lines[0]) 
             if "archment" and "aper" in entry:
                 dict['C'] = "parchment; paper"
             elif "archment" in entry:
@@ -284,6 +287,11 @@ def main():
             hebCount+=1
             hebList.append(lines[0]) 
         # HEBCOUNT END
+
+        if 'I' in dict:
+            if bool(re.search(r"[\u0590-\u05fe]", dict['I'])):
+                hebCount+=1
+                hebList.append(lines[0]) 
         
         # bracketPattern = r"([A-Za-z]{3,})\s*\[\s?\](\s*[A-Za-z.])"
         
@@ -312,12 +320,13 @@ def main():
         columns=['A','B','C','D','E','F','G','H','I','J','K','L','M'])
     df.to_csv("test.csv", index=False)
     
-    curr = "T-S AS 19.161"
-    # curr = "T-S NS 335.56"
+    curr = "T-S AS 42.74"
+    # curr = "T-S AS 42.74"
     completeSoFar = hebList.index(curr)+1
     percent = (completeSoFar/len(hebList))*100
     # print(hebList, "\n", hebCount, "\n",completeSoFar , "\n", str(percent)+"%" )
-    print(hebCount, "\n",completeSoFar , "\n", str(percent)+"%" )
+    print(str(hebCount) + "\n" + str(completeSoFar) + "\n" + str(percent)+"%" )
+
 
     # print(len(problems), problems)
 

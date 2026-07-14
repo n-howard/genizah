@@ -29,7 +29,7 @@
 -[] transformed to A sign. (this is a problem)
 -[] there is a 0 -> there is a ס
 -[] if a fragment is mentioned/referenced somewhere other than "K" it should go to associated fragments anyways
--[] Mezuzah is Bible-Related
+-[] Mezuzah and tefillin should be Bible-Related
 -[] A signVis currently transforms to A signis which needs fixing
 -[] ,, -> ,
 -[] 0f ([zero]f) -> of
@@ -52,7 +52,7 @@
 -[] [\Title\ continued] needs to be removed
 -[] language (e.g., Hebrew) not on new line after contents
 -[] make material capitalization consistent
--[] standardize spelling of haftorah/haftorot
+-[] standardize spelling of haftorah/haftorot 
 -[] More than three lines but they are all description that accidentally got broken up (maybe if final line ends with the word parchment or paper, merge all lines except line 1)
 -[] ;; -> ;
 -[].Heb$ -> Heb.$
@@ -60,6 +60,12 @@
 -[] "no text" = bible-related
 -[] condition ends up on two lines
 -[] ; in verse numbers instead of : needs to be fixed
+-[] non-biblical should be bible-related
+-[] hafiarah -> haftarah
+-[] #cm X #cm (i.e., make it case insensitive)
+-[] "only pen-exercises" should probably be bible-related, also if it only preserves the Judaeo-Arabic word for pen-exercises
+-[] something is going on with leather and leaf getting combined into one item
+-[] "part of a letter" should be bible-related
 
 List to manually do brackets
 - Anything with [/] (though maybe this can be fixed by fixing code)
@@ -76,6 +82,7 @@ List to manually do brackets
 - T-S NS 66.14
 - T-S NS 82.59
 - T-S AS 19.61
+- T-S AS 22.53
 # Hebrew
 [\u0590-\u05fe]
 
