@@ -17,7 +17,7 @@
 -[] make sure word- word works with spell-check
 -[] for K at end, 2 or more spaces = 1 space not just 2 spaces = 1 space
 -[] problem where symbol at end/beginning of Hebrew gets deleted (probably remnant code of tetragrammaton problem that is perhaps no longer necessary)
--[] with Targum... on new line after books (needs to be on same line)
+-[] with Targum... on new line after books (needs to be on same line) (also happens with other words!!)
 -[] word #word (such as folio #[v/r]at) needs a space
 -[] Check if Or. references are missing because of previous name (or some other formatting issue) or if they actually don't exist
 -[] erronenous '
@@ -66,8 +66,12 @@
 -[] "only pen-exercises" should probably be bible-related, also if it only preserves the Judaeo-Arabic word for pen-exercises
 -[] something is going on with leather and leaf getting combined into one item
 -[] "part of a letter" should be bible-related
+-[] remove extra spaces from brackets
+-[] "Hebrew fragment" with one line description should be language Hebrew (and similar for Arabic, Aramaic, etc.)
+-[] word,word -> word, word
+-[] comer -> corner
 
-List to manually do brackets
+List to manually do brackets/corrections
 - Anything with [/] (though maybe this can be fixed by fixing code)
 -A41.19
 - Earlier ones (need to check)
@@ -83,6 +87,11 @@ List to manually do brackets
 - T-S NS 82.59
 - T-S AS 19.61
 - T-S AS 22.53
+- T-S AS 44.32 and any other ones where number/punctuation is next to Hebrew and thus ends up in wrong order (also true of = signs)
+- T-S AS 54.36
+- T-S AS 60.59
+- T-S AS 60.103
+
 # Hebrew
 [\u0590-\u05fe]
 

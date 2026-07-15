@@ -320,12 +320,14 @@ def main():
         columns=['A','B','C','D','E','F','G','H','I','J','K','L','M'])
     df.to_csv("test.csv", index=False)
     
-    curr = "T-S AS 42.74"
-    # curr = "T-S AS 42.74"
+    curr = "T-S AS 64.50"
+    last = "T-S AS 64.50"
     completeSoFar = hebList.index(curr)+1
     percent = (completeSoFar/len(hebList))*100
     # print(hebList, "\n", hebCount, "\n",completeSoFar , "\n", str(percent)+"%" )
     print(str(hebCount) + "\n" + str(completeSoFar) + "\n" + str(percent)+"%" )
+    diff = completeSoFar - (hebList.index(last)+1)
+    print(diff)
 
 
     # print(len(problems), problems)
