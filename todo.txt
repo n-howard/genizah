@@ -1,9 +1,10 @@
--[] update so three yuds symbol and "[Ll]iturgy" (as well as "liturgical") are bible-related
--[] unidentified is bible-related if not containing "Hebrew Bible"
+/update so three yuds symbol is bible-related/
+-[x] update so "[Ll]iturgy" and "liturgical" are bible-related
+-[x] unidentified is bible-related if not containing "Hebrew Bible"
 -[] ellipses to have no spaces in the middle
--[] Maimonides, other commentators, and Midrash/Talmud/Mishnah are Bible-Related
+-[x] Maimonides, other commentators, and Midrash/Talmud/Mishnah are Bible-Related
 -[] "the non-standard vocalization \gibberish\, but" check if common enough to need fixing so "but..." stays included
--[] fix when there is l instead of 1 (big common problem)!!!
+-[x] fix when there is l instead of 1 (big common problem)!!!
 -[] filter a list of references so it doesn't include the fragment that the list is associated with
 -[] erroneous spaces in brackets
 -[] non-standard vocalization missing a period?
@@ -11,65 +12,65 @@
 -[] currently And after semicolon is capitalized by my code, fix?
 -[] Capitalization after Section Chapter:Verseword. is a problem
 -[] Consider "Haphtaroth", "Ab", etc.
--[] If it's just a Targum, not a Targum after lines of texts/in margins, it should probably be bible-related
 -[] Fix problem that sometimes occurs where brackets become very wrong in the CSV when they are correct in the catalogue
--[] Haggadah is probably Bible-Related
+-[x] Haggadah is probably Bible-Related
 -[] make sure word- word works with spell-check
--[] for K at end, 2 or more spaces = 1 space not just 2 spaces = 1 space
+-[x] for K at end, 2 or more spaces = 1 space not just 2 spaces = 1 space
 -[] problem where symbol at end/beginning of Hebrew gets deleted (probably remnant code of tetragrammaton problem that is perhaps no longer necessary)
--[] with Targum... on new line after books (needs to be on same line) (also happens with other words!!)
+-[x] with Targum... on new line after books (needs to be on same line) (also happens with other words!!)
 -[] word #word (such as folio #[v/r]at) needs a space
--[] Check if Or. references are missing because of previous name (or some other formatting issue) or if they actually don't exist
+-[x] Check if Or. references are missing because of previous name (or some other formatting issue) or if they actually don't exist
 -[] erronenous '
 -[] check to see if "see the appendix" is an issue and remove it
 -[] fix problem that occurs when contents/bible verses go into a second line
 -[] erronenous *
 -[] non-standard vocalizations blabla The (The... gets cut out which can be a problem)
--[] ייי ← ׯ(?)
--[] transformed to A sign. (this is a problem)
--[] there is a 0 -> there is a ס
+/ייי ← ׯ(?)/
+-[x] transformed to A sign. (this is a problem)
 -[] if a fragment is mentioned/referenced somewhere other than "K" it should go to associated fragments anyways
--[] Mezuzah and tefillin should be Bible-Related
--[] A signVis currently transforms to A signis which needs fixing
--[] ,, -> ,
--[] 0f ([zero]f) -> of
+-[x] Mezuzah and tefillin should be Bible-Related
+-[x] A signVis currently transforms to A signis which needs fixing
+-[x] ,, -> ,
+-[x] 0f ([zero]f) -> of
 -[] ,word or ,Hebrew -> , word or , Hebrew
 -[] erroneous .
 -[] fix when there is I instead of 1
--[] . which -> , which
+-[x] . which -> , which
 -[] comma instead of period in class numbers
 -[] non-standard vocalization is dagesh etc. (non-standard vocalization but no gibberish), consider options
 -[] Hebrew# or #Hebrew -> should have space (perhaps add to A-ZHeb add space)
 -[] Signs V, V, and V (replace cuts off at the comma which is a problem)
--[] , On -> . On
--[] e.g., On verso tetragrammaton is twice abbreviated to (doesn't remove the to but needs to)
+-[x] , On -> . On
+-[x] e.g., On verso tetragrammaton is twice abbreviated to (doesn't remove the to but needs to)
 -[] erronenous ,
 -[] folios # r/v (remove space)
 -[] tex! -> text
--[] The non-standard vocalizations-gibberish-occur needs to be processed so "The" is replaced with "Examples of"
--[] The tetragrammaton is abbreviated. [symbols] (e.g., T, yud, ') (perhaps make it only \.\s[A-Z][a-z] and investigate if there is ever heb after the sentence that should be kept)
+-[x] The non-standard vocalizations-gibberish-occur needs to be processed so "The" is replaced with "Examples of"
+-[x] The tetragrammaton is abbreviated. [symbols] (e.g., T, yud, ') (perhaps make it only \.\s[A-Z][a-z] and investigate if there is ever heb after the sentence that should be kept)
 -[] A sign is used t -> A sign is used to
--[] [\Title\ continued] needs to be removed
--[] language (e.g., Hebrew) not on new line after contents
--[] make material capitalization consistent
+-[x] [\Title\ continued] needs to be removed
+-[x] language (e.g., Hebrew) not on new line after contents
+-[x] make material capitalization consistent
 -[] standardize spelling of haftorah/haftorot 
--[] More than three lines but they are all description that accidentally got broken up (maybe if final line ends with the word parchment or paper, merge all lines except line 1)
--[] ;; -> ;
+-[x] More than three lines but they are all description that accidentally got broken up (maybe if final line ends with the word parchment or paper, merge all lines except line 1)
+-[x] ;; -> ;
 -[].Heb$ -> Heb.$
--[] resh -> 7 when in a section/context w/ numbers
+-[x] resh -> 7 when in a section/context w/ numbers
+    - check
 -[] "no text" = bible-related
 -[] condition ends up on two lines
 -[] ; in verse numbers instead of : needs to be fixed
 -[] non-biblical should be bible-related
--[] hafiarah -> haftarah
--[] #cm X #cm (i.e., make it case insensitive)
+-[x] hafiarah -> haftarah
+-[x] #cm X #cm (i.e., make it case insensitive)
 -[] "only pen-exercises" should probably be bible-related, also if it only preserves the Judaeo-Arabic word for pen-exercises
--[] something is going on with leather and leaf getting combined into one item
+-[x] something is going on with leather and leaf getting combined into one item
 -[] "part of a letter" should be bible-related
 -[] remove extra spaces from brackets
 -[] "Hebrew fragment" with one line description should be language Hebrew (and similar for Arabic, Aramaic, etc.)
 -[] word,word -> word, word
 -[] comer -> corner
+-[] add misc to list of title formats
 
 List to manually do brackets/corrections
 - Anything with [/] (though maybe this can be fixed by fixing code)
