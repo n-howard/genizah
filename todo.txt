@@ -1,16 +1,16 @@
 /update so three yuds symbol is bible-related/
 -[x] update so "[Ll]iturgy" and "liturgical" are bible-related
 -[x] unidentified is bible-related if not containing "Hebrew Bible"
--[] ellipses to have no spaces in the middle
+-[x] ellipses to have no spaces in the middle
 -[x] Maimonides, other commentators, and Midrash/Talmud/Mishnah are Bible-Related
--[] "the non-standard vocalization \gibberish\, but" check if common enough to need fixing so "but..." stays included
+/"the non-standard vocalization \gibberish\, but" check if common enough to need fixing so "but..." stays included
 -[x] fix when there is l instead of 1 (big common problem)!!!
--[] filter a list of references so it doesn't include the fragment that the list is associated with
--[] erroneous spaces in brackets
--[] non-standard vocalization missing a period?
--[] fix so bible-related for child/children only if child[\W]s [\w-]*\s*exercise or children[\W]s [\w-]*\s*exercise
--[] currently And after semicolon is capitalized by my code, fix?
--[] Capitalization after Section Chapter:Verseword. is a problem
+-[x] filter a list of references so it doesn't include the fragment that the list is associated with
+/erroneous spaces in brackets
+-[x] non-standard vocalization missing a period?
+/fix so bible-related for child/children only if child[\W]s [\w-]*\s*exercise or children[\W]s [\w-]*\s*exercise
+-[x] currently And after semicolon is capitalized by my code, fix?
+-[x] Capitalization after Section Chapter:Verseword. is a problem
 -[] Consider "Haphtaroth", "Ab", etc.
 -[] Fix problem that sometimes occurs where brackets become very wrong in the CSV when they are correct in the catalogue
 -[x] Haggadah is probably Bible-Related
@@ -21,73 +21,72 @@
 -[] word #word (such as folio #[v/r]at) needs a space
 -[x] Check if Or. references are missing because of previous name (or some other formatting issue) or if they actually don't exist
 -[] erronenous '
--[] check to see if "see the appendix" is an issue and remove it
+/ check to see if "see the appendix" is an issue and remove it
 -[] fix problem that occurs when contents/bible verses go into a second line
--[] erronenous *
+-[x] erronenous *
 -[] non-standard vocalizations blabla The (The... gets cut out which can be a problem)
 /ייי ← ׯ(?)/
 -[x] transformed to A sign. (this is a problem)
--[] if a fragment is mentioned/referenced somewhere other than "K" it should go to associated fragments anyways
+-[x] if a fragment is mentioned/referenced somewhere other than "K" it should go to associated fragments anyways
 -[x] Mezuzah and tefillin should be Bible-Related
 -[x] A signVis currently transforms to A signis which needs fixing
 -[x] ,, -> ,
 -[x] 0f ([zero]f) -> of
--[] ,word or ,Hebrew -> , word or , Hebrew
+/ ,word or ,Hebrew -> , word or , Hebrew
 -[] erroneous .
--[] fix when there is I instead of 1
+-[x] fix when there is I instead of 1
 -[x] . which -> , which
--[] comma instead of period in class numbers
+-[x] comma instead of period in class numbers
 -[] non-standard vocalization is dagesh etc. (non-standard vocalization but no gibberish), consider options
--[] Hebrew# or #Hebrew -> should have space (perhaps add to A-ZHeb add space)
--[] Signs V, V, and V (replace cuts off at the comma which is a problem)
+-[x] Hebrew# or #Hebrew -> should have space (perhaps add to A-ZHeb add space)
+-[x] Signs V, V, and V (replace cuts off at the comma which is a problem)
 -[x] , On -> . On
 -[x] e.g., On verso tetragrammaton is twice abbreviated to (doesn't remove the to but needs to)
 -[] erronenous ,
--[] folios # r/v (remove space)
--[] tex! -> text
+-[x] folios # r/v (remove space)
+-[x] tex! -> text
 -[x] The non-standard vocalizations-gibberish-occur needs to be processed so "The" is replaced with "Examples of"
 -[x] The tetragrammaton is abbreviated. [symbols] (e.g., T, yud, ') (perhaps make it only \.\s[A-Z][a-z] and investigate if there is ever heb after the sentence that should be kept)
--[] A sign is used t -> A sign is used to
+/ A sign is used t -> A sign is used to
 -[x] [\Title\ continued] needs to be removed
 -[x] language (e.g., Hebrew) not on new line after contents
 -[x] make material capitalization consistent
 -[] standardize spelling of haftorah/haftorot 
 -[x] More than three lines but they are all description that accidentally got broken up (maybe if final line ends with the word parchment or paper, merge all lines except line 1)
 -[x] ;; -> ;
--[].Heb$ -> Heb.$
+/.Heb$ -> Heb.$
 -[x] resh -> 7 when in a section/context w/ numbers
     - check
--[] "no text" = bible-related
--[] condition ends up on two lines
--[] ; in verse numbers instead of : needs to be fixed
--[] non-biblical should be bible-related
+/ "no text" = bible-related/
+-[x] condition ends up on two lines
+-[x] ; in verse numbers instead of : needs to be fixed
+-[x] non-biblical should be bible-related
 -[x] hafiarah -> haftarah
 -[x] #cm X #cm (i.e., make it case insensitive)
--[] "only pen-exercises" should probably be bible-related, also if it only preserves the Judaeo-Arabic word for pen-exercises
+-[x] "only pen-exercises" should probably be bible-related, also if it only preserves the Judaeo-Arabic word for pen-exercises
 -[x] something is going on with leather and leaf getting combined into one item
--[] "part of a letter" should be bible-related
--[] remove extra spaces from brackets
--[] "Hebrew fragment" with one line description should be language Hebrew (and similar for Arabic, Aramaic, etc.)
--[] word,word -> word, word
--[] comer -> corner
--[] add misc to list of title formats
+-[x] "part of a letter" should be bible-related
+/ remove extra spaces from brackets
+-[x] "Hebrew fragment" with one line description should be language Hebrew (and similar for Arabic, Aramaic, etc.)
+-[x] word,word -> word, word
+-[x] comer -> corner
 
 List to manually do brackets/corrections
-- Anything with [/] (though maybe this can be fixed by fixing code)
--A41.19
+-[x] Anything with [/] (though maybe this can be fixed by fixing code)
+-[X] A41.19
 - Earlier ones (need to check)
 - Anything with sic
 - T-S A41.23 (needs to say "erased")
 - T-S A41.35 (erased)
 - T-S A42.1 (erased and strikethrough)
-- T-S B16.14
-- T-S Misc 1.127
-- Or. 1080.A5.2 (formerly Or. 1080.10.9)
-- T-S NS 7.66
-- T-S NS 66.14
-- T-S NS 82.59
-- T-S AS 19.61
-- T-S AS 22.53
+-[X] T-S B16.14
+-[X] T-S Misc 1.127
+- [x] Or. 1080.A5.2 (formerly Or. 1080.10.9)
+- [x] T-S NS 7.66
+-[x] T-S NS 66.14
+-[x] T-S NS 82.59
+-[x] T-S AS 19.61
+-[x] T-S AS 22.53
 - T-S AS 44.32 and any other ones where number/punctuation is next to Hebrew and thus ends up in wrong order (also true of = signs)
 - T-S AS 54.36
 - T-S AS 60.59

@@ -82,6 +82,7 @@ def main():
                 .replace(". Hebrew;", ".\nHebrew;")
                 .replace(", On", ". On")
                 .replace(". which", ", which")
+                .replace("hafiarot", "haftarot")
         )
         
         entry = re.sub(r"(?<=\.)\s*י+\]", "", entry)
@@ -98,14 +99,16 @@ def main():
         entry = re.sub(specialPattern, r"\1", entry)
         entry = re.sub(r"\s([\u05d0-\u05ea])\s([\u05d0-\u05ea])", r"\1\2", entry)
         entry = re.sub(r"([\u05d0-\u05ea])\s([\u05d0-\u05ea])\s", r"\1\2", entry)
-        entry = re.sub(r"([A-Za-z])([\u0590-\u05fe])", r"\1 \2", entry)
-        entry = re.sub(r"([\u0590-\u05fe])([A-Za-z])", r"\1 \2", entry)
+        entry = re.sub(r"([A-Za-z0-9])([\u0590-\u05fe])", r"\1 \2", entry)
+        entry = re.sub(r"([\u0590-\u05fe])([A-Za-z0-9])", r"\1 \2", entry)
         entry = re.sub(r"(\d)[-—–]ר", r"\1-7", entry)
         entry = re.sub(r"ר[-—–](\d)", r"7-\1", entry)
         entry = re.sub(r"(?<=[\s\d])[l](?=[-\s\d—–:vr])", r"1", entry)
-
+        entry = re.sub(r"(\d) (r|v) ", r"\1\2", entry)
         entry = re.sub(r"\n(with|damaged|rubbed|missing|piece|many|of|or|small|few|preserved|repaired|only|and|illegible|a|on|letter|word|text|identified|slightly|\(incomplete\)|side|\)|folio|lines|in|form|follow|fragment|\(|is|abbreviated)", r" \1", entry)
         entry = re.sub(r"([,;x])\n(\d)", r" \1 \2", entry, flags=re.I)
+
+        entry = entry.replace(" Example", "\nExample")
         
         entry = re.sub(r"([A-Za-z]{2,})-\s*([A-Za-z]{2,})", lambda match: match.group(1)+ "-" +match.group(2) if match.group(1)+ "-" +match.group(2) in spell or any(real.lower() in (match.group(1)+ "-" +match.group(2)).lower() for real in realWords) else match.group(1)+match.group(2), entry, flags=re.IGNORECASE)
 
@@ -126,12 +129,18 @@ def main():
         
         entry = re.sub(r"[ ]{2,}", r" ", entry)
 
+        entry = re.sub(r"([a-z]) (damaged)", r"\1; \2", entry)
+
+        entry = re.sub(r"comer", r"corner", entry, flags=re.I)
+
+        
+
         lines = entry.split("\n")
         lines[:] = [x for x in lines if x]
 
         if len(lines)==0:
             continue
-    
+        
         dict['A'] = lines[0].strip().rstrip(';')
 
         tPattern = r"(T-S\s*\w*\s*\d+\.\d+|Or\.\s*\d+(?:\.\w+)*|Wm.\s*\S*\s*\d+(?:\.\d+)*)"
@@ -145,7 +154,7 @@ def main():
         if re.findall(r"\[\d+\]$", lines[-1]):
             lines.remove(lines[-1])
 
-        if "tetragrammaton is abbreviated" in entry or bool(re.search(r"(liturgical|liturgy)", entry, flags=re.IGNORECASE)) or "child" in entry or "children" in entry or bool(re.search(r"writing[\-\s]*exercise", entry)) or "Haggadah" in entry or "Mezuzah" in entry or "tefillin" in entry or "Maimonedes" in entry or "Midrash" in entry or "Mishnah" in entry:
+        if "tetragrammaton is abbreviated" in entry or bool(re.search(r"(liturgical|liturgy)", entry, flags=re.IGNORECASE)) or "child" in entry or "children" in entry or bool(re.search(r"writing[\-\s]*exercise", entry)) or "Haggadah" in entry or "Mezuzah" in entry or "tefillin" in entry or "Maimonedes" in entry or "Midrash" in entry or "Mishnah" in entry or "part of a letter" in entry or "only pen-exercises" in entry or bool(re.search(r"non-biblical", entry, flags=re.I)):
             dict.update({'B': "Bible-Related"})
 
         elif (bool(re.search(r"unidentified", entry, flags=re.IGNORECASE)) and not bool(re.search(r"Hebrew Bible", entry, flags=re.IGNORECASE))):
@@ -183,6 +192,12 @@ def main():
                 dict['C'] = "Paper"
             elif "eather" in entry:
                 dict['C'] = "Leather"
+            if "ebrew" in entry:
+                dict['J'] = "Hebrew"
+            elif "ramaic" in entry:
+                dict['J'] = "Aramaic"
+            elif "rabic" in entry:
+                dict['J'] = "Arabic"
             if len(lines) > 1:
                 lines[1] = re.sub(r";\s*(parchment|paper|leather)\.*$", r"", lines[1], flags=re.I)
                 dict['K'] = lines[1]
@@ -242,18 +257,27 @@ def main():
                     continue
                 elif "col" in val:
                     G.append(val.strip())
-                elif "leaf" in val or "leaves" in val:
-                    F.append(val.strip())
                 elif "line" in val:
                     H.append(val.strip())
+                elif "leaf" in val or "leaves" in val and "line":
+                    F.append(val.strip())
                 elif "archment" in val or "aper" in val or "eather" in val:
                     C.append(val.strip())
             G = delim.join(G).rstrip(';').replace(".", "").strip()
             F = delim.join(F).rstrip(';').replace(".", "").strip()
             H = delim.join(H).rstrip(';').replace(".", "").strip()
             C = delim.join(C).rstrip(';').replace(".", "").strip().title()
+            if bool(re.search(r"[a-z]\. [A-Z]", vals[-1])):
+                splitLines = re.split(r"\. ", vals[-1])
+                vals[-1] = splitLines[0]
+                if len(lines)>4:
+                    lines[4] = ". ".join(splitLines[1:], lines[4])
+                else:
+                    lines.append(". ".join(splitLines[1:]))
             dict.update({'C': C, 'F': F, 
                         'G': G,'H': H, 'I': vals[-1].strip().rstrip(';:.')})
+            
+            vals[1] = re.sub(r"([^x\.](?:[\d])+),([\d])+", r"\1.\2", vals[1])
             if "average" in vals[1] or "size" in vals[1]:
                 vals[1] = re.sub(r"([0-9a-zA-Z\.\s]*)\sx\s([0-9a-zA-Z\.\s]*)\s[=\()]+\s*([0-9a-zA-Z\.\s]*)[\)]*", r"\1 = \3 x \2 = \3", vals[1])
             vals[1] = re.sub(r"(\d)\.\s[l]", r"\1.1", vals[1])
@@ -277,8 +301,9 @@ def main():
         
         K = lines[1] + '; ' + lines[4] if len(lines)>=5 else lines[1]
 
-        
-        nonPattern = r"(non)\s*(-)\s*(standard\s*)(Tiberian\s*vocalization|Tiberian|vocalization)(\s*in (?:[^,](?!are))*)*.+?(?=\s*become|\s*occur|\s*On|\.\s\[|[a-zA-Z:]\s\[[^0-9\s]\]\s|\.\s+[A-Z\u05d0-\u05ea]|$)"
+        K = re.sub(r"([^\-:\d](?:\d)+);(\d+)", r"\1:\2", K)
+
+        nonPattern = r"(non)\s*(-)\s*(standard\s*)(Tiberian\s*vocalization|Tiberian|vocalization)(\s*in (?:[^,](?!are))*)*.+?(?=\s*become|\s*occur|\s*On|\s*Folio|\s*[A-Z][a-z]|\.\s\[|[a-zA-Z:]\s\[[^0-9\s]\]\s|\.\s+[A-Z\u05d0-\u05ea]|$)"
         K = re.sub(nonPattern, r"\1\2\3\4", K)
         K = re.sub(r"(vocalization)\s*(On)", r"\1. \2", K)
         K = re.sub(r"(vocalization)$", r"\1.", K)
@@ -291,7 +316,7 @@ def main():
         K = re.sub(r"[tT]he (non-standard) (Tiberian\s*vocalization|Tiberian|vocalization) (occurs [a-z\s,\u05d0-\u05ea]+\.)", r"non-standard \2 \3", K)
         K = re.sub(r"[tT]he (non-standard) (Tiberian\s*vocalization|Tiberian|vocalization) (occur [a-z\s,\u05d0-\u05ea]+\.)", r"non-standard \2s \3", K)
         K = re.sub(r"(non-standard vocalization)\.", r"\1s.", K)
-        
+
         
         formPattern = r"(non-standard form[s]?)[^.]*(\.)?"
         K = re.sub(formPattern, r"\1.", K)
@@ -303,12 +328,14 @@ def main():
         K = re.sub(r"[;\.]\s+[a-z](?=[^\.]{3,})", lambda match: match.group(0).upper(), K)
 
         K = re.sub(r"\[\s*1\s*(?=[^\]0-9])|(?<=[^\[0-9])\s*1\s*\]", "[ ]", K)
+
         onePattern = r"([\u0590-\u05fe\s])(1)([\u0590-\u05fe])" # [
         onePattern2 = r"([\u0590-\u05fe])(1)([\u0590-\u05fe\s])" # ]
-        
-        
         K = re.sub(onePattern, r"\1[\3", K)
         K = re.sub(onePattern2, r"\1]\3", K)
+
+        K = re.sub(r"([;\.]) And", r"\1 and", K)
+        K = re.sub(r"\d[f]+\. [A-Z]", lambda match: match.group(0).lower(), K)
 
         continuedPattern = r"\[\s*" + re.escape(titles[0]) + r"[,\s]*continued\s*\]"
 
@@ -332,7 +359,7 @@ def main():
         K = re.sub(r"See Plate \d+\.*", "", K, flags=re.IGNORECASE)
 
     
-        K = re.sub(r"[\[\]]\s*(\S)\s*[\]\[]", r"[\1]", K)
+        # K = re.sub(r"[\[\]]\s*(\S)\s*[\]\[]", r"[\1]", K)
 
         K = K.replace(" ס s", " סs")
 
@@ -344,6 +371,10 @@ def main():
         K = K.replace("יטראל", "ישראל").replace(";;", ";").replace(",,", ",")
 
         K = re.sub(r"[ ]{2,}", r" ", K)
+
+        K = re.sub(r"(\S)([;,])(\S)", r"\1\2 \3", K)
+
+        K = re.sub(r"\.\s*\.\s*\.", r"...", K)
 
         # # HEBCOUNT START
         # if bool(re.search(r"[\u0590-\u05fe]", K)):
@@ -366,7 +397,7 @@ def main():
                     .replace("[", "")
             )
 
-     
+        K = re.sub(r"([a-z]+\s*\d+[rv])([a-z]+)", r"\1 \2", K)
 
         titlePattern = r"((?:T-S\s*[\w\.]*\s*\d+\.\d+|Or\.\s*\d+(?:\.\w+)*|Wm.\s*\S*\s*\d+(?:\.\d+)*)(?:[a-z])?(?:\sand\s\d+)*)"
         refs = re.findall(titlePattern, entry)
@@ -374,6 +405,8 @@ def main():
             refs = refs + titles[1:]
         if titles[0] in refs:
             refs.remove(titles[0])
+        if lines[0] in refs:
+            refs.remove(lines[0])
         refs = list(set(refs))
         refString = "; ".join(refs).strip()
 
