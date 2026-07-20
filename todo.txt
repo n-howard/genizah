@@ -11,20 +11,21 @@
 /fix so bible-related for child/children only if child[\W]s [\w-]*\s*exercise or children[\W]s [\w-]*\s*exercise
 -[x] currently And after semicolon is capitalized by my code, fix?
 -[x] Capitalization after Section Chapter:Verseword. is a problem
--[] Consider "Haphtaroth", "Ab", etc.
--[] Fix problem that sometimes occurs where brackets become very wrong in the CSV when they are correct in the catalogue
+-[x] Consider "Haphtaroth"
+ - Consider "Ab", etc. (talk to Ben)
+-[x] Fix problem that sometimes occurs where brackets become very wrong in the CSV when they are correct in the catalogue
 -[x] Haggadah is probably Bible-Related
--[] make sure word- word works with spell-check
+-[x] make sure word- word works with spell-check
 -[x] for K at end, 2 or more spaces = 1 space not just 2 spaces = 1 space
--[] problem where symbol at end/beginning of Hebrew gets deleted (probably remnant code of tetragrammaton problem that is perhaps no longer necessary)
+-[x] problem where symbol at end/beginning of Hebrew gets deleted (probably remnant code of tetragrammaton problem that is perhaps no longer necessary)
 -[x] with Targum... on new line after books (needs to be on same line) (also happens with other words!!)
--[] word #word (such as folio #[v/r]at) needs a space
+-[x] word #word (such as folio #[v/r]at) needs a space
 -[x] Check if Or. references are missing because of previous name (or some other formatting issue) or if they actually don't exist
--[] erronenous '
+-[x] erronenous '
 / check to see if "see the appendix" is an issue and remove it
--[] fix problem that occurs when contents/bible verses go into a second line
+-[x] fix problem that occurs when contents/bible verses go into a second line
 -[x] erronenous *
--[] non-standard vocalizations blabla The (The... gets cut out which can be a problem)
+-[x] non-standard vocalizations blabla The (The... gets cut out which can be a problem)
 /ייי ← ׯ(?)/
 -[x] transformed to A sign. (this is a problem)
 -[x] if a fragment is mentioned/referenced somewhere other than "K" it should go to associated fragments anyways
@@ -33,16 +34,16 @@
 -[x] ,, -> ,
 -[x] 0f ([zero]f) -> of
 / ,word or ,Hebrew -> , word or , Hebrew
--[] erroneous .
+-[x] erroneous .
 -[x] fix when there is I instead of 1
 -[x] . which -> , which
 -[x] comma instead of period in class numbers
--[] non-standard vocalization is dagesh etc. (non-standard vocalization but no gibberish), consider options
+/ non-standard vocalization is dagesh etc. (non-standard vocalization but no gibberish), consider options
 -[x] Hebrew# or #Hebrew -> should have space (perhaps add to A-ZHeb add space)
 -[x] Signs V, V, and V (replace cuts off at the comma which is a problem)
 -[x] , On -> . On
 -[x] e.g., On verso tetragrammaton is twice abbreviated to (doesn't remove the to but needs to)
--[] erronenous ,
+-[x] erronenous ,
 -[x] folios # r/v (remove space)
 -[x] tex! -> text
 -[x] The non-standard vocalizations-gibberish-occur needs to be processed so "The" is replaced with "Examples of"
@@ -51,7 +52,7 @@
 -[x] [\Title\ continued] needs to be removed
 -[x] language (e.g., Hebrew) not on new line after contents
 -[x] make material capitalization consistent
--[] standardize spelling of haftorah/haftorot 
+-[x] standardize spelling of haftorah/haftorot 
 -[x] More than three lines but they are all description that accidentally got broken up (maybe if final line ends with the word parchment or paper, merge all lines except line 1)
 -[x] ;; -> ;
 /.Heb$ -> Heb.$
@@ -75,10 +76,15 @@ List to manually do brackets/corrections
 -[x] Anything with [/] (though maybe this can be fixed by fixing code)
 -[X] A41.19
 - Earlier ones (need to check)
-- Anything with sic
-- T-S A41.23 (needs to say "erased")
-- T-S A41.35 (erased)
-- T-S A42.1 (erased and strikethrough)
+
+ Ask Ben/Estara about these as Google Sheets aren't working (propose erase solution and sic just being at the end)   [
+    - Anything with sic
+    -[/] T-S A41.23 (needs to say "erased")
+    -[/] T-S A41.35 (erased)
+    -[/] T-S A42.1 (erased and strikethrough)
+    - T-S AS 44.32 and any other ones where number/punctuation is next to Hebrew and thus ends up in wrong order (also true of = signs)]
+Also what does the CSV file need to be named?
+
 -[X] T-S B16.14
 -[X] T-S Misc 1.127
 - [x] Or. 1080.A5.2 (formerly Or. 1080.10.9)
@@ -87,10 +93,10 @@ List to manually do brackets/corrections
 -[x] T-S NS 82.59
 -[x] T-S AS 19.61
 -[x] T-S AS 22.53
-- T-S AS 44.32 and any other ones where number/punctuation is next to Hebrew and thus ends up in wrong order (also true of = signs)
-- T-S AS 54.36
-- T-S AS 60.59
-- T-S AS 60.103
+
+-[x] T-S AS 54.36
+-[x] T-S AS 60.59
+-[x] T-S AS 60.103
 
 # Hebrew
 [\u0590-\u05fe]
@@ -111,3 +117,6 @@ List to manually do brackets/corrections
 
 # Geometric Characters
 [\u25a0-\u25ff]
+
+# Other
+([a-z])\s[^a-z0-9\u0590-\u05fe\s\[\]\(\)]+\s*([\u0590-\u05fe])

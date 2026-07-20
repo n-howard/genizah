@@ -50,6 +50,11 @@ def main():
     realWords = ["non", "Judaeo", "Kittel", "prayer", "writ", "megillah", "pen", "branch", "Strauss", "right", "line", "one", "prev", "page", "title", 
                      "century","poll", "book", "al-Rida", "Dhual", "folio", "wa", "week", "ha-", "quarter", "drawn", "word", "half", "Tel", "end", "crossed", "pre", "al-", 
                      "Mosin", "wide", "he-", "ad-", "hand", "Judeao", "ink", "double", "space", "standard", "small", "side", "bibl"]
+    bibleBooks = ["Genesis", "Exodus", "Leviticus", "Numbers", "Deuteronomy",  "Joshua", "Judges", "Samuel", "1 Samuel", "2 Samiel", "1 Kings", "2 Kings", "Kings", "Isaiah", "Jeremiah", "Ezekial", "Hosea", "Joel", "Amos", "Obadia", "Yonah", "Micah", "Nahum", "Habakkuk", "Zephaniah", "Chagai", "Zechariah", "Malachi", "Psalms", "Proverbs", "Job", "Song of Songs", "Ruth", "Lamentations", "Ecclesiastes", "Esther", "Daniel", "Ezra", "Nehemiah", "Chronicles", "Liturgy"]
+    # spell.word_frequency.load_words(['א', 'ב', 'ג', 'ד', 'ה', 'ו', 'ז', 'ח', 'ט', 'י', 'כ', 'ך', 'ל', 'מ', 'ם', 'נ', 'ן', 'ס', 'ע', 'פ', 'ף', 'צ', 'ץ', 'ק', 'ר', 'ש', 'ת'])
+    # spell.word_frequency.load_words(realWords)
+    # spell.word_frequency.load_words(bibleBooks)
+    
     # hebCount = 0
     # hebList = []
 
@@ -73,9 +78,11 @@ def main():
                 .replace("ר lines", "7 lines")
                 .replace("ר leaves", "7 leaves")
                 .replace("׳,", ";")
+                .replace("׳.", ";")
                 .replace("ו־", "ר")
                 .replace("0f", "of")
                 .replace("*", "'")
+                .replace("'.", ";")
                 .replace("hafiarah", "haftarah")
                 .replace(";;", ";")
                 .replace(",,", ",")
@@ -83,8 +90,13 @@ def main():
                 .replace(", On", ". On")
                 .replace(". which", ", which")
                 .replace("hafiarot", "haftarot")
+                .replace("unvocalized. but", "unvocalized, but")
+                .replace("Iff", "1ff")
+                .replace("aphtorah", "aftarah")
+                .replace("aphtaroth", "aftarot")
+
         )
-        
+
         entry = re.sub(r"(?<=\.)\s*י+\]", "", entry)
         paPattern = r"([.;])\s*(Parchment|Paper|leather)"
         entry = re.sub(paPattern, r"\1\n\2",entry, flags=re.IGNORECASE)
@@ -107,7 +119,7 @@ def main():
         entry = re.sub(r"(\d) (r|v) ", r"\1\2", entry)
         entry = re.sub(r"\n(with|damaged|rubbed|missing|piece|many|of|or|small|few|preserved|repaired|only|and|illegible|a|on|letter|word|text|identified|slightly|\(incomplete\)|side|\)|folio|lines|in|form|follow|fragment|\(|is|abbreviated)", r" \1", entry)
         entry = re.sub(r"([,;x])\n(\d)", r" \1 \2", entry, flags=re.I)
-
+        entry = re.sub(r"(Tiberian)\. ([a-z])", "\1, \2", entry)
         entry = entry.replace(" Example", "\nExample")
         
         entry = re.sub(r"([A-Za-z]{2,})-\s*([A-Za-z]{2,})", lambda match: match.group(1)+ "-" +match.group(2) if match.group(1)+ "-" +match.group(2) in spell or any(real.lower() in (match.group(1)+ "-" +match.group(2)).lower() for real in realWords) else match.group(1)+match.group(2), entry, flags=re.IGNORECASE)
@@ -129,11 +141,12 @@ def main():
         
         entry = re.sub(r"[ ]{2,}", r" ", entry)
 
-        entry = re.sub(r"([a-z]) (damaged)", r"\1; \2", entry)
+
 
         entry = re.sub(r"comer", r"corner", entry, flags=re.I)
 
         
+
 
         lines = entry.split("\n")
         lines[:] = [x for x in lines if x]
@@ -141,15 +154,32 @@ def main():
         if len(lines)==0:
             continue
         
+        if any(book in lines[0] for book in bibleBooks):
+            contentList = lines[0].split(" ")
+            index = contentList.index(next(book for book in bibleBooks if book in contentList))
+            content = " ".join(contentList[index:])
+            lines[0] = " ".join(contentList[:index])
+            if len(lines)>1:
+                if any(book in lines[1] for book in bibleBooks):
+                    lines[1] = " ".join(content,lines[1])
+                else:
+                    lines.insert(1, content)
+            else:
+                lines.append(content)
+
         dict['A'] = lines[0].strip().rstrip(';')
 
         tPattern = r"(T-S\s*\w*\s*\d+\.\d+|Or\.\s*\d+(?:\.\w+)*|Wm.\s*\S*\s*\d+(?:\.\d+)*)"
         titles =  re.findall(tPattern, lines[0])
         if len(titles) == 0:
             titles.append(lines[0])
-            
+        
+
+
         dict['L'] = bibDict[titles[0]] if titles[0] in bibDict else ''
         
+
+
 
         if re.findall(r"\[\d+\]$", lines[-1]):
             lines.remove(lines[-1])
@@ -192,12 +222,15 @@ def main():
                 dict['C'] = "Paper"
             elif "eather" in entry:
                 dict['C'] = "Leather"
+            J = []
             if "ebrew" in entry:
-                dict['J'] = "Hebrew"
-            elif "ramaic" in entry:
-                dict['J'] = "Aramaic"
+                J.append("Hebrew")
+            if "ramaic" in entry:
+                J.append("Aramaic")
             elif "rabic" in entry:
-                dict['J'] = "Arabic"
+               J.append("Arabic")
+            if len(J) > 0:
+                dict['J'] = "; ".join(J)
             if len(lines) > 1:
                 lines[1] = re.sub(r";\s*(parchment|paper|leather)\.*$", r"", lines[1], flags=re.I)
                 dict['K'] = lines[1]
@@ -223,6 +256,7 @@ def main():
         #         lines.remove(lines[3])
         
         if len(lines) >= 4:
+            lines[3] = re.sub(r"([a-z]) (damaged)", r"\1; \2", lines[3])
             # lines[3] = lines[3].replace(",", ";")
             lines[3] = re.sub(r"(?<=\d)־", "-", lines[3])
             vals = lines[3].split(";")
@@ -263,6 +297,7 @@ def main():
                     F.append(val.strip())
                 elif "archment" in val or "aper" in val or "eather" in val:
                     C.append(val.strip())
+            
             G = delim.join(G).rstrip(';').replace(".", "").strip()
             F = delim.join(F).rstrip(';').replace(".", "").strip()
             H = delim.join(H).rstrip(';').replace(".", "").strip()
@@ -280,6 +315,7 @@ def main():
             vals[1] = re.sub(r"([^x\.](?:[\d])+),([\d])+", r"\1.\2", vals[1])
             if "average" in vals[1] or "size" in vals[1]:
                 vals[1] = re.sub(r"([0-9a-zA-Z\.\s]*)\sx\s([0-9a-zA-Z\.\s]*)\s[=\()]+\s*([0-9a-zA-Z\.\s]*)[\)]*", r"\1 = \3 x \2 = \3", vals[1])
+
             vals[1] = re.sub(r"(\d)\.\s[l]", r"\1.1", vals[1])
             dims = re.split(r"and|x|,", vals[1], flags=re.IGNORECASE)
             dims = [s.strip() for s in dims]
@@ -292,9 +328,9 @@ def main():
                 height = delim.join(h)
                 width = delim.join(w)
                 dict.update({'D': height,'E': width})
-        
         if len(lines)>=5:
-            pattern4 = r"([a-z])\s[^a-z0-9\u0590-\u05fe\s\[\]\(\)]+\s*([\u0590-\u05fe])"
+            pattern4 = r"([a-z])\s[^a-z0-9\u0590-\u05fe\s\[\]\(\):'/\.\-–—]+\s*([\u0590-\u05fe])"
+            
             lines[4] = re.sub(pattern4, r"\1 \2", lines[4])
             
             lines[4] = re.sub(r"\b\S*JL\S*\b", r" ", lines[4], flags=re.IGNORECASE)
@@ -302,6 +338,7 @@ def main():
         K = lines[1] + '; ' + lines[4] if len(lines)>=5 else lines[1]
 
         K = re.sub(r"([^\-:\d](?:\d)+);(\d+)", r"\1:\2", K)
+        
 
         nonPattern = r"(non)\s*(-)\s*(standard\s*)(Tiberian\s*vocalization|Tiberian|vocalization)(\s*in (?:[^,](?!are))*)*.+?(?=\s*become|\s*occur|\s*On|\s*Folio|\s*[A-Z][a-z]|\.\s\[|[a-zA-Z:]\s\[[^0-9\s]\]\s|\.\s+[A-Z\u05d0-\u05ea]|$)"
         K = re.sub(nonPattern, r"\1\2\3\4", K)
@@ -335,7 +372,8 @@ def main():
         K = re.sub(onePattern2, r"\1]\3", K)
 
         K = re.sub(r"([;\.]) And", r"\1 and", K)
-        K = re.sub(r"\d[f]+\. [A-Z]", lambda match: match.group(0).lower(), K)
+        K = re.sub(r"\d([f]+|loc|cf|etc|i.e)\. [A-Z]", lambda match: match.group(0).lower(), K)
+        K = K.replace(". To ", ". to ")
 
         continuedPattern = r"\[\s*" + re.escape(titles[0]) + r"[,\s]*continued\s*\]"
 
@@ -413,10 +451,7 @@ def main():
         if not bool(re.search(r"\.$", K)):
             K = K + "."
 
-        
-
-        dict.update({'M': refString, 'K': K.strip().rstrip(';'), 'J': lines[2].rstrip(';').replace(".","").strip()})
-
+        dict.update({'M': refString, 'K': K.strip().rstrip(';'), 'J': lines[2].rstrip(';,.').replace(".",",").strip()})
 
 
         rows.append(dict)
@@ -435,6 +470,7 @@ def main():
     # print(diff)
 
     # print(len(problems), problems)
+
 
 if __name__ == '__main__': 
     main()
