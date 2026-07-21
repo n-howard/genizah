@@ -99,6 +99,28 @@ And should "Ab" be "Av?"
 -[x] T-S AS 60.59
 -[x] T-S AS 60.103
 
+Equal sign in K:
+T-S A21.107
+T-S A39.1
+T-S A39.3
+T-S A40.34
+T-S A41.42
+T-S A41.69
+T-S A42.3
+T-S K23.3
+T-S 8J9[18]
+T-S Misc. 1.113b
+T-S 20.51
+Or. 1081.A4.1
+T-S NS 40.22
+T-S NS 40.60
+T-S NS 45.28
+T-S NS 56.29
+T-S NS 161.241
+T-S NS 251.9
+Wm. Bibl. 2.13
+
+
 # Hebrew
 [\u0590-\u05fe]
 

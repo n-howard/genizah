@@ -51,9 +51,9 @@ def main():
                      "century","poll", "book", "al-Rida", "Dhual", "folio", "wa", "week", "ha-", "quarter", "drawn", "word", "half", "Tel", "end", "crossed", "pre", "al-", 
                      "Mosin", "wide", "he-", "ad-", "hand", "Judeao", "ink", "double", "space", "standard", "small", "side", "bibl"]
     bibleBooks = ["Genesis", "Exodus", "Leviticus", "Numbers", "Deuteronomy",  "Joshua", "Judges", "Samuel", "1 Samuel", "2 Samiel", "1 Kings", "2 Kings", "Kings", "Isaiah", "Jeremiah", "Ezekial", "Hosea", "Joel", "Amos", "Obadia", "Yonah", "Micah", "Nahum", "Habakkuk", "Zephaniah", "Chagai", "Zechariah", "Malachi", "Psalms", "Proverbs", "Job", "Song of Songs", "Ruth", "Lamentations", "Ecclesiastes", "Esther", "Daniel", "Ezra", "Nehemiah", "Chronicles", "Liturgy"]
-    # spell.word_frequency.load_words(['א', 'ב', 'ג', 'ד', 'ה', 'ו', 'ז', 'ח', 'ט', 'י', 'כ', 'ך', 'ל', 'מ', 'ם', 'נ', 'ן', 'ס', 'ע', 'פ', 'ף', 'צ', 'ץ', 'ק', 'ר', 'ש', 'ת'])
-    # spell.word_frequency.load_words(realWords)
-    # spell.word_frequency.load_words(bibleBooks)
+    spell.word_frequency.load_words(['א', 'ב', 'ג', 'ד', 'ה', 'ו', 'ז', 'ח', 'ט', 'י', 'כ', 'ך', 'ל', 'מ', 'ם', 'נ', 'ן', 'ס', 'ע', 'פ', 'ף', 'צ', 'ץ', 'ק', 'ר', 'ש', 'ת'])
+    spell.word_frequency.load_words(realWords)
+    spell.word_frequency.load_words(bibleBooks)
     
     # hebCount = 0
     # hebList = []
@@ -94,6 +94,7 @@ def main():
                 .replace("Iff", "1ff")
                 .replace("aphtorah", "aftarah")
                 .replace("aphtaroth", "aftarot")
+                .replace("Ab", "Av")
 
         )
 
@@ -122,6 +123,8 @@ def main():
         entry = re.sub(r"(Tiberian)\. ([a-z])", "\1, \2", entry)
         entry = entry.replace(" Example", "\nExample")
         
+        
+
         entry = re.sub(r"([A-Za-z]{2,})-\s*([A-Za-z]{2,})", lambda match: match.group(1)+ "-" +match.group(2) if match.group(1)+ "-" +match.group(2) in spell or any(real.lower() in (match.group(1)+ "-" +match.group(2)).lower() for real in realWords) else match.group(1)+match.group(2), entry, flags=re.IGNORECASE)
 
         pattern = r"(The tetragrammaton is (?:sometimes\s|once\s)*abbreviated)[^.]*"
@@ -144,8 +147,7 @@ def main():
 
         entry = re.sub(r"comer", r"corner", entry, flags=re.I)
 
-        
-
+    
 
         lines = entry.split("\n")
         lines[:] = [x for x in lines if x]
@@ -310,7 +312,7 @@ def main():
                     lines.append(". ".join(splitLines[1:]))
             dict.update({'C': C, 'F': F, 
                         'G': G,'H': H, 'I': vals[-1].strip().rstrip(';:.')})
-            
+            vals[1] = vals[1].replace("ר", "7")
             vals[1] = re.sub(r"([^x\.](?:[\d])+),([\d])+", r"\1.\2", vals[1])
             if "average" in vals[1] or "size" in vals[1]:
                 vals[1] = re.sub(r"([0-9a-zA-Z\.\s]*)\sx\s([0-9a-zA-Z\.\s]*)\s[=\()]+\s*([0-9a-zA-Z\.\s]*)[\)]*", r"\1 = \3 x \2 = \3", vals[1])
@@ -339,7 +341,7 @@ def main():
         K = re.sub(r"([^\-:\d](?:\d)+);(\d+)", r"\1:\2", K)
         
 
-        nonPattern = r"(non)\s*(-)\s*(standard\s*)(Tiberian\s*vocalization|Tiberian|vocalization)(\s*in (?:[^,](?!are))*)*.+?(?=\s*become|\s*occur|\s*On|\s*Folio|\s*[A-Z][a-z]|\.\s\[|[a-zA-Z:]\s\[[^0-9\s]\]\s|\.\s+[A-Z\u05d0-\u05ea]|$)"
+        nonPattern = r"(non)\s*(-)\s*(standard\s*)(Tiberian\s*vocalization|Tiberian|vocalization)(\s*in (?:[^,](?!are))*)*.+?(?=\s*become|\s*occur|\s*On|\s*Folio|\s*The|\s*Verse|\.\s\[|[a-zA-Z:]\s\[[^0-9\s]\]\s|\.\s+[A-Z\u05d0-\u05ea]|$)"
         K = re.sub(nonPattern, r"\1\2\3\4", K)
         K = re.sub(r"(vocalization)\s*(On)", r"\1. \2", K)
         K = re.sub(r"(vocalization)$", r"\1.", K)
@@ -347,7 +349,7 @@ def main():
         K = re.sub(r"(vocalization)\s*[a-zA-Za-z:]\s\[", r"vocalization are: [", K)
         K = re.sub(r"(vocalization)(?=[A-Za-z]{2,})", r"\1 ", K)
         # K = K.replace("The non-standard vocalization.", "Examples of non-standard vocalization occur.")
-
+        K = re.sub(r"(non-standard vocalization) (On|Folio|The)", r"\1. \2", K)
         K = re.sub(r"(?:The|Examples of|An example of|Example of|the|contains the)(?:\sconsistently)* (non-standard\s*)(Tiberian\s*vocalization|Tiberian|vocalization)(?:\s*occur)?[s]?(\sin the over[^\.]*|\sin the rem[^\.]*|\sin folio[^\.]*)?(\.)", r"examples of \1\2\3 occur.", K, flags=re.IGNORECASE)
         K = re.sub(r"[tT]he (non-standard) (Tiberian\s*vocalization|Tiberian|vocalization) (occurs [a-z\s,\u05d0-\u05ea]+\.)", r"non-standard \2 \3", K)
         K = re.sub(r"[tT]he (non-standard) (Tiberian\s*vocalization|Tiberian|vocalization) (occur [a-z\s,\u05d0-\u05ea]+\.)", r"non-standard \2s \3", K)
@@ -449,9 +451,9 @@ def main():
 
         if not bool(re.search(r"\.$", K)):
             K = K + "."
-
+        
+       
         dict.update({'M': refString, 'K': K.strip().rstrip(';'), 'J': lines[2].rstrip(';,.').replace(".",",").strip()})
-
 
         rows.append(dict)
         
