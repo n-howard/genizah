@@ -77,13 +77,14 @@ List to manually do brackets/corrections
 -[X] A41.19
 - Earlier ones (need to check)
 
- Ask Ben/Estara about these as Google Sheets aren't working (propose erase solution and sic just being at the end)   [
+ Ask Ben/Estara about these as Google Sheets aren't working   [
     - Anything with sic
-    -[/] T-S A41.23 (needs to say "erased")
-    -[/] T-S A41.35 (erased)
-    -[/] T-S A42.1 (erased and strikethrough)
+    -[] T-S A41.23 (needs to say "erased")
+    -[] T-S A41.35 (erased)
+    -[] T-S A42.1 (erased and strikethrough)
     - T-S AS 44.32 and any other ones where number/punctuation is next to Hebrew and thus ends up in wrong order (also true of = signs)]
 Also what does the CSV file need to be named?
+And should "Ab" be "Av?"
 
 -[X] T-S B16.14
 -[X] T-S Misc 1.127

@@ -142,7 +142,6 @@ def main():
         entry = re.sub(r"[ ]{2,}", r" ", entry)
 
 
-
         entry = re.sub(r"comer", r"corner", entry, flags=re.I)
 
         
@@ -458,7 +457,7 @@ def main():
         
     df = pd.DataFrame(rows, 
         columns=['A','B','C','D','E','F','G','H','I','J','K','L','M'])
-    df.to_csv("test.csv", index=False)
+    df.to_csv("davis.csv", index=False)
     
     # curr = "Or.1080.9.4"
     # last = "T-S AS 64.50"
