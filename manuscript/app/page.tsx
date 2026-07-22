@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { v4 } from "uuid";
 import { FileText, Trash2 } from 'lucide-react';
+import { Range } from "react-range";
 
 export default function Pages() {
   const [currentStep, setCurrentStep] = useState(1);
@@ -12,7 +13,8 @@ export default function Pages() {
     files: [],
     algorithm: "ndw",
     settings: {
-      gap: 0
+      gap: 0,
+      matchBonus: 5
     },
   });
 
@@ -72,11 +74,12 @@ export default function Pages() {
           </div>
         </div>
 
-        {/* STEP 1: UPLOAD FOLDER */}
+        {/* upload folder */}
         {currentStep === 1 && (
           <div className="space-y-6">
             
             <h2 className="text-4xl font-bold text-gray-800 pt-10 ">Upload a Folder of Transcriptions</h2>
+            {/* upload folder */}
             <div className="flex flex-row justify-between pl-20 pr-20 pt-[4dvh]">
             <div className="border-2 border-dashed border-gray-300 h-[50dvh]  w-[50dvh] rounded-lg p-8 text-center bg-gray-50 hover:bg-gray-100 transition flex place-content-center place-items-center">
               <input
@@ -99,13 +102,7 @@ export default function Pages() {
               </label>
             </div>
 
-            {/* {formData.files.length > 0 && (
-              <div className="bg-cyan-50 p-4 rounded-lg">
-                <p className="text-sm font-semibold text-cyan-800">
-                  Selected {formData.files.length} .txt file(s)
-                </p>
-              </div>
-            )} */}
+            {/* View File Names and document icon */}
            
               <div className="border-2 border-dashed border-gray-300 h-[50dvh] p-2 text-gray-500 w-[50dvh] rounded-lg text-center bg-gray-50 flex place-content-top place-items-top overflow-auto">
                  {(formData.files.length > 0) &&  (
@@ -134,7 +131,7 @@ export default function Pages() {
                   
               </div>
               </div>
-
+            {/* Continue button*/}
             <div className="flex justify-end  ">
               <button
                 disabled={formData.files.length === 0}
@@ -149,31 +146,15 @@ export default function Pages() {
             </div>
         )}
 
-        {/* STEP 2: SELECT ALGORITHM & SETTINGS */}
+        {/* select algorithm */}
         {currentStep === 2 && (
           <div className="space-y-6">
-            <h2 className="text-4xl font-bold text-gray-800 pt-10 ">Select Algorithm</h2>
+            <h2 className="text-4xl font-bold text-gray-700 pt-10 ">Select Algorithm</h2>
 
             <div className="space-y-4 h-[55dvh] flex  w-10/10 pt-10">
               <div className="flex flex-col content-center items-center gap-5">
                 {/* <label className="block text-2xl font-medium text-gray-700 mb-1">Select Algorithm</label> */}
-                <label className="block text-md font-medium text-gray-700 mb-1 flex flex-col gap-5">
-                  Choose an Algorithm</label>
-
-                <select className="block w-full pl-3 pr-8 py-2 
-                    text-base border-gray-300 bg-white text-gray-700/20 
-                    focus:outline-none focus:shadow-md focus:shadow-gray-700/70
-                     sm:text-sm rounded-md shadow-sm 
-                    appearance-none"
-                    onChange={(e) =>
-                      setFormData((p) => ({ ...p, algorithm: e.target.value }))
-                    }>
-                  
-                  <option value="" className="text-gray-200/20">Select an Algorithm</option>
-                  <option id="ndw" className="appearance-none hover:bg-cyan-700 text-gray-700">Needleman-Wunsch Algorithm</option>
-                  <option id="sw"className="text-gray-700 appearance-none hover:bg-cyan-700">Smith-Waterman Algorithm</option>
-                </select>
-             <div className="space-y-2">
+       
               {/* Label */}
               <label htmlFor="algorithm" className="block text-md font-medium text-gray-700">
                 Choose an Algorithm
@@ -183,14 +164,14 @@ export default function Pages() {
               <div className="relative">
                 <select
                   id="algorithm"
-                  className="block w-full pl-3 pr-10 py-2 text-base text-gray-800 bg-white border border-gray-300 rounded-md shadow-sm appearance-none focus:outline-none focus:shadow-md focus:shadow-gray-700/70
+                  className="block w-full pl-3 pr-10 py-2 text-base  bg-white border border-gray-300 rounded-md shadow-sm appearance-none focus:outline-none focus:shadow-md text-gray-700/80 focus:text-gray-700 focus:shadow-gray-700/70
                      sm:text-sm rounded-md shadow-sm sm:text-sm cursor-pointer transition-colors"
                   defaultValue=""
                   onChange={(e) =>
                     setFormData((p) => ({ ...p, algorithm: e.target.value }))
                   }
                 >
-                  <option value="" disabled className="text-gray-400">
+                  <option disabled value="" className="text-gray-400/20">
                     Select an Algorithm
                   </option>
                   <option value="ndw" className="text-gray-800">
@@ -207,45 +188,42 @@ export default function Pages() {
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                   </svg>
                 </div>
-              </div>
-            </div>
-                {[
-                  {id: "ndw", name: "Needleman-Wunsch Algorithm"},
-                  {id: "sw", name: "Smith-Waterman Algorithm"}
-                ].map((alg)=> (
-                  <label
-                  key={alg.id}
-                  htmlFor={alg.id}
-                  className={`text-xl h-fit p-2 text-center rounded-lg w-full   text-white
-                  ${formData.algorithm===alg.id
-                    ? 'bg-cyan-700 shadow-lg shadow-cyan-600/50 '
-                    : 'bg-gray-600 hover:shadow-lg hover:shadow-gray-900/50'
-                  }`}
-                  >
-                  <input 
-                    type="radio"
-                    id={alg.id}
-                    name="algorithm"
-                    value={alg.id}
-                    checked={formData.algorithm===alg.id}
-                    onChange={(e) =>
-                      setFormData((p) => ({ ...p, algorithm: e.target.value }))
-                    }
-                    className="appearance-none"
-                  />
-                  <span>{alg.name}</span>
-
-
-                  </label>
-                ))}
                 </div>
-                </div>
-              
+            
+              {/* Needleman-Wunsch Settings */}
                 {formData.algorithm==="ndw" &&(
-                  <div>
-                    <select></select>
-                  </div>
+                <div className="flex flex-col gap-2">
+                {/* Label + Live Value Badge */}
+                <div className="flex justify-between items-center text-sm font-medium text-gray-700">
+                  <label htmlFor="matchBonus">Match Bonus</label>
+                  <span className="px-2 py-0.5 text-xs font-semibold text-cyan-700 shadow-sm rounded ">
+                    {formData.settings.matchBonus}
+                  </span>
+                </div>
+
+                {/* Range Input */}
+                <input
+                  id="matchBonus"
+                  type="range"
+                  step="1"
+                  min="0"
+                  max="20"
+                  value={formData.settings.matchBonus}
+                  onChange={(e) => handleSettingChange("matchBonus", Number(e.target.value))}
+                  className="w-full h-2 bg-gray-200 rounded-lg border-none outline-none cursor-pointer accent-cyan-600 focus:outline-none "
+                />
+
+                {/* Min / Max Indicators */}
+                <div className="flex justify-between text-xs text-gray-400">
+                  <span>0</span>
+                  <span>20</span>
+                </div>
+              </div>
                 )}
+                  </div>
+          
+              </div>
+           
               {/* <div className="grid grid-cols-2 gap-4">
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-1">Max Features / Keywords</label>
