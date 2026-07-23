@@ -1,0 +1,10 @@
+-[] change "only .txt" to "only files you want aligned" (fix wording)
+-[] choose base text
+-[] fix custom/other
+-[] special character also needs gap and mismatch
+-[] make it all numerical entry in a text box (make it so can only enter a positive integer/float)
+-[] convert penalties to negative instead of making people type a negative
+-[] Needleman-Wunch optional affine gap penalty
+-[] on focus on a setting a text box appears that gives description
+-[] be able to click through the top
+-[] back button
