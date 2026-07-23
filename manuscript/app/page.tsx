@@ -11,10 +11,14 @@ export default function Pages() {
   // Global Form State
   const [formData, setFormData] = useState({
     files: [],
-    algorithm: "ndw",
+    algorithm: "",
     settings: {
-      gap: 0,
-      matchBonus: 5
+      gapPenalty: -1,
+      matchBonus: 5,
+      mismatchPenalty: -1,
+      special: [],
+      specialOther: false,
+      specialBonus: 10
     },
   });
 
@@ -37,6 +41,7 @@ export default function Pages() {
       ...prev,
       settings: { ...prev.settings, [field]: value },
     }));
+    console.log(field, value)
   };
 
   // Step 3: Run Algorithm (Simulated)
@@ -152,26 +157,26 @@ export default function Pages() {
             <h2 className="text-4xl font-bold text-gray-700 pt-10 ">Select Algorithm</h2>
 
             <div className="space-y-4 h-[55dvh] flex  w-10/10 pt-10">
-              <div className="flex flex-col content-center items-center gap-5">
+              <div className="flex flex-col content-center items-center gap-2 w-[20dvw]">
                 {/* <label className="block text-2xl font-medium text-gray-700 mb-1">Select Algorithm</label> */}
-       
+              <div className="flex flex-col gap-2 pt-5 w-full">
               {/* Label */}
-              <label htmlFor="algorithm" className="block text-md font-medium text-gray-700">
+              <label htmlFor="algorithm" className="block text-md font-medium text-gray-700 place-content-start">
                 Choose an Algorithm
               </label>
 
               {/* Select Container with Custom Arrow */}
-              <div className="relative">
+              <div className="relative ">
                 <select
                   id="algorithm"
-                  className="block w-full pl-3 pr-10 py-2 text-base  bg-white border border-gray-300 rounded-md shadow-sm appearance-none focus:outline-none focus:shadow-md text-gray-700/80 focus:text-gray-700 focus:shadow-gray-700/70
-                     sm:text-sm rounded-md shadow-sm sm:text-sm cursor-pointer transition-colors"
+                  className="block w-full pl-3 pr-10 py-2 text-base outline-none border-none  bg-white  rounded-md shadow-md appearance-none focus:outline-none focus:shadow-md text-gray-700/60 focus:text-gray-700 focus:shadow-gray-700/70
+                     rounded-md   cursor-pointer transition-colors"
                   defaultValue=""
                   onChange={(e) =>
                     setFormData((p) => ({ ...p, algorithm: e.target.value }))
                   }
                 >
-                  <option disabled value="" className="text-gray-400/20">
+                  <option value="" className="text-gray-400/20">
                     Select an Algorithm
                   </option>
                   <option value="ndw" className="text-gray-800">
@@ -191,17 +196,19 @@ export default function Pages() {
                 </div>
             
               {/* Needleman-Wunsch Settings */}
-                {formData.algorithm==="ndw" &&(
-                <div className="flex flex-col gap-2">
-                {/* Label + Live Value Badge */}
-                <div className="flex justify-between items-center text-sm font-medium text-gray-700">
+                {(formData.algorithm==="ndw" || formData.algorithm==="sw") &&(
+                <div className="">
+
+
+                {/* Match Bonus*/}
+                <div className="flex justify-between items-center text-md font-medium text-gray-700">
                   <label htmlFor="matchBonus">Match Bonus</label>
                   <span className="px-2 py-0.5 text-xs font-semibold text-cyan-700 shadow-sm rounded ">
                     {formData.settings.matchBonus}
                   </span>
                 </div>
 
-                {/* Range Input */}
+                
                 <input
                   id="matchBonus"
                   type="range"
@@ -210,45 +217,186 @@ export default function Pages() {
                   max="20"
                   value={formData.settings.matchBonus}
                   onChange={(e) => handleSettingChange("matchBonus", Number(e.target.value))}
-                  className="w-full h-2 bg-gray-200 rounded-lg border-none outline-none cursor-pointer accent-cyan-600 focus:outline-none "
+                  className="w-full h-2 bg-gray-200 rounded-lg border-none outline-none cursor-pointer accent-cyan-600"
+                  
                 />
 
-                {/* Min / Max Indicators */}
+                {/* Range Labels */}
                 <div className="flex justify-between text-xs text-gray-400">
                   <span>0</span>
                   <span>20</span>
                 </div>
-              </div>
-                )}
-                  </div>
-          
-              </div>
-           
-              {/* <div className="grid grid-cols-2 gap-4">
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">Max Features / Keywords</label>
-                  <input
-                    type="number"
-                    value={formData.settings.maxFeatures}
-                    onChange={(e) => handleSettingChange("maxFeatures", Number(e.target.value))}
-                    className="w-full p-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-cyan-500 focus:outline-none"
-                  />
+
+                  {/* Gap Penalty */}
+                <div className="flex justify-between items-center text-md font-medium text-gray-700">
+                  <label htmlFor="gapPenalty">Gap Penalty</label>
+                  <span className="px-2 py-0.5 text-xs font-semibold text-cyan-700 shadow-sm rounded ">
+                    {formData.settings.gapPenalty}
+                  </span>
                 </div>
 
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">Threshold</label>
-                  <input
-                    type="number"
-                    step="0.1"
-                    min="0"
-                    max="1"
-                    value={formData.settings.threshold}
-                    onChange={(e) => handleSettingChange("threshold", Number(e.target.value))}
-                    className="w-full p-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-cyan-500 focus:outline-none"
-                  />
+                
+                <input
+                  id="gapPenalty"
+                  type="range"
+                  step="1"
+                  min="0"
+                  max="20"
+                  value={-formData.settings.gapPenalty}
+                  onChange={(e) => handleSettingChange("gapPenalty", Number(-e.target.value))}
+                  className="w-full h-2 bg-gray-200 rounded-lg border-none outline-none cursor-pointer accent-cyan-600"
+                  
+                />
+
+                {/* Range Labels */}
+                <div className="flex justify-between text-xs text-gray-400">
+                  <span>0</span>
+                  <span>-20</span>
                 </div>
-              </div>
-            </div> */}
+
+                {/* Mismatch Penalty */}
+                <div className="flex justify-between items-center text-md font-medium text-gray-700">
+                  <label htmlFor="mismatchPenalty">Mismatch Penalty</label>
+                  <span className="px-2 py-0.5 text-xs font-semibold text-cyan-700 shadow-sm rounded ">
+                    {formData.settings.mismatchPenalty}
+                  </span>
+                </div>
+
+                
+                <input
+                  id="mismatchPenalty"
+                  type="range"
+                  step="1"
+                  min="0"
+                  max="20"
+                  value={-formData.settings.mismatchPenalty}
+                  onChange={(e) => handleSettingChange("mismatchPenalty", Number(-e.target.value))}
+                  className="w-full h-2 bg-gray-200 rounded-lg border-none outline-none cursor-pointer accent-cyan-600"
+                  
+                />
+
+                {/* Range Labels */}
+                <div className="flex justify-between text-xs text-gray-400">
+                  <span>0</span>
+                  <span>-20</span>
+                </div>
+                
+                {/* Optional Special Character Bonus */}
+                  {/* Label */}
+              <label htmlFor="special" className="block text-md font-medium text-gray-700 place-content-start">
+                Optional Special Character Bonus
+              </label>
+
+              {/* Select Container with Custom Arrow */}
+              <div className="relative">
+                <select
+                  id="special"
+                  className="block w-full pl-3 pr-10 py-2 text-base bg-white rounded-md shadow-sm appearance-none focus:outline-none focus:shadow-md text-gray-700/60 focus:text-gray-700 focus:shadow-gray-700/70 sm:text-sm cursor-pointer transition-colors"
+                  defaultValue=""
+                  onChange={(e) => {
+                    const val = e.target.value;
+                    if (!val) {
+                      handleSettingChange("special", []);
+                      handleSettingChange("specialOther", false);
+                    } else if (val === "Other") {
+                      handleSettingChange("special", ["Other"]);
+                      handleSettingChange("specialOther", true);
+                    } else {
+                      // Split the comma-separated value string into a clean array
+                      handleSettingChange("special", val.split(","));
+                      handleSettingChange("specialOther", false);
+                    }
+                  }}
+                >
+                  <option value="" className="text-gray-400/20">
+                    None
+                  </option>
+                  {/* Pass standard comma-separated strings as values */}
+                  <option value="ך,ם,ן,ף,ץ" className="text-gray-800">
+                    Sofit Letters
+                  </option>
+                  <option value="A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z" className="text-gray-800">
+                    Capital Letters (Latin Alphabet)
+                  </option>
+                  <option value="Other" className="text-gray-800">
+                    Other
+                  </option>
+                </select>
+                                {/* Custom Dropdown Chevron Icon */}
+                <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-3 text-gray-500">
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                  </svg>
+                </div>
+
+                
+                
+                  </div>
+                  
+                  {formData.settings.specialOther===true && (
+                    <div>
+                      <label htmlFor="otherSpecial" className="block pt-2 text-md font-medium text-gray-700 place-content-start">
+                        Enter a space-separated list of characters.
+                      </label>
+                      <input
+                      type="text"
+                      id="otherSpecial"
+                      onChange={(e) => handleSettingChange("special", e.target.value.split(" "))}
+                      placeholder="1 2 3"
+                      className="shadow-md pt-2 w-full text-gray-700 focus:shadow-gray-700/70 outline-none border-none appearance-none p-1"
+                      />
+                    </div>
+                  )}
+                  <div className="pt-2">
+                  {formData.settings.special.includes("Other")===false && (
+                    <label htmlFor="specialList" className="pt-2 text-cyan-700">{formData.settings.special.join(' ')}</label>
+                  )}
+                  </div>
+
+                  {(formData.settings.special?.length>0) && (
+                   <div>
+                  <div className="flex justify-between items-center text-md  font-medium text-gray-700">
+                    <label htmlFor="specialBonus" className="pt-2">Special Character Bonus</label>
+                    <span className="px-2 py-0.5 text-xs font-semibold text-cyan-700 shadow-sm rounded ">
+                      {formData.settings.specialBonus}
+                    </span>
+                  </div>
+
+                  
+                  <input
+                    id="specialBonus"
+                    type="range"
+                    step="1"
+                    min="0"
+                    max="20"
+                    value={formData.settings.specialBonus}
+                    onChange={(e) => handleSettingChange("specialBonus", Number(e.target.value))}
+                    className="w-full h-2 bg-gray-200 rounded-lg border-none outline-none cursor-pointer accent-cyan-600"
+                    
+                  />
+
+                {/* Range Labels */}
+                <div className="flex justify-between text-xs text-gray-400">
+                  <span>0</span>
+                  <span>20</span>
+                </div>
+                
+                </div>
+                
+                )}
+
+                </div>
+                
+                
+                )}
+                
+                </div>
+                </div>
+                </div>
+              
+  
+              
+    
 
             <div className="flex justify-between pt-4">
               <button
@@ -266,7 +414,9 @@ export default function Pages() {
               </button>
             </div>
           </div>
+          
         )}
+        
 
      
       </div>
