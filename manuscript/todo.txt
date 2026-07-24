@@ -1,10 +1,20 @@
--[] change "only .txt" to "only files you want aligned" (fix wording)
--[] choose base text
--[] fix custom/other
--[] special character also needs gap and mismatch
--[] make it all numerical entry in a text box (make it so can only enter a positive integer/float)
--[] convert penalties to negative instead of making people type a negative
--[] Needleman-Wunch optional affine gap penalty
+-[x] change "only .txt" to "only files you want aligned" (fix wording)
+-[x] choose base text
+-[x] fix custom/other
+-[x] special character also needs gap and mismatch
+-[x] make it all numerical entry in a text box (make it so can only enter a positive integer/float)
+-[x] convert penalties to negative instead of making people type a negative
+-[x] Needleman-Wunch optional affine gap penalty
 -[] on focus on a setting a text box appears that gives description
--[] be able to click through the top
--[] back button
+-[x] be able to click through the top
+-[x] back button
+
+-[] Two options: whole text or subtext
+    -[] Whole text (as is now)
+    -[] subtext: add new folder (default name but editable)
+        -[] drag in files/folders which are all taken out (as now)
+        -[] select base text (trim off subsection folder name or at underscore if they don't name it maybe)
+        -[] add new subsection and repeat
+        -[] 
+
+-[] make it downloadable
