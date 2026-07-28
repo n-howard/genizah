@@ -2,7 +2,7 @@
 from typing import List
 from pathlib import Path
 from .. import needleman_wunsch
-from .base import AlgorithmSettings, run_with_captured_output
+from ..base import AlgorithmSettings, run_with_captured_output
 from .. import smith_waterman
 
 ALGORITHM_REGISTRY = {

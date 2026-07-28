@@ -1,30 +1,5 @@
-# algorithms/base.py
-import io
-import contextlib
 from dataclasses import dataclass
-from pathlib import Path
-from typing import List, Callable, Any, Dict, Optional
-
-
-def run_with_captured_output(
-    func: Callable[[List[Path], Any], Any], 
-    files: List[Path], 
-    settings: Any
-) -> Dict[str, Any]:
-    """Executes an algorithm function while capturing all print() outputs."""
-    buffer = io.StringIO()
-    
-    # Redirect print() outputs into string buffer
-    with contextlib.redirect_stdout(buffer):
-        result_data = func(files, settings)
-        
-    captured_logs = buffer.getvalue()
-    
-    return {
-        "output_logs": captured_logs,
-        "data": result_data
-    }
-
+from typing import List
 
 @dataclass
 class AlgorithmSettings:
@@ -37,6 +12,7 @@ class AlgorithmSettings:
     special_gap: float
     special_mismatch: float
     affine_penalty: float
+    is_plot: bool
 
     @classmethod
     def from_dict(cls, data: dict) -> "AlgorithmSettings":
@@ -51,4 +27,5 @@ class AlgorithmSettings:
             special_gap=float(data.get("specialGap", -1)),
             special_mismatch=float(data.get("specialMismatch", -1)),
             affine_penalty=float(data.get("affinePenalty", -0.5)),
+            is_plot=bool(data.get("isPlot", False))
         )

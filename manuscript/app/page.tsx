@@ -36,7 +36,9 @@ export default function Pages() {
       specialGap: number;
       specialMismatch: number;
       affinePenalty: number;
+      isPlot: boolean;
     };
+    
   }>({
     multi: null,
     files: [],
@@ -53,7 +55,9 @@ export default function Pages() {
       specialGap: -1,
       specialMismatch: -1,
       affinePenalty: -0.5,
+      isPlot: false,
     },
+    
   });
 
   const [count, setCount] = useState(1);
@@ -62,20 +66,26 @@ export default function Pages() {
 
   const [isProcessing, setIsProcessing] = useState(false);
   const [results, setResults] = useState<any>(null);
+  
 
   // Drag and drop within subsections
   const [draggedFileIndex, setDraggedFileIndex] = useState<number | null>(null);
-  const [draggedSourceSection, setDraggedSourceSection] = useState<string | null>(null);
+  const [draggedSourceSection, setDraggedSourceSection] = useState<
+    string | null
+  >(null);
 
   const folderInput = useRef<HTMLInputElement | null>(null);
 
   // Subsection creation logic
   const handleSubsection = () => {
-    const name = inputValue.trim() !== "" ? inputValue.trim() : `Subsection ${count}`;
+    const name =
+      inputValue.trim() !== "" ? inputValue.trim() : `Subsection ${count}`;
     setCount((prev) => prev + 1);
-    
+
     // Check if section name already exists
-    const exists = formData.subsections.some((sub) => Object.keys(sub)[0] === name);
+    const exists = formData.subsections.some(
+      (sub) => Object.keys(sub)[0] === name,
+    );
     if (!exists) {
       setFormData((prev) => ({
         ...prev,
@@ -105,14 +115,17 @@ export default function Pages() {
         setFormData((prev) => {
           let updatedSubsections = [...prev.subsections];
           const sectionIndex = updatedSubsections.findIndex(
-            (sub) => Object.keys(sub)[0] === activeSection
+            (sub) => Object.keys(sub)[0] === activeSection,
           );
 
           if (sectionIndex > -1) {
-            const existingFiles = updatedSubsections[sectionIndex][activeSection];
-            const existingKeys = new Set(existingFiles.map((f) => `${f.name}-${f.size}`));
+            const existingFiles =
+              updatedSubsections[sectionIndex][activeSection];
+            const existingKeys = new Set(
+              existingFiles.map((f) => `${f.name}-${f.size}`),
+            );
             const newFiles = acceptedFiles.filter(
-              (f) => !existingKeys.has(`${f.name}-${f.size}`)
+              (f) => !existingKeys.has(`${f.name}-${f.size}`),
             );
 
             updatedSubsections[sectionIndex] = {
@@ -128,10 +141,10 @@ export default function Pages() {
         // Single mode upload logic
         setFormData((prev) => {
           const existingKeys = new Set(
-            prev.files.map((f) => `${f.name}-${f.size}`)
+            prev.files.map((f) => `${f.name}-${f.size}`),
           );
           const newFiles = acceptedFiles.filter(
-            (file) => !existingKeys.has(`${file.name}-${file.size}`)
+            (file) => !existingKeys.has(`${file.name}-${file.size}`),
           );
           return {
             ...prev,
@@ -161,7 +174,7 @@ export default function Pages() {
   const handleFolderUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (!e.target.files) return;
     const uploadedFiles = Array.from(e.target.files).filter((file) =>
-      file.name.endsWith(".txt")
+      file.name.endsWith(".txt"),
     );
 
     if (formData.multi) {
@@ -171,14 +184,16 @@ export default function Pages() {
       setFormData((prev) => {
         let updatedSubsections = [...prev.subsections];
         const sectionIndex = updatedSubsections.findIndex(
-          (sub) => Object.keys(sub)[0] === activeSection
+          (sub) => Object.keys(sub)[0] === activeSection,
         );
 
         if (sectionIndex > -1) {
           const existingFiles = updatedSubsections[sectionIndex][activeSection];
-          const existingKeys = new Set(existingFiles.map((f) => `${f.name}-${f.size}`));
+          const existingKeys = new Set(
+            existingFiles.map((f) => `${f.name}-${f.size}`),
+          );
           const newFiles = uploadedFiles.filter(
-            (f) => !existingKeys.has(`${f.name}-${f.size}`)
+            (f) => !existingKeys.has(`${f.name}-${f.size}`),
           );
 
           updatedSubsections[sectionIndex] = {
@@ -193,10 +208,10 @@ export default function Pages() {
     } else {
       setFormData((prev) => {
         const existingKeys = new Set(
-          prev.files.map((f) => `${f.name}-${f.size}`)
+          prev.files.map((f) => `${f.name}-${f.size}`),
         );
         const newFiles = uploadedFiles.filter(
-          (file) => !existingKeys.has(`${file.name}-${file.size}`)
+          (file) => !existingKeys.has(`${file.name}-${file.size}`),
         );
         return {
           ...prev,
@@ -231,7 +246,11 @@ export default function Pages() {
   };
 
   // Subsection Drag-and-Drop Handlers
-  const handleDragStart = (e: React.DragEvent, sectionName: string, fileIndex: number) => {
+  const handleDragStart = (
+    e: React.DragEvent,
+    sectionName: string,
+    fileIndex: number,
+  ) => {
     setDraggedSourceSection(sectionName);
     setDraggedFileIndex(fileIndex);
     e.dataTransfer.setData("text/plain", fileIndex.toString());
@@ -258,7 +277,9 @@ export default function Pages() {
         const key = Object.keys(sub)[0];
         if (key === draggedSourceSection) {
           movedFile = sub[key][draggedFileIndex];
-          return { [key]: sub[key].filter((_, idx) => idx !== draggedFileIndex) };
+          return {
+            [key]: sub[key].filter((_, idx) => idx !== draggedFileIndex),
+          };
         }
         return sub;
       });
@@ -303,64 +324,91 @@ export default function Pages() {
       setCurrentStep(step);
     }
   };
+  const [jobId, setJobId] = useState<string | null>(null);
+  const [plotUrl, setPlotUrl] = useState<string>("");
+  const handleSubmit = async () => {
+    setIsProcessing(true);
+    
+    try {
+      const payload = new FormData();
 
-const handleSubmit = async () => {
-  setIsProcessing(true);
+      payload.append("algorithm", formData.algorithm);
+      payload.append("settings", JSON.stringify(formData.settings));
+      payload.append("multi", String(formData.multi));
+      
 
-  try {
-    const payload = new FormData();
+      if (formData.baseText) {
+        payload.append("base_text", formData.baseText);
+      }
 
-    payload.append("algorithm", formData.algorithm);
-    payload.append("settings", JSON.stringify(formData.settings));
-    payload.append("multi", String(formData.multi));
+      if (formData.multi) {
+        // 1. Serialize the subsection folder mapping structure (names & file lists)
+        const metadata = formData.subsections.map((sub) => {
+          const key = Object.keys(sub)[0];
+          return { [key]: sub[key].map((f) => f.name) };
+        });
+        payload.append("subsections_metadata", JSON.stringify(metadata));
 
-    if (formData.baseText) {
-      payload.append("base_text", formData.baseText);
-    }
-
-    if (formData.multi) {
-      // 1. Serialize the subsection folder mapping structure (names & file lists)
-      const metadata = formData.subsections.map((sub) => {
-        const key = Object.keys(sub)[0];
-        return { [key]: sub[key].map((f) => f.name) };
-      });
-      payload.append("subsections_metadata", JSON.stringify(metadata));
-
-      // 2. Append all actual files from all subsections
-      formData.subsections.forEach((sub) => {
-        const key = Object.keys(sub)[0];
-        sub[key].forEach((file) => {
+        // 2. Append all actual files from all subsections
+        formData.subsections.forEach((sub) => {
+          const key = Object.keys(sub)[0];
+          sub[key].forEach((file) => {
+            payload.append("files", file);
+          });
+        });
+      } else {
+        // Append files directly in single mode
+        formData.files.forEach((file) => {
           payload.append("files", file);
         });
+      }
+
+      const response = await fetch("http://127.0.0.1:8000/api/process", {
+        method: "POST",
+        body: payload,
       });
-    } else {
-      // Append files directly in single mode
-      formData.files.forEach((file) => {
-        payload.append("files", file);
-      });
+
+      if (!response.ok) {
+        const errorText = await response.text();
+        throw new Error(`Processing failed (${response.status}): ${errorText}`);
+      }
+
+      const data = await response.json();
+      if (data.job_id) {
+        setJobId(data.job_id);
+      }
+      setResults(data);
+      handleStepChange(currentStep+1); // Advance step after successful run
+    } catch (error) {
+      console.error("Error submitting form:", error);
+    } finally {
+      setIsProcessing(false);
+      
+    }
+  };
+
+  const handlePlot = async () => {
+    setIsProcessing(true);
+    if (!jobId) {
+      console.error("No processed job available to plot");
+      return;
     }
 
-    const response = await fetch("http://localhost:8000/api/process", {
-      method: "POST",
-      body: payload,
-    });
-
-    if (!response.ok) throw new Error("Processing request failed.");
-
-    const data = await response.json();
-    setResults(data);
-    handleStepChange(3); // Advance step after successful run
-  } catch (error) {
-    console.error("Error submitting form:", error);
-  } finally {
-    setIsProcessing(false);
-  }
-};
+    
+    try {
+      // Simply point an iframe or fetch directly from the plot endpoint
+      const plotEndpoint = `http://127.0.0.1:8000/api/plot/${jobId}`;
+      setPlotUrl(plotEndpoint);
+    } finally {
+      setIsProcessing(false);
+      handleStepChange(4)
+    }
+  };
 
   const totalFilesCount = formData.multi
     ? formData.subsections.reduce(
         (acc, sub) => acc + Object.values(sub)[0].length,
-        0
+        0,
       )
     : formData.files.length;
 
@@ -457,7 +505,6 @@ const handleSubmit = async () => {
               <div className="flex flex-col gap-4 w-full h-[50dvh]">
                 {/* TOP TREE PANEL */}
                 <div className="border-2 border-dashed border-gray-300 flex-col overflow-auto h-[28dvh] p-4 text-gray-500 w-full rounded-lg bg-gray-50 flex items-start justify-start">
-                  
                   {/* Subsection Form & Tools */}
                   <div className="flex flex-row justify-between items-center w-full pb-2 border-b">
                     <div className="flex items-center gap-2">
@@ -522,7 +569,9 @@ const handleSubmit = async () => {
                   <div className="text-xs font-bold text-cyan-800 my-2">
                     Base Text:{" "}
                     <span className="font-normal text-gray-600">
-                      {formData.baseText != null ? formData.baseText.name : "None"}
+                      {formData.baseText != null
+                        ? formData.baseText.name
+                        : "None"}
                     </span>
                   </div>
 
@@ -549,7 +598,8 @@ const handleSubmit = async () => {
                                 <FolderOpen className="w-4 h-4 text-cyan-600" />
                                 <span>{sectionName}</span>
                                 <span className="text-xs text-gray-400 font-normal">
-                                  ({files.length} {files.length === 1 ? "file" : "files"})
+                                  ({files.length}{" "}
+                                  {files.length === 1 ? "file" : "files"})
                                 </span>
                               </div>
                               <button
@@ -561,7 +611,9 @@ const handleSubmit = async () => {
                                     : "bg-gray-100 text-gray-600 hover:bg-gray-200"
                                 }`}
                               >
-                                {targetSubsection === sectionName ? "Selected Target" : "Set Target"}
+                                {targetSubsection === sectionName
+                                  ? "Selected Target"
+                                  : "Set Target"}
                               </button>
                             </div>
 
@@ -589,15 +641,17 @@ const handleSubmit = async () => {
                                           baseText: file,
                                         }))
                                       }
-                                      className="bg-transparent text-cyan-800 flex items-center gap-2 font-medium truncate max-w-[85%]"
+                                      className="bg-transparent text-cyan-600 w-[43dvh] rounded-lg flex-row flex gap-2 content-center items-center shrink-0 cursor-pointer"
                                     >
-                                      {file === formData.baseText ? (
-                                        <FileCheck className="w-4 h-4 text-cyan-600 shrink-0" />
+                                      {file == formData.baseText ? (
+                                        <FileCheck className="w-8 h-8" />
                                       ) : (
-                                        <FileText className="w-4 h-4 text-cyan-600 shrink-0" />
+                                        <FileText className="w-8 h-8" />
                                       )}
-                                      <span className="truncate">{file.name}</span>
-                                    </button>
+                                <p className="text-md font-medium text-cyan-800 ">
+                                  {file.name}
+                                </p>
+                              </button>
 
                                     <button
                                       type="button"
@@ -613,7 +667,7 @@ const handleSubmit = async () => {
                               </ul>
                             ) : (
                               <div className="pl-4 text-xs italic text-gray-400 py-1">
-                                Drag files here or upload to populate subsection
+                                
                               </div>
                             )}
                           </div>
@@ -621,7 +675,8 @@ const handleSubmit = async () => {
                       })
                     ) : (
                       <p className="text-xs text-gray-400 italic py-2 text-center">
-                        No subsections created. Add a subsection above to begin organizing.
+                        No subsections created. Add a subsection above to begin
+                        organizing.
                       </p>
                     )}
                   </div>
@@ -634,8 +689,8 @@ const handleSubmit = async () => {
                     isDragReject
                       ? "border-red-500 text-red-600 bg-red-50"
                       : isDragActive
-                      ? "border-cyan-500 text-cyan-600 bg-cyan-50"
-                      : ""
+                        ? "border-cyan-500 text-cyan-600 bg-cyan-50"
+                        : ""
                   }`}
                 >
                   <input {...getInputProps()} />
@@ -700,8 +755,8 @@ const handleSubmit = async () => {
                     isDragReject
                       ? "border-red-500 text-red-600 bg-red-50"
                       : isDragActive
-                      ? "border-gray-300 text-gray-600 bg-gray-100"
-                      : ""
+                        ? "border-gray-300 text-gray-600 bg-gray-100"
+                        : ""
                   }`}
                 >
                   <input {...getInputProps()} />
@@ -788,22 +843,24 @@ const handleSubmit = async () => {
                           }`}
                         >
                           <button
-                            type="button"
-                            onClick={() =>
-                              setFormData((prev) => ({
-                                ...prev,
-                                baseText: file,
-                              }))
-                            }
-                            className="text-cyan-800 flex gap-2 items-center truncate max-w-[85%]"
-                          >
-                            {file === formData.baseText ? (
-                              <FileCheck className="w-5 h-5 text-cyan-600 shrink-0" />
-                            ) : (
-                              <FileText className="w-5 h-5 text-cyan-600 shrink-0" />
-                            )}
-                            <span className="truncate">{file.name}</span>
-                          </button>
+                                type="button"
+                                onClick={() =>
+                                  setFormData((prev) => ({
+                                    ...prev,
+                                    baseText: file,
+                                  }))
+                                }
+                                className="bg-transparent text-cyan-600 w-[43dvh] rounded-lg flex-row flex gap-2 content-center items-center shrink-0 cursor-pointer"
+                              >
+                                {file == formData.baseText ? (
+                                  <FileCheck className="w-8 h-8" />
+                                ) : (
+                                  <FileText className="w-8 h-8" />
+                                )}
+                                <p className="text-md font-medium text-cyan-800 ">
+                                  {file.name}
+                                </p>
+                              </button>
                           <button
                             type="button"
                             onClick={() => removeFile(file)}
@@ -839,8 +896,8 @@ const handleSubmit = async () => {
             </div>
           </div>
         )}
-                 {/* select algorithm */}
-         {currentStep === 2 && (
+        {/* select algorithm */}
+        {currentStep === 2 && (
           <div className="space-y-6">
             <h2 className="text-4xl font-bold text-gray-700 pt-10 ">
               Select Algorithm
@@ -848,7 +905,7 @@ const handleSubmit = async () => {
 
             <div className="space-y-1 h-[55dvh] flex  w-10/10 pt-5">
               <div className="flex flex-row content-between">
-                <div className="flex flex-col content-center items-center gap-2 w-[20dvw]">
+                <div className="flex flex-col content-center items-center gap-2 w-[25dvw]">
                   {/* <label className="block text-2xl font-medium text-gray-700 mb-1">Select Algorithm</label> */}
                   <div className="flex flex-col gap-2 pt-2 w-full">
                     {/* Label */}
@@ -905,245 +962,265 @@ const handleSubmit = async () => {
                     {/* Needleman-Wunsch Settings */}
                     {(formData.algorithm === "ndw" ||
                       formData.algorithm === "sw") && (
-                      <div className="">
-                        {/* Match Bonus*/}
-                        <div className="flex justify-between items-center text-md font-medium text-gray-700">
-                          <label htmlFor="matchBonus">Match Bonus</label>
-                        </div>
+                      <div className="flex flex-row gap-3 content-center">
+                        <div className="w-4/10">
+                          {/* Match Bonus*/}
+                          <div className="flex justify-between items-center text-md font-medium text-gray-700">
+                            <label htmlFor="matchBonus">Match Bonus</label>
+                          </div>
 
-                        <input
-                          id="matchBonus"
-                          type="number"
-                          value={formData.settings.matchBonus}
-                          onChange={(e) =>
-                            handleSettingChange(
-                              "matchBonus",
-                              Number(e.target.value),
-                            )
-                          }
-                          className="block w-full pl-3 pr-10 py-2 text-base bg-white rounded-md shadow-sm appearance-none focus:outline-none focus:shadow-md text-gray-700/60 focus:text-gray-700 focus:shadow-gray-700/70 sm:text-sm transition-colors"
-                        />
+                          <input
+                            id="matchBonus"
+                            type="number"
+                            value={formData.settings.matchBonus}
+                            onChange={(e) =>
+                              handleSettingChange(
+                                "matchBonus",
+                                Number(e.target.value),
+                              )
+                            }
+                            className="block w-full pl-3 pr-10 py-2 text-base bg-white rounded-md shadow-sm appearance-none focus:outline-none focus:shadow-md text-gray-700/60 focus:text-gray-700 focus:shadow-gray-700/70 sm:text-sm transition-colors"
+                          />
 
-                        {/* Gap Penalty */}
-                        <div className="flex justify-between items-center text-md font-medium text-gray-700">
-                          <label htmlFor="gapPenalty">Gap Penalty</label>
-                        </div>
+                          {/* Gap Penalty */}
+                          <div className="flex justify-between items-center text-md font-medium text-gray-700">
+                            <label htmlFor="gapPenalty">Gap Penalty</label>
+                          </div>
 
-                        <input
-                          id="gapPenalty"
-                          type="number"
-                          value={-formData.settings.gapPenalty}
-                          onChange={(e) =>
-                            handleSettingChange(
-                              "gapPenalty",
-                              Number(-e.target.value),
-                            )
-                          }
-                          className="block w-full pl-3 pr-10 py-2 text-base bg-white rounded-md shadow-sm appearance-none focus:outline-none focus:shadow-md text-gray-700/60 focus:text-gray-700 focus:shadow-gray-700/70 sm:text-sm transition-colors"
-                        />
+                          <input
+                            id="gapPenalty"
+                            type="number"
+                            value={-formData.settings.gapPenalty}
+                            onChange={(e) =>
+                              handleSettingChange(
+                                "gapPenalty",
+                                Number(-e.target.value),
+                              )
+                            }
+                            className="block w-full pl-3 pr-10 py-2 text-base bg-white rounded-md shadow-sm appearance-none focus:outline-none focus:shadow-md text-gray-700/60 focus:text-gray-700 focus:shadow-gray-700/70 sm:text-sm transition-colors"
+                          />
 
-                        {/* Mismatch Penalty */}
-                        <div className="flex justify-between items-center text-md font-medium text-gray-700">
-                          <label htmlFor="mismatchPenalty">
-                            Mismatch Penalty
-                          </label>
-                        </div>
+                          {/* Mismatch Penalty */}
+                          <div className="flex justify-between items-center text-md font-medium text-gray-700">
+                            <label htmlFor="mismatchPenalty">
+                              Mismatch Penalty
+                            </label>
+                          </div>
 
-                        <input
-                          id="mismatchPenalty"
-                          type="number"
-                          value={-formData.settings.mismatchPenalty}
-                          onChange={(e) =>
-                            handleSettingChange(
-                              "mismatchPenalty",
-                              Number(-e.target.value),
-                            )
-                          }
-                          className="block w-full pl-3 pr-10 py-2 text-base bg-white rounded-md shadow-sm appearance-none focus:outline-none focus:shadow-md text-gray-700/60 focus:text-gray-700 focus:shadow-gray-700/70 sm:text-sm transition-colors"
-                        />
+                          <input
+                            id="mismatchPenalty"
+                            type="number"
+                            value={-formData.settings.mismatchPenalty}
+                            onChange={(e) =>
+                              handleSettingChange(
+                                "mismatchPenalty",
+                                Number(-e.target.value),
+                              )
+                            }
+                            className="block w-full pl-3 pr-10 py-2 text-base bg-white rounded-md shadow-sm appearance-none focus:outline-none focus:shadow-md text-gray-700/60 focus:text-gray-700 focus:shadow-gray-700/70 sm:text-sm transition-colors"
+                          />
+                          {formData.algorithm === "ndw" && (
+                            <div>
+                              {/* Affine Gap Penalty */}
+                              <div className="flex justify-between items-center text-md font-medium text-gray-700">
+                                <label htmlFor="affinePenalty">
+                                  Affine Penalty
+                                </label>
+                              </div>
 
-                        {/* Optional Special Character Bonus */}
-                        {/* Label */}
-                        <label
-                          htmlFor="special"
-                          className="block text-md font-medium text-gray-700 place-content-start"
-                        >
-                          Optional Special Character Bonus
-                        </label>
-
-                        {/* Select Container with Custom Arrow */}
-                        <div className="relative">
-                          <select
-                            id="special"
-                            className="block w-full pl-3 pr-10 py-2 text-base bg-white rounded-md shadow-sm appearance-none focus:outline-none focus:shadow-md text-gray-700/60 focus:text-gray-700 focus:shadow-gray-700/70 sm:text-sm cursor-pointer transition-colors"
-                            defaultValue=""
-                            onChange={(e) => {
-                              const val = e.target.value;
-                              if (!val) {
-                                handleSettingChange("special", []);
-                                handleSettingChange("specialOther", false);
-                              } else if (val === "Other") {
-                                handleSettingChange("special", ["Other"]);
-                                handleSettingChange("specialOther", true);
-                              } else {
-                                // Split the comma-separated value string into a clean array
-                                handleSettingChange("special", val.split(","));
-                                handleSettingChange("specialOther", false);
-                              }
-                            }}
-                          >
-                            <option value="" className="text-gray-400/20">
-                              None
-                            </option>
-                            {/* Pass standard comma-separated strings as values */}
-                            <option value="ך,ם,ן,ף,ץ" className="text-gray-800">
-                              Sofit Letters
-                            </option>
-                            <option
-                              value="A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z"
-                              className="text-gray-800"
-                            >
-                              Capital Letters (Latin Alphabet)
-                            </option>
-                            <option value="Other" className="text-gray-800">
-                              Custom
-                            </option>
-                          </select>
-                          {/* Custom Dropdown Chevron Icon */}
-                          <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-3 text-gray-500">
-                            <svg
-                              className="w-4 h-4"
-                              fill="none"
-                              stroke="currentColor"
-                              viewBox="0 0 24 24"
-                            >
-                              <path
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                                strokeWidth={2}
-                                d="M19 9l-7 7-7-7"
+                              <input
+                                id="affinePenalty"
+                                type="number"
+                                value={-formData.settings.affinePenalty}
+                                onChange={(e) =>
+                                  handleSettingChange(
+                                    "affinePenalty",
+                                    Number(-e.target.value),
+                                  )
+                                }
+                                className="block w-full pl-3 pr-10 py-2 text-base bg-white rounded-md shadow-sm appearance-none focus:outline-none focus:shadow-md text-gray-700/60 focus:text-gray-700 focus:shadow-gray-700/70 sm:text-sm transition-colors"
                               />
-                            </svg>
-                          </div>
-                        </div>
-
-                        {formData.settings.specialOther === true && (
-                          <div>
-                            <label
-                              htmlFor="otherSpecial"
-                              className="block pt-2 text-md font-medium text-gray-700 place-content-start"
-                            >
-                              Enter a space-separated list of characters.
-                            </label>
-                            <input
-                              type="text"
-                              id="otherSpecial"
-                              onChange={(e) =>
-                                handleSettingChange(
-                                  "special",
-                                  e.target.value.split(" "),
-                                )
-                              }
-                              placeholder="1 2 3"
-                              className="shadow-md pt-2 w-full text-gray-700 focus:shadow-gray-700/70 outline-none border-none appearance-none p-1"
-                            />
-                          </div>
-                        )}
-                        <div className="pt-2">
-                          {formData.settings.special.includes("Other") ===
-                            false && (
-                            <label
-                              htmlFor="specialList"
-                              className="pt-2 text-cyan-700"
-                            >
-                              {formData.settings.special.join(" ")}
-                            </label>
+                            </div>
                           )}
                         </div>
+                        <div className="w-6/10">
+                          {/* Optional Special Character Bonus */}
+                          {/* Label */}
+                          <label
+                            htmlFor="special"
+                            className="block text-md font-medium text-gray-700 place-content-start"
+                          >
+                            Optional Special Character Bonus
+                          </label>
 
-                        {formData.settings.special?.length > 0 && (
-                          <div>
-                            <div className="flex justify-between items-center text-md  font-medium text-gray-700">
-                              <label htmlFor="specialBonus" className="pt-2">
-                                Special Character Bonus
-                              </label>
+                          {/* Select Container with Custom Arrow */}
+                          <div className="relative">
+                            <select
+                              id="special"
+                              className="block w-full pl-3 pr-10 py-2 text-base bg-white rounded-md shadow-sm appearance-none focus:outline-none focus:shadow-md text-gray-700/60 focus:text-gray-700 focus:shadow-gray-700/70 sm:text-sm cursor-pointer transition-colors"
+                              value={formData.settings.special.join(",")}
+                              onChange={(e) => {
+                                const val = e.target.value;
+                                if (!val) {
+                                  handleSettingChange("special", []);
+                                  handleSettingChange("specialOther", false);
+                                } else if (val === "Other") {
+                                  handleSettingChange("special", ["Other"]);
+                                  handleSettingChange("specialOther", true);
+                                } else {
+                                  // Split the comma-separated value string into a clean array
+                                  handleSettingChange(
+                                    "special",
+                                    val.split(","),
+                                  );
+                                  handleSettingChange("specialOther", false);
+                                }
+                              }}
+                            >
+                              <option value="" className="text-gray-400/20">
+                                None
+                              </option>
+                              {/* Pass standard comma-separated strings as values */}
+                              <option
+                                value="ך,ם,ן,ף,ץ"
+                                className="text-gray-800"
+                              >
+                                Sofit Letters
+                              </option>
+                              <option
+                                value="A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z"
+                                className="text-gray-800"
+                              >
+                                Capital Letters (Latin Alphabet)
+                              </option>
+                              <option value="Other" className="text-gray-800">
+                                Custom
+                              </option>
+                            </select>
+                            {/* Custom Dropdown Chevron Icon */}
+                            <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-3 text-gray-500">
+                              <svg
+                                className="w-4 h-4"
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24"
+                              >
+                                <path
+                                  strokeLinecap="round"
+                                  strokeLinejoin="round"
+                                  strokeWidth={2}
+                                  d="M19 9l-7 7-7-7"
+                                />
+                              </svg>
                             </div>
-
-                            <input
-                              id="specialBonus"
-                              type="number"
-                              value={formData.settings.specialBonus}
-                              onChange={(e) =>
-                                handleSettingChange(
-                                  "specialBonus",
-                                  Number(e.target.value),
-                                )
-                              }
-                              className="block w-full pl-3 pr-10 py-2 text-base bg-white rounded-md shadow-sm appearance-none focus:outline-none focus:shadow-md text-gray-700/60 focus:text-gray-700 focus:shadow-gray-700/70 sm:text-sm transition-colors"
-                            />
-
-                            <div className="flex justify-between items-center text-md  font-medium text-gray-700">
-                              <label htmlFor="specialGap" className="pt-2">
-                                Special Character Gap Penalty
-                              </label>
-                            </div>
-
-                            <input
-                              id="specialGap"
-                              type="number"
-                              value={-formData.settings.specialGap}
-                              onChange={(e) =>
-                                handleSettingChange(
-                                  "specialGap",
-                                  Number(-e.target.value),
-                                )
-                              }
-                              className="block w-full pl-3 pr-10 py-2 text-base bg-white rounded-md shadow-sm appearance-none focus:outline-none focus:shadow-md text-gray-700/60 focus:text-gray-700 focus:shadow-gray-700/70 sm:text-sm transition-colors"
-                            />
-
-                            <div className="flex justify-between items-center text-md  font-medium text-gray-700">
-                              <label htmlFor="specialMismatch" className="pt-2">
-                                Special Character Mismatch Penalty
-                              </label>
-                            </div>
-
-                            <input
-                              id="specialMismatch"
-                              type="number"
-                              value={-formData.settings.specialMismatch}
-                              onChange={(e) =>
-                                handleSettingChange(
-                                  "specialMismatch",
-                                  Number(-e.target.value),
-                                )
-                              }
-                              className="block w-full pl-3 pr-10 py-2 text-base bg-white rounded-md shadow-sm appearance-none focus:outline-none focus:shadow-md text-gray-700/60 focus:text-gray-700 focus:shadow-gray-700/70 sm:text-sm transition-colors"
-                            />
                           </div>
-                        )}
-                      </div>
-                    )}
-                    {formData.algorithm === "ndw" && (
-                      <div>
-                        {/* Affine Gap Penalty */}
-                        <div className="flex justify-between items-center text-md font-medium text-gray-700">
-                          <label htmlFor="affinePenalty">Affine Penalty</label>
-                        </div>
 
-                        <input
-                          id="affinePenalty"
-                          type="number"
-                          value={-formData.settings.affinePenalty}
-                          onChange={(e) =>
-                            handleSettingChange(
-                              "affinePenalty",
-                              Number(-e.target.value),
-                            )
-                          }
-                          className="block w-full pl-3 pr-10 py-2 text-base bg-white rounded-md shadow-sm appearance-none focus:outline-none focus:shadow-md text-gray-700/60 focus:text-gray-700 focus:shadow-gray-700/70 sm:text-sm transition-colors"
-                        />
+                          {formData.settings.specialOther === true && (
+                            <div>
+                              <label
+                                htmlFor="otherSpecial"
+                                className="block pt-2 text-md font-medium text-gray-700 place-content-start"
+                              >
+                                Enter a space-separated list of characters.
+                              </label>
+                              <input
+                                type="text"
+                                id="otherSpecial"
+                                onChange={(e) =>
+                                  handleSettingChange(
+                                    "special",
+                                    e.target.value.split(" "),
+                                  )
+                                }
+                                value={
+                                  formData.settings.special.includes("Other") 
+                                  ? ""
+                                  : formData.settings.special.join(" ")
+
+                                }
+                                placeholder="1 2 3"
+                                className="shadow-md pt-2 w-full text-gray-700 focus:shadow-gray-700/70 outline-none border-none appearance-none p-1"
+                              />
+                            </div>
+                          )}
+                          <div className="pt-2">
+                            {formData.settings.special.includes("Other") ===
+                              false && (
+                              <label
+                                className="pt-2 text-cyan-700"
+                              >
+                                {formData.settings.special.join(" ")}
+                              </label>
+                            )}
+                          </div>
+
+                          {formData.settings.special?.length > 0 && (
+                            <div>
+                              <div className="flex justify-between items-center text-md  font-medium text-gray-700">
+                                <label htmlFor="specialBonus" className="pt-2">
+                                  Special Character Bonus
+                                </label>
+                              </div>
+
+                              <input
+                                id="specialBonus"
+                                type="number"
+                                value={formData.settings.specialBonus}
+                                onChange={(e) =>
+                                  handleSettingChange(
+                                    "specialBonus",
+                                    Number(e.target.value),
+                                  )
+                                }
+                                className="block w-full pl-3 pr-10 py-2 text-base bg-white rounded-md shadow-sm appearance-none focus:outline-none focus:shadow-md text-gray-700/60 focus:text-gray-700 focus:shadow-gray-700/70 sm:text-sm transition-colors"
+                              />
+
+                              <div className="flex justify-between items-center text-md  font-medium text-gray-700">
+                                <label htmlFor="specialGap" className="pt-2">
+                                  Special Character Gap Penalty
+                                </label>
+                              </div>
+
+                              <input
+                                id="specialGap"
+                                type="number"
+                                value={-formData.settings.specialGap}
+                                onChange={(e) =>
+                                  handleSettingChange(
+                                    "specialGap",
+                                    Number(-e.target.value),
+                                  )
+                                }
+                                className="block w-full pl-3 pr-10 py-2 text-base bg-white rounded-md shadow-sm appearance-none focus:outline-none focus:shadow-md text-gray-700/60 focus:text-gray-700 focus:shadow-gray-700/70 sm:text-sm transition-colors"
+                              />
+
+                              <div className="flex justify-between items-center text-md  font-medium text-gray-700">
+                                <label
+                                  htmlFor="specialMismatch"
+                                  className="pt-2"
+                                >
+                                  Special Character Mismatch Penalty
+                                </label>
+                              </div>
+
+                              <input
+                                id="specialMismatch"
+                                type="number"
+                                value={-formData.settings.specialMismatch}
+                                onChange={(e) =>
+                                  handleSettingChange(
+                                    "specialMismatch",
+                                    Number(-e.target.value),
+                                  )
+                                }
+                                className="block w-full pl-3 pr-10 py-2 text-base bg-white rounded-md shadow-sm appearance-none focus:outline-none focus:shadow-md text-gray-700/60 focus:text-gray-700 focus:shadow-gray-700/70 sm:text-sm transition-colors"
+                              />
+                            </div>
+                          )}
+                        </div>
                       </div>
                     )}
+
                     {/* {formData.algorithm!="" && (
                     <div className="w-[50dvh] h-[50dvh] border-2"></div>
                   )} */}
@@ -1170,7 +1247,21 @@ const handleSubmit = async () => {
           </div>
         )}
         {currentStep === 3 && (
-          <div className="flex justify-between pt-4">
+          <div className="flex h-95/100 self-start w-full">
+          <div className="flex flex-col justify-between  pt-4  w-full">
+            <h1 className="text-4xl w-5/10 font-bold text-gray-700 pt-10 pb-2">
+              {formData.algorithm == "ndw"
+                ? "Needleman-Wunsch"
+                : "Smith-Waterman"}{" "}
+              Results
+            </h1>
+          <div className="flex-row overflow-auto w-max flex pt-2 ">
+            
+            <div className="w-max ">
+            <p className="text-gray-800 whitespace-pre-wrap text-justify font-mono">{results.output_logs}</p>
+            </div>
+            </div>
+            <div className="flex flex-row justify-between content-start">
             <button
               onClick={() => handleStepChange(2)}
               className="px-5 py-2 border border-gray-300 text-gray-700 font-medium rounded-lg hover:bg-gray-50 transition"
@@ -1178,16 +1269,23 @@ const handleSubmit = async () => {
               Back
             </button>
             <button
-              onClick={() => handleStepChange(4)}
+              onClick={handlePlot}
               disabled={isProcessing}
               className="px-5 py-2 bg-cyan-600 text-white font-medium rounded-lg hover:bg-cyan-700 disabled:opacity-50 transition"
             >
               {isProcessing ? "Processing..." : "Run Algorithm"}
             </button>
+            </div>
+          </div>
           </div>
         )}
         {currentStep === 4 && (
           <div className="flex justify-between pt-4">
+            <iframe
+              src={plotUrl}
+              className="w-full h-full border-none"
+              title="t-SNE Plot"
+            />
             <button
               onClick={() => handleStepChange(3)}
               className="px-5 py-2 border border-gray-300 text-gray-700 font-medium rounded-lg hover:bg-gray-50 transition"
@@ -1425,7 +1523,7 @@ const handleSubmit = async () => {
 //     if (textToAdd.includes("Subsection")){
 //       setCount((prev) => prev + 1);
 //     }
-    
+
 //     setFormData((prev) => ({
 //       ...prev,
 //       files: [...prev.files, { [textToAdd]: [] }],
@@ -1521,7 +1619,7 @@ const handleSubmit = async () => {
 //                 <p className="text-md text-gray-500 mt-1">Only .txt files will be processed</p> */}
 
 //               {formData.multi == true && (
-                
+
 //                 <div className="flex text-center place-content-center place-items-center pl-20 pr-20 pt-[2dvh] w-10/10 pb-[2dvh]">
 //                   <div className="border-2 border-dashed border-gray-300 flex-col h-[50dvh] items-center content-center w-[70dvw] rounded-lg p-8 text-center bg-gray-50  transition flex">
 //                     <div className="flex flex-col  overflow-auto text-center">
@@ -1575,12 +1673,11 @@ const handleSubmit = async () => {
 //                             const [subsection, filesList] =
 //                               Object.entries(subsectionObj)[0];
 //                             return (
-                              
-                              
+
 //                               <div
 //                               key={subsection||i}
 //                                 {...getRootProps()}
-//                                 className={`border-2 border-dashed border-gray-300 flex-col  items-center content-center  rounded-lg p-8 text-center bg-gray-50  transition flex 
+//                                 className={`border-2 border-dashed border-gray-300 flex-col  items-center content-center  rounded-lg p-8 text-center bg-gray-50  transition flex
 //                         ${
 //                           isDragReject
 //                             ? "border-red-500 text-red-600 bg-red-50"
@@ -1588,9 +1685,9 @@ const handleSubmit = async () => {
 //                               ? "border-gray-300 text-gray-600 bg-gray-100 border-gray-400"
 //                               : ""
 //                         }`}
-                          
+
 //                               >
-//                                 <input {...getInputProps()} 
+//                                 <input {...getInputProps()}
 //                                 />
 //                                 <div className="w-full place-content-start  text-left shadow-md p-2">
 //                                 <h1 className="text-start text-md text-cyan-700">
@@ -1598,7 +1695,7 @@ const handleSubmit = async () => {
 //                                 </h1>
 //                                 </div>
 //                                 <label className="flex flex-col pt-2 items-center place-content-center content-center justify-center w-full">
-                                
+
 //                                 <svg
 //                                   className="mx-auto h-12 w-12 text-cyan-800"
 //                                   fill="none"
@@ -1643,7 +1740,7 @@ const handleSubmit = async () => {
 //                                           >
 //                                             Folders
 //                                           </button>
-                                          
+
 //                                           <input />
 //                                         </p>
 //                                         </div>
@@ -1651,7 +1748,7 @@ const handleSubmit = async () => {
 //                                           Only upload files you want aligned.
 //                                         </p>
 //                                         </label>
-                                 
+
 //                                 <ul>
 //                                   {filesList.map((file, index) => (
 //                                     <li
@@ -1695,36 +1792,32 @@ const handleSubmit = async () => {
 //                                             </button>
 //                                           </div>
 //                                         </div>
-                                        
+
 //                                       </div>
 //                                     </li>
 //                                   ))}
 //                                 </ul>
 //                               </div>
-                              
+
 //                             );
 //                           })}
 //                         </ul>
 //                       )}
-                    
+
 //                     </div>
-                    
 
 //                     {/* </div> */}
 
 //                     {/* View File Names and document icon */}
 //                   </div>
 //                   </div>
-                    
-                
-                
-            
+
 //               )}
 //               {formData.multi == false && (
 //                 <div className="flex flex-row justify-between pl-20 pr-20 pt-[4dvh] w-10/10">
 //                   <div
 //                     {...getRootProps()}
-//                     className={`border-2 border-dashed border-gray-300 h-[50dvh]  w-[50dvh] rounded-lg p-8 text-center bg-gray-50  transition flex place-content-center place-items-center 
+//                     className={`border-2 border-dashed border-gray-300 h-[50dvh]  w-[50dvh] rounded-lg p-8 text-center bg-gray-50  transition flex place-content-center place-items-center
 //                   ${
 //                     isDragReject
 //                       ? "border-red-500 text-red-600 bg-red-50"
@@ -1858,10 +1951,9 @@ const handleSubmit = async () => {
 //                       </ul>
 //                     )}
 //                   </div>
-                  
+
 //                 </div>
-                 
-            
+
 //               )}
 //               {formData.multi==true && (
 //                 <div className="flex flex-row justify-between items-center content-center">
@@ -1881,7 +1973,7 @@ const handleSubmit = async () => {
 //                       Continue
 //                     </button>
 //                   </div>
-//               )} 
+//               )}
 //               {formData.multi==false && (
 //                 <div className="flex flex-row justify-between items-center content-center">
 //               <button
@@ -1903,7 +1995,6 @@ const handleSubmit = async () => {
 //               )}
 //             </div>
 
-            
 //           </div>
 //         )}
 
@@ -2276,7 +2367,6 @@ const handleSubmit = async () => {
 // // import Results from './form/results/page'
 // // import Link from 'next/link';
 // // import { useState } from "react";
-
 
 // // export default function Pages()  */
 // }

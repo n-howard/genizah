@@ -1,6 +1,6 @@
 from numpy import full
 import os
-from main import AlgorithmSettings
+from base import AlgorithmSettings
 
 def _generate_traceback_array(seq1, seq2, settings):
     '''Builds the matrix'''
@@ -94,7 +94,7 @@ def _generate_traceback_alignment(traceback_array, seq1, seq2, max_index, up_arr
     aligned_seq2 = ""
     alignment_indicator = ""
 
-    while arrow is not "-":
+    while arrow != "-":
         #print("Currently on row:", row)
         #print("Currently on col:", col)
         arrow = traceback_array[row, col]
@@ -139,55 +139,67 @@ def smith_waterman(seq1, seq2, settings):
     return seq1, seq2, score
 
 
-def run(files: List[Path], settings: AlgorithmSettings, base_text_pattern):
+def run_sw(temp_dir, settings: AlgorithmSettings, base_text_pattern):
     ''' Is the loop to run through the files and apply the algorithm '''
-    os.getcwd()
+    # os.getcwd()
     # within the os module, returns the current working directory of a process.
-    cwd = os.getcwd()
+    cwd = temp_dir
     # creates an object known as 'cwd' to which the command os.getcwd() is associated.
-    print("Current working directory:{0}".format(cwd))
+    # print("Current working directory:{0}".format(cwd))
     # prints the current working directory using the object cwd.
-    base_directory = os.path.join(cwd, "Test_Leuven")
+    base_directory = os.path.join(cwd, "Alignment Data0")
+
+    scores_table = {}
     # joins the current working directory and the subfile which we want to read under the object 'basedirectory'
     with os.scandir(base_directory) as folders:
         folders = [folder for folder in folders if folder.is_dir()]
         for folder in folders:
             print(folder)
-        # 'scans' basedirectory, iterates through all folders in the subfolder (if any exist), and lists them.
-        test_directory = os.path.join(base_directory, folder)
-        # creates an object called 'testdirectory' which joins the basedirectory with the specific folder we want to
-        # read. we have now told the computer exactly which folders we want to read and how to find them.
-        with os.scandir(test_directory) as texts:
-            texts = [text for text in texts if not (text.name.endswith("DS_Store"))]
-            for text in texts:
-                print(text)
-            # print(texts)
-            # calls each file within the folder a 'text' and tells the computer to iterate through each file.
-            # tells the computer to ignore files ending in DS_Store or html.
-            # print(texts) tells the computer to print all files within the subfolder.
-            base_text_pattern = "Seq1"
-            base_text = [text for text in texts if base_text_pattern in text.name][0]
-            basetextfilepath = os.path.join(test_directory, base_text)
-            # tells the computer that the first text in the order of iterations should have 'JTS' in the filename.
-            # tells the computer to iterate through the folder looking for the base text.
-            # tells the computer to join the base text to the text directory and read them together.
-            base_text_contents = open(basetextfilepath, encoding='utf-8').read()
-            # tells the computer to read the files within the directory in utf-8 encoding.
-            texts = [text for text in texts if base_text_pattern not in text.name]
-            # tells the computer to iterate through all the files in the folder where the name does not have 'JTS'
-            for text in texts:
-                # call the entire algorithm within this loop
-                # print(text)
-                text_filepath = os.path.join(test_directory, text)
-                text_contents = open(text_filepath, encoding='utf-8').read()
-                # print(basetextcontents)
-                # print(textcontents)
-                print()
-                aligned_seq1, aligned_seq2, score = smith_waterman(base_text_contents, text_contents, settings)
-                print(base_text, text)
-                print_alignment(aligned_seq1, aligned_seq2)
-                print(score)
-                print(score / len(aligned_seq1))
+            # 'scans' basedirectory, iterates through all folders in the subfolder (if any exist), and lists them.
+            test_directory = os.path.join(base_directory, folder)
+            # creates an object called 'testdirectory' which joins the basedirectory with the specific folder we want to
+            # read. we have now told the computer exactly which folders we want to read and how to find them.
+            with os.scandir(test_directory) as texts:
+                texts = [text for text in texts if not ("description" in text.name.lower())]
+                for text in texts:
+                    print(text)
+                # print(texts)
+                # calls each file within the folder a 'text' and tells the computer to iterate through each file.
+                # tells the computer to ignore files ending in DS_Store or html.
+                # print(texts) tells the computer to print all files within the subfolder.
+                base_text = [text for text in texts if base_text_pattern in text.name][0]
+                basetextfilepath = os.path.join(test_directory, base_text)
+                # tells the computer that the first text in the order of iterations should have 'JTS' in the filename.
+                # tells the computer to iterate through the folder looking for the base text.
+                # tells the computer to join the base text to the text directory and read them together.
+                base_text_contents = open(basetextfilepath, encoding='utf-8').read()
+                # tells the computer to read the files within the directory in utf-8 encoding.
+                texts = [text for text in texts if base_text_pattern not in text.name]
+                # tells the computer to iterate through all the files in the folder where the name does not have 'JTS'
+                for text in texts:
+                    # call the entire algorithm within this loop
+                    # print(text)
+                    text_filepath = os.path.join(test_directory, text)
+                    text_contents = open(text_filepath, encoding='utf-8').read()
+                    # print(basetextcontents)
+                    # print(textcontents)
+                    print()
+                    aligned_seq1, aligned_seq2, score = smith_waterman(base_text_contents, text_contents, settings)
+                    print(base_text, text)
+                    print_alignment(aligned_seq1, aligned_seq2)
+                    print(score)
+                    weighted_score = score / len(aligned_seq1)
+                    print(weighted_score)
+                    if settings.is_plot:
+                        if len(folders)>1:
+                            scores_table[text] = weighted_score
+                        else:
+                            # update this to work with user-inputted pattern
+                            scores_table[text.split("_")[0]] = weighted_score
+    if settings.is_plot:
+        return scores_table
+
+
 
 
 def print_alignment(string1, string2):
@@ -217,5 +229,5 @@ def pipes(n):
     return empty
 
 
-if __name__ == "__main__":
-    run()
+# if __name__ == "__main__":
+#     run()
