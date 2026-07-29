@@ -42,3 +42,8 @@ next-env.d.ts
 
 # backend
 backend/TEXTEVOLVE-Data-Analysis
+
+*.xlsx
+*.pdf
+*lock
+backend/testDir
