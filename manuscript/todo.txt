@@ -18,3 +18,9 @@
         -[] 
 
 -[] make it downloadable
+
+Steps before first deployment:
+-[x] check that subsections work with the algorithm
+-[] make excel file downloadable
+-[] work on the subsection import design
+-[] make minimum 3 files for plot

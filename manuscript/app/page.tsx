@@ -80,8 +80,9 @@ export default function Pages() {
   const handleSubsection = () => {
     const name =
       inputValue.trim() !== "" ? inputValue.trim() : `Subsection ${count}`;
-    setCount((prev) => prev + 1);
-
+    if(!inputValue.trim()){
+      setCount((prev) => prev + 1);
+    }
     // Check if section name already exists
     const exists = formData.subsections.some(
       (sub) => Object.keys(sub)[0] === name,
@@ -328,7 +329,16 @@ export default function Pages() {
   const [plotUrl, setPlotUrl] = useState<string>("");
   const handleSubmit = async () => {
     setIsProcessing(true);
-    
+    setFormData((prev)=>({...prev, settings:{...prev.settings, ["isPlot"]: true}}))
+    const firstSectionCount = Object.values(formData.subsections[0] || {})[0]?.length || 0;
+    const hasUnequalSubsections = formData.subsections.some((sub) => {
+      const filesInSub = Object.values(sub)[0] || [];
+      return filesInSub.length !== firstSectionCount;
+    });
+
+    if (hasUnequalSubsections) {
+        setFormData((prev)=>({...prev, settings:{...prev.settings, ["isPlot"]: false}}))
+    }
     try {
       const payload = new FormData();
 
@@ -388,22 +398,29 @@ export default function Pages() {
   };
 
   const handlePlot = async () => {
-    setIsProcessing(true);
-    if (!jobId) {
-      console.error("No processed job available to plot");
-      return;
-    }
+    if (formData.files.length>3 || formData.settings.isPlot==true){
+      setIsProcessing(true);
+      
+      if (!jobId) {
+        console.error("No processed job available to plot");
+        return;
+      }
 
-    
-    try {
-      // Simply point an iframe or fetch directly from the plot endpoint
-      const plotEndpoint = `http://127.0.0.1:8000/api/plot/${jobId}`;
-      setPlotUrl(plotEndpoint);
-    } finally {
-      setIsProcessing(false);
-      handleStepChange(4)
+      
+      try {
+        // Simply point an iframe or fetch directly from the plot endpoint
+        const plotEndpoint = `http://127.0.0.1:8000/api/plot/${jobId}`;
+        setPlotUrl(plotEndpoint);
+      } finally {
+        setIsProcessing(false);
+        handleStepChange(4)
+      }
     }
   };
+
+  const handleDownload = async () => {
+    window.location.href = `http://127.0.0.1:8000/api/sheet/${jobId}`;
+  }
 
   const totalFilesCount = formData.multi
     ? formData.subsections.reduce(
@@ -1247,15 +1264,15 @@ export default function Pages() {
           </div>
         )}
         {currentStep === 3 && (
-          <div className="flex h-95/100 self-start w-full">
-          <div className="flex flex-col justify-between  pt-4  w-full">
+          <div className="flex h-95/100 self-start place-content-start w-full">
+          <div className="flex flex-col justify-between place-content-start pt-4  w-full">
             <h1 className="text-4xl w-5/10 font-bold text-gray-700 pt-10 pb-2">
               {formData.algorithm == "ndw"
                 ? "Needleman-Wunsch"
                 : "Smith-Waterman"}{" "}
-              Results
+              Alignment
             </h1>
-          <div className="flex-row overflow-auto w-max flex pt-2 ">
+          <div className="flex-row overflow-auto place-content-start place-items-start h-full place-self-start w-max flex pt-5 ">
             
             <div className="w-max ">
             <p className="text-gray-800 whitespace-pre-wrap text-justify font-mono">{results.output_logs}</p>
@@ -1270,7 +1287,7 @@ export default function Pages() {
             </button>
             <button
               onClick={handlePlot}
-              disabled={isProcessing}
+              disabled={isProcessing||formData.settings.isPlot==false}
               className="px-5 py-2 bg-cyan-600 text-white font-medium rounded-lg hover:bg-cyan-700 disabled:opacity-50 transition"
             >
               {isProcessing ? "Processing..." : "Run Algorithm"}
@@ -1280,18 +1297,32 @@ export default function Pages() {
           </div>
         )}
         {currentStep === 4 && (
-          <div className="flex justify-between pt-4">
+          <div className="flex content-start h-full pt-10 flex-col pt-4">
+            <h1 className="text-4xl w-5/10 font-bold text-gray-700 pt-10 pb-2">
+              {formData.algorithm == "ndw"
+                ? "Needleman-Wunsch"
+                : "Smith-Waterman"}{" "}
+              Plot
+            </h1>
             <iframe
               src={plotUrl}
               className="w-full h-full border-none"
               title="t-SNE Plot"
             />
+            <div className="w-full flex justify-between content-start flex-row">
             <button
               onClick={() => handleStepChange(3)}
-              className="px-5 py-2 border border-gray-300 text-gray-700 font-medium rounded-lg hover:bg-gray-50 transition"
+              className="px-5 py-2 border border-gray-300 text-gray-700 font-medium rounded-lg w-max hover:bg-gray-50 transition"
             >
               Back
             </button>
+            <button
+              onClick={handleDownload}
+              className="px-5 py-2 bg-green-600 text-white font-medium rounded-lg hover:bg-green-700"
+            >
+              Download Matrix as Spreadsheet
+            </button>
+            </div>
           </div>
         )}
       </div>

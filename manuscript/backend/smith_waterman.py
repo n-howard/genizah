@@ -139,11 +139,11 @@ def smith_waterman(seq1, seq2, settings):
     return seq1, seq2, score
 
 
-def run_sw(temp_dir, settings: AlgorithmSettings, base_text_pattern):
+def run_sw(temp_dir, settings: AlgorithmSettings, base_text_pattern, is_plot, records=[]):
     ''' Is the loop to run through the files and apply the algorithm '''
-    # os.getcwd()
+    os.getcwd()
     # within the os module, returns the current working directory of a process.
-    cwd = temp_dir
+    cwd = os.getcwd()
     # creates an object known as 'cwd' to which the command os.getcwd() is associated.
     # print("Current working directory:{0}".format(cwd))
     # prints the current working directory using the object cwd.
@@ -190,16 +190,33 @@ def run_sw(temp_dir, settings: AlgorithmSettings, base_text_pattern):
                     print(score)
                     weighted_score = score / len(aligned_seq1)
                     print(weighted_score)
-                    if settings.is_plot:
+                    if is_plot:
                         if len(folders)>1:
-                            scores_table[text] = weighted_score
+                            records.append({
+                                "BaseText": base_text_pattern,
+                                "TargetFile": text.name,
+                                "Score": weighted_score
+                            })
                         else:
                             # update this to work with user-inputted pattern
-                            scores_table[text.split("_")[0]] = weighted_score
-    if settings.is_plot:
-        return scores_table
+                            records.append({
+                                "BaseText": base_text_pattern,
+                                "TargetFile": text.name.split("_")[0],
+                                "Score": weighted_score
+                            })
+    if is_plot:
+        return records
 
-
+def compare_two_sw(root_dir, base_text, text, settings):
+    base_text_contents = open(base_text, encoding='utf-8').read()
+    text_contents = open(text, encoding='utf-8').read()
+    aligned_seq1, aligned_seq2, score = smith_waterman(base_text_contents, text_contents, settings)
+    print(base_text,text)
+    print_alignment(aligned_seq1, aligned_seq2)
+    print(score)
+    weighted_score = score / len(aligned_seq1)
+    print(weighted_score)
+    return weighted_score
 
 
 def print_alignment(string1, string2):

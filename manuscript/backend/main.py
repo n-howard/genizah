@@ -1,30 +1,30 @@
-import json
-import tempfile
-import shutil
-from pathlib import Path
-from fastapi import FastAPI, UploadFile, File, Form, HTTPException
-from fastapi.responses import FileResponse
-from fastapi.middleware.cors import CORSMiddleware
-import io
-import contextlib
-import os
-import pandas as pd
-import subprocess
-import uuid
-import json
-import tempfile
-import shutil
-from typing import List, Callable, Any, Dict, Optional
+# import json
+# import tempfile
+# import shutil
+# from pathlib import Path
+# from fastapi import FastAPI, UploadFile, File, Form, HTTPException
+# from fastapi.responses import FileResponse
+# from fastapi.middleware.cors import CORSMiddleware
+# import io
+# import contextlib
+# import os
+# import pandas as pd
+# import subprocess
+# import uuid
+# import json
+# import tempfile
+# import shutil
+# from typing import List, Callable, Any, Dict, Optional
 
-from base import AlgorithmSettings
-from needleman_wunsch import run_nw
-from smith_waterman import run_sw
+# from base import AlgorithmSettings
+# from needleman_wunsch import run_nw
+# from smith_waterman import run_sw
 
-app = FastAPI()
+# app = FastAPI()
 
-# Directory to hold temporary matrix caches
-CACHE_DIR = Path(tempfile.gettempdir()) / "alignment_cache"
-CACHE_DIR.mkdir(exist_ok=True)
+# # Directory to hold temporary matrix caches
+# CACHE_DIR = Path(tempfile.gettempdir()) / "alignment_cache"
+# CACHE_DIR.mkdir(exist_ok=True)
 
 
 # @app.post("/api/process")
@@ -112,6 +112,37 @@ CACHE_DIR.mkdir(exist_ok=True)
 #             "output_logs": buffer.getvalue(),
 #             "data": result_data
 #         }
+
+import json
+import tempfile
+import shutil
+from pathlib import Path
+from fastapi import FastAPI, UploadFile, File, Form, HTTPException
+from fastapi.responses import FileResponse
+from fastapi.middleware.cors import CORSMiddleware
+import io
+import contextlib
+import os
+import pandas as pd
+import subprocess
+import uuid
+import json
+import tempfile
+import shutil
+from typing import List, Callable, Any, Dict, Optional
+import numpy as np
+
+from base import AlgorithmSettings
+from needleman_wunsch import run_nw
+from smith_waterman import run_sw
+from needleman_wunsch import compare_two_nw
+from smith_waterman import compare_two_sw
+
+app = FastAPI()
+
+# Directory to hold temporary matrix caches
+CACHE_DIR = Path(tempfile.gettempdir()) / "alignment_cache"
+CACHE_DIR.mkdir(exist_ok=True)
 app = FastAPI()
 
 app.add_middleware(
@@ -147,35 +178,46 @@ def process_data(
         files_folder = root_dir / "Alignment Data0"
         files_folder.mkdir(parents=True, exist_ok=True)
 
-        # 1. Store files in filesFolder structure
+        file_bytes_map: Dict[str, bytes] = {}
+        if files:
+            for f in files:
+                f.file.seek(0)
+                clean_name = Path(f.filename).name
+                file_bytes_map[clean_name] = f.file.read()
+
+        file_names_clean = file_bytes_map.keys()
+        file_names = {}
+
+        # 2. Write files to temporary subdirectories using fresh bytes
         if is_multi and subsections_metadata:
             subsections_info = json.loads(subsections_metadata)
             for sub_obj in subsections_info:
                 for section_name, filenames in sub_obj.items():
+                    valid_files = [fname for fname in filenames if Path(fname).name in file_bytes_map]
+            
+                    # Skip creating this directory if no valid files exist for this section
+                    if not valid_files:
+                        continue
                     subfolder = files_folder / section_name
                     subfolder.mkdir(parents=True, exist_ok=True)
 
-                    matching_files = [f for f in files if Path(f.filename).name in filenames] if files else []
-                    
-                    for f in matching_files:
-                        f.file.seek(0)
-                        clean_filename = Path(f.filename).name
-                        file_path = subfolder / clean_filename
-                        with open(file_path, "wb") as buffer:
-                            shutil.copyfileobj(f.file, buffer)
-            
+                    for fname in filenames:
+                        clean_fname = Path(fname).name
+                        if clean_fname in file_bytes_map:
+                            file_path = subfolder / clean_fname
+                            # Open a fresh file for writing each time
+                            with open(file_path, "wb") as out_file:
+                                out_file.write(file_bytes_map[clean_fname])
         else:
             subfolder = files_folder / "transcriptions"
             subfolder.mkdir(parents=True, exist_ok=True)
-            if files:
-                for f in files:
-                    f.file.seek(0)
-                    clean_filename = Path(f.filename).name
-                    file_path = subfolder / clean_filename
-                    with open(file_path, "wb") as buffer:
-                        shutil.copyfileobj(f.file, buffer)
+            for clean_name, content in file_bytes_map.items():
+                file_path = subfolder / clean_name
+                file_names[clean_name] = file_path
+                with open(file_path, "wb") as out_file:
+                    out_file.write(content)
                 
-        
+                    
         settings = AlgorithmSettings.from_dict(raw_settings)
 
         original_cwd = os.getcwd()
@@ -187,49 +229,126 @@ def process_data(
         if not base_text:
             base_text = files[0]
             
+            
         clean_base_text = Path(base_text.filename).name
         # temp code! need to let users choose how to split it
         base_text_pattern = clean_base_text.split("_")[0]
-            
+
+        df = None
+        
         
         try:
             os.chdir(root_dir)
-            
-            if "ndw" in algorithm:
-                
-                
+            print("Running algorithm")
+            records = []
+
+            if settings.is_plot is True:
+
+                if "ndw" in algorithm:
+                    
+                    
+                    # Redirect print() outputs into string buffer
+                    with contextlib.redirect_stdout(buffer):
+                        records = records + run_nw(root_dir, settings, base_text_pattern, settings.is_plot, records)
+                        
+                    
+                elif "sw" in algorithm:
+                    # Redirect print() outputs into string buffer
+                    with contextlib.redirect_stdout(buffer):
+                        records = records + run_sw(root_dir, settings, base_text_pattern, settings.is_plot, records)
+            else:
+                print("Else")
+                if "ndw" in algorithm:
+                                    
+                                    
                 # Redirect print() outputs into string buffer
-                with contextlib.redirect_stdout(buffer):
-                    result_data = run_nw(root_dir, settings, base_text_pattern)
+                    with contextlib.redirect_stdout(buffer):
+                        data = run_nw(root_dir, settings, base_text_pattern, settings.is_plot)
                     
                 
-            elif "sw" in algorithm:
-                # Redirect print() outputs into string buffer
-                with contextlib.redirect_stdout(buffer):
-                    result_data = run_sw(root_dir, settings, base_text_pattern)
-            base_texts = set([Path(f.filename).name.split("_")[0] for f in files]) if files else set()
-            all_scores_table = {}
+                elif "sw" in algorithm:
+                    # Redirect print() outputs into string buffer
+                    with contextlib.redirect_stdout(buffer):
+                        data = run_sw(root_dir, settings, base_text_pattern, settings.is_plot, records)
+            if settings.is_plot:
+                # fix this to be customizable
+                base_texts = set([Path(f.filename).name.split("_")[0] for f in files]) if files else set()
+                print("BaseText Prefixes:",base_texts)
+                df = None
+                if multi:
+                    print("Creating matrix")
+                    
+                    base_texts = [bt for bt in base_texts if bt!=base_text_pattern ] 
 
-            for bt in base_texts:
-                if "ndw" in algorithm:
-                    all_scores_table[bt] = run_nw(root_dir, settings, bt)
+                    for bt in base_texts:
+                        if "ndw" in algorithm:
+                            records = records + run_nw(root_dir, settings, bt, True, records)
+                        else:
+                            records = records + run_sw(root_dir, settings, bt, True, records)
+
+                    
+                    orig_df = pd.DataFrame(records)
+                    df=orig_df.pivot_table(
+                        index="BaseText",
+                        columns="TargetFile",
+                        values="Score"
+                    )
+                    df = df.fillna(1)
+                    
+                    
                 else:
-                    all_scores_table[bt] = run_sw(root_dir, settings, bt)
+                    print("Creating matrix")
+                    n = len(base_texts)
+                    df = pd.DataFrame(
+                    np.ones((n, n)), 
+                        index=base_texts, 
+                        columns=base_texts,
+                        
+                    )
+                    for i in range(n):
+                        seq1 = file_names_clean[i]
+                    
+                        
+                        
+                        df.loc[seq1, seq1] = 1  
 
-            # Cache matrix dataframe as CSV
-            df = pd.DataFrame.from_dict(all_scores_table, orient="index")
-            df.to_excel(CACHE_DIR / f"{job_id}.xlsx", index=True)
+                        for j in range(i + 1, n):
+                            seq2 = file_names_clean[j]
+                            
+                            # Compute alignment only ONCE for (seq1, seq2)
+                            if "ndw" in algorithm:
+                                score = compare_two_nw(root_dir, file_names[seq1], file_names[seq2], settings)
+                            elif "sw" in algorithm:
+                                score = compare_two_sw(root_dir, file_names[seq1], file_names[seq2], settings )
+                            # Mirror the result: (seq1, seq2) == (seq2, seq1)
+                            df.loc[seq1, seq2] = score
+                            df.loc[seq2, seq1] = score
+                
+            
+                
+                def get_suffix_sort_key(col_name):
+                    parts = col_name.rsplit('_', 1)
+                    if len(parts) == 2:
+                        folder_suffix, filename = parts[1], parts[0]
+                        return (folder_suffix, filename) 
+                    return ('', col_name)
+                if multi:
+                    sorted_columns = sorted(df.columns, key=get_suffix_sort_key)
+                    df = df[sorted_columns]
+                df.to_excel(CACHE_DIR / f"{job_id}.xlsx", index=True, index_label="BaseText")
+                # this is temp/needs to be a user choice
+                
                     
             
         finally: 
             os.chdir(original_cwd)
         captured_logs = buffer.getvalue()
+        
         return {
             "status": "success",
             "algorithm": algorithm,
             "output_logs": captured_logs,
             "job_id": job_id,
-            "data": result_data
         }
 
       
@@ -238,9 +357,9 @@ def process_data(
 
 @app.get("/api/plot/{job_id}")
 def generate_plot(job_id: str):
-    cached_csv = CACHE_DIR / f"{job_id}.xlsx"
+    excel_path = CACHE_DIR / f"{job_id}.xlsx"
 
-    if not cached_csv.exists():
+    if not excel_path.exists():
         raise HTTPException(status_code=404, detail="Cached matrix data not found. Please re-run processing.")
 
     output_html_path = CACHE_DIR / f"{job_id}_plot.html"
@@ -248,9 +367,11 @@ def generate_plot(job_id: str):
     try:
         # Run R script directly on the cached CSV
         subprocess.run(
-            ["Rscript", "t-SNE.R", str(cached_csv), str(output_html_path)],
+            ["Rscript", "t-SNE.R", str(excel_path), str(output_html_path)],
             check=True,
-            capture_output=True,
+            # capture_output=True,
+            stdout=None,
+            stderr=None,
             text=True
         )
     except subprocess.CalledProcessError as e:
@@ -261,6 +382,18 @@ def generate_plot(job_id: str):
         "Access-Control-Allow-Methods": "*",
         "Access-Control-Allow-Headers": "*",
     })
+
+@app.get("/api/sheet/{job_id}")
+def send_sheet(job_id: str):
+    excel_path = CACHE_DIR / f"{job_id}.xlsx"
+    if not excel_path.exists():
+        raise HTTPException(status_code=404, detail="Cached matrix data not found. Please re-run processing.")
+    return FileResponse(
+        path=excel_path,
+        media_type="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+        filename="alignment_matrix.xlsx" 
+    )
+
 
 # import json
 # import tempfile
