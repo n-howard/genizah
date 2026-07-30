@@ -9,18 +9,28 @@
 -[x] be able to click through the top
 -[x] back button
 
--[] Two options: whole text or subtext
-    -[] Whole text (as is now)
-    -[] subtext: add new folder (default name but editable)
-        -[] drag in files/folders which are all taken out (as now)
-        -[] select base text (trim off subsection folder name or at underscore if they don't name it maybe)
-        -[] add new subsection and repeat
+-[x] Two options: whole text or subtext
+    -[x] Whole text (as is now)
+    -[x] subtext: add new folder (default name but editable)
+        -[x] drag in files/folders which are all taken out (as now)
+        -[x] select base text (trim off subsection folder name or at underscore if they don't name it maybe)
+        -[x] add new subsection and repeat
         -[] 
 
--[] make it downloadable
+-[x] make it downloadable
 
 Steps before first deployment:
 -[x] check that subsections work with the algorithm
--[] make excel file downloadable
--[] work on the subsection import design
--[] make minimum 3 files for plot
+-[x] make excel file downloadable
+-[x] work on the subsection import design
+-[x] make minimum 4 files for plot
+
+
+-[x] let users define name of base text
+-[] select t-sne settings screen
+-[x] be able to drag into either subsection
+-[] download alignments
+-[] download t-SNE as png
+-[] color the plot? add options to do 3D static, 3D moveable, 2D and download all of them
+-[] download reports with manuscripts, what algorithms you used, what settings you used, date/time, you downloaded these files and here are the original file names
+-[x] fix # having a 0 before it

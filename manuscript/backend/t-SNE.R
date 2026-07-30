@@ -38,7 +38,7 @@ widget <-rglwidget(x=scene3d(), width=figWidth(), height=figHeight(), controller
 htmlwidgets::saveWidget(widget, args[2])
 # browseURL(args[2])
 
-# generates a 2D plot of the t-SNE data (can be misleading)
+# generates a 2D plot of the t-SNE data (can be misleading) (can be quite useful)
 colnames(tsne_data) <- c("TSNE1", "TSNE2")
 tsne_data$Manuscript <- data$BaseText
 ggplot(tsne_data, aes(x = TSNE1, y = TSNE2, label = Manuscript)) +

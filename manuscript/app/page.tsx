@@ -11,8 +11,132 @@ import {
 } from "lucide-react";
 import { useDropzone } from "react-dropzone";
 
-export interface Subsection {
-  [key: string]: File[];
+
+
+function SubsectionItem({
+  sectionName,
+  files,
+  baseText,
+  onDropFiles,
+  onSetBaseText,
+  onRemoveFile,
+  onSelectFolderTrigger,
+  onSelectFilesTrigger,
+  onDragStartFile,
+}) {
+  // Each child gets its OWN useDropzone instance bound to its sectionName
+  const { getRootProps, getInputProps, isDragActive, isDragReject } = useDropzone({
+    onDrop: (acceptedFiles) => {
+      onDropFiles(acceptedFiles, sectionName);
+    },
+  });
+
+  return (
+    <div
+      {...getRootProps()}
+      className={`p-3 border-2 border-dashed border-gray-300 rounded-lg bg-white shadow-xs transition-all hover:border-cyan-400 ${
+        isDragReject
+          ? "border-red-500 text-red-600 bg-red-50"
+          : isDragActive
+            ? "border-cyan-800 text-gray-600 bg-gray-100"
+            : ""
+      }`}
+    >
+      {/* Hidden dropzone input for file picker clicks */}
+      <input {...getInputProps()} />
+
+      {/* Header info */}
+      <div className="flex items-center justify-between border-b pb-2 mb-2">
+        <div className="flex items-center gap-2 font-bold text-cyan-900 text-[0.8rem]">
+          <FolderOpen className="w-5 h-5 text-cyan-600" />
+          <span>{sectionName}</span>
+          <span className="text-[0.8rem] text-gray-400 font-normal">
+            ({files.length} {files.length === 1 ? "file" : "files"})
+          </span>
+        </div>
+
+        {/* Inline Upload Controls per subsection */}
+        <div className="flex items-center gap-2 text-[0.8rem]">
+          {/* File Upload Trigger */}
+          <label 
+            className="cursor-pointer bg-cyan-50 hover:bg-cyan-100 text-cyan-800 font-semibold px-2 py-1 rounded border border-cyan-200 transition"
+            onClick={(e) => e.stopPropagation()} // Stop dropzone trigger
+          >
+            + Files
+            <input
+              type="file"
+              multiple
+              className="hidden"
+              onChange={(e) => onSelectFilesTrigger(e, sectionName)}
+            />
+          </label>
+
+          {/* Folder Upload Trigger */}
+          <button
+            type="button"
+            onClick={(e) => {
+              e.stopPropagation(); // Stop dropzone trigger
+              onSelectFolderTrigger(sectionName);
+            }}
+            className="bg-cyan-50 hover:bg-cyan-100 text-cyan-800 font-semibold px-2 py-1 rounded border border-cyan-200 transition"
+          >
+            + Folder
+          </button>
+        </div>
+      </div>
+
+      {/* File Listing */}
+      {files.length > 0 ? (
+        <ul className="space-y-1 mt-2">
+          {files.map((file, fileIndex) => (
+            <li
+              key={`${file.name}-${fileIndex}`}
+              draggable
+              onDragStart={(e) => onDragStartFile(e, sectionName, fileIndex)}
+              className={`flex items-center justify-between px-2 py-1 rounded border text-[0.8rem] cursor-grab active:cursor-grabbing ${
+                file === baseText
+                  ? "bg-cyan-100/60 border-cyan-300"
+                  : "bg-gray-50 border-gray-100 hover:bg-gray-100"
+              }`}
+            >
+              <button
+                type="button"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  onSetBaseText(file);
+                }}
+                className="bg-transparent text-cyan-600 rounded-lg flex-row w-98/100 flex gap-2 content-center items-center shrink-0 cursor-pointer"
+              >
+                {file === baseText ? (
+                  <FileCheck className="w-5 h-5" />
+                ) : (
+                  <FileText className="w-5 h-5" />
+                )}
+                <p className="text-[0.8rem] font-medium text-cyan-800">
+                  {file.name}
+                </p>
+              </button>
+
+              <button
+                type="button"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  onRemoveFile(sectionName, file);
+                }}
+                className="text-red-600 hover:bg-red-50 p-0.5 rounded"
+              >
+                <Trash2 className="w-4 h-4" />
+              </button>
+            </li>
+          ))}
+        </ul>
+      ) : (
+        <div className="py-4 text-center border-1 border-dashed border-gray-200 rounded-md bg-gray-50/50 text-[0.8rem] text-gray-400">
+          Drag and drop files or folders directly here
+        </div>
+      )}
+    </div>
+  );
 }
 
 export default function Pages() {
@@ -20,31 +144,12 @@ export default function Pages() {
   const [furthestStep, setFurthestStep] = useState(1);
 
   // Global Form State
-  const [formData, setFormData] = useState<{
-    multi: boolean | null;
-    files: File[];
-    subsections: Subsection[];
-    algorithm: string;
-    baseText: File | null;
-    settings: {
-      gapPenalty: number;
-      matchBonus: number;
-      mismatchPenalty: number;
-      special: string[];
-      specialOther: boolean;
-      specialBonus: number;
-      specialGap: number;
-      specialMismatch: number;
-      affinePenalty: number;
-      isPlot: boolean;
-    };
-    
-  }>({
+  const [formData, setFormData] = useState({
     multi: null,
     files: [],
-    subsections: [],
+    subsections: {},
     algorithm: "",
-    baseText: null,
+    baseText: "",
     settings: {
       gapPenalty: -1,
       matchBonus: 5,
@@ -52,13 +157,11 @@ export default function Pages() {
       special: [],
       specialOther: false,
       specialBonus: 10,
-      specialGap: -1,
-      specialMismatch: -1,
       affinePenalty: -0.5,
       isPlot: false,
     },
-    
-  });
+
+  })
 
   const [count, setCount] = useState(1);
   const [inputValue, setInputValue] = useState<string>("");
@@ -66,7 +169,7 @@ export default function Pages() {
 
   const [isProcessing, setIsProcessing] = useState(false);
   const [results, setResults] = useState<any>(null);
-  
+
 
   // Drag and drop within subsections
   const [draggedFileIndex, setDraggedFileIndex] = useState<number | null>(null);
@@ -80,25 +183,23 @@ export default function Pages() {
   const handleSubsection = () => {
     const name =
       inputValue.trim() !== "" ? inputValue.trim() : `Subsection ${count}`;
-    if(!inputValue.trim()){
+    if (!inputValue.trim()) {
       setCount((prev) => prev + 1);
     }
     // Check if section name already exists
-    const exists = formData.subsections.some(
-      (sub) => Object.keys(sub)[0] === name,
-    );
+    const exists = formData.subsections.hasOwnProperty(`${name}`)
     if (!exists) {
       setFormData((prev) => ({
         ...prev,
-        subsections: [...prev.subsections, { [name]: [] }],
+        subsections: { ...prev.subsections, [name]: [] },
       }));
-      if (!targetSubsection) {
-        setTargetSubsection(name);
-      }
+      setTargetSubsection(name);
     }
+
     setInputValue("");
   };
 
+  
   // React Dropzone Handler
   const {
     getRootProps,
@@ -108,38 +209,32 @@ export default function Pages() {
     isDragReject,
   } = useDropzone({
     onDrop: (acceptedFiles) => {
-      if (formData.multi) {
-        // If no subsection target exists, fallback to creating one
-        const activeSection = targetSubsection || `Subsection ${count}`;
-        if (!targetSubsection) setCount((prev) => prev + 1);
+      
+      // if (formData.multi) {
+      //   // If no subsection target exists, fallback to creating one
+      //   const activeSection = targetSubsection || `Subsection ${count}`;
+      //   if (!targetSubsection) setCount((prev) => prev + 1);
 
-        setFormData((prev) => {
-          let updatedSubsections = [...prev.subsections];
-          const sectionIndex = updatedSubsections.findIndex(
-            (sub) => Object.keys(sub)[0] === activeSection,
-          );
+      //   setFormData((prev) => {
+      //     let updatedSubsections = { ...prev.subsections };
+      //     if (formData.subsections.hasOwnProperty(`${activeSection}`)) {
+      //       const existingFiles =
+      //         updatedSubsections[activeSection]
+      //       const existingKeys = new Set(
+      //         existingFiles.map((f) => `${f.name}-${f.size}`),
+      //       );
+      //       const newFiles = acceptedFiles.filter(
+      //         (f) => !existingKeys.has(`${f.name}-${f.size}`),
+      //       );
+      //       updatedSubsections[activeSection] = [...existingFiles, ...newFiles]
 
-          if (sectionIndex > -1) {
-            const existingFiles =
-              updatedSubsections[sectionIndex][activeSection];
-            const existingKeys = new Set(
-              existingFiles.map((f) => `${f.name}-${f.size}`),
-            );
-            const newFiles = acceptedFiles.filter(
-              (f) => !existingKeys.has(`${f.name}-${f.size}`),
-            );
-
-            updatedSubsections[sectionIndex] = {
-              [activeSection]: [...existingFiles, ...newFiles],
-            };
-          } else {
-            updatedSubsections.push({ [activeSection]: acceptedFiles });
-          }
-
-          return { ...prev, subsections: updatedSubsections };
-        });
-      } else {
-        // Single mode upload logic
+      //     } else {
+      //       updatedSubsections[activeSection] = acceptedFiles
+      //     }
+      //     return { ...prev, subsections: updatedSubsections };
+      //   });
+      // } else {
+      //   // Single mode upload logic
         setFormData((prev) => {
           const existingKeys = new Set(
             prev.files.map((f) => `${f.name}-${f.size}`),
@@ -152,7 +247,48 @@ export default function Pages() {
             files: [...prev.files, ...newFiles],
           };
         });
-      }
+      // }
+
+    // }
+      // Old Code
+          // const sectionIndex = updatedSubsections.findIndex(
+          //   (sub) => Object.keys(sub)[0] === activeSection,
+          // );
+
+          // if (sectionIndex > -1) {
+          //   const existingFiles =
+          //     updatedSubsections[sectionIndex][activeSection];
+          //   const existingKeys = new Set(
+          //     existingFiles.map((f) => `${f.name}-${f.size}`),
+          //   );
+          //   const newFiles = acceptedFiles.filter(
+          //     (f) => !existingKeys.has(`${f.name}-${f.size}`),
+          //   );
+
+          //   updatedSubsections[sectionIndex] = {
+          //     [activeSection]: [...existingFiles, ...newFiles],
+          //   };
+          // } else {
+          //   updatedSubsections.push({ [activeSection]: acceptedFiles });
+          // }
+      // End old code
+      //     return { ...prev, subsections: updatedSubsections };
+      //   });
+      // } else {
+      //   // Single mode upload logic
+      //   setFormData((prev) => {
+      //     const existingKeys = new Set(
+      //       prev.files.map((f) => `${f.name}-${f.size}`),
+      //     );
+      //     const newFiles = acceptedFiles.filter(
+      //       (file) => !existingKeys.has(`${file.name}-${file.size}`),
+      //     );
+      //     return {
+      //       ...prev,
+      //       files: [...prev.files, ...newFiles],
+      //     };
+      //   });
+      // }
     },
     accept: { "text/plain": [".txt"] },
     multiple: true,
@@ -174,35 +310,48 @@ export default function Pages() {
   // Folder Upload Handler
   const handleFolderUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (!e.target.files) return;
-    const uploadedFiles = Array.from(e.target.files).filter((file) =>
+    const acceptedFiles = Array.from(e.target.files).filter((file) =>
       file.name.endsWith(".txt"),
     );
 
     if (formData.multi) {
       const activeSection = targetSubsection || `Subsection ${count}`;
-      if (!targetSubsection) setCount((prev) => prev + 1);
-
+      if (!targetSubsection) {
+        setCount((prev) => prev + 1);
+      }
+      
       setFormData((prev) => {
-        let updatedSubsections = [...prev.subsections];
-        const sectionIndex = updatedSubsections.findIndex(
-          (sub) => Object.keys(sub)[0] === activeSection,
-        );
+        let updatedSubsections = {...prev.subsections};
+        if (formData.subsections.hasOwnProperty(`${activeSection}`)) {
+            const existingFiles =
+              updatedSubsections[activeSection]
+            const existingKeys = new Set(
+              existingFiles.map((f) => `${f.name}-${f.size}`),
+            );
+            const newFiles = acceptedFiles.filter(
+              (f) => !existingKeys.has(`${f.name}-${f.size}`),
+            );
+            updatedSubsections[activeSection] = [...existingFiles, ...newFiles]
 
-        if (sectionIndex > -1) {
-          const existingFiles = updatedSubsections[sectionIndex][activeSection];
-          const existingKeys = new Set(
-            existingFiles.map((f) => `${f.name}-${f.size}`),
-          );
-          const newFiles = uploadedFiles.filter(
-            (f) => !existingKeys.has(`${f.name}-${f.size}`),
-          );
+          } else {
+            updatedSubsections[activeSection] = acceptedFiles
+          }
 
-          updatedSubsections[sectionIndex] = {
-            [activeSection]: [...existingFiles, ...newFiles],
-          };
-        } else {
-          updatedSubsections.push({ [activeSection]: uploadedFiles });
-        }
+        // if (sectionIndex > -1) {
+        //   const existingFiles = updatedSubsections[sectionIndex][activeSection];
+        //   const existingKeys = new Set(
+        //     existingFiles.map((f) => `${f.name}-${f.size}`),
+        //   );
+        //   const newFiles = uploadedFiles.filter(
+        //     (f) => !existingKeys.has(`${f.name}-${f.size}`),
+        //   );
+
+        //   updatedSubsections[sectionIndex] = {
+        //     [activeSection]: [...existingFiles, ...newFiles],
+        //   };
+        // } else {
+        //   updatedSubsections.push({ [activeSection]: uploadedFiles });
+        // }
 
         return { ...prev, subsections: updatedSubsections };
       });
@@ -211,7 +360,7 @@ export default function Pages() {
         const existingKeys = new Set(
           prev.files.map((f) => `${f.name}-${f.size}`),
         );
-        const newFiles = uploadedFiles.filter(
+        const newFiles = acceptedFiles.filter(
           (file) => !existingKeys.has(`${file.name}-${file.size}`),
         );
         return {
@@ -233,16 +382,13 @@ export default function Pages() {
   const removeFileFromSection = (sectionName: string, fileToRemove: File) => {
     setFormData((prev) => ({
       ...prev,
-      baseText: prev.baseText === fileToRemove ? null : prev.baseText,
-      subsections: prev.subsections.map((sub) => {
-        const key = Object.keys(sub)[0];
-        if (key === sectionName) {
-          return {
-            [key]: sub[key].filter((f) => f !== fileToRemove),
-          };
-        }
-        return sub;
-      }),
+      baseText:  fileToRemove.name.includes(prev.baseText) ? "" : prev.baseText,
+      subsections: {
+        ...prev.subsections,
+        [sectionName]: (prev.subsections[sectionName] || []).filter(
+          (f) => f !== fileToRemove
+        ),
+      },
     }));
   };
 
@@ -263,6 +409,7 @@ export default function Pages() {
 
   const handleDrop = (e: React.DragEvent, targetSectionName: string) => {
     e.preventDefault();
+
     if (
       draggedSourceSection === null ||
       draggedFileIndex === null ||
@@ -272,32 +419,22 @@ export default function Pages() {
     }
 
     setFormData((prev) => {
-      let movedFile: File | null = null;
+      const sourceList = prev.subsections[draggedSourceSection] || [];
+      const targetList = prev.subsections[targetSectionName] || [];
+      const movedFile = sourceList[draggedFileIndex];
 
-      const updatedSubsections = prev.subsections.map((sub) => {
-        const key = Object.keys(sub)[0];
-        if (key === draggedSourceSection) {
-          movedFile = sub[key][draggedFileIndex];
-          return {
-            [key]: sub[key].filter((_, idx) => idx !== draggedFileIndex),
-          };
-        }
-        return sub;
-      });
+      if (!movedFile) return prev; // Guard against out-of-bounds index
 
-      if (movedFile) {
-        return {
-          ...prev,
-          subsections: updatedSubsections.map((sub) => {
-            const key = Object.keys(sub)[0];
-            if (key === targetSectionName) {
-              return { [key]: [...sub[key], movedFile!] };
-            }
-            return sub;
-          }),
-        };
-      }
-      return prev;
+      return {
+        ...prev,
+        subsections: {
+          ...prev.subsections,
+          // Remove file from source section
+          [draggedSourceSection]: sourceList.filter((_, idx) => idx !== draggedFileIndex),
+          // Append file to target section
+          [targetSectionName]: [...targetList, movedFile],
+        },
+      };
     });
 
     setDraggedSourceSection(null);
@@ -305,6 +442,7 @@ export default function Pages() {
   };
 
   const handleSettingChange = (field: string, value: any) => {
+    
     setFormData((prev) => ({
       ...prev,
       settings: { ...prev.settings, [field]: value },
@@ -327,17 +465,28 @@ export default function Pages() {
   };
   const [jobId, setJobId] = useState<string | null>(null);
   const [plotUrl, setPlotUrl] = useState<string>("");
+
   const handleSubmit = async () => {
     setIsProcessing(true);
-    setFormData((prev)=>({...prev, settings:{...prev.settings, ["isPlot"]: true}}))
-    const firstSectionCount = Object.values(formData.subsections[0] || {})[0]?.length || 0;
-    const hasUnequalSubsections = formData.subsections.some((sub) => {
-      const filesInSub = Object.values(sub)[0] || [];
-      return filesInSub.length !== firstSectionCount;
-    });
+    setFormData((prev) => ({ ...prev, settings: { ...prev.settings, ["isPlot"]: true } }))
+    if (Object.keys(formData.subsections).length > 0){
+      const firstSectionCount = formData.subsections[Object.keys(formData.subsections)[0]].length;
+      if (firstSectionCount<4){
+        setFormData((prev) => ({ ...prev, settings: { ...prev.settings, ["isPlot"]: false } }))
+      } else {
+      const hasUnequalSubsections = Object.keys(formData.subsections).some((sub) => {
+        const filesInSub = formData.subsections[sub]
+        console.log(formData.subsections)
+        return filesInSub.length !== firstSectionCount;
+      });
 
-    if (hasUnequalSubsections) {
-        setFormData((prev)=>({...prev, settings:{...prev.settings, ["isPlot"]: false}}))
+      if (hasUnequalSubsections) {
+        console.log("has")
+        setFormData((prev) => ({ ...prev, settings: { ...prev.settings, ["isPlot"]: false } }))
+      }
+    }
+    } else if (formData.files.length < 4){
+      setFormData((prev) => ({ ...prev, settings: { ...prev.settings, ["isPlot"]: false } }))
     }
     try {
       const payload = new FormData();
@@ -345,7 +494,7 @@ export default function Pages() {
       payload.append("algorithm", formData.algorithm);
       payload.append("settings", JSON.stringify(formData.settings));
       payload.append("multi", String(formData.multi));
-      
+
 
       if (formData.baseText) {
         payload.append("base_text", formData.baseText);
@@ -353,16 +502,14 @@ export default function Pages() {
 
       if (formData.multi) {
         // 1. Serialize the subsection folder mapping structure (names & file lists)
-        const metadata = formData.subsections.map((sub) => {
-          const key = Object.keys(sub)[0];
-          return { [key]: sub[key].map((f) => f.name) };
+        const metadata = Object.keys(formData.subsections).map((key) => {
+          return { [key]: formData.subsections[key].map((f) => f.name) };
         });
         payload.append("subsections_metadata", JSON.stringify(metadata));
 
         // 2. Append all actual files from all subsections
-        formData.subsections.forEach((sub) => {
-          const key = Object.keys(sub)[0];
-          sub[key].forEach((file) => {
+        Object.keys(formData.subsections).forEach((sub) => {
+          formData.subsections[sub].forEach((file) => {
             payload.append("files", file);
           });
         });
@@ -388,25 +535,25 @@ export default function Pages() {
         setJobId(data.job_id);
       }
       setResults(data);
-      handleStepChange(currentStep+1); // Advance step after successful run
+      handleStepChange(currentStep + 1); // Advance step after successful run
     } catch (error) {
       console.error("Error submitting form:", error);
     } finally {
       setIsProcessing(false);
-      
+
     }
   };
 
   const handlePlot = async () => {
-    if (formData.files.length>3 || formData.settings.isPlot==true){
+    if (formData.files.length > 3 || formData.settings.isPlot == true) {
       setIsProcessing(true);
-      
+
       if (!jobId) {
         console.error("No processed job available to plot");
         return;
       }
 
-      
+
       try {
         // Simply point an iframe or fetch directly from the plot endpoint
         const plotEndpoint = `http://127.0.0.1:8000/api/plot/${jobId}`;
@@ -423,10 +570,10 @@ export default function Pages() {
   }
 
   const totalFilesCount = formData.multi
-    ? formData.subsections.reduce(
-        (acc, sub) => acc + Object.values(sub)[0].length,
-        0,
-      )
+    ? Object.keys(formData.subsections).reduce(
+      (acc, key) => acc + formData.subsections[key].length,
+      0,
+    )
     : formData.files.length;
 
   return (
@@ -434,40 +581,36 @@ export default function Pages() {
       <div className="w-[82dvw] h-[82dvh] p-6 bg-white rounded-xl shadow-md border border-gray-100 flex flex-col justify-between">
         {/* Progress Bar */}
         <div>
-          <div className="flex justify-between text-sm font-medium text-gray-500 mb-2">
+          <div className="flex justify-between text-[0.8rem] font-medium text-gray-500 mb-2">
             <button
               type="button"
               onClick={() => handleStepSkip(1)}
-              className={`${furthestStep >= 1 ? "cursor-pointer" : ""} ${
-                currentStep >= 1 ? "text-cyan-600 font-bold" : ""
-              }`}
+              className={`${furthestStep >= 1 ? "cursor-pointer" : ""} ${currentStep >= 1 ? "text-cyan-600 font-bold" : ""
+                }`}
             >
               Upload Files
             </button>
             <button
               type="button"
               onClick={() => handleStepSkip(2)}
-              className={`${furthestStep >= 2 ? "cursor-pointer" : ""} ${
-                currentStep >= 2 ? "text-cyan-600 font-bold" : ""
-              }`}
+              className={`${furthestStep >= 2 ? "cursor-pointer" : ""} ${currentStep >= 2 ? "text-cyan-600 font-bold" : ""
+                }`}
             >
               Select Algorithm
             </button>
             <button
               type="button"
               onClick={() => handleStepSkip(3)}
-              className={`${furthestStep >= 3 ? "cursor-pointer" : ""} ${
-                currentStep >= 3 ? "text-cyan-600 font-bold" : ""
-              }`}
+              className={`${furthestStep >= 3 ? "cursor-pointer" : ""} ${currentStep >= 3 ? "text-cyan-600 font-bold" : ""
+                }`}
             >
               View Alignment
             </button>
             <button
               type="button"
               onClick={() => handleStepSkip(4)}
-              className={`${furthestStep >= 4 ? "cursor-pointer" : ""} ${
-                currentStep >= 4 ? "text-cyan-600 font-bold" : ""
-              }`}
+              className={`${furthestStep >= 4 ? "cursor-pointer" : ""} ${currentStep >= 4 ? "text-cyan-600 font-bold" : ""
+                }`}
             >
               View Plot
             </button>
@@ -518,63 +661,55 @@ export default function Pages() {
             )}
 
             {/* SUBSECTION MULTI-FILE MODE */}
+            {/* SUBSECTION MULTI-FILE MODE */}
             {formData.multi === true && (
               <div className="flex flex-col gap-4 w-full h-[50dvh]">
-                {/* TOP TREE PANEL */}
-                <div className="border-2 border-dashed border-gray-300 flex-col overflow-auto h-[28dvh] p-4 text-gray-500 w-full rounded-lg bg-gray-50 flex items-start justify-start">
-                  {/* Subsection Form & Tools */}
-                  <div className="flex flex-row justify-between items-center w-full pb-2 border-b">
+                {/* TOP PANEL: CONTROL BAR & SUBSECTION LIST */}
+                <div className="border-2 border-dashed border-gray-300 flex-col overflow-auto h-full p-4 text-gray-500 w-full rounded-lg bg-gray-50 flex items-start justify-start">
+                  
+                  {/* Subsection Creator Header */}
+                  <div className="flex flex-row justify-between items-center w-full pb-2 border-b mb-3">
                     <div className="flex items-center gap-2">
-                      <p className="text-md font-bold text-cyan-800">
-                        Subsections Tree
-                      </p>
-                      {formData.subsections.length > 0 && (
-                        <select
-                          value={targetSubsection}
-                          onChange={(e) => setTargetSubsection(e.target.value)}
-                          className="text-xs bg-white border border-gray-300 rounded p-1 text-cyan-800"
-                        >
-                          {formData.subsections.map((sub, i) => {
-                            const name = Object.keys(sub)[0];
-                            return (
-                              <option key={i} value={name}>
-                                Target: {name}
-                              </option>
-                            );
-                          })}
-                        </select>
-                      )}
+                      <p className="text-md font-bold text-cyan-800">Subsections Tree</p>
                     </div>
 
-                    {/* Subsection Creator */}
-                    <div className="flex flex-row gap-2 items-center">
-                      <div className="cursor-text rounded-md shadow-sm flex flex-row items-center px-2 py-0.5 text-cyan-700 bg-white border border-gray-200">
-                        <input
-                          type="text"
-                          placeholder={`Default: Subsection ${count}`}
-                          value={inputValue}
-                          onChange={(e) => setInputValue(e.target.value)}
-                          className="outline-none border-none appearance-none p-1 text-xs"
-                        />
-                        <button
-                          type="button"
-                          onClick={handleSubsection}
-                          className="hover:bg-cyan-50 rounded-full text-cyan-800"
-                        >
-                          <CirclePlus className="w-5 h-5" />
-                        </button>
-                      </div>
+                    {/* Subsection Creator & Clear All */}
+                    <div className="w-5/10 justify-end flex flex-row content-end gap-4">
+                      <form
+                        onSubmit={(e) => {
+                          e.preventDefault();
+                          handleSubsection();
+                        }}
+                        className="flex flex-row gap-2 items-center"
+                      >
+                        <div className="cursor-text rounded-md shadow-sm flex flex-row items-center px-2 py-0.5 text-cyan-700 bg-white border border-gray-200">
+                          <input
+                            type="text"
+                            placeholder={`Default: Subsection ${count}`}
+                            value={inputValue}
+                            onChange={(e) => setInputValue(e.target.value)}
+                            className="outline-none border-none appearance-none p-1 text-[0.8rem]"
+                          />
+                          <button
+                            type="submit"
+                            className="hover:bg-cyan-50 rounded-full text-cyan-800"
+                          >
+                            <CirclePlus className="w-5 h-5" />
+                          </button>
+                        </div>
+                      </form>
 
                       <button
                         type="button"
-                        onClick={() =>
+                        onClick={() => {
                           setFormData((prev) => ({
                             ...prev,
-                            subsections: [],
-                            baseText: null,
-                          }))
-                        }
-                        className="hover:bg-gray-200/70 p-1 rounded-sm text-red-600 font-bold cursor-pointer flex flex-row items-center gap-1 text-xs"
+                            subsections: {},
+                            baseText: "",
+                          }));
+                          setCount(1);
+                        }}
+                        className="hover:bg-gray-200/70 p-1 rounded-sm text-red-600 font-bold cursor-pointer flex flex-row items-center gap-1 text-[0.8rem]"
                       >
                         <p>Clear All</p>
                         <Eraser className="w-4 h-4" />
@@ -582,403 +717,321 @@ export default function Pages() {
                     </div>
                   </div>
 
-                  {/* Base Text Info */}
-                  <div className="text-xs font-bold text-cyan-800 my-2">
-                    Base Text:{" "}
-                    <span className="font-normal text-gray-600">
-                      {formData.baseText != null
-                        ? formData.baseText.name
-                        : "None"}
-                    </span>
+                  {/* Base Text Global Indicator */}
+                  <div className="text-[0.8rem] font-bold text-cyan-800 mb-3 overflow-wrap">
+                    Base Text Prefix:{" "}
+                    <input className="font-normal text-gray-800 rounded-md appearance-none bg-white outline-none p-1 shadow-md hover:shadow-lg focus:shadow-lg "
+                      type="text"
+                      value={formData.baseText != "" ? formData.baseText : "None"}
+                      onChange={(e)=>{setFormData((prev)=>({...prev, baseText:e.target.value}))}}
+                    />
                   </div>
 
-                  {/* FOLDER & FILE HIERARCHY TREE */}
-                  <div className="w-full overflow-y-auto pr-1">
-                    {formData.subsections.length > 0 ? (
-                      formData.subsections.map((item, subIndex) => {
-                        const sectionName = Object.keys(item)[0];
-                        const files = item[sectionName] || [];
+                  {/* Hidden File / Folder Inputs for Programmatic Triggering */}
+                  <input
+                    type="file"
+                    ref={folderInput}
+                    className="hidden"
+                    webkitdirectory="true"
+                    directory="true"
+                    multiple
+                    onChange={(e) => handleFolderUpload(e)}
+                  />
 
-                        return (
-                          <div
-                            key={`${sectionName}-${subIndex}`}
-                            onDragOver={handleDragOver}
-                            onDrop={(e) => handleDrop(e, sectionName)}
-                            className={`mb-2 p-2 border rounded-md bg-white shadow-xs transition-all ${
-                              targetSubsection === sectionName
-                                ? "border-cyan-500 ring-1 ring-cyan-400"
-                                : "border-gray-200 hover:border-cyan-300"
-                            }`}
-                          >
-                            <div className="flex items-center justify-between border-b pb-1 mb-1">
-                              <div className="flex items-center gap-2 font-bold text-cyan-900 text-sm">
-                                <FolderOpen className="w-4 h-4 text-cyan-600" />
-                                <span>{sectionName}</span>
-                                <span className="text-xs text-gray-400 font-normal">
-                                  ({files.length}{" "}
-                                  {files.length === 1 ? "file" : "files"})
-                                </span>
-                              </div>
-                              <button
-                                type="button"
-                                onClick={() => setTargetSubsection(sectionName)}
-                                className={`text-xs px-2 py-0.5 rounded ${
-                                  targetSubsection === sectionName
-                                    ? "bg-cyan-600 text-white"
-                                    : "bg-gray-100 text-gray-600 hover:bg-gray-200"
-                                }`}
-                              >
-                                {targetSubsection === sectionName
-                                  ? "Selected Target"
-                                  : "Set Target"}
-                              </button>
-                            </div>
-
-                            {/* Indented File List */}
-                            {files.length > 0 ? (
-                              <ul className="pl-4 space-y-1">
-                                {files.map((file, fileIndex) => (
-                                  <li
-                                    key={`${file.name}-${fileIndex}`}
-                                    draggable
-                                    onDragStart={(e) =>
-                                      handleDragStart(e, sectionName, fileIndex)
-                                    }
-                                    className={`flex items-center justify-between px-2 py-1 rounded border text-xs cursor-grab active:cursor-grabbing ${
-                                      file === formData.baseText
-                                        ? "bg-cyan-100/60 border-cyan-300"
-                                        : "bg-gray-50 border-gray-100 hover:bg-gray-100"
-                                    }`}
-                                  >
-                                    <button
-                                      type="button"
-                                      onClick={() =>
-                                        setFormData((prev) => ({
-                                          ...prev,
-                                          baseText: file,
-                                        }))
-                                      }
-                                      className="bg-transparent text-cyan-600 w-[43dvh] rounded-lg flex-row flex gap-2 content-center items-center shrink-0 cursor-pointer"
-                                    >
-                                      {file == formData.baseText ? (
-                                        <FileCheck className="w-8 h-8" />
-                                      ) : (
-                                        <FileText className="w-8 h-8" />
-                                      )}
-                                <p className="text-md font-medium text-cyan-800 ">
-                                  {file.name}
-                                </p>
-                              </button>
-
-                                    <button
-                                      type="button"
-                                      onClick={() =>
-                                        removeFileFromSection(sectionName, file)
-                                      }
-                                      className="text-red-600 hover:bg-red-50 p-0.5 rounded"
-                                    >
-                                      <Trash2 className="w-4 h-4" />
-                                    </button>
-                                  </li>
-                                ))}
-                              </ul>
-                            ) : (
-                              <div className="pl-4 text-xs italic text-gray-400 py-1">
-                                
-                              </div>
-                            )}
-                          </div>
-                        );
-                      })
-                    ) : (
-                      <p className="text-xs text-gray-400 italic py-2 text-center">
-                        No subsections created. Add a subsection above to begin
-                        organizing.
-                      </p>
-                    )}
-                  </div>
-                </div>
-
-                {/* BOTTOM DROPZONE */}
-                <div
-                  {...getRootProps()}
-                  className={`border-2 border-dashed border-gray-300 h-[18dvh] w-full rounded-lg p-4 text-center bg-gray-50 transition flex flex-col place-content-center place-items-center ${
-                    isDragReject
-                      ? "border-red-500 text-red-600 bg-red-50"
-                      : isDragActive
-                        ? "border-cyan-500 text-cyan-600 bg-cyan-50"
-                        : ""
-                  }`}
-                >
-                  <input {...getInputProps()} />
-                  <label className="block cursor-pointer">
-                    <svg
-                      className="mx-auto h-8 w-8 text-cyan-800 mb-1"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth="2"
-                        d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"
-                      />
-                    </svg>
-                    <input
-                      type="file"
-                      webkitdirectory="true"
-                      directory="true"
-                      multiple
-                      onChange={handleFolderUpload}
-                      className="hidden"
-                      ref={folderInput}
-                    />
-                    <p className="font-semibold text-cyan-600 text-sm">
-                      Drag & Drop Files Here or Click to Browse{" "}
-                      <button
-                        type="button"
-                        onClick={openFilePicker}
-                        className="underline underline-offset-2 hover:text-cyan-700 focus:outline-none"
-                      >
-                        Files
-                      </button>{" "}
-                      or{" "}
-                      <button
-                        type="button"
-                        onClick={() => folderInput.current?.click()}
-                        className="underline underline-offset-2 hover:text-cyan-700 focus:outline-none"
-                      >
-                        Folders
-                      </button>
-                    </p>
-                    <p className="text-gray-400 text-xs">
-                      Targeting:{" "}
-                      <span className="font-semibold text-cyan-800">
-                        {targetSubsection || "Default Subsection"}
-                      </span>
-                    </p>
-                  </label>
-                </div>
-              </div>
-            )}
-
-            {/* SINGLE MODE standard upload */}
-            {formData.multi === false && (
-              <div className="flex flex-row justify-between gap-6 pt-4 w-full h-[48dvh]">
-                <div
-                  {...getRootProps()}
-                  className={`border-2 border-dashed border-gray-300 h-full w-1/2 rounded-lg p-8 text-center bg-gray-50 transition flex place-content-center place-items-center ${
-                    isDragReject
-                      ? "border-red-500 text-red-600 bg-red-50"
-                      : isDragActive
-                        ? "border-gray-300 text-gray-600 bg-gray-100"
-                        : ""
-                  }`}
-                >
-                  <input {...getInputProps()} />
-                  <label className="block">
-                    <svg
-                      className="mx-auto h-12 w-12 text-cyan-800"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth="2"
-                        d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"
-                      />
-                    </svg>
-                    <input
-                      type="file"
-                      webkitdirectory="true"
-                      directory="true"
-                      multiple
-                      onChange={handleFolderUpload}
-                      className="hidden"
-                      ref={folderInput}
-                    />
-                    <p className="font-semibold text-center text-cyan-600 text-xl">
-                      Drag and Drop Here <br />
-                      or Click to Browse{" "}
-                      <button
-                        type="button"
-                        onClick={openFilePicker}
-                        className="font-semibold text-cyan-600 underline underline-offset-2 hover:text-cyan-700 focus:outline-none"
-                      >
-                        Files
-                      </button>{" "}
-                      or{" "}
-                      <button
-                        type="button"
-                        onClick={() => folderInput.current?.click()}
-                        className="font-semibold text-cyan-600 underline underline-offset-2 hover:text-cyan-700 focus:outline-none"
-                      >
-                        Folders
-                      </button>
-                    </p>
-                    <p className="text-gray-500 text-center text-md">
-                      Only upload files you want aligned.
-                    </p>
-                  </label>
-                </div>
-
-                <div className="border-2 border-dashed border-gray-300 flex-col overflow-auto h-full p-4 text-gray-500 w-1/2 rounded-lg bg-gray-50 flex">
-                  {formData.files.length > 0 && (
-                    <ul>
-                      <div className="flex flex-row items-center justify-between w-full pb-2">
-                        <p className="text-lg font-bold text-cyan-800">
-                          Base Text:{" "}
-                          {formData.baseText != null
-                            ? formData.baseText.name
-                            : "None"}
-                        </p>
-                        <button
-                          type="button"
-                          onClick={() =>
+                  {/* SUBSECTION BOXES */}
+                  <div className="w-full space-y-4 overflow-y-auto pr-1">
+                    {Object.keys(formData.subsections).length > 0 ? (
+                      Object.keys(formData.subsections).map((sectionName) => (
+                        <SubsectionItem
+                          key={sectionName}
+                          sectionName={sectionName}
+                          files={formData.subsections[sectionName] || []}
+                          baseText={formData.baseText}
+                          onDropFiles={(droppedFiles, targetSection) => {
+                            // Here targetSection is guaranteed to match the exact dropzone!
                             setFormData((prev) => ({
                               ...prev,
-                              files: [],
-                              baseText: null,
-                            }))
+                              subsections: {
+                                ...prev.subsections,
+                                [targetSection]: [
+                                  ...(prev.subsections[targetSection] || []),
+                                  ...droppedFiles,
+                                ],
+                              },
+                            }));
+                          }}
+                          onSetBaseText={(file) =>
+                            setFormData((prev) => ({ ...prev, baseText: file.name }))
                           }
-                          className="text-red-600 font-bold flex items-center gap-1 hover:bg-gray-200/70 p-1 rounded"
-                        >
-                          <span>Clear All</span>
-                          <Eraser className="w-5 h-5" />
-                        </button>
-                      </div>
-                      {formData.files.map((file, index) => (
+                          onRemoveFile={removeFileFromSection}
+                          onSelectFolderTrigger={(targetSection) => {
+                            setTargetSubsection(targetSection);
+                            folderInput.current?.click();
+                          }}
+                          onSelectFilesTrigger={(e, targetSection) => {
+                            setTargetSubsection(targetSection);
+                            handleFolderUpload(e);
+                          }}
+                          onDragStartFile={handleDragStart}
+                        />
+                      ))
+                    ) : (
+                      <p className="text-[0.8rem] text-gray-400 italic py-4 text-center">
+                        No subsections created. Add a subsection above to begin organizing.
+                      </p>
+                    )}
+      </div>
+    </div>
+  </div>
+)}
+            
+        {/* SINGLE MODE standard upload */}
+        {formData.multi === false && (
+          <div className="flex flex-col gap-4 w-full h-[50dvh]">
+            {/* MAIN UNIFIED CONTAINER */}
+            <div
+              {...getRootProps()}
+              className={`border-2 border-dashed border-gray-300 flex-col overflow-auto h-full p-4 text-gray-500 w-full rounded-lg bg-gray-50 flex items-start justify-start transition ${
+                isDragReject
+                  ? "border-red-500 text-red-600 bg-red-50"
+                  : isDragActive
+                    ? "border-cyan-500 text-cyan-600 bg-cyan-50"
+                    : ""
+              }`}
+            >
+              <input {...getInputProps()} />
+
+              {/* HEADER CONTROL BAR */}
+              <div className="flex flex-row justify-between items-center w-full pb-2 border-b mb-3">
+                <div className="flex items-center gap-2">
+                  <p className="text-md font-bold text-cyan-800">Entire Texts</p>
+                  <span className="text-[0.8rem] text-gray-400 font-normal">
+                    ({formData.files.length}{" "}
+                    {formData.files.length === 1 ? "file" : "files"})
+                  </span>
+                </div>
+
+                {/* Clear All Action */}
+                <div className="justify-end flex flex-row items-center gap-4">
+                  <button
+                    type="button"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setFormData((prev) => ({
+                        ...prev,
+                        files: [],
+                        baseText: "",
+                      }));
+                    }}
+                    className="hover:bg-gray-200/70 p-1 rounded-sm text-red-600  font-bold cursor-pointer flex flex-row items-center gap-1 text-[0.8rem]"
+                  >
+                    <p>Clear All</p>
+                    <Eraser className="w-4 h-4" />
+                  </button>
+                </div>
+              </div>
+
+              {/* BASE TEXT INDICATOR */}
+              <div className="text-[0.8rem] font-bold text-cyan-800 mb-3 overflow-wrap">
+                Base Text Prefix:{" "}
+                <input className="font-normal text-gray-800 rounded-md appearance-none bg-white outline-none p-1 shadow-md hover:shadow-lg focus:shadow-lg "
+                  type="text"
+                  value={formData.baseText != "" ? formData.baseText.name : "None"}
+                  onChange={(e)=>{setFormData((prev)=>({...prev, baseText:e.target.value}))}}
+                />
+              </div>
+
+              {/* HIDDEN FOLDER INPUT */}
+              <input
+                type="file"
+                ref={folderInput}
+                className="hidden"
+                webkitdirectory="true"
+                directory="true"
+                multiple
+                onChange={handleFolderUpload}
+              />
+
+              {/* SINGLE MAIN CONTENT BOX */}
+              <div className="w-full p-3 border-2 border-dashed border-gray-300 rounded-lg bg-white shadow-xs transition-all hover:border-cyan-400">
+                {/* INNER HEADER WITH UPLOAD BUTTONS */}
+                <div className="flex items-center justify-between border-b pb-2 mb-2">
+                  <div className="flex items-center gap-2 font-bold text-cyan-900 text-sm">
+                    <FolderOpen className="w-5 h-5 text-cyan-600" />
+                    <span>Uploaded Files</span>
+                  </div>
+
+                  {/* Inline Upload Triggers */}
+                  <div className="flex items-center gap-2 text-[0.8rem]">
+                    <button
+                      type="button"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        openFilePicker();
+                      }}
+                      className="bg-cyan-50 hover:bg-cyan-100 text-cyan-800 font-semibold px-2 py-1 rounded border border-cyan-200 transition cursor-pointer"
+                    >
+                      + Files
+                    </button>
+
+                    <button
+                      type="button"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        folderInput.current?.click();
+                      }}
+                      className="bg-cyan-50 hover:bg-cyan-100 text-cyan-800 font-semibold px-2 py-1 rounded border border-cyan-200 transition cursor-pointer"
+                    >
+                      + Folder
+                    </button>
+                  </div>
+                </div>
+
+                {/* FILE LIST OR DROP HINT */}
+                {formData.files.length > 0 ? (
+                  <ul className="space-y-1 mt-2 max-h-[25dvh] overflow-y-auto pr-1">
+                    {formData.files.map((file, fileIndex) => {
+                      const isBase = file === formData.baseText;
+                      return (
                         <li
-                          key={`${file.name}-${index}`}
-                          className={`flex items-center justify-between p-2 mb-1 rounded border ${
-                            file === formData.baseText
+                          key={`${file.name}-${fileIndex}`}
+                          className={`flex items-center justify-between px-2 py-1 rounded border text-[0.8rem] ${
+                            isBase
                               ? "bg-cyan-100/60 border-cyan-300"
-                              : "bg-white border-gray-200"
+                              : "bg-gray-50 border-gray-100 hover:bg-gray-100"
                           }`}
                         >
                           <button
-                                type="button"
-                                onClick={() =>
-                                  setFormData((prev) => ({
-                                    ...prev,
-                                    baseText: file,
-                                  }))
-                                }
-                                className="bg-transparent text-cyan-600 w-[43dvh] rounded-lg flex-row flex gap-2 content-center items-center shrink-0 cursor-pointer"
-                              >
-                                {file == formData.baseText ? (
-                                  <FileCheck className="w-8 h-8" />
-                                ) : (
-                                  <FileText className="w-8 h-8" />
-                                )}
-                                <p className="text-md font-medium text-cyan-800 ">
-                                  {file.name}
-                                </p>
-                              </button>
+                            type="button"
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              setFormData((prev) => ({
+                                ...prev,
+                                baseText: file.name,
+                              }));
+                            }}
+                            className="bg-transparent w-98/100 text-cyan-600 rounded-lg flex-row flex gap-2 items-center shrink-0 cursor-pointer text-left"
+                          >
+                            {isBase ? (
+                              <FileCheck className="w-5 h-5" />
+                            ) : (
+                              <FileText className="w-5 h-5" />
+                            )}
+                            <p className="text-[0.8rem] font-medium text-cyan-800 truncate max-w-[300px]">
+                              {file.name}
+                            </p>
+                          </button>
+
                           <button
                             type="button"
-                            onClick={() => removeFile(file)}
-                            className="text-red-600 hover:bg-red-50 p-1 rounded"
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              removeFile(file);
+                            }}
+                            className="text-red-600 hover:bg-red-50 p-0.5 rounded transition cursor-pointer"
                           >
-                            <Trash2 className="w-5 h-5" />
+                            <Trash2 className="w-4 h-4" />
                           </button>
                         </li>
-                      ))}
-                    </ul>
-                  )}
-                </div>
+                      );
+                    })}
+                  </ul>
+                ) : (
+                  <div className="py-8 text-center border-1 border-dashed border-gray-200 rounded-md bg-gray-50/50 text-[0.8rem] text-gray-400">
+                    Drag and drop files or folders directly anywhere in this box
+                  </div>
+                )}
               </div>
-            )}
-
-            {/* Step Controls */}
-            <div className="flex flex-row justify-between items-center pt-2 border-t">
-              <button
-                onClick={() =>
-                  setFormData((prev) => ({ ...prev, multi: null }))
-                }
-                className="px-5 py-2 border border-gray-300 text-gray-700 font-medium rounded-lg hover:bg-gray-50 transition"
-              >
-                Back
-              </button>
-              <button
-                disabled={totalFilesCount === 0}
-                onClick={() => handleStepChange(2)}
-                className="px-5 py-2 bg-cyan-600 text-white font-medium rounded-lg hover:bg-cyan-700 disabled:bg-gray-400 disabled:cursor-not-allowed transition"
-              >
-                Continue
-              </button>
             </div>
           </div>
         )}
-        {/* select algorithm */}
-        {currentStep === 2 && (
-          <div className="space-y-6">
-            <h2 className="text-4xl font-bold text-gray-700 pt-10 ">
-              Select Algorithm
-            </h2>
 
-            <div className="space-y-1 h-[55dvh] flex  w-10/10 pt-5">
-              <div className="flex flex-row content-between">
-                <div className="flex flex-col content-center items-center gap-2 w-[25dvw]">
-                  {/* <label className="block text-2xl font-medium text-gray-700 mb-1">Select Algorithm</label> */}
-                  <div className="flex flex-col gap-2 pt-2 w-full">
-                    {/* Label */}
-                    <label
-                      htmlFor="algorithm"
-                      className="block text-md font-medium text-gray-700 place-content-start"
-                    >
-                      Choose an Algorithm
-                    </label>
+        {/* Step Controls */}
+        <div className="flex flex-row justify-between items-center pt-2 border-t">
+          <button
+            onClick={() =>
+              setFormData((prev) => ({ ...prev, multi: null }))
+            }
+            className="px-5 py-2 border border-gray-300 text-gray-700 font-medium rounded-lg hover:bg-gray-50 transition"
+          >
+            Back
+          </button>
+          <button
+            disabled={totalFilesCount === 0}
+            onClick={() => handleStepChange(2)}
+            className="px-5 py-2 bg-cyan-600 text-white font-medium rounded-lg hover:bg-cyan-700 disabled:bg-gray-400 disabled:cursor-not-allowed transition"
+          >
+            Continue
+          </button>
+        </div>
+      </div>
+        )}
+      {/* select algorithm */}
+      {currentStep === 2 && (
+        <div className="space-y-6">
+          <h2 className="text-4xl font-bold text-gray-700 pt-10 ">
+            Select Algorithm
+          </h2>
 
-                    {/* Select Container with Custom Arrow */}
-                    <div className="relative ">
-                      <select
-                        id="algorithm"
-                        className="block w-full pl-3 pr-10 py-2 text-base outline-none border-none  bg-white  rounded-md shadow-md appearance-none focus:outline-none focus:shadow-md text-gray-700/60 focus:text-gray-700 focus:shadow-gray-700/70
+          <div className="space-y-1 h-[55dvh] flex  w-10/10 pt-5">
+            <div className="flex flex-row content-between">
+              <div className="flex flex-col content-center items-center gap-2 w-[25dvw]">
+                {/* <label className="block text-2xl font-medium text-gray-700 mb-1">Select Algorithm</label> */}
+                <div className="flex flex-col gap-2 pt-2 w-full">
+                  {/* Label */}
+                  <label
+                    htmlFor="algorithm"
+                    className="block text-md font-medium text-gray-700 place-content-start"
+                  >
+                    Choose an Algorithm
+                  </label>
+
+                  {/* Select Container with Custom Arrow */}
+                  <div className="relative ">
+                    <select
+                      id="algorithm"
+                      className="block w-full pl-3 pr-10 py-2 text-[0.8rem] outline-none border-none  bg-white  rounded-md shadow-md appearance-none focus:outline-none focus:shadow-md text-gray-700/60 focus:text-gray-700 focus:shadow-gray-700/70
                      rounded-md   cursor-pointer transition-colors"
-                        defaultValue={formData.algorithm}
-                        onChange={(e) =>
-                          setFormData((p) => ({
-                            ...p,
-                            algorithm: e.target.value,
-                          }))
-                        }
+                      defaultValue={formData.algorithm}
+                      onChange={(e) =>
+                        setFormData((p) => ({
+                          ...p,
+                          algorithm: e.target.value,
+                        }))
+                      }
+                    >
+                      <option disabled value="" className="text-gray-400/20">
+                        Select an Algorithm
+                      </option>
+                      <option value="ndw" className="text-gray-800">
+                        Needleman-Wunsch Algorithm
+                      </option>
+                      <option value="sw" className="text-gray-800">
+                        Smith-Waterman Algorithm
+                      </option>
+                    </select>
+
+                    {/* Custom Dropdown Chevron Icon */}
+                    <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-3 text-gray-500">
+                      <svg
+                        className="w-4 h-4"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
                       >
-                        <option disabled value="" className="text-gray-400/20">
-                          Select an Algorithm
-                        </option>
-                        <option value="ndw" className="text-gray-800">
-                          Needleman-Wunsch Algorithm
-                        </option>
-                        <option value="sw" className="text-gray-800">
-                          Smith-Waterman Algorithm
-                        </option>
-                      </select>
-
-                      {/* Custom Dropdown Chevron Icon */}
-                      <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-3 text-gray-500">
-                        <svg
-                          className="w-4 h-4"
-                          fill="none"
-                          stroke="currentColor"
-                          viewBox="0 0 24 24"
-                        >
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth={2}
-                            d="M19 9l-7 7-7-7"
-                          />
-                        </svg>
-                      </div>
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M19 9l-7 7-7-7"
+                        />
+                      </svg>
                     </div>
+                  </div>
 
-                    {/* Needleman-Wunsch Settings */}
-                    {(formData.algorithm === "ndw" ||
-                      formData.algorithm === "sw") && (
+                  {/* Needleman-Wunsch Settings */}
+                  {(formData.algorithm === "ndw" ||
+                    formData.algorithm === "sw") && (
                       <div className="flex flex-row gap-3 content-center">
                         <div className="w-4/10">
                           {/* Match Bonus*/}
@@ -991,12 +1044,13 @@ export default function Pages() {
                             type="number"
                             value={formData.settings.matchBonus}
                             onChange={(e) =>
+                              
                               handleSettingChange(
                                 "matchBonus",
-                                Number(e.target.value),
+                                isNaN(e.target.valueAsNumber)? "" : e.target.valueAsNumber,
                               )
                             }
-                            className="block w-full pl-3 pr-10 py-2 text-base bg-white rounded-md shadow-sm appearance-none focus:outline-none focus:shadow-md text-gray-700/60 focus:text-gray-700 focus:shadow-gray-700/70 sm:text-sm transition-colors"
+                            className="block w-full pl-3 pr-10 py-2 text-[0.8rem] bg-white rounded-md shadow-sm appearance-none focus:outline-none focus:shadow-md text-gray-700/60 focus:text-gray-700 focus:shadow-gray-700/70 sm:text-[0.8rem] transition-colors"
                           />
 
                           {/* Gap Penalty */}
@@ -1007,14 +1061,14 @@ export default function Pages() {
                           <input
                             id="gapPenalty"
                             type="number"
-                            value={-formData.settings.gapPenalty}
+                            value={formData.settings.gapPenalty<0 ? -formData.settings.gapPenalty : formData.settings.gapPenalty}
                             onChange={(e) =>
                               handleSettingChange(
                                 "gapPenalty",
-                                Number(-e.target.value),
+                                isNaN(e.target.valueAsNumber)? "" : -e.target.valueAsNumber,
                               )
                             }
-                            className="block w-full pl-3 pr-10 py-2 text-base bg-white rounded-md shadow-sm appearance-none focus:outline-none focus:shadow-md text-gray-700/60 focus:text-gray-700 focus:shadow-gray-700/70 sm:text-sm transition-colors"
+                            className="block w-full pl-3 pr-10 py-2 text-[0.8rem] bg-white rounded-md shadow-sm appearance-none focus:outline-none focus:shadow-md text-gray-700/60 focus:text-gray-700 focus:shadow-gray-700/70 sm:text-[0.8rem] transition-colors"
                           />
 
                           {/* Mismatch Penalty */}
@@ -1027,14 +1081,14 @@ export default function Pages() {
                           <input
                             id="mismatchPenalty"
                             type="number"
-                            value={-formData.settings.mismatchPenalty}
+                            value={formData.settings.mismatchPenalty<0 ? -formData.settings.mismatchPenalty : formData.settings.mismatchPenalty}
                             onChange={(e) =>
                               handleSettingChange(
                                 "mismatchPenalty",
-                                Number(-e.target.value),
+                                sNaN(e.target.valueAsNumber)? "" : -e.target.valueAsNumbermber,
                               )
                             }
-                            className="block w-full pl-3 pr-10 py-2 text-base bg-white rounded-md shadow-sm appearance-none focus:outline-none focus:shadow-md text-gray-700/60 focus:text-gray-700 focus:shadow-gray-700/70 sm:text-sm transition-colors"
+                            className="block w-full pl-3 pr-10 py-2 text-[0.8rem] bg-white rounded-md shadow-sm appearance-none focus:outline-none focus:shadow-md text-gray-700/60 focus:text-gray-700 focus:shadow-gray-700/70 sm:text-[0.8rem] transition-colors"
                           />
                           {formData.algorithm === "ndw" && (
                             <div>
@@ -1048,14 +1102,14 @@ export default function Pages() {
                               <input
                                 id="affinePenalty"
                                 type="number"
-                                value={-formData.settings.affinePenalty}
+                                value={formData.settings.affinePenalty<0 ? -formData.settings.affinePenalty : formData.settings.affinePenalty}
                                 onChange={(e) =>
                                   handleSettingChange(
                                     "affinePenalty",
-                                    Number(-e.target.value),
+                                    sNaN(e.target.valueAsNumber)? "" : -e.target.valueAsNumber,
                                   )
                                 }
-                                className="block w-full pl-3 pr-10 py-2 text-base bg-white rounded-md shadow-sm appearance-none focus:outline-none focus:shadow-md text-gray-700/60 focus:text-gray-700 focus:shadow-gray-700/70 sm:text-sm transition-colors"
+                                className="block w-full pl-3 pr-10 py-2 text-[0.8rem] bg-white rounded-md shadow-sm appearance-none focus:outline-none focus:shadow-md text-gray-700/60 focus:text-gray-700 focus:shadow-gray-700/70 sm:text-[0.8rem] transition-colors"
                               />
                             </div>
                           )}
@@ -1074,8 +1128,8 @@ export default function Pages() {
                           <div className="relative">
                             <select
                               id="special"
-                              className="block w-full pl-3 pr-10 py-2 text-base bg-white rounded-md shadow-sm appearance-none focus:outline-none focus:shadow-md text-gray-700/60 focus:text-gray-700 focus:shadow-gray-700/70 sm:text-sm cursor-pointer transition-colors"
-                              value={formData.settings.special.join(",")}
+                              className="block w-full pl-3 pr-10 py-2 text-[0.8rem] bg-white rounded-md shadow-sm appearance-none focus:outline-none focus:shadow-md text-gray-700/60 focus:text-gray-700 focus:shadow-gray-700/70 sm:text-[0.8rem] cursor-pointer transition-colors"
+                              value={ formData.settings.special.join(",")}
                               onChange={(e) => {
                                 const val = e.target.value;
                                 if (!val) {
@@ -1150,9 +1204,9 @@ export default function Pages() {
                                   )
                                 }
                                 value={
-                                  formData.settings.special.includes("Other") 
-                                  ? ""
-                                  : formData.settings.special.join(" ")
+                                  formData.settings.special.includes("Other")
+                                    ? ""
+                                    : formData.settings.special.join(" ")
 
                                 }
                                 placeholder="1 2 3"
@@ -1163,12 +1217,12 @@ export default function Pages() {
                           <div className="pt-2">
                             {formData.settings.special.includes("Other") ===
                               false && (
-                              <label
-                                className="pt-2 text-cyan-700"
-                              >
-                                {formData.settings.special.join(" ")}
-                              </label>
-                            )}
+                                <label
+                                  className="pt-2 text-cyan-700"
+                                >
+                                  {formData.settings.special.join(" ")}
+                                </label>
+                              )}
                           </div>
 
                           {formData.settings.special?.length > 0 && (
@@ -1186,85 +1240,46 @@ export default function Pages() {
                                 onChange={(e) =>
                                   handleSettingChange(
                                     "specialBonus",
-                                    Number(e.target.value),
+                                    isNaN(e.target.valueAsNumber)? "" : e.target.valueAsNumber,
                                   )
                                 }
-                                className="block w-full pl-3 pr-10 py-2 text-base bg-white rounded-md shadow-sm appearance-none focus:outline-none focus:shadow-md text-gray-700/60 focus:text-gray-700 focus:shadow-gray-700/70 sm:text-sm transition-colors"
+                                className="block w-full pl-3 pr-10 py-2 text-[0.8rem] bg-white rounded-md shadow-sm appearance-none focus:outline-none focus:shadow-md text-gray-700/60 focus:text-gray-700 focus:shadow-gray-700/70 sm:text-[0.8rem] transition-colors"
                               />
 
-                              <div className="flex justify-between items-center text-md  font-medium text-gray-700">
-                                <label htmlFor="specialGap" className="pt-2">
-                                  Special Character Gap Penalty
-                                </label>
-                              </div>
+                           </div>
 
-                              <input
-                                id="specialGap"
-                                type="number"
-                                value={-formData.settings.specialGap}
-                                onChange={(e) =>
-                                  handleSettingChange(
-                                    "specialGap",
-                                    Number(-e.target.value),
-                                  )
-                                }
-                                className="block w-full pl-3 pr-10 py-2 text-base bg-white rounded-md shadow-sm appearance-none focus:outline-none focus:shadow-md text-gray-700/60 focus:text-gray-700 focus:shadow-gray-700/70 sm:text-sm transition-colors"
-                              />
-
-                              <div className="flex justify-between items-center text-md  font-medium text-gray-700">
-                                <label
-                                  htmlFor="specialMismatch"
-                                  className="pt-2"
-                                >
-                                  Special Character Mismatch Penalty
-                                </label>
-                              </div>
-
-                              <input
-                                id="specialMismatch"
-                                type="number"
-                                value={-formData.settings.specialMismatch}
-                                onChange={(e) =>
-                                  handleSettingChange(
-                                    "specialMismatch",
-                                    Number(-e.target.value),
-                                  )
-                                }
-                                className="block w-full pl-3 pr-10 py-2 text-base bg-white rounded-md shadow-sm appearance-none focus:outline-none focus:shadow-md text-gray-700/60 focus:text-gray-700 focus:shadow-gray-700/70 sm:text-sm transition-colors"
-                              />
-                            </div>
                           )}
                         </div>
                       </div>
                     )}
 
-                    {/* {formData.algorithm!="" && (
+                  {/* {formData.algorithm!="" && (
                     <div className="w-[50dvh] h-[50dvh] border-2"></div>
                   )} */}
-                  </div>
                 </div>
               </div>
             </div>
-
-            <div className="flex justify-between pt-4">
-              <button
-                onClick={() => handleStepChange(1)}
-                className="px-5 py-2 border border-gray-300 text-gray-700 font-medium rounded-lg hover:bg-gray-50 transition"
-              >
-                Back
-              </button>
-              <button
-                onClick={handleSubmit}
-                disabled={isProcessing}
-                className="px-5 py-2 bg-cyan-600 text-white font-medium rounded-lg hover:bg-cyan-700 disabled:opacity-50 transition"
-              >
-                {isProcessing ? "Processing..." : "Run Algorithm"}
-              </button>
-            </div>
           </div>
-        )}
-        {currentStep === 3 && (
-          <div className="flex h-95/100 self-start place-content-start w-full">
+
+          <div className="flex justify-between pt-4">
+            <button
+              onClick={() => handleStepChange(1)}
+              className="px-5 py-2 border border-gray-300 text-gray-700 font-medium rounded-lg hover:bg-gray-50 transition"
+            >
+              Back
+            </button>
+            <button
+              onClick={handleSubmit}
+              disabled={isProcessing}
+              className="px-5 py-2 bg-cyan-600 text-white font-medium rounded-lg hover:bg-cyan-700 disabled:opacity-50 transition"
+            >
+              {isProcessing ? "Processing..." : "Run Algorithm"}
+            </button>
+          </div>
+        </div>
+      )}
+      {currentStep === 3 && (
+        <div className="flex h-95/100 self-start place-content-start w-full">
           <div className="flex flex-col justify-between place-content-start pt-4  w-full">
             <h1 className="text-4xl w-5/10 font-bold text-gray-700 pt-10 pb-2">
               {formData.algorithm == "ndw"
@@ -1272,44 +1287,44 @@ export default function Pages() {
                 : "Smith-Waterman"}{" "}
               Alignment
             </h1>
-          <div className="flex-row overflow-auto place-content-start place-items-start h-full place-self-start w-max flex pt-5 ">
-            
-            <div className="w-max ">
-            <p className="text-gray-800 whitespace-pre-wrap text-justify font-mono">{results.output_logs}</p>
-            </div>
+            <div className="flex-row overflow-auto place-content-start place-items-start h-full place-self-start w-max flex pt-5 ">
+
+              <div className="w-max ">
+                <p className="text-gray-800 whitespace-pre-wrap text-justify font-mono">{results.output_logs}</p>
+              </div>
             </div>
             <div className="flex flex-row justify-between content-start">
-            <button
-              onClick={() => handleStepChange(2)}
-              className="px-5 py-2 border border-gray-300 text-gray-700 font-medium rounded-lg hover:bg-gray-50 transition"
-            >
-              Back
-            </button>
-            <button
-              onClick={handlePlot}
-              disabled={isProcessing||formData.settings.isPlot==false}
-              className="px-5 py-2 bg-cyan-600 text-white font-medium rounded-lg hover:bg-cyan-700 disabled:opacity-50 transition"
-            >
-              {isProcessing ? "Processing..." : "Run Algorithm"}
-            </button>
+              <button
+                onClick={() => handleStepChange(2)}
+                className="px-5 py-2 border border-gray-300 text-gray-700 font-medium rounded-lg hover:bg-gray-50 transition"
+              >
+                Back
+              </button>
+              <button
+                onClick={handlePlot}
+                disabled={isProcessing || formData.settings.isPlot == false}
+                className="px-5 py-2 bg-cyan-600 text-white font-medium rounded-lg hover:bg-cyan-700 disabled:opacity-50 transition"
+              >
+                {isProcessing ? "Processing..." : "Run t-SNE Algorithm"}
+              </button>
             </div>
           </div>
-          </div>
-        )}
-        {currentStep === 4 && (
-          <div className="flex content-start h-full pt-10 flex-col pt-4">
-            <h1 className="text-4xl w-5/10 font-bold text-gray-700 pt-10 pb-2">
-              {formData.algorithm == "ndw"
-                ? "Needleman-Wunsch"
-                : "Smith-Waterman"}{" "}
-              Plot
-            </h1>
-            <iframe
-              src={plotUrl}
-              className="w-full h-full border-none"
-              title="t-SNE Plot"
-            />
-            <div className="w-full flex justify-between content-start flex-row">
+        </div>
+      )}
+      {currentStep === 4 && (
+        <div className="flex content-start h-full pt-10 flex-col pt-4">
+          <h1 className="text-4xl w-5/10 font-bold text-gray-700 pt-10 pb-2">
+            {formData.algorithm == "ndw"
+              ? "Needleman-Wunsch"
+              : "Smith-Waterman"}{" "}
+            Plot
+          </h1>
+          <iframe
+            src={plotUrl}
+            className="w-full h-full border-none"
+            title="t-SNE Plot"
+          />
+          <div className="w-full flex justify-between content-start flex-row">
             <button
               onClick={() => handleStepChange(3)}
               className="px-5 py-2 border border-gray-300 text-gray-700 font-medium rounded-lg w-max hover:bg-gray-50 transition"
@@ -1322,11 +1337,11 @@ export default function Pages() {
             >
               Download Matrix as Spreadsheet
             </button>
-            </div>
           </div>
-        )}
-      </div>
+        </div>
+      )}
     </div>
+    </div >
   );
 }
 
@@ -1566,7 +1581,7 @@ export default function Pages() {
 //       <div className="w-[82dvw] h-[82dvh] p-6 bg-white rounded-xl shadow-md border border-gray-100">
 //         {/* Progress Bar */}
 //         <div className="mb-8">
-//           <div className="flex justify-between text-sm font-medium text-gray-500 mb-2">
+//           <div className="flex justify-between text-[0.8rem] font-medium text-gray-500 mb-2">
 //             <button
 //               type="button"
 //               onClick={() => handleStepSkip(1)}
@@ -2053,7 +2068,7 @@ export default function Pages() {
 //                     <div className="relative ">
 //                       <select
 //                         id="algorithm"
-//                         className="block w-full pl-3 pr-10 py-2 text-base outline-none border-none  bg-white  rounded-md shadow-md appearance-none focus:outline-none focus:shadow-md text-gray-700/60 focus:text-gray-700 focus:shadow-gray-700/70
+//                         className="block w-full pl-3 pr-10 py-2 text-[0.8rem] outline-none border-none  bg-white  rounded-md shadow-md appearance-none focus:outline-none focus:shadow-md text-gray-700/60 focus:text-gray-700 focus:shadow-gray-700/70
 //                      rounded-md   cursor-pointer transition-colors"
 //                         defaultValue={formData.algorithm}
 //                         onChange={(e) =>
@@ -2111,7 +2126,7 @@ export default function Pages() {
 //                               Number(e.target.value),
 //                             )
 //                           }
-//                           className="block w-full pl-3 pr-10 py-2 text-base bg-white rounded-md shadow-sm appearance-none focus:outline-none focus:shadow-md text-gray-700/60 focus:text-gray-700 focus:shadow-gray-700/70 sm:text-sm transition-colors"
+//                           className="block w-full pl-3 pr-10 py-2 text-[0.8rem] bg-white rounded-md shadow-sm appearance-none focus:outline-none focus:shadow-md text-gray-700/60 focus:text-gray-700 focus:shadow-gray-700/70 sm:text-[0.8rem] transition-colors"
 //                         />
 
 //                         {/* Gap Penalty */}
@@ -2129,7 +2144,7 @@ export default function Pages() {
 //                               Number(-e.target.value),
 //                             )
 //                           }
-//                           className="block w-full pl-3 pr-10 py-2 text-base bg-white rounded-md shadow-sm appearance-none focus:outline-none focus:shadow-md text-gray-700/60 focus:text-gray-700 focus:shadow-gray-700/70 sm:text-sm transition-colors"
+//                           className="block w-full pl-3 pr-10 py-2 text-[0.8rem] bg-white rounded-md shadow-sm appearance-none focus:outline-none focus:shadow-md text-gray-700/60 focus:text-gray-700 focus:shadow-gray-700/70 sm:text-[0.8rem] transition-colors"
 //                         />
 
 //                         {/* Mismatch Penalty */}
@@ -2149,7 +2164,7 @@ export default function Pages() {
 //                               Number(-e.target.value),
 //                             )
 //                           }
-//                           className="block w-full pl-3 pr-10 py-2 text-base bg-white rounded-md shadow-sm appearance-none focus:outline-none focus:shadow-md text-gray-700/60 focus:text-gray-700 focus:shadow-gray-700/70 sm:text-sm transition-colors"
+//                           className="block w-full pl-3 pr-10 py-2 text-[0.8rem] bg-white rounded-md shadow-sm appearance-none focus:outline-none focus:shadow-md text-gray-700/60 focus:text-gray-700 focus:shadow-gray-700/70 sm:text-[0.8rem] transition-colors"
 //                         />
 
 //                         {/* Optional Special Character Bonus */}
@@ -2165,7 +2180,7 @@ export default function Pages() {
 //                         <div className="relative">
 //                           <select
 //                             id="special"
-//                             className="block w-full pl-3 pr-10 py-2 text-base bg-white rounded-md shadow-sm appearance-none focus:outline-none focus:shadow-md text-gray-700/60 focus:text-gray-700 focus:shadow-gray-700/70 sm:text-sm cursor-pointer transition-colors"
+//                             className="block w-full pl-3 pr-10 py-2 text-[0.8rem] bg-white rounded-md shadow-sm appearance-none focus:outline-none focus:shadow-md text-gray-700/60 focus:text-gray-700 focus:shadow-gray-700/70 sm:text-[0.8rem] cursor-pointer transition-colors"
 //                             defaultValue=""
 //                             onChange={(e) => {
 //                               const val = e.target.value;
@@ -2269,7 +2284,7 @@ export default function Pages() {
 //                                   Number(e.target.value),
 //                                 )
 //                               }
-//                               className="block w-full pl-3 pr-10 py-2 text-base bg-white rounded-md shadow-sm appearance-none focus:outline-none focus:shadow-md text-gray-700/60 focus:text-gray-700 focus:shadow-gray-700/70 sm:text-sm transition-colors"
+//                               className="block w-full pl-3 pr-10 py-2 text-[0.8rem] bg-white rounded-md shadow-sm appearance-none focus:outline-none focus:shadow-md text-gray-700/60 focus:text-gray-700 focus:shadow-gray-700/70 sm:text-[0.8rem] transition-colors"
 //                             />
 
 //                             <div className="flex justify-between items-center text-md  font-medium text-gray-700">
@@ -2288,7 +2303,7 @@ export default function Pages() {
 //                                   Number(-e.target.value),
 //                                 )
 //                               }
-//                               className="block w-full pl-3 pr-10 py-2 text-base bg-white rounded-md shadow-sm appearance-none focus:outline-none focus:shadow-md text-gray-700/60 focus:text-gray-700 focus:shadow-gray-700/70 sm:text-sm transition-colors"
+//                               className="block w-full pl-3 pr-10 py-2 text-[0.8rem] bg-white rounded-md shadow-sm appearance-none focus:outline-none focus:shadow-md text-gray-700/60 focus:text-gray-700 focus:shadow-gray-700/70 sm:text-[0.8rem] transition-colors"
 //                             />
 
 //                             <div className="flex justify-between items-center text-md  font-medium text-gray-700">
@@ -2307,7 +2322,7 @@ export default function Pages() {
 //                                   Number(-e.target.value),
 //                                 )
 //                               }
-//                               className="block w-full pl-3 pr-10 py-2 text-base bg-white rounded-md shadow-sm appearance-none focus:outline-none focus:shadow-md text-gray-700/60 focus:text-gray-700 focus:shadow-gray-700/70 sm:text-sm transition-colors"
+//                               className="block w-full pl-3 pr-10 py-2 text-[0.8rem] bg-white rounded-md shadow-sm appearance-none focus:outline-none focus:shadow-md text-gray-700/60 focus:text-gray-700 focus:shadow-gray-700/70 sm:text-[0.8rem] transition-colors"
 //                             />
 //                           </div>
 //                         )}
@@ -2330,7 +2345,7 @@ export default function Pages() {
 //                               Number(-e.target.value),
 //                             )
 //                           }
-//                           className="block w-full pl-3 pr-10 py-2 text-base bg-white rounded-md shadow-sm appearance-none focus:outline-none focus:shadow-md text-gray-700/60 focus:text-gray-700 focus:shadow-gray-700/70 sm:text-sm transition-colors"
+//                           className="block w-full pl-3 pr-10 py-2 text-[0.8rem] bg-white rounded-md shadow-sm appearance-none focus:outline-none focus:shadow-md text-gray-700/60 focus:text-gray-700 focus:shadow-gray-700/70 sm:text-[0.8rem] transition-colors"
 //                         />
 //                       </div>
 //                     )}

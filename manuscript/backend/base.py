@@ -9,8 +9,6 @@ class AlgorithmSettings:
     special: List[str]
     special_other: bool
     special_bonus: float
-    special_gap: float
-    special_mismatch: float
     affine_penalty: float
     is_plot: bool
 
@@ -24,8 +22,6 @@ class AlgorithmSettings:
             special=data.get("special", []),
             special_other=bool(data.get("specialOther", False)),
             special_bonus=float(data.get("specialBonus", 10)),
-            special_gap=float(data.get("specialGap", -1)),
-            special_mismatch=float(data.get("specialMismatch", -1)),
             affine_penalty=float(data.get("affinePenalty", -0.5)),
             is_plot=bool(data.get("isPlot", False))
         )

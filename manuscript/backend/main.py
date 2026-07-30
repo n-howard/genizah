@@ -224,16 +224,16 @@ def process_data(
         buffer = io.StringIO()
         
       
-            # temp code! need to let users choose how to split it
+      
             
         if not base_text:
             base_text = files[0]
             
             
-        clean_base_text = Path(base_text.filename).name
-        # temp code! need to let users choose how to split it
-        base_text_pattern = clean_base_text.split("_")[0]
-
+            clean_base_text = Path(base_text.filename).name
+            
+            base_text = clean_base_text.split("_")[0]
+        base_text_pattern = base_text
         df = None
         
         
@@ -242,7 +242,7 @@ def process_data(
             print("Running algorithm")
             records = []
 
-            if settings.is_plot is True:
+            if settings.is_plot == True:
 
                 if "ndw" in algorithm:
                     
