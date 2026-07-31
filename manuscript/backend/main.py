@@ -132,7 +132,7 @@ import shutil
 from typing import List, Callable, Any, Dict, Optional
 import numpy as np
 
-from base import AlgorithmSettings
+from base import AlgorithmSettings, PlotSettings
 from needleman_wunsch import run_nw
 from smith_waterman import run_sw
 from needleman_wunsch import compare_two_nw
@@ -160,15 +160,25 @@ def process_data(
     settings: str = Form(...),
     multi: Optional[str] = Form("false"),
     files: List[UploadFile] = File(None),
-    base_text: Optional[UploadFile] = File(None),
+    base_text: Optional[str] = Form(None),
     subsections_metadata: Optional[str] = Form(None)
 ):
     try:
         raw_settings = json.loads(settings)
     except Exception:
         raise HTTPException(status_code=400, detail="Invalid settings JSON format.")
+    settings = AlgorithmSettings.from_dict(raw_settings)
+    is_plot = True
     job_id = str(uuid.uuid4())
     is_multi = multi.lower() == "true"
+    if base_text=="" or not base_text:
+        base_text = files[0]
+        
+        
+        clean_base_text = Path(base_text.filename).name.split("_")[0]
+        
+        base_text = clean_base_text
+    base_text_pattern = base_text
 
     if "ndw" not in algorithm and "sw" not in algorithm:
         algorithm = "ndw"
@@ -187,14 +197,18 @@ def process_data(
 
         file_names_clean = file_bytes_map.keys()
         file_names = {}
-
+        if len(file_names_clean)<4:
+            is_plot = False
         # 2. Write files to temporary subdirectories using fresh bytes
+        
         if is_multi and subsections_metadata:
             subsections_info = json.loads(subsections_metadata)
+            length0 = len(subsections_info[0].values[0])
             for sub_obj in subsections_info:
                 for section_name, filenames in sub_obj.items():
                     valid_files = [fname for fname in filenames if Path(fname).name in file_bytes_map]
-            
+                    if len(filenames)!=length0:
+                        is_plot=false
                     # Skip creating this directory if no valid files exist for this section
                     if not valid_files:
                         continue
@@ -218,7 +232,7 @@ def process_data(
                     out_file.write(content)
                 
                     
-        settings = AlgorithmSettings.from_dict(raw_settings)
+        
 
         original_cwd = os.getcwd()
         buffer = io.StringIO()
@@ -226,14 +240,7 @@ def process_data(
       
       
             
-        if not base_text:
-            base_text = files[0]
-            
-            
-            clean_base_text = Path(base_text.filename).name
-            
-            base_text = clean_base_text.split("_")[0]
-        base_text_pattern = base_text
+       
         df = None
         
         
@@ -242,35 +249,35 @@ def process_data(
             print("Running algorithm")
             records = []
 
-            if settings.is_plot == True:
+            if is_plot:
 
                 if "ndw" in algorithm:
                     
                     
                     # Redirect print() outputs into string buffer
                     with contextlib.redirect_stdout(buffer):
-                        records = records + run_nw(root_dir, settings, base_text_pattern, settings.is_plot, records)
+                        records = records + run_nw(root_dir, settings, base_text_pattern, is_plot, records)
                         
                     
                 elif "sw" in algorithm:
                     # Redirect print() outputs into string buffer
                     with contextlib.redirect_stdout(buffer):
-                        records = records + run_sw(root_dir, settings, base_text_pattern, settings.is_plot, records)
+                        records = records + run_sw(root_dir, settings, base_text_pattern, is_plot, records)
             else:
-                print("Else")
+                print("Else", is_plot)
                 if "ndw" in algorithm:
                                     
                                     
                 # Redirect print() outputs into string buffer
                     with contextlib.redirect_stdout(buffer):
-                        data = run_nw(root_dir, settings, base_text_pattern, settings.is_plot)
+                        data = run_nw(root_dir, settings, base_text_pattern, is_plot)
                     
                 
                 elif "sw" in algorithm:
                     # Redirect print() outputs into string buffer
                     with contextlib.redirect_stdout(buffer):
-                        data = run_sw(root_dir, settings, base_text_pattern, settings.is_plot, records)
-            if settings.is_plot:
+                        data = run_sw(root_dir, settings, base_text_pattern, is_plot, records)
+            if is_plot:
                 # fix this to be customizable
                 base_texts = set([Path(f.filename).name.split("_")[0] for f in files]) if files else set()
                 print("BaseText Prefixes:",base_texts)
@@ -355,33 +362,50 @@ def process_data(
 
 
 
-@app.get("/api/plot/{job_id}")
-def generate_plot(job_id: str):
+@app.post("/api/plot/{job_id}")
+def generate_plot(job_id: str, plot_settings: str = Form(...)):
     excel_path = CACHE_DIR / f"{job_id}.xlsx"
+    
+    try:
+        raw_plot_settings = json.loads(plot_settings)
+    except Exception:
+        raise HTTPException(status_code=400, detail="Invalid settings JSON format.")
+    plot_settings = PlotSettings.from_dict(raw_plot_settings)
+    
+    
+    
 
     if not excel_path.exists():
         raise HTTPException(status_code=404, detail="Cached matrix data not found. Please re-run processing.")
-
+    
     output_html_path = CACHE_DIR / f"{job_id}_plot.html"
 
+    output_image_path = CACHE_DIR / f"{job_id}_static.png"
+    
     try:
         # Run R script directly on the cached CSV
         subprocess.run(
-            ["Rscript", "t-SNE.R", str(excel_path), str(output_html_path)],
+            [ "Rscript", "t-SNE.R", str(excel_path), str(output_html_path), str(plot_settings.perplexity), str(plot_settings.theta), str(plot_settings.plot_type), str(output_image_path)],
             check=True,
-            # capture_output=True,
+            capture_output=True,
             stdout=None,
             stderr=None,
             text=True
         )
     except subprocess.CalledProcessError as e:
         raise HTTPException(status_code=500, detail=f"R script failed: {e.stderr}")
-
-    return FileResponse(output_html_path, media_type="text/html", headers={
-        "Access-Control-Allow-Origin": "*",
-        "Access-Control-Allow-Methods": "*",
-        "Access-Control-Allow-Headers": "*",
-    })
+    if plot_settings.plot_type=="3da":
+        return FileResponse(output_html_path, media_type="text/html", headers={
+            "Access-Control-Allow-Origin": "*",
+            "Access-Control-Allow-Methods": "*",
+            "Access-Control-Allow-Headers": "*",
+        })
+    else:
+        return FileResponse(output_image_path, media_type="text/png", headers={
+            "Access-Control-Allow-Origin": "*",
+            "Access-Control-Allow-Methods": "*",
+            "Access-Control-Allow-Headers": "*",
+        })
 
 @app.get("/api/sheet/{job_id}")
 def send_sheet(job_id: str):
@@ -393,6 +417,8 @@ def send_sheet(job_id: str):
         media_type="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
         filename="alignment_matrix.xlsx" 
     )
+
+
 
 
 # import json

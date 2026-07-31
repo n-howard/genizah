@@ -10,6 +10,13 @@ import {
   FolderOpen,
 } from "lucide-react";
 import { useDropzone } from "react-dropzone";
+import { Page, Text, View, Document, StyleSheet, Font, PDFDownloadLink } from '@react-pdf/renderer';
+import ReactPDF from '@react-pdf/renderer'
+import { createTw } from "react-pdf-tailwind";
+import puppeteer from "puppeteer";
+import * as htmlToImage from "html-to-image"
+
+const download = require("downloadjs");
 
 
 
@@ -23,6 +30,7 @@ function SubsectionItem({
   onSelectFolderTrigger,
   onSelectFilesTrigger,
   onDragStartFile,
+  onRemoveSubsection,
 }) {
   // Each child gets its OWN useDropzone instance bound to its sectionName
   const { getRootProps, getInputProps, isDragActive, isDragReject } = useDropzone({
@@ -82,6 +90,15 @@ function SubsectionItem({
           >
             + Folder
           </button>
+          <button
+            type="button"
+            onClick={ (e) => {
+              e.stopPropagation();
+              onRemoveSubsection(sectionName)
+            }}
+            className="text-red-600 hover:bg-red-50 p-0.5 rounded flex flex-row gap-1 place-content-center"
+              >
+                <Trash2 className="w-5 h-5" /></button>
         </div>
       </div>
 
@@ -159,6 +176,12 @@ export default function Pages() {
       specialBonus: 10,
       affinePenalty: -0.5,
       isPlot: false,
+      
+    },
+    plotSettings: {
+      perplexity: 1,
+      plotType: "",
+      theta: 0.5,
     },
 
   })
@@ -392,6 +415,15 @@ export default function Pages() {
     }));
   };
 
+  const removeSubsection = (sectionName:string) => {
+    let newSections = formData.subsections 
+    delete newSections[sectionName]
+    setFormData((prev) => ({
+      ...prev,
+       subsections: newSections
+    }));
+  }
+
   // Subsection Drag-and-Drop Handlers
   const handleDragStart = (
     e: React.DragEvent,
@@ -468,11 +500,12 @@ export default function Pages() {
 
   const handleSubmit = async () => {
     setIsProcessing(true);
-    setFormData((prev) => ({ ...prev, settings: { ...prev.settings, ["isPlot"]: true } }))
+    setFormData((prev) => ({ ...prev, settings: { ...prev.settings, isPlot: true } }))
+    console.log(formData.settings.isPlot)
     if (Object.keys(formData.subsections).length > 0){
       const firstSectionCount = formData.subsections[Object.keys(formData.subsections)[0]].length;
       if (firstSectionCount<4){
-        setFormData((prev) => ({ ...prev, settings: { ...prev.settings, ["isPlot"]: false } }))
+        setFormData((prev) => ({ ...prev, settings: { ...prev.settings, isPlot: false } }))
       } else {
       const hasUnequalSubsections = Object.keys(formData.subsections).some((sub) => {
         const filesInSub = formData.subsections[sub]
@@ -482,13 +515,17 @@ export default function Pages() {
 
       if (hasUnequalSubsections) {
         console.log("has")
-        setFormData((prev) => ({ ...prev, settings: { ...prev.settings, ["isPlot"]: false } }))
+        setFormData((prev) => ({ ...prev, settings: { ...prev.settings, isPlot: false } }))
       }
     }
     } else if (formData.files.length < 4){
-      setFormData((prev) => ({ ...prev, settings: { ...prev.settings, ["isPlot"]: false } }))
+      console.log(formData.settings.isPlot)
+      setFormData((prev) => ({ ...prev, settings: { ...prev.settings, isPlot: false } }))
     }
+    
     try {
+      
+
       const payload = new FormData();
 
       payload.append("algorithm", formData.algorithm);
@@ -496,7 +533,7 @@ export default function Pages() {
       payload.append("multi", String(formData.multi));
 
 
-      if (formData.baseText) {
+      if (formData.baseText!=="" && formData.baseText) {
         payload.append("base_text", formData.baseText);
       }
 
@@ -555,12 +592,25 @@ export default function Pages() {
 
 
       try {
-        // Simply point an iframe or fetch directly from the plot endpoint
-        const plotEndpoint = `http://127.0.0.1:8000/api/plot/${jobId}`;
-        setPlotUrl(plotEndpoint);
+        const payload2 = new FormData();
+        payload2.append("plot_settings", JSON.stringify(formData.plotSettings))
+        const response2 = await fetch(`http://127.0.0.1:8000/api/plot/${jobId}`, {
+          method: "POST",
+          body: payload2,
+        });
+        if (!response2.ok) {
+        const errorData = await response2.json().catch(() => null);
+        throw new Error(errorData?.detail || `Plotting failed with status ${response2.status}`);
+      }
+        const htmlBlob = await response2.blob();
+        const tempUrl = URL.createObjectURL(htmlBlob);
+        setPlotUrl(tempUrl);
+        handleStepChange(currentStep + 1);
+    } catch (error) {
+      console.error("Failed to generate plot:", error);
       } finally {
         setIsProcessing(false);
-        handleStepChange(4)
+        
       }
     }
   };
@@ -569,6 +619,51 @@ export default function Pages() {
     window.location.href = `http://127.0.0.1:8000/api/sheet/${jobId}`;
   }
 
+  Font.register({
+      family: 'Cousine',
+      src: 'https://raw.githubusercontent.com/google/fonts/main/ofl/cousine/Cousine-Regular.ttf'
+  });
+
+  const tw = createTw({
+      fontFamily: {
+        mono: ["Cousine"]
+      }
+  });
+
+
+  const AlignmentsDoc = () => (
+    <Document>
+      <Page size="A4">
+        <View wrap style={tw("p-10")}>
+          <Text style={tw("text-lg text-center")}>Alignment Results</Text>
+        {results.output_logs.split("\n").map((line, index) => (
+          <Text key={index} style={tw("font-mono text-sm")}>
+            {line || " "}
+          </Text>
+        ))}
+      </View>
+        </Page>
+    </Document>
+  )
+ const plotRef = useRef(null);
+
+  const download3dPlot = () => {
+    if (!plotRef.current) {
+      console.log("no ref")
+      return
+    };
+    htmlToImage
+    .toPng(plotRef.current, {
+      cacheBust: true
+    }) 
+    .then((dataUrl)=>download(dataUrl, 'plot.png'));
+  }
+
+
+  
+
+ 
+ 
   const totalFilesCount = formData.multi
     ? Object.keys(formData.subsections).reduce(
       (acc, key) => acc + formData.subsections[key].length,
@@ -612,13 +707,21 @@ export default function Pages() {
               className={`${furthestStep >= 4 ? "cursor-pointer" : ""} ${currentStep >= 4 ? "text-cyan-600 font-bold" : ""
                 }`}
             >
+              Adjust Plot Settings
+            </button>
+            <button
+              type="button"
+              onClick={() => handleStepSkip(5)}
+              className={`${furthestStep >= 5 ? "cursor-pointer" : ""} ${currentStep >= 5 ? "text-cyan-600 font-bold" : ""
+                }`}
+            >
               View Plot
             </button>
           </div>
           <div className="w-full bg-gray-200 h-2 rounded-full overflow-hidden">
             <div
               className="bg-cyan-600 h-2 transition-all duration-300"
-              style={{ width: `${(currentStep / 4) * 100}%` }}
+              style={{ width: `${(currentStep / 5) * 100}%` }}
             ></div>
           </div>
         </div>
@@ -660,7 +763,7 @@ export default function Pages() {
               </div>
             )}
 
-            {/* SUBSECTION MULTI-FILE MODE */}
+            
             {/* SUBSECTION MULTI-FILE MODE */}
             {formData.multi === true && (
               <div className="flex flex-col gap-4 w-full h-[50dvh]">
@@ -748,7 +851,7 @@ export default function Pages() {
                           files={formData.subsections[sectionName] || []}
                           baseText={formData.baseText}
                           onDropFiles={(droppedFiles, targetSection) => {
-                            // Here targetSection is guaranteed to match the exact dropzone!
+                            
                             setFormData((prev) => ({
                               ...prev,
                               subsections: {
@@ -773,6 +876,7 @@ export default function Pages() {
                             handleFolderUpload(e);
                           }}
                           onDragStartFile={handleDragStart}
+                          onRemoveSubsection={removeSubsection}
                         />
                       ))
                     ) : (
@@ -833,13 +937,13 @@ export default function Pages() {
 
               {/* BASE TEXT INDICATOR */}
               <div className="text-[0.8rem] font-bold text-cyan-800 mb-3 overflow-wrap">
-                Base Text Prefix:{" "}
-                <input className="font-normal text-gray-800 rounded-md appearance-none bg-white outline-none p-1 shadow-md hover:shadow-lg focus:shadow-lg "
-                  type="text"
-                  value={formData.baseText != "" ? formData.baseText.name : "None"}
-                  onChange={(e)=>{setFormData((prev)=>({...prev, baseText:e.target.value}))}}
-                />
-              </div>
+                    Base Text Prefix:{" "}
+                    <input className="font-normal text-gray-800 rounded-md appearance-none bg-white outline-none p-1 shadow-md hover:shadow-lg focus:shadow-lg "
+                      type="text"
+                      value={formData.baseText != "" ? formData.baseText : "None"}
+                      onChange={(e)=>{setFormData((prev)=>({...prev, baseText:e.target.value}))}}
+                    />
+                  </div>
 
               {/* HIDDEN FOLDER INPUT */}
               <input
@@ -945,9 +1049,9 @@ export default function Pages() {
             </div>
           </div>
         )}
-
-        {/* Step Controls */}
-        <div className="flex flex-row justify-between items-center pt-2 border-t">
+        {formData.multi!==null && (
+        
+        <div className="flex flex-row justify-between items-center pt-2">
           <button
             onClick={() =>
               setFormData((prev) => ({ ...prev, multi: null }))
@@ -957,13 +1061,14 @@ export default function Pages() {
             Back
           </button>
           <button
-            disabled={totalFilesCount === 0}
+            disabled={totalFilesCount < 2}
             onClick={() => handleStepChange(2)}
             className="px-5 py-2 bg-cyan-600 text-white font-medium rounded-lg hover:bg-cyan-700 disabled:bg-gray-400 disabled:cursor-not-allowed transition"
           >
             Continue
           </button>
         </div>
+        )}
       </div>
         )}
       {/* select algorithm */}
@@ -1085,7 +1190,7 @@ export default function Pages() {
                             onChange={(e) =>
                               handleSettingChange(
                                 "mismatchPenalty",
-                                sNaN(e.target.valueAsNumber)? "" : -e.target.valueAsNumbermber,
+                                isNaN(e.target.valueAsNumber)? "" : -e.target.valueAsNumber,
                               )
                             }
                             className="block w-full pl-3 pr-10 py-2 text-[0.8rem] bg-white rounded-md shadow-sm appearance-none focus:outline-none focus:shadow-md text-gray-700/60 focus:text-gray-700 focus:shadow-gray-700/70 sm:text-[0.8rem] transition-colors"
@@ -1106,7 +1211,7 @@ export default function Pages() {
                                 onChange={(e) =>
                                   handleSettingChange(
                                     "affinePenalty",
-                                    sNaN(e.target.valueAsNumber)? "" : -e.target.valueAsNumber,
+                                    isNaN(e.target.valueAsNumber)? "" : -e.target.valueAsNumber,
                                   )
                                 }
                                 className="block w-full pl-3 pr-10 py-2 text-[0.8rem] bg-white rounded-md shadow-sm appearance-none focus:outline-none focus:shadow-md text-gray-700/60 focus:text-gray-700 focus:shadow-gray-700/70 sm:text-[0.8rem] transition-colors"
@@ -1300,12 +1405,18 @@ export default function Pages() {
               >
                 Back
               </button>
+                <PDFDownloadLink document={<AlignmentsDoc/>} fileName="alignments.pdf"
+                className="px-5 py-2 bg-sky-600 text-white font-medium rounded-lg hover:bg-sky-700">
+                {({ blob, url, loading, error }) =>
+            loading ? 'Generating Alignments File...' : 'Download Alignments'
+              }
+              </PDFDownloadLink>
               <button
-                onClick={handlePlot}
+                onClick={() => handleStepChange(4)}
                 disabled={isProcessing || formData.settings.isPlot == false}
-                className="px-5 py-2 bg-cyan-600 text-white font-medium rounded-lg hover:bg-cyan-700 disabled:opacity-50 transition"
+                className="px-5 py-2 bg-cyan-600 text-white font-medium rounded-lg hover:bg-cyan-700 disabled:bg-gray-400 disabled:cursor-not-allowed transition"
               >
-                {isProcessing ? "Processing..." : "Run t-SNE Algorithm"}
+                Continue
               </button>
             </div>
           </div>
@@ -1317,13 +1428,120 @@ export default function Pages() {
             {formData.algorithm == "ndw"
               ? "Needleman-Wunsch"
               : "Smith-Waterman"}{" "}
-            Plot
+            Plot Settings
           </h1>
-          <iframe
-            src={plotUrl}
-            className="w-full h-full border-none"
-            title="t-SNE Plot"
+          <div className="space-y-1 h-full flex  w-10/10 pt-5">
+            <div className="flex flex-row content-between">
+              <div className="flex flex-col content-center items-center gap-2 w-[25dvw]">
+                
+                <div className="flex flex-col gap-2 pt-2 w-full">
+                  {/* Label */}
+                  <label
+                    htmlFor="plotDimensions"
+                    className="block text-md font-medium text-gray-700 place-content-start"
+                  >
+                    Choose a Plot Format
+                  </label>
+
+          
+          <div className="relative ">
+            <select
+              id="plotDimensions"
+              className="block w-full pl-3 pr-10 py-2 text-[0.8rem] outline-none border-none  bg-white  rounded-md shadow-md appearance-none focus:outline-none focus:shadow-md text-gray-700/60 focus:text-gray-700 focus:shadow-gray-700/70
+              rounded-md   cursor-pointer transition-colors"
+              defaultValue={formData.plotSettings.plotType}
+              onChange={(e) =>{
+                
+              setFormData((prev) => ({
+                ...prev,
+                plotSettings: {
+                  ...prev.plotSettings,
+                  plotType: e.target.value,
+                },
+              }));}
+            }
+              
+            >
+              <option disabled value="" className="text-gray-400/20">
+                Select an Plot Type
+              </option>
+              <option value="3da" className="text-gray-800">
+                3D Interactive
+              </option>
+              <option value="3ds" className="text-gray-800">
+                3D Static
+              </option>
+              <option value="2d" className="text-gray-800">
+                2D
+              </option>
+            </select>
+
+            {/* Custom Dropdown Chevron Icon */}
+            <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-3 text-gray-500">
+              <svg
+                className="w-4 h-4"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M19 9l-7 7-7-7"
+                />
+              </svg>
+            </div>
+          </div>
+          <div className="flex justify-between items-center text-md  font-medium text-gray-700">
+            <label htmlFor="perplexity" className="pt-2">
+              Perplexity Value
+            </label>
+          </div>
+
+          <input
+            id="perplexity"
+            type="number"
+            value={formData.plotSettings.perplexity}
+            onChange={(e) => {
+              const val = e.target.valueAsNumber;
+              setFormData((prev) => ({
+                ...prev,
+                plotSettings: {
+                  ...prev.plotSettings,
+                  perplexity: Number.isNaN(val) ? "" : val,
+                },
+              }));
+              }}
+            className="block w-full pl-3 pr-10 py-2 text-[0.8rem] bg-white rounded-md shadow-sm appearance-none focus:outline-none focus:shadow-md text-gray-700/60 focus:text-gray-700 focus:shadow-gray-700/70 sm:text-[0.8rem] transition-colors"
           />
+
+          <div className="flex justify-between items-center text-md  font-medium text-gray-700">
+            <label htmlFor="theta" className="pt-2">
+              Theta Value
+            </label>
+          </div>
+
+          <input
+            id="theta"
+            type="number"
+            value={formData.plotSettings.theta}
+            onChange={(e) => {
+              const val = e.target.valueAsNumber;
+              setFormData((prev) => ({
+                ...prev,
+                plotSettings: {
+                  ...prev.plotSettings,
+                  theta: Number.isNaN(val) ? "" : val,
+                },
+              }));
+              }}
+            className="block w-full pl-3 pr-10 py-2 text-[0.8rem] bg-white rounded-md shadow-sm appearance-none focus:outline-none focus:shadow-md text-gray-700/60 focus:text-gray-700 focus:shadow-gray-700/70 sm:text-[0.8rem] transition-colors"
+          />
+          </div>
+          </div>
+          </div>
+          </div>
           <div className="w-full flex justify-between content-start flex-row">
             <button
               onClick={() => handleStepChange(3)}
@@ -1332,18 +1550,76 @@ export default function Pages() {
               Back
             </button>
             <button
-              onClick={handleDownload}
-              className="px-5 py-2 bg-green-600 text-white font-medium rounded-lg hover:bg-green-700"
-            >
-              Download Matrix as Spreadsheet
-            </button>
+                onClick={handlePlot}
+                disabled={isProcessing || (formData.settings.isPlot == false)}
+                className="px-5 py-2 bg-cyan-600 text-white font-medium rounded-lg hover:bg-cyan-700 disabled:opacity-50 transition"
+              >
+                {isProcessing ? "Processing..." : "Run t-SNE Algorithm"}
+              </button>
           </div>
         </div>
       )}
-    </div>
-    </div >
-  );
-}
+   
+        {currentStep === 5 && (
+          <div className="flex content-start h-full pt-10 flex-col justify-between pt-4">
+            <h1 className="text-4xl w-5/10 font-bold text-gray-700 pt-10 pb-2">
+              {formData.algorithm == "ndw"
+                ? "Needleman-Wunsch"
+                : "Smith-Waterman"}{" "}
+              Plot
+            </h1>
+            {formData.plotSettings.plotType.includes("3da") && (
+              <div  className="w-full h-full">
+         
+            <iframe
+              ref={plotRef} 
+              src={plotUrl}
+              className="w-full h-full border-none"
+              title="t-SNE Plot"
+            />
+            </div>
+            )}
+              {(formData.plotSettings.plotType.includes("3ds")||formData.plotSettings.plotType.includes("2d")) && (
+              <div  className=" flex content-center w-full justify-center ">
+            <img
+              src={plotUrl}
+              className=" w-4/10 object-contain"
+              title="t-SNE Plot"
+            />
+            </div>
+            )}
+            <div className="w-full flex justify-between content-start flex-row">
+              <button
+                onClick={() => handleStepChange(4)}
+                className="px-5 py-2 border border-gray-300 text-gray-700 font-medium rounded-lg w-max hover:bg-gray-50 transition"
+              >
+                Back
+              </button>
+              {(formData.plotSettings.plotType.includes("3ds")||formData.plotSettings.plotType.includes("2d")) && (
+              <a href={plotUrl} download="plot.png" className="px-5 py-2 bg-sky-600 text-white font-medium rounded-lg hover:bg-sky-700">
+                Download Plot as Image
+              </a>)}
+              {formData.plotSettings.plotType.includes("3da") && (
+                <button
+                onClick={download3dPlot}
+                className="px-5 py-2 bg-sky-600 text-white font-medium rounded-lg hover:bg-sky-700"
+              >
+                Download Plot as Image
+              </button>
+              )}
+              <button
+                onClick={handleDownload}
+                className="px-5 py-2 bg-green-600 text-white font-medium rounded-lg hover:bg-green-700"
+              >
+                Download Matrix as Spreadsheet
+              </button>
+            </div>
+          </div>
+        )}
+      </div>
+      </div >
+    );
+  }
 
 // "use client";
 

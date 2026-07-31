@@ -27,10 +27,14 @@ Steps before first deployment:
 
 
 -[x] let users define name of base text
--[] select t-sne settings screen
+-[x] select t-sne settings screen
 -[x] be able to drag into either subsection
--[] download alignments
--[] download t-SNE as png
--[] color the plot? add options to do 3D static, 3D moveable, 2D and download all of them
+-[x] download alignments
+-[] download moveable t-SNE as png
+    -[] make it not download the graph twice in one image
+-[] color the plot? 
+-[x] add options to do 3D static, 3D moveable, 2D 
+-[x] download static images
 -[] download reports with manuscripts, what algorithms you used, what settings you used, date/time, you downloaded these files and here are the original file names
 -[x] fix # having a 0 before it
+-[] fix efficiency/recalculation problems!!
