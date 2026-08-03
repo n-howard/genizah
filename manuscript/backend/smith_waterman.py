@@ -150,6 +150,7 @@ def run_sw(temp_dir, settings: AlgorithmSettings, base_text_pattern, is_plot, re
     base_directory = os.path.join(cwd, "Alignment Data0")
 
     scores_table = {}
+    seen_files = [d.get("BaseText") for d in records if (base_text_pattern in d.get("TargetFile") and ("BaseText" in d) and ("TargetFile" in d))]
     # joins the current working directory and the subfile which we want to read under the object 'basedirectory'
     with os.scandir(base_directory) as folders:
         folders = [folder for folder in folders if folder.is_dir()]
@@ -174,7 +175,9 @@ def run_sw(temp_dir, settings: AlgorithmSettings, base_text_pattern, is_plot, re
                 # tells the computer to join the base text to the text directory and read them together.
                 base_text_contents = open(basetextfilepath, encoding='utf-8').read()
                 # tells the computer to read the files within the directory in utf-8 encoding.
-                texts = [text for text in texts if base_text_pattern not in text.name]
+                filter_func = lambda s: base_text_pattern not in s.name and not any(x in s.name for x in seen_files)
+                texts = filter(filter_func, texts)
+                # texts = [text for text in texts if base_text_pattern not in text.name]
                 # tells the computer to iterate through all the files in the folder where the name does not have 'JTS'
                 for text in texts:
                     # call the entire algorithm within this loop
@@ -190,22 +193,25 @@ def run_sw(temp_dir, settings: AlgorithmSettings, base_text_pattern, is_plot, re
                     print(score)
                     weighted_score = score / len(aligned_seq1)
                     print(weighted_score)
-                    if is_plot:
-                        if len(folders)>1:
-                            records.append({
-                                "BaseText": base_text_pattern,
-                                "TargetFile": text.name,
-                                "Score": weighted_score
-                            })
-                        else:
-                            # update this to work with user-inputted pattern
-                            records.append({
-                                "BaseText": base_text_pattern,
-                                "TargetFile": text.name.split("_")[0],
-                                "Score": weighted_score
-                            })
-    if is_plot:
-        return records
+                    
+                    if len(folders)>1:
+                        records.append({
+                            "BaseText": base_text_pattern,
+                            "TargetFile": text.name,
+                            "Score": weighted_score,
+                            "OrigScore": score,
+                            "TextNamePair": (base_text.name, text.name)
+                        })
+                    else:
+                        records.append({
+                            "BaseText": base_text_pattern,
+                            "TargetFile": text.name.split("_-")[0],
+                            "Score": weighted_score,
+                            "OrigScore": score,
+                            "TextNamePair": (base_text.name, text.name)
+                        })
+    
+    return records
 
 def compare_two_sw(root_dir, base_text, text, settings):
     base_text_contents = open(base_text, encoding='utf-8').read()

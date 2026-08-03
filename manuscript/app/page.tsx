@@ -10,11 +10,12 @@ import {
   FolderOpen,
 } from "lucide-react";
 import { useDropzone } from "react-dropzone";
-import { Page, Text, View, Document, StyleSheet, Font, PDFDownloadLink } from '@react-pdf/renderer';
+import { Page, Text, View, Document, StyleSheet, Font, PDFDownloadLink, usePDF } from '@react-pdf/renderer';
 import ReactPDF from '@react-pdf/renderer'
 import { createTw } from "react-pdf-tailwind";
 import puppeteer from "puppeteer";
 import * as htmlToImage from "html-to-image"
+import {Switch} from "@heroui/react";
 
 const download = require("downloadjs");
 
@@ -182,6 +183,8 @@ export default function Pages() {
       perplexity: 1,
       plotType: "",
       theta: 0.5,
+      colors: "black",
+      colorText: false
     },
 
   })
@@ -615,8 +618,11 @@ export default function Pages() {
     }
   };
 
+  const [downloadedFiles, setDownloadedFiles] = useState([])
+
   const handleDownload = async () => {
     window.location.href = `http://127.0.0.1:8000/api/sheet/${jobId}`;
+    setDownloadedFiles((prev)=>([...prev, "alignment_matrix.xlsx"]))
   }
 
   Font.register({
@@ -645,22 +651,131 @@ export default function Pages() {
         </Page>
     </Document>
   )
+
+  const Report = ({date}) => (
+      <Document>
+        <Page size="A4">
+          <View wrap style={tw("p-10")}>
+            <Text style={tw("text-md text-end")}>Downloaded on {date}</Text>
+            <Text style={tw("text-xl font-bold text-center")}>Summary Report</Text>
+            <Text style={tw("text-lg")}>Files You Uploaded:</Text>
+            {formData.multi==true && (
+            Object.keys(formData.subsections).map((key)=>(
+                <Text key={key} style={tw("text-md")}>
+  
+                  <pre>
+                  Subsection: {key}
+                    Files:
+                  
+                {formData.subsections[key].map((f)=>(
+                  <Text key={f.name} style={tw("text-sm")}>
+                      f.name
+                  </Text>
+                ))}
+                </pre>
+                </Text>
+                ))
+
+              
+            )}
+            {formData.multi==false && (
+              formData.files.map((f)=>(
+                <Text key={f.name} style={tw("text-sm")}>
+                  f.name
+                </Text>
+              ))
+          
+            )}
+          <Text style={tw("text-lg")}>Files You Downloaded:</Text>
+          <Text style={tw("text-sm")}>
+          {downloadedFiles.length==0 ? 
+          <Text style={tw("text-md")}>"None"</Text> : (
+            downloadedFiles.map((fi)=> (
+              fi
+            ))
+          )
+          }
+          </Text>
+          <Text style={tw("text-lg")}>Algorithm Settings</Text>
+          <Text style={tw("text-md")}>
+            Algorithm: {formData.algorithm == "ndw" ? "Needleman-Wunsch" : "Smith-Waterman"}
+          </Text>
+          <Text style={tw("text-sm")}>
+            Match Bonus: {formData.settings.matchBonus=="" ? 0 : formData.settings.matchBonus} <br/>
+            Gap Penalty: {formData.settings.gapPenalty=="" ? 0 : formData.settings.gapPenalty} <br/>
+            Mismatch Penalty: {formData.settings.mismatchPenalty=="" ? 0 : formData.settings.mismatchPenalty} <br/>
+            {formData.algorithm=="ndw" ? `Affine Penalty: ${formData.settings.affinePenalty=="" ? 0 : formData.settings.affinePenalty}${<br/>}` : ""}
+            Special Characters: {formData.settings.special.length==0 ? "None" : 
+              (formData.settings.specialOther == false ? 
+                (formData.settings.special.join(",")==="ך,ם,ן,ף,ץ" ? `Sofit Letters: ${formData.settings.special}` : `Capital Letters (Latin Alphabet): ${formData.settings.special}`)
+              : `Other: ${formData.settings.special}`)} 
+            {formData.settings.special.length==0 ? `${<br/>} Special Character Match Bonus: ${formData.settings.specialBonus=="" ? 0 : formData.settings.specialBonus}` : ""}
+          </Text>
+          <Text style={tw("text-lg")}>Resulting Scores</Text>
+          {results.records.map((item, index) => (
+            <Text key={`${index}-title`} style={tw("text-md")}>
+              {item.TextNamePair[0].name} & {item.TextNamePair[1].name}:
+              <Text key={`${index}-scores`} style={tw("text-sm")}>
+              Score: {item.OrigScore} | Average Score: {item.Score}
+              </Text>
+            </Text>
+          ))}
+        </View>
+      </Page>
+    </Document>
+  );
+  const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+
+  
+  const getDate = () => {
+    const d = new Date();
+    const date = (`${d.getDate()} ${months[d.getMonth()]} ${d.getFullYear()} at ${d.getHours()}:${d.getMinutes()}:${d.getSeconds()}`)
+    return date;
+  }
+
+  const [instance, updateInstance] = usePDF({document: <Report date={getDate}/>})
+
+  const generateReport = async () => {
+    updateInstance(<Report date={getDate}/>);
+    if (instance.url) {
+      const link = document.createElement("a");
+      link.href = instance.url;
+      link.download = "report.pdf";
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    }
+    
+  }
+
  const plotRef = useRef(null);
 
   const download3dPlot = () => {
-    if (!plotRef.current) {
-      console.log("no ref")
-      return
-    };
-    htmlToImage
-    .toPng(plotRef.current, {
-      cacheBust: true
-    }) 
-    .then((dataUrl)=>download(dataUrl, 'plot.png'));
+    // 1. Target the iframe's document
+    const iframeDoc = plotRef.current?.contentDocument || plotRef.current?.contentWindow?.document;
+    if (!iframeDoc) return;
+
+    // 2. Find the WebGL canvas inside the iframe
+    const canvas = iframeDoc.querySelector('canvas') as HTMLCanvasElement;
+
+    if (canvas) {
+      // 3. Extract the image directly from WebGL
+      const dataUrl = canvas.toDataURL('image/png');
+      download(dataUrl, 'positioned_3D_plot.png');
+      setDownloadedFiles((prev)=>([...prev, "positioned_3D_plot.png"]))
+    } else {
+      console.warn('Canvas element not found inside iframe');
+    }
   }
 
 
-  
+  const handleColorText = () => {
+    if (formData.plotSettings.colorText==true){
+      setFormData((prev)=>({...prev, plotSettings:{...prev.plotSettings, colorText:false}}))
+    } else {
+      setFormData((prev)=>({...prev, plotSettings:{...prev.plotSettings, colorText:true}}))
+    }
+  }
 
  
  
@@ -717,11 +832,19 @@ export default function Pages() {
             >
               View Plot
             </button>
+            <button
+              type="button"
+              onClick={() => handleStepSkip(6)}
+              className={`${furthestStep >= 6 ? "cursor-pointer" : ""} ${currentStep >= 6 ? "text-cyan-600 font-bold" : ""
+                }`}
+            >
+              Report
+            </button>
           </div>
           <div className="w-full bg-gray-200 h-2 rounded-full overflow-hidden">
             <div
               className="bg-cyan-600 h-2 transition-all duration-300"
-              style={{ width: `${(currentStep / 5) * 100}%` }}
+              style={{ width: `${(currentStep / 6) * 100}%` }}
             ></div>
           </div>
         </div>
@@ -1538,6 +1661,133 @@ export default function Pages() {
               }}
             className="block w-full pl-3 pr-10 py-2 text-[0.8rem] bg-white rounded-md shadow-sm appearance-none focus:outline-none focus:shadow-md text-gray-700/60 focus:text-gray-700 focus:shadow-gray-700/70 sm:text-[0.8rem] transition-colors"
           />
+          {formData.plotSettings.plotType=="2d" && (
+            <div>
+          <label
+                    htmlFor="plotDimensions"
+                    className="block text-md font-medium text-gray-700 place-content-start"
+                  >
+                    Optional Plot Color Settings
+                  </label>
+          <div className="relative ">
+            <select
+              id="colors"
+              className="block w-full pl-3 pr-10 py-2 text-[0.8rem] outline-none border-none  bg-white  rounded-md shadow-md appearance-none focus:outline-none focus:shadow-md text-gray-700/60 focus:text-gray-700 focus:shadow-gray-700/70
+              rounded-md   cursor-pointer transition-colors"
+              defaultValue={formData.plotSettings.colors}
+              onChange={(e) =>{
+                
+              setFormData((prev) => ({
+                ...prev,
+                plotSettings: {
+                  ...prev.plotSettings,
+                  colors: e.target.value,
+                },
+              }));}
+            }
+              
+            >
+              
+              <option value="black" className="text-gray-800">
+                Black (Default)
+              </option>
+              <option value="base" className="text-gray-800">
+                By Base Text
+              </option>
+              <option value="grouping" className="text-gray-800">
+                By Group
+              </option>
+            </select>
+
+            {/* Custom Dropdown Chevron Icon */}
+            <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-3 text-gray-500">
+              <svg
+                className="w-4 h-4"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M19 9l-7 7-7-7"
+                />
+              </svg>
+            </div>
+            
+          </div>
+          </div>
+        )}
+        {formData.plotSettings.plotType.includes("3d") && (
+            <div>
+          <label
+                    htmlFor="plotDimensions"
+                    className="block text-md font-medium text-gray-700 place-content-start"
+                  >
+                    Optional Plot Color Settings
+                  </label>
+          <div className="relative ">
+            <select
+              id="colors"
+              className="block w-full pl-3 pr-10 py-2 text-[0.8rem] outline-none border-none  bg-white  rounded-md shadow-md appearance-none focus:outline-none focus:shadow-md text-gray-700/60 focus:text-gray-700 focus:shadow-gray-700/70
+              rounded-md   cursor-pointer transition-colors"
+              defaultValue={formData.plotSettings.colors}
+              onChange={(e) =>{
+                
+              setFormData((prev) => ({
+                ...prev,
+                plotSettings: {
+                  ...prev.plotSettings,
+                  colors: e.target.value,
+                },
+              }));}
+            }
+              
+            >
+              
+              <option value="black" className="text-gray-800">
+                Black (Default)
+              </option>
+              <option value="base" className="text-gray-800">
+                By Base Text
+              </option>
+            </select>
+
+            {/* Custom Dropdown Chevron Icon */}
+            <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-3 text-gray-500">
+              <svg
+                className="w-4 h-4"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M19 9l-7 7-7-7"
+                />
+              </svg>
+            </div>
+            
+          </div>
+          </div>
+        )}
+        {formData.plotSettings.plotType!=="" && (
+          <div className="flex flex-row gap-3 content-center items-center text-md pt-2 font-medium text-gray-700">
+            <input type="checkbox" value={formData.plotSettings.colorText} onChange={handleColorText} className={`rounded-full  accent-cyan-500 text-white border-1 border-none shadow-sm shadow-gray-700/70 hover:shadow-md outline-none w-4 h-4 appearance-none 
+              ${formData.plotSettings.colorText ? "bg-cyan-700 inset-shadow-xs inset-shadow-cyan-200" : "bg-white"}`}/>
+            <label className="">
+            <div className="">
+            
+              Match Label Color to Data Point Color
+            </div>
+          
+          
+          </label>
+          </div>
+        )}
           </div>
           </div>
           </div>
@@ -1595,8 +1845,14 @@ export default function Pages() {
               >
                 Back
               </button>
-              {(formData.plotSettings.plotType.includes("3ds")||formData.plotSettings.plotType.includes("2d")) && (
-              <a href={plotUrl} download="plot.png" className="px-5 py-2 bg-sky-600 text-white font-medium rounded-lg hover:bg-sky-700">
+              {(formData.plotSettings.plotType.includes("2d")) && (
+              <a href={plotUrl} download="2D_plot.png" onClick={()=>(setDownloadedFiles((prev)=>([...prev, "2D_plot.png"])))} 
+              className="px-5 py-2 bg-sky-600 text-white font-medium rounded-lg hover:bg-sky-700">
+                Download Plot as Image
+              </a>)}
+               {(formData.plotSettings.plotType.includes("3ds")) && (
+              <a href={plotUrl} download="static_3D_plot.png" onClick={()=>(setDownloadedFiles((prev)=>([...prev, "static_3D_plot.png"])))} 
+              className="px-5 py-2 bg-sky-600 text-white font-medium rounded-lg hover:bg-sky-700">
                 Download Plot as Image
               </a>)}
               {formData.plotSettings.plotType.includes("3da") && (
@@ -1615,6 +1871,11 @@ export default function Pages() {
               </button>
             </div>
           </div>
+        )} {currentStep===6 && (
+          <button onClick={()=>(generateReport)} 
+              className="px-5 py-2 bg-sky-600 text-white font-medium rounded-lg hover:bg-cyan-700">
+                Download Report
+              </button>
         )}
       </div>
       </div >

@@ -47,3 +47,8 @@ backend/*.xlsx
 backend/*.pdf
 backend/.~lock*
 backend/testDir
+backend/t-SNEcopy.R
+backend/.R*
+*.png
+
+backend/__pycache__/*

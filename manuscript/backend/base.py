@@ -38,11 +38,15 @@ class PlotSettings:
     plot_type: str
     perplexity: float
     theta: float
+    colors: str
+    color_text: bool
 
     @classmethod
     def from_dict(cls, data:dict) -> "PlotSettings":
         return cls(
             plot_type=str(data.get("plotType", "3da")),
             perplexity=clean(data.get("perplexity", 1)),
-            theta=clean(data.get("theta", 0.5))
+            theta=clean(data.get("theta", 0.5)),
+            colors = str(data.get("colors", "black")),
+            color_text = bool(data.get("colorText", False))
         )

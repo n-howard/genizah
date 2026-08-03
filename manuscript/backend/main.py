@@ -175,7 +175,7 @@ def process_data(
         base_text = files[0]
         
         
-        clean_base_text = Path(base_text.filename).name.split("_")[0]
+        clean_base_text = Path(base_text.filename).name.split("_-")[0]
         
         base_text = clean_base_text
     base_text_pattern = base_text
@@ -203,7 +203,7 @@ def process_data(
         
         if is_multi and subsections_metadata:
             subsections_info = json.loads(subsections_metadata)
-            length0 = len(subsections_info[0].values[0])
+            length0 = len(list(subsections_info[0].values())[0])
             for sub_obj in subsections_info:
                 for section_name, filenames in sub_obj.items():
                     valid_files = [fname for fname in filenames if Path(fname).name in file_bytes_map]
@@ -249,92 +249,78 @@ def process_data(
             print("Running algorithm")
             records = []
 
-            if is_plot:
+           
 
-                if "ndw" in algorithm:
-                    
-                    
-                    # Redirect print() outputs into string buffer
-                    with contextlib.redirect_stdout(buffer):
-                        records = records + run_nw(root_dir, settings, base_text_pattern, is_plot, records)
-                        
-                    
-                elif "sw" in algorithm:
-                    # Redirect print() outputs into string buffer
-                    with contextlib.redirect_stdout(buffer):
-                        records = records + run_sw(root_dir, settings, base_text_pattern, is_plot, records)
-            else:
-                print("Else", is_plot)
-                if "ndw" in algorithm:
-                                    
-                                    
+            if "ndw" in algorithm:
+                
+                
                 # Redirect print() outputs into string buffer
-                    with contextlib.redirect_stdout(buffer):
-                        data = run_nw(root_dir, settings, base_text_pattern, is_plot)
+                with contextlib.redirect_stdout(buffer):
+                    records = records + run_nw(root_dir, settings, base_text_pattern, is_plot, records)
                     
                 
-                elif "sw" in algorithm:
-                    # Redirect print() outputs into string buffer
-                    with contextlib.redirect_stdout(buffer):
-                        data = run_sw(root_dir, settings, base_text_pattern, is_plot, records)
+            elif "sw" in algorithm:
+                # Redirect print() outputs into string buffer
+                with contextlib.redirect_stdout(buffer):
+                    records = records + run_sw(root_dir, settings, base_text_pattern, is_plot, records)
+           
             if is_plot:
                 # fix this to be customizable
                 base_texts = set([Path(f.filename).name.split("_")[0] for f in files]) if files else set()
                 print("BaseText Prefixes:",base_texts)
                 df = None
-                if multi:
-                    print("Creating matrix")
-                    
-                    base_texts = [bt for bt in base_texts if bt!=base_text_pattern ] 
+                print("Creating matrix")
+                
+                base_texts = [bt for bt in base_texts if bt!=base_text_pattern ] 
 
-                    for bt in base_texts:
-                        if "ndw" in algorithm:
-                            records = records + run_nw(root_dir, settings, bt, True, records)
-                        else:
-                            records = records + run_sw(root_dir, settings, bt, True, records)
+                for bt in base_texts:
+                    if "ndw" in algorithm:
+                        records = records + run_nw(root_dir, settings, bt, True, records)
+                    else:
+                        records = records + run_sw(root_dir, settings, bt, True, records)
 
+                filtered_records = [{key: value for key, value in dict.items() if (key!="OrigScore"and key!="TextNamePair")} for dict in records]
+                orig_df = pd.DataFrame(filtered_records)
+                df=orig_df.pivot_table(
+                    index="BaseText",
+                    columns="TargetFile",
+                    values="Score"
+                )
+                df = df.fillna(1)
+        
                     
-                    orig_df = pd.DataFrame(records)
-                    df=orig_df.pivot_table(
-                        index="BaseText",
-                        columns="TargetFile",
-                        values="Score"
-                    )
-                    df = df.fillna(1)
-                    
-                    
-                else:
-                    print("Creating matrix")
-                    n = len(base_texts)
-                    df = pd.DataFrame(
-                    np.ones((n, n)), 
-                        index=base_texts, 
-                        columns=base_texts,
+                # else:
+                #     print("Creating matrix")
+                #     n = len(base_texts)
+                #     df = pd.DataFrame(
+                #     np.ones((n, n)), 
+                #         index=base_texts, 
+                #         columns=base_texts,
                         
-                    )
-                    for i in range(n):
-                        seq1 = file_names_clean[i]
+                #     )
+                #     for i in range(n):
+                #         seq1 = file_names_clean[i]
                     
                         
                         
-                        df.loc[seq1, seq1] = 1  
+                #         df.loc[seq1, seq1] = 1  
 
-                        for j in range(i + 1, n):
-                            seq2 = file_names_clean[j]
+                #         for j in range(i + 1, n):
+                #             seq2 = file_names_clean[j]
                             
-                            # Compute alignment only ONCE for (seq1, seq2)
-                            if "ndw" in algorithm:
-                                score = compare_two_nw(root_dir, file_names[seq1], file_names[seq2], settings)
-                            elif "sw" in algorithm:
-                                score = compare_two_sw(root_dir, file_names[seq1], file_names[seq2], settings )
-                            # Mirror the result: (seq1, seq2) == (seq2, seq1)
-                            df.loc[seq1, seq2] = score
-                            df.loc[seq2, seq1] = score
+                #             # Compute alignment only ONCE for (seq1, seq2)
+                #             if "ndw" in algorithm:
+                #                 score = compare_two_nw(root_dir, file_names[seq1], file_names[seq2], settings)
+                #             elif "sw" in algorithm:
+                #                 score = compare_two_sw(root_dir, file_names[seq1], file_names[seq2], settings )
+                #             # Mirror the result: (seq1, seq2) == (seq2, seq1)
+                #             df.loc[seq1, seq2] = score
+                #             df.loc[seq2, seq1] = score
                 
             
                 
                 def get_suffix_sort_key(col_name):
-                    parts = col_name.rsplit('_', 1)
+                    parts = col_name.rsplit('_-', 1)
                     if len(parts) == 2:
                         folder_suffix, filename = parts[1], parts[0]
                         return (folder_suffix, filename) 
@@ -356,6 +342,7 @@ def process_data(
             "algorithm": algorithm,
             "output_logs": captured_logs,
             "job_id": job_id,
+            "records": records
         }
 
       
@@ -385,7 +372,7 @@ def generate_plot(job_id: str, plot_settings: str = Form(...)):
     try:
         # Run R script directly on the cached CSV
         subprocess.run(
-            [ "Rscript", "t-SNE.R", str(excel_path), str(output_html_path), str(plot_settings.perplexity), str(plot_settings.theta), str(plot_settings.plot_type), str(output_image_path)],
+            [ "Rscript", "t-SNE.R", str(excel_path), str(output_html_path), str(plot_settings.perplexity), str(plot_settings.theta), str(plot_settings.plot_type), str(output_image_path), str(plot_settings.colors), str(plot_settings.color_text)],
             check=True,
             capture_output=True,
             stdout=None,

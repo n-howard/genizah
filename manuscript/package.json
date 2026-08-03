@@ -9,6 +9,8 @@
     "lint": "eslint"
   },
   "dependencies": {
+    "@heroui/react": "^3.2.3",
+    "@heroui/styles": "^3.2.3",
     "@react-pdf/renderer": "^4.5.1",
     "dev-tools": "^0.1.6",
     "downloadjs": "^1.4.7",
@@ -21,6 +23,7 @@
     "react-dropzone": "^19.1.1",
     "react-pdf-tailwind": "^3.0.0",
     "uuid": "^14.0.1",
+    "vercel": "^58.4.4",
     "zod": "^4.4.3"
   },
   "devDependencies": {
