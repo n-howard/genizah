@@ -1799,7 +1799,7 @@ export default function Pages() {
         )}
         {formData.plotSettings.plotType!=="" && (
           <div className="flex flex-row gap-3 content-center items-center text-md pt-2 font-medium text-gray-700">
-            <input type="checkbox" value={formData.plotSettings.colorText} onChange={handleColorText} className={`rounded-full  accent-cyan-500 text-white border-1 border-none shadow-sm shadow-gray-700/70 hover:shadow-md outline-none w-4 h-4 appearance-none 
+            <input type="checkbox" checked={formData.plotSettings.colorText} onChange={handleColorText} className={`rounded-full  accent-cyan-500 text-white border-1 border-none shadow-sm shadow-gray-700/70 hover:shadow-md outline-none w-4 h-4 appearance-none 
               ${formData.plotSettings.colorText ? "bg-cyan-700 inset-shadow-xs inset-shadow-cyan-200" : "bg-white"}`}/>
             <label className="">
             <div className="">
