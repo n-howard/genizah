@@ -28,33 +28,34 @@ from smith_waterman import compare_two_sw
 app = FastAPI()
 
 # Directory to hold temporary matrix caches
-CACHE_DIR = Path(tempfile.gettempdir()) / "alignment_cache"
-CACHE_DIR.mkdir(exist_ok=True)
-app = FastAPI()
+# CACHE_DIR = Path(tempfile.gettempdir()) / "alignment_cache"
+# CACHE_DIR.mkdir(exist_ok=True)
+# app = FastAPI()
 
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=["*"],
-    allow_credentials=False,
-    allow_methods=["*"],
-    allow_headers=["*"],
-)
+# app.add_middleware(
+#     CORSMiddleware,
+#     allow_origins=["*"],
+#     allow_credentials=False,
+#     allow_methods=["*"],
+#     allow_headers=["*"],
+# )
 
 
-@app.post("/api/process")
-def process_data(
-    algorithm: str = Form(...),
-    settings: str = Form(...),
-    multi: Optional[str] = Form("false"),
-    files: List[UploadFile] = File(None),
-    base_text: Optional[str] = Form(None),
-    subsections_metadata: Optional[str] = Form(None)
-):
+# @app.post("/api/process")
+# def process_data(
+#     algorithm: str = Form(...),
+#     settings: str = Form(...),
+#     multi: Optional[str] = Form("false"),
+#     files: List[UploadFile] = File(None),
+#     base_text: Optional[str] = Form(None),
+#     subsections_metadata: Optional[str] = Form(None)
+# ):
+def run_in_browser_process(algorithm, settings, file_dir, base_text, multi)
     try:
         raw_settings = json.loads(settings)
     except Exception:
         raise HTTPException(status_code=400, detail="Invalid settings JSON format.")
-    settings = AlgorithmSettings.from_dict(raw_settings)
+    # settings = AlgorithmSettings.from_dict(raw_settings)
     is_plot = True
     job_id = str(uuid.uuid4())
     is_multi = multi.lower() == "true"
@@ -71,53 +72,53 @@ def process_data(
     if "ndw" not in algorithm and "sw" not in algorithm:
         algorithm = "ndw"
 
-    with tempfile.TemporaryDirectory() as temp_dir:
-        root_dir = Path(temp_dir)
-        files_folder = root_dir / "Alignment Data0"
-        files_folder.mkdir(parents=True, exist_ok=True)
+    # with tempfile.TemporaryDirectory() as temp_dir:
+    #     root_dir = Path(temp_dir)
+    #     files_folder = root_dir / "Alignment Data0"
+    #     files_folder.mkdir(parents=True, exist_ok=True)
 
-        file_bytes_map: Dict[str, bytes] = {}
-        if files:
-            for f in files:
-                f.file.seek(0)
-                clean_name = Path(f.filename).name
-                file_bytes_map[clean_name] = f.file.read()
+    #     file_bytes_map: Dict[str, bytes] = {}
+    #     if files:
+    #         for f in files:
+    #             f.file.seek(0)
+    #             clean_name = Path(f.filename).name
+    #             file_bytes_map[clean_name] = f.file.read()
 
-        file_names_clean = file_bytes_map.keys()
-        file_names = {}
-        if len(file_names_clean)<4:
-            is_plot = False
-        # 2. Write files to temporary subdirectories using fresh bytes
+    #     file_names_clean = file_bytes_map.keys()
+    #     file_names = {}
+    #     if len(file_names_clean)<4:
+    #         is_plot = False
+    #     # 2. Write files to temporary subdirectories using fresh bytes
         
-        if is_multi and subsections_metadata:
-            subsections_info = json.loads(subsections_metadata)
-            length0 = len(list(subsections_info[0].values())[0])
-            for sub_obj in subsections_info:
-                for section_name, filenames in sub_obj.items():
-                    valid_files = [fname for fname in filenames if Path(fname).name in file_bytes_map]
-                    if len(filenames)!=length0:
-                        is_plot=False
-                    # Skip creating this directory if no valid files exist for this section
-                    if not valid_files:
-                        continue
-                    subfolder = files_folder / section_name
-                    subfolder.mkdir(parents=True, exist_ok=True)
+    #     if is_multi and subsections_metadata:
+    #         subsections_info = json.loads(subsections_metadata)
+    #         length0 = len(list(subsections_info[0].values())[0])
+    #         for sub_obj in subsections_info:
+    #             for section_name, filenames in sub_obj.items():
+    #                 valid_files = [fname for fname in filenames if Path(fname).name in file_bytes_map]
+    #                 if len(filenames)!=length0:
+    #                     is_plot=False
+    #                 # Skip creating this directory if no valid files exist for this section
+    #                 if not valid_files:
+    #                     continue
+    #                 subfolder = files_folder / section_name
+    #                 subfolder.mkdir(parents=True, exist_ok=True)
 
-                    for fname in filenames:
-                        clean_fname = Path(fname).name
-                        if clean_fname in file_bytes_map:
-                            file_path = subfolder / clean_fname
-                            # Open a fresh file for writing each time
-                            with open(file_path, "wb") as out_file:
-                                out_file.write(file_bytes_map[clean_fname])
-        else:
-            subfolder = files_folder / "transcriptions"
-            subfolder.mkdir(parents=True, exist_ok=True)
-            for clean_name, content in file_bytes_map.items():
-                file_path = subfolder / clean_name
-                file_names[clean_name] = file_path
-                with open(file_path, "wb") as out_file:
-                    out_file.write(content)
+    #                 for fname in filenames:
+    #                     clean_fname = Path(fname).name
+    #                     if clean_fname in file_bytes_map:
+    #                         file_path = subfolder / clean_fname
+    #                         # Open a fresh file for writing each time
+    #                         with open(file_path, "wb") as out_file:
+    #                             out_file.write(file_bytes_map[clean_fname])
+    #     else:
+    #         subfolder = files_folder / "transcriptions"
+    #         subfolder.mkdir(parents=True, exist_ok=True)
+    #         for clean_name, content in file_bytes_map.items():
+    #             file_path = subfolder / clean_name
+    #             file_names[clean_name] = file_path
+    #             with open(file_path, "wb") as out_file:
+    #                 out_file.write(content)
                 
                     
         
@@ -128,8 +129,6 @@ def process_data(
       
       
             
-       
-        df = None
         
         
         try:
@@ -167,14 +166,14 @@ def process_data(
                     else:
                         records = records + run_sw(root_dir, settings, bt, True, records)
 
-                filtered_records = [{key: value for key, value in dict.items() if (key!="OrigScore"and key!="TextNamePair")} for dict in records]
-                orig_df = pd.DataFrame(filtered_records)
-                df=orig_df.pivot_table(
-                    index="BaseText",
-                    columns="TargetFile",
-                    values="Score"
-                )
-                df = df.fillna(1)
+                # filtered_records = [{key: value for key, value in dict.items() if (key!="OrigScore"and key!="TextNamePair")} for dict in records]
+                # orig_df = pd.DataFrame(filtered_records)
+                # df=orig_df.pivot_table(
+                #     index="BaseText",
+                #     columns="TargetFile",
+                #     values="Score"
+                # )
+                # df = df.fillna(1)
         
                     
                 # else:
@@ -207,16 +206,16 @@ def process_data(
                 
             
                 
-                def get_suffix_sort_key(col_name):
-                    parts = col_name.rsplit('_', 1)
-                    if len(parts) == 2:
-                        folder_suffix, filename = parts[1], parts[0]
-                        return (folder_suffix, filename) 
-                    return ('', col_name)
-                if multi:
-                    sorted_columns = sorted(df.columns, key=get_suffix_sort_key)
-                    df = df[sorted_columns]
-                df.to_excel(CACHE_DIR / f"{job_id}.xlsx", index=True, index_label="BaseText")
+                # def get_suffix_sort_key(col_name):
+                #     parts = col_name.rsplit('_', 1)
+                #     if len(parts) == 2:
+                #         folder_suffix, filename = parts[1], parts[0]
+                #         return (folder_suffix, filename) 
+                #     return ('', col_name)
+                # if multi:
+                #     sorted_columns = sorted(df.columns, key=get_suffix_sort_key)
+                #     df = df[sorted_columns]
+                # df.to_excel(CACHE_DIR / f"{job_id}.xlsx", index=True, index_label="BaseText")
                 # this is temp/needs to be a user choice
                 
                     
@@ -229,13 +228,25 @@ def process_data(
             "status": "success",
             "algorithm": algorithm,
             "output_logs": captured_logs,
-            "job_id": job_id,
+            # "job_id": job_id,
             "records": records,
             "is_plot": is_plot
         }
 
       
 
+    root_dir = Path(file_dir)
+    records = []
+    
+    if "ndw" in algorithm:
+        records = run_nw(root_dir, settings_obj, "", True, records)
+    else:
+        records = run_sw(root_dir, settings_obj, "", True, records)
+        
+    return {
+        "status": "success",
+        "records": records
+    }
 
 
 @app.post("/api/plot/{job_id}")
@@ -259,7 +270,7 @@ def generate_plot(job_id: str, plot_settings: str = Form(...)):
     output_image_path = CACHE_DIR / f"{job_id}_static.png"
     
     try:
-        # Run R script directly on the cached CSV
+        # Run R script directly on the cached excel
         subprocess.run(
             [ "Rscript", "t-SNE.R", str(excel_path), str(output_html_path), str(plot_settings.perplexity), str(plot_settings.theta), str(plot_settings.plot_type), str(output_image_path), str(plot_settings.colors), str(plot_settings.color_text)],
             check=True,

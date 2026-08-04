@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import {
   FileText,
   Trash2,
@@ -8,12 +8,14 @@ import {
   FileCheck,
   CirclePlus,
   FolderOpen,
+  Pencil,
 } from "lucide-react";
 import ReactDOM from 'react-dom';
 import { useDropzone } from "react-dropzone";
 import { Page, Text, View, Document, StyleSheet, Font, PDFDownloadLink, usePDF, PDFViewer } from '@react-pdf/renderer';
 import ReactPDF from '@react-pdf/renderer'
 import { createTw } from "react-pdf-tailwind";
+import {useWasmEngines} from '../hooks/useWasmEngines'
 
 
 const download = require("downloadjs");
@@ -31,13 +33,17 @@ function SubsectionItem({
   onSelectFilesTrigger,
   onDragStartFile,
   onRemoveSubsection,
+  
 }) {
   // Each child gets its OWN useDropzone instance bound to its sectionName
   const { getRootProps, getInputProps, isDragActive, isDragReject } = useDropzone({
     onDrop: (acceptedFiles) => {
       onDropFiles(acceptedFiles, sectionName);
     },
+    noClick: true,
   });
+
+  
 
   return (
     <div
@@ -58,6 +64,7 @@ function SubsectionItem({
         <div className="flex items-center gap-2 font-bold text-cyan-900 text-[0.8rem]">
           <FolderOpen className="w-5 h-5 text-cyan-600" />
           <span>{sectionName}</span>
+      
           <span className="text-[0.8rem] text-gray-400 font-normal">
             ({files.length} {files.length === 1 ? "file" : "files"})
           </span>
@@ -235,31 +242,7 @@ export default function Pages() {
   } = useDropzone({
     onDrop: (acceptedFiles) => {
       
-      // if (formData.multi) {
-      //   // If no subsection target exists, fallback to creating one
-      //   const activeSection = targetSubsection || `Subsection ${count}`;
-      //   if (!targetSubsection) setCount((prev) => prev + 1);
 
-      //   setFormData((prev) => {
-      //     let updatedSubsections = { ...prev.subsections };
-      //     if (formData.subsections.hasOwnProperty(`${activeSection}`)) {
-      //       const existingFiles =
-      //         updatedSubsections[activeSection]
-      //       const existingKeys = new Set(
-      //         existingFiles.map((f) => `${f.name}-${f.size}`),
-      //       );
-      //       const newFiles = acceptedFiles.filter(
-      //         (f) => !existingKeys.has(`${f.name}-${f.size}`),
-      //       );
-      //       updatedSubsections[activeSection] = [...existingFiles, ...newFiles]
-
-      //     } else {
-      //       updatedSubsections[activeSection] = acceptedFiles
-      //     }
-      //     return { ...prev, subsections: updatedSubsections };
-      //   });
-      // } else {
-      //   // Single mode upload logic
         setFormData((prev) => {
           const existingKeys = new Set(
             prev.files.map((f) => `${f.name}-${f.size}`),
@@ -272,48 +255,8 @@ export default function Pages() {
             files: [...prev.files, ...newFiles],
           };
         });
-      // }
+  
 
-    // }
-      // Old Code
-          // const sectionIndex = updatedSubsections.findIndex(
-          //   (sub) => Object.keys(sub)[0] === activeSection,
-          // );
-
-          // if (sectionIndex > -1) {
-          //   const existingFiles =
-          //     updatedSubsections[sectionIndex][activeSection];
-          //   const existingKeys = new Set(
-          //     existingFiles.map((f) => `${f.name}-${f.size}`),
-          //   );
-          //   const newFiles = acceptedFiles.filter(
-          //     (f) => !existingKeys.has(`${f.name}-${f.size}`),
-          //   );
-
-          //   updatedSubsections[sectionIndex] = {
-          //     [activeSection]: [...existingFiles, ...newFiles],
-          //   };
-          // } else {
-          //   updatedSubsections.push({ [activeSection]: acceptedFiles });
-          // }
-      // End old code
-      //     return { ...prev, subsections: updatedSubsections };
-      //   });
-      // } else {
-      //   // Single mode upload logic
-      //   setFormData((prev) => {
-      //     const existingKeys = new Set(
-      //       prev.files.map((f) => `${f.name}-${f.size}`),
-      //     );
-      //     const newFiles = acceptedFiles.filter(
-      //       (file) => !existingKeys.has(`${file.name}-${file.size}`),
-      //     );
-      //     return {
-      //       ...prev,
-      //       files: [...prev.files, ...newFiles],
-      //     };
-      //   });
-      // }
     },
     accept: { "text/plain": [".txt"] },
     multiple: true,
@@ -425,7 +368,18 @@ export default function Pages() {
        subsections: newSections
     }));
   }
-
+  const [rename, setRename] = useState(false)
+  const renameSubsection = (newName, oldName) => {
+    const sectionContents = formData.subsections[oldName];
+    let newSections = formData.subsections
+    delete newSections[oldName]
+    newSections[newName] = sectionContents
+    setFormData((prev) => ({
+      ...prev,
+       subsections: newSections
+    }));
+    setRename(false)
+  }
   // Subsection Drag-and-Drop Handlers
   const handleDragStart = (
     e: React.DragEvent,
@@ -500,131 +454,312 @@ export default function Pages() {
   const [jobId, setJobId] = useState<string | null>(null);
   const [plotUrl, setPlotUrl] = useState<string>("");
 
-  const handleSubmit = async () => {
-    setIsProcessing(true);
-    setFormData((prev) => ({ ...prev, settings: { ...prev.settings, isPlot: true } }))
-    console.log(formData.settings.isPlot)
-    if (Object.keys(formData.subsections).length > 0){
-      const firstSectionCount = formData.subsections[Object.keys(formData.subsections)[0]].length;
-      if (firstSectionCount<4){
-        setFormData((prev) => ({ ...prev, settings: { ...prev.settings, isPlot: false } }))
-      } else {
-      const hasUnequalSubsections = Object.keys(formData.subsections).some((sub) => {
-        const filesInSub = formData.subsections[sub]
-        console.log(formData.subsections)
-        return filesInSub.length !== firstSectionCount;
-      });
-
-      if (hasUnequalSubsections) {
-        console.log("has")
-        setFormData((prev) => ({ ...prev, settings: { ...prev.settings, isPlot: false } }))
-      }
-    }
-    } else if (formData.files.length < 4){
-      console.log(formData.settings.isPlot)
-      setFormData((prev) => ({ ...prev, settings: { ...prev.settings, isPlot: false } }))
-    }
-    
-    try {
-      
-
-      const payload = new FormData();
-
-      payload.append("algorithm", formData.algorithm);
-      payload.append("settings", JSON.stringify(formData.settings));
-      payload.append("multi", String(formData.multi));
 
 
-      if (formData.baseText!=="" && formData.baseText) {
-        payload.append("base_text", formData.baseText);
-      }
+  
 
-      if (formData.multi) {
-        // 1. Serialize the subsection folder mapping structure (names & file lists)
-        const metadata = Object.keys(formData.subsections).map((key) => {
-          return { [key]: formData.subsections[key].map((f) => f.name) };
-        });
-        payload.append("subsections_metadata", JSON.stringify(metadata));
+const { pyodide, webR, isReady, loadingStatus } = useWasmEngines();
 
-        // 2. Append all actual files from all subsections
-        Object.keys(formData.subsections).forEach((sub) => {
-          formData.subsections[sub].forEach((file) => {
-            payload.append("files", file);
-          });
-        });
-      } else {
-        // Append files directly in single mode
-        formData.files.forEach((file) => {
-          payload.append("files", file);
-        });
-      }
-
-      const response = await fetch("http://127.0.0.1:8000/api/process", {
-        method: "POST",
-        body: payload,
-      });
-
-      if (!response.ok) {
-        const errorText = await response.text();
-        throw new Error(`Processing failed (${response.status}): ${errorText}`);
-      }
-
-      const data = await response.json();
-      if (data.job_id) {
-        setJobId(data.job_id);
-      }
-      setResults(data);
-     
-      handleStepChange(currentStep + 1); // Advance step after successful run
-    } catch (error) {
-      console.error("Error submitting form:", error);
-    } finally {
-      setIsProcessing(false);
-      
-
-    }
-  };
-
-  const handlePlot = async () => {
-    if (formData.files.length > 3 || formData.settings.isPlot == true) {
-      setIsProcessing(true);
-
-      if (!jobId) {
-        console.error("No processed job available to plot");
-        return;
-      }
-
-
-      try {
-        const payload2 = new FormData();
-        payload2.append("plot_settings", JSON.stringify(formData.plotSettings))
-        const response2 = await fetch(`http://127.0.0.1:8000/api/plot/${jobId}`, {
-          method: "POST",
-          body: payload2,
-        });
-        if (!response2.ok) {
-        const errorData = await response2.json().catch(() => null);
-        throw new Error(errorData?.detail || `Plotting failed with status ${response2.status}`);
-      }
-        const htmlBlob = await response2.blob();
-        const tempUrl = URL.createObjectURL(htmlBlob);
-        setPlotUrl(tempUrl);
-        handleStepChange(currentStep + 1);
-    } catch (error) {
-      console.error("Failed to generate plot:", error);
-      } finally {
-        setIsProcessing(false);
-        
-      }
-    }
-  };
-
-  const [downloadedFiles, setDownloadedFiles] = useState([])
-
-  const handleDownload = async () => {
-    window.location.href = `http://127.0.0.1:8000/api/sheet/${jobId}`;
-    setDownloadedFiles((prev)=>([...prev, "alignment_matrix.xlsx"]))
+// 1. Browser-Native handleSubmit (Replaces FastAPI /api/process)
+const handleSubmit = async () => {
+  if (!pyodide || !isReady) {
+    alert("Python engine is still loading in browser. Please wait a moment.");
   }
+
+  setIsProcessing(true);
+  
+  try {
+    // Clear & create virtual input directory in Pyodide
+    try { pyodide.FS.mkdirTree('/tmp/input_files'); } catch (e) {}
+
+    // Mount user-selected browser files into Pyodide's Virtual FS
+    const allFilesToProcess: { file: File; section?: string }[] = [];
+    
+    if (formData.multi) {
+      Object.keys(formData.subsections).forEach((subName) => {
+        formData.subsections[subName].forEach((f: File) => {
+          allFilesToProcess.push({ file: f, section: subName });
+        });
+      });
+    } else {
+      formData.files.forEach((f: File) => allFilesToProcess.push({ file: f }));
+    }
+
+    for (const item of allFilesToProcess) {
+      const arrayBuffer = await item.file.arrayBuffer();
+      const path = item.section 
+        ? `/tmp/input_files/${item.section}/${item.file.name}`
+        : `/tmp/input_files/${item.file.name}`;
+      
+      const dirPath = path.substring(0, path.lastIndexOf('/'));
+      try { pyodide.FS.mkdirTree(dirPath); } catch (e) {}
+      pyodide.FS.writeFile(path, new Uint8Array(arrayBuffer));
+    }
+
+    // Capture Python console stdout logs
+    // let capturedLogs = "";
+    // pyodide.setStdout({
+    //   batched: (text: string) => { capturedLogs += text + "\n"; }
+    // });
+
+    if (formData.baseText=="") { 
+      setFormData((prev)=> ({...prev, baseText: allFilesToProcess[0].file.name}))
+    }
+
+    // Run main.py alignment logic directly inside Pyodide Wasm
+    const runScript = `
+    import json
+    import main
+    import pandas as pd
+
+    settings = main.AlgorithmSettings.from_dict(json.loads('''${JSON.stringify(formData.settings)}'''))
+
+
+
+    # Execute alignment inside browser RAM
+    results = main.run_in_browser_process(
+        algorithm="${formData.algorithm}",
+        settings=settings,
+        file_dir="/tmp/input_files",
+        base_text="${formData.baseText}",
+        multi="${formData.multi}"
+    )
+
+    records = results["records"]
+    filtered_records = [{key: value for key, value in dict.items() if (key!="OrigScore"and key!="TextNamePair")} for dict in records]
+    orig_df = pd.DataFrame(filtered_records)
+    df=orig_df.pivot_table(
+      index="BaseText",
+      columns="TargetFile",
+      values="Score"
+    )
+    df = df.fillna(1)
+
+    def get_suffix_sort_key(col_name):
+      parts = col_name.rsplit('_', 1)
+      if len(parts) == 2:
+          folder_suffix, filename = parts[1], parts[0]
+          return (folder_suffix, filename) 
+      return ('', col_name)
+    if ${formData.multi}:
+        sorted_columns = sorted(df.columns, key=get_suffix_sort_key)
+        df = df[sorted_columns]
+    df.to_excel("/tmp/alignment_matrix.xlsx", engine='openpyxl')
+    results
+
+    `;
+
+    const pyResult = await pyodide.runPythonAsync(runScript);
+    const resultObj = pyResult.toJs({ dict_converter: Object.fromEntries });
+
+    setResults({
+      status: "success",
+      algorithm: formData.algorithm,
+      output_logs: resultObj.output_logs,
+      records: resultObj.records || [],
+    });
+
+    setFormData((prev)=>({...prev, settings: {...prev.settings, isPlot: resultObj.is_plot}}))
+
+    handleStepChange(currentStep + 1);
+  } catch (error) {
+    console.error("Browser alignment error:", error);
+  } finally {
+    setIsProcessing(false);
+  }
+};
+
+// 2. Browser-Native handlePlot (Replaces FastAPI /api/plot)
+const handlePlot = async () => {
+  if (!webR || !pyodide) return;
+  setIsProcessing(true);
+
+  try {
+    
+    const excelBinary: Uint8Array = pyodide.FS.readFile("/tmp/alignment_matrix.xlsx");
+ 
+    await webR.FS.writeFile('/tmp/alignment_matrix.xlsx', excelBinary);
+
+    // Execute t-SNE in WebR
+    const rCommand = `
+    
+      file_path <- '/tmp/alignment_matrix.xlsx'
+      
+      source('/tmp/t-SNE.R')
+      run_tsne_browser(
+        df = file_path,
+        perplexity = ${formData.plotSettings.perplexity},
+        theta = ${formData.plotSettings.theta},
+        plot_type = '${formData.plotSettings.plotType}',
+        colors = '${formData.plotSettings.colors}',
+        color_text = '${formData.plotSettings.colorText}'
+      )
+    `;
+    const rOutput = await webR.evalR(rCommand);
+    const plotData = await rOutput.toJs({ dict_converter: Object.fromEntries });
+
+    // Create an object URL or render plot canvas directly
+    setPlotUrl(plotData); 
+    handleStepChange(currentStep + 1);
+  } catch (error) {
+    console.error("Browser t-SNE plotting error:", error);
+  } finally {
+    setIsProcessing(false);
+  }
+};
+const [downloadedFiles, setDownloadedFiles] = useState([])
+const handleDownload = async () => {
+  if (!pyodide) return;
+
+  try {
+    // Read binary from Pyodide
+    const rawBinary = pyodide.FS.readFile("/tmp/alignment_matrix.xlsx");
+
+    // Convert/copy to standard Uint8Array backed by a standard ArrayBuffer
+    const excelBinary = new Uint8Array(rawBinary);
+
+    await webR.FS.writeFile('/tmp/alignment_matrix.xlsx', excelBinary);
+
+    // Trigger browser download
+    const blob = new Blob([excelBinary], {
+      type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+    });
+
+    const fileName = "alignment_matrix.xlsx";
+    download(blob, fileName);
+
+    // Track for PDF Report
+    setDownloadedFiles((prev) => [...prev, fileName]);
+  } catch (error) {
+    console.error("Failed to download Excel file:", error);
+  }
+};
+  // const handleSubmit = async () => {
+  //   setIsProcessing(true);
+  //   setFormData((prev) => ({ ...prev, settings: { ...prev.settings, isPlot: true } }))
+  //   console.log(formData.settings.isPlot)
+  //   if (Object.keys(formData.subsections).length > 0){
+  //     const firstSectionCount = formData.subsections[Object.keys(formData.subsections)[0]].length;
+  //     if (firstSectionCount<4){
+  //       setFormData((prev) => ({ ...prev, settings: { ...prev.settings, isPlot: false } }))
+  //     } else {
+  //     const hasUnequalSubsections = Object.keys(formData.subsections).some((sub) => {
+  //       const filesInSub = formData.subsections[sub]
+  //       console.log(formData.subsections)
+  //       return filesInSub.length !== firstSectionCount;
+  //     });
+
+  //     if (hasUnequalSubsections) {
+  //       console.log("has")
+  //       setFormData((prev) => ({ ...prev, settings: { ...prev.settings, isPlot: false } }))
+  //     }
+  //   }
+  //   } else if (formData.files.length < 4){
+  //     console.log(formData.settings.isPlot)
+  //     setFormData((prev) => ({ ...prev, settings: { ...prev.settings, isPlot: false } }))
+  //   }
+
+    
+  //   try {
+      
+
+  //     const payload = new FormData();
+
+  //     payload.append("algorithm", formData.algorithm);
+  //     payload.append("settings", JSON.stringify(formData.settings));
+  //     payload.append("multi", String(formData.multi));
+
+
+  //     if (formData.baseText!=="" && formData.baseText) {
+  //       payload.append("base_text", formData.baseText);
+  //     }
+
+  //     if (formData.multi) {
+  //       // 1. Serialize the subsection folder mapping structure (names & file lists)
+  //       const metadata = Object.keys(formData.subsections).map((key) => {
+  //         return { [key]: formData.subsections[key].map((f) => f.name) };
+  //       });
+  //       payload.append("subsections_metadata", JSON.stringify(metadata));
+
+  //       // 2. Append all actual files from all subsections
+  //       Object.keys(formData.subsections).forEach((sub) => {
+  //         formData.subsections[sub].forEach((file) => {
+  //           payload.append("files", file);
+  //         });
+  //       });
+  //     } else {
+  //       // Append files directly in single mode
+  //       formData.files.forEach((file) => {
+  //         payload.append("files", file);
+  //       });
+  //     }
+
+  //     const response = await fetch("api/process", {
+  //       method: "POST",
+  //       body: payload,
+  //     });
+
+  //     if (!response.ok) {
+  //       const errorText = await response.text();
+  //       throw new Error(`Processing failed (${response.status}): ${errorText}`);
+  //     }
+
+  //     const data = await response.json();
+  //     if (data.job_id) {
+  //       setJobId(data.job_id);
+  //     }
+  //     setResults(data);
+     
+  //     handleStepChange(currentStep + 1); // Advance step after successful run
+  //   } catch (error) {
+  //     console.error("Error submitting form:", error);
+  //   } finally {
+  //     setIsProcessing(false);
+      
+
+  //   }
+  // };
+
+  // const handlePlot = async () => {
+  //   if (formData.files.length > 3 || formData.settings.isPlot == true) {
+  //     setIsProcessing(true);
+
+  //     if (!jobId) {
+  //       console.error("No processed job available to plot");
+  //       return;
+  //     }
+
+
+  //     try {
+  //       const payload2 = new FormData();
+  //       payload2.append("plot_settings", JSON.stringify(formData.plotSettings))
+  //       const response2 = await fetch(`api/plot/${jobId}`, {
+  //         method: "POST",
+  //         body: payload2,
+  //       });
+  //       if (!response2.ok) {
+  //       const errorData = await response2.json().catch(() => null);
+  //       throw new Error(errorData?.detail || `Plotting failed with status ${response2.status}`);
+  //     }
+  //       const htmlBlob = await response2.blob();
+  //       const tempUrl = URL.createObjectURL(htmlBlob);
+  //       setPlotUrl(tempUrl);
+  //       handleStepChange(currentStep + 1);
+  //   } catch (error) {
+  //     console.error("Failed to generate plot:", error);
+  //     } finally {
+  //       setIsProcessing(false);
+        
+  //     }
+  //   }
+  // };
+
+  
+
+  // const handleDownload = async () => {
+  //   window.location.href = `api/sheet/${jobId}`;
+  //   setDownloadedFiles((prev)=>([...prev, "alignment_matrix.xlsx"]))
+  // }
 
   Font.register({
       family: 'Cousine',
@@ -1849,6 +1984,7 @@ export default function Pages() {
               src={plotUrl}
               className="w-full h-full border-none"
               title="t-SNE Plot"
+              sandbox="allow-scripts"
             />
             </div>
             )}
