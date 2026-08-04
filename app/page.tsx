@@ -522,7 +522,8 @@ const handleSubmit = async () => {
         settings=settings,
         file_dir="/tmp/input_files",
         base_text="${formData.baseText}",
-        multi="${formData.multi}"
+        multi="${formData.multi}",
+        files={allFilesTo}
     )
 
     records = results["records"]

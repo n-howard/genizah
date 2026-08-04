@@ -228,18 +228,6 @@ def run_in_browser_process(algorithm, settings, file_dir, base_text, multi):
 
       
 
-    root_dir = Path(file_dir)
-    records = []
-    
-    if "ndw" in algorithm:
-        records = run_nw(root_dir, settings_obj, "", True, records)
-    else:
-        records = run_sw(root_dir, settings_obj, "", True, records)
-        
-    return {
-        "status": "success",
-        "records": records
-    }
 
 
 # @app.post("/api/plot/{job_id}")
