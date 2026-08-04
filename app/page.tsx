@@ -403,7 +403,7 @@ export default function Pages() {
     setFormData((prev) => ({
       ...prev,
       files: prev.files.filter((f) => f !== file),
-      baseText: prev.baseText === file ? null : prev.baseText,
+      baseText: prev.baseText === file.name ? null : prev.baseText,
     }));
   };
 
