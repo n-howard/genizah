@@ -45,10 +45,11 @@ export function useWasmEngines() {
 
         // 2. Initialize WebR
         setLoadingStatus('Loading R WebAssembly runtime & packages...');
-
+        const baseUrl = typeof window !== 'undefined'
+        ? `${window.location.origin}${basePath}/`.replace(/\/+/g, '/')
+        : undefined;
         const webr = new WebR({
-        // Use window.location.origin to ensure the worker loads over full http/https URL
-        serviceWorkerUrl: typeof window !== 'undefined' ? `${window.location.origin}/webr-serviceworker.js` : undefined,
+            baseUrl: baseUrl
         });
         await webr.init();
         await webr.installPackages(['Rtsne', 'ggplot2', 'pandoc', 'webshot2', 'htmltools', 'dplyr', 'rgl', 'readxl']);
