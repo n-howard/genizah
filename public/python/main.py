@@ -50,7 +50,7 @@ app = FastAPI()
 #     base_text: Optional[str] = Form(None),
 #     subsections_metadata: Optional[str] = Form(None)
 # ):
-def run_in_browser_process(algorithm, settings, file_dir, base_text, multi)
+def run_in_browser_process(algorithm, settings, file_dir, base_text, multi):
     try:
         raw_settings = json.loads(settings)
     except Exception:
