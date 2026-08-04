@@ -35,6 +35,6 @@ Steps before first deployment:
 -[x] color the plot? 
 -[x] add options to do 3D static, 3D moveable, 2D 
 -[x] download static images
--[] download reports with manuscripts, what algorithms you used, what settings you used, date/time, you downloaded these files and here are the original file names, base text x text 
+-[x] download reports with manuscripts, what algorithms you used, what settings you used, date/time, you downloaded these files and here are the original file names, base text x text and score
 -[x] fix # having a 0 before it
 -[x] cache to fix efficiency
