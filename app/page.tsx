@@ -14,9 +14,6 @@ import { useDropzone } from "react-dropzone";
 import { Page, Text, View, Document, StyleSheet, Font, PDFDownloadLink, usePDF, PDFViewer } from '@react-pdf/renderer';
 import ReactPDF from '@react-pdf/renderer'
 import { createTw } from "react-pdf-tailwind";
-import puppeteer from "puppeteer";
-import * as htmlToImage from "html-to-image"
-import {Switch} from "@heroui/react";
 
 
 const download = require("downloadjs");
@@ -721,7 +718,7 @@ export default function Pages() {
           </Text>
         
             <Text>Match Bonus: {formData.settings.matchBonus}</Text>
-            <Text>Gap Penalty: {.settings.gapPenalty}</Text> 
+            <Text>Gap Penalty: {formData.settings.gapPenalty}</Text> 
             <Text>Mismatch Penalty: {formData.settings.mismatchPenalty}</Text> 
             <Text>{formData.algorithm=="ndw" ? `Affine Penalty: ${formData.settings.affinePenalty}` : ""}</Text>
             <Text>Special Characters: {formData.settings.special.length==0 ? "None" : 
@@ -984,7 +981,7 @@ export default function Pages() {
                     type="file"
                     ref={folderInput}
                     className="hidden"
-                    webkitdirectory="true"
+                    {...({ webkitdirectory: "", directory: "" } as any)}
                     directory="true"
                     multiple
                     onChange={(e) => handleFolderUpload(e)}
@@ -1099,7 +1096,7 @@ export default function Pages() {
                 type="file"
                 ref={folderInput}
                 className="hidden"
-                webkitdirectory="true"
+                {...({ webkitdirectory: "", directory: "" } as any)}
                 directory="true"
                 multiple
                 onChange={handleFolderUpload}
