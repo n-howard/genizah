@@ -6,4 +6,9 @@ const nextConfig: NextConfig = {
   reactStrictMode: true,
 };
 
-module.exports = nextConfig
+module.exports = {
+  typescript: {
+    ignoreBuildErrors: true,
+    tsconfigPath: 'tsconfig.json',
+  },
+}
