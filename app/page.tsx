@@ -720,22 +720,22 @@ export default function Pages() {
             Algorithm: {formData.algorithm == "ndw" ? "Needleman-Wunsch" : "Smith-Waterman"}
           </Text>
         
-            <Text>Match Bonus: {formData.settings.matchBonus=="" ? 0 : formData.settings.matchBonus}</Text>
-            <Text>Gap Penalty: {formData.settings.gapPenalty=="" ? 0 : formData.settings.gapPenalty}</Text> 
-            <Text>Mismatch Penalty: {formData.settings.mismatchPenalty=="" ? 0 : formData.settings.mismatchPenalty}</Text> 
-            <Text>{formData.algorithm=="ndw" ? `Affine Penalty: ${formData.settings.affinePenalty=="" ? 0 : formData.settings.affinePenalty}` : ""}</Text>
+            <Text>Match Bonus: {formData.settings.matchBonus}</Text>
+            <Text>Gap Penalty: {.settings.gapPenalty}</Text> 
+            <Text>Mismatch Penalty: {formData.settings.mismatchPenalty}</Text> 
+            <Text>{formData.algorithm=="ndw" ? `Affine Penalty: ${formData.settings.affinePenalty}` : ""}</Text>
             <Text>Special Characters: {formData.settings.special.length==0 ? "None" : 
               (formData.settings.specialOther == false ? 
                 (formData.settings.special.join(",")==="ך,ם,ן,ף,ץ" ? `Sofit Letters: ${formData.settings.special}` : `Capital Letters (Latin Alphabet): ${formData.settings.special}`)
               : `Other: ${formData.settings.special}`)} </Text>
-            <Text>{formData.settings.special.length!=0 ? `Special Character Match Bonus: ${formData.settings.specialBonus=="" ? 0 : formData.settings.specialBonus}` : ""}</Text>
+            <Text>{formData.settings.special.length!=0 ? `Special Character Match Bonus: ${formData.settings.specialBonus}` : ""}</Text>
 
           
             
           <Text style={tw("text-lg pt-2")}>Plot Settings</Text>
             <Text>Plot Type: {formData.plotSettings.plotType.includes("3d") ? (formData.plotSettings.plotType=="3da"? "3D Interactive" : "3D Static") : "2D"}</Text>
-            <Text>Perplexity: {formData.plotSettings.perplexity=="" ? 0 : formData.plotSettings.perplexity}</Text> 
-            <Text>Theta: {formData.plotSettings.theta=="" ? 0 : formData.plotSettings.theta}</Text> 
+            <Text>Perplexity: {formData.plotSettings.perplexity}</Text> 
+            <Text>Theta: {formData.plotSettings.theta}</Text> 
             <Text>Data Point Color: {formData.plotSettings.colors == "black" ? "Black" : (formData.plotSettings.colors=="grouping" ? "By Group" : "By Base Text" )}</Text>
             <Text>Text Color: {formData.plotSettings.colorText ? (formData.plotSettings.colors == "black" ? "Black" : (formData.plotSettings.colors=="grouping" ? "By Group" : "By Base Text" )):"Black"}</Text>
             
@@ -1296,12 +1296,12 @@ export default function Pages() {
                           <input
                             id="matchBonus"
                             type="number"
-                            value={formData.settings.matchBonus}
+                            value={Number.isNaN(formData.settings.matchBonus) ? "" : formData.settings.matchBonus}
                             onChange={(e) =>
                               
                               handleSettingChange(
                                 "matchBonus",
-                                isNaN(e.target.valueAsNumber)? "" : e.target.valueAsNumber,
+                                isNaN(e.target.valueAsNumber)? null : e.target.valueAsNumber,
                               )
                             }
                             className="block w-full pl-3 pr-10 py-2 text-[0.8rem] bg-white rounded-md shadow-sm appearance-none focus:outline-none focus:shadow-md text-gray-700/60 focus:text-gray-700 focus:shadow-gray-700/70 sm:text-[0.8rem] transition-colors"
@@ -1315,11 +1315,11 @@ export default function Pages() {
                           <input
                             id="gapPenalty"
                             type="number"
-                            value={formData.settings.gapPenalty<0 ? -formData.settings.gapPenalty : formData.settings.gapPenalty}
+                            value={isNaN(formData.settings.gapPenalty) ? "" : (formData.settings.gapPenalty<0 ? -formData.settings.gapPenalty : formData.settings.gapPenalty)}
                             onChange={(e) =>
                               handleSettingChange(
                                 "gapPenalty",
-                                isNaN(e.target.valueAsNumber)? "" : -e.target.valueAsNumber,
+                                isNaN(e.target.valueAsNumber)? null : -e.target.valueAsNumber,
                               )
                             }
                             className="block w-full pl-3 pr-10 py-2 text-[0.8rem] bg-white rounded-md shadow-sm appearance-none focus:outline-none focus:shadow-md text-gray-700/60 focus:text-gray-700 focus:shadow-gray-700/70 sm:text-[0.8rem] transition-colors"
@@ -1335,11 +1335,11 @@ export default function Pages() {
                           <input
                             id="mismatchPenalty"
                             type="number"
-                            value={formData.settings.mismatchPenalty<0 ? -formData.settings.mismatchPenalty : formData.settings.mismatchPenalty}
+                            value={isNaN(formData.settings.mismatchPenalty) ? "" : (formData.settings.mismatchPenalty<0 ? -formData.settings.mismatchPenalty : formData.settings.mismatchPenalty)}
                             onChange={(e) =>
                               handleSettingChange(
                                 "mismatchPenalty",
-                                isNaN(e.target.valueAsNumber)? "" : -e.target.valueAsNumber,
+                                isNaN(e.target.valueAsNumber)? null : -e.target.valueAsNumber,
                               )
                             }
                             className="block w-full pl-3 pr-10 py-2 text-[0.8rem] bg-white rounded-md shadow-sm appearance-none focus:outline-none focus:shadow-md text-gray-700/60 focus:text-gray-700 focus:shadow-gray-700/70 sm:text-[0.8rem] transition-colors"
@@ -1356,11 +1356,11 @@ export default function Pages() {
                               <input
                                 id="affinePenalty"
                                 type="number"
-                                value={formData.settings.affinePenalty<0 ? -formData.settings.affinePenalty : formData.settings.affinePenalty}
+                                value={isNaN(formData.settings.affinePenalty) ? "" : (formData.settings.affinePenalty<0 ? -formData.settings.affinePenalty : formData.settings.affinePenalty)}
                                 onChange={(e) =>
                                   handleSettingChange(
                                     "affinePenalty",
-                                    isNaN(e.target.valueAsNumber)? "" : -e.target.valueAsNumber,
+                                    isNaN(e.target.valueAsNumber)? null : -e.target.valueAsNumber,
                                   )
                                 }
                                 className="block w-full pl-3 pr-10 py-2 text-[0.8rem] bg-white rounded-md shadow-sm appearance-none focus:outline-none focus:shadow-md text-gray-700/60 focus:text-gray-700 focus:shadow-gray-700/70 sm:text-[0.8rem] transition-colors"
@@ -1490,11 +1490,11 @@ export default function Pages() {
                               <input
                                 id="specialBonus"
                                 type="number"
-                                value={formData.settings.specialBonus}
+                                value={Number.isNaN(formData.settings.specialBonus) ? "" : formData.settings.specialBonus}
                                 onChange={(e) =>
                                   handleSettingChange(
                                     "specialBonus",
-                                    isNaN(e.target.valueAsNumber)? "" : e.target.valueAsNumber,
+                                    isNaN(e.target.valueAsNumber)? null : e.target.valueAsNumber,
                                   )
                                 }
                                 className="block w-full pl-3 pr-10 py-2 text-[0.8rem] bg-white rounded-md shadow-sm appearance-none focus:outline-none focus:shadow-md text-gray-700/60 focus:text-gray-700 focus:shadow-gray-700/70 sm:text-[0.8rem] transition-colors"
@@ -1651,14 +1651,14 @@ export default function Pages() {
           <input
             id="perplexity"
             type="number"
-            value={formData.plotSettings.perplexity}
+            value={Number.isNaN(formData.plotSettings.perplexity) ? "" : formData.plotSettings.perplexity}
             onChange={(e) => {
               const val = e.target.valueAsNumber;
               setFormData((prev) => ({
                 ...prev,
                 plotSettings: {
                   ...prev.plotSettings,
-                  perplexity: Number.isNaN(val) ? "" : val,
+                  perplexity: Number.isNaN(val) ? null : val,
                 },
               }));
               }}
@@ -1674,14 +1674,14 @@ export default function Pages() {
           <input
             id="theta"
             type="number"
-            value={formData.plotSettings.theta}
+            value={Number.isNaN(formData.plotSettings.theta) ? "" : formData.plotSettings.theta}
             onChange={(e) => {
               const val = e.target.valueAsNumber;
               setFormData((prev) => ({
                 ...prev,
                 plotSettings: {
                   ...prev.plotSettings,
-                  theta: Number.isNaN(val) ? "" : val,
+                  theta: Number.isNaN(val) ? null : val,
                 },
               }));
               }}
