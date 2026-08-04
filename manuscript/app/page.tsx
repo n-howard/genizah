@@ -9,13 +9,15 @@ import {
   CirclePlus,
   FolderOpen,
 } from "lucide-react";
+import ReactDOM from 'react-dom';
 import { useDropzone } from "react-dropzone";
-import { Page, Text, View, Document, StyleSheet, Font, PDFDownloadLink, usePDF } from '@react-pdf/renderer';
+import { Page, Text, View, Document, StyleSheet, Font, PDFDownloadLink, usePDF, PDFViewer } from '@react-pdf/renderer';
 import ReactPDF from '@react-pdf/renderer'
 import { createTw } from "react-pdf-tailwind";
 import puppeteer from "puppeteer";
 import * as htmlToImage from "html-to-image"
 import {Switch} from "@heroui/react";
+
 
 const download = require("downloadjs");
 
@@ -575,11 +577,13 @@ export default function Pages() {
         setJobId(data.job_id);
       }
       setResults(data);
+     
       handleStepChange(currentStep + 1); // Advance step after successful run
     } catch (error) {
       console.error("Error submitting form:", error);
     } finally {
       setIsProcessing(false);
+      
 
     }
   };
@@ -651,80 +655,110 @@ export default function Pages() {
         </Page>
     </Document>
   )
-
-  const Report = ({date}) => (
+  const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+  const Report = () => {
+    const seenPairs = new Set();
+    const d = new Date();
+    const date = `${d.getDate()} ${months[d.getMonth()]} ${d.getFullYear()} at ${d.getHours().toString().padStart(2, '0')}:${d.getMinutes().toString().padStart(2, '0')}:${d.getSeconds().toString().padStart(2, '0')}`;
+    const recsFilter = (record) => {
+      const pairKey = [record.TextNamePair[0], record.TextNamePair[1]].sort().join(":::");
+      if (seenPairs.has(pairKey)) { 
+        return false;
+       }
+      else {
+        seenPairs.add(pairKey)
+        return true;
+      }
+    }
+    const recs = results.records.filter(recsFilter);
+  
+  return (
       <Document>
         <Page size="A4">
-          <View wrap style={tw("p-10")}>
-            <Text style={tw("text-md text-end")}>Downloaded on {date}</Text>
+          <View wrap style={tw("p-10 text-sm font-mono")}>
+            <Text style={tw("text-sm text-right")}>Generated on {date}</Text>
             <Text style={tw("text-xl font-bold text-center")}>Summary Report</Text>
             <Text style={tw("text-lg")}>Files You Uploaded:</Text>
             {formData.multi==true && (
             Object.keys(formData.subsections).map((key)=>(
-                <Text key={key} style={tw("text-md")}>
+                <View key={key} style={tw("text-sm")}>
   
-                  <pre>
-                  Subsection: {key}
-                    Files:
+                  
+                  <Text>Subsection: {key}</Text>
+                   <Text style={tw("pl-4")}> Files: </Text>
                   
                 {formData.subsections[key].map((f)=>(
-                  <Text key={f.name} style={tw("text-sm")}>
-                      f.name
+                  <Text key={f.name} style={tw("text-sm pl-8")}>
+                      {f.name}
                   </Text>
                 ))}
-                </pre>
-                </Text>
+                
+                </View>
                 ))
 
               
             )}
             {formData.multi==false && (
               formData.files.map((f)=>(
-                <Text key={f.name} style={tw("text-sm")}>
-                  f.name
+                <Text key={f.name} style={tw("text-sm pl-4")}>
+                  {f.name}
                 </Text>
               ))
           
             )}
-          <Text style={tw("text-lg")}>Files You Downloaded:</Text>
-          <Text style={tw("text-sm")}>
+          <Text style={tw("text-lg pb-0 pt-2")}>Files You Downloaded:</Text>
           {downloadedFiles.length==0 ? 
-          <Text style={tw("text-md")}>"None"</Text> : (
+          <Text style={tw("text-sm pl-4 pt-0")}>None</Text> : (
             downloadedFiles.map((fi)=> (
-              fi
+              <Text style={tw("pl-4")}>{fi}</Text>
             ))
           )
           }
-          </Text>
-          <Text style={tw("text-lg")}>Algorithm Settings</Text>
-          <Text style={tw("text-md")}>
+          
+          <Text style={tw("text-lg pt-2")}>Algorithm Settings</Text>
+          <Text style={tw("text-sm font-bold")}>
             Algorithm: {formData.algorithm == "ndw" ? "Needleman-Wunsch" : "Smith-Waterman"}
           </Text>
-          <Text style={tw("text-sm")}>
-            Match Bonus: {formData.settings.matchBonus=="" ? 0 : formData.settings.matchBonus} <br/>
-            Gap Penalty: {formData.settings.gapPenalty=="" ? 0 : formData.settings.gapPenalty} <br/>
-            Mismatch Penalty: {formData.settings.mismatchPenalty=="" ? 0 : formData.settings.mismatchPenalty} <br/>
-            {formData.algorithm=="ndw" ? `Affine Penalty: ${formData.settings.affinePenalty=="" ? 0 : formData.settings.affinePenalty}${<br/>}` : ""}
-            Special Characters: {formData.settings.special.length==0 ? "None" : 
+        
+            <Text>Match Bonus: {formData.settings.matchBonus=="" ? 0 : formData.settings.matchBonus}</Text>
+            <Text>Gap Penalty: {formData.settings.gapPenalty=="" ? 0 : formData.settings.gapPenalty}</Text> 
+            <Text>Mismatch Penalty: {formData.settings.mismatchPenalty=="" ? 0 : formData.settings.mismatchPenalty}</Text> 
+            <Text>{formData.algorithm=="ndw" ? `Affine Penalty: ${formData.settings.affinePenalty=="" ? 0 : formData.settings.affinePenalty}` : ""}</Text>
+            <Text>Special Characters: {formData.settings.special.length==0 ? "None" : 
               (formData.settings.specialOther == false ? 
                 (formData.settings.special.join(",")==="ך,ם,ן,ף,ץ" ? `Sofit Letters: ${formData.settings.special}` : `Capital Letters (Latin Alphabet): ${formData.settings.special}`)
-              : `Other: ${formData.settings.special}`)} 
-            {formData.settings.special.length==0 ? `${<br/>} Special Character Match Bonus: ${formData.settings.specialBonus=="" ? 0 : formData.settings.specialBonus}` : ""}
-          </Text>
-          <Text style={tw("text-lg")}>Resulting Scores</Text>
-          {results.records.map((item, index) => (
-            <Text key={`${index}-title`} style={tw("text-md")}>
-              {item.TextNamePair[0].name} & {item.TextNamePair[1].name}:
-              <Text key={`${index}-scores`} style={tw("text-sm")}>
+              : `Other: ${formData.settings.special}`)} </Text>
+            <Text>{formData.settings.special.length!=0 ? `Special Character Match Bonus: ${formData.settings.specialBonus=="" ? 0 : formData.settings.specialBonus}` : ""}</Text>
+
+          
+            
+          <Text style={tw("text-lg pt-2")}>Plot Settings</Text>
+            <Text>Plot Type: {formData.plotSettings.plotType.includes("3d") ? (formData.plotSettings.plotType=="3da"? "3D Interactive" : "3D Static") : "2D"}</Text>
+            <Text>Perplexity: {formData.plotSettings.perplexity=="" ? 0 : formData.plotSettings.perplexity}</Text> 
+            <Text>Theta: {formData.plotSettings.theta=="" ? 0 : formData.plotSettings.theta}</Text> 
+            <Text>Data Point Color: {formData.plotSettings.colors == "black" ? "Black" : (formData.plotSettings.colors=="grouping" ? "By Group" : "By Base Text" )}</Text>
+            <Text>Text Color: {formData.plotSettings.colorText ? (formData.plotSettings.colors == "black" ? "Black" : (formData.plotSettings.colors=="grouping" ? "By Group" : "By Base Text" )):"Black"}</Text>
+            
+       
+
+          <Text style={tw("text-lg pt-2")}>Resulting Scores</Text>
+          {recs.map((item, index) => (
+            <View>
+            <Text key={`${index}-title`} style={tw("text-sm font-bold")}>
+              {item.TextNamePair[0]} & {item.TextNamePair[1]}:
+            </Text>
+              <Text key={`${index}-scores`} style={tw("text-sm pl-4")}>
               Score: {item.OrigScore} | Average Score: {item.Score}
               </Text>
-            </Text>
+              </View>
+            
           ))}
         </View>
       </Page>
     </Document>
-  );
-  const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+    )
+  }
+  
 
   
   const getDate = () => {
@@ -733,20 +767,8 @@ export default function Pages() {
     return date;
   }
 
-  const [instance, updateInstance] = usePDF({document: <Report date={getDate}/>})
-
-  const generateReport = async () => {
-    updateInstance(<Report date={getDate}/>);
-    if (instance.url) {
-      const link = document.createElement("a");
-      link.href = instance.url;
-      link.download = "report.pdf";
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
-    }
-    
-  }
+  
+  
 
  const plotRef = useRef(null);
 
@@ -816,12 +838,14 @@ export default function Pages() {
             >
               View Alignment
             </button>
+            
+              
             <button
               type="button"
               onClick={() => handleStepSkip(4)}
               className={`${furthestStep >= 4 ? "cursor-pointer" : ""} ${currentStep >= 4 ? "text-cyan-600 font-bold" : ""
                 }`}
-            >
+            > 
               Adjust Plot Settings
             </button>
             <button
@@ -831,21 +855,23 @@ export default function Pages() {
                 }`}
             >
               View Plot
-            </button>
+            </button> 
+            
+            
             <button
               type="button"
               onClick={() => handleStepSkip(6)}
               className={`${furthestStep >= 6 ? "cursor-pointer" : ""} ${currentStep >= 6 ? "text-cyan-600 font-bold" : ""
                 }`}
-            >
-              Report
+            > 
+            
+           
+              View Report
             </button>
-          </div>
-          <div className="w-full bg-gray-200 h-2 rounded-full overflow-hidden">
-            <div
-              className="bg-cyan-600 h-2 transition-all duration-300"
-              style={{ width: `${(currentStep / 6) * 100}%` }}
-            ></div>
+            </div>
+           <div className="w-full bg-gray-200 h-2 rounded-full overflow-hidden">
+          <div className="bg-cyan-600 h-2 transition-all duration-300"
+           style={{width: `${(currentStep / 6) * 100}%`}}></div>
           </div>
         </div>
 
@@ -1838,47 +1864,76 @@ export default function Pages() {
             />
             </div>
             )}
-            <div className="w-full flex justify-between content-start flex-row">
+            <div className="w-full flex justify-between content-end items-end flex-row">
               <button
                 onClick={() => handleStepChange(4)}
                 className="px-5 py-2 border border-gray-300 text-gray-700 font-medium rounded-lg w-max hover:bg-gray-50 transition"
               >
                 Back
               </button>
-              {(formData.plotSettings.plotType.includes("2d")) && (
-              <a href={plotUrl} download="2D_plot.png" onClick={()=>(setDownloadedFiles((prev)=>([...prev, "2D_plot.png"])))} 
-              className="px-5 py-2 bg-sky-600 text-white font-medium rounded-lg hover:bg-sky-700">
-                Download Plot as Image
-              </a>)}
-               {(formData.plotSettings.plotType.includes("3ds")) && (
-              <a href={plotUrl} download="static_3D_plot.png" onClick={()=>(setDownloadedFiles((prev)=>([...prev, "static_3D_plot.png"])))} 
-              className="px-5 py-2 bg-sky-600 text-white font-medium rounded-lg hover:bg-sky-700">
-                Download Plot as Image
-              </a>)}
-              {formData.plotSettings.plotType.includes("3da") && (
+              <div className="flex flex-col gap-5 content-center w-max">
+                {(formData.plotSettings.plotType.includes("2d")) && (
+                <a href={plotUrl} download="2D_plot.png" onClick={()=>(setDownloadedFiles((prev)=>([...prev, "2D_plot.png"])))} 
+                className="px-5 py-2 bg-sky-600 text-white font-medium text-center rounded-lg hover:bg-sky-700">
+                  Download Plot as Image
+                </a>)}
+                {(formData.plotSettings.plotType.includes("3ds")) && (
+                <a href={plotUrl} download="static_3D_plot.png" onClick={()=>(setDownloadedFiles((prev)=>([...prev, "static_3D_plot.png"])))} 
+                className="px-5 py-2 bg-sky-600 text-white font-medium text-center rounded-lg hover:bg-sky-700">
+                  Download Plot as Image
+                </a>)}
+                {formData.plotSettings.plotType.includes("3da") && (
+                  <button
+                  onClick={download3dPlot}
+                  className="px-5 py-2 bg-sky-600 text-white font-medium text-center rounded-lg hover:bg-sky-700"
+                >
+                  Download Plot as Image
+                </button>
+                )}
                 <button
-                onClick={download3dPlot}
-                className="px-5 py-2 bg-sky-600 text-white font-medium rounded-lg hover:bg-sky-700"
-              >
-                Download Plot as Image
-              </button>
-              )}
+                  onClick={handleDownload}
+                  className="px-5 py-2 bg-green-600 text-white text-center font-medium rounded-lg hover:bg-green-700"
+                >
+                  Download Matrix as Spreadsheet
+                </button>
+              </div>
               <button
-                onClick={handleDownload}
-                className="px-5 py-2 bg-green-600 text-white font-medium rounded-lg hover:bg-green-700"
-              >
-                Download Matrix as Spreadsheet
-              </button>
+                  onClick={() => handleStepChange(6)}
+                  className="px-5 py-2 bg-cyan-600 text-white font-medium rounded-lg hover:bg-cyan-700 disabled:bg-gray-400 disabled:cursor-not-allowed transition"
+                >
+                  Continue
+                </button>
             </div>
           </div>
         )} {currentStep===6 && (
-          <button onClick={()=>(generateReport)} 
-              className="px-5 py-2 bg-sky-600 text-white font-medium rounded-lg hover:bg-cyan-700">
-                Download Report
+          <div className="h-[73dvh]">
+          <div className="flex flex-col h-full justify-center content-start">
+            <h1 className="text-4xl w-5/10 font-bold text-gray-700 pt-10 pb-2">Summary Report</h1>
+            <PDFViewer width="100%" height="100%">
+          <Report/>
+        </PDFViewer>
+          <div className="w-full flex justify-between content-start flex-row pt-2">
+            <button
+                onClick={() => handleStepChange(5)}
+                className="px-5 py-2 border border-gray-300 text-gray-700 font-medium rounded-lg w-max hover:bg-gray-50 transition"
+              >
+                Back
               </button>
+              
+              <PDFDownloadLink document={<Report/>} fileName="report.pdf"
+                className="px-5 py-2 bg-cyan-600 text-white font-medium w-max rounded-lg hover:bg-cyan-700">
+                {({ blob, url, loading, error }) =>
+            loading ? 'Generating Report...' : 'Download Report'
+              }
+              </PDFDownloadLink>
+            </div>
+            
+              
+              </div>
+              </div>
         )}
       </div>
-      </div >
+      </div>
     );
   }
 

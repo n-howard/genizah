@@ -256,7 +256,7 @@ def run_nw(temp_dir, settings: AlgorithmSettings, base_text_pattern, is_plot, re
                             "TargetFile": text.name,
                             "Score": weighted_score,
                             "OrigScore": score,
-                            "TextNamePair": (base_text.name, text.name)
+                            "TextNamePair": [base_text.name, text.name]
                         })
                     else:
                         records.append({
@@ -264,7 +264,7 @@ def run_nw(temp_dir, settings: AlgorithmSettings, base_text_pattern, is_plot, re
                             "TargetFile": text.name.split("_-")[0],
                             "Score": weighted_score,
                             "OrigScore": score,
-                            "TextNamePair": (base_text.name, text.name)
+                            "TextNamePair": [base_text.name, text.name]
                         })
     
     return records

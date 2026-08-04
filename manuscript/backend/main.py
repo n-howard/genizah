@@ -175,10 +175,11 @@ def process_data(
         base_text = files[0]
         
         
-        clean_base_text = Path(base_text.filename).name.split("_-")[0]
+        clean_base_text = Path(base_text.filename).name.split("_")[0]
         
         base_text = clean_base_text
     base_text_pattern = base_text
+    
 
     if "ndw" not in algorithm and "sw" not in algorithm:
         algorithm = "ndw"
@@ -320,7 +321,7 @@ def process_data(
             
                 
                 def get_suffix_sort_key(col_name):
-                    parts = col_name.rsplit('_-', 1)
+                    parts = col_name.rsplit('_', 1)
                     if len(parts) == 2:
                         folder_suffix, filename = parts[1], parts[0]
                         return (folder_suffix, filename) 
@@ -342,7 +343,8 @@ def process_data(
             "algorithm": algorithm,
             "output_logs": captured_logs,
             "job_id": job_id,
-            "records": records
+            "records": records,
+            "is_plot": is_plot
         }
 
       

@@ -37,4 +37,4 @@ Steps before first deployment:
 -[x] download static images
 -[] download reports with manuscripts, what algorithms you used, what settings you used, date/time, you downloaded these files and here are the original file names, base text x text 
 -[x] fix # having a 0 before it
--[] cache to fix efficiency
+-[x] cache to fix efficiency
