@@ -8,7 +8,6 @@ export function useWasmEngines() {
   const [isReady, setIsReady] = useState(false);
   const [loadingStatus, setLoadingStatus] = useState('Initializing engines...');
   
-  // Guard to prevent double execution in React Strict Mode
   const isInitializing = useRef(false);
 
   useEffect(() => {
@@ -19,14 +18,16 @@ export function useWasmEngines() {
       try {
         const getBasePath = () => {
           if (typeof window === "undefined") return "";
+          if (window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1") {
+            return "";
+          }
           const pathSegments = window.location.pathname.split("/").filter(Boolean);
-          return window.location.hostname.endsWith("github.io") && pathSegments.length > 0
-            ? `/${pathSegments[0]}`
-            : "";
+          return pathSegments.length > 0 ? `/${pathSegments[0]}` : "";
         };
+
         const basePath = getBasePath();
 
-        // 1. Load Pyodide Script Safely
+        // 1. Pyodide Initialization
         setLoadingStatus('Loading Python WebAssembly runtime...');
         if (!(window as any).loadPyodide) {
           await new Promise<void>((resolve, reject) => {
@@ -38,11 +39,9 @@ export function useWasmEngines() {
           });
         }
 
-        // Initialize Pyodide
         const py = await (window as any).loadPyodide();
         await py.loadPackage(['pandas', 'numpy']);
 
-        // Fetch & Write Python files safely
         const pyFiles = ['base.py', 'needleman_wunsch.py', 'smith_waterman.py', 'main.py'];
         for (const file of pyFiles) {
           const url = `${basePath}/python/${file}`;
@@ -55,12 +54,13 @@ export function useWasmEngines() {
         }
         setPyodide(py);
 
-        // 2. Initialize WebR using PostMessage (channelType: 1)
+        // 2. WebR Initialization
         setLoadingStatus('Loading R WebAssembly runtime...');
         
+        // Using "latest" CDN endpoint guarantees JS bindings and WASM binaries match
         const webr = new WebR({
-          baseUrl: 'https://webr.r-wasm.org/v0.3.1/',
-          channelType: 3
+          baseUrl: 'https://webr.r-wasm.org/latest/',
+          channelType: 3 // 3 = ChannelType.PostMessage
         });
         
         await webr.init();
@@ -71,7 +71,6 @@ export function useWasmEngines() {
           'htmltools', 'dplyr', 'rgl', 'readxl'
         ]);
 
-        // Fetch & Write R script safely
         const rUrl = `${basePath}/r/t-SNE.R`;
         const rRes = await fetch(rUrl);
         if (!rRes.ok) {

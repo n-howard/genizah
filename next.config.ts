@@ -1,15 +1,21 @@
 import type { NextConfig } from "next";
 
+const isProd = process.env.NODE_ENV === "production";
+
 const nextConfig: NextConfig = {
-  basePath: "/genizah", // Note: Leading slash is required by Next.js
+  // Apply subpath ONLY during production builds (GitHub Pages)
+  basePath: isProd ? "/genizah" : "",
+  assetPrefix: isProd ? "/genizah" : "",
+  
   output: "export",
+  
   typescript: {
     ignoreBuildErrors: true,
   },
+  
   images: {
-    unoptimized: true, // Required when using output: 'export'
+    unoptimized: true, // Required for static exports
   },
- 
 };
 
 export default nextConfig;
