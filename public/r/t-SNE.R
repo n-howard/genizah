@@ -162,7 +162,7 @@ run_tsne_browser <- function(df, perplexity, theta, plot_type, colors, color_tex
       theme_minimal()
 
     temp_png <- tempfile(fileext = ".png")
-    ggsave(temp_png, plot = p2d, width = 30, height = 30)
+    ggsave(temp_png, plot = p2d, width = 6, height = 6)
     
     raw_bytes <- readBin(temp_png, "raw", n = file.info(temp_png)$size)
     return(paste0("data:image/png;base64,", base64_encode(raw_bytes)))

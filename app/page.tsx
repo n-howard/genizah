@@ -2181,7 +2181,7 @@ const handleDownload = async () => {
             />
             </div>
             )}
-            <div className="w-full flex justify-between content-end items-end pb-5 flex-row">
+            <div className="w-full flex justify-between content-end items-end pb-10 flex-row">
               <button
                 onClick={() => handleStepChange(4)}
                 className="px-5 py-2 border border-gray-300 text-gray-700 font-medium rounded-lg w-max hover:bg-gray-50 transition"
