@@ -55,13 +55,18 @@ export function useWasmEngines() {
         }
         setPyodide(py);
 
-        // 2. Initialize WebR
+        // 2. Initialize WebR (Fixing Worker Path Resolution for GitHub Pages)
         setLoadingStatus('Loading R WebAssembly runtime...');
-        const baseUrl = typeof window !== 'undefined'
-          ? `${window.location.origin}${basePath}/`.replace(/(?!^https?:\/\/)\/+/g, '/')
-          : undefined;
+        
+        // Ensure exact trailing slash for baseUrl so webr-worker.js resolves correctly
+        const origin = typeof window !== 'undefined' ? window.location.origin : '';
+        const cleanBasePath = basePath.replace(/\/+$/, '');
+        const webrBaseUrl = `${origin}${cleanBasePath}/`;
 
-        const webr = new WebR({ baseUrl });
+        const webr = new WebR({ 
+          baseUrl: webrBaseUrl
+        });
+        
         await webr.init();
 
         setLoadingStatus('Installing R packages (this may take a moment)...');
