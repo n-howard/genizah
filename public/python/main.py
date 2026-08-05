@@ -117,49 +117,49 @@ def run_in_browser_process(algorithm, settings, file_dir, base_text, multi, base
                     
         
 
-        original_cwd = os.getcwd()
-        buffer = io.StringIO()
+    original_cwd = os.getcwd()
+    buffer = io.StringIO()
+    
+    
+    
         
-      
-      
+    
+    
+    try:
+        os.chdir(root_dir)
+        print("Running algorithm")
+        records = []
+
+        
+
+        if "ndw" in algorithm:
             
-        
-        
-        try:
-            os.chdir(root_dir)
-            print("Running algorithm")
-            records = []
-
-           
-
-            if "ndw" in algorithm:
-                
-                
-                # Redirect print() outputs into string buffer
-                with contextlib.redirect_stdout(buffer):
-                    records = records + run_nw(root_dir, settings, base_text_pattern, is_plot, records)
+            
+            # Redirect print() outputs into string buffer
+            with contextlib.redirect_stdout(buffer):
+                records = records + run_nw(root_dir, settings, base_text_pattern, is_plot, records)
                     
                 
-            elif "sw" in algorithm:
-                # Redirect print() outputs into string buffer
-                with contextlib.redirect_stdout(buffer):
-                    records = records + run_sw(root_dir, settings, base_text_pattern, is_plot, records)
-           
-            if is_plot:
-                # fix this to be customizable
-                # base_texts = set([Path(f.filename).name.split("_")[0] for f in files]) if files else set()
-                base_texts = set([Path(f.filename).name.split("_")[0] for f in base_text_list]) if base_text_list else set()
-                print("BaseText Prefixes:",base_texts)
-                df = None
-                print("Creating matrix")
-                
-                base_texts = [bt for bt in base_texts if bt!=base_text_pattern ] 
+        elif "sw" in algorithm:
+            # Redirect print() outputs into string buffer
+            with contextlib.redirect_stdout(buffer):
+                records = records + run_sw(root_dir, settings, base_text_pattern, is_plot, records)
+        
+        if is_plot:
+            # fix this to be customizable
+            # base_texts = set([Path(f.filename).name.split("_")[0] for f in files]) if files else set()
+            base_texts = set([Path(f.filename).name.split("_")[0] for f in base_text_list]) if base_text_list else set()
+            print("BaseText Prefixes:",base_texts)
+            df = None
+            print("Creating matrix")
+            
+            base_texts = [bt for bt in base_texts if bt!=base_text_pattern ] 
 
-                for bt in base_texts:
-                    if "ndw" in algorithm:
-                        records = records + run_nw(root_dir, settings, bt, True, records)
-                    else:
-                        records = records + run_sw(root_dir, settings, bt, True, records)
+            for bt in base_texts:
+                if "ndw" in algorithm:
+                    records = records + run_nw(root_dir, settings, bt, True, records)
+                else:
+                    records = records + run_sw(root_dir, settings, bt, True, records)
 
                 # filtered_records = [{key: value for key, value in dict.items() if (key!="OrigScore"and key!="TextNamePair")} for dict in records]
                 # orig_df = pd.DataFrame(filtered_records)
@@ -215,18 +215,18 @@ def run_in_browser_process(algorithm, settings, file_dir, base_text, multi, base
                 
                     
             
-        finally: 
-            os.chdir(original_cwd)
-        captured_logs = buffer.getvalue()
-        
-        return {
-            "status": "success",
-            "algorithm": algorithm,
-            "output_logs": captured_logs,
-            # "job_id": job_id,
-            "records": records,
-            "is_plot": is_plot
-        }
+    finally: 
+        os.chdir(original_cwd)
+    captured_logs = buffer.getvalue()
+    
+    return {
+        "status": "success",
+        "algorithm": algorithm,
+        "output_logs": captured_logs,
+        # "job_id": job_id,
+        "records": records,
+        "is_plot": is_plot
+    }
 
       
 
