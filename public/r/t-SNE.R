@@ -58,24 +58,74 @@ run_tsne_browser <- function(df, perplexity, theta, plot_type, colors, color_tex
 
   # --- BRANCH 1: 3D Interactive ("3da") ---
   if (plot_type == "3da") {
-    p <- plot_ly(
-      x = tsne_results$Y[, 1],
-      y = tsne_results$Y[, 2],
-      z = tsne_results$Y[, 3],
-      type = "scatter3d",
-      mode = "markers+text",
-      text = data$BaseText,
-      textposition = "top center",
-      marker = list(size = 5, color = colour_vec),
-      textfont = list(color = text_colour_vec, size = 10)
-    ) %>% layout(
-      scene = list(
-        xaxis = list(title = "t-SNE 1", showgrid=FALSE),
-        yaxis = list(title = "t-SNE 2", showgrid=FALSE),
-        zaxis = list(title = "t-SNE 3", showgrid=FALSE)
-      ),
-      margin = list(l = 0, r = 0, b = 0, t = 0)
+
+    clean_cube_axis <- list(
+      showgrid = FALSE,       
+      zeroline = FALSE,       
+      showbackground = FALSE, 
+      showline = FALSE,        
+      linecolor = "#333333",  
+      linewidth = 0,
+      showspikes = FALSE          
     )
+
+    # p <- plot_ly(
+    #   x = tsne_results$Y[, 1],
+    #   y = tsne_results$Y[, 2],
+    #   z = tsne_results$Y[, 3],
+    #   type = "scatter3d",
+    #   mode = "markers+text",
+    #   text = data$BaseText,
+    #   textposition = "top center",
+    #   marker = list(size = 5, color = colour_vec),
+    #   textfont = list(color = text_colour_vec, size = 10)
+    # ) %>% layout(
+    #   scene = list(
+    #     aspectmode = 'cube', # Forces exact cube shape (1:1:1 proportions)
+    #     xaxis = c(list(title = "t-SNE 1"), clean_cube_axis),
+    #     yaxis = c(list(title = "t-SNE 2"), clean_cube_axis),
+    #     zaxis = c(list(title = "t-SNE 3"), clean_cube_axis)
+    #   ),
+    #   margin = list(l = 0, r = 0, b = 0, t = 0)
+    # )
+    # 1. Calculate bounding box of coordinates
+    x_r <- range(tsne_results$Y[, 1])
+    y_r <- range(tsne_results$Y[, 2])
+    z_r <- range(tsne_results$Y[, 3])
+
+    # 2. Define 12 edges of the bounding cube (separated by NA to draw disconnected lines)
+    box_x <- c(x_r[1], x_r[2], x_r[2], x_r[1], x_r[1], NA, x_r[1], x_r[2], x_r[2], x_r[1], x_r[1], NA, x_r[1], x_r[1], NA, x_r[2], x_r[2], NA, x_r[2], x_r[2], NA, x_r[1], x_r[1])
+    box_y <- c(y_r[1], y_r[1], y_r[2], y_r[2], y_r[1], NA, y_r[1], y_r[1], y_r[2], y_r[2], y_r[1], NA, y_r[1], y_r[1], NA, y_r[1], y_r[1], NA, y_r[2], y_r[2], NA, y_r[2], y_r[2])
+    box_z <- c(z_r[1], z_r[1], z_r[1], z_r[1], z_r[1], NA, z_r[2], z_r[2], z_r[2], z_r[2], z_r[2], NA, z_r[1], z_r[2], NA, z_r[1], z_r[2], NA, z_r[1], z_r[2], NA, z_r[1], z_r[2])
+
+    # 3. Create plot with custom cube trace and invisible axes
+    p <- plot_ly() %>%
+      # Wireframe Cube Trace
+      add_trace(
+        x = box_x, y = box_y, z = box_z,
+        type = "scatter3d", mode = "lines",
+        line = list(color = "gray", width = 3),
+        showlegend = FALSE, hoverinfo = "none"
+      ) %>%
+      # Points Trace
+      add_trace(
+        x = tsne_results$Y[, 1],
+        y = tsne_results$Y[, 2],
+        z = tsne_results$Y[, 3],
+        type = "scatter3d", mode = "markers+text",
+        text = data$BaseText,
+        marker = list(size = 5, color = colour_vec),
+        textfont = list(color = text_colour_vec, size = 10)
+      ) %>%
+      layout(
+        scene = list(
+          aspectmode = 'cube',
+          xaxis = c(list(title = "t-SNE 1"), clean_cube_axis),
+          yaxis = c(list(title = "t-SNE 2"), clean_cube_axis),
+          zaxis = c(list(title = "t-SNE 3"), clean_cube_axis)
+        ),
+        margin = list(l = 0, r = 0, b = 0, t = 0)
+      )
 
     # Extract Plotly specification object as JSON (No Pandoc required!)
     p_built <- plotly::plotly_build(p)$x
