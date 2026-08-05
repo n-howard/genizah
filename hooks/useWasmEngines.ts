@@ -60,7 +60,7 @@ export function useWasmEngines() {
         
         const webr = new WebR({
           baseUrl: 'https://webr.r-wasm.org/v0.3.1/',
-          channelType: 1 // 1 = ChannelType.PostMessage (no Service Worker required)
+          channelType: 3
         });
         
         await webr.init();
