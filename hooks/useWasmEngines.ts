@@ -1,6 +1,6 @@
 // hooks/useWasmEngines.ts
 import { useEffect, useState, useRef } from 'react';
-import { WebR } from '@r-wasm/webr';
+import { WebR, ChannelType } from '@r-wasm/webr';
 
 export function useWasmEngines() {
   const [pyodide, setPyodide] = useState<any>(null);
@@ -55,23 +55,22 @@ export function useWasmEngines() {
         }
         setPyodide(py);
 
-        // 2. Initialize WebR using the official WebR CDN binaries
         setLoadingStatus('Loading R WebAssembly runtime...');
-        
-        // Pointing explicitly to CDN prevents 404s on missing local R.bin.js files
+
         const webr = new WebR({
-          baseUrl: 'https://webr.r-wasm.org/v0.3.1/' 
+        baseUrl: 'https://webr.r-wasm.org/v0.3.1/',
+        channelType: ChannelType.PostMessage // <--- Bypasses service worker requirement entirely
         });
-        
+
         await webr.init();
 
         setLoadingStatus('Installing R packages (this may take a moment)...');
         await webr.installPackages([
-          'Rtsne', 'ggplot2', 'pandoc', 'webshot2', 
-          'htmltools', 'dplyr', 'rgl', 'readxl'
+        'Rtsne', 'ggplot2', 'pandoc', 'webshot2', 
+        'htmltools', 'dplyr', 'rgl', 'readxl'
         ]);
 
-        // Fetch & Write R script safely from your repository
+       
         const rUrl = `${basePath}/r/t-SNE.R`;
         const rRes = await fetch(rUrl);
         if (!rRes.ok) {
