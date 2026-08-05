@@ -469,7 +469,7 @@ const handleSubmit = async () => {
   
   try {
     // 1. Clear & create virtual input directory in Pyodide
-    try { pyodide.FS.mkdirTree('/tmp/input_files'); } catch (e) {}
+    try { pyodide.FS.mkdirTree('/tmp/Alignment Data0'); } catch (e) {}
 
     // 2. Collect user files and filenames
     const allFilesToProcess: { file: File; section?: string }[] = [];
@@ -499,8 +499,8 @@ const handleSubmit = async () => {
     for (const item of allFilesToProcess) {
       const arrayBuffer = await item.file.arrayBuffer();
       const path = item.section 
-        ? `/tmp/input_files/${item.section}/${item.file.name}`
-        : `/tmp/input_files/${item.file.name}`;
+        ? `/tmp/Alignment Data0/${item.section}/${item.file.name}`
+        : `/tmp/Alignment Data0/${item.file.name}`;
       
       const dirPath = path.substring(0, path.lastIndexOf('/'));
       try { pyodide.FS.mkdirTree(dirPath); } catch (e) {}
@@ -534,14 +534,14 @@ settings = main.AlgorithmSettings.from_dict(js_settings)
 results = main.run_in_browser_process(
     algorithm=js_algorithm,
     settings=settings,
-    file_dir="/tmp/input_files",
+    file_dir="/tmp/Alignment Data0",
     base_text=js_base_text,
     multi=js_multi,
     base_text_list=js_base_text_list
 )
 
 if results is None:
-    raise ValueError("main.run_in_browser_process returned None. Check input parameters or files in /tmp/input_files.")
+    raise ValueError("main.run_in_browser_process returned None. Check input parameters or files in /tmp/Alignment Data0.")
 
 if "records" not in results or results["records"] is None:
     raise KeyError("Missing or empty 'records' in execution results.")
