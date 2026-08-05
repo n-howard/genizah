@@ -11,7 +11,6 @@
   "dependencies": {
     "@heroui/react": "^3.2.3",
     "@heroui/styles": "^3.2.3",
-    "@r-wasm/webr": "^0.2.0",
     "@react-pdf/renderer": "^4.5.1",
     "dev-tools": "^0.1.6",
     "downloadjs": "^1.4.7",
@@ -26,6 +25,7 @@
     "react-pdf-tailwind": "^3.0.0",
     "uuid": "^14.0.1",
     "vercel": "^58.4.4",
+    "webr": "^0.6.0",
     "zod": "^4.4.3"
   },
   "devDependencies": {
