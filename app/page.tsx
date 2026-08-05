@@ -760,49 +760,30 @@ os.makedirs('/tmp', exist_ok=True)
   }
 };
 const [downloadedFiles, setDownloadedFiles] = useState([])
-const download3dPlot = async () => {
-  const iframeWin = plotRef.current?.contentWindow as any;
-  const iframeDoc = plotRef.current?.contentDocument;
+const handleDownload = async () => {
+  if (!pyodide) return;
 
-  if (!iframeWin || !iframeDoc) {
-    console.warn("Iframe reference not found");
-    return;
-  }
+  try {
+    // Read binary from Pyodide
+    const rawBinary = pyodide.FS.readFile("/tmp/alignment_matrix.xlsx");
 
-  const plotDiv = iframeDoc.getElementById('plot') as any;
+    // Convert/copy to standard Uint8Array backed by a standard ArrayBuffer
+    const excelBinary = new Uint8Array(rawBinary);
 
-  if (plotDiv && iframeWin.Plotly) {
-    try {
-      // 1. Copy live interactive camera state into the layout object
-      const liveCamera = plotDiv._fullLayout?.scene?.camera;
+    await webR.FS.writeFile('/tmp/alignment_matrix.xlsx', excelBinary);
 
-      if (liveCamera) {
-        plotDiv.layout = plotDiv.layout || {};
-        plotDiv.layout.scene = plotDiv.layout.scene || {};
-        plotDiv.layout.scene.camera = {
-          eye: { ...liveCamera.eye },
-          center: { ...liveCamera.center },
-          up: { ...liveCamera.up },
-          projection: liveCamera.projection ? { ...liveCamera.projection } : undefined,
-        };
-      }
+    // Trigger browser download
+    const blob = new Blob([excelBinary], {
+      type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+    });
 
-      // 2. Export image using current position & high resolution
-      const dataUrl = await iframeWin.Plotly.toImage(plotDiv, {
-        format: 'png',
-        width: 1200,
-        height: 900,
-      });
+    const fileName = "alignment_matrix.xlsx";
+    download(blob, fileName);
 
-      // 3. Trigger download
-      download(dataUrl, 'positioned_3D_plot.png');
-      setDownloadedFiles((prev) => [...prev, "positioned_3D_plot.png"]);
-
-    } catch (err) {
-      console.error("Failed to generate image from Plotly:", err);
-    }
-  } else {
-    console.warn("Plotly instance or #plot container not found inside iframe");
+    // Track for PDF Report
+    setDownloadedFiles((prev) => [...prev, fileName]);
+  } catch (error) {
+    console.error("Failed to download Excel file:", error);
   }
 };
   // const handleSubmit = async () => {
@@ -1092,8 +1073,7 @@ const download3dPlot = async () => {
   //     console.warn('Canvas element not found inside iframe');
   //   }
   // }
-
-  const download3dPlot = async () => {
+const download3dPlot = async () => {
   const iframeWin = plotRef.current?.contentWindow as any;
   const iframeDoc = plotRef.current?.contentDocument;
 
@@ -1102,19 +1082,32 @@ const download3dPlot = async () => {
     return;
   }
 
-  // 1. Target the plot div inside the iframe
-  const plotDiv = iframeDoc.getElementById('plot');
+  const plotDiv = iframeDoc.getElementById('plot') as any;
 
   if (plotDiv && iframeWin.Plotly) {
     try {
-      // 2. Use Plotly's native exporter (captures current 3D view/angle cleanly)
+      // 1. Copy live interactive camera state into the layout object
+      const liveCamera = plotDiv._fullLayout?.scene?.camera;
+
+      if (liveCamera) {
+        plotDiv.layout = plotDiv.layout || {};
+        plotDiv.layout.scene = plotDiv.layout.scene || {};
+        plotDiv.layout.scene.camera = {
+          eye: { ...liveCamera.eye },
+          center: { ...liveCamera.center },
+          up: { ...liveCamera.up },
+          projection: liveCamera.projection ? { ...liveCamera.projection } : undefined,
+        };
+      }
+
+      // 2. Export image using current position & high resolution
       const dataUrl = await iframeWin.Plotly.toImage(plotDiv, {
         format: 'png',
-        width: 1200,  // High resolution export width
-        height: 900,  // High resolution export height
+        width: 1200,
+        height: 900,
       });
 
-      // 3. Trigger download and update state
+      // 3. Trigger download
       download(dataUrl, 'positioned_3D_plot.png');
       setDownloadedFiles((prev) => [...prev, "positioned_3D_plot.png"]);
 
