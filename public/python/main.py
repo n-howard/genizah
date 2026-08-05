@@ -52,7 +52,7 @@ def run_in_browser_process(algorithm, settings, file_dir, base_text, multi, base
     # settings = AlgorithmSettings.from_dict(raw_settings)
     is_plot = True
     # job_id = str(uuid.uuid4())
-    is_multi = multi.lower() == "true"
+    # is_multi = multi.lower() == "true"
     # if base_text=="" or not base_text:
     #     base_text = files[0]
         
