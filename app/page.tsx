@@ -760,30 +760,49 @@ os.makedirs('/tmp', exist_ok=True)
   }
 };
 const [downloadedFiles, setDownloadedFiles] = useState([])
-const handleDownload = async () => {
-  if (!pyodide) return;
+const download3dPlot = async () => {
+  const iframeWin = plotRef.current?.contentWindow as any;
+  const iframeDoc = plotRef.current?.contentDocument;
 
-  try {
-    // Read binary from Pyodide
-    const rawBinary = pyodide.FS.readFile("/tmp/alignment_matrix.xlsx");
+  if (!iframeWin || !iframeDoc) {
+    console.warn("Iframe reference not found");
+    return;
+  }
 
-    // Convert/copy to standard Uint8Array backed by a standard ArrayBuffer
-    const excelBinary = new Uint8Array(rawBinary);
+  const plotDiv = iframeDoc.getElementById('plot') as any;
 
-    await webR.FS.writeFile('/tmp/alignment_matrix.xlsx', excelBinary);
+  if (plotDiv && iframeWin.Plotly) {
+    try {
+      // 1. Copy live interactive camera state into the layout object
+      const liveCamera = plotDiv._fullLayout?.scene?.camera;
 
-    // Trigger browser download
-    const blob = new Blob([excelBinary], {
-      type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
-    });
+      if (liveCamera) {
+        plotDiv.layout = plotDiv.layout || {};
+        plotDiv.layout.scene = plotDiv.layout.scene || {};
+        plotDiv.layout.scene.camera = {
+          eye: { ...liveCamera.eye },
+          center: { ...liveCamera.center },
+          up: { ...liveCamera.up },
+          projection: liveCamera.projection ? { ...liveCamera.projection } : undefined,
+        };
+      }
 
-    const fileName = "alignment_matrix.xlsx";
-    download(blob, fileName);
+      // 2. Export image using current position & high resolution
+      const dataUrl = await iframeWin.Plotly.toImage(plotDiv, {
+        format: 'png',
+        width: 1200,
+        height: 900,
+      });
 
-    // Track for PDF Report
-    setDownloadedFiles((prev) => [...prev, fileName]);
-  } catch (error) {
-    console.error("Failed to download Excel file:", error);
+      // 3. Trigger download
+      download(dataUrl, 'positioned_3D_plot.png');
+      setDownloadedFiles((prev) => [...prev, "positioned_3D_plot.png"]);
+
+    } catch (err) {
+      console.error("Failed to generate image from Plotly:", err);
+    }
+  } else {
+    console.warn("Plotly instance or #plot container not found inside iframe");
   }
 };
   // const handleSubmit = async () => {
