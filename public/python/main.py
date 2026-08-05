@@ -52,7 +52,7 @@ def run_in_browser_process(algorithm, settings, file_dir, base_text, multi, base
     # settings = AlgorithmSettings.from_dict(raw_settings)
     is_plot = True
     # job_id = str(uuid.uuid4())
-    # is_multi = multi.lower() == "true"
+    is_multi = multi.lower() == "true"
     # if base_text=="" or not base_text:
     #     base_text = files[0]
         
@@ -124,11 +124,11 @@ def run_in_browser_process(algorithm, settings, file_dir, base_text, multi, base
     
         
     
-    
+    records = []
     try:
         os.chdir(root_dir)
         print("Running algorithm")
-        records = []
+        
 
         
 
@@ -150,7 +150,7 @@ def run_in_browser_process(algorithm, settings, file_dir, base_text, multi, base
             # base_texts = set([Path(f.filename).name.split("_")[0] for f in files]) if files else set()
             base_texts = set([Path(f.filename).name.split("_")[0] for f in base_text_list]) if base_text_list else set()
             print("BaseText Prefixes:",base_texts)
-            df = None
+            # df = None
             print("Creating matrix")
             
             base_texts = [bt for bt in base_texts if bt!=base_text_pattern ] 

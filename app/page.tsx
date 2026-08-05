@@ -517,7 +517,7 @@ const handleSubmit = async () => {
     import pandas as pd
 
     settings = main.AlgorithmSettings.from_dict(json.loads('''${JSON.stringify(formData.settings)}'''))
-
+    base_text_list = json.loads('''${baseTextList}''')
 
 
     # Execute alignment inside browser RAM
@@ -527,7 +527,7 @@ const handleSubmit = async () => {
         file_dir="/tmp/input_files",
         base_text="${formData.baseText}",
         multi="${formData.multi}",
-        base_text_list="${baseTextList}"
+        base_text_list=base_text_list
     )
 
     records = results["records"]
