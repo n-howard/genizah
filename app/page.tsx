@@ -549,7 +549,7 @@ const handleSubmit = async () => {
     if ${formData.multi}:
         sorted_columns = sorted(df.columns, key=get_suffix_sort_key)
         df = df[sorted_columns]
-    df.to_excel("/tmp/alignment_matrix.xlsx", engine='openpyxl')
+    df.to_excel("/tmp/alignment_matrix.xlsx")
     results
 
     `;

@@ -38,3 +38,6 @@ Steps before first deployment:
 -[x] download reports with manuscripts, what algorithms you used, what settings you used, date/time, you downloaded these files and here are the original file names, base text x text and score
 -[x] fix # having a 0 before it
 -[x] cache to fix efficiency
+
+-[] start/welcome page
+-[] be able to rename subsections
