@@ -604,32 +604,129 @@ results
 };
 
 // 2. Browser-Native handlePlot (Replaces FastAPI /api/plot)
+
+
+
+
+// const handlePlot = async () => {
+//   if (!webR || !pyodide) return;
+//   setIsProcessing(true);
+
+//   try {
+//     // 1. Copy matrix from Pyodide to WebR FS
+//     const excelBinary: Uint8Array = pyodide.FS.readFile("/tmp/alignment_matrix.xlsx");
+//     try { webR.FS.mkdir('/tmp'); } catch (e) {}
+//     await webR.FS.writeFile('/tmp/alignment_matrix.xlsx', excelBinary);
+
+//     // 2. Execute R Script
+//     const rCommand = `
+//       source('/tmp/t-SNE.R')
+//       run_tsne_browser(
+//         df = '/tmp/alignment_matrix.xlsx',
+//         perplexity = ${formData.plotSettings.perplexity},
+//         theta = ${formData.plotSettings.theta},
+//         plot_type = '${formData.plotSettings.plotType}',
+//         colors = '${formData.plotSettings.colors}',
+//         color_text = '${formData.plotSettings.colorText}'
+//       )
+//     `;
+
+//     const rOutput = await webR.evalR(rCommand);
+//     const resultValue = await rOutput.toJs();
+//     const resultString = resultValue.values?.[0] || resultValue;
+
+//     // 3. Handle Output Type
+//     if (typeof resultString === 'string' && resultString.startsWith('data:image')) {
+//       // 2D ("2d") or 3D Static ("3ds")
+//       setPlotUrl({ type: 'image', src: resultString });
+//     } else {
+//       // 3D Interactive ("3da")
+//       const htmlBytes = await webR.FS.readFile('/tmp/plot.html');
+//       const blob = new Blob([htmlBytes], { type: 'text/html' });
+//       const blobUrl = URL.createObjectURL(blob);
+      
+//       if (plotUrl?.type === 'iframe') URL.revokeObjectURL(plotUrl.src);
+//       setPlotUrl({ type: 'iframe', src: blobUrl });
+//     }
+
+//     handleStepChange(currentStep + 1);
+
+//   } catch (error) {
+//     console.error("Plot generation error:", error);
+//     alert(`Plot generation failed: ${error instanceof Error ? error.message : String(error)}`);
+//   } finally {
+//     setIsProcessing(false);
+//   }
+// };
 const handlePlot = async () => {
-  if (!webR || !pyodide) return;
+  if (!pyodide || !webR) {
+    alert("WebAssembly engines are still loading. Please wait a moment.");
+    return;
+  }
+
   setIsProcessing(true);
 
   try {
-    
-    const excelBinary: Uint8Array = pyodide.FS.readFile("/tmp/alignment_matrix.xlsx");
- 
+    // ------------------------------------------------------------------
+    // 1. SAFELY ENSURE /tmp DIRECTORY EXISTS IN PYODIDE
+    // ------------------------------------------------------------------
+    const pyTmpAnalysis = pyodide.FS.analyzePath('/tmp');
+    if (!pyTmpAnalysis.exists) {
+      pyodide.FS.mkdir('/tmp');
+    }
+
+    // ------------------------------------------------------------------
+    // 2. RUN PYTHON ALIGNMENT SCRIPT (IF NOT ALREADY EXECUTED)
+    // ------------------------------------------------------------------
+    // Ensure python outputs directly to /tmp/alignment_matrix.xlsx
+    await pyodide.runPythonAsync(`
+import os
+import pandas as pd
+
+# Create /tmp directory inside Python environment just in case
+os.makedirs('/tmp', exist_ok=True)
+
+# Run main alignment logic (Replace this line with your actual python main call)
+# df_result.to_excel('/tmp/alignment_matrix.xlsx', engine='openpyxl')
+`);
+
+    // ------------------------------------------------------------------
+    // 3. VERIFY FILE EXISTS IN PYODIDE FS BEFORE READING
+    // ------------------------------------------------------------------
+    let targetFile = '';
+    if (pyodide.FS.analyzePath('/tmp/alignment_matrix.xlsx').exists) {
+      targetFile = '/tmp/alignment_matrix.xlsx';
+    } else if (pyodide.FS.analyzePath('alignment_matrix.xlsx').exists) {
+      targetFile = 'alignment_matrix.xlsx';
+    } else {
+      throw new Error(
+        "alignment_matrix.xlsx was not found in Pyodide filesystem. " +
+        "Make sure your Python code saves the spreadsheet to '/tmp/alignment_matrix.xlsx'."
+      );
+    }
+
+    // Read binary data from Pyodide
+    const excelBinary: Uint8Array = pyodide.FS.readFile(targetFile);
+
+    // ------------------------------------------------------------------
+    // 4. SAFELY ENSURE /tmp DIRECTORY EXISTS IN WEBR
+    // ------------------------------------------------------------------
+    try {
+      await webR.FS.mkdir('/tmp');
+    } catch (e) {
+      // Ignore error if /tmp already exists in WebR
+    }
+
+    // Copy matrix over to WebR
     await webR.FS.writeFile('/tmp/alignment_matrix.xlsx', excelBinary);
 
-    await webR.evalR(`
-      options(rgl.useNULL = TRUE)
-      webr::install("rgl")
-      webr::install("htmltools")
-      webr::install("Rtsne")
-      webr::install("readxl")
-      webr::install("dplyr")
-    `);
-    // Execute t-SNE in WebR
+    // ------------------------------------------------------------------
+    // 5. EXECUTE t-SNE IN WEBR
+    // ------------------------------------------------------------------
     const rCommand = `
-    
-      file_path <- '/tmp/alignment_matrix.xlsx'
-      
       source('/tmp/t-SNE.R')
       run_tsne_browser(
-        df = file_path,
+        df = '/tmp/alignment_matrix.xlsx',
         perplexity = ${formData.plotSettings.perplexity},
         theta = ${formData.plotSettings.theta},
         plot_type = '${formData.plotSettings.plotType}',
@@ -637,14 +734,27 @@ const handlePlot = async () => {
         color_text = '${formData.plotSettings.colorText}'
       )
     `;
-    const rOutput = await webR.evalR(rCommand);
-    const plotData = await rOutput.toJs({ dict_converter: Object.fromEntries });
 
-    // Create an object URL or render plot canvas directly
-    setPlotUrl(plotData); 
-    handleStepChange(currentStep + 1);
-  } catch (error) {
-    console.error("Browser t-SNE plotting error:", error);
+    const rOutput = await webR.evalR(rCommand);
+    const resultValue = await rOutput.toJs();
+    const resultString = (resultValue.values?.[0] || resultValue) as string;
+
+    if (resultString.startsWith('data:image')) {
+      // Static 3D/2D base64 image
+      setPlotUrl(resultString);
+    } else {
+      // Interactive HTML string via iframe
+      const htmlBytes = await webR.FS.readFile('/tmp/plot.html');
+      const htmlText = new TextDecoder().decode(htmlBytes);
+      setPlotUrl(htmlText);
+    }
+
+    // Advance to plot step
+    handleStepChange(5);
+
+  } catch (error: any) {
+    console.error("Plot generation error:", error);
+    alert(`Plot generation failed: ${error.message || String(error)}`);
   } finally {
     setIsProcessing(false);
   }
@@ -946,23 +1056,56 @@ const handleDownload = async () => {
 
  const plotRef = useRef(null);
 
-  const download3dPlot = () => {
-    // 1. Target the iframe's document
-    const iframeDoc = plotRef.current?.contentDocument || plotRef.current?.contentWindow?.document;
-    if (!iframeDoc) return;
+  // const download3dPlot = () => {
+  //   // 1. Target the iframe's document
+  //   const iframeDoc = plotRef.current?.contentDocument || plotRef.current?.contentWindow?.document;
+  //   if (!iframeDoc) return;
 
-    // 2. Find the WebGL canvas inside the iframe
-    const canvas = iframeDoc.querySelector('canvas') as HTMLCanvasElement;
+  //   // 2. Find the WebGL canvas inside the iframe
+  //   const canvas = iframeDoc.querySelector('canvas') as HTMLCanvasElement;
 
-    if (canvas) {
-      // 3. Extract the image directly from WebGL
-      const dataUrl = canvas.toDataURL('image/png');
-      download(dataUrl, 'positioned_3D_plot.png');
-      setDownloadedFiles((prev)=>([...prev, "positioned_3D_plot.png"]))
-    } else {
-      console.warn('Canvas element not found inside iframe');
-    }
+  //   if (canvas) {
+  //     // 3. Extract the image directly from WebGL
+  //     const dataUrl = canvas.toDataURL('image/png');
+  //     download(dataUrl, 'positioned_3D_plot.png');
+  //     setDownloadedFiles((prev)=>([...prev, "positioned_3D_plot.png"]))
+  //   } else {
+  //     console.warn('Canvas element not found inside iframe');
+  //   }
+  // }
+
+  const download3dPlot = async () => {
+  const iframeWin = plotRef.current?.contentWindow as any;
+  const iframeDoc = plotRef.current?.contentDocument;
+
+  if (!iframeWin || !iframeDoc) {
+    console.warn("Iframe reference not found");
+    return;
   }
+
+  // 1. Target the plot div inside the iframe
+  const plotDiv = iframeDoc.getElementById('plot');
+
+  if (plotDiv && iframeWin.Plotly) {
+    try {
+      // 2. Use Plotly's native exporter (captures current 3D view/angle cleanly)
+      const dataUrl = await iframeWin.Plotly.toImage(plotDiv, {
+        format: 'png',
+        width: 1200,  // High resolution export width
+        height: 900,  // High resolution export height
+      });
+
+      // 3. Trigger download and update state
+      download(dataUrl, 'positioned_3D_plot.png');
+      setDownloadedFiles((prev) => [...prev, "positioned_3D_plot.png"]);
+
+    } catch (err) {
+      console.error("Failed to generate image from Plotly:", err);
+    }
+  } else {
+    console.warn("Plotly instance or #plot container not found inside iframe");
+  }
+};
 
 
   const handleColorText = () => {
@@ -1698,7 +1841,7 @@ const handleDownload = async () => {
             </button>
             <button
               onClick={handleSubmit}
-              disabled={isProcessing}
+              disabled={!isReady||isProcessing}
               className="px-5 py-2 bg-cyan-600 text-white font-medium rounded-lg hover:bg-cyan-700 disabled:opacity-50 transition"
             >
               {isProcessing ? "Processing..." : "Run Algorithm"}
@@ -2019,34 +2162,33 @@ const handleDownload = async () => {
               Plot
             </h1>
             {formData.plotSettings.plotType.includes("3da") && (
-              <div  className="w-full h-full">
+              <div  className=" place-content-center">
          
-            <iframe
-              ref={plotRef} 
-              src={plotUrl}
-              className="w-full h-full border-none"
+
+            <iframe ref={plotRef}
+            srcDoc={plotUrl}
+              className=" w-full h-[500px] place-content-center border-none"
               title="t-SNE Plot"
-              sandbox="allow-scripts"
+              // sandbox="allow-scripts allow-same-origin allow-downloads"
             />
             </div>
             )}
-              {(formData.plotSettings.plotType.includes("3ds")||formData.plotSettings.plotType.includes("2d")) && (
-              <div  className=" flex content-center w-full justify-center ">
-            <img
-              src={plotUrl}
-              className=" w-4/10 object-contain"
+              {(formData.plotSettings.plotType.includes("2d")||formData.plotSettings.plotType.includes("3ds")) && (
+              <div  className=" flex content-start h-6/10 justify-center pb-0 ">
+            <img src={plotUrl} 
+              className="  border-none"
               title="t-SNE Plot"
             />
             </div>
             )}
-            <div className="w-full flex justify-between content-end items-end flex-row">
+            <div className="w-full flex justify-between content-end items-end pb-5 flex-row">
               <button
                 onClick={() => handleStepChange(4)}
                 className="px-5 py-2 border border-gray-300 text-gray-700 font-medium rounded-lg w-max hover:bg-gray-50 transition"
               >
                 Back
               </button>
-              <div className="flex flex-col gap-5 content-center w-max">
+              <div className="flex flex-col gap-2 w-max">
                 {(formData.plotSettings.plotType.includes("2d")) && (
                 <a href={plotUrl} download="2D_plot.png" onClick={()=>(setDownloadedFiles((prev)=>([...prev, "2D_plot.png"])))} 
                 className="px-5 py-2 bg-sky-600 text-white font-medium text-center rounded-lg hover:bg-sky-700">

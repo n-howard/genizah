@@ -41,3 +41,4 @@ Steps before first deployment:
 
 -[] start/welcome page
 -[] be able to rename subsections
+-[] keep in local storage?

@@ -2,109 +2,169 @@
 library("Rtsne")
 library(readxl)
 library(ggplot2)
-options(rgl.useNULL = TRUE)
-library(rgl)
-library(htmltools)
-library(pandoc)
-library(webshot2)
+library(plotly)
+library(htmlwidgets)
 library(dplyr)
+library(base64enc)
+library(jsonlite)
 
-run_tsne_browser <-function(df, perplexity, theta, plot_type, colors, color_text){
-  # generates the t-SNE visualisation objects and saves them in a data frame
-  # args <- commandArgs(trailingOnly = TRUE)
-  data <-read_excel(df)
-  print(data)
-  row.names <-data$BaseText
-  if colors=="grouping"){
+# Helper alias for base64 encoding
+base64_encode <- base64enc::base64encode
+
+run_tsne_browser <- function(df, perplexity, theta, plot_type, colors, color_text) {
+  # 1. Read & Prepare Data
+  data <- read_excel(df)
+  row.names <- data$BaseText
+  
+  if (colors == "grouping") {
     group_labels <- data %>% select(Criteria)
     data <- data %>% select(-Criteria)
   }
-  data_matrix <- as.matrix(data[,-1])
-  data_matrix[is.na(data_matrix)]<-1
-  print(data_matrix)
+  
+  data_matrix <- as.matrix(data[, -1])
+  data_matrix[is.na(data_matrix)] <- 1
 
   num_rows <- nrow(data_matrix)
   perplexity_value <- min(as.numeric(perplexity), num_rows / 2)
-  # perplexity_value <- 1
-  print(paste("Chosen perplexity value:", perplexity_value))
-  tsne_results <- Rtsne(data_matrix, dims=3, perplexity = perplexity_value, theta=as.numeric(theta), check_duplicates = FALSE)
+
+  # 2. Compute t-SNE
+  tsne_results <- Rtsne(
+    data_matrix, 
+    dims = 3, 
+    perplexity = perplexity_value, 
+    theta = as.numeric(theta), 
+    num_threads = 1, 
+    check_duplicates = FALSE
+  )
+  
   tsne_data <- as.data.frame(tsne_results$Y)
 
-
-
-  if (grepl("3d", plot_type)){
-    if (colors=="black"){
-      colour <- "black"
-    } else if (colors=="base"){
-      colour <- rainbow(num_rows)
-    }
-    if (tolower(color_text)=="true") {
-      text_colour <- colour
-    } else {
-      text_colour <- "black"
-    }
-    # plots the t-SNE on a 3D graph with labels
-    plot3d(x=tsne_results$Y[,1], y=tsne_results$Y[,2], z=tsne_results$Y[,3], type='p', col=colour, size=7)
-    text3d(x=tsne_results$Y[,1], y=tsne_results$Y[,2], z=tsne_results$Y[,3], texts=data$BaseText, adj=2, color=text_colour)
-    save <-getOption("rgl.useNULL")
-
-    options(rgl.useNULL=TRUE)
-    options(rgl.printRglwidget=TRUE)
+  # Resolve colors
+  if (colors == "black") {
+    colour_vec <- rep("black", num_rows)
+  } else if (colors == "base") {
+    colour_vec <- rainbow(num_rows)
+  } else if (colors == "grouping") {
+    colour_vec <- group_labels$Criteria
+  } else {
+    colour_vec <- rep("#3b82f6", num_rows)
   }
 
-  if (plot_type=="3da"){
-    # generates an interactive widget of the graph within an HTML file that can be saved and shared.
-    # save <-getOption("rgl.useNULL")
+  if (tolower(color_text) == "true") {
+    text_colour_vec <- colour_vec
+  } else {
+    text_colour_vec <- rep("black", num_rows)
+  }
 
-    # options(rgl.useNULL=TRUE)
-    # options(rgl.printRglwidget=TRUE)
+  # --- BRANCH 1: 3D Interactive ("3da") ---
+  if (plot_type == "3da") {
+    p <- plot_ly(
+      x = tsne_results$Y[, 1],
+      y = tsne_results$Y[, 2],
+      z = tsne_results$Y[, 3],
+      type = "scatter3d",
+      mode = "markers+text",
+      text = data$BaseText,
+      textposition = "top center",
+      marker = list(size = 5, color = colour_vec),
+      textfont = list(color = text_colour_vec, size = 10)
+    ) %>% layout(
+      scene = list(
+        xaxis = list(title = "t-SNE 1", showgrid=FALSE),
+        yaxis = list(title = "t-SNE 2", showgrid=FALSE),
+        zaxis = list(title = "t-SNE 3", showgrid=FALSE)
+      ),
+      margin = list(l = 0, r = 0, b = 0, t = 0)
+    )
 
-    widget <-rglwidget(x=scene3d(), width=figWidth(), height=figHeight(), controllers=NULL, snapshot=FALSE, 
-                      elementId = NULL, reuse = !interactive(), webGLoptions = list(preserveDrawingBuffer = TRUE))
-    filename <-tempfile(fileext = ".html")
-    htmlwidgets::saveWidget(widget, filename)
-    html_content <- readChar(filename, file.info(filename)$size)
-    return(html_content)
-  # browseURL(args[2])}
+    # Extract Plotly specification object as JSON (No Pandoc required!)
+    p_built <- plotly::plotly_build(p)$x
+    data_json <- jsonlite::toJSON(p_built$data, auto_unbox = TRUE)
+    layout_json <- jsonlite::toJSON(p_built$layout, auto_unbox = TRUE)
+    config_json <- jsonlite::toJSON(p_built$config, auto_unbox = TRUE)
 
-  } else if(plot_type=="3ds") {
-    
-    widget <- rglwidget()
-    temp_html <- tempfile(fileext = ".html")
-    htmlwidgets::saveWidget(widget, file = temp_html, selfcontained = TRUE)
+    # Build lightweight HTML document pointing to CDN
+    html_content <- sprintf('
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <script src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script>
+  <style>
+    html, body { margin: 0; padding: 0; width: 100%%; height: 100%%; overflow: hidden; }
+    #plot { width: 100vw; height: 100vh; }
+  </style>
+</head>
+<body>
+  <div id="plot"></div>
+  <script>
+    const data = %s;
+    const layout = %s;
+    const config = %s || {};
+    Plotly.newPlot("plot", data, layout, config, { responsive: true });
+  </script>
+</body>
+</html>', data_json, layout_json, config_json)
+
+    output_html <- "/tmp/plot.html"
+    writeLines(html_content, output_html)
+    return(output_html)
+  } 
+
+  # --- BRANCH 2: 3D Static ("3ds") ---
+  else if (plot_type == "3ds") {
+    if (!requireNamespace("scatterplot3d", quietly = TRUE)) {
+      install.packages("scatterplot3d", repos = "https://repo.r-wasm.org")
+    }
+    library(scatterplot3d)
+
     temp_png <- tempfile(fileext = ".png")
-    webshot(url = temp_html, file = temp_png, vwidth = 800, vheight = 600)
+    png(temp_png, width = 800, height = 800, res = 120)
+    
+    s3d <- scatterplot3d(
+      tsne_results$Y[, 1], 
+      tsne_results$Y[, 2], 
+      tsne_results$Y[, 3],
+      grid = FALSE,
+      color = colour_vec, 
+      pch = 16, 
+      main = "3D t-SNE Plot",
+      xlab = "t-SNE 1", 
+      ylab = "t-SNE 2", 
+      zlab = "t-SNE 3"
+    )
+    
+    text(
+      s3d$xyz.convert(tsne_results$Y[, 1], tsne_results$Y[, 2], tsne_results$Y[, 3]),
+      labels = data$BaseText, 
+      col = text_colour_vec, 
+      pos = 4, 
+      cex = 0.8
+    )
+    
+    dev.off()
+
     raw_bytes <- readBin(temp_png, "raw", n = file.info(temp_png)$size)
     return(paste0("data:image/png;base64,", base64_encode(raw_bytes)))
+  } 
 
-
-  } else if (plot_type=="2d"){
-    # generates a 2D plot of the t-SNE data (can be misleading) (can be quite useful)
-    colnames(tsne_data) <- c("TSNE1", "TSNE2")
+  # --- BRANCH 3: 2D Static ("2d") ---
+  else if (plot_type == "2d") {
+    colnames(tsne_data) <- c("TSNE1", "TSNE2", "TSNE3")
     tsne_data$Manuscript <- data$BaseText
-    if (colors=="black"){
-      colour <- "black"
-    } else if (colors=="base"){
-      colour <- rainbow(num_rows)
-    } else if (colors == "grouping") {
-      tsne_data$Criteria <- group_labels$Criteria
-      colour <- Criteria
-    }
-    if (tolower(color_text)=="true") {
-      text_colour = colour
-    } else {
-      text_colour = "black"
-    }
-    ggplot(tsne_data, aes(x = TSNE1, y = TSNE2, label = Manuscript )) +
-      geom_text(size = 3, vjust = 1, hjust = 1, colour=text_colour) + geom_point(colour = colour) +
-      ggtitle("t-SNE Results") +
+    
+    p2d <- ggplot(tsne_data, aes(x = TSNE1, y = TSNE2, label = Manuscript)) +
+      geom_text(size = 3, vjust = 1, hjust = 1, colour = text_colour_vec) + 
+      geom_point(colour = colour_vec) +
+      ggtitle("2D t-SNE Results") +
       xlab("t-SNE Dimension 1") +
       ylab("t-SNE Dimension 2") +
-      scale_x_continuous(expand = expansion(add = c(100,100))) +
-      scale_y_continuous(expand = expansion(add = c(100,100)))
+      theme_minimal()
+
     temp_png <- tempfile(fileext = ".png")
-    ggsave(args[6], width=4, height=4)
+    ggsave(temp_png, plot = p2d, width = 30, height = 30)
+    
     raw_bytes <- readBin(temp_png, "raw", n = file.info(temp_png)$size)
     return(paste0("data:image/png;base64,", base64_encode(raw_bytes)))
-}
+  }
 }

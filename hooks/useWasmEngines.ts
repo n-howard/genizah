@@ -1,23 +1,22 @@
-// hooks/useWasmEngines.ts
-import { useEffect, useState } from 'react';
-import { WebR } from 'webr';
+import { useEffect, useRef, useState } from 'react';
 
 let globalPyodide: any = null;
-let globalWebR: WebR | null = null;
-let initPromise: Promise<{ py: any; webr: WebR }> | null = null;
+let globalWebR: any = null;
+let initPromise: Promise<boolean> | null = null;
 
 export function useWasmEngines() {
-  const [pyodide, setPyodide] = useState<any>(globalPyodide);
-  const [webR, setWebR] = useState<WebR | null>(globalWebR);
   const [isReady, setIsReady] = useState(!!(globalPyodide && globalWebR));
   const [loadingStatus, setLoadingStatus] = useState(
     globalPyodide && globalWebR ? 'WebAssembly engines ready' : 'Initializing engines...'
   );
 
+  const pyodideRef = useRef<any>(globalPyodide);
+  const webRRef = useRef<any>(globalWebR);
+
   useEffect(() => {
     if (globalPyodide && globalWebR) {
-      setPyodide(globalPyodide);
-      setWebR(globalWebR);
+      pyodideRef.current = globalPyodide;
+      webRRef.current = globalWebR;
       setIsReady(true);
       setLoadingStatus('WebAssembly engines ready');
       return;
@@ -40,7 +39,9 @@ export function useWasmEngines() {
 
           const basePath = getBasePath();
 
+          // ==========================================
           // 1. Pyodide Setup
+          // ==========================================
           if (!(window as any).loadPyodide) {
             await new Promise<void>((resolve, reject) => {
               const script = document.createElement('script');
@@ -54,9 +55,8 @@ export function useWasmEngines() {
           const py = await (window as any).loadPyodide();
           await py.loadPackage(['pandas', 'numpy', 'micropip']);
 
-        // 2. Use micropip to install openpyxl from PyPI
-        const micropip = py.pyimport('micropip');
-        await micropip.install('openpyxl');
+          const micropip = py.pyimport('micropip');
+          await micropip.install('openpyxl');
 
           const pyFiles = ['base.py', 'needleman_wunsch.py', 'smith_waterman.py', 'main.py'];
           for (const file of pyFiles) {
@@ -66,34 +66,99 @@ export function useWasmEngines() {
             py.FS.writeFile(file, code);
           }
 
-          // 2. WebR Setup using official 'webr' package
-          const webrInstance = new WebR();
+          // ==========================================
+          // 2. WebR Setup with IndexedDB Persistence
+          // ==========================================
+          const { WebR, ChannelType } = await import('webr');
+          
+          // IDBFS requires PostMessage communication channel
+          const webrInstance = new WebR({
+            channelType: ChannelType.PostMessage,
+            baseUrl: 'https://webr.r-wasm.org/latest/'
+          });
+          
           await webrInstance.init();
 
-          await webrInstance.installPackages([
-            'Rtsne', 'ggplot2', 'pandoc', 'webshot2', 
-            'htmltools', 'dplyr', 'rgl', 'readxl'
-          ]);
+          const userLibPath = '/home/web_user/library';
 
-          const rRes = await fetch(`${basePath}/r/t-SNE.R`);
+          // Set up persistent library path in WebR
+          await webrInstance.evalR(`
+            dir.create('${userLibPath}', recursive = TRUE, showWarnings = FALSE)
+            .libPaths(c('${userLibPath}', .libPaths()))
+          `);
+
+          // Mount IndexedDB filesystem to the library path
+          try {
+            await webrInstance.FS.mount('IDBFS', {}, userLibPath);
+            // Populate WebR virtual filesystem from IndexedDB cache
+            await webrInstance.FS.syncfs(true);
+          } catch (e) {
+            console.warn('IDBFS mount failed, falling back to session-only storage:', e);
+          }
+
+          const requiredPackages = [
+            'Rtsne', 
+            'readxl', 
+            'dplyr', 
+            'ggplot2', 
+            'plotly', 
+            'htmlwidgets', 
+            'jsonlite',
+            'base64enc', 
+            'scatterplot3d'
+          ];
+
+          // Query R to see which packages are missing from IndexedDB
+          const checkScript = `
+            req_pkgs <- c(${requiredPackages.map(p => `'${p}'`).join(',')})
+            inst_pkgs <- installed.packages(lib.loc = '${userLibPath}')[,"Package"]
+            req_pkgs[!req_pkgs %in% inst_pkgs]
+          `;
+
+          const missingRes = await webrInstance.evalR(checkScript);
+          const missingJs = await missingRes.toJs();
+          const missingPackages: string[] = missingJs.values || [];
+
+          // Only download missing packages
+          if (missingPackages.length > 0) {
+            console.log(`[WebR] Downloading packages: ${missingPackages.join(', ')}...`);
+            
+            await webrInstance.installPackages(missingPackages, { lib: userLibPath });
+            
+            // Sync new downloads into IndexedDB
+            await webrInstance.FS.syncfs(false);
+            console.log('[WebR] Packages saved to local browser cache!');
+          } else {
+            console.log('[WebR] All R packages loaded directly from local browser cache!');
+          }
+
+          // Fetch & write t-SNE script
+          const rRes = await fetch(`${basePath}/r/${encodeURIComponent('t-SNE.R')}`);
           if (!rRes.ok) throw new Error(`Failed to fetch t-SNE.R`);
-          const rCode = await rRes.text();
-          await webrInstance.FS.writeFile('/tmp/t-SNE.R', rCode);
+
+          let rCode = await rRes.text();
+          rCode = rCode
+            .replace(/library\s*\(\s*["']?webshot2["']?\s*\)/g, '# library(webshot2)')
+            .replace(/library\s*\(\s*["']?pandoc["']?\s*\)/g, '# library(pandoc)');
+
+          const encoder = new TextEncoder();
+          await webrInstance.FS.writeFile('/tmp/t-SNE.R', encoder.encode(rCode));
+          await webrInstance.evalR(`source('/tmp/t-SNE.R')`);
 
           globalPyodide = py;
           globalWebR = webrInstance;
 
-          return { py, webr: webrInstance };
+          return true;
         })();
       }
 
       try {
         setLoadingStatus('Loading WebAssembly engines...');
-        const { py, webr } = await initPromise;
+        await initPromise;
 
         if (isMounted) {
-          setPyodide(py);
-          setWebR(webr);
+          pyodideRef.current = globalPyodide;
+          webRRef.current = globalWebR;
           setIsReady(true);
           setLoadingStatus('WebAssembly engines ready');
         }
@@ -113,5 +178,10 @@ export function useWasmEngines() {
     };
   }, []);
 
-  return { pyodide, webR, isReady, loadingStatus };
+  return {
+    pyodide: pyodideRef.current,
+    webR: webRRef.current,
+    isReady,
+    loadingStatus
+  };
 }

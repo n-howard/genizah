@@ -7,6 +7,8 @@ const nextConfig: NextConfig = {
   basePath: isProd ? "/genizah" : "",
   assetPrefix: isProd ? "/genizah" : "",
   
+  reactStrictMode: false,
+  
   output: "export",
   
   typescript: {
