@@ -55,16 +55,12 @@ export function useWasmEngines() {
         }
         setPyodide(py);
 
-        // 2. Initialize WebR (Fixing Worker Path Resolution for GitHub Pages)
+        // 2. Initialize WebR using the official WebR CDN binaries
         setLoadingStatus('Loading R WebAssembly runtime...');
         
-        // Ensure exact trailing slash for baseUrl so webr-worker.js resolves correctly
-        const origin = typeof window !== 'undefined' ? window.location.origin : '';
-        const cleanBasePath = basePath.replace(/\/+$/, '');
-        const webrBaseUrl = `${origin}${cleanBasePath}/`;
-
-        const webr = new WebR({ 
-          baseUrl: webrBaseUrl
+        // Pointing explicitly to CDN prevents 404s on missing local R.bin.js files
+        const webr = new WebR({
+          baseUrl: 'https://webr.r-wasm.org/v0.3.1/' 
         });
         
         await webr.init();
@@ -75,7 +71,7 @@ export function useWasmEngines() {
           'htmltools', 'dplyr', 'rgl', 'readxl'
         ]);
 
-        // Fetch & Write R script safely
+        // Fetch & Write R script safely from your repository
         const rUrl = `${basePath}/r/t-SNE.R`;
         const rRes = await fetch(rUrl);
         if (!rRes.ok) {
