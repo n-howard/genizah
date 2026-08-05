@@ -43,7 +43,8 @@ from smith_waterman import compare_two_sw
 #     base_text: Optional[str] = Form(None),
 #     subsections_metadata: Optional[str] = Form(None)
 # ):
-def run_in_browser_process(algorithm, settings, file_dir, base_text, multi):
+def run_in_browser_process(algorithm, settings, file_dir, base_text, multi, base_text_list):
+    root_dir = file_dir
     # try:
     #     raw_settings = json.loads(settings)
     # except Exception:
@@ -146,7 +147,8 @@ def run_in_browser_process(algorithm, settings, file_dir, base_text, multi):
            
             if is_plot:
                 # fix this to be customizable
-                base_texts = set([Path(f.filename).name.split("_")[0] for f in files]) if files else set()
+                # base_texts = set([Path(f.filename).name.split("_")[0] for f in files]) if files else set()
+                base_texts = set([Path(f.filename).name.split("_")[0] for f in base_text_list]) if base_text_list else set()
                 print("BaseText Prefixes:",base_texts)
                 df = None
                 print("Creating matrix")

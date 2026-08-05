@@ -474,6 +474,8 @@ const handleSubmit = async () => {
 
     // Mount user-selected browser files into Pyodide's Virtual FS
     const allFilesToProcess: { file: File; section?: string }[] = [];
+
+    let baseTextList = []
     
     if (formData.multi) {
       Object.keys(formData.subsections).forEach((subName) => {
@@ -481,8 +483,10 @@ const handleSubmit = async () => {
           allFilesToProcess.push({ file: f, section: subName });
         });
       });
+      baseTextList = formData.subsections[Object.keys(formData.subsections)[0]]
     } else {
       formData.files.forEach((f: File) => allFilesToProcess.push({ file: f }));
+      baseTextList = formData.files
     }
 
     for (const item of allFilesToProcess) {
@@ -523,7 +527,8 @@ const handleSubmit = async () => {
         file_dir="/tmp/input_files",
         base_text="${formData.baseText}",
         multi="${formData.multi}",
-        files={allFilesTo}
+        files={allFilesTo},
+        base_text_list="${baseTextList}
     )
 
     records = results["records"]
