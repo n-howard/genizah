@@ -1,6 +1,6 @@
 // hooks/useWasmEngines.ts
 import { useEffect, useState, useRef } from 'react';
-import { WebR, ChannelType } from '@r-wasm/webr';
+import { WebR } from '@r-wasm/webr';
 
 export function useWasmEngines() {
   const [pyodide, setPyodide] = useState<any>(null);
@@ -55,22 +55,23 @@ export function useWasmEngines() {
         }
         setPyodide(py);
 
+        // 2. Initialize WebR using PostMessage (channelType: 1)
         setLoadingStatus('Loading R WebAssembly runtime...');
-
+        
         const webr = new WebR({
-        baseUrl: 'https://webr.r-wasm.org/v0.3.1/',
-        channelType: ChannelType.PostMessage // <--- Bypasses service worker requirement entirely
+          baseUrl: 'https://webr.r-wasm.org/v0.3.1/',
+          channelType: 1 // 1 = ChannelType.PostMessage (no Service Worker required)
         });
-
+        
         await webr.init();
 
         setLoadingStatus('Installing R packages (this may take a moment)...');
         await webr.installPackages([
-        'Rtsne', 'ggplot2', 'pandoc', 'webshot2', 
-        'htmltools', 'dplyr', 'rgl', 'readxl'
+          'Rtsne', 'ggplot2', 'pandoc', 'webshot2', 
+          'htmltools', 'dplyr', 'rgl', 'readxl'
         ]);
 
-       
+        // Fetch & Write R script safely
         const rUrl = `${basePath}/r/t-SNE.R`;
         const rRes = await fetch(rUrl);
         if (!rRes.ok) {
