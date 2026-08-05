@@ -116,14 +116,21 @@ export function useWasmEngines() {
           `;
 
           const missingRes = await webrInstance.evalR(checkScript);
-          const missingJs = await missingRes.toJs();
-          const missingPackages: string[] = missingJs.values || [];
+            const missingJs = (await missingRes.toJs()) as { values?: string[] };
+            const missingPackages: string[] = missingJs.values || [];
 
           // Only download missing packages
           if (missingPackages.length > 0) {
             console.log(`[WebR] Downloading packages: ${missingPackages.join(', ')}...`);
             
-            await webrInstance.installPackages(missingPackages, { lib: userLibPath });
+            // 1. Prepend persistent path to R's library paths during setup
+            await webrInstance.evalR(`
+            dir.create("${userLibPath}", showWarnings = FALSE, recursive = TRUE)
+            .libPaths(c("${userLibPath}", .libPaths()))
+            `);
+
+            // 2. Call installPackages cleanly 
+            await webrInstance.installPackages(missingPackages);
             
             // Sync new downloads into IndexedDB
             await webrInstance.FS.syncfs(false);
