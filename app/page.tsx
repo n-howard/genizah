@@ -452,7 +452,7 @@ export default function Pages() {
     }
   };
   const [jobId, setJobId] = useState<string | null>(null);
-  const [plotUrl, setPlotUrl] = useState<string>("");
+  const [plotUrl, setPlotUrl] = useState(null);
 
 
 
@@ -466,10 +466,12 @@ const handleSubmit = async () => {
   }
 
   setIsProcessing(true);
+
+  const targetDir = '/tmp/input_files/Alignment Data0';
   
   try {
     // 1. Clear & create virtual input directory in Pyodide
-    try { pyodide.FS.mkdirTree('/tmp/Alignment Data0'); } catch (e) {}
+    try { pyodide.FS.mkdirTree(targetDir); } catch (e) {}
 
     // 2. Collect user files and filenames
     const allFilesToProcess: { file: File; section?: string }[] = [];
@@ -499,8 +501,8 @@ const handleSubmit = async () => {
     for (const item of allFilesToProcess) {
       const arrayBuffer = await item.file.arrayBuffer();
       const path = item.section 
-        ? `/tmp/Alignment Data0/${item.section}/${item.file.name}`
-        : `/tmp/Alignment Data0/${item.file.name}`;
+        ? `${targetDir}/${item.section}/${item.file.name}`
+        : `${targetDir}/transcriptions/${item.file.name}`;
       
       const dirPath = path.substring(0, path.lastIndexOf('/'));
       try { pyodide.FS.mkdirTree(dirPath); } catch (e) {}
@@ -522,7 +524,7 @@ const handleSubmit = async () => {
     pyodide.globals.set("js_base_text", effectiveBaseText);
     pyodide.globals.set("js_multi", Boolean(formData.multi));
     pyodide.globals.set("js_base_text_list", pyodide.toPy(baseTextListNames));
-
+    console.log("Pyodide MEMFS targetDir contents:", pyodide.FS.readdir(targetDir));
     // 5. Clean, safe Python execution script
     const runScript = `
 import main
@@ -534,14 +536,14 @@ settings = main.AlgorithmSettings.from_dict(js_settings)
 results = main.run_in_browser_process(
     algorithm=js_algorithm,
     settings=settings,
-    file_dir="/tmp/Alignment Data0",
+    file_dir="/tmp/input_files",
     base_text=js_base_text,
     multi=js_multi,
     base_text_list=js_base_text_list
 )
 
 if results is None:
-    raise ValueError("main.run_in_browser_process returned None. Check input parameters or files in /tmp/Alignment Data0.")
+    raise ValueError("main.run_in_browser_process returned None. Check input parameters or files in /tmp/input_files.")
 
 if "records" not in results or results["records"] is None:
     raise KeyError("Missing or empty 'records' in execution results.")
@@ -612,6 +614,14 @@ const handlePlot = async () => {
  
     await webR.FS.writeFile('/tmp/alignment_matrix.xlsx', excelBinary);
 
+    await webR.evalR(`
+      options(rgl.useNULL = TRUE)
+      webr::install("rgl")
+      webr::install("htmltools")
+      webr::install("Rtsne")
+      webr::install("readxl")
+      webr::install("dplyr")
+    `);
     // Execute t-SNE in WebR
     const rCommand = `
     

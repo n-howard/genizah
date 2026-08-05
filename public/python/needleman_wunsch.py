@@ -268,6 +268,7 @@ def run_nw(temp_dir, settings: AlgorithmSettings, base_text_pattern, is_plot, re
                         })
     
     return records
+
 def compare_two_nw(root_dir, base_text, text, settings):
     base_text_contents = open(base_text, encoding='utf-8').read()
     text_contents = open(text, encoding='utf-8').read()

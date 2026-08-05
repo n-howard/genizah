@@ -52,7 +52,11 @@ export function useWasmEngines() {
           }
 
           const py = await (window as any).loadPyodide();
-          await py.loadPackage(['pandas', 'numpy']);
+          await py.loadPackage(['pandas', 'numpy', 'micropip']);
+
+        // 2. Use micropip to install openpyxl from PyPI
+        const micropip = py.pyimport('micropip');
+        await micropip.install('openpyxl');
 
           const pyFiles = ['base.py', 'needleman_wunsch.py', 'smith_waterman.py', 'main.py'];
           for (const file of pyFiles) {

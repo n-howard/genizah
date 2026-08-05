@@ -2,6 +2,7 @@
 library("Rtsne")
 library(readxl)
 library(ggplot2)
+options(rgl.useNULL = TRUE)
 library(rgl)
 library(htmltools)
 library(pandoc)
