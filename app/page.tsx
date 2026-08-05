@@ -459,36 +459,43 @@ export default function Pages() {
   
 
 const { pyodide, webR, isReady, loadingStatus } = useWasmEngines();
-
-// 1. Browser-Native handleSubmit (Replaces FastAPI /api/process)
 const handleSubmit = async () => {
   if (!pyodide || !isReady) {
     alert("Python engine is still loading in browser. Please wait a moment.");
+    return; // <-- ADDED: Stop execution if not ready
   }
 
   setIsProcessing(true);
   
   try {
-    // Clear & create virtual input directory in Pyodide
+    // 1. Clear & create virtual input directory in Pyodide
     try { pyodide.FS.mkdirTree('/tmp/input_files'); } catch (e) {}
 
-    // Mount user-selected browser files into Pyodide's Virtual FS
+    // 2. Collect user files and filenames
     const allFilesToProcess: { file: File; section?: string }[] = [];
+    let baseTextFiles: File[] = [];
 
-    let baseTextList = []
-    
     if (formData.multi) {
-      Object.keys(formData.subsections).forEach((subName) => {
+      const subKeys = Object.keys(formData.subsections || {});
+      subKeys.forEach((subName) => {
         formData.subsections[subName].forEach((f: File) => {
           allFilesToProcess.push({ file: f, section: subName });
         });
       });
-      baseTextList = formData.subsections[Object.keys(formData.subsections)[0]]
+      if (subKeys.length > 0) {
+        baseTextFiles = formData.subsections[subKeys[0]] || [];
+      }
     } else {
       formData.files.forEach((f: File) => allFilesToProcess.push({ file: f }));
-      baseTextList = formData.files
+      baseTextFiles = formData.files;
     }
 
+    if (allFilesToProcess.length === 0) {
+      alert("No files selected for alignment.");
+      return;
+    }
+
+    // Write physical files into Pyodide's Virtual FS
     for (const item of allFilesToProcess) {
       const arrayBuffer = await item.file.arrayBuffer();
       const path = item.section 
@@ -500,59 +507,75 @@ const handleSubmit = async () => {
       pyodide.FS.writeFile(path, new Uint8Array(arrayBuffer));
     }
 
-    // Capture Python console stdout logs
-    // let capturedLogs = "";
-    // pyodide.setStdout({
-    //   batched: (text: string) => { capturedLogs += text + "\n"; }
-    // });
-
-    if (formData.baseText=="") { 
-      setFormData((prev)=> ({...prev, baseText: allFilesToProcess[0].file.name}))
+    // 3. Resolve baseText safely (avoiding async React state delay)
+    const effectiveBaseText = formData.baseText || allFilesToProcess[0].file.name;
+    if (!formData.baseText) {
+      setFormData((prev) => ({ ...prev, baseText: effectiveBaseText }));
     }
 
-    // Run main.py alignment logic directly inside Pyodide Wasm
+    // Extract file names (strings) instead of passing raw File objects
+    const baseTextListNames = baseTextFiles.map((f) => f.name);
+
+    // 4. Bind JS variables directly to Pyodide globals
+    pyodide.globals.set("js_settings", pyodide.toPy(formData.settings || {}));
+    pyodide.globals.set("js_algorithm", formData.algorithm || "");
+    pyodide.globals.set("js_base_text", effectiveBaseText);
+    pyodide.globals.set("js_multi", Boolean(formData.multi));
+    pyodide.globals.set("js_base_text_list", pyodide.toPy(baseTextListNames));
+
+    // 5. Clean, safe Python execution script
     const runScript = `
-    import json
-    import main
-    import pandas as pd
+import main
+import pandas as pd
 
-    settings = main.AlgorithmSettings.from_dict(json.loads('''${JSON.stringify(formData.settings)}'''))
-    base_text_list = json.loads('''${baseTextList}''')
+settings = main.AlgorithmSettings.from_dict(js_settings)
 
+# Execute alignment inside browser RAM
+results = main.run_in_browser_process(
+    algorithm=js_algorithm,
+    settings=settings,
+    file_dir="/tmp/input_files",
+    base_text=js_base_text,
+    multi=js_multi,
+    base_text_list=js_base_text_list
+)
 
-    # Execute alignment inside browser RAM
-    results = main.run_in_browser_process(
-        algorithm="${formData.algorithm}",
-        settings=settings,
-        file_dir="/tmp/input_files",
-        base_text="${formData.baseText}",
-        multi="${formData.multi}",
-        base_text_list=base_text_list
-    )
+if results is None:
+    raise ValueError("main.run_in_browser_process returned None. Check input parameters or files in /tmp/input_files.")
 
-    records = results["records"]
-    filtered_records = [{key: value for key, value in dict.items() if (key!="OrigScore"and key!="TextNamePair")} for dict in records]
-    orig_df = pd.DataFrame(filtered_records)
-    df=orig_df.pivot_table(
-      index="BaseText",
-      columns="TargetFile",
-      values="Score"
-    )
-    df = df.fillna(1)
+if "records" not in results or results["records"] is None:
+    raise KeyError("Missing or empty 'records' in execution results.")
 
-    def get_suffix_sort_key(col_name):
-      parts = col_name.rsplit('_', 1)
-      if len(parts) == 2:
-          folder_suffix, filename = parts[1], parts[0]
-          return (folder_suffix, filename) 
-      return ('', col_name)
-    if ${formData.multi}:
-        sorted_columns = sorted(df.columns, key=get_suffix_sort_key)
-        df = df[sorted_columns]
-    df.to_excel("/tmp/alignment_matrix.xlsx")
-    results
+records = results["records"]
+filtered_records = [
+    {key: value for key, value in d.items() if key not in ("OrigScore", "TextNamePair")} 
+    for d in records
+]
 
-    `;
+orig_df = pd.DataFrame(filtered_records)
+if orig_df.empty:
+    raise ValueError("Alignment returned 0 valid records.")
+
+df = orig_df.pivot_table(
+    index="BaseText",
+    columns="TargetFile",
+    values="Score"
+)
+df = df.fillna(1)
+
+def get_suffix_sort_key(col_name):
+    parts = str(col_name).rsplit('_', 1)
+    if len(parts) == 2:
+        return (parts[1], parts[0]) 
+    return ('', str(col_name))
+
+if js_multi:
+    sorted_columns = sorted(df.columns, key=get_suffix_sort_key)
+    df = df[sorted_columns]
+
+df.to_excel("/tmp/alignment_matrix.xlsx")
+results
+`;
 
     const pyResult = await pyodide.runPythonAsync(runScript);
     const resultObj = pyResult.toJs({ dict_converter: Object.fromEntries });
@@ -564,9 +587,13 @@ const handleSubmit = async () => {
       records: resultObj.records || [],
     });
 
-    setFormData((prev)=>({...prev, settings: {...prev.settings, isPlot: resultObj.is_plot}}))
+    setFormData((prev) => ({
+      ...prev, 
+      settings: { ...prev.settings, isPlot: resultObj.is_plot }
+    }));
 
     handleStepChange(currentStep + 1);
+
   } catch (error) {
     console.error("Browser alignment error:", error);
   } finally {

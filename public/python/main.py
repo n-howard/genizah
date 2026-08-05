@@ -148,7 +148,7 @@ def run_in_browser_process(algorithm, settings, file_dir, base_text, multi, base
         if is_plot:
             # fix this to be customizable
             # base_texts = set([Path(f.filename).name.split("_")[0] for f in files]) if files else set()
-            base_texts = set([Path(f.filename).name.split("_")[0] for f in base_text_list]) if base_text_list else set()
+            base_texts = set([f.split("_")[0] for f in base_text_list]) if base_text_list else set()
             print("BaseText Prefixes:",base_texts)
             # df = None
             print("Creating matrix")
