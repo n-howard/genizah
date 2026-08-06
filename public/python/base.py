@@ -27,7 +27,7 @@ class AlgorithmSettings:
             mismatch_penalty=clean(data.get("mismatchPenalty", -1)),
             special=data.get("special", []),
             special_other=bool(data.get("specialOther", False)),
-            special_bonus=clean(data.get("specialBonus", 10)),
+            special_bonus=clean(data.get("specialBonus", 0)),
             affine_penalty=clean(data.get("affinePenalty", 0)),
             is_plot=bool(data.get("isPlot", True))
         )
