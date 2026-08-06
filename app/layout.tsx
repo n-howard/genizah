@@ -18,6 +18,7 @@ const cousine = Cousine({
   weight: "400",
 });
 
+// Change the title here to change the title of the website on browser. To change the logo, replace the favicon.ico file with a different file called favicon.ico.
 export const metadata: Metadata = {
   title: "TEXTEVOLVE Data Analysis Tool",
   description: "",

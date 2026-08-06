@@ -43,7 +43,7 @@ run_tsne_browser <- function(df, perplexity, theta, plot_type, colors, color_tex
   if (colors == "black") {
     colour_vec <- rep("black", num_rows)
   } else if (colors == "base") {
-    colour_vec <- rainbow(num_rows)
+    colour_vec <- hcl.colors(num_rows, "dark3")
   } else if (colors == "grouping") {
     colour_vec <- group_labels$Criteria
   } else {
@@ -209,6 +209,8 @@ run_tsne_browser <- function(df, perplexity, theta, plot_type, colors, color_tex
       ggtitle("2D t-SNE Results") +
       xlab("t-SNE Dimension 1") +
       ylab("t-SNE Dimension 2") +
+      coord_cartesian(clip = "off") +
+      scale_x_continuous(expand = expansion(mult = c(0.05, 0.20))) +
       theme_minimal()
 
     temp_png <- tempfile(fileext = ".png")

@@ -39,6 +39,26 @@ Steps before first deployment:
 -[x] fix # having a 0 before it
 -[x] cache to fix efficiency
 
--[] start/welcome page
+-[x] start/welcome page
 -[] be able to rename subsections
--[] keep in local storage?
+-[x] keep in local storage?
+- [] little i symbol to hover over for clarification (see if feasible)
+   
+
+ -[x]   We should make a landing page.
+ -[x]   We need to give it a name other than 'TEXTEVOLVE Data Analysis Tool'. Is there a way for me to edit this myself?
+  -[]  I think having text boxes on each page in which I can write comments instructions/activate as needed would help me
+ -[x]   The links for 'Entire Texts' and 'Subsections': I wonder if we can separate these out into new lines on the page and then under each I can add in explanations about what it means to align these two different types of texts.
+
+2. Entire Text Upload:
+
+   [x] I think the header should be renamed to 'Upload Transcriptions'
+  [x]  'Entire Texts' is ambiguous here....it's not clear what it means? Why not something like 'loaded texts' or something else?
+  [x]  The Base Text Prefix bit looks like a box where you type the prefix in (and I accidentally tried to do this). It's not a box like that. We need to have an instruction to either click the text we want as a base text, or [to allow the computer to run everything against every text.]<-does this currently by splitting on the underscore and taking the first part
+    -[]Also what if the unique identifier isn't a prefix? The files I uploaded when I tested had the unique bit as the suffix? I think the issue is in the name? Or should we instruct users to have a unique identifier for each file as a prefix?
+
+3. Entire Text Select Algorithm
+
+    -[x]Affine penalty and optional special characters shouldn't be default options. We should put these under a 'special' or 'non-standard' option section maybe?
+  -[x]  On reconsideration I think we need the typing of negative signs for the penalties? Or at least the negative signs to show. Otherwise it might confuse people.
+

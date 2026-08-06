@@ -10,17 +10,24 @@ import {
   FolderOpen,
   Pencil,
 } from "lucide-react";
-import ReactDOM from 'react-dom';
+import ReactDOM from "react-dom";
 import { useDropzone } from "react-dropzone";
-import { Page, Text, View, Document, StyleSheet, Font, PDFDownloadLink, usePDF, PDFViewer } from '@react-pdf/renderer';
-import ReactPDF from '@react-pdf/renderer'
+import {
+  Page,
+  Text,
+  View,
+  Document,
+  StyleSheet,
+  Font,
+  PDFDownloadLink,
+  usePDF,
+  PDFViewer,
+} from "@react-pdf/renderer";
+import ReactPDF from "@react-pdf/renderer";
 import { createTw } from "react-pdf-tailwind";
-import {useWasmEngines} from '../hooks/useWasmEngines'
-
+import { useWasmEngines } from "../hooks/useWasmEngines";
 
 const download = require("downloadjs");
-
-
 
 function SubsectionItem({
   sectionName,
@@ -33,17 +40,15 @@ function SubsectionItem({
   onSelectFilesTrigger,
   onDragStartFile,
   onRemoveSubsection,
-  
 }) {
   // Each child gets its OWN useDropzone instance bound to its sectionName
-  const { getRootProps, getInputProps, isDragActive, isDragReject } = useDropzone({
-    onDrop: (acceptedFiles) => {
-      onDropFiles(acceptedFiles, sectionName);
-    },
-    noClick: true,
-  });
-
-  
+  const { getRootProps, getInputProps, isDragActive, isDragReject } =
+    useDropzone({
+      onDrop: (acceptedFiles) => {
+        onDropFiles(acceptedFiles, sectionName);
+      },
+      noClick: true,
+    });
 
   return (
     <div
@@ -64,7 +69,7 @@ function SubsectionItem({
         <div className="flex items-center gap-2 font-bold text-cyan-900 text-[0.8rem]">
           <FolderOpen className="w-5 h-5 text-cyan-600" />
           <span>{sectionName}</span>
-      
+
           <span className="text-[0.8rem] text-gray-400 font-normal">
             ({files.length} {files.length === 1 ? "file" : "files"})
           </span>
@@ -73,7 +78,7 @@ function SubsectionItem({
         {/* Inline Upload Controls per subsection */}
         <div className="flex items-center gap-2 text-[0.8rem]">
           {/* File Upload Trigger */}
-          <label 
+          <label
             className="cursor-pointer bg-cyan-50 hover:bg-cyan-100 text-cyan-800 font-semibold px-2 py-1 rounded border border-cyan-200 transition"
             onClick={(e) => e.stopPropagation()} // Stop dropzone trigger
           >
@@ -99,13 +104,14 @@ function SubsectionItem({
           </button>
           <button
             type="button"
-            onClick={ (e) => {
+            onClick={(e) => {
               e.stopPropagation();
-              onRemoveSubsection(sectionName)
+              onRemoveSubsection(sectionName);
             }}
             className="text-red-600 hover:bg-red-50 p-0.5 rounded flex flex-row gap-1 place-content-center"
-              >
-                <Trash2 className="w-5 h-5" /></button>
+          >
+            <Trash2 className="w-5 h-5" />
+          </button>
         </div>
       </div>
 
@@ -117,8 +123,8 @@ function SubsectionItem({
               key={`${file.name}-${fileIndex}`}
               draggable
               onDragStart={(e) => onDragStartFile(e, sectionName, fileIndex)}
-              className={`flex items-center justify-between px-2 py-1 rounded border text-[0.8rem] cursor-grab active:cursor-grabbing ${
-                file === baseText
+              className={`flex items-center justify-between px-2 py-1 rounded border text-[0.8rem] ${
+                file.name === baseText
                   ? "bg-cyan-100/60 border-cyan-300"
                   : "bg-gray-50 border-gray-100 hover:bg-gray-100"
               }`}
@@ -129,9 +135,9 @@ function SubsectionItem({
                   e.stopPropagation();
                   onSetBaseText(file);
                 }}
-                className="bg-transparent text-cyan-600 rounded-lg flex-row w-98/100 flex gap-2 content-center items-center shrink-0 cursor-pointer"
+                className={`bg-transparent text-cyan-600 rounded-lg flex-row w-98/100 flex gap-2 content-center items-center shrink-0 cursor-pointer `}
               >
-                {file === baseText ? (
+                {file.name === baseText ? (
                   <FileCheck className="w-5 h-5" />
                 ) : (
                   <FileText className="w-5 h-5" />
@@ -164,8 +170,8 @@ function SubsectionItem({
 }
 
 export default function Pages() {
-  const [currentStep, setCurrentStep] = useState(1);
-  const [furthestStep, setFurthestStep] = useState(1);
+  const [currentStep, setCurrentStep] = useState(0);
+  const [furthestStep, setFurthestStep] = useState(0);
 
   // Global Form State
   const [formData, setFormData] = useState({
@@ -181,19 +187,17 @@ export default function Pages() {
       special: [],
       specialOther: false,
       specialBonus: 10,
-      affinePenalty: -0.5,
+      affinePenalty: 0,
       isPlot: false,
-      
     },
     plotSettings: {
       perplexity: 1,
       plotType: "",
       theta: 0.5,
       colors: "black",
-      colorText: false
+      colorText: false,
     },
-
-  })
+  });
 
   const [count, setCount] = useState(1);
   const [inputValue, setInputValue] = useState<string>("");
@@ -201,7 +205,6 @@ export default function Pages() {
 
   const [isProcessing, setIsProcessing] = useState(false);
   const [results, setResults] = useState<any>(null);
-
 
   // Drag and drop within subsections
   const [draggedFileIndex, setDraggedFileIndex] = useState<number | null>(null);
@@ -219,7 +222,7 @@ export default function Pages() {
       setCount((prev) => prev + 1);
     }
     // Check if section name already exists
-    const exists = formData.subsections.hasOwnProperty(`${name}`)
+    const exists = formData.subsections.hasOwnProperty(`${name}`);
     if (!exists) {
       setFormData((prev) => ({
         ...prev,
@@ -231,7 +234,6 @@ export default function Pages() {
     setInputValue("");
   };
 
-  
   // React Dropzone Handler
   const {
     getRootProps,
@@ -241,22 +243,18 @@ export default function Pages() {
     isDragReject,
   } = useDropzone({
     onDrop: (acceptedFiles) => {
-      
-
-        setFormData((prev) => {
-          const existingKeys = new Set(
-            prev.files.map((f) => `${f.name}-${f.size}`),
-          );
-          const newFiles = acceptedFiles.filter(
-            (file) => !existingKeys.has(`${file.name}-${file.size}`),
-          );
-          return {
-            ...prev,
-            files: [...prev.files, ...newFiles],
-          };
-        });
-  
-
+      setFormData((prev) => {
+        const existingKeys = new Set(
+          prev.files.map((f) => `${f.name}-${f.size}`),
+        );
+        const newFiles = acceptedFiles.filter(
+          (file) => !existingKeys.has(`${file.name}-${file.size}`),
+        );
+        return {
+          ...prev,
+          files: [...prev.files, ...newFiles],
+        };
+      });
     },
     accept: { "text/plain": [".txt"] },
     multiple: true,
@@ -287,23 +285,21 @@ export default function Pages() {
       if (!targetSubsection) {
         setCount((prev) => prev + 1);
       }
-      
-      setFormData((prev) => {
-        let updatedSubsections = {...prev.subsections};
-        if (formData.subsections.hasOwnProperty(`${activeSection}`)) {
-            const existingFiles =
-              updatedSubsections[activeSection]
-            const existingKeys = new Set(
-              existingFiles.map((f) => `${f.name}-${f.size}`),
-            );
-            const newFiles = acceptedFiles.filter(
-              (f) => !existingKeys.has(`${f.name}-${f.size}`),
-            );
-            updatedSubsections[activeSection] = [...existingFiles, ...newFiles]
 
-          } else {
-            updatedSubsections[activeSection] = acceptedFiles
-          }
+      setFormData((prev) => {
+        let updatedSubsections = { ...prev.subsections };
+        if (formData.subsections.hasOwnProperty(`${activeSection}`)) {
+          const existingFiles = updatedSubsections[activeSection];
+          const existingKeys = new Set(
+            existingFiles.map((f) => `${f.name}-${f.size}`),
+          );
+          const newFiles = acceptedFiles.filter(
+            (f) => !existingKeys.has(`${f.name}-${f.size}`),
+          );
+          updatedSubsections[activeSection] = [...existingFiles, ...newFiles];
+        } else {
+          updatedSubsections[activeSection] = acceptedFiles;
+        }
 
         // if (sectionIndex > -1) {
         //   const existingFiles = updatedSubsections[sectionIndex][activeSection];
@@ -350,36 +346,36 @@ export default function Pages() {
   const removeFileFromSection = (sectionName: string, fileToRemove: File) => {
     setFormData((prev) => ({
       ...prev,
-      baseText:  fileToRemove.name.includes(prev.baseText) ? "" : prev.baseText,
+      baseText: fileToRemove.name.includes(prev.baseText) ? "" : prev.baseText,
       subsections: {
         ...prev.subsections,
         [sectionName]: (prev.subsections[sectionName] || []).filter(
-          (f) => f !== fileToRemove
+          (f) => f !== fileToRemove,
         ),
       },
     }));
   };
 
-  const removeSubsection = (sectionName:string) => {
-    let newSections = formData.subsections 
-    delete newSections[sectionName]
+  const removeSubsection = (sectionName: string) => {
+    let newSections = formData.subsections;
+    delete newSections[sectionName];
     setFormData((prev) => ({
       ...prev,
-       subsections: newSections
+      subsections: newSections,
     }));
-  }
-  const [rename, setRename] = useState(false)
+  };
+  const [rename, setRename] = useState(false);
   const renameSubsection = (newName, oldName) => {
     const sectionContents = formData.subsections[oldName];
-    let newSections = formData.subsections
-    delete newSections[oldName]
-    newSections[newName] = sectionContents
+    let newSections = formData.subsections;
+    delete newSections[oldName];
+    newSections[newName] = sectionContents;
     setFormData((prev) => ({
       ...prev,
-       subsections: newSections
+      subsections: newSections,
     }));
-    setRename(false)
-  }
+    setRename(false);
+  };
   // Subsection Drag-and-Drop Handlers
   const handleDragStart = (
     e: React.DragEvent,
@@ -418,7 +414,9 @@ export default function Pages() {
         subsections: {
           ...prev.subsections,
           // Remove file from source section
-          [draggedSourceSection]: sourceList.filter((_, idx) => idx !== draggedFileIndex),
+          [draggedSourceSection]: sourceList.filter(
+            (_, idx) => idx !== draggedFileIndex,
+          ),
           // Append file to target section
           [targetSectionName]: [...targetList, movedFile],
         },
@@ -430,7 +428,6 @@ export default function Pages() {
   };
 
   const handleSettingChange = (field: string, value: any) => {
-    
     setFormData((prev) => ({
       ...prev,
       settings: { ...prev.settings, [field]: value },
@@ -454,79 +451,85 @@ export default function Pages() {
   const [jobId, setJobId] = useState<string | null>(null);
   const [plotUrl, setPlotUrl] = useState(null);
 
+  const { pyodide, webR, isReady, loadingStatus } = useWasmEngines();
+  const handleSubmit = async () => {
+    if (!pyodide || !isReady) {
+      alert("Python engine is still loading in browser. Please wait a moment.");
+      return; // <-- ADDED: Stop execution if not ready
+    }
 
+    setIsProcessing(true);
 
-  
+    const targetDir = "/tmp/input_files/Alignment Data0";
 
-const { pyodide, webR, isReady, loadingStatus } = useWasmEngines();
-const handleSubmit = async () => {
-  if (!pyodide || !isReady) {
-    alert("Python engine is still loading in browser. Please wait a moment.");
-    return; // <-- ADDED: Stop execution if not ready
-  }
+    try {
+      // 1. Clear & create virtual input directory in Pyodide
+      try {
+        pyodide.FS.mkdirTree(targetDir);
+      } catch (e) {}
 
-  setIsProcessing(true);
+      // 2. Collect user files and filenames
+      const allFilesToProcess: { file: File; section?: string }[] = [];
+      let baseTextFiles: File[] = [];
 
-  const targetDir = '/tmp/input_files/Alignment Data0';
-  
-  try {
-    // 1. Clear & create virtual input directory in Pyodide
-    try { pyodide.FS.mkdirTree(targetDir); } catch (e) {}
-
-    // 2. Collect user files and filenames
-    const allFilesToProcess: { file: File; section?: string }[] = [];
-    let baseTextFiles: File[] = [];
-
-    if (formData.multi) {
-      const subKeys = Object.keys(formData.subsections || {});
-      subKeys.forEach((subName) => {
-        formData.subsections[subName].forEach((f: File) => {
-          allFilesToProcess.push({ file: f, section: subName });
+      if (formData.multi) {
+        const subKeys = Object.keys(formData.subsections || {});
+        subKeys.forEach((subName) => {
+          formData.subsections[subName].forEach((f: File) => {
+            allFilesToProcess.push({ file: f, section: subName });
+          });
         });
-      });
-      if (subKeys.length > 0) {
-        baseTextFiles = formData.subsections[subKeys[0]] || [];
+        if (subKeys.length > 0) {
+          baseTextFiles = formData.subsections[subKeys[0]] || [];
+        }
+      } else {
+        formData.files.forEach((f: File) =>
+          allFilesToProcess.push({ file: f }),
+        );
+        baseTextFiles = formData.files;
       }
-    } else {
-      formData.files.forEach((f: File) => allFilesToProcess.push({ file: f }));
-      baseTextFiles = formData.files;
-    }
 
-    if (allFilesToProcess.length === 0) {
-      alert("No files selected for alignment.");
-      return;
-    }
+      if (allFilesToProcess.length === 0) {
+        alert("No files selected for alignment.");
+        return;
+      }
 
-    // Write physical files into Pyodide's Virtual FS
-    for (const item of allFilesToProcess) {
-      const arrayBuffer = await item.file.arrayBuffer();
-      const path = item.section 
-        ? `${targetDir}/${item.section}/${item.file.name}`
-        : `${targetDir}/transcriptions/${item.file.name}`;
-      
-      const dirPath = path.substring(0, path.lastIndexOf('/'));
-      try { pyodide.FS.mkdirTree(dirPath); } catch (e) {}
-      pyodide.FS.writeFile(path, new Uint8Array(arrayBuffer));
-    }
+      // Write physical files into Pyodide's Virtual FS
+      for (const item of allFilesToProcess) {
+        const arrayBuffer = await item.file.arrayBuffer();
+        const path = item.section
+          ? `${targetDir}/${item.section}/${item.file.name}`
+          : `${targetDir}/transcriptions/${item.file.name}`;
 
-    // 3. Resolve baseText safely (avoiding async React state delay)
-    const effectiveBaseText = formData.baseText || allFilesToProcess[0].file.name;
-    if (!formData.baseText) {
-      setFormData((prev) => ({ ...prev, baseText: effectiveBaseText }));
-    }
+        const dirPath = path.substring(0, path.lastIndexOf("/"));
+        try {
+          pyodide.FS.mkdirTree(dirPath);
+        } catch (e) {}
+        pyodide.FS.writeFile(path, new Uint8Array(arrayBuffer));
+      }
 
-    // Extract file names (strings) instead of passing raw File objects
-    const baseTextListNames = baseTextFiles.map((f) => f.name);
+      // 3. Resolve baseText safely (avoiding async React state delay)
+      const effectiveBaseText =
+        formData.baseText || allFilesToProcess[0].file.name;
+      if (!formData.baseText) {
+        setFormData((prev) => ({ ...prev, baseText: effectiveBaseText }));
+      }
 
-    // 4. Bind JS variables directly to Pyodide globals
-    pyodide.globals.set("js_settings", pyodide.toPy(formData.settings || {}));
-    pyodide.globals.set("js_algorithm", formData.algorithm || "");
-    pyodide.globals.set("js_base_text", effectiveBaseText);
-    pyodide.globals.set("js_multi", Boolean(formData.multi));
-    pyodide.globals.set("js_base_text_list", pyodide.toPy(baseTextListNames));
-    console.log("Pyodide MEMFS targetDir contents:", pyodide.FS.readdir(targetDir));
-    // 5. Clean, safe Python execution script
-    const runScript = `
+      // Extract file names (strings) instead of passing raw File objects
+      const baseTextListNames = baseTextFiles.map((f) => f.name);
+
+      // 4. Bind JS variables directly to Pyodide globals
+      pyodide.globals.set("js_settings", pyodide.toPy(formData.settings || {}));
+      pyodide.globals.set("js_algorithm", formData.algorithm || "");
+      pyodide.globals.set("js_base_text", effectiveBaseText);
+      pyodide.globals.set("js_multi", Boolean(formData.multi));
+      pyodide.globals.set("js_base_text_list", pyodide.toPy(baseTextListNames));
+      console.log(
+        "Pyodide MEMFS targetDir contents:",
+        pyodide.FS.readdir(targetDir),
+      );
+      // 5. Clean, safe Python execution script
+      const runScript = `
 import main
 import pandas as pd
 
@@ -579,107 +582,103 @@ df.to_excel("/tmp/alignment_matrix.xlsx")
 results
 `;
 
-    const pyResult = await pyodide.runPythonAsync(runScript);
-    const resultObj = pyResult.toJs({ dict_converter: Object.fromEntries });
+      const pyResult = await pyodide.runPythonAsync(runScript);
+      const resultObj = pyResult.toJs({ dict_converter: Object.fromEntries });
 
-    setResults({
-      status: "success",
-      algorithm: formData.algorithm,
-      output_logs: resultObj.output_logs,
-      records: resultObj.records || [],
-    });
+      setResults({
+        status: "success",
+        algorithm: formData.algorithm,
+        output_logs: resultObj.output_logs,
+        records: resultObj.records || [],
+      });
 
-    setFormData((prev) => ({
-      ...prev, 
-      settings: { ...prev.settings, isPlot: resultObj.is_plot }
-    }));
+      setFormData((prev) => ({
+        ...prev,
+        settings: { ...prev.settings, isPlot: resultObj.is_plot },
+      }));
 
-    handleStepChange(currentStep + 1);
+      handleStepChange(currentStep + 1);
+    } catch (error) {
+      console.error("Browser alignment error:", error);
+    } finally {
+      setIsProcessing(false);
+    }
+  };
 
-  } catch (error) {
-    console.error("Browser alignment error:", error);
-  } finally {
-    setIsProcessing(false);
-  }
-};
+  // 2. Browser-Native handlePlot (Replaces FastAPI /api/plot)
 
-// 2. Browser-Native handlePlot (Replaces FastAPI /api/plot)
+  // const handlePlot = async () => {
+  //   if (!webR || !pyodide) return;
+  //   setIsProcessing(true);
 
+  //   try {
+  //     // 1. Copy matrix from Pyodide to WebR FS
+  //     const excelBinary: Uint8Array = pyodide.FS.readFile("/tmp/alignment_matrix.xlsx");
+  //     try { webR.FS.mkdir('/tmp'); } catch (e) {}
+  //     await webR.FS.writeFile('/tmp/alignment_matrix.xlsx', excelBinary);
 
+  //     // 2. Execute R Script
+  //     const rCommand = `
+  //       source('/tmp/t-SNE.R')
+  //       run_tsne_browser(
+  //         df = '/tmp/alignment_matrix.xlsx',
+  //         perplexity = ${formData.plotSettings.perplexity},
+  //         theta = ${formData.plotSettings.theta},
+  //         plot_type = '${formData.plotSettings.plotType}',
+  //         colors = '${formData.plotSettings.colors}',
+  //         color_text = '${formData.plotSettings.colorText}'
+  //       )
+  //     `;
 
+  //     const rOutput = await webR.evalR(rCommand);
+  //     const resultValue = await rOutput.toJs();
+  //     const resultString = resultValue.values?.[0] || resultValue;
 
-// const handlePlot = async () => {
-//   if (!webR || !pyodide) return;
-//   setIsProcessing(true);
+  //     // 3. Handle Output Type
+  //     if (typeof resultString === 'string' && resultString.startsWith('data:image')) {
+  //       // 2D ("2d") or 3D Static ("3ds")
+  //       setPlotUrl({ type: 'image', src: resultString });
+  //     } else {
+  //       // 3D Interactive ("3da")
+  //       const htmlBytes = await webR.FS.readFile('/tmp/plot.html');
+  //       const blob = new Blob([htmlBytes], { type: 'text/html' });
+  //       const blobUrl = URL.createObjectURL(blob);
 
-//   try {
-//     // 1. Copy matrix from Pyodide to WebR FS
-//     const excelBinary: Uint8Array = pyodide.FS.readFile("/tmp/alignment_matrix.xlsx");
-//     try { webR.FS.mkdir('/tmp'); } catch (e) {}
-//     await webR.FS.writeFile('/tmp/alignment_matrix.xlsx', excelBinary);
+  //       if (plotUrl?.type === 'iframe') URL.revokeObjectURL(plotUrl.src);
+  //       setPlotUrl({ type: 'iframe', src: blobUrl });
+  //     }
 
-//     // 2. Execute R Script
-//     const rCommand = `
-//       source('/tmp/t-SNE.R')
-//       run_tsne_browser(
-//         df = '/tmp/alignment_matrix.xlsx',
-//         perplexity = ${formData.plotSettings.perplexity},
-//         theta = ${formData.plotSettings.theta},
-//         plot_type = '${formData.plotSettings.plotType}',
-//         colors = '${formData.plotSettings.colors}',
-//         color_text = '${formData.plotSettings.colorText}'
-//       )
-//     `;
+  //     handleStepChange(currentStep + 1);
 
-//     const rOutput = await webR.evalR(rCommand);
-//     const resultValue = await rOutput.toJs();
-//     const resultString = resultValue.values?.[0] || resultValue;
-
-//     // 3. Handle Output Type
-//     if (typeof resultString === 'string' && resultString.startsWith('data:image')) {
-//       // 2D ("2d") or 3D Static ("3ds")
-//       setPlotUrl({ type: 'image', src: resultString });
-//     } else {
-//       // 3D Interactive ("3da")
-//       const htmlBytes = await webR.FS.readFile('/tmp/plot.html');
-//       const blob = new Blob([htmlBytes], { type: 'text/html' });
-//       const blobUrl = URL.createObjectURL(blob);
-      
-//       if (plotUrl?.type === 'iframe') URL.revokeObjectURL(plotUrl.src);
-//       setPlotUrl({ type: 'iframe', src: blobUrl });
-//     }
-
-//     handleStepChange(currentStep + 1);
-
-//   } catch (error) {
-//     console.error("Plot generation error:", error);
-//     alert(`Plot generation failed: ${error instanceof Error ? error.message : String(error)}`);
-//   } finally {
-//     setIsProcessing(false);
-//   }
-// };
-const handlePlot = async () => {
-  if (!pyodide || !webR) {
-    alert("WebAssembly engines are still loading. Please wait a moment.");
-    return;
-  }
-
-  setIsProcessing(true);
-
-  try {
-    // ------------------------------------------------------------------
-    // 1. SAFELY ENSURE /tmp DIRECTORY EXISTS IN PYODIDE
-    // ------------------------------------------------------------------
-    const pyTmpAnalysis = pyodide.FS.analyzePath('/tmp');
-    if (!pyTmpAnalysis.exists) {
-      pyodide.FS.mkdir('/tmp');
+  //   } catch (error) {
+  //     console.error("Plot generation error:", error);
+  //     alert(`Plot generation failed: ${error instanceof Error ? error.message : String(error)}`);
+  //   } finally {
+  //     setIsProcessing(false);
+  //   }
+  // };
+  const handlePlot = async () => {
+    if (!pyodide || !webR) {
+      alert("WebAssembly engines are still loading. Please wait a moment.");
+      return;
     }
 
-    // ------------------------------------------------------------------
-    // 2. RUN PYTHON ALIGNMENT SCRIPT (IF NOT ALREADY EXECUTED)
-    // ------------------------------------------------------------------
-    // Ensure python outputs directly to /tmp/alignment_matrix.xlsx
-    await pyodide.runPythonAsync(`
+    setIsProcessing(true);
+
+    try {
+      // ------------------------------------------------------------------
+      // 1. SAFELY ENSURE /tmp DIRECTORY EXISTS IN PYODIDE
+      // ------------------------------------------------------------------
+      const pyTmpAnalysis = pyodide.FS.analyzePath("/tmp");
+      if (!pyTmpAnalysis.exists) {
+        pyodide.FS.mkdir("/tmp");
+      }
+
+      // ------------------------------------------------------------------
+      // 2. RUN PYTHON ALIGNMENT SCRIPT (IF NOT ALREADY EXECUTED)
+      // ------------------------------------------------------------------
+      // Ensure python outputs directly to /tmp/alignment_matrix.xlsx
+      await pyodide.runPythonAsync(`
 import os
 import pandas as pd
 
@@ -690,40 +689,40 @@ os.makedirs('/tmp', exist_ok=True)
 # df_result.to_excel('/tmp/alignment_matrix.xlsx', engine='openpyxl')
 `);
 
-    // ------------------------------------------------------------------
-    // 3. VERIFY FILE EXISTS IN PYODIDE FS BEFORE READING
-    // ------------------------------------------------------------------
-    let targetFile = '';
-    if (pyodide.FS.analyzePath('/tmp/alignment_matrix.xlsx').exists) {
-      targetFile = '/tmp/alignment_matrix.xlsx';
-    } else if (pyodide.FS.analyzePath('alignment_matrix.xlsx').exists) {
-      targetFile = 'alignment_matrix.xlsx';
-    } else {
-      throw new Error(
-        "alignment_matrix.xlsx was not found in Pyodide filesystem. " +
-        "Make sure your Python code saves the spreadsheet to '/tmp/alignment_matrix.xlsx'."
-      );
-    }
+      // ------------------------------------------------------------------
+      // 3. VERIFY FILE EXISTS IN PYODIDE FS BEFORE READING
+      // ------------------------------------------------------------------
+      let targetFile = "";
+      if (pyodide.FS.analyzePath("/tmp/alignment_matrix.xlsx").exists) {
+        targetFile = "/tmp/alignment_matrix.xlsx";
+      } else if (pyodide.FS.analyzePath("alignment_matrix.xlsx").exists) {
+        targetFile = "alignment_matrix.xlsx";
+      } else {
+        throw new Error(
+          "alignment_matrix.xlsx was not found in Pyodide filesystem. " +
+            "Make sure your Python code saves the spreadsheet to '/tmp/alignment_matrix.xlsx'.",
+        );
+      }
 
-    // Read binary data from Pyodide
-    const excelBinary: Uint8Array = pyodide.FS.readFile(targetFile);
+      // Read binary data from Pyodide
+      const excelBinary: Uint8Array = pyodide.FS.readFile(targetFile);
 
-    // ------------------------------------------------------------------
-    // 4. SAFELY ENSURE /tmp DIRECTORY EXISTS IN WEBR
-    // ------------------------------------------------------------------
-    try {
-      await webR.FS.mkdir('/tmp');
-    } catch (e) {
-      // Ignore error if /tmp already exists in WebR
-    }
+      // ------------------------------------------------------------------
+      // 4. SAFELY ENSURE /tmp DIRECTORY EXISTS IN WEBR
+      // ------------------------------------------------------------------
+      try {
+        await webR.FS.mkdir("/tmp");
+      } catch (e) {
+        // Ignore error if /tmp already exists in WebR
+      }
 
-    // Copy matrix over to WebR
-    await webR.FS.writeFile('/tmp/alignment_matrix.xlsx', excelBinary);
+      // Copy matrix over to WebR
+      await webR.FS.writeFile("/tmp/alignment_matrix.xlsx", excelBinary);
 
-    // ------------------------------------------------------------------
-    // 5. EXECUTE t-SNE IN WEBR
-    // ------------------------------------------------------------------
-    const rCommand = `
+      // ------------------------------------------------------------------
+      // 5. EXECUTE t-SNE IN WEBR
+      // ------------------------------------------------------------------
+      const rCommand = `
       source('/tmp/t-SNE.R')
       run_tsne_browser(
         df = '/tmp/alignment_matrix.xlsx',
@@ -735,57 +734,56 @@ os.makedirs('/tmp', exist_ok=True)
       )
     `;
 
-    const rOutput = await webR.evalR(rCommand);
-    const resultValue = await rOutput.toJs();
-    const resultString = (resultValue.values?.[0] || resultValue) as string;
+      const rOutput = await webR.evalR(rCommand);
+      const resultValue = await rOutput.toJs();
+      const resultString = (resultValue.values?.[0] || resultValue) as string;
 
-    if (resultString.startsWith('data:image')) {
-      // Static 3D/2D base64 image
-      setPlotUrl(resultString);
-    } else {
-      // Interactive HTML string via iframe
-      const htmlBytes = await webR.FS.readFile('/tmp/plot.html');
-      const htmlText = new TextDecoder().decode(htmlBytes);
-      setPlotUrl(htmlText);
+      if (resultString.startsWith("data:image")) {
+        // Static 3D/2D base64 image
+        setPlotUrl(resultString);
+      } else {
+        // Interactive HTML string via iframe
+        const htmlBytes = await webR.FS.readFile("/tmp/plot.html");
+        const htmlText = new TextDecoder().decode(htmlBytes);
+        setPlotUrl(htmlText);
+      }
+
+      // Advance to plot step
+      handleStepChange(5);
+    } catch (error: any) {
+      console.error("Plot generation error:", error);
+      alert(`Plot generation failed: ${error.message || String(error)}`);
+    } finally {
+      setIsProcessing(false);
     }
+  };
+  const [downloadedFiles, setDownloadedFiles] = useState([]);
+  const handleDownload = async () => {
+    if (!pyodide) return;
 
-    // Advance to plot step
-    handleStepChange(5);
+    try {
+      // Read binary from Pyodide
+      const rawBinary = pyodide.FS.readFile("/tmp/alignment_matrix.xlsx");
 
-  } catch (error: any) {
-    console.error("Plot generation error:", error);
-    alert(`Plot generation failed: ${error.message || String(error)}`);
-  } finally {
-    setIsProcessing(false);
-  }
-};
-const [downloadedFiles, setDownloadedFiles] = useState([])
-const handleDownload = async () => {
-  if (!pyodide) return;
+      // Convert/copy to standard Uint8Array backed by a standard ArrayBuffer
+      const excelBinary = new Uint8Array(rawBinary);
 
-  try {
-    // Read binary from Pyodide
-    const rawBinary = pyodide.FS.readFile("/tmp/alignment_matrix.xlsx");
+      await webR.FS.writeFile("/tmp/alignment_matrix.xlsx", excelBinary);
 
-    // Convert/copy to standard Uint8Array backed by a standard ArrayBuffer
-    const excelBinary = new Uint8Array(rawBinary);
+      // Trigger browser download
+      const blob = new Blob([excelBinary], {
+        type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+      });
 
-    await webR.FS.writeFile('/tmp/alignment_matrix.xlsx', excelBinary);
+      const fileName = "alignment_matrix.xlsx";
+      download(blob, fileName);
 
-    // Trigger browser download
-    const blob = new Blob([excelBinary], {
-      type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
-    });
-
-    const fileName = "alignment_matrix.xlsx";
-    download(blob, fileName);
-
-    // Track for PDF Report
-    setDownloadedFiles((prev) => [...prev, fileName]);
-  } catch (error) {
-    console.error("Failed to download Excel file:", error);
-  }
-};
+      // Track for PDF Report
+      setDownloadedFiles((prev) => [...prev, fileName]);
+    } catch (error) {
+      console.error("Failed to download Excel file:", error);
+    }
+  };
   // const handleSubmit = async () => {
   //   setIsProcessing(true);
   //   setFormData((prev) => ({ ...prev, settings: { ...prev.settings, isPlot: true } }))
@@ -811,16 +809,13 @@ const handleDownload = async () => {
   //     setFormData((prev) => ({ ...prev, settings: { ...prev.settings, isPlot: false } }))
   //   }
 
-    
   //   try {
-      
 
   //     const payload = new FormData();
 
   //     payload.append("algorithm", formData.algorithm);
   //     payload.append("settings", JSON.stringify(formData.settings));
   //     payload.append("multi", String(formData.multi));
-
 
   //     if (formData.baseText!=="" && formData.baseText) {
   //       payload.append("base_text", formData.baseText);
@@ -861,13 +856,12 @@ const handleDownload = async () => {
   //       setJobId(data.job_id);
   //     }
   //     setResults(data);
-     
+
   //     handleStepChange(currentStep + 1); // Advance step after successful run
   //   } catch (error) {
   //     console.error("Error submitting form:", error);
   //   } finally {
   //     setIsProcessing(false);
-      
 
   //   }
   // };
@@ -880,7 +874,6 @@ const handleDownload = async () => {
   //       console.error("No processed job available to plot");
   //       return;
   //     }
-
 
   //     try {
   //       const payload2 = new FormData();
@@ -901,12 +894,10 @@ const handleDownload = async () => {
   //     console.error("Failed to generate plot:", error);
   //     } finally {
   //       setIsProcessing(false);
-        
+
   //     }
   //   }
   // };
-
-  
 
   // const handleDownload = async () => {
   //   window.location.href = `api/sheet/${jobId}`;
@@ -914,147 +905,182 @@ const handleDownload = async () => {
   // }
 
   Font.register({
-      family: 'Cousine',
-      src: 'https://raw.githubusercontent.com/google/fonts/main/ofl/cousine/Cousine-Regular.ttf'
+    family: "Cousine",
+    src: "https://raw.githubusercontent.com/google/fonts/main/ofl/cousine/Cousine-Regular.ttf",
   });
 
   const tw = createTw({
-      fontFamily: {
-        mono: ["Cousine"]
-      }
+    fontFamily: {
+      mono: ["Cousine"],
+    },
   });
-
 
   const AlignmentsDoc = () => (
     <Document>
       <Page size="A4">
         <View wrap style={tw("p-10")}>
           <Text style={tw("text-lg text-center")}>Alignment Results</Text>
-        {results.output_logs.split("\n").map((line, index) => (
-          <Text key={index} style={tw("font-mono text-sm")}>
-            {line || " "}
-          </Text>
-        ))}
-      </View>
-        </Page>
-    </Document>
-  )
-  const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-  const Report = () => {
-    const seenPairs = new Set();
-    const d = new Date();
-    const date = `${d.getDate()} ${months[d.getMonth()]} ${d.getFullYear()} at ${d.getHours().toString().padStart(2, '0')}:${d.getMinutes().toString().padStart(2, '0')}:${d.getSeconds().toString().padStart(2, '0')}`;
-    const recsFilter = (record) => {
-      const pairKey = [record.TextNamePair[0], record.TextNamePair[1]].sort().join(":::");
-      if (seenPairs.has(pairKey)) { 
-        return false;
-       }
-      else {
-        seenPairs.add(pairKey)
-        return true;
-      }
-    }
-    const recs = results.records.filter(recsFilter);
-  
-  return (
-      <Document>
-        <Page size="A4">
-          <View wrap style={tw("p-10 text-sm font-mono")}>
-            <Text style={tw("text-sm text-right")}>Generated on {date}</Text>
-            <Text style={tw("text-xl font-bold text-center")}>Summary Report</Text>
-            <Text style={tw("text-lg")}>Files You Uploaded:</Text>
-            {formData.multi==true && (
-            Object.keys(formData.subsections).map((key)=>(
-                <View key={key} style={tw("text-sm")}>
-  
-                  
-                  <Text>Subsection: {key}</Text>
-                   <Text style={tw("pl-4")}> Files: </Text>
-                  
-                {formData.subsections[key].map((f)=>(
-                  <Text key={f.name} style={tw("text-sm pl-8")}>
-                      {f.name}
-                  </Text>
-                ))}
-                
-                </View>
-                ))
-
-              
-            )}
-            {formData.multi==false && (
-              formData.files.map((f)=>(
-                <Text key={f.name} style={tw("text-sm pl-4")}>
-                  {f.name}
-                </Text>
-              ))
-          
-            )}
-          <Text style={tw("text-lg pb-0 pt-2")}>Files You Downloaded:</Text>
-          {downloadedFiles.length==0 ? 
-          <Text style={tw("text-sm pl-4 pt-0")}>None</Text> : (
-            downloadedFiles.map((fi)=> (
-              <Text style={tw("pl-4")}>{fi}</Text>
-            ))
-          )
-          }
-          
-          <Text style={tw("text-lg pt-2")}>Algorithm Settings</Text>
-          <Text style={tw("text-sm font-bold")}>
-            Algorithm: {formData.algorithm == "ndw" ? "Needleman-Wunsch" : "Smith-Waterman"}
-          </Text>
-        
-            <Text>Match Bonus: {formData.settings.matchBonus}</Text>
-            <Text>Gap Penalty: {formData.settings.gapPenalty}</Text> 
-            <Text>Mismatch Penalty: {formData.settings.mismatchPenalty}</Text> 
-            <Text>{formData.algorithm=="ndw" ? `Affine Penalty: ${formData.settings.affinePenalty}` : ""}</Text>
-            <Text>Special Characters: {formData.settings.special.length==0 ? "None" : 
-              (formData.settings.specialOther == false ? 
-                (formData.settings.special.join(",")==="ך,ם,ן,ף,ץ" ? `Sofit Letters: ${formData.settings.special}` : `Capital Letters (Latin Alphabet): ${formData.settings.special}`)
-              : `Other: ${formData.settings.special}`)} </Text>
-            <Text>{formData.settings.special.length!=0 ? `Special Character Match Bonus: ${formData.settings.specialBonus}` : ""}</Text>
-
-          
-            
-          <Text style={tw("text-lg pt-2")}>Plot Settings</Text>
-            <Text>Plot Type: {formData.plotSettings.plotType.includes("3d") ? (formData.plotSettings.plotType=="3da"? "3D Interactive" : "3D Static") : "2D"}</Text>
-            <Text>Perplexity: {formData.plotSettings.perplexity}</Text> 
-            <Text>Theta: {formData.plotSettings.theta}</Text> 
-            <Text>Data Point Color: {formData.plotSettings.colors == "black" ? "Black" : (formData.plotSettings.colors=="grouping" ? "By Group" : "By Base Text" )}</Text>
-            <Text>Text Color: {formData.plotSettings.colorText ? (formData.plotSettings.colors == "black" ? "Black" : (formData.plotSettings.colors=="grouping" ? "By Group" : "By Base Text" )):"Black"}</Text>
-            
-       
-
-          <Text style={tw("text-lg pt-2")}>Resulting Scores</Text>
-          {recs.map((item, index) => (
-            <View>
-            <Text key={`${index}-title`} style={tw("text-sm font-bold")}>
-              {item.TextNamePair[0]} & {item.TextNamePair[1]}:
+          {results.output_logs.split("\n").map((line, index) => (
+            <Text key={index} style={tw("font-mono text-sm")}>
+              {line || " "}
             </Text>
-              <Text key={`${index}-scores`} style={tw("text-sm pl-4")}>
-              Score: {item.OrigScore} | Average Score: {item.Score}
-              </Text>
-              </View>
-            
           ))}
         </View>
       </Page>
     </Document>
-    )
-  }
-  
+  );
+  const months = [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
+  ];
+  const Report = () => {
+    const seenPairs = new Set();
+    const d = new Date();
+    const date = `${d.getDate()} ${months[d.getMonth()]} ${d.getFullYear()} at ${d.getHours().toString().padStart(2, "0")}:${d.getMinutes().toString().padStart(2, "0")}:${d.getSeconds().toString().padStart(2, "0")}`;
+    const recsFilter = (record) => {
+      const pairKey = [record.TextNamePair[0], record.TextNamePair[1]]
+        .sort()
+        .join(":::");
+      if (seenPairs.has(pairKey)) {
+        return false;
+      } else {
+        seenPairs.add(pairKey);
+        return true;
+      }
+    };
+    const recs = results.records.filter(recsFilter);
 
-  
+    return (
+      <Document>
+        <Page size="A4">
+          <View wrap style={tw("p-10 text-sm font-mono")}>
+            <Text style={tw("text-sm text-right")}>Generated on {date}</Text>
+            <Text style={tw("text-xl font-bold text-center")}>
+              Summary Report
+            </Text>
+            <Text style={tw("text-lg")}>Files You Uploaded:</Text>
+            {formData.multi == true &&
+              Object.keys(formData.subsections).map((key) => (
+                <View key={key} style={tw("text-sm")}>
+                  <Text>Subsection: {key}</Text>
+                  <Text style={tw("pl-4")}> Files: </Text>
+
+                  {formData.subsections[key].map((f) => (
+                    <Text key={f.name} style={tw("text-sm pl-8")}>
+                      {f.name}
+                    </Text>
+                  ))}
+                </View>
+              ))}
+            {formData.multi == false &&
+              formData.files.map((f) => (
+                <Text key={f.name} style={tw("text-sm pl-4")}>
+                  {f.name}
+                </Text>
+              ))}
+            <Text style={tw("text-lg pb-0 pt-2")}>Files You Downloaded:</Text>
+            {downloadedFiles.length == 0 ? (
+              <Text style={tw("text-sm pl-4 pt-0")}>None</Text>
+            ) : (
+              downloadedFiles.map((fi) => <Text style={tw("pl-4")}>{fi}</Text>)
+            )}
+
+            <Text style={tw("text-lg pt-2")}>Algorithm Settings</Text>
+            <Text style={tw("text-sm font-bold")}>
+              Algorithm:{" "}
+              {formData.algorithm == "ndw"
+                ? "Needleman-Wunsch"
+                : "Smith-Waterman"}
+            </Text>
+
+            <Text>Match Bonus: {formData.settings.matchBonus}</Text>
+            <Text>Gap Penalty: {formData.settings.gapPenalty}</Text>
+            <Text>Mismatch Penalty: {formData.settings.mismatchPenalty}</Text>
+            <Text>
+              {formData.algorithm == "ndw"
+                ? `Affine Penalty: ${formData.settings.affinePenalty}`
+                : ""}
+            </Text>
+            <Text>
+              Special Characters:{" "}
+              {formData.settings.special.length == 0
+                ? "None"
+                : formData.settings.specialOther == false
+                  ? formData.settings.special.join(",") === "ך,ם,ן,ף,ץ"
+                    ? `Sofit Letters: ${formData.settings.special}`
+                    : `Capital Letters (Latin Alphabet): ${formData.settings.special}`
+                  : `Other: ${formData.settings.special}`}{" "}
+            </Text>
+            <Text>
+              {formData.settings.special.length != 0
+                ? `Special Character Match Bonus: ${formData.settings.specialBonus}`
+                : ""}
+            </Text>
+
+            <Text style={tw("text-lg pt-2")}>Plot Settings</Text>
+            <Text>
+              Plot Type:{" "}
+              {formData.plotSettings.plotType.includes("3d")
+                ? formData.plotSettings.plotType == "3da"
+                  ? "3D Interactive"
+                  : "3D Static"
+                : "2D"}
+            </Text>
+            <Text>Perplexity: {formData.plotSettings.perplexity}</Text>
+            <Text>Theta: {formData.plotSettings.theta}</Text>
+            <Text>
+              Data Point Color:{" "}
+              {formData.plotSettings.colors == "black"
+                ? "Black"
+                : formData.plotSettings.colors == "grouping"
+                  ? "By Group"
+                  : "By Base Text"}
+            </Text>
+            <Text>
+              Text Color:{" "}
+              {formData.plotSettings.colorText
+                ? formData.plotSettings.colors == "black"
+                  ? "Black"
+                  : formData.plotSettings.colors == "grouping"
+                    ? "By Group"
+                    : "By Base Text"
+                : "Black"}
+            </Text>
+
+            <Text style={tw("text-lg pt-2")}>Resulting Scores</Text>
+            {recs.map((item, index) => (
+              <View>
+                <Text key={`${index}-title`} style={tw("text-sm font-bold")}>
+                  {item.TextNamePair[0]} & {item.TextNamePair[1]}:
+                </Text>
+                <Text key={`${index}-scores`} style={tw("text-sm pl-4")}>
+                  Score: {item.OrigScore} | Average Score: {item.Score}
+                </Text>
+              </View>
+            ))}
+          </View>
+        </Page>
+      </Document>
+    );
+  };
+
   const getDate = () => {
     const d = new Date();
-    const date = (`${d.getDate()} ${months[d.getMonth()]} ${d.getFullYear()} at ${d.getHours()}:${d.getMinutes()}:${d.getSeconds()}`)
+    const date = `${d.getDate()} ${months[d.getMonth()]} ${d.getFullYear()} at ${d.getHours()}:${d.getMinutes()}:${d.getSeconds()}`;
     return date;
-  }
+  };
 
-  
-  
-
- const plotRef = useRef(null);
+  const plotRef = useRef(null);
 
   // const download3dPlot = () => {
   //   // 1. Target the iframe's document
@@ -1073,1198 +1099,1448 @@ const handleDownload = async () => {
   //     console.warn('Canvas element not found inside iframe');
   //   }
   // }
-const download3dPlot = async () => {
-  const iframeWin = plotRef.current?.contentWindow as any;
-  const iframeDoc = plotRef.current?.contentDocument;
+  const download3dPlot = async () => {
+    const iframeWin = plotRef.current?.contentWindow as any;
+    const iframeDoc = plotRef.current?.contentDocument;
 
-  if (!iframeWin || !iframeDoc) {
-    console.warn("Iframe reference not found");
-    return;
-  }
-
-  const plotDiv = iframeDoc.getElementById('plot') as any;
-
-  if (plotDiv && iframeWin.Plotly) {
-    try {
-      // 1. Copy live interactive camera state into the layout object
-      const liveCamera = plotDiv._fullLayout?.scene?.camera;
-
-      if (liveCamera) {
-        plotDiv.layout = plotDiv.layout || {};
-        plotDiv.layout.scene = plotDiv.layout.scene || {};
-        plotDiv.layout.scene.camera = {
-          eye: { ...liveCamera.eye },
-          center: { ...liveCamera.center },
-          up: { ...liveCamera.up },
-          projection: liveCamera.projection ? { ...liveCamera.projection } : undefined,
-        };
-      }
-
-      // 2. Export image using current position & high resolution
-      const dataUrl = await iframeWin.Plotly.toImage(plotDiv, {
-        format: 'png',
-        width: 1200,
-        height: 900,
-      });
-
-      // 3. Trigger download
-      download(dataUrl, 'positioned_3D_plot.png');
-      setDownloadedFiles((prev) => [...prev, "positioned_3D_plot.png"]);
-
-    } catch (err) {
-      console.error("Failed to generate image from Plotly:", err);
+    if (!iframeWin || !iframeDoc) {
+      console.warn("Iframe reference not found");
+      return;
     }
-  } else {
-    console.warn("Plotly instance or #plot container not found inside iframe");
-  }
-};
 
+    const plotDiv = iframeDoc.getElementById("plot") as any;
+
+    if (plotDiv && iframeWin.Plotly) {
+      try {
+        // 1. Copy live interactive camera state into the layout object
+        const liveCamera = plotDiv._fullLayout?.scene?.camera;
+
+        if (liveCamera) {
+          plotDiv.layout = plotDiv.layout || {};
+          plotDiv.layout.scene = plotDiv.layout.scene || {};
+          plotDiv.layout.scene.camera = {
+            eye: { ...liveCamera.eye },
+            center: { ...liveCamera.center },
+            up: { ...liveCamera.up },
+            projection: liveCamera.projection
+              ? { ...liveCamera.projection }
+              : undefined,
+          };
+        }
+
+        // 2. Export image using current position & high resolution
+        const dataUrl = await iframeWin.Plotly.toImage(plotDiv, {
+          format: "png",
+          width: 1200,
+          height: 900,
+        });
+
+        // 3. Trigger download
+        download(dataUrl, "positioned_3D_plot.png");
+        setDownloadedFiles((prev) => [...prev, "positioned_3D_plot.png"]);
+      } catch (err) {
+        console.error("Failed to generate image from Plotly:", err);
+      }
+    } else {
+      console.warn(
+        "Plotly instance or #plot container not found inside iframe",
+      );
+    }
+  };
 
   const handleColorText = () => {
-    if (formData.plotSettings.colorText==true){
-      setFormData((prev)=>({...prev, plotSettings:{...prev.plotSettings, colorText:false}}))
+    if (formData.plotSettings.colorText == true) {
+      setFormData((prev) => ({
+        ...prev,
+        plotSettings: { ...prev.plotSettings, colorText: false },
+      }));
     } else {
-      setFormData((prev)=>({...prev, plotSettings:{...prev.plotSettings, colorText:true}}))
+      setFormData((prev) => ({
+        ...prev,
+        plotSettings: { ...prev.plotSettings, colorText: true },
+      }));
     }
-  }
+  };
 
- 
- 
   const totalFilesCount = formData.multi
     ? Object.keys(formData.subsections).reduce(
-      (acc, key) => acc + formData.subsections[key].length,
-      0,
-    )
+        (acc, key) => acc + formData.subsections[key].length,
+        0,
+      )
     : formData.files.length;
 
   return (
     <div className="bg-white w-screen h-screen flex flex-col items-center place-content-center content-center justify-items-center justify-content-center">
       <div className="w-[82dvw] h-[82dvh] p-6 bg-white rounded-xl shadow-md border border-gray-100 flex flex-col justify-between">
         {/* Progress Bar */}
-        <div>
-          <div className="flex justify-between text-[0.8rem] font-medium text-gray-500 mb-2">
-            <button
-              type="button"
-              onClick={() => handleStepSkip(1)}
-              className={`${furthestStep >= 1 ? "cursor-pointer" : ""} ${currentStep >= 1 ? "text-cyan-600 font-bold" : ""
-                }`}
-            >
-              Upload Files
-            </button>
-            <button
-              type="button"
-              onClick={() => handleStepSkip(2)}
-              className={`${furthestStep >= 2 ? "cursor-pointer" : ""} ${currentStep >= 2 ? "text-cyan-600 font-bold" : ""
-                }`}
-            >
-              Select Algorithm
-            </button>
-            <button
-              type="button"
-              onClick={() => handleStepSkip(3)}
-              className={`${furthestStep >= 3 ? "cursor-pointer" : ""} ${currentStep >= 3 ? "text-cyan-600 font-bold" : ""
-                }`}
-            >
-              View Alignment
-            </button>
-            
-              
-            <button
-              type="button"
-              onClick={() => handleStepSkip(4)}
-              className={`${furthestStep >= 4 ? "cursor-pointer" : ""} ${currentStep >= 4 ? "text-cyan-600 font-bold" : ""
-                }`}
-            > 
-              Adjust Plot Settings
-            </button>
-            <button
-              type="button"
-              onClick={() => handleStepSkip(5)}
-              className={`${furthestStep >= 5 ? "cursor-pointer" : ""} ${currentStep >= 5 ? "text-cyan-600 font-bold" : ""
-                }`}
-            >
-              View Plot
-            </button> 
-            
-            
-            <button
-              type="button"
-              onClick={() => handleStepSkip(6)}
-              className={`${furthestStep >= 6 ? "cursor-pointer" : ""} ${currentStep >= 6 ? "text-cyan-600 font-bold" : ""
-                }`}
-            > 
-            
-           
-              View Report
-            </button>
-            </div>
-           <div className="w-full bg-gray-200 h-2 rounded-full overflow-hidden">
-          <div className="bg-cyan-600 h-2 transition-all duration-300"
-           style={{width: `${(currentStep / 6) * 100}%`}}></div>
-          </div>
-        </div>
-
-        {/* STEP 1: UPLOAD FILES */}
-        {currentStep === 1 && (
-          <div className="flex flex-col justify-between h-[65dvh]">
-            <h2 className="text-3xl font-bold text-gray-800">
-              Upload Transcription Files or Folders
-            </h2>
-
-            {formData.multi === null && (
-              <div className="h-full place-content-start">
-                <h1 className="text-2xl pt-12 font-semibold text-cyan-600 overflow-wrap">
-                  Welcome to the TEXTEVOLVE Data Analysis tool. <br />
-                  <br />
-                  Please begin by selecting whether you want to compare{" "}
-                  <button
-                    type="button"
-                    onClick={() =>
-                      setFormData((prev) => ({ ...prev, multi: false }))
-                    }
-                    className="font-semibold text-cyan-600 underline underline-offset-2 hover:text-cyan-700 focus:outline-none focus:ring-2 focus:ring-cyan-500 rounded px-0.5 transition-colors cursor-pointer"
-                  >
-                    entire texts
-                  </button>{" "}
-                  or{" "}
-                  <button
-                    type="button"
-                    onClick={() =>
-                      setFormData((prev) => ({ ...prev, multi: true }))
-                    }
-                    className="font-semibold text-cyan-600 underline underline-offset-2 hover:text-cyan-700 focus:outline-none focus:ring-2 focus:ring-cyan-500 rounded px-0.5 transition-colors cursor-pointer"
-                  >
-                    subsections of texts
-                  </button>
-                  .
-                </h1>
-              </div>
-            )}
-
-            
-            {/* SUBSECTION MULTI-FILE MODE */}
-            {formData.multi === true && (
-              <div className="flex flex-col gap-4 w-full h-[50dvh]">
-                {/* TOP PANEL: CONTROL BAR & SUBSECTION LIST */}
-                <div className="border-2 border-dashed border-gray-300 flex-col overflow-auto h-full p-4 text-gray-500 w-full rounded-lg bg-gray-50 flex items-start justify-start">
-                  
-                  {/* Subsection Creator Header */}
-                  <div className="flex flex-row justify-between items-center w-full pb-2 border-b mb-3">
-                    <div className="flex items-center gap-2">
-                      <p className="text-md font-bold text-cyan-800">Subsections Tree</p>
-                    </div>
-
-                    {/* Subsection Creator & Clear All */}
-                    <div className="w-5/10 justify-end flex flex-row content-end gap-4">
-                      <form
-                        onSubmit={(e) => {
-                          e.preventDefault();
-                          handleSubsection();
-                        }}
-                        className="flex flex-row gap-2 items-center"
-                      >
-                        <div className="cursor-text rounded-md shadow-sm flex flex-row items-center px-2 py-0.5 text-cyan-700 bg-white border border-gray-200">
-                          <input
-                            type="text"
-                            placeholder={`Default: Subsection ${count}`}
-                            value={inputValue}
-                            onChange={(e) => setInputValue(e.target.value)}
-                            className="outline-none border-none appearance-none p-1 text-[0.8rem]"
-                          />
-                          <button
-                            type="submit"
-                            className="hover:bg-cyan-50 rounded-full text-cyan-800"
-                          >
-                            <CirclePlus className="w-5 h-5" />
-                          </button>
+        {currentStep == 0 && (
+          <div className="text-lg text-cyan-700  font-medium flex flex-col pt-10 h-[82dvh] justify-between">
+            <div className="gap-5">
+              <h1 className="text-3xl font-bold text-gray-800 pt-10 pb-10">
+                {/* Change the title here */}
+                Welcome to the TEXTEVOLVE Data Analysis Tool 
+              </h1>
+              <div className="text-base pt-2 gap-2 text-cyan-700 shadow-lg/40 w-full h-[45dvh]  rounded-lg p-5  overflow-auto">
+                          <p className="text-lg font-medium">Description</p>
+                      
                         </div>
-                      </form>
-
-                      <button
-                        type="button"
-                        onClick={() => {
-                          setFormData((prev) => ({
-                            ...prev,
-                            subsections: {},
-                            baseText: "",
-                          }));
-                          setCount(1);
-                        }}
-                        className="hover:bg-gray-200/70 p-1 rounded-sm text-red-600 font-bold cursor-pointer flex flex-row items-center gap-1 text-[0.8rem]"
-                      >
-                        <p>Clear All</p>
-                        <Eraser className="w-4 h-4" />
-                      </button>
-                    </div>
-                  </div>
-
-                  {/* Base Text Global Indicator */}
-                  <div className="text-[0.8rem] font-bold text-cyan-800 mb-3 overflow-wrap">
-                    Base Text Prefix:{" "}
-                    <input className="font-normal text-gray-800 rounded-md appearance-none bg-white outline-none p-1 shadow-md hover:shadow-lg focus:shadow-lg "
-                      type="text"
-                      value={formData.baseText != "" ? formData.baseText : "None"}
-                      onChange={(e)=>{setFormData((prev)=>({...prev, baseText:e.target.value}))}}
-                    />
-                  </div>
-
-                  {/* Hidden File / Folder Inputs for Programmatic Triggering */}
-                  <input
-                    type="file"
-                    ref={folderInput}
-                    className="hidden"
-                    {...({ webkitdirectory: "", directory: "" } as any)}
-                    directory="true"
-                    multiple
-                    onChange={(e) => handleFolderUpload(e)}
-                  />
-
-                  {/* SUBSECTION BOXES */}
-                  <div className="w-full space-y-4 overflow-y-auto pr-1">
-                    {Object.keys(formData.subsections).length > 0 ? (
-                      Object.keys(formData.subsections).map((sectionName) => (
-                        <SubsectionItem
-                          key={sectionName}
-                          sectionName={sectionName}
-                          files={formData.subsections[sectionName] || []}
-                          baseText={formData.baseText}
-                          onDropFiles={(droppedFiles, targetSection) => {
-                            
-                            setFormData((prev) => ({
-                              ...prev,
-                              subsections: {
-                                ...prev.subsections,
-                                [targetSection]: [
-                                  ...(prev.subsections[targetSection] || []),
-                                  ...droppedFiles,
-                                ],
-                              },
-                            }));
-                          }}
-                          onSetBaseText={(file) =>
-                            setFormData((prev) => ({ ...prev, baseText: file.name }))
-                          }
-                          onRemoveFile={removeFileFromSection}
-                          onSelectFolderTrigger={(targetSection) => {
-                            setTargetSubsection(targetSection);
-                            folderInput.current?.click();
-                          }}
-                          onSelectFilesTrigger={(e, targetSection) => {
-                            setTargetSubsection(targetSection);
-                            handleFolderUpload(e);
-                          }}
-                          onDragStartFile={handleDragStart}
-                          onRemoveSubsection={removeSubsection}
-                        />
-                      ))
-                    ) : (
-                      <p className="text-[0.8rem] text-gray-400 italic py-4 text-center">
-                        No subsections created. Add a subsection above to begin organizing.
-                      </p>
-                    )}
-      </div>
-    </div>
-  </div>
-)}
-            
-        {/* SINGLE MODE standard upload */}
-        {formData.multi === false && (
-          <div className="flex flex-col gap-4 w-full h-[50dvh]">
-            {/* MAIN UNIFIED CONTAINER */}
-            <div
-              {...getRootProps()}
-              className={`border-2 border-dashed border-gray-300 flex-col overflow-auto h-full p-4 text-gray-500 w-full rounded-lg bg-gray-50 flex items-start justify-start transition ${
-                isDragReject
-                  ? "border-red-500 text-red-600 bg-red-50"
-                  : isDragActive
-                    ? "border-cyan-500 text-cyan-600 bg-cyan-50"
-                    : ""
-              }`}
-            >
-              <input {...getInputProps()} />
-
-              {/* HEADER CONTROL BAR */}
-              <div className="flex flex-row justify-between items-center w-full pb-2 border-b mb-3">
-                <div className="flex items-center gap-2">
-                  <p className="text-md font-bold text-cyan-800">Entire Texts</p>
-                  <span className="text-[0.8rem] text-gray-400 font-normal">
-                    ({formData.files.length}{" "}
-                    {formData.files.length === 1 ? "file" : "files"})
-                  </span>
-                </div>
-
-                {/* Clear All Action */}
-                <div className="justify-end flex flex-row items-center gap-4">
-                  <button
-                    type="button"
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      setFormData((prev) => ({
-                        ...prev,
-                        files: [],
-                        baseText: "",
-                      }));
-                    }}
-                    className="hover:bg-gray-200/70 p-1 rounded-sm text-red-600  font-bold cursor-pointer flex flex-row items-center gap-1 text-[0.8rem]"
-                  >
-                    <p>Clear All</p>
-                    <Eraser className="w-4 h-4" />
-                  </button>
-                </div>
-              </div>
-
-              {/* BASE TEXT INDICATOR */}
-              <div className="text-[0.8rem] font-bold text-cyan-800 mb-3 overflow-wrap">
-                    Base Text Prefix:{" "}
-                    <input className="font-normal text-gray-800 rounded-md appearance-none bg-white outline-none p-1 shadow-md hover:shadow-lg focus:shadow-lg "
-                      type="text"
-                      value={formData.baseText != "" ? formData.baseText : "None"}
-                      onChange={(e)=>{setFormData((prev)=>({...prev, baseText:e.target.value}))}}
-                    />
-                  </div>
-
-              {/* HIDDEN FOLDER INPUT */}
-              <input
-                type="file"
-                ref={folderInput}
-                className="hidden"
-                {...({ webkitdirectory: "", directory: "" } as any)}
-                directory="true"
-                multiple
-                onChange={handleFolderUpload}
-              />
-
-              {/* SINGLE MAIN CONTENT BOX */}
-              <div className="w-full p-3 border-2 border-dashed border-gray-300 rounded-lg bg-white shadow-xs transition-all hover:border-cyan-400">
-                {/* INNER HEADER WITH UPLOAD BUTTONS */}
-                <div className="flex items-center justify-between border-b pb-2 mb-2">
-                  <div className="flex items-center gap-2 font-bold text-cyan-900 text-sm">
-                    <FolderOpen className="w-5 h-5 text-cyan-600" />
-                    <span>Uploaded Files</span>
-                  </div>
-
-                  {/* Inline Upload Triggers */}
-                  <div className="flex items-center gap-2 text-[0.8rem]">
-                    <button
-                      type="button"
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        openFilePicker();
-                      }}
-                      className="bg-cyan-50 hover:bg-cyan-100 text-cyan-800 font-semibold px-2 py-1 rounded border border-cyan-200 transition cursor-pointer"
-                    >
-                      + Files
-                    </button>
-
-                    <button
-                      type="button"
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        folderInput.current?.click();
-                      }}
-                      className="bg-cyan-50 hover:bg-cyan-100 text-cyan-800 font-semibold px-2 py-1 rounded border border-cyan-200 transition cursor-pointer"
-                    >
-                      + Folder
-                    </button>
-                  </div>
-                </div>
-
-                {/* FILE LIST OR DROP HINT */}
-                {formData.files.length > 0 ? (
-                  <ul className="space-y-1 mt-2 max-h-[25dvh] overflow-y-auto pr-1">
-                    {formData.files.map((file, fileIndex) => {
-                      const isBase = file === formData.baseText;
-                      return (
-                        <li
-                          key={`${file.name}-${fileIndex}`}
-                          className={`flex items-center justify-between px-2 py-1 rounded border text-[0.8rem] ${
-                            isBase
-                              ? "bg-cyan-100/60 border-cyan-300"
-                              : "bg-gray-50 border-gray-100 hover:bg-gray-100"
-                          }`}
-                        >
-                          <button
-                            type="button"
-                            onClick={(e) => {
-                              e.stopPropagation();
-                              setFormData((prev) => ({
-                                ...prev,
-                                baseText: file.name,
-                              }));
-                            }}
-                            className="bg-transparent w-98/100 text-cyan-600 rounded-lg flex-row flex gap-2 items-center shrink-0 cursor-pointer text-left"
-                          >
-                            {isBase ? (
-                              <FileCheck className="w-5 h-5" />
-                            ) : (
-                              <FileText className="w-5 h-5" />
-                            )}
-                            <p className="text-[0.8rem] font-medium text-cyan-800 truncate max-w-[300px]">
-                              {file.name}
-                            </p>
-                          </button>
-
-                          <button
-                            type="button"
-                            onClick={(e) => {
-                              e.stopPropagation();
-                              removeFile(file);
-                            }}
-                            className="text-red-600 hover:bg-red-50 p-0.5 rounded transition cursor-pointer"
-                          >
-                            <Trash2 className="w-4 h-4" />
-                          </button>
-                        </li>
-                      );
-                    })}
-                  </ul>
-                ) : (
-                  <div className="py-8 text-center border-1 border-dashed border-gray-200 rounded-md bg-gray-50/50 text-[0.8rem] text-gray-400">
-                    Drag and drop files or folders directly anywhere in this box
-                  </div>
-                )}
-              </div>
             </div>
-          </div>
-        )}
-        {formData.multi!==null && (
-        
-        <div className="flex flex-row justify-between items-center pt-2">
-          <button
-            onClick={() =>
-              setFormData((prev) => ({ ...prev, multi: null }))
-            }
-            className="px-5 py-2 border border-gray-300 text-gray-700 font-medium rounded-lg hover:bg-gray-50 transition"
-          >
-            Back
-          </button>
-          <button
-            disabled={totalFilesCount < 2}
-            onClick={() => handleStepChange(2)}
-            className="px-5 py-2 bg-cyan-600 text-white font-medium rounded-lg hover:bg-cyan-700 disabled:bg-gray-400 disabled:cursor-not-allowed transition"
-          >
-            Continue
-          </button>
-        </div>
-        )}
-      </div>
-        )}
-      {/* select algorithm */}
-      {currentStep === 2 && (
-        <div className="space-y-6">
-          <h2 className="text-4xl font-bold text-gray-700 pt-10 ">
-            Select Algorithm
-          </h2>
-
-          <div className="space-y-1 h-[55dvh] flex  w-10/10 pt-5">
-            <div className="flex flex-row content-between">
-              <div className="flex flex-col content-center items-center gap-2 w-[25dvw]">
-                {/* <label className="block text-2xl font-medium text-gray-700 mb-1">Select Algorithm</label> */}
-                <div className="flex flex-col gap-2 pt-2 w-full">
-                  {/* Label */}
-                  <label
-                    htmlFor="algorithm"
-                    className="block text-md font-medium text-gray-700 place-content-start"
-                  >
-                    Choose an Algorithm
-                  </label>
-
-                  {/* Select Container with Custom Arrow */}
-                  <div className="relative ">
-                    <select
-                      id="algorithm"
-                      className="block w-full pl-3 pr-10 py-2 text-[0.8rem] outline-none border-none  bg-white  rounded-md shadow-md appearance-none focus:outline-none focus:shadow-md text-gray-700/60 focus:text-gray-700 focus:shadow-gray-700/70
-                     rounded-md   cursor-pointer transition-colors"
-                      defaultValue={formData.algorithm}
-                      onChange={(e) =>
-                        setFormData((p) => ({
-                          ...p,
-                          algorithm: e.target.value,
-                        }))
-                      }
-                    >
-                      <option disabled value="" className="text-gray-400/20">
-                        Select an Algorithm
-                      </option>
-                      <option value="ndw" className="text-gray-800">
-                        Needleman-Wunsch Algorithm
-                      </option>
-                      <option value="sw" className="text-gray-800">
-                        Smith-Waterman Algorithm
-                      </option>
-                    </select>
-
-                    {/* Custom Dropdown Chevron Icon */}
-                    <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-3 text-gray-500">
-                      <svg
-                        className="w-4 h-4"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d="M19 9l-7 7-7-7"
-                        />
-                      </svg>
-                    </div>
-                  </div>
-
-                  {/* Needleman-Wunsch Settings */}
-                  {(formData.algorithm === "ndw" ||
-                    formData.algorithm === "sw") && (
-                      <div className="flex flex-row gap-3 content-center">
-                        <div className="w-4/10">
-                          {/* Match Bonus*/}
-                          <div className="flex justify-between items-center text-md font-medium text-gray-700">
-                            <label htmlFor="matchBonus">Match Bonus</label>
-                          </div>
-
-                          <input
-                            id="matchBonus"
-                            type="number"
-                            value={Number.isNaN(formData.settings.matchBonus) ? "" : formData.settings.matchBonus}
-                            onChange={(e) =>
-                              
-                              handleSettingChange(
-                                "matchBonus",
-                                isNaN(e.target.valueAsNumber)? null : e.target.valueAsNumber,
-                              )
-                            }
-                            className="block w-full pl-3 pr-10 py-2 text-[0.8rem] bg-white rounded-md shadow-sm appearance-none focus:outline-none focus:shadow-md text-gray-700/60 focus:text-gray-700 focus:shadow-gray-700/70 sm:text-[0.8rem] transition-colors"
-                          />
-
-                          {/* Gap Penalty */}
-                          <div className="flex justify-between items-center text-md font-medium text-gray-700">
-                            <label htmlFor="gapPenalty">Gap Penalty</label>
-                          </div>
-
-                          <input
-                            id="gapPenalty"
-                            type="number"
-                            value={isNaN(formData.settings.gapPenalty) ? "" : (formData.settings.gapPenalty<0 ? -formData.settings.gapPenalty : formData.settings.gapPenalty)}
-                            onChange={(e) =>
-                              handleSettingChange(
-                                "gapPenalty",
-                                isNaN(e.target.valueAsNumber)? null : -e.target.valueAsNumber,
-                              )
-                            }
-                            className="block w-full pl-3 pr-10 py-2 text-[0.8rem] bg-white rounded-md shadow-sm appearance-none focus:outline-none focus:shadow-md text-gray-700/60 focus:text-gray-700 focus:shadow-gray-700/70 sm:text-[0.8rem] transition-colors"
-                          />
-
-                          {/* Mismatch Penalty */}
-                          <div className="flex justify-between items-center text-md font-medium text-gray-700">
-                            <label htmlFor="mismatchPenalty">
-                              Mismatch Penalty
-                            </label>
-                          </div>
-
-                          <input
-                            id="mismatchPenalty"
-                            type="number"
-                            value={isNaN(formData.settings.mismatchPenalty) ? "" : (formData.settings.mismatchPenalty<0 ? -formData.settings.mismatchPenalty : formData.settings.mismatchPenalty)}
-                            onChange={(e) =>
-                              handleSettingChange(
-                                "mismatchPenalty",
-                                isNaN(e.target.valueAsNumber)? null : -e.target.valueAsNumber,
-                              )
-                            }
-                            className="block w-full pl-3 pr-10 py-2 text-[0.8rem] bg-white rounded-md shadow-sm appearance-none focus:outline-none focus:shadow-md text-gray-700/60 focus:text-gray-700 focus:shadow-gray-700/70 sm:text-[0.8rem] transition-colors"
-                          />
-                          {formData.algorithm === "ndw" && (
-                            <div>
-                              {/* Affine Gap Penalty */}
-                              <div className="flex justify-between items-center text-md font-medium text-gray-700">
-                                <label htmlFor="affinePenalty">
-                                  Affine Penalty
-                                </label>
-                              </div>
-
-                              <input
-                                id="affinePenalty"
-                                type="number"
-                                value={isNaN(formData.settings.affinePenalty) ? "" : (formData.settings.affinePenalty<0 ? -formData.settings.affinePenalty : formData.settings.affinePenalty)}
-                                onChange={(e) =>
-                                  handleSettingChange(
-                                    "affinePenalty",
-                                    isNaN(e.target.valueAsNumber)? null : -e.target.valueAsNumber,
-                                  )
-                                }
-                                className="block w-full pl-3 pr-10 py-2 text-[0.8rem] bg-white rounded-md shadow-sm appearance-none focus:outline-none focus:shadow-md text-gray-700/60 focus:text-gray-700 focus:shadow-gray-700/70 sm:text-[0.8rem] transition-colors"
-                              />
-                            </div>
-                          )}
-                        </div>
-                        <div className="w-6/10">
-                          {/* Optional Special Character Bonus */}
-                          {/* Label */}
-                          <label
-                            htmlFor="special"
-                            className="block text-md font-medium text-gray-700 place-content-start"
-                          >
-                            Optional Special Character Bonus
-                          </label>
-
-                          {/* Select Container with Custom Arrow */}
-                          <div className="relative">
-                            <select
-                              id="special"
-                              className="block w-full pl-3 pr-10 py-2 text-[0.8rem] bg-white rounded-md shadow-sm appearance-none focus:outline-none focus:shadow-md text-gray-700/60 focus:text-gray-700 focus:shadow-gray-700/70 sm:text-[0.8rem] cursor-pointer transition-colors"
-                              value={ formData.settings.special.join(",")}
-                              onChange={(e) => {
-                                const val = e.target.value;
-                                if (!val) {
-                                  handleSettingChange("special", []);
-                                  handleSettingChange("specialOther", false);
-                                } else if (val === "Other") {
-                                  handleSettingChange("special", ["Other"]);
-                                  handleSettingChange("specialOther", true);
-                                } else {
-                                  // Split the comma-separated value string into a clean array
-                                  handleSettingChange(
-                                    "special",
-                                    val.split(","),
-                                  );
-                                  handleSettingChange("specialOther", false);
-                                }
-                              }}
-                            >
-                              <option value="" className="text-gray-400/20">
-                                None
-                              </option>
-                              {/* Pass standard comma-separated strings as values */}
-                              <option
-                                value="ך,ם,ן,ף,ץ"
-                                className="text-gray-800"
-                              >
-                                Sofit Letters
-                              </option>
-                              <option
-                                value="A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z"
-                                className="text-gray-800"
-                              >
-                                Capital Letters (Latin Alphabet)
-                              </option>
-                              <option value="Other" className="text-gray-800">
-                                Custom
-                              </option>
-                            </select>
-                            {/* Custom Dropdown Chevron Icon */}
-                            <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-3 text-gray-500">
-                              <svg
-                                className="w-4 h-4"
-                                fill="none"
-                                stroke="currentColor"
-                                viewBox="0 0 24 24"
-                              >
-                                <path
-                                  strokeLinecap="round"
-                                  strokeLinejoin="round"
-                                  strokeWidth={2}
-                                  d="M19 9l-7 7-7-7"
-                                />
-                              </svg>
-                            </div>
-                          </div>
-
-                          {formData.settings.specialOther === true && (
-                            <div>
-                              <label
-                                htmlFor="otherSpecial"
-                                className="block pt-2 text-md font-medium text-gray-700 place-content-start"
-                              >
-                                Enter a space-separated list of characters.
-                              </label>
-                              <input
-                                type="text"
-                                id="otherSpecial"
-                                onChange={(e) =>
-                                  handleSettingChange(
-                                    "special",
-                                    e.target.value.split(" "),
-                                  )
-                                }
-                                value={
-                                  formData.settings.special.includes("Other")
-                                    ? ""
-                                    : formData.settings.special.join(" ")
-
-                                }
-                                placeholder="1 2 3"
-                                className="shadow-md pt-2 w-full text-gray-700 focus:shadow-gray-700/70 outline-none border-none appearance-none p-1"
-                              />
-                            </div>
-                          )}
-                          <div className="pt-2">
-                            {formData.settings.special.includes("Other") ===
-                              false && (
-                                <label
-                                  className="pt-2 text-cyan-700"
-                                >
-                                  {formData.settings.special.join(" ")}
-                                </label>
-                              )}
-                          </div>
-
-                          {formData.settings.special?.length > 0 && (
-                            <div>
-                              <div className="flex justify-between items-center text-md  font-medium text-gray-700">
-                                <label htmlFor="specialBonus" className="pt-2">
-                                  Special Character Bonus
-                                </label>
-                              </div>
-
-                              <input
-                                id="specialBonus"
-                                type="number"
-                                value={Number.isNaN(formData.settings.specialBonus) ? "" : formData.settings.specialBonus}
-                                onChange={(e) =>
-                                  handleSettingChange(
-                                    "specialBonus",
-                                    isNaN(e.target.valueAsNumber)? null : e.target.valueAsNumber,
-                                  )
-                                }
-                                className="block w-full pl-3 pr-10 py-2 text-[0.8rem] bg-white rounded-md shadow-sm appearance-none focus:outline-none focus:shadow-md text-gray-700/60 focus:text-gray-700 focus:shadow-gray-700/70 sm:text-[0.8rem] transition-colors"
-                              />
-
-                           </div>
-
-                          )}
-                        </div>
-                      </div>
-                    )}
-
-                  {/* {formData.algorithm!="" && (
-                    <div className="w-[50dvh] h-[50dvh] border-2"></div>
-                  )} */}
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div className="flex justify-between pt-4">
-            <button
-              onClick={() => handleStepChange(1)}
-              className="px-5 py-2 border border-gray-300 text-gray-700 font-medium rounded-lg hover:bg-gray-50 transition"
-            >
-              Back
-            </button>
-            <button
-              onClick={handleSubmit}
-              disabled={!isReady||isProcessing}
-              className="px-5 py-2 bg-cyan-600 text-white font-medium rounded-lg hover:bg-cyan-700 disabled:opacity-50 transition"
-            >
-              {isProcessing ? "Processing..." : "Run Algorithm"}
-            </button>
-          </div>
-        </div>
-      )}
-      {currentStep === 3 && (
-        <div className="flex h-95/100 self-start place-content-start w-full">
-          <div className="flex flex-col justify-between place-content-start pt-4  w-full">
-            <h1 className="text-4xl w-5/10 font-bold text-gray-700 pt-10 pb-2">
-              {formData.algorithm == "ndw"
-                ? "Needleman-Wunsch"
-                : "Smith-Waterman"}{" "}
-              Alignment
-            </h1>
-            <div className="flex-row overflow-auto place-content-start place-items-start h-full place-self-start w-max flex pt-5 ">
-
-              <div className="w-max ">
-                <p className="text-gray-800 whitespace-pre-wrap text-justify font-mono">{results.output_logs}</p>
-              </div>
-            </div>
-            <div className="flex flex-row justify-between content-start">
+            <div className="flex flex-row justify-end">
               <button
-                onClick={() => handleStepChange(2)}
-                className="px-5 py-2 border border-gray-300 text-gray-700 font-medium rounded-lg hover:bg-gray-50 transition"
-              >
-                Back
-              </button>
-                <PDFDownloadLink document={<AlignmentsDoc/>} fileName="alignments.pdf"
-                className="px-5 py-2 bg-sky-600 text-white font-medium rounded-lg hover:bg-sky-700">
-                {({ blob, url, loading, error }) =>
-            loading ? 'Generating Alignments File...' : 'Download Alignments'
-              }
-              </PDFDownloadLink>
-              <button
-                onClick={() => handleStepChange(4)}
-                disabled={isProcessing || formData.settings.isPlot == false}
-                className="px-5 py-2 bg-cyan-600 text-white font-medium rounded-lg hover:bg-cyan-700 disabled:bg-gray-400 disabled:cursor-not-allowed transition"
+                onClick={() => handleStepChange(1)}
+                className="px-5 py-2 bg-cyan-600 text-white text-center font-medium rounded-lg hover:bg-cyan-700 cursor-pointer w-max"
               >
                 Continue
               </button>
             </div>
           </div>
-        </div>
-      )}
-      {currentStep === 4 && (
-        <div className="flex content-start h-full pt-10 flex-col pt-4">
-          <h1 className="text-4xl w-5/10 font-bold text-gray-700 pt-10 pb-2">
-            {formData.algorithm == "ndw"
-              ? "Needleman-Wunsch"
-              : "Smith-Waterman"}{" "}
-            Plot Settings
-          </h1>
-          <div className="space-y-1 h-full flex  w-10/10 pt-5">
-            <div className="flex flex-row content-between">
-              <div className="flex flex-col content-center items-center gap-2 w-[25dvw]">
-                
-                <div className="flex flex-col gap-2 pt-2 w-full">
-                  {/* Label */}
-                  <label
-                    htmlFor="plotDimensions"
-                    className="block text-md font-medium text-gray-700 place-content-start"
-                  >
-                    Choose a Plot Format
-                  </label>
-
-          
-          <div className="relative ">
-            <select
-              id="plotDimensions"
-              className="block w-full pl-3 pr-10 py-2 text-[0.8rem] outline-none border-none  bg-white  rounded-md shadow-md appearance-none focus:outline-none focus:shadow-md text-gray-700/60 focus:text-gray-700 focus:shadow-gray-700/70
-              rounded-md   cursor-pointer transition-colors"
-              defaultValue={formData.plotSettings.plotType}
-              onChange={(e) =>{
-                
-              setFormData((prev) => ({
-                ...prev,
-                plotSettings: {
-                  ...prev.plotSettings,
-                  plotType: e.target.value,
-                },
-              }));}
-            }
-              
-            >
-              <option disabled value="" className="text-gray-400/20">
-                Select an Plot Type
-              </option>
-              <option value="3da" className="text-gray-800">
-                3D Interactive
-              </option>
-              <option value="3ds" className="text-gray-800">
-                3D Static
-              </option>
-              <option value="2d" className="text-gray-800">
-                2D
-              </option>
-            </select>
-
-            {/* Custom Dropdown Chevron Icon */}
-            <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-3 text-gray-500">
-              <svg
-                className="w-4 h-4"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M19 9l-7 7-7-7"
-                />
-              </svg>
-            </div>
-          </div>
-          <div className="flex justify-between items-center text-md  font-medium text-gray-700">
-            <label htmlFor="perplexity" className="pt-2">
-              Perplexity Value
-            </label>
-          </div>
-
-          <input
-            id="perplexity"
-            type="number"
-            value={Number.isNaN(formData.plotSettings.perplexity) ? "" : formData.plotSettings.perplexity}
-            onChange={(e) => {
-              const val = e.target.valueAsNumber;
-              setFormData((prev) => ({
-                ...prev,
-                plotSettings: {
-                  ...prev.plotSettings,
-                  perplexity: Number.isNaN(val) ? null : val,
-                },
-              }));
-              }}
-            className="block w-full pl-3 pr-10 py-2 text-[0.8rem] bg-white rounded-md shadow-sm appearance-none focus:outline-none focus:shadow-md text-gray-700/60 focus:text-gray-700 focus:shadow-gray-700/70 sm:text-[0.8rem] transition-colors"
-          />
-
-          <div className="flex justify-between items-center text-md  font-medium text-gray-700">
-            <label htmlFor="theta" className="pt-2">
-              Theta Value
-            </label>
-          </div>
-
-          <input
-            id="theta"
-            type="number"
-            value={Number.isNaN(formData.plotSettings.theta) ? "" : formData.plotSettings.theta}
-            onChange={(e) => {
-              const val = e.target.valueAsNumber;
-              setFormData((prev) => ({
-                ...prev,
-                plotSettings: {
-                  ...prev.plotSettings,
-                  theta: Number.isNaN(val) ? null : val,
-                },
-              }));
-              }}
-            className="block w-full pl-3 pr-10 py-2 text-[0.8rem] bg-white rounded-md shadow-sm appearance-none focus:outline-none focus:shadow-md text-gray-700/60 focus:text-gray-700 focus:shadow-gray-700/70 sm:text-[0.8rem] transition-colors"
-          />
-          {formData.plotSettings.plotType=="2d" && (
+        )}{" "}
+        {currentStep !== 0 && (
+          <div>
             <div>
-          <label
-                    htmlFor="plotDimensions"
-                    className="block text-md font-medium text-gray-700 place-content-start"
-                  >
-                    Optional Plot Color Settings
-                  </label>
-          <div className="relative ">
-            <select
-              id="colors"
-              className="block w-full pl-3 pr-10 py-2 text-[0.8rem] outline-none border-none  bg-white  rounded-md shadow-md appearance-none focus:outline-none focus:shadow-md text-gray-700/60 focus:text-gray-700 focus:shadow-gray-700/70
-              rounded-md   cursor-pointer transition-colors"
-              defaultValue={formData.plotSettings.colors}
-              onChange={(e) =>{
-                
-              setFormData((prev) => ({
-                ...prev,
-                plotSettings: {
-                  ...prev.plotSettings,
-                  colors: e.target.value,
-                },
-              }));}
-            }
-              
-            >
-              
-              <option value="black" className="text-gray-800">
-                Black (Default)
-              </option>
-              <option value="base" className="text-gray-800">
-                By Base Text
-              </option>
-              <option value="grouping" className="text-gray-800">
-                By Group
-              </option>
-            </select>
-
-            {/* Custom Dropdown Chevron Icon */}
-            <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-3 text-gray-500">
-              <svg
-                className="w-4 h-4"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M19 9l-7 7-7-7"
-                />
-              </svg>
-            </div>
-            
-          </div>
-          </div>
-        )}
-        {formData.plotSettings.plotType.includes("3d") && (
-            <div>
-          <label
-                    htmlFor="plotDimensions"
-                    className="block text-md font-medium text-gray-700 place-content-start"
-                  >
-                    Optional Plot Color Settings
-                  </label>
-          <div className="relative ">
-            <select
-              id="colors"
-              className="block w-full pl-3 pr-10 py-2 text-[0.8rem] outline-none border-none  bg-white  rounded-md shadow-md appearance-none focus:outline-none focus:shadow-md text-gray-700/60 focus:text-gray-700 focus:shadow-gray-700/70
-              rounded-md   cursor-pointer transition-colors"
-              defaultValue={formData.plotSettings.colors}
-              onChange={(e) =>{
-                
-              setFormData((prev) => ({
-                ...prev,
-                plotSettings: {
-                  ...prev.plotSettings,
-                  colors: e.target.value,
-                },
-              }));}
-            }
-              
-            >
-              
-              <option value="black" className="text-gray-800">
-                Black (Default)
-              </option>
-              <option value="base" className="text-gray-800">
-                By Base Text
-              </option>
-            </select>
-
-            {/* Custom Dropdown Chevron Icon */}
-            <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-3 text-gray-500">
-              <svg
-                className="w-4 h-4"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M19 9l-7 7-7-7"
-                />
-              </svg>
-            </div>
-            
-          </div>
-          </div>
-        )}
-        {formData.plotSettings.plotType!=="" && (
-          <div className="flex flex-row gap-3 content-center items-center text-md pt-2 font-medium text-gray-700">
-            <input type="checkbox" checked={formData.plotSettings.colorText} onChange={handleColorText} className={`rounded-full  accent-cyan-500 text-white border-1 border-none shadow-sm shadow-gray-700/70 hover:shadow-md outline-none w-4 h-4 appearance-none 
-              ${formData.plotSettings.colorText ? "bg-cyan-700 inset-shadow-xs inset-shadow-cyan-200" : "bg-white"}`}/>
-            <label className="">
-            <div className="">
-            
-              Match Label Color to Data Point Color
-            </div>
-          
-          
-          </label>
-          </div>
-        )}
-          </div>
-          </div>
-          </div>
-          </div>
-          <div className="w-full flex justify-between content-start flex-row">
-            <button
-              onClick={() => handleStepChange(3)}
-              className="px-5 py-2 border border-gray-300 text-gray-700 font-medium rounded-lg w-max hover:bg-gray-50 transition"
-            >
-              Back
-            </button>
-            <button
-                onClick={handlePlot}
-                disabled={isProcessing || (formData.settings.isPlot == false)}
-                className="px-5 py-2 bg-cyan-600 text-white font-medium rounded-lg hover:bg-cyan-700 disabled:opacity-50 transition"
-              >
-                {isProcessing ? "Processing..." : "Run t-SNE Algorithm"}
-              </button>
-          </div>
-        </div>
-      )}
-   
-        {currentStep === 5 && (
-          <div className="flex content-start h-full pt-10 flex-col justify-between pt-4">
-            <h1 className="text-4xl w-5/10 font-bold text-gray-700 pt-10 pb-2">
-              {formData.algorithm == "ndw"
-                ? "Needleman-Wunsch"
-                : "Smith-Waterman"}{" "}
-              Plot
-            </h1>
-            {formData.plotSettings.plotType.includes("3da") && (
-              <div  className=" place-content-center">
-         
-
-            <iframe ref={plotRef}
-            srcDoc={plotUrl}
-              className=" w-full h-[500px] place-content-center border-none"
-              title="t-SNE Plot"
-              // sandbox="allow-scripts allow-same-origin allow-downloads"
-            />
-            </div>
-            )}
-              {(formData.plotSettings.plotType.includes("2d")||formData.plotSettings.plotType.includes("3ds")) && (
-              <div  className=" flex content-start h-6/10 justify-center pb-0 ">
-            <img src={plotUrl} 
-              className="  border-none"
-              title="t-SNE Plot"
-            />
-            </div>
-            )}
-            <div className="w-full flex justify-between content-end items-end pb-10 flex-row">
-              <button
-                onClick={() => handleStepChange(4)}
-                className="px-5 py-2 border border-gray-300 text-gray-700 font-medium rounded-lg w-max hover:bg-gray-50 transition"
-              >
-                Back
-              </button>
-              <div className="flex flex-col gap-2 w-max">
-                {(formData.plotSettings.plotType.includes("2d")) && (
-                <a href={plotUrl} download="2D_plot.png" onClick={()=>(setDownloadedFiles((prev)=>([...prev, "2D_plot.png"])))} 
-                className="px-5 py-2 bg-sky-600 text-white font-medium text-center rounded-lg hover:bg-sky-700">
-                  Download Plot as Image
-                </a>)}
-                {(formData.plotSettings.plotType.includes("3ds")) && (
-                <a href={plotUrl} download="static_3D_plot.png" onClick={()=>(setDownloadedFiles((prev)=>([...prev, "static_3D_plot.png"])))} 
-                className="px-5 py-2 bg-sky-600 text-white font-medium text-center rounded-lg hover:bg-sky-700">
-                  Download Plot as Image
-                </a>)}
-                {formData.plotSettings.plotType.includes("3da") && (
-                  <button
-                  onClick={download3dPlot}
-                  className="px-5 py-2 bg-sky-600 text-white font-medium text-center rounded-lg hover:bg-sky-700"
-                >
-                  Download Plot as Image
-                </button>
-                )}
+              <div className="flex justify-between text-[0.8rem] font-medium text-gray-500 mb-2">
                 <button
-                  onClick={handleDownload}
-                  className="px-5 py-2 bg-green-600 text-white text-center font-medium rounded-lg hover:bg-green-700"
+                  type="button"
+                  onClick={() => handleStepSkip(1)}
+                  className={`${furthestStep >= 1 ? "cursor-pointer" : ""} ${
+                    currentStep >= 1 ? "text-cyan-600 font-bold" : ""
+                  }`}
                 >
-                  Download Matrix as Spreadsheet
+                  Upload Files
+                </button>
+                <button
+                  type="button"
+                  onClick={() => handleStepSkip(2)}
+                  className={`${furthestStep >= 2 ? "cursor-pointer" : ""} ${
+                    currentStep >= 2 ? "text-cyan-600 font-bold" : ""
+                  }`}
+                >
+                  Select Algorithm
+                </button>
+                <button
+                  type="button"
+                  onClick={() => handleStepSkip(3)}
+                  className={`${furthestStep >= 3 ? "cursor-pointer" : ""} ${
+                    currentStep >= 3 ? "text-cyan-600 font-bold" : ""
+                  }`}
+                >
+                  View Alignment
+                </button>
+
+                <button
+                  type="button"
+                  onClick={() => handleStepSkip(4)}
+                  className={`${furthestStep >= 4 ? "cursor-pointer" : ""} ${
+                    currentStep >= 4 ? "text-cyan-600 font-bold" : ""
+                  }`}
+                >
+                  Adjust Plot Settings
+                </button>
+                <button
+                  type="button"
+                  onClick={() => handleStepSkip(5)}
+                  className={`${furthestStep >= 5 ? "cursor-pointer" : ""} ${
+                    currentStep >= 5 ? "text-cyan-600 font-bold" : ""
+                  }`}
+                >
+                  View Plot
+                </button>
+
+                <button
+                  type="button"
+                  onClick={() => handleStepSkip(6)}
+                  className={`${furthestStep >= 6 ? "cursor-pointer" : ""} ${
+                    currentStep >= 6 ? "text-cyan-600 font-bold" : ""
+                  }`}
+                >
+                  View Report
                 </button>
               </div>
-              <button
-                  onClick={() => handleStepChange(6)}
-                  className="px-5 py-2 bg-cyan-600 text-white font-medium rounded-lg hover:bg-cyan-700 disabled:bg-gray-400 disabled:cursor-not-allowed transition"
-                >
-                  Continue
-                </button>
+              <div className="w-full bg-gray-200 h-2 rounded-full overflow-hidden">
+                <div
+                  className="bg-cyan-600 h-2 transition-all duration-300"
+                  style={{ width: `${(currentStep / 6) * 100}%` }}
+                ></div>
+              </div>
             </div>
+            {/* STEP 1: UPLOAD FILES */}
+            {currentStep === 1 && (
+              <div className="flex flex-col justify-between pt-10 h-[71dvh]">
+                <h2 className="text-3xl font-bold text-gray-800">
+                  Upload Transcriptions
+                </h2>
+                <div className="h-full">
+                  {formData.multi === null && (
+                    <div className=" h-full">
+                      <div className="h-full place-content-start">
+                        <h1 className="text-2xl leading-[2] pt-12 font-semibold text-cyan-600 overflow-wrap">
+                          
+                          Please begin by selecting whether you want to compare:
+                          
+                            </h1>
+                            <div className="flex flex-row justify-between w-full">
+                              <div className="flex flex-col w-5/10 gap-5">
+                          <button
+                            type="button"
+                            onClick={() =>
+                              setFormData((prev) => ({ ...prev, multi: false }))
+                            }
+                            className="px-5 py-2 bg-cyan-600 text-white text-lg font-semibold rounded-lg hover:bg-cyan-700 disabled:bg-gray-400 disabled:cursor-not-allowed transition"
+                          >
+                            Entire Texts
+                          </button>
+                          
+                          <div className="text-base pt-2 gap-2 text-cyan-700 shadow-lg/40  rounded-lg p-5 h-[40dvh]  overflow-auto">
+                          <p className="text-lg font-medium">Description</p>
+                      
+                        </div>
+                        </div>
+                          or
+                          <div className="flex flex-col w-5/10 gap-5">
+                          <button
+                            type="button"
+                            onClick={() =>
+                              setFormData((prev) => ({ ...prev, multi: true }))
+                            }
+                            className="px-5 py-2 bg-cyan-600 text-white text-lg font-semibold rounded-lg hover:bg-cyan-700 disabled:bg-gray-400 disabled:cursor-not-allowed transition"
+                          >
+                            Subsections of Texts
+                          </button>
+                          <div className="text-base pt-2 gap-2 text-cyan-700 shadow-lg/40 rounded-lg p-5 h-[40dvh] overflow-auto">
+                          <p className="text-lg font-medium">Description</p>
+                      
+                        </div>
+                        </div>
+                        </div>
+                      
+                      </div>
+                      <div className="flex flex-row place-content-start pt-2">
+                        <button
+                          onClick={() => handleStepChange(0)}
+                          className="px-5 py-2 border border-gray-300 text-gray-700 font-medium rounded-lg hover:bg-gray-50 transition"
+                        >
+                          Back
+                        </button>
+                      </div>
+                    </div>
+                  )}
+
+                  {/* SUBSECTION MULTI-FILE MODE */}
+                  {formData.multi === true && (
+                    <div className="flex flex-col gap-4 w-full h-full pt-10">
+                      {/* TOP PANEL: CONTROL BAR & SUBSECTION LIST */}
+                      <div className="border-2 border-dashed border-gray-300 flex-col overflow-auto h-full p-4 text-gray-500 w-full rounded-lg bg-gray-50 flex items-start justify-start">
+                        {/* Subsection Creator Header */}
+                        <div className="flex flex-row justify-between items-center w-full pb-2 border-b mb-3">
+                          <div className="flex items-center gap-2">
+                            <p className="text-md font-bold text-cyan-800">
+                              Uploaded Texts
+                            </p>
+                          </div>
+
+                          {/* Subsection Creator & Clear All */}
+                          <div className="w-5/10 justify-end flex flex-row content-end gap-4">
+                            <form
+                              onSubmit={(e) => {
+                                e.preventDefault();
+                                handleSubsection();
+                              }}
+                              className="flex flex-row gap-2 items-center"
+                            >
+                              <div className="cursor-text rounded-md shadow-sm flex flex-row items-center px-2 py-0.5 text-cyan-700 bg-white border border-gray-200">
+                                <input
+                                  type="text"
+                                  placeholder={`Default: Subsection ${count}`}
+                                  value={inputValue}
+                                  onChange={(e) =>
+                                    setInputValue(e.target.value)
+                                  }
+                                  className="outline-none border-none appearance-none p-1 text-[0.8rem]"
+                                />
+                                <button
+                                  type="submit"
+                                  className="hover:bg-cyan-50 rounded-full text-cyan-800"
+                                >
+                                  <CirclePlus className="w-5 h-5" />
+                                </button>
+                              </div>
+                            </form>
+
+                            <button
+                              type="button"
+                              onClick={() => {
+                                setFormData((prev) => ({
+                                  ...prev,
+                                  subsections: {},
+                                  baseText: "",
+                                }));
+                                setCount(1);
+                              }}
+                              className="hover:bg-gray-200/70 p-1 rounded-sm text-red-600 font-bold cursor-pointer flex flex-row items-center gap-1 text-[0.8rem]"
+                            >
+                              <p>Clear All</p>
+                              <Eraser className="w-4 h-4" />
+                            </button>
+                          </div>
+                        </div>
+
+                        {/* Base Text Global Indicator */}
+                        {/* <div className="text-[0.8rem] font-bold text-cyan-800 mb-3 overflow-wrap">
+                    Base Text Prefix:{" "}
+                    <input className="font-normal text-gray-800 rounded-md appearance-none bg-white outline-none p-1 shadow-md hover:shadow-lg focus:shadow-lg "
+                      type="text"
+                      value={formData.baseText != "" ? formData.baseText : "None"}
+                      onChange={(e)=>{setFormData((prev)=>({...prev, baseText:e.target.value}))}}
+                    />
+                  </div> */}
+                        <div className="text-[0.8rem] font-bold text-cyan-800 mb-3 overflow-wrap">
+                          Base Text:{" "}
+                          {formData.baseText != "" ? formData.baseText : "None"}
+                        </div>
+
+                        {/* Hidden File / Folder Inputs for Programmatic Triggering */}
+                        <input
+                          type="file"
+                          ref={folderInput}
+                          className="hidden"
+                          {...({ webkitdirectory: "", directory: "" } as any)}
+                          directory="true"
+                          multiple
+                          onChange={(e) => handleFolderUpload(e)}
+                        />
+
+                        {/* SUBSECTION BOXES */}
+                        <div className="w-full space-y-4 overflow-y-auto pr-1">
+                          {Object.keys(formData.subsections).length > 0 ? (
+                            Object.keys(formData.subsections).map(
+                              (sectionName) => (
+                                <SubsectionItem
+                                  key={sectionName}
+                                  sectionName={sectionName}
+                                  files={
+                                    formData.subsections[sectionName] || []
+                                  }
+                                  baseText={formData.baseText}
+                                  onDropFiles={(
+                                    droppedFiles,
+                                    targetSection,
+                                  ) => {
+                                    setFormData((prev) => ({
+                                      ...prev,
+                                      subsections: {
+                                        ...prev.subsections,
+                                        [targetSection]: [
+                                          ...(prev.subsections[targetSection] ||
+                                            []),
+                                          ...droppedFiles,
+                                        ],
+                                      },
+                                    }));
+                                  }}
+                                  onSetBaseText={(file) =>
+                                    setFormData((prev) => ({
+                                      ...prev,
+                                      baseText: file.name,
+                                    }))
+                                  }
+                                  onRemoveFile={removeFileFromSection}
+                                  onSelectFolderTrigger={(targetSection) => {
+                                    setTargetSubsection(targetSection);
+                                    folderInput.current?.click();
+                                  }}
+                                  onSelectFilesTrigger={(e, targetSection) => {
+                                    setTargetSubsection(targetSection);
+                                    handleFolderUpload(e);
+                                  }}
+                                  onDragStartFile={handleDragStart}
+                                  onRemoveSubsection={removeSubsection}
+                                />
+                              ),
+                            )
+                          ) : (
+                            <p className="text-[0.8rem] text-gray-400 italic py-4 text-center">
+                              No subsections created. Add a subsection above to
+                              begin organizing.
+                            </p>
+                          )}
+                        </div>
+                      </div>
+                    </div>
+                  )}
+
+                  {/* SINGLE MODE standard upload */}
+                  {formData.multi === false && (
+                    <div className="flex flex-col gap-4 pt-10 w-full h-full">
+                      {/* MAIN UNIFIED CONTAINER */}
+                      <div
+                        {...getRootProps()}
+                        className={`border-2 border-dashed border-gray-300 flex-col overflow-auto h-full p-4 text-gray-500 w-full rounded-lg bg-gray-50 flex items-start justify-start transition ${
+                          isDragReject
+                            ? "border-red-500 text-red-600 bg-red-50"
+                            : isDragActive
+                              ? "border-cyan-500 text-cyan-600 bg-cyan-50"
+                              : ""
+                        }`}
+                      >
+                        <input {...getInputProps()} />
+
+                        {/* HEADER CONTROL BAR */}
+                        <div className="flex flex-row justify-between items-center w-full pb-2 border-b mb-3">
+                          <div className="flex items-center gap-2">
+                            <p className="text-md font-bold text-cyan-800">
+                              Uploaded Texts
+                            </p>
+                            <span className="text-[0.8rem] text-gray-400 font-normal">
+                              ({formData.files.length}{" "}
+                              {formData.files.length === 1 ? "file" : "files"})
+                            </span>
+                          </div>
+
+                          {/* Clear All Action */}
+                          <div className="justify-end flex flex-row items-center gap-4">
+                            <button
+                              type="button"
+                              onClick={(e) => {
+                                e.stopPropagation();
+                                setFormData((prev) => ({
+                                  ...prev,
+                                  files: [],
+                                  baseText: "",
+                                }));
+                              }}
+                              className="hover:bg-gray-200/70 p-1 rounded-sm text-red-600  font-bold cursor-pointer flex flex-row items-center gap-1 text-[0.8rem]"
+                            >
+                              <p>Clear All</p>
+                              <Eraser className="w-4 h-4" />
+                            </button>
+                          </div>
+                        </div>
+
+                        {/* BASE TEXT INDICATOR */}
+                        {/* <div className="text-[0.8rem] font-bold text-cyan-800 mb-3 overflow-wrap">
+                    Base Text Prefix:{" "}
+                    <input className="font-normal text-gray-800 rounded-md appearance-none bg-white outline-none p-1 shadow-md hover:shadow-lg focus:shadow-lg "
+                      type="text"
+                      value={formData.baseText != "" ? formData.baseText : "None"}
+                      onChange={(e)=>{setFormData((prev)=>({...prev, baseText:e.target.value}))}}
+                    />
+                  </div> */}
+                        <div className="text-[0.8rem] font-bold text-cyan-800 mb-3 overflow-wrap">
+                          Base Text:{" "}
+                          {formData.baseText != "" ? formData.baseText : "None"}
+                        </div>
+
+                        {/* HIDDEN FOLDER INPUT */}
+                        <input
+                          type="file"
+                          ref={folderInput}
+                          className="hidden"
+                          {...({ webkitdirectory: "", directory: "" } as any)}
+                          directory="true"
+                          multiple
+                          onChange={handleFolderUpload}
+                        />
+
+                        {/* SINGLE MAIN CONTENT BOX */}
+                        <div className="w-full p-3 border-2 border-dashed border-gray-300 rounded-lg bg-white shadow-xs transition-all hover:border-cyan-400">
+                          {/* INNER HEADER WITH UPLOAD BUTTONS */}
+                          <div className="flex items-center justify-between border-b pb-2 mb-2">
+                            <div className="flex items-center gap-2 font-bold text-cyan-900 text-sm">
+                              <FolderOpen className="w-5 h-5 text-cyan-600" />
+                              <span>Uploaded Files</span>
+                            </div>
+
+                            {/* Inline Upload Triggers */}
+                            <div className="flex items-center gap-2 text-[0.8rem]">
+                              <button
+                                type="button"
+                                onClick={(e) => {
+                                  e.stopPropagation();
+                                  openFilePicker();
+                                }}
+                                className="bg-cyan-50 hover:bg-cyan-100 text-cyan-800 font-semibold px-2 py-1 rounded border border-cyan-200 transition cursor-pointer"
+                              >
+                                + Files
+                              </button>
+
+                              <button
+                                type="button"
+                                onClick={(e) => {
+                                  e.stopPropagation();
+                                  folderInput.current?.click();
+                                }}
+                                className="bg-cyan-50 hover:bg-cyan-100 text-cyan-800 font-semibold px-2 py-1 rounded border border-cyan-200 transition cursor-pointer"
+                              >
+                                + Folder
+                              </button>
+                            </div>
+                          </div>
+
+                          {/* FILE LIST OR DROP HINT */}
+                          {formData.files.length > 0 ? (
+                            <ul className="space-y-1 mt-2 max-h-[25dvh] overflow-y-auto pr-1">
+                              {formData.files.map((file, fileIndex) => {
+                                let isBase = file.name === formData.baseText;
+                                return (
+                                  <li
+                                    key={`${file.name}-${fileIndex}`}
+                                    className={`flex items-center justify-between px-2 py-1 rounded border text-[0.8rem] ${
+                                      isBase
+                                        ? "bg-cyan-100/60 border-cyan-300"
+                                        : "bg-gray-50 border-gray-100 hover:bg-gray-100"
+                                    }`}
+                                  >
+                                    <button
+                                      type="button"
+                                      onClick={(e) => {
+                                        e.stopPropagation();
+                                        setFormData((prev) => ({
+                                          ...prev,
+                                          baseText: file.name,
+                                        }));
+                                      }}
+                                      className="bg-transparent w-98/100 text-cyan-600 rounded-lg flex-row flex gap-2 items-center shrink-0 cursor-pointer text-left"
+                                    >
+                                      {isBase ? (
+                                        <FileCheck className="w-5 h-5" />
+                                      ) : (
+                                        <FileText className="w-5 h-5" />
+                                      )}
+                                      <p className="text-[0.8rem] font-medium text-cyan-800 truncate max-w-[300px]">
+                                        {file.name}
+                                      </p>
+                                    </button>
+
+                                    <button
+                                      type="button"
+                                      onClick={(e) => {
+                                        e.stopPropagation();
+                                        removeFile(file);
+                                      }}
+                                      className="text-red-600 hover:bg-red-50 p-0.5 rounded transition cursor-pointer"
+                                    >
+                                      <Trash2 className="w-4 h-4" />
+                                    </button>
+                                  </li>
+                                );
+                              })}
+                            </ul>
+                          ) : (
+                            <div className="py-8 text-center border-1 border-dashed border-gray-200 rounded-md bg-gray-50/50 text-[0.8rem] text-gray-400">
+                              Drag and drop files or folders directly anywhere
+                              in this box
+                            </div>
+                          )}
+                        </div>
+                      </div>
+                    </div>
+                  )}
+                  {formData.multi !== null && (
+                    <div className="flex flex-row justify-between content-end items-end pt-2">
+                      <button
+                        onClick={() =>
+                          setFormData((prev) => ({ ...prev, multi: null }))
+                        }
+                        className="px-5 py-2 border border-gray-300 text-gray-700 font-medium rounded-lg hover:bg-gray-50 transition"
+                      >
+                        Back
+                      </button>
+                      <button
+                        disabled={totalFilesCount < 2}
+                        onClick={() => handleStepChange(2)}
+                        className="px-5 py-2 bg-cyan-600 text-white font-medium rounded-lg hover:bg-cyan-700 disabled:bg-gray-400 disabled:cursor-not-allowed transition"
+                      >
+                        Continue
+                      </button>
+                    </div>
+                  )}
+                </div>
+              </div>
+            )}
+            {/* SELECT ALGORITHM */}
+            {currentStep === 2 && (
+              <div className=" h-[71dvh] place-content-center flex flex-col">
+                <h2 className="text-4xl font-bold text-gray-700 pt-10 ">
+                  Select Algorithm
+                </h2>
+                <div className="h-full">
+                  <div className="space-y-1 h-full flex  w-10/10 pt-10">
+                    <div className="flex flex-row content-center items-start">
+                      <div className="flex flex-row gap-10 content-center w-[72dvw]">
+                        <div className="flex flex-col content-center items-center gap-2 w-[25dvw]">
+                          {/* <label className="block text-2xl font-medium text-gray-700 mb-1">Select Algorithm</label> */}
+                          <div className="flex flex-col gap-2 pt-2 w-full">
+                            {/* Label */}
+                            <label
+                              htmlFor="algorithm"
+                              className="block text-md font-medium text-gray-700 place-content-start"
+                            >
+                              Choose an Algorithm
+                            </label>
+
+                            {/* Select Container with Custom Arrow */}
+                            <div className="relative ">
+                              <select
+                                id="algorithm"
+                                className="block w-full pl-3 pr-10 py-2 text-[0.8rem] outline-none border-none  bg-white  rounded-md shadow-md appearance-none focus:outline-none focus:shadow-md text-gray-700/60 focus:text-gray-700 focus:shadow-gray-700/70
+                     rounded-md   cursor-pointer transition-colors"
+                                defaultValue={formData.algorithm}
+                                onChange={(e) =>
+                                  setFormData((p) => ({
+                                    ...p,
+                                    algorithm: e.target.value,
+                                  }))
+                                }
+                              >
+                                <option
+                                  disabled
+                                  value=""
+                                  className="text-gray-400/20"
+                                >
+                                  Select an Algorithm
+                                </option>
+                                <option value="ndw" className="text-gray-800">
+                                  Needleman-Wunsch Algorithm
+                                </option>
+                                <option value="sw" className="text-gray-800">
+                                  Smith-Waterman Algorithm
+                                </option>
+                              </select>
+
+                              {/* Custom Dropdown Chevron Icon */}
+                              <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-3 text-gray-500">
+                                <svg
+                                  className="w-4 h-4"
+                                  fill="none"
+                                  stroke="currentColor"
+                                  viewBox="0 0 24 24"
+                                >
+                                  <path
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                    strokeWidth={2}
+                                    d="M19 9l-7 7-7-7"
+                                  />
+                                </svg>
+                              </div>
+                            </div>
+
+                            {/* Needleman-Wunsch Settings */}
+                            {(formData.algorithm === "ndw" ||
+                              formData.algorithm === "sw") && (
+                              <div className="flex flex-row gap-3 content-center">
+                                <div className="w-4/10">
+                                  {/* Match Bonus*/}
+                                  <div className="flex justify-between items-center text-md font-medium text-gray-700">
+                                    <label htmlFor="matchBonus">
+                                      Match Bonus
+                                    </label>
+                                  </div>
+
+                                  <input
+                                    id="matchBonus"
+                                    type="number"
+                                    value={
+                                      Number.isNaN(formData.settings.matchBonus)
+                                        ? ""
+                                        : formData.settings.matchBonus
+                                    }
+                                    onChange={(e) =>
+                                      handleSettingChange(
+                                        "matchBonus",
+                                        isNaN(e.target.valueAsNumber)
+                                          ? null
+                                          : e.target.valueAsNumber < 0
+                                            ? -e.target.valueAsNumber
+                                            : e.target.valueAsNumber,
+                                      )
+                                    }
+                                    className="block w-full pl-3 pr-10 py-2 text-[0.8rem] bg-white rounded-md shadow-sm appearance-none focus:outline-none focus:shadow-md text-gray-700/60 focus:text-gray-700 focus:shadow-gray-700/70 sm:text-[0.8rem] transition-colors"
+                                  />
+
+                                  {/* Gap Penalty */}
+                                  <div className="flex justify-between items-center text-md font-medium text-gray-700">
+                                    <label htmlFor="gapPenalty">
+                                      Gap Penalty
+                                    </label>
+                                  </div>
+                                  <div className="flex flex-row text-gray-500 text-lg place-items-center gap-1">
+                                    <input
+                                      id="gapPenalty"
+                                      type="number"
+                                      value={
+                                        isNaN(formData.settings.gapPenalty)
+                                          ? ""
+                                          : formData.settings.gapPenalty
+                                      }
+                                      onChange={(e) =>
+                                        handleSettingChange(
+                                          "gapPenalty",
+                                          isNaN(e.target.valueAsNumber)
+                                            ? null
+                                            : e.target.valueAsNumber < 0
+                                              ? e.target.valueAsNumber
+                                              : -e.target.valueAsNumber,
+                                        )
+                                      }
+                                      className="block w-full pl-3 pr-10 py-2 text-[0.8rem] bg-white rounded-md shadow-sm appearance-none focus:outline-none focus:shadow-md text-gray-700/60 focus:text-gray-700 focus:shadow-gray-700/70 sm:text-[0.8rem] transition-colors"
+                                    />
+                                  </div>
+                                  {/* Mismatch Penalty */}
+                                  <div className="flex justify-between items-center text-md font-medium text-gray-700">
+                                    <label htmlFor="mismatchPenalty">
+                                      Mismatch Penalty
+                                    </label>
+                                  </div>
+
+                                  <input
+                                    id="mismatchPenalty"
+                                    type="number"
+                                    value={
+                                      isNaN(formData.settings.mismatchPenalty)
+                                        ? ""
+                                        : formData.settings.mismatchPenalty
+                                    }
+                                    onChange={(e) =>
+                                      handleSettingChange(
+                                        "mismatchPenalty",
+                                        isNaN(e.target.valueAsNumber)
+                                          ? null
+                                          : e.target.valueAsNumber < 0
+                                            ? e.target.valueAsNumber
+                                            : -e.target.valueAsNumber,
+                                      )
+                                    }
+                                    className="block w-full pl-3 pr-10 py-2 text-[0.8rem] bg-white rounded-md shadow-sm appearance-none focus:outline-none focus:shadow-md text-gray-700/60 focus:text-gray-700 focus:shadow-gray-700/70 sm:text-[0.8rem] transition-colors"
+                                  />
+                                </div>
+                                <div className="w-6/10">
+                                  {/* Optional Special Character Bonus */}
+                                  <p className="font-medium text-[1.1rem] text-cyan-800 pb-1">
+                                    Optional Settings
+                                  </p>
+                                  {formData.algorithm === "ndw" && (
+                                    <div>
+                                      {/* Affine Gap Penalty */}
+                                      <div className="flex justify-between items-center text-md font-medium text-gray-700">
+                                        <label htmlFor="affinePenalty">
+                                          Affine Penalty
+                                        </label>
+                                      </div>
+
+                                      <input
+                                        id="affinePenalty"
+                                        type="number"
+                                        value={
+                                          isNaN(formData.settings.affinePenalty)
+                                            ? ""
+                                            : formData.settings.affinePenalty
+                                        }
+                                        onChange={(e) =>
+                                          handleSettingChange(
+                                            "affinePenalty",
+                                            isNaN(e.target.valueAsNumber)
+                                              ? null
+                                              : e.target.valueAsNumber < 0
+                                                ? e.target.valueAsNumber
+                                                : -e.target.valueAsNumber,
+                                          )
+                                        }
+                                        className="block w-full pl-3 pr-10 py-2 text-[0.8rem] bg-white rounded-md shadow-sm appearance-none focus:outline-none focus:shadow-md text-gray-700/60 focus:text-gray-700 focus:shadow-gray-700/70 sm:text-[0.8rem] transition-colors"
+                                      />
+                                    </div>
+                                  )}
+                                  {/* Label */}
+                                  <label
+                                    htmlFor="special"
+                                    className="block text-md font-medium text-gray-700 place-content-start"
+                                  >
+                                    Optional Special Character Bonus
+                                  </label>
+
+                                  {/* Select Container with Custom Arrow */}
+                                  <div className="relative">
+                                    <select
+                                      id="special"
+                                      className="block w-full pl-3 pr-10 py-2 text-[0.8rem] bg-white rounded-md shadow-sm appearance-none focus:outline-none focus:shadow-md text-gray-700/60 focus:text-gray-700 focus:shadow-gray-700/70 sm:text-[0.8rem] cursor-pointer transition-colors"
+                                      value={formData.settings.special.join(
+                                        ",",
+                                      )}
+                                      onChange={(e) => {
+                                        const val = e.target.value;
+                                        if (!val) {
+                                          handleSettingChange("special", []);
+                                          handleSettingChange(
+                                            "specialOther",
+                                            false,
+                                          );
+                                        } else if (val === "Other") {
+                                          handleSettingChange("special", [
+                                            "Other",
+                                          ]);
+                                          handleSettingChange(
+                                            "specialOther",
+                                            true,
+                                          );
+                                        } else {
+                                          // Split the comma-separated value string into a clean array
+                                          handleSettingChange(
+                                            "special",
+                                            val.split(","),
+                                          );
+                                          handleSettingChange(
+                                            "specialOther",
+                                            false,
+                                          );
+                                        }
+                                      }}
+                                    >
+                                      <option
+                                        value=""
+                                        className="text-gray-400/20"
+                                      >
+                                        None
+                                      </option>
+                                      {/* Pass standard comma-separated strings as values */}
+                                      <option
+                                        value="ך,ם,ן,ף,ץ"
+                                        className="text-gray-800"
+                                      >
+                                        Sofit Letters
+                                      </option>
+                                      <option
+                                        value="A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z"
+                                        className="text-gray-800"
+                                      >
+                                        Capital Letters (Latin Alphabet)
+                                      </option>
+                                      <option
+                                        value="Other"
+                                        className="text-gray-800"
+                                      >
+                                        Custom
+                                      </option>
+                                    </select>
+                                    {/* Custom Dropdown Chevron Icon */}
+                                    <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-3 text-gray-500">
+                                      <svg
+                                        className="w-4 h-4"
+                                        fill="none"
+                                        stroke="currentColor"
+                                        viewBox="0 0 24 24"
+                                      >
+                                        <path
+                                          strokeLinecap="round"
+                                          strokeLinejoin="round"
+                                          strokeWidth={2}
+                                          d="M19 9l-7 7-7-7"
+                                        />
+                                      </svg>
+                                    </div>
+                                  </div>
+
+                                  {formData.settings.specialOther === true && (
+                                    <div>
+                                      <label
+                                        htmlFor="otherSpecial"
+                                        className="block pt-2 text-md font-medium text-gray-700 place-content-start"
+                                      >
+                                        Enter a space-separated list of
+                                        characters.
+                                      </label>
+                                      <input
+                                        type="text"
+                                        id="otherSpecial"
+                                        onChange={(e) =>
+                                          handleSettingChange(
+                                            "special",
+                                            e.target.value.split(" "),
+                                          )
+                                        }
+                                        value={
+                                          formData.settings.special.includes(
+                                            "Other",
+                                          )
+                                            ? ""
+                                            : formData.settings.special.join(
+                                                " ",
+                                              )
+                                        }
+                                        placeholder="1 2 3"
+                                        className="shadow-md pt-2 w-full text-gray-700 focus:shadow-gray-700/70 outline-none border-none appearance-none p-1"
+                                      />
+                                    </div>
+                                  )}
+                                  <div className="pt-2">
+                                    {formData.settings.special.includes(
+                                      "Other",
+                                    ) === false && (
+                                      <label className="pt-2 text-cyan-700">
+                                        {formData.settings.special.join(" ")}
+                                      </label>
+                                    )}
+                                  </div>
+
+                                  {formData.settings.special?.length > 0 && (
+                                    <div>
+                                      <div className="flex justify-between items-center text-md  font-medium text-gray-700">
+                                        <label
+                                          htmlFor="specialBonus"
+                                          className="pt-2"
+                                        >
+                                          Special Character Bonus
+                                        </label>
+                                      </div>
+
+                                      <input
+                                        id="specialBonus"
+                                        type="number"
+                                        value={
+                                          Number.isNaN(
+                                            formData.settings.specialBonus,
+                                          )
+                                            ? ""
+                                            : formData.settings.specialBonus
+                                        }
+                                        onChange={(e) =>
+                                          handleSettingChange(
+                                            "specialBonus",
+                                            isNaN(e.target.valueAsNumber)
+                                              ? null
+                                              : e.target.valueAsNumber,
+                                          )
+                                        }
+                                        className="block w-full pl-3 pr-10 py-2 text-[0.8rem] bg-white rounded-md shadow-sm appearance-none focus:outline-none focus:shadow-md text-gray-700/60 focus:text-gray-700 focus:shadow-gray-700/70 sm:text-[0.8rem] transition-colors"
+                                      />
+                                    </div>
+                                  )}
+                                </div>
+                              </div>
+                            )}
+
+                            {/* options for layout: 
+                <pre>
+                Preserves spacing (tabs, new lines, etc.)
+                </pre>
+                or
+                <br/> 
+                which is basically a new line character
+                text sizing:
+                text-xs, text-sm, text-base, text-lg, text-xl, text-2xl, etc.*/}
+                          </div>
+                        </div>
+                        <div className="text-base pt-2 gap-2 text-cyan-700 shadow-lg/40 w-7/10 h-[50dvh] rounded-lg p-5  overflow-auto">
+                      <p className="text-lg font-bold">Description</p>
+                      <p>Description text</p>
+                    </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="flex justify-between pt-2">
+                    <button
+                      onClick={() => handleStepChange(1)}
+                      className="px-5 py-2 border border-gray-300 text-gray-700 font-medium rounded-lg hover:bg-gray-50 transition"
+                    >
+                      Back
+                    </button>
+                    <button
+                      onClick={handleSubmit}
+                      disabled={!isReady || isProcessing}
+                      className="px-5 py-2 bg-cyan-600 text-white font-medium rounded-lg hover:bg-cyan-700 disabled:opacity-50 transition"
+                    >
+                      {isProcessing ? "Processing..." : "Run Algorithm"}
+                    </button>
+                  </div>
+                </div>
+              </div>
+            )}
+            {currentStep === 3 && (
+              <div className="flex h-[64.5dvh] self-start place-content-start w-full">
+                <div className="flex flex-col justify-between place-content-start pt-4  w-full">
+                  <h1 className="text-4xl w-5/10 font-bold text-gray-700 pt-10 pb-2">
+                    {formData.algorithm == "ndw"
+                      ? "Needleman-Wunsch"
+                      : "Smith-Waterman"}{" "}
+                    Alignment
+                  </h1>
+
+                  <div className="h-full w-full flex flex-row">
+                    <div className="flex flex-row gap-[2dvw]">
+                      <div className="flex-row overflow-auto place-content-start place-items-start h-full place-self-start w-max flex pt-5 ">
+                        <div className="w-max ">
+                          <p className="text-gray-800 whitespace-pre-wrap text-justify font-mono">
+                            {results.output_logs}
+                          </p>
+                        </div>
+                      </div>
+                      <div className="text-base w-[45dvw] h-[50dvh] pt-2 gap-2 text-cyan-700 shadow-lg/40  rounded-lg p-5  overflow-auto">
+                      <p className="text-lg font-bold">Description</p>
+                      <p>Description text</p>
+                    </div>
+                    </div>
+                  </div>
+                  <div className="flex flex-row pt-2 justify-between content-start">
+                    <button
+                      onClick={() => handleStepChange(2)}
+                      className="px-5 py-2 border border-gray-300 text-gray-700 font-medium rounded-lg hover:bg-gray-50 transition"
+                    >
+                      Back
+                    </button>
+                    <PDFDownloadLink
+                      document={<AlignmentsDoc />}
+                      fileName="alignments.pdf"
+                      className="px-5 py-2 bg-sky-600 text-white font-medium rounded-lg hover:bg-sky-700"
+                    >
+                      {({ blob, url, loading, error }) =>
+                        loading
+                          ? "Generating Alignments File..."
+                          : "Download Alignments"
+                      }
+                    </PDFDownloadLink>
+                    <button
+                      onClick={() => handleStepChange(4)}
+                      disabled={
+                        isProcessing || formData.settings.isPlot == false
+                      }
+                      className="px-5 py-2 bg-cyan-600 text-white font-medium rounded-lg hover:bg-cyan-700 disabled:bg-gray-400 disabled:cursor-not-allowed transition"
+                    >
+                      Continue
+                    </button>
+                  </div>
+                </div>
+              </div>
+            )}
+            {currentStep === 4 && (
+              <div className="flex content-start h-[71vh] pt-10 flex-col pt-4">
+                <h1 className="text-4xl w-5/10 font-bold text-gray-700 pt-10 pb-2">
+                  {formData.algorithm == "ndw"
+                    ? "Needleman-Wunsch"
+                    : "Smith-Waterman"}{" "}
+                  Plot Settings
+                </h1>
+
+                <div className="h-full">
+                  <div className="space-y-1 h-full flex  w-10/10 pt-5">
+                    <div className="flex flex-row content-between items-start">
+                      <div className="flex flex-row gap-5 items-start">
+                        <div className="flex flex-col content-center items-center gap-2 w-[25dvw]">
+                          <div className="flex flex-col gap-2 pt-2 w-full">
+                            {/* Label */}
+                            <label
+                              htmlFor="plotDimensions"
+                              className="block text-md font-medium text-gray-700 place-content-start"
+                            >
+                              Choose a Plot Format
+                            </label>
+
+                            <div className="relative ">
+                              <select
+                                id="plotDimensions"
+                                className="block w-full pl-3 pr-10 py-2 text-[0.8rem] outline-none border-none  bg-white  rounded-md shadow-md appearance-none focus:outline-none focus:shadow-md text-gray-700/60 focus:text-gray-700 focus:shadow-gray-700/70
+              rounded-md   cursor-pointer transition-colors"
+                                defaultValue={formData.plotSettings.plotType}
+                                onChange={(e) => {
+                                  setFormData((prev) => ({
+                                    ...prev,
+                                    plotSettings: {
+                                      ...prev.plotSettings,
+                                      plotType: e.target.value,
+                                    },
+                                  }));
+                                }}
+                              >
+                                <option
+                                  disabled
+                                  value=""
+                                  className="text-gray-400/20"
+                                >
+                                  Select an Plot Type
+                                </option>
+                                <option value="3da" className="text-gray-800">
+                                  3D Interactive
+                                </option>
+                                <option value="3ds" className="text-gray-800">
+                                  3D Static
+                                </option>
+                                <option value="2d" className="text-gray-800">
+                                  2D
+                                </option>
+                              </select>
+
+                              {/* Custom Dropdown Chevron Icon */}
+                              <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-3 text-gray-500">
+                                <svg
+                                  className="w-4 h-4"
+                                  fill="none"
+                                  stroke="currentColor"
+                                  viewBox="0 0 24 24"
+                                >
+                                  <path
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                    strokeWidth={2}
+                                    d="M19 9l-7 7-7-7"
+                                  />
+                                </svg>
+                              </div>
+                            </div>
+                            <div className="flex justify-between items-center text-md  font-medium text-gray-700">
+                              <label htmlFor="perplexity" className="pt-2">
+                                Perplexity Value
+                              </label>
+                            </div>
+
+                            <input
+                              id="perplexity"
+                              type="number"
+                              value={
+                                Number.isNaN(formData.plotSettings.perplexity)
+                                  ? ""
+                                  : formData.plotSettings.perplexity
+                              }
+                              onChange={(e) => {
+                                const val = e.target.valueAsNumber;
+                                setFormData((prev) => ({
+                                  ...prev,
+                                  plotSettings: {
+                                    ...prev.plotSettings,
+                                    perplexity: Number.isNaN(val) ? null : val,
+                                  },
+                                }));
+                              }}
+                              className="block w-full pl-3 pr-10 py-2 text-[0.8rem] bg-white rounded-md shadow-sm appearance-none focus:outline-none focus:shadow-md text-gray-700/60 focus:text-gray-700 focus:shadow-gray-700/70 sm:text-[0.8rem] transition-colors"
+                            />
+
+                            <div className="flex justify-between items-center text-md  font-medium text-gray-700">
+                              <label htmlFor="theta" className="pt-2">
+                                Theta Value
+                              </label>
+                            </div>
+
+                            <input
+                              id="theta"
+                              type="number"
+                              value={
+                                Number.isNaN(formData.plotSettings.theta)
+                                  ? ""
+                                  : formData.plotSettings.theta
+                              }
+                              onChange={(e) => {
+                                const val = e.target.valueAsNumber;
+                                setFormData((prev) => ({
+                                  ...prev,
+                                  plotSettings: {
+                                    ...prev.plotSettings,
+                                    theta: Number.isNaN(val) ? null : val,
+                                  },
+                                }));
+                              }}
+                              className="block w-full pl-3 pr-10 py-2 text-[0.8rem] bg-white rounded-md shadow-sm appearance-none focus:outline-none focus:shadow-md text-gray-700/60 focus:text-gray-700 focus:shadow-gray-700/70 sm:text-[0.8rem] transition-colors"
+                            />
+                            {formData.plotSettings.plotType == "2d" && (
+                              <div>
+                                <label
+                                  htmlFor="plotDimensions"
+                                  className="block text-md font-medium text-gray-700 place-content-start"
+                                >
+                                  Optional Plot Color Settings
+                                </label>
+                                <div className="relative ">
+                                  <select
+                                    id="colors"
+                                    className="block w-full pl-3 pr-10 py-2 text-[0.8rem] outline-none border-none  bg-white  rounded-md shadow-md appearance-none focus:outline-none focus:shadow-md text-gray-700/60 focus:text-gray-700 focus:shadow-gray-700/70
+              rounded-md   cursor-pointer transition-colors"
+                                    defaultValue={formData.plotSettings.colors}
+                                    onChange={(e) => {
+                                      setFormData((prev) => ({
+                                        ...prev,
+                                        plotSettings: {
+                                          ...prev.plotSettings,
+                                          colors: e.target.value,
+                                        },
+                                      }));
+                                    }}
+                                  >
+                                    <option
+                                      value="black"
+                                      className="text-gray-800"
+                                    >
+                                      Black (Default)
+                                    </option>
+                                    <option
+                                      value="base"
+                                      className="text-gray-800"
+                                    >
+                                      By Base Text
+                                    </option>
+                                    <option
+                                      value="grouping"
+                                      className="text-gray-800"
+                                    >
+                                      By Group
+                                    </option>
+                                  </select>
+
+                                  {/* Custom Dropdown Chevron Icon */}
+                                  <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-3 text-gray-500">
+                                    <svg
+                                      className="w-4 h-4"
+                                      fill="none"
+                                      stroke="currentColor"
+                                      viewBox="0 0 24 24"
+                                    >
+                                      <path
+                                        strokeLinecap="round"
+                                        strokeLinejoin="round"
+                                        strokeWidth={2}
+                                        d="M19 9l-7 7-7-7"
+                                      />
+                                    </svg>
+                                  </div>
+                                </div>
+                              </div>
+                            )}
+                            {formData.plotSettings.plotType.includes("3d") && (
+                              <div>
+                                <label
+                                  htmlFor="plotDimensions"
+                                  className="block text-md font-medium text-gray-700 place-content-start"
+                                >
+                                  Optional Plot Color Settings
+                                </label>
+                                <div className="relative ">
+                                  <select
+                                    id="colors"
+                                    className="block w-full pl-3 pr-10 py-2 text-[0.8rem] outline-none border-none  bg-white  rounded-md shadow-md appearance-none focus:outline-none focus:shadow-md text-gray-700/60 focus:text-gray-700 focus:shadow-gray-700/70
+              rounded-md   cursor-pointer transition-colors"
+                                    defaultValue={formData.plotSettings.colors}
+                                    onChange={(e) => {
+                                      setFormData((prev) => ({
+                                        ...prev,
+                                        plotSettings: {
+                                          ...prev.plotSettings,
+                                          colors: e.target.value,
+                                        },
+                                      }));
+                                    }}
+                                  >
+                                    <option
+                                      value="black"
+                                      className="text-gray-800"
+                                    >
+                                      Black (Default)
+                                    </option>
+                                    <option
+                                      value="base"
+                                      className="text-gray-800"
+                                    >
+                                      By Base Text
+                                    </option>
+                                  </select>
+
+                                  {/* Custom Dropdown Chevron Icon */}
+                                  <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-3 text-gray-500">
+                                    <svg
+                                      className="w-4 h-4"
+                                      fill="none"
+                                      stroke="currentColor"
+                                      viewBox="0 0 24 24"
+                                    >
+                                      <path
+                                        strokeLinecap="round"
+                                        strokeLinejoin="round"
+                                        strokeWidth={2}
+                                        d="M19 9l-7 7-7-7"
+                                      />
+                                    </svg>
+                                  </div>
+                                </div>
+                              </div>
+                            )}
+                            {formData.plotSettings.plotType !== "" && (
+                              <div className="flex flex-row gap-3 content-center items-center text-md pt-2 font-medium text-gray-700">
+                                <input
+                                  type="checkbox"
+                                  checked={formData.plotSettings.colorText}
+                                  onChange={handleColorText}
+                                  className={`rounded-full  accent-cyan-500 text-white border-1 border-none shadow-sm shadow-gray-700/70 hover:shadow-md outline-none w-4 h-4 appearance-none 
+              ${formData.plotSettings.colorText ? "bg-cyan-700 inset-shadow-xs inset-shadow-cyan-200" : "bg-white"}`}
+                                />
+                                <label className="">
+                                  <div className="">
+                                    Match Label Color to Data Point Color
+                                  </div>
+                                </label>
+                              </div>
+                            )}
+                          </div>
+                        </div>
+                        <div className="text-base w-[45dvw] h-[50dvh] pt-2 gap-2 text-cyan-700 shadow-lg/40  rounded-lg p-5  overflow-auto">
+                      <p className="text-lg font-bold">Description</p>
+                      <p>Description text</p>
+                    </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="w-full flex justify-between content-start flex-row">
+                    <button
+                      onClick={() => handleStepChange(3)}
+                      className="px-5 py-2 border border-gray-300 text-gray-700 font-medium rounded-lg w-max hover:bg-gray-50 transition"
+                    >
+                      Back
+                    </button>
+                    <button
+                      onClick={handlePlot}
+                      disabled={
+                        isProcessing || formData.settings.isPlot == false
+                      }
+                      className="px-5 py-2 bg-cyan-600 text-white font-medium rounded-lg hover:bg-cyan-700 disabled:opacity-50 transition"
+                    >
+                      {isProcessing ? "Processing..." : "Run t-SNE Algorithm"}
+                    </button>
+                  </div>
+                </div>
+              </div>
+            )}
+            {currentStep === 5 && (
+              <div className="flex content-start  pt-10 flex-col justify-between pt-4">
+                <h1 className="text-4xl w-5/10 font-bold text-gray-700 pt-10 pb-2">
+                  {formData.algorithm == "ndw"
+                    ? "Needleman-Wunsch"
+                    : "Smith-Waterman"}{" "}
+                  Plot
+                </h1>
+                <div className="h-[71dvh] w-full justify-between flex flex-col ">
+                  <div className="flex flex-row gap-5 pt-2">
+                    {formData.plotSettings.plotType.includes("3da") && (
+                      <div className="w-[50dvw] place-content-center">
+                        <iframe
+                          ref={plotRef}
+                          srcDoc={plotUrl}
+                          className="  w-[50dvw] h-[50dvh] place-content-center border-none"
+                          title="t-SNE Plot"
+                          // sandbox="allow-scripts allow-same-origin allow-downloads"
+                        />
+                      </div>
+                    )}
+                    {(formData.plotSettings.plotType.includes("2d") ||
+                      formData.plotSettings.plotType.includes("3ds")) && (
+                      <div className=" flex content-start h-[50dvh] justify-center pb-0 ">
+                        <img
+                          src={plotUrl}
+                          className="  border-none"
+                          title="t-SNE Plot"
+                        />
+                      </div>
+                    )}
+                    <div className="text-base pt-2 gap-2 text-cyan-700 shadow-lg/40 w-6/10 rounded-lg p-5  overflow-auto">
+                      <p className="text-lg font-bold">Description</p>
+                      <p>Description text</p>
+                    </div>
+                  </div>
+                  <div className="w-full flex justify-between  items-end pb-20 flex-row">
+                    <button
+                      onClick={() => handleStepChange(4)}
+                      className="px-5 py-2 border border-gray-300 text-gray-700 font-medium rounded-lg w-max hover:bg-gray-50 transition"
+                    >
+                      Back
+                    </button>
+                    <div className="flex flex-col gap-2 w-max">
+                      {formData.plotSettings.plotType.includes("2d") && (
+                        <a
+                          href={plotUrl}
+                          download="2D_plot.png"
+                          onClick={() =>
+                            setDownloadedFiles((prev) => [
+                              ...prev,
+                              "2D_plot.png",
+                            ])
+                          }
+                          className="px-5 py-2 bg-sky-600 text-white font-medium text-center rounded-lg hover:bg-sky-700"
+                        >
+                          Download Plot as Image
+                        </a>
+                      )}
+                      {formData.plotSettings.plotType.includes("3ds") && (
+                        <a
+                          href={plotUrl}
+                          download="static_3D_plot.png"
+                          onClick={() =>
+                            setDownloadedFiles((prev) => [
+                              ...prev,
+                              "static_3D_plot.png",
+                            ])
+                          }
+                          className="px-5 py-2 bg-sky-600 text-white font-medium text-center rounded-lg hover:bg-sky-700"
+                        >
+                          Download Plot as Image
+                        </a>
+                      )}
+                      {formData.plotSettings.plotType.includes("3da") && (
+                        <button
+                          onClick={download3dPlot}
+                          className="px-5 py-2 bg-sky-600 text-white font-medium text-center rounded-lg hover:bg-sky-700"
+                        >
+                          Download Plot as Image
+                        </button>
+                      )}
+                      <button
+                        onClick={handleDownload}
+                        className="px-5 py-2 bg-green-600 text-white text-center font-medium rounded-lg hover:bg-green-700"
+                      >
+                        Download Matrix as Spreadsheet
+                      </button>
+                    </div>
+                    <button
+                      onClick={() => handleStepChange(6)}
+                      className="px-5 py-2 bg-cyan-600 text-white font-medium rounded-lg hover:bg-cyan-700 disabled:bg-gray-400 disabled:cursor-not-allowed transition"
+                    >
+                      Continue
+                    </button>
+                  </div>
+                </div>
+              </div>
+            )}{" "}
+            {currentStep === 6 && (
+              <div className="h-[71dvh]">
+                <div className="flex flex-col h-full justify-center content-start">
+                  <h1 className="text-4xl w-5/10 font-bold text-gray-700 pt-10 pb-2">
+                    Summary Report
+                  </h1>
+                  <div className="h-full">
+                    <PDFViewer width="100%" height="100%">
+                      <Report />
+                    </PDFViewer>
+                    <div className="w-full flex justify-between content-start flex-row pt-2">
+                      <button
+                        onClick={() => handleStepChange(5)}
+                        className="px-5 py-2 border border-gray-300 text-gray-700 font-medium rounded-lg w-max hover:bg-gray-50 transition"
+                      >
+                        Back
+                      </button>
+
+                      <PDFDownloadLink
+                        document={<Report />}
+                        fileName="report.pdf"
+                        className="px-5 py-2 bg-cyan-600 text-white font-medium w-max rounded-lg hover:bg-cyan-700"
+                      >
+                        {({ blob, url, loading, error }) =>
+                          loading ? "Generating Report..." : "Download Report"
+                        }
+                      </PDFDownloadLink>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            )}
           </div>
-        )} {currentStep===6 && (
-          <div className="h-[73dvh]">
-          <div className="flex flex-col h-full justify-center content-start">
-            <h1 className="text-4xl w-5/10 font-bold text-gray-700 pt-10 pb-2">Summary Report</h1>
-            <PDFViewer width="100%" height="100%">
-          <Report/>
-        </PDFViewer>
-          <div className="w-full flex justify-between content-start flex-row pt-2">
-            <button
-                onClick={() => handleStepChange(5)}
-                className="px-5 py-2 border border-gray-300 text-gray-700 font-medium rounded-lg w-max hover:bg-gray-50 transition"
-              >
-                Back
-              </button>
-              
-              <PDFDownloadLink document={<Report/>} fileName="report.pdf"
-                className="px-5 py-2 bg-cyan-600 text-white font-medium w-max rounded-lg hover:bg-cyan-700">
-                {({ blob, url, loading, error }) =>
-            loading ? 'Generating Report...' : 'Download Report'
-              }
-              </PDFDownloadLink>
-            </div>
-            
-              
-              </div>
-              </div>
         )}
       </div>
-      </div>
-    );
-  }
+    </div>
+  );
+}
 
 // "use client";
 
