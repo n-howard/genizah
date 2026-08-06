@@ -252,7 +252,7 @@ def generate_spreadsheet(algorithm, settings, root_dir, base_text, base_text_lis
         os.chdir(original_cwd)
     return {
         "status": "success",
-        "records": records
+        "records": records,
     }
 
 

@@ -23,7 +23,7 @@ class AlgorithmSettings:
         
         return cls(
             gap_penalty=clean(data.get("gapPenalty", -1)),
-            match_bonus=clean(data.get("matchBonus", 5)),
+            match_bonus=clean(data.get("matchBonus", 1)),
             mismatch_penalty=clean(data.get("mismatchPenalty", -1)),
             special=data.get("special", []),
             special_other=bool(data.get("specialOther", False)),

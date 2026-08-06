@@ -182,7 +182,7 @@ export default function Pages() {
     baseText: "",
     settings: {
       gapPenalty: -1,
-      matchBonus: 5,
+      matchBonus: 1,
       mismatchPenalty: -1,
       special: [],
       specialOther: false,
@@ -650,6 +650,7 @@ results
       // 2. RUN PYTHON ALIGNMENT SCRIPT (IF NOT ALREADY EXECUTED)
       // ------------------------------------------------------------------
       // Ensure python outputs directly to /tmp/alignment_matrix.xlsx
+      pyodide.globals.set("js_records", pyodide.toPy(results.records || {}));
       await pyodide.runPythonAsync(`
 import os
 import pandas as pd
@@ -661,7 +662,7 @@ algorithm=js_algorithm,
     root_dir="/tmp/input_files",
     base_text=js_base_text,
     base_text_list=js_base_text_list,
-records=results.records)
+records=js_records)
 
 
 records = plot_results["records"]
@@ -693,11 +694,7 @@ if js_multi:
 
 df.to_excel("/tmp/alignment_matrix.xlsx")
 
-# Create /tmp directory inside Python environment just in case
-os.makedirs('/tmp', exist_ok=True)
 
-# Run main alignment logic (Replace this line with your actual python main call)
-# df_result.to_excel('/tmp/alignment_matrix.xlsx', engine='openpyxl')
 `);
 
       // ------------------------------------------------------------------
