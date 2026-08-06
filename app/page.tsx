@@ -186,7 +186,7 @@ export default function Pages() {
       mismatchPenalty: -1,
       special: [],
       specialOther: false,
-      specialBonus: 10,
+      specialBonus: 0,
       affinePenalty: 0,
       isPlot: false,
     },
