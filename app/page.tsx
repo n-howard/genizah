@@ -1266,12 +1266,14 @@ os.makedirs('/tmp', exist_ok=True)
             {/* STEP 1: UPLOAD FILES */}
             {currentStep === 1 && (
               <div className="flex flex-col justify-between pt-10 h-[71dvh]">
-                <h2 className="text-3xl font-bold text-gray-800">
-                  Choose Comparison Type
-                </h2>
+                
                 <div className="h-full">
                   {formData.multi === null && (
+                    
                     <div className=" h-full">
+                      <h2 className="text-3xl font-bold text-gray-800">
+                  Choose Comparison Type
+                </h2>
                       <div className="h-full place-content-start">
                         <h1 className="text-2xl leading-[2] pt-12 font-semibold text-cyan-600 overflow-wrap">
                           
@@ -1328,6 +1330,9 @@ os.makedirs('/tmp', exist_ok=True)
                   {/* SUBSECTION MULTI-FILE MODE */}
                   {formData.multi === true && (
                     <div className="flex flex-col gap-4 w-full h-full pt-10">
+                      <h2 className="text-3xl font-bold text-gray-800">
+                  Upload Transcriptions
+                </h2>
                       {/* TOP PANEL: CONTROL BAR & SUBSECTION LIST */}
                       <div className="border-2 border-dashed border-gray-300 flex-col overflow-auto h-full p-4 text-gray-500 w-full rounded-lg bg-gray-50 flex items-start justify-start">
                         {/* Subsection Creator Header */}
