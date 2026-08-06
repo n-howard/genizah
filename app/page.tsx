@@ -1171,7 +1171,7 @@ os.makedirs('/tmp', exist_ok=True)
 
   return (
     <div className="bg-white w-screen h-screen flex flex-col items-center place-content-center content-center justify-items-center justify-content-center">
-      <div className="min-w-[82dvw] min-h-[82dvh] p-6 bg-white rounded-xl shadow-md border border-gray-100 flex flex-col overflow-hidden justify-between">
+      <div className="w-[82dvw] h-[82dvh] p-6 bg-white rounded-xl shadow-md border border-gray-100 flex flex-col overflow-hidden justify-between">
         {/* Progress Bar */}
         {currentStep == 0 && (
           <div className="text-lg text-cyan-700  font-medium flex flex-col pt-5 h-full justify-between">
@@ -1267,7 +1267,7 @@ os.makedirs('/tmp', exist_ok=True)
             {currentStep === 1 && (
               <div className="flex flex-col justify-between pt-10 h-[71dvh]">
                 <h2 className="text-3xl font-bold text-gray-800">
-                  Upload Transcriptions
+                  Choose Comparison Type
                 </h2>
                 <div className="h-full">
                   {formData.multi === null && (
