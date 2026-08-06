@@ -1171,16 +1171,16 @@ os.makedirs('/tmp', exist_ok=True)
 
   return (
     <div className="bg-white w-screen h-screen flex flex-col items-center place-content-center content-center justify-items-center justify-content-center">
-      <div className="w-[82dvw] h-[82dvh] p-6 bg-white rounded-xl shadow-md border border-gray-100 flex flex-col justify-between">
+      <div className="min-w-[82dvw] min-h-[82dvh] p-6 bg-white rounded-xl shadow-md border border-gray-100 flex flex-col overflow-hidden justify-between">
         {/* Progress Bar */}
         {currentStep == 0 && (
-          <div className="text-lg text-cyan-700  font-medium flex flex-col pt-10 h-[82dvh] justify-between">
+          <div className="text-lg text-cyan-700  font-medium flex flex-col pt-5 h-full justify-between">
             <div className="gap-5">
               <h1 className="text-3xl font-bold text-gray-800 pt-10 pb-10">
                 {/* Change the title here */}
                 Welcome to the TEXTEVOLVE Data Analysis Tool 
               </h1>
-              <div className="text-base pt-2 gap-2 text-cyan-700 shadow-lg/40 w-full h-[45dvh]  rounded-lg p-5  overflow-auto">
+              <div className="text-base pt-2 gap-2 text-cyan-700 shadow-lg/40 w-full h-175  rounded-lg p-5  overflow-auto">
                           <p className="text-lg font-medium">Description</p>
                       
                         </div>
