@@ -1171,7 +1171,7 @@ os.makedirs('/tmp', exist_ok=True)
 
   return (
     <div className="bg-white w-screen h-screen flex flex-col items-center place-content-center content-center justify-items-center justify-content-center">
-      <div className="w-[82dvw] h-[82dvh] p-6 bg-white rounded-xl shadow-md border border-gray-100 flex flex-col overflow-hidden justify-between">
+      <div className="w-[82dvw] h-[82dvh] p-6 bg-white rounded-xl shadow-md border border-gray-100 flex flex-col justify-between">
         {/* Progress Bar */}
         {currentStep == 0 && (
           <div className="text-lg text-cyan-700  font-medium flex flex-col pt-5 h-full justify-between">
