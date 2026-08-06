@@ -551,34 +551,6 @@ if results is None:
 if "records" not in results or results["records"] is None:
     raise KeyError("Missing or empty 'records' in execution results.")
 
-records = results["records"]
-filtered_records = [
-    {key: value for key, value in d.items() if key not in ("OrigScore", "TextNamePair")} 
-    for d in records
-]
-
-orig_df = pd.DataFrame(filtered_records)
-if orig_df.empty:
-    raise ValueError("Alignment returned 0 valid records.")
-
-df = orig_df.pivot_table(
-    index="BaseText",
-    columns="TargetFile",
-    values="Score"
-)
-df = df.fillna(1)
-
-def get_suffix_sort_key(col_name):
-    parts = str(col_name).rsplit('_', 1)
-    if len(parts) == 2:
-        return (parts[1], parts[0]) 
-    return ('', str(col_name))
-
-if js_multi:
-    sorted_columns = sorted(df.columns, key=get_suffix_sort_key)
-    df = df[sorted_columns]
-
-df.to_excel("/tmp/alignment_matrix.xlsx")
 results
 `;
 
@@ -681,6 +653,45 @@ results
       await pyodide.runPythonAsync(`
 import os
 import pandas as pd
+import main
+
+plot_results = main.generate_spreadsheet(
+algorithm=js_algorithm,
+    settings=settings,
+    root_dir="/tmp/input_files",
+    base_text=js_base_text,
+    base_text_list=js_base_text_list,
+records=results.records)
+
+
+records = plot_results["records"]
+filtered_records = [
+    {key: value for key, value in d.items() if key not in ("OrigScore", "TextNamePair")} 
+    for d in records
+]
+
+orig_df = pd.DataFrame(filtered_records)
+if orig_df.empty:
+    raise ValueError("Alignment returned 0 valid records.")
+
+df = orig_df.pivot_table(
+    index="BaseText",
+    columns="TargetFile",
+    values="Score"
+)
+df = df.fillna(1)
+
+def get_suffix_sort_key(col_name):
+    parts = str(col_name).rsplit('_', 1)
+    if len(parts) == 2:
+        return (parts[1], parts[0]) 
+    return ('', str(col_name))
+
+if js_multi:
+    sorted_columns = sorted(df.columns, key=get_suffix_sort_key)
+    df = df[sorted_columns]
+
+df.to_excel("/tmp/alignment_matrix.xlsx")
 
 # Create /tmp directory inside Python environment just in case
 os.makedirs('/tmp', exist_ok=True)

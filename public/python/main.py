@@ -145,21 +145,21 @@ def run_in_browser_process(algorithm, settings, file_dir, base_text, multi, base
             with contextlib.redirect_stdout(buffer):
                 records = records + run_sw(root_dir, settings, base_text_pattern, is_plot, records)
         
-        if is_plot:
-            # fix this to be customizable
-            # base_texts = set([Path(f.filename).name.split("_")[0] for f in files]) if files else set()
-            base_texts = set([f.split("_")[0] for f in base_text_list]) if base_text_list else set()
-            print("BaseText Prefixes:",base_texts)
-            # df = None
-            print("Creating matrix")
+        # if is_plot:
+        #     # fix this to be customizable
+        #     # base_texts = set([Path(f.filename).name.split("_")[0] for f in files]) if files else set()
+        #     base_texts = set([f.split("_")[0] for f in base_text_list]) if base_text_list else set()
+        #     print("BaseText Prefixes:",base_texts)
+        #     # df = None
+        #     print("Creating matrix")
             
-            base_texts = [bt for bt in base_texts if bt!=base_text_pattern ] 
+        #     base_texts = [bt for bt in base_texts if bt!=base_text_pattern ] 
 
-            for bt in base_texts:
-                if "ndw" in algorithm:
-                    records = records + run_nw(root_dir, settings, bt, True, records)
-                else:
-                    records = records + run_sw(root_dir, settings, bt, True, records)
+        #     for bt in base_texts:
+        #         if "ndw" in algorithm:
+        #             records = records + run_nw(root_dir, settings, bt, True, records)
+        #         else:
+        #             records = records + run_sw(root_dir, settings, bt, True, records)
 
                 # filtered_records = [{key: value for key, value in dict.items() if (key!="OrigScore"and key!="TextNamePair")} for dict in records]
                 # orig_df = pd.DataFrame(filtered_records)
@@ -230,6 +230,30 @@ def run_in_browser_process(algorithm, settings, file_dir, base_text, multi, base
 
       
 
+def generate_spreadsheet(algorithm, settings, root_dir, base_text, base_text_list, records):
+    base_text_pattern = base_text.split("_")[0]
+    # fix this to be customizable
+    # base_texts = set([Path(f.filename).name.split("_")[0] for f in files]) if files else set()
+    base_texts = set([f.split("_")[0] for f in base_text_list]) if base_text_list else set()
+    print("BaseText Prefixes:",base_texts)
+    # df = None
+    print("Creating matrix")
+    original_cwd = os.getcwd()
+    base_texts = [bt for bt in base_texts if bt!=base_text_pattern ] 
+    try:
+        os.chdir(root_dir)
+        print("Running algorithm")
+        for bt in base_texts:
+            if "ndw" in algorithm:
+                records = records + run_nw(root_dir, settings, bt, True, records)
+            else:
+                records = records + run_sw(root_dir, settings, bt, True, records)
+    finally: 
+        os.chdir(original_cwd)
+    return {
+        "status": "success",
+        "records": records
+    }
 
 
 # @app.post("/api/plot/{job_id}")
