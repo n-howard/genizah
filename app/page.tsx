@@ -923,20 +923,25 @@ df.to_excel("/tmp/alignment_matrix.xlsx")
     },
   });
 
-  const AlignmentsDoc = () => (
+  const rtlLangs = /[\p{sc=Hebrew}\p{sc=Arabic}\p{sc=Syriac}\p{sc=Thaana}\p{sc=Nko}]/u;
+
+  
+  const AlignmentsDoc = () =>{ 
+    const rtlTested =rtlLangs.test(results.output_logs) ? "rtl" : "ltr"
+    return (
     <Document>
       <Page size="A4">
         <View wrap style={tw("p-10")}>
-          <Text style={tw("text-lg text-center")}>Alignment Results</Text>
+          <Text style={tw("text-lg text-center font-mono")}>Alignment Results</Text>
           {results.output_logs.split("\n").map((line, index) => (
-            <Text key={index} style={tw("font-mono text-sm")}>
+            <Text key={index} style={[tw("font-mono text-sm"), { direction: rtlTested }]}>
               {line || " "}
             </Text>
           ))}
         </View>
       </Page>
     </Document>
-  );
+  );}
   const months = [
     "January",
     "February",
@@ -1089,6 +1094,8 @@ df.to_excel("/tmp/alignment_matrix.xlsx")
   };
 
   const plotRef = useRef(null);
+
+  
 
   // const download3dPlot = () => {
   //   // 1. Target the iframe's document
@@ -1672,15 +1679,15 @@ df.to_excel("/tmp/alignment_matrix.xlsx")
             )}
             {/* SELECT ALGORITHM */}
             {currentStep === 2 && (
-              <div className=" h-[71dvh] place-content-center flex flex-col">
+              <div className=" h-full w-full place-content-center flex flex-col">
                 <h2 className="text-4xl font-bold text-gray-700 pt-10 ">
                   Select Algorithm
                 </h2>
                 <div className="h-full">
-                  <div className="space-y-1 h-full flex  w-10/10 pt-10">
-                    <div className="flex flex-row content-center items-start">
-                      <div className="flex flex-row gap-10 content-center w-[72dvw]">
-                        <div className="flex flex-col content-center items-center gap-2 w-[25dvw]">
+                  <div className="space-y-1 h-full flex  w-full pt-10">
+                    <div className="flex flex-row h-full w-full content-center items-start">
+                      <div className="flex flex-row gap-10 content-center w-full">
+                        <div className="flex flex-col content-center items-center gap-2 w-1/4">
                           {/* <label className="block text-2xl font-medium text-gray-700 mb-1">Select Algorithm</label> */}
                           <div className="flex flex-col gap-2 pt-2 w-full">
                             {/* Label */}
@@ -2082,7 +2089,7 @@ df.to_excel("/tmp/alignment_matrix.xlsx")
                     <div className="flex flex-row gap-[2dvw]">
                       <div className="flex-row overflow-auto place-content-start place-items-start h-full place-self-start w-max flex pt-5 ">
                         <div className="w-max ">
-                          <p className="text-gray-800 whitespace-pre-wrap text-justify font-mono">
+                          <p className="text-gray-800 whitespace-pre-wrap font-mono" style={{ direction: rtlLangs.test(results.output_logs) ? "rtl" : "ltr", unicodeBidi: 'isolate' }}>
                             {results.output_logs}
                           </p>
                         </div>
