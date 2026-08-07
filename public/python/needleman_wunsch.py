@@ -77,11 +77,11 @@ def _generate_traceback_array(seq1, seq2, settings):
                 from_left_score = cell_to_the_left + gap_penalty
 
                 #option to initiate an affine gap penalty:
-                cell_to_the_left = scoring_array[row, col - 1]
-                if traceback_array[row, col - 1] == left_arrow:
-                   from_left_score = cell_to_the_left + gap_extension_penalty
-                else:
-                   from_left_score = cell_to_the_left + gap_penalty
+                # cell_to_the_left = scoring_array[row, col - 1]
+                # if traceback_array[row, col - 1] == left_arrow:
+                #    from_left_score = cell_to_the_left + gap_extension_penalty
+                # else:
+                #    from_left_score = cell_to_the_left + gap_penalty
 
 
                 # or from above (representing an insertion into seq2)
@@ -89,11 +89,11 @@ def _generate_traceback_array(seq1, seq2, settings):
                 from_above_score = above_cell + gap_penalty
 
                 #option to initiate an affine gap penalty:
-                above_cell = scoring_array[row - 1, col]
-                if traceback_array[row - 1, col] == up_arrow:
-                   from_above_score = above_cell + gap_extension_penalty
-                else:
-                   from_above_score = above_cell + gap_penalty
+                # above_cell = scoring_array[row - 1, col]
+                # if traceback_array[row - 1, col] == up_arrow:
+                #    from_above_score = above_cell + gap_extension_penalty
+                # else:
+                #    from_above_score = above_cell + gap_penalty
 
                 # diagonal cell, representing a substitution (e.g. A --> T)
                 diagonal_left_cell = scoring_array[row - 1, col - 1]

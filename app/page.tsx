@@ -636,13 +636,14 @@ results
   //     setIsProcessing(false);
   //   }
   // };
-  const handlePlot = async () => {
-    if (!pyodide || !webR) {
+
+  const generateSpreadsheet = async () => {
+     if (!pyodide || !webR) {
       alert("WebAssembly engines are still loading. Please wait a moment.");
       return;
     }
 
-    setIsProcessing(true);
+    
 
     try {
       // ------------------------------------------------------------------
@@ -659,50 +660,60 @@ results
       // Ensure python outputs directly to /tmp/alignment_matrix.xlsx
       pyodide.globals.set("js_records", pyodide.toPy(results.records || {}));
       await pyodide.runPythonAsync(`
-import os
-import pandas as pd
-import main
+      import os
+      import pandas as pd
+      import main
 
-plot_results = main.generate_spreadsheet(
-algorithm=js_algorithm,
-    settings=settings,
-    root_dir="/tmp/input_files",
-    base_text=js_base_text,
-    base_text_list=js_base_text_list,
-records=js_records)
-
-
-records = plot_results["records"]
-filtered_records = [
-    {key: value for key, value in d.items() if key not in ("OrigScore", "TextNamePair")} 
-    for d in records
-]
-
-orig_df = pd.DataFrame(filtered_records)
-if orig_df.empty:
-    raise ValueError("Alignment returned 0 valid records.")
-
-df = orig_df.pivot_table(
-    index="BaseText",
-    columns="TargetFile",
-    values="Score"
-)
-df = df.fillna(1)
-
-def get_suffix_sort_key(col_name):
-    parts = str(col_name).rsplit('_', 1)
-    if len(parts) == 2:
-        return (parts[1], parts[0]) 
-    return ('', str(col_name))
-
-if js_multi:
-    sorted_columns = sorted(df.columns, key=get_suffix_sort_key)
-    df = df[sorted_columns]
-
-df.to_excel("/tmp/alignment_matrix.xlsx")
+      plot_results = main.generate_spreadsheet(
+      algorithm=js_algorithm,
+          settings=settings,
+          root_dir="/tmp/input_files",
+          base_text=js_base_text,
+          base_text_list=js_base_text_list,
+      records=js_records)
 
 
-`);
+      records = plot_results["records"]
+      filtered_records = [
+          {key: value for key, value in d.items() if key not in ("OrigScore", "TextNamePair")} 
+          for d in records
+      ]
+
+      orig_df = pd.DataFrame(filtered_records)
+      if orig_df.empty:
+          raise ValueError("Alignment returned 0 valid records.")
+
+      df = orig_df.pivot_table(
+          index="BaseText",
+          columns="TargetFile",
+          values="Score"
+      )
+      df = df.fillna(1)
+
+      def get_suffix_sort_key(col_name):
+          parts = str(col_name).rsplit('_', 1)
+          if len(parts) == 2:
+              return (parts[1], parts[0]) 
+          return ('', str(col_name))
+
+      if js_multi:
+          sorted_columns = sorted(df.columns, key=get_suffix_sort_key)
+          df = df[sorted_columns]
+
+      df.to_excel("/tmp/alignment_matrix.xlsx")
+
+
+      `); } catch (error: any) {
+            console.error("Plot generation error:", error);
+            alert(`Plot generation failed: ${error.message || String(error)}`);
+          } 
+  }
+  const handlePlot = async () => {
+    setIsProcessing(true);
+     if (!pyodide || !webR) {
+      alert("WebAssembly engines are still loading. Please wait a moment.");
+      return;
+    }
 
       // ------------------------------------------------------------------
       // 3. VERIFY FILE EXISTS IN PYODIDE FS BEFORE READING
@@ -713,10 +724,18 @@ df.to_excel("/tmp/alignment_matrix.xlsx")
       } else if (pyodide.FS.analyzePath("alignment_matrix.xlsx").exists) {
         targetFile = "alignment_matrix.xlsx";
       } else {
+        await generateSpreadsheet()
+        if (pyodide.FS.analyzePath("/tmp/alignment_matrix.xlsx").exists) {
+        targetFile = "/tmp/alignment_matrix.xlsx";
+      } else if (pyodide.FS.analyzePath("alignment_matrix.xlsx").exists) {
+        targetFile = "alignment_matrix.xlsx";
+      } else {
         throw new Error(
-          "alignment_matrix.xlsx was not found in Pyodide filesystem. " +
-            "Make sure your Python code saves the spreadsheet to '/tmp/alignment_matrix.xlsx'.",
+          "alignment_matrix.xlsx was not found in Pyodide filesystem. " 
         );
+      }
+
+        
       }
 
       // Read binary data from Pyodide
@@ -762,15 +781,10 @@ df.to_excel("/tmp/alignment_matrix.xlsx")
         const htmlText = new TextDecoder().decode(htmlBytes);
         setPlotUrl(htmlText);
       }
-
+      setIsProcessing(false)
       // Advance to plot step
       handleStepChange(5);
-    } catch (error: any) {
-      console.error("Plot generation error:", error);
-      alert(`Plot generation failed: ${error.message || String(error)}`);
-    } finally {
-      setIsProcessing(false);
-    }
+    
   };
   const [downloadedFiles, setDownloadedFiles] = useState([]);
   const handleDownload = async () => {
@@ -1374,7 +1388,7 @@ df.to_excel("/tmp/alignment_matrix.xlsx")
                             Entire Texts
                           </button>
                           
-                          <div className="text-base pt-2 gap-2 text-cyan-700 shadow-lg/40  rounded-lg p-5 h-10/10  overflow-auto">
+                          <div className="text-base pt-2 gap-2 text-cyan-700 shadow-lg/40  rounded-lg p-5 h-9/10  overflow-auto">
                           <p className="text-lg font-medium">Description</p>
                       
                         </div>
@@ -1390,7 +1404,7 @@ df.to_excel("/tmp/alignment_matrix.xlsx")
                           >
                             Subsections of Texts
                           </button>
-                          <div className="text-base pt-2 gap-2 text-cyan-700 shadow-lg/40 rounded-lg p-5 h-100/100 overflow-auto">
+                          <div className="text-base pt-2 gap-2 text-cyan-700 shadow-lg/40 rounded-lg p-5 h-9/10 overflow-auto">
                           <p className="text-lg h-full font-medium">Description</p>
                       
                         </div>
@@ -2150,7 +2164,7 @@ df.to_excel("/tmp/alignment_matrix.xlsx")
               </div>
             )}
             {currentStep === 3 && (
-              <div className="flex h-[64.5dvh] self-start place-content-start w-full">
+              <div className="flex h-full self-start place-content-start w-full">
                 <div className="flex flex-col justify-between place-content-start pt-4  w-full">
                   <h1 className="text-4xl w-5/10 font-bold text-gray-700 pt-10 pb-2">
                     {formData.algorithm == "ndw"
@@ -2159,8 +2173,8 @@ df.to_excel("/tmp/alignment_matrix.xlsx")
                     Alignment
                   </h1>
 
-                  <div className="h-full w-full flex flex-row">
-                    <div className="flex flex-row gap-[2dvw]">
+                  <div className="h-9/10 w-full flex flex-row">
+                    <div className="flex flex-row gap-6">
                       <div className="flex-row overflow-auto place-content-start place-items-start h-full place-self-start w-max flex pt-5 ">
                         <div className="w-max ">
                           <p className="text-gray-800 whitespace-pre-wrap text-justify font-mono" style={{ direction: rtlLangs.test(results.output_logs) ? "rtl" : "ltr", unicodeBidi: 'embed' }}>

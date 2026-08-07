@@ -15,7 +15,7 @@
         -[x] drag in files/folders which are all taken out (as now)
         -[x] select base text (trim off subsection folder name or at underscore if they don't name it maybe)
         -[x] add new subsection and repeat
-        -[] 
+        
 
 -[x] make it downloadable
 
@@ -40,9 +40,9 @@ Steps before first deployment:
 -[x] cache to fix efficiency
 
 -[x] start/welcome page
--[] be able to rename subsections
+
 -[x] keep in local storage?
-- [] little i symbol to hover over for clarification (see if feasible)
+
    
 
  -[x]   We should make a landing page.
@@ -62,3 +62,9 @@ Steps before first deployment:
     -[x]Affine penalty and optional special characters shouldn't be default options. We should put these under a 'special' or 'non-standard' option section maybe?
   -[x]  On reconsideration I think we need the typing of negative signs for the penalties? Or at least the negative signs to show. Otherwise it might confuse people.
 
+-[] little i symbol to hover over for clarification (see if feasible)
+-[] be able to rename subsections
+-[] base text suffix instead of prefix/customize base text split by
+-[] progress bar
+-[] let people upload their own spreadsheets if they want
+-[] generate the spreadsheet once and check if the spreadsheet is stored
