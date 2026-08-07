@@ -105,7 +105,8 @@ export function useWasmEngines() {
             'htmlwidgets', 
             'jsonlite',
             'base64enc', 
-            'scatterplot3d'
+            'scatterplot3d',
+            'ggrepel'
           ];
 
           // Query R to see which packages are missing from IndexedDB

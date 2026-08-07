@@ -239,8 +239,8 @@ def run_nw(temp_dir, settings: AlgorithmSettings, base_text_pattern, is_plot, re
                     # call the entire algorithm within this loop
                     text_filepath = os.path.join(test_directory, text)
                     text_contents = open(text_filepath, encoding='utf-8').read()
-                    # print(basetextcontents)
-                    # print(textcontents)
+                    # print(base_text_contents)
+                    # print(text_contents)
                     print()
                     aligned_seq1, aligned_seq2, score = needleman_wunsch(base_text_contents, text_contents, settings)
                     print(base_text,text)

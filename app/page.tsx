@@ -1179,16 +1179,16 @@ df.to_excel("/tmp/alignment_matrix.xlsx")
 
   return (
     <div className="bg-white w-screen h-screen flex flex-col items-center place-content-center content-center justify-items-center justify-content-center">
-      <div className="w-[82dvw] h-[82dvh] p-6 bg-white rounded-xl shadow-md border border-gray-100 flex flex-col justify-between">
+      <div className="w-91/100 h-91/100 p-6 bg-white rounded-xl shadow-md border border-gray-100 flex flex-col justify-between">
         {/* Progress Bar */}
         {currentStep == 0 && (
-          <div className="text-lg text-cyan-700  font-medium flex flex-col pt-5 h-full justify-between">
-            <div className="gap-5">
+          <div className="text-lg text-cyan-700  font-medium flex flex-col pt-5 h-100/100 justify-between">
+            <div className="gap-5 h-full">
               <h1 className="text-3xl font-bold text-gray-800 pt-10 pb-10">
                 {/* Change the title here */}
                 Welcome to the TEXTEVOLVE Data Analysis Tool 
               </h1>
-              <div className="text-base pt-2 gap-2 text-cyan-700 shadow-lg/40 w-full h-175  rounded-lg p-5  overflow-auto">
+              <div className="text-base pt-2 gap-2 text-cyan-700 shadow-lg/40 w-full h-8/10  rounded-lg p-5  overflow-auto">
                           <p className="text-lg font-medium">Description</p>
                       
                         </div>
@@ -1204,7 +1204,7 @@ df.to_excel("/tmp/alignment_matrix.xlsx")
           </div>
         )}{" "}
         {currentStep !== 0 && (
-          <div>
+          <div className="h-9/10">
             <div>
               <div className="flex justify-between text-[0.8rem] font-medium text-gray-500 mb-2">
                 <button
@@ -1273,40 +1273,40 @@ df.to_excel("/tmp/alignment_matrix.xlsx")
             </div>
             {/* STEP 1: UPLOAD FILES */}
             {currentStep === 1 && (
-              <div className="flex flex-col justify-between pt-10 h-[71dvh]">
+              <div className="flex flex-col justify-between pt-10 h-10/10">
                 
-                <div className="h-full">
+                <div className="h-10/10">
                   {formData.multi === null && (
                     
-                    <div className=" h-full">
+                    <div className=" h-10/10 ">
                       <h2 className="text-3xl font-bold text-gray-800">
                   Choose Comparison Type
                 </h2>
-                      <div className="h-full place-content-start">
+                      <div className="h-full flex flex-col place-content-start">
                         <h1 className="text-2xl leading-[2] pt-12 font-semibold text-cyan-600 overflow-wrap">
                           
                           Please begin by selecting whether you want to compare:
                           
                             </h1>
-                            <div className="flex flex-row justify-between w-full">
+                            <div className="flex flex-row h-full gap-5 justify-between w-full">
                               <div className="flex flex-col w-5/10 gap-5">
                           <button
                             type="button"
                             onClick={() =>
                               setFormData((prev) => ({ ...prev, multi: false }))
                             }
-                            className="px-5 py-2 bg-cyan-600 text-white text-lg font-semibold rounded-lg hover:bg-cyan-700 disabled:bg-gray-400 disabled:cursor-not-allowed transition"
+                            className="px-5 py-2 bg-cyan-600 text-white text-lg  font-semibold rounded-lg hover:bg-cyan-700 disabled:bg-gray-400 disabled:cursor-not-allowed transition"
                           >
                             Entire Texts
                           </button>
                           
-                          <div className="text-base pt-2 gap-2 text-cyan-700 shadow-lg/40  rounded-lg p-5 h-[40dvh]  overflow-auto">
+                          <div className="text-base pt-2 gap-2 text-cyan-700 shadow-lg/40  rounded-lg p-5 h-10/10  overflow-auto">
                           <p className="text-lg font-medium">Description</p>
                       
                         </div>
                         </div>
-                          or
-                          <div className="flex flex-col w-5/10 gap-5">
+                          
+                          <div className="flex flex-col w-5/10 h-full gap-5">
                           <button
                             type="button"
                             onClick={() =>
@@ -1316,8 +1316,8 @@ df.to_excel("/tmp/alignment_matrix.xlsx")
                           >
                             Subsections of Texts
                           </button>
-                          <div className="text-base pt-2 gap-2 text-cyan-700 shadow-lg/40 rounded-lg p-5 h-[40dvh] overflow-auto">
-                          <p className="text-lg font-medium">Description</p>
+                          <div className="text-base pt-2 gap-2 text-cyan-700 shadow-lg/40 rounded-lg p-5 h-100/100 overflow-auto">
+                          <p className="text-lg h-full font-medium">Description</p>
                       
                         </div>
                         </div>
@@ -1591,7 +1591,7 @@ df.to_excel("/tmp/alignment_matrix.xlsx")
 
                           {/* FILE LIST OR DROP HINT */}
                           {formData.files.length > 0 ? (
-                            <ul className="space-y-1 mt-2 max-h-[25dvh] overflow-y-auto pr-1">
+                            <ul className="space-y-1 mt-2 max-h-full overflow-auto pr-1">
                               {formData.files.map((file, fileIndex) => {
                                 let isBase = file.name === formData.baseText;
                                 return (

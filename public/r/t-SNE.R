@@ -7,6 +7,7 @@ library(htmlwidgets)
 library(dplyr)
 library(base64enc)
 library(jsonlite)
+library(ggrepel)
 
 # Helper alias for base64 encoding
 base64_encode <- base64enc::base64encode
@@ -206,11 +207,13 @@ run_tsne_browser <- function(df, perplexity, theta, plot_type, colors, color_tex
     p2d <- ggplot(tsne_data, aes(x = TSNE1, y = TSNE2, label = Manuscript)) +
       geom_text(size = 3, vjust = 1, hjust = 1, colour = text_colour_vec) + 
       geom_point(colour = colour_vec) +
+      geom_text_repel(
+        xlim = c(-Inf, Inf), 
+        ylim = c(-Inf, Inf)
+      ) +
       ggtitle("2D t-SNE Results") +
       xlab("t-SNE Dimension 1") +
       ylab("t-SNE Dimension 2") +
-      coord_cartesian(clip = "off") +
-      scale_x_continuous(expand = expansion(mult = c(0.05, 0.20))) +
       theme_minimal()
 
     temp_png <- tempfile(fileext = ".png")
