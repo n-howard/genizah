@@ -27,6 +27,7 @@ import ReactPDF from "@react-pdf/renderer";
 import { createTw } from "react-pdf-tailwind";
 import { useWasmEngines } from "../hooks/useWasmEngines";
 
+
 const download = require("downloadjs");
 
 function SubsectionItem({
@@ -170,6 +171,9 @@ function SubsectionItem({
 }
 
 export default function Pages() {
+
+  
+
   const [currentStep, setCurrentStep] = useState(0);
   const [furthestStep, setFurthestStep] = useState(0);
 
@@ -189,6 +193,7 @@ export default function Pages() {
       specialBonus: 0,
       affinePenalty: 0,
       isPlot: false,
+      spaceStrip: true,
     },
     plotSettings: {
       perplexity: 1,
@@ -448,6 +453,8 @@ export default function Pages() {
       setCurrentStep(step);
     }
   };
+
+  
   const [jobId, setJobId] = useState<string | null>(null);
   const [plotUrl, setPlotUrl] = useState(null);
 
@@ -455,7 +462,7 @@ export default function Pages() {
   const handleSubmit = async () => {
     if (!pyodide || !isReady) {
       alert("Python engine is still loading in browser. Please wait a moment.");
-      return; // <-- ADDED: Stop execution if not ready
+      return; 
     }
 
     setIsProcessing(true);
@@ -934,7 +941,7 @@ df.to_excel("/tmp/alignment_matrix.xlsx")
         <View wrap style={tw("p-10")}>
           <Text style={tw("text-lg text-center font-mono")}>Alignment Results</Text>
           {results.output_logs.split("\n").map((line, index) => (
-            <Text key={index} style={[tw("font-mono text-sm"), { direction: rtlTested }]}>
+            <Text key={index} style={[tw("font-mono text-justify text-sm"), { direction: rtlTested }]}>
               {line || " "}
             </Text>
           ))}
@@ -1177,12 +1184,72 @@ df.to_excel("/tmp/alignment_matrix.xlsx")
     }
   };
 
+  const handleSpaceStrip = () => {
+    if (formData.settings.spaceStrip == true) {
+      setFormData((prev) => ({
+        ...prev,
+        settings: { ...prev.settings, spaceStrip: false },
+      }));
+    } else {
+      setFormData((prev) => ({
+        ...prev,
+        settings: { ...prev.settings, spaceStrip: true },
+      }));
+    }
+  };
+
   const totalFilesCount = formData.multi
     ? Object.keys(formData.subsections).reduce(
         (acc, key) => acc + formData.subsections[key].length,
         0,
       )
     : formData.files.length;
+
+    const clearAll = async () => {
+      // 1. Clear /tmp in Pyodide (Python)
+      if (pyodide) {
+        try {
+              await pyodide.runPythonAsync(`
+        import os, shutil
+        if os.path.exists('/tmp'):
+            for item in os.listdir('/tmp'):
+                item_path = os.path.join('/tmp', item)
+                try:
+                    if os.path.isfile(item_path) or os.path.islink(item_path):
+                        os.unlink(item_path)
+                    elif os.path.isdir(item_path):
+                        shutil.rmtree(item_path)
+                except Exception as e:
+                    print(f"[Pyodide] Failed to delete {item_path}: {e}")
+        `);
+              console.log("[Pyodide] /tmp directory cleared successfully.");
+            } catch (e) {
+              console.warn("Failed to clear Pyodide /tmp:", e);
+            }
+          }
+
+          // 2. Clear /tmp in WebR (R)
+          if (webR) {
+            try {
+              await webR.evalR(`
+        if (dir.exists('/tmp')) {
+          # Delete all files and subdirectories inside /tmp without deleting /tmp itself
+          unlink('/tmp/*', recursive = TRUE)
+        }
+        `);
+              console.log("[WebR] /tmp directory cleared successfully.");
+            } catch (e) {
+              console.warn("Failed to clear WebR /tmp:", e);
+            }
+          }
+          setFormData((prev)=>({
+            ...prev,
+            subsections: {},
+            files: [],
+            baseText: ""
+          }))
+
+    };
 
   return (
     <div className="bg-white w-screen h-screen flex flex-col items-center place-content-center content-center justify-items-center justify-content-center">
@@ -1389,12 +1456,9 @@ df.to_excel("/tmp/alignment_matrix.xlsx")
                             <button
                               type="button"
                               onClick={() => {
-                                setFormData((prev) => ({
-                                  ...prev,
-                                  subsections: {},
-                                  baseText: "",
-                                }));
+                                clearAll()
                                 setCount(1);
+                                
                               }}
                               className="hover:bg-gray-200/70 p-1 rounded-sm text-red-600 font-bold cursor-pointer flex flex-row items-center gap-1 text-[0.8rem]"
                             >
@@ -1522,11 +1586,7 @@ df.to_excel("/tmp/alignment_matrix.xlsx")
                               type="button"
                               onClick={(e) => {
                                 e.stopPropagation();
-                                setFormData((prev) => ({
-                                  ...prev,
-                                  files: [],
-                                  baseText: "",
-                                }));
+                                clearAll();
                               }}
                               className="hover:bg-gray-200/70 p-1 rounded-sm text-red-600  font-bold cursor-pointer flex flex-row items-center gap-1 text-[0.8rem]"
                             >
@@ -1686,8 +1746,8 @@ df.to_excel("/tmp/alignment_matrix.xlsx")
                 <div className="h-full">
                   <div className="space-y-1 h-full flex  w-full pt-10">
                     <div className="flex flex-row h-full w-full content-center items-start">
-                      <div className="flex flex-row gap-10 content-center w-full">
-                        <div className="flex flex-col content-center items-center gap-2 w-1/4">
+                      <div className="flex flex-row h-full gap-10 content-center w-full">
+                        <div className="flex flex-col content-center items-center gap-2 w-1/3">
                           {/* <label className="block text-2xl font-medium text-gray-700 mb-1">Select Algorithm</label> */}
                           <div className="flex flex-col gap-2 pt-2 w-full">
                             {/* Label */}
@@ -1749,7 +1809,7 @@ df.to_excel("/tmp/alignment_matrix.xlsx")
                             {(formData.algorithm === "ndw" ||
                               formData.algorithm === "sw") && (
                               <div className="flex flex-row gap-3 content-center">
-                                <div className="w-4/10">
+                                <div className="w-5/10">
                                   {/* Match Bonus*/}
                                   <div className="flex justify-between items-center text-md font-medium text-gray-700">
                                     <label htmlFor="matchBonus">
@@ -1833,6 +1893,20 @@ df.to_excel("/tmp/alignment_matrix.xlsx")
                                     }
                                     className="block w-full pl-3 pr-10 py-2 text-[0.8rem] bg-white rounded-md shadow-sm appearance-none focus:outline-none focus:shadow-md text-gray-700/60 focus:text-gray-700 focus:shadow-gray-700/70 sm:text-[0.8rem] transition-colors"
                                   />
+                                  <div className="flex flex-row gap-3 content-center items-center text-md pt-2 font-medium text-gray-700">
+                                    <input
+                                      type="checkbox"
+                                      checked={formData.settings.spaceStrip}
+                                      onChange={(handleSpaceStrip)}
+                                      className={`rounded-full  accent-cyan-500 text-white border-1 border-none shadow-sm shadow-gray-700/70 hover:shadow-md outline-none w-4 h-4 appearance-none 
+                  ${formData.settings.spaceStrip ? "bg-cyan-700 inset-shadow-xs inset-shadow-cyan-200" : "bg-white"}`}
+                                    />
+                                    <label className="">
+                                      <div className="">
+                                        Remove Whitespace From Text
+                                      </div>
+                                    </label>
+                                  </div>
                                 </div>
                                 <div className="w-6/10">
                                   {/* Optional Special Character Bonus */}
@@ -2049,7 +2123,7 @@ df.to_excel("/tmp/alignment_matrix.xlsx")
                 text-xs, text-sm, text-base, text-lg, text-xl, text-2xl, etc.*/}
                           </div>
                         </div>
-                        <div className="text-base pt-2 gap-2 text-cyan-700 shadow-lg/40 w-7/10 h-[50dvh] rounded-lg p-5  overflow-auto">
+                        <div className="text-base pt-2 gap-2 text-cyan-700 shadow-lg/40 w-7/10 h-7/10 rounded-lg p-5  overflow-auto">
                       <p className="text-lg font-bold">Description</p>
                       <p>Description text</p>
                     </div>
@@ -2089,7 +2163,7 @@ df.to_excel("/tmp/alignment_matrix.xlsx")
                     <div className="flex flex-row gap-[2dvw]">
                       <div className="flex-row overflow-auto place-content-start place-items-start h-full place-self-start w-max flex pt-5 ">
                         <div className="w-max ">
-                          <p className="text-gray-800 whitespace-pre-wrap font-mono" style={{ direction: rtlLangs.test(results.output_logs) ? "rtl" : "ltr", unicodeBidi: 'isolate' }}>
+                          <p className="text-gray-800 whitespace-pre-wrap text-justify font-mono" style={{ direction: rtlLangs.test(results.output_logs) ? "rtl" : "ltr", unicodeBidi: 'embed' }}>
                             {results.output_logs}
                           </p>
                         </div>

@@ -16,6 +16,7 @@ class AlgorithmSettings:
     special_bonus: float
     affine_penalty: float
     is_plot: bool
+    space_strip: bool
 
     @classmethod
     def from_dict(cls, data: dict) -> "AlgorithmSettings":
@@ -29,7 +30,8 @@ class AlgorithmSettings:
             special_other=bool(data.get("specialOther", False)),
             special_bonus=clean(data.get("specialBonus", 0)),
             affine_penalty=clean(data.get("affinePenalty", 0)),
-            is_plot=bool(data.get("isPlot", True))
+            is_plot=bool(data.get("isPlot", True)),
+            space_strip=bool(data.get("spaceStrip", True))
         )
 
 

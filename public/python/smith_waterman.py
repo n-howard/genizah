@@ -2,6 +2,8 @@ from numpy import full
 import os
 from base import AlgorithmSettings
 
+import re
+
 def _generate_traceback_array(seq1, seq2, settings):
     '''Builds the matrix'''
     n_rows = len("-" + seq1)
@@ -174,6 +176,10 @@ def run_sw(temp_dir, settings: AlgorithmSettings, base_text_pattern, is_plot, re
                 # tells the computer to iterate through the folder looking for the base text.
                 # tells the computer to join the base text to the text directory and read them together.
                 base_text_contents = open(basetextfilepath, encoding='utf-8').read()
+                if settings.space_strip:
+                    new_bt_contents = re.sub(r"\s", "", base_text_contents)
+                    # basetextfilepath.write(new_bt_contents)
+                    base_text_contents = new_bt_contents
                 # tells the computer to read the files within the directory in utf-8 encoding.
                 filter_func = lambda s: base_text_pattern not in s.name and not any(x in s.name for x in seen_files)
                 texts = filter(filter_func, texts)
@@ -184,6 +190,10 @@ def run_sw(temp_dir, settings: AlgorithmSettings, base_text_pattern, is_plot, re
                     # print(text)
                     text_filepath = os.path.join(test_directory, text)
                     text_contents = open(text_filepath, encoding='utf-8').read()
+                    if settings.space_strip:
+                        new_t_contents = re.sub(r"\s", "", text_contents)
+                        # text_filepath.write(new_t_contents)
+                        text_contents = new_t_contents
                     # print(basetextcontents)
                     # print(textcontents)
                     print()

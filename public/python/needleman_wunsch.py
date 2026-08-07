@@ -7,6 +7,8 @@ import os
 from base import AlgorithmSettings
 import sys
 
+import re
+
 
 # tells computer that the first sequence to be aligned is the content of the base text file.
 # tells computer that the second sequence to be aligned is the content of the texts contents files
@@ -229,6 +231,10 @@ def run_nw(temp_dir, settings: AlgorithmSettings, base_text_pattern, is_plot, re
                 # tells the computer to iterate through the folder looking for the base text.
                 # tells the computer to join the base text to the text directory and read them together.
                 base_text_contents = open(basetextfilepath, encoding='utf-8').read()
+                if settings.space_strip:
+                    new_bt_contents = re.sub(r"\s", "", base_text_contents)
+                    # basetextfilepath.write(new_bt_contents)
+                    base_text_contents = new_bt_contents
 
                 # tells the computer to read the files within the directory in utf-8 encoding.
                 filter_func = lambda s: base_text_pattern not in s.name and not any(x in s.name for x in seen_files)
@@ -239,6 +245,10 @@ def run_nw(temp_dir, settings: AlgorithmSettings, base_text_pattern, is_plot, re
                     # call the entire algorithm within this loop
                     text_filepath = os.path.join(test_directory, text)
                     text_contents = open(text_filepath, encoding='utf-8').read()
+                    if settings.space_strip:
+                        new_t_contents = re.sub(r"\s", "", text_contents)
+                        # text_filepath.write(new_t_contents)
+                        text_contents = new_t_contents
                     # print(base_text_contents)
                     # print(text_contents)
                     print()
