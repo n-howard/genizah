@@ -211,7 +211,7 @@ export default function Pages() {
 
   const [allResults, setAllResults] = useState([])
   
-  const [prevBaseTexts, setPrevBaseTexts] = useState(new Set())
+  const [prevBaseTexts, setPrevBaseTexts] = useState(new Set<string>())
 
   const [allBaseTexts, setAllBaseTexts] = useState([])
 
