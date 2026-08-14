@@ -70,9 +70,11 @@ Steps before first deployment:
 ☐  let people upload their own spreadsheets if they want
 ✔  delete spreadsheet on clear all @done(26-08-10 15:17)
 ✔  xyz as labels, no numbers on 3d plot // check @done(26-08-10 15:17)
-☐  report doesn't show all comparisons (probably need to change variable from results to plotResults) // check
-☐  spreadsheet not showing all comparisons (maybe a caching issue, a filtering issue, or a variable name issue (need to change to plotResults?), experiment with this)
-☐ (ask Estara if looks fixed) 2D plot plotting based on colors rather than results 
+✔  report doesn't show all comparisons (probably need to change variable from results to plotResults) // check @done(26-08-14 11:22)
+✔  spreadsheet not showing all comparisons (maybe a caching issue, a filtering issue, or a variable name issue (need to change to plotResults?), experiment with this) @done(26-08-14 11:23)
+☐ error where plots are plotting based on colors rather than results (test based on correct plots in alignments folder)
 ✔  2D plot shows two labels (with two packages) @done(26-08-10 15:16)
-☐  see alignments before doing t-SNE: so calculate again with a base text (change workflow so you don't do one base text then it calculates all for t-SNE)
-        ☐  one set of base texts, see alignments, do another? give option to select next base text ... once you've done all, see t-SNE?
+✔  see alignments before doing t-SNE: so calculate again with a base text (change workflow so you don't do one base text then it calculates all for t-SNE) @done(26-08-14 11:22)
+        ✔  one set of base texts, see alignments, do another? give option to select next base text ... once you've done all, see t-SNE? @done(26-08-14 11:22)
+☐ make it possible to download all alignments rather than just alignments for the current base text
+☐ check if all of the fixes work for multiple subsections
