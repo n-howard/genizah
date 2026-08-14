@@ -54,13 +54,12 @@ function SubsectionItem({
   return (
     <div
       {...getRootProps()}
-      className={`p-3 border-2 border-dashed border-gray-300 rounded-lg bg-white shadow-xs transition-all hover:border-cyan-400 ${
-        isDragReject
+      className={`p-3 border-2 border-dashed border-gray-300 rounded-lg bg-white shadow-xs transition-all hover:border-cyan-400 ${isDragReject
           ? "border-red-500 text-red-600 bg-red-50"
           : isDragActive
             ? "border-cyan-800 text-gray-600 bg-gray-100"
             : ""
-      }`}
+        }`}
     >
       {/* Hidden dropzone input for file picker clicks */}
       <input {...getInputProps()} />
@@ -124,11 +123,10 @@ function SubsectionItem({
               key={`${file.name}-${fileIndex}`}
               draggable
               onDragStart={(e) => onDragStartFile(e, sectionName, fileIndex)}
-              className={`flex items-center justify-between px-2 py-1 rounded border text-[0.8rem] ${
-                file.name === baseText
+              className={`flex items-center justify-between px-2 py-1 rounded border text-[0.8rem] ${file.name === baseText
                   ? "bg-cyan-100/60 border-cyan-300"
                   : "bg-gray-50 border-gray-100 hover:bg-gray-100"
-              }`}
+                }`}
             >
               <button
                 type="button"
@@ -172,7 +170,7 @@ function SubsectionItem({
 
 export default function Pages() {
 
-  
+
 
   const [currentStep, setCurrentStep] = useState(0);
   const [furthestStep, setFurthestStep] = useState(0);
@@ -210,6 +208,14 @@ export default function Pages() {
 
   const [isProcessing, setIsProcessing] = useState(false);
   const [results, setResults] = useState<any>(null);
+
+  const [allResults, setAllResults] = useState([])
+  
+  const [prevBaseTexts, setPrevBaseTexts] = useState(new Set())
+
+  const [allBaseTexts, setAllBaseTexts] = useState([])
+
+  const [showPrevious, setShowPrevious] = useState(false);
 
   // Drag and drop within subsections
   const [draggedFileIndex, setDraggedFileIndex] = useState<number | null>(null);
@@ -454,7 +460,8 @@ export default function Pages() {
     }
   };
 
-  
+
+
   const [jobId, setJobId] = useState<string | null>(null);
   const [plotUrl, setPlotUrl] = useState(null);
 
@@ -462,7 +469,7 @@ export default function Pages() {
   const handleSubmit = async () => {
     if (!pyodide || !isReady) {
       alert("Python engine is still loading in browser. Please wait a moment.");
-      return; 
+      return;
     }
 
     setIsProcessing(true);
@@ -470,67 +477,93 @@ export default function Pages() {
     const targetDir = "/tmp/input_files/Alignment Data0";
 
     try {
-      // 1. Clear & create virtual input directory in Pyodide
-      try {
-        pyodide.FS.mkdirTree(targetDir);
-      } catch (e) {}
-
-      // 2. Collect user files and filenames
-      const allFilesToProcess: { file: File; section?: string }[] = [];
-      let baseTextFiles: File[] = [];
-
-      if (formData.multi) {
-        const subKeys = Object.keys(formData.subsections || {});
-        subKeys.forEach((subName) => {
-          formData.subsections[subName].forEach((f: File) => {
-            allFilesToProcess.push({ file: f, section: subName });
-          });
-        });
-        if (subKeys.length > 0) {
-          baseTextFiles = formData.subsections[subKeys[0]] || [];
-        }
-      } else {
-        formData.files.forEach((f: File) =>
-          allFilesToProcess.push({ file: f }),
-        );
-        baseTextFiles = formData.files;
-      }
-
-      if (allFilesToProcess.length === 0) {
-        alert("No files selected for alignment.");
-        return;
-      }
-
-      // Write physical files into Pyodide's Virtual FS
-      for (const item of allFilesToProcess) {
-        const arrayBuffer = await item.file.arrayBuffer();
-        const path = item.section
-          ? `${targetDir}/${item.section}/${item.file.name}`
-          : `${targetDir}/transcriptions/${item.file.name}`;
-
-        const dirPath = path.substring(0, path.lastIndexOf("/"));
+      if (allResults.length==0){
+        // 1. Clear & create virtual input directory in Pyodide
         try {
-          pyodide.FS.mkdirTree(dirPath);
-        } catch (e) {}
-        pyodide.FS.writeFile(path, new Uint8Array(arrayBuffer));
-      }
+          pyodide.FS.mkdirTree(targetDir);
+        } catch (e) { }
 
-      // 3. Resolve baseText safely (avoiding async React state delay)
-      const effectiveBaseText =
-        formData.baseText || allFilesToProcess[0].file.name;
-      if (!formData.baseText) {
-        setFormData((prev) => ({ ...prev, baseText: effectiveBaseText }));
-      }
+        // 2. Collect user files and filenames
+        const allFilesToProcess: { file: File; section?: string }[] = [];
+        let baseTextFiles: File[] = [];
 
-      // Extract file names (strings) instead of passing raw File objects
-      const baseTextListNames = baseTextFiles.map((f) => f.name);
+        if (formData.multi) {
+          const subKeys = Object.keys(formData.subsections);
+          subKeys.forEach((subName) => {
+            formData.subsections[subName].forEach((f: File) => {
+              allFilesToProcess.push({ file: f, section: subName });
+            });
+          });
+          if (subKeys.length > 0) {
+            baseTextFiles = formData.subsections[subKeys[0]];
+          }
+        } else {
+          formData.files.forEach((f: File) =>
+            allFilesToProcess.push({ file: f }),
+          );
+          baseTextFiles = formData.files;
+        }
+
+        
+
+        if (allFilesToProcess.length === 0) {
+          alert("No files selected for alignment.");
+          return;
+        }
+
+        setAllBaseTexts((prev) => [...prev, ...baseTextFiles]);
+
+        // Write physical files into Pyodide's Virtual FS
+        for (const item of allFilesToProcess) {
+          const arrayBuffer = await item.file.arrayBuffer();
+          const path = item.section
+            ? `${targetDir}/${item.section}/${item.file.name}`
+            : `${targetDir}/transcriptions/${item.file.name}`;
+
+          const dirPath = path.substring(0, path.lastIndexOf("/"));
+          try {
+            pyodide.FS.mkdirTree(dirPath);
+          } catch (e) { }
+          pyodide.FS.writeFile(path, new Uint8Array(arrayBuffer));
+        }
+    }
+      
+    
+      let effectiveBaseText = formData.baseText
+      let i = 0
+      if (formData.multi) {
+        const subKeys = Object.keys(formData.subsections);
+        const usedPrefixes = new Set(
+          Array.from(prevBaseTexts).map((item) => item.split("_")[0])
+        );
+        effectiveBaseText = (formData.baseText.length>0 && !usedPrefixes.has(formData.baseText.split("_")[0]))? formData.baseText : (formData.subsections[subKeys[0]].find(
+          (f) => !f.name.toLowerCase().includes("description") && !usedPrefixes.has(f.name.split("_")[0])
+        )).name
+      } else {
+        effectiveBaseText = (formData.baseText.length>0 && !prevBaseTexts.has(formData.baseText)) ? formData.baseText : (formData.files.find(
+        (f) => !f.name.toLowerCase().includes("description") && !prevBaseTexts.has(f.name)
+      )).name
+      }
+      
+      // while (effectiveBaseText.toLowerCase().includes("description") || prevBaseTexts.includes(effectiveBaseText)) {
+      //   effectiveBaseText = formData.files[i+1].name || formData.subsections[subKeys[0]][i+1].name;
+      //   i++
+      // }
+      
+      setFormData((prev) => ({ ...prev, baseText: effectiveBaseText }));
+      
+      setPrevBaseTexts((prev) => new Set(prev).add(effectiveBaseText));
+      
+
+      // // Extract file names (strings) instead of passing raw File objects
+      // const baseTextListNames = baseTextFiles.map((f) => f.name);
 
       // 4. Bind JS variables directly to Pyodide globals
       pyodide.globals.set("js_settings", pyodide.toPy(formData.settings || {}));
       pyodide.globals.set("js_algorithm", formData.algorithm || "");
       pyodide.globals.set("js_base_text", effectiveBaseText);
       pyodide.globals.set("js_multi", Boolean(formData.multi));
-      pyodide.globals.set("js_base_text_list", pyodide.toPy(baseTextListNames));
+      // pyodide.globals.set("js_base_text_list", pyodide.toPy(baseTextListNames));
       console.log(
         "Pyodide MEMFS targetDir contents:",
         pyodide.FS.readdir(targetDir),
@@ -548,8 +581,7 @@ results = main.run_in_browser_process(
     settings=settings,
     file_dir="/tmp/input_files",
     base_text=js_base_text,
-    multi=js_multi,
-    base_text_list=js_base_text_list
+    multi=js_multi
 )
 
 if results is None:
@@ -576,7 +608,17 @@ results
         settings: { ...prev.settings, isPlot: resultObj.is_plot },
       }));
 
-      handleStepChange(currentStep + 1);
+      
+      setAllResults((prev) => ([
+        ...prev,
+        {
+          baseText: effectiveBaseText,
+          records: resultObj.records,
+          alignments: resultObj.output_logs
+        }
+      ]))
+
+      handleStepChange(3);
     } catch (error) {
       console.error("Browser alignment error:", error);
     } finally {
@@ -637,13 +679,16 @@ results
   //   }
   // };
 
+
+
   const generateSpreadsheet = async () => {
-     if (!pyodide || !webR) {
+    setIsProcessing(true)
+    if (!pyodide || !webR) {
       alert("WebAssembly engines are still loading. Please wait a moment.");
       return;
     }
 
-    
+
 
     try {
       // ------------------------------------------------------------------
@@ -654,26 +699,35 @@ results
         pyodide.FS.mkdir("/tmp");
       }
 
+      let allRecords = []
+      allResults.map((dict)=> {
+        allRecords.push(dict.records)
+      })
+
+      allRecords = allRecords.flat()
+
       // ------------------------------------------------------------------
       // 2. RUN PYTHON ALIGNMENT SCRIPT (IF NOT ALREADY EXECUTED)
       // ------------------------------------------------------------------
       // Ensure python outputs directly to /tmp/alignment_matrix.xlsx
-      pyodide.globals.set("js_records", pyodide.toPy(results.records || {}));
-      await pyodide.runPythonAsync(`
+      // pyodide.globals.set("js_records", pyodide.toPy(results.records || {}));
+      pyodide.globals.set("js_records", pyodide.toPy(allRecords || {}));
+      const plotResultPy = await pyodide.runPythonAsync(`
       import os
       import pandas as pd
       import main
 
-      plot_results = main.generate_spreadsheet(
-      algorithm=js_algorithm,
-          settings=settings,
-          root_dir="/tmp/input_files",
-          base_text=js_base_text,
-          base_text_list=js_base_text_list,
-      records=js_records)
+      # plot_results = main.generate_spreadsheet(
+      # algorithm=js_algorithm,
+      #     settings=settings,
+      #     root_dir="/tmp/input_files",
+      #     base_text=js_base_text,
+      #     base_text_list=js_base_text_list,
+      # records=js_records)
 
 
-      records = plot_results["records"]
+      # records = plot_results["records"]
+      records = js_records
       filtered_records = [
           {key: value for key, value in d.items() if key not in ("OrigScore", "TextNamePair")} 
           for d in records
@@ -701,90 +755,126 @@ results
           df = df[sorted_columns]
 
       df.to_excel("/tmp/alignment_matrix.xlsx")
+      records
 
+      `);
 
-      `); } catch (error: any) {
-            console.error("Plot generation error:", error);
-            alert(`Plot generation failed: ${error.message || String(error)}`);
-          } 
+      const plotResultObj = plotResultPy.toJs({ dict_converter: Object.fromEntries });
+
+      setPlotResults({
+        status: "success",
+        algorithm: formData.algorithm,
+        records: plotResultObj || [],
+      });
+
+    } catch (error: any) {
+      console.error("Plot generation error:", error);
+      alert(`Plot generation failed: ${error.message || String(error)}`);
+      setIsProcessing(false)
+    }
   }
+
+  const [tsneRun, setTsneRun] = useState(false)
+  const [plotResults, setPlotResults] = useState<any>(null);
+
   const handlePlot = async () => {
     setIsProcessing(true);
-     if (!pyodide || !webR) {
+    if (!pyodide || !webR) {
       alert("WebAssembly engines are still loading. Please wait a moment.");
+      setIsProcessing(false)
       return;
     }
-
-      // ------------------------------------------------------------------
-      // 3. VERIFY FILE EXISTS IN PYODIDE FS BEFORE READING
-      // ------------------------------------------------------------------
-      let targetFile = "";
+    // ------------------------------------------------------------------
+    // 3. VERIFY FILE EXISTS IN PYODIDE FS BEFORE READING
+    // ------------------------------------------------------------------
+    let targetFile = "";
+    if (pyodide.FS.analyzePath("/tmp/alignment_matrix.xlsx").exists) {
+      targetFile = "/tmp/alignment_matrix.xlsx";
+    } else if (pyodide.FS.analyzePath("alignment_matrix.xlsx").exists) {
+      targetFile = "alignment_matrix.xlsx";
+    } else {
+      await generateSpreadsheet()
       if (pyodide.FS.analyzePath("/tmp/alignment_matrix.xlsx").exists) {
         targetFile = "/tmp/alignment_matrix.xlsx";
       } else if (pyodide.FS.analyzePath("alignment_matrix.xlsx").exists) {
         targetFile = "alignment_matrix.xlsx";
       } else {
-        await generateSpreadsheet()
-        if (pyodide.FS.analyzePath("/tmp/alignment_matrix.xlsx").exists) {
-        targetFile = "/tmp/alignment_matrix.xlsx";
-      } else if (pyodide.FS.analyzePath("alignment_matrix.xlsx").exists) {
-        targetFile = "alignment_matrix.xlsx";
-      } else {
+        setIsProcessing(false)
         throw new Error(
-          "alignment_matrix.xlsx was not found in Pyodide filesystem. " 
+          
+          "alignment_matrix.xlsx was not found in Pyodide filesystem. "
         );
-      }
-
         
       }
 
-      // Read binary data from Pyodide
-      const excelBinary: Uint8Array = pyodide.FS.readFile(targetFile);
 
-      // ------------------------------------------------------------------
-      // 4. SAFELY ENSURE /tmp DIRECTORY EXISTS IN WEBR
-      // ------------------------------------------------------------------
-      try {
-        await webR.FS.mkdir("/tmp");
-      } catch (e) {
-        // Ignore error if /tmp already exists in WebR
-      }
+    }
 
-      // Copy matrix over to WebR
-      await webR.FS.writeFile("/tmp/alignment_matrix.xlsx", excelBinary);
+    // Read binary data from Pyodide
+    const excelBinary: Uint8Array = pyodide.FS.readFile(targetFile);
 
-      // ------------------------------------------------------------------
-      // 5. EXECUTE t-SNE IN WEBR
-      // ------------------------------------------------------------------
-      const rCommand = `
-      source('/tmp/t-SNE.R')
-      run_tsne_browser(
-        df = '/tmp/alignment_matrix.xlsx',
-        perplexity = ${formData.plotSettings.perplexity},
-        theta = ${formData.plotSettings.theta},
-        plot_type = '${formData.plotSettings.plotType}',
-        colors = '${formData.plotSettings.colors}',
-        color_text = '${formData.plotSettings.colorText}'
-      )
-    `;
+    // ------------------------------------------------------------------
+    // 4. SAFELY ENSURE /tmp DIRECTORY EXISTS IN WEBR
+    // ------------------------------------------------------------------
+    try {
+      await webR.FS.mkdir("/tmp");
+    } catch (e) {
+      // Ignore error if /tmp already exists in WebR
+    }
 
-      const rOutput = await webR.evalR(rCommand);
-      const resultValue = await rOutput.toJs();
-      const resultString = (resultValue.values?.[0] || resultValue) as string;
+    // Copy matrix over to WebR
+    await webR.FS.writeFile("/tmp/alignment_matrix.xlsx", excelBinary);
 
-      if (resultString.startsWith("data:image")) {
-        // Static 3D/2D base64 image
-        setPlotUrl(resultString);
-      } else {
-        // Interactive HTML string via iframe
-        const htmlBytes = await webR.FS.readFile("/tmp/plot.html");
-        const htmlText = new TextDecoder().decode(htmlBytes);
-        setPlotUrl(htmlText);
-      }
-      setIsProcessing(false)
-      // Advance to plot step
-      handleStepChange(5);
-    
+    // ------------------------------------------------------------------
+    // 5. EXECUTE t-SNE IN WEBR
+    // ------------------------------------------------------------------
+
+    // if (!tsneRun) {
+    //   const rCom = `
+    //     source('/tmp/t-SNE.R')
+    //     tsne_cached_res <<- run_tsne(
+    //       df = '/tmp/alignment_matrix.xlsx',
+    //       perplexity = ${formData.plotSettings.perplexity},
+    //       theta = ${formData.plotSettings.theta},
+    //       colors = '${formData.plotSettings.colors}'
+    //     )
+    //   `;
+    //   await webR.evalR(rCom);
+    //   setTsneRun(true);
+    // }
+
+
+    const rCommand = `
+        source('/tmp/t-SNE.R')
+        run_tsne_browser(
+          df = '/tmp/alignment_matrix.xlsx',
+          perplexity = ${formData.plotSettings.perplexity},
+          theta = ${formData.plotSettings.theta},
+          plot_type = '${formData.plotSettings.plotType}',
+          colors = '${formData.plotSettings.colors}',
+          color_text = '${formData.plotSettings.colorText}'
+        )
+      `;
+
+    const rOutput = await webR.evalR(rCommand);
+    const resultValue = await rOutput.toJs();
+    const resultString = (resultValue.values?.[0] || resultValue) as string;
+
+
+    setPlotUrl(resultString);
+    // if (resultString.startsWith("data:image")) {
+    //   // Static 3D/2D base64 image
+    //   setPlotUrl(resultString);
+    // } else {
+    //   // Interactive HTML string via iframe
+    //   const htmlBytes = await webR.FS.readFile("/tmp/plot.html");
+    //   const htmlText = new TextDecoder().decode(htmlBytes);
+    //   setPlotUrl(htmlText);
+    // }
+    setIsProcessing(false)
+    // Advance to plot step
+    handleStepChange(5);
+
   };
   const [downloadedFiles, setDownloadedFiles] = useState([]);
   const handleDownload = async () => {
@@ -946,23 +1036,24 @@ results
 
   const rtlLangs = /[\p{sc=Hebrew}\p{sc=Arabic}\p{sc=Syriac}\p{sc=Thaana}\p{sc=Nko}]/u;
 
-  
-  const AlignmentsDoc = () =>{ 
-    const rtlTested =rtlLangs.test(results.output_logs) ? "rtl" : "ltr"
+
+  const AlignmentsDoc = () => {
+    const rtlTested = rtlLangs.test(results.output_logs) ? "rtl" : "ltr"
     return (
-    <Document>
-      <Page size="A4">
-        <View wrap style={tw("p-10")}>
-          <Text style={tw("text-lg text-center font-mono")}>Alignment Results</Text>
-          {results.output_logs.split("\n").map((line, index) => (
-            <Text key={index} style={[tw("font-mono text-justify text-sm"), { direction: rtlTested }]}>
-              {line || " "}
-            </Text>
-          ))}
-        </View>
-      </Page>
-    </Document>
-  );}
+      <Document>
+        <Page size="A4">
+          <View wrap style={tw("p-10")}>
+            <Text style={tw("text-lg text-center font-mono")}>Alignment Results</Text>
+            {results.output_logs.split("\n").map((line, index) => (
+              <Text key={index} style={[tw("font-mono text-justify text-sm"), { direction: rtlTested }]}>
+                {line || " "}
+              </Text>
+            ))}
+          </View>
+        </Page>
+      </Document>
+    );
+  }
   const months = [
     "January",
     "February",
@@ -992,7 +1083,7 @@ results
         return true;
       }
     };
-    const recs = results.records.filter(recsFilter);
+    const recs = plotResults.records.filter(recsFilter);
 
     return (
       <Document>
@@ -1116,7 +1207,7 @@ results
 
   const plotRef = useRef(null);
 
-  
+
 
   // const download3dPlot = () => {
   //   // 1. Target the iframe's document
@@ -1214,16 +1305,16 @@ results
 
   const totalFilesCount = formData.multi
     ? Object.keys(formData.subsections).reduce(
-        (acc, key) => acc + formData.subsections[key].length,
-        0,
-      )
+      (acc, key) => acc + formData.subsections[key].length,
+      0,
+    )
     : formData.files.length;
 
-    const clearAll = async () => {
-      // 1. Clear /tmp in Pyodide (Python)
-      if (pyodide) {
-        try {
-              await pyodide.runPythonAsync(`
+  const clearAll = async () => {
+    // 1. Clear /tmp in Pyodide (Python)
+    if (pyodide) {
+      try {
+        await pyodide.runPythonAsync(`
         import os, shutil
         if os.path.exists('/tmp'):
             for item in os.listdir('/tmp'):
@@ -1236,34 +1327,34 @@ results
                 except Exception as e:
                     print(f"[Pyodide] Failed to delete {item_path}: {e}")
         `);
-              console.log("[Pyodide] /tmp directory cleared successfully.");
-            } catch (e) {
-              console.warn("Failed to clear Pyodide /tmp:", e);
-            }
-          }
+        console.log("[Pyodide] /tmp directory cleared successfully.");
+      } catch (e) {
+        console.warn("Failed to clear Pyodide /tmp:", e);
+      }
+    }
 
-          // 2. Clear /tmp in WebR (R)
-          if (webR) {
-            try {
-              await webR.evalR(`
+    // 2. Clear /tmp in WebR (R)
+    if (webR) {
+      try {
+        await webR.evalR(`
         if (dir.exists('/tmp')) {
           # Delete all files and subdirectories inside /tmp without deleting /tmp itself
           unlink('/tmp/*', recursive = TRUE)
         }
         `);
-              console.log("[WebR] /tmp directory cleared successfully.");
-            } catch (e) {
-              console.warn("Failed to clear WebR /tmp:", e);
-            }
-          }
-          setFormData((prev)=>({
-            ...prev,
-            subsections: {},
-            files: [],
-            baseText: ""
-          }))
+        console.log("[WebR] /tmp directory cleared successfully.");
+      } catch (e) {
+        console.warn("Failed to clear WebR /tmp:", e);
+      }
+    }
+    setFormData((prev) => ({
+      ...prev,
+      subsections: {},
+      files: [],
+      baseText: ""
+    }))
 
-    };
+  };
 
   return (
     <div className="bg-white w-screen h-screen flex flex-col items-center place-content-center content-center justify-items-center justify-content-center">
@@ -1274,12 +1365,12 @@ results
             <div className="gap-5 h-full">
               <h1 className="text-3xl font-bold text-gray-800 pt-10 pb-10">
                 {/* Change the title here */}
-                Welcome to the TEXTEVOLVE Data Analysis Tool 
+                Welcome to the TEXTEVOLVE Data Analysis Tool
               </h1>
               <div className="text-base pt-2 gap-2 text-cyan-700 shadow-lg/40 w-full h-8/10  rounded-lg p-5  overflow-auto">
-                          <p className="text-lg font-medium">Description</p>
-                      
-                        </div>
+                <p className="text-lg font-medium">Description</p>
+
+              </div>
             </div>
             <div className="flex flex-row justify-end">
               <button
@@ -1298,27 +1389,24 @@ results
                 <button
                   type="button"
                   onClick={() => handleStepSkip(1)}
-                  className={`${furthestStep >= 1 ? "cursor-pointer" : ""} ${
-                    currentStep >= 1 ? "text-cyan-600 font-bold" : ""
-                  }`}
+                  className={`${furthestStep >= 1 ? "cursor-pointer" : ""} ${currentStep >= 1 ? "text-cyan-600 font-bold" : ""
+                    }`}
                 >
                   Upload Files
                 </button>
                 <button
                   type="button"
                   onClick={() => handleStepSkip(2)}
-                  className={`${furthestStep >= 2 ? "cursor-pointer" : ""} ${
-                    currentStep >= 2 ? "text-cyan-600 font-bold" : ""
-                  }`}
+                  className={`${furthestStep >= 2 ? "cursor-pointer" : ""} ${currentStep >= 2 ? "text-cyan-600 font-bold" : ""
+                    }`}
                 >
                   Select Algorithm
                 </button>
                 <button
                   type="button"
                   onClick={() => handleStepSkip(3)}
-                  className={`${furthestStep >= 3 ? "cursor-pointer" : ""} ${
-                    currentStep >= 3 ? "text-cyan-600 font-bold" : ""
-                  }`}
+                  className={`${furthestStep >= 3 ? "cursor-pointer" : ""} ${currentStep >= 3 ? "text-cyan-600 font-bold" : ""
+                    }`}
                 >
                   View Alignment
                 </button>
@@ -1326,18 +1414,16 @@ results
                 <button
                   type="button"
                   onClick={() => handleStepSkip(4)}
-                  className={`${furthestStep >= 4 ? "cursor-pointer" : ""} ${
-                    currentStep >= 4 ? "text-cyan-600 font-bold" : ""
-                  }`}
+                  className={`${furthestStep >= 4 ? "cursor-pointer" : ""} ${currentStep >= 4 ? "text-cyan-600 font-bold" : ""
+                    }`}
                 >
                   Adjust Plot Settings
                 </button>
                 <button
                   type="button"
                   onClick={() => handleStepSkip(5)}
-                  className={`${furthestStep >= 5 ? "cursor-pointer" : ""} ${
-                    currentStep >= 5 ? "text-cyan-600 font-bold" : ""
-                  }`}
+                  className={`${furthestStep >= 5 ? "cursor-pointer" : ""} ${currentStep >= 5 ? "text-cyan-600 font-bold" : ""
+                    }`}
                 >
                   View Plot
                 </button>
@@ -1345,9 +1431,8 @@ results
                 <button
                   type="button"
                   onClick={() => handleStepSkip(6)}
-                  className={`${furthestStep >= 6 ? "cursor-pointer" : ""} ${
-                    currentStep >= 6 ? "text-cyan-600 font-bold" : ""
-                  }`}
+                  className={`${furthestStep >= 6 ? "cursor-pointer" : ""} ${currentStep >= 6 ? "text-cyan-600 font-bold" : ""
+                    }`}
                 >
                   View Report
                 </button>
@@ -1362,55 +1447,55 @@ results
             {/* STEP 1: UPLOAD FILES */}
             {currentStep === 1 && (
               <div className="flex flex-col justify-between pt-10 h-10/10">
-                
+
                 <div className="h-10/10">
                   {formData.multi === null && (
-                    
+
                     <div className=" h-10/10 ">
                       <h2 className="text-3xl font-bold text-gray-800">
-                  Choose Comparison Type
-                </h2>
+                        Choose Comparison Type
+                      </h2>
                       <div className="h-full flex flex-col place-content-start">
                         <h1 className="text-2xl leading-[2] pt-12 font-semibold text-cyan-600 overflow-wrap">
-                          
+
                           Please begin by selecting whether you want to compare:
-                          
-                            </h1>
-                            <div className="flex flex-row h-full gap-5 justify-between w-full">
-                              <div className="flex flex-col w-5/10 gap-5">
-                          <button
-                            type="button"
-                            onClick={() =>
-                              setFormData((prev) => ({ ...prev, multi: false }))
-                            }
-                            className="px-5 py-2 bg-cyan-600 text-white text-lg  font-semibold rounded-lg hover:bg-cyan-700 disabled:bg-gray-400 disabled:cursor-not-allowed transition"
-                          >
-                            Entire Texts
-                          </button>
-                          
-                          <div className="text-base pt-2 gap-2 text-cyan-700 shadow-lg/40  rounded-lg p-5 h-9/10  overflow-auto">
-                          <p className="text-lg font-medium">Description</p>
-                      
-                        </div>
-                        </div>
-                          
+
+                        </h1>
+                        <div className="flex flex-row h-full gap-5 justify-between w-full">
+                          <div className="flex flex-col w-5/10 gap-5">
+                            <button
+                              type="button"
+                              onClick={() =>
+                                setFormData((prev) => ({ ...prev, multi: false }))
+                              }
+                              className="px-5 py-2 bg-cyan-600 text-white text-lg  font-semibold rounded-lg hover:bg-cyan-700 disabled:bg-gray-400 disabled:cursor-not-allowed transition"
+                            >
+                              Entire Texts
+                            </button>
+
+                            <div className="text-base pt-2 gap-2 text-cyan-700 shadow-lg/40  rounded-lg p-5 h-9/10  overflow-auto">
+                              <p className="text-lg font-medium">Description</p>
+
+                            </div>
+                          </div>
+
                           <div className="flex flex-col w-5/10 h-full gap-5">
-                          <button
-                            type="button"
-                            onClick={() =>
-                              setFormData((prev) => ({ ...prev, multi: true }))
-                            }
-                            className="px-5 py-2 bg-cyan-600 text-white text-lg font-semibold rounded-lg hover:bg-cyan-700 disabled:bg-gray-400 disabled:cursor-not-allowed transition"
-                          >
-                            Subsections of Texts
-                          </button>
-                          <div className="text-base pt-2 gap-2 text-cyan-700 shadow-lg/40 rounded-lg p-5 h-9/10 overflow-auto">
-                          <p className="text-lg h-full font-medium">Description</p>
-                      
+                            <button
+                              type="button"
+                              onClick={() =>
+                                setFormData((prev) => ({ ...prev, multi: true }))
+                              }
+                              className="px-5 py-2 bg-cyan-600 text-white text-lg font-semibold rounded-lg hover:bg-cyan-700 disabled:bg-gray-400 disabled:cursor-not-allowed transition"
+                            >
+                              Subsections of Texts
+                            </button>
+                            <div className="text-base pt-2 gap-2 text-cyan-700 shadow-lg/40 rounded-lg p-5 h-9/10 overflow-auto">
+                              <p className="text-lg h-full font-medium">Description</p>
+
+                            </div>
+                          </div>
                         </div>
-                        </div>
-                        </div>
-                      
+
                       </div>
                       <div className="flex flex-row place-content-start pt-2">
                         <button
@@ -1427,8 +1512,8 @@ results
                   {formData.multi === true && (
                     <div className="flex flex-col gap-4 w-full h-full pt-10">
                       <h2 className="text-3xl font-bold text-gray-800">
-                  Upload Transcriptions
-                </h2>
+                        Upload Transcriptions
+                      </h2>
                       {/* TOP PANEL: CONTROL BAR & SUBSECTION LIST */}
                       <div className="border-2 border-dashed border-gray-300 flex-col overflow-auto h-full p-4 text-gray-500 w-full rounded-lg bg-gray-50 flex items-start justify-start">
                         {/* Subsection Creator Header */}
@@ -1472,7 +1557,7 @@ results
                               onClick={() => {
                                 clearAll()
                                 setCount(1);
-                                
+
                               }}
                               className="hover:bg-gray-200/70 p-1 rounded-sm text-red-600 font-bold cursor-pointer flex flex-row items-center gap-1 text-[0.8rem]"
                             >
@@ -1572,13 +1657,12 @@ results
                       {/* MAIN UNIFIED CONTAINER */}
                       <div
                         {...getRootProps()}
-                        className={`border-2 border-dashed border-gray-300 flex-col overflow-auto h-full p-4 text-gray-500 w-full rounded-lg bg-gray-50 flex items-start justify-start transition ${
-                          isDragReject
+                        className={`border-2 border-dashed border-gray-300 flex-col overflow-auto h-full p-4 text-gray-500 w-full rounded-lg bg-gray-50 flex items-start justify-start transition ${isDragReject
                             ? "border-red-500 text-red-600 bg-red-50"
                             : isDragActive
                               ? "border-cyan-500 text-cyan-600 bg-cyan-50"
                               : ""
-                        }`}
+                          }`}
                       >
                         <input {...getInputProps()} />
 
@@ -1678,11 +1762,10 @@ results
                                 return (
                                   <li
                                     key={`${file.name}-${fileIndex}`}
-                                    className={`flex items-center justify-between px-2 py-1 rounded border text-[0.8rem] ${
-                                      isBase
+                                    className={`flex items-center justify-between px-2 py-1 rounded border text-[0.8rem] ${isBase
                                         ? "bg-cyan-100/60 border-cyan-300"
                                         : "bg-gray-50 border-gray-100 hover:bg-gray-100"
-                                    }`}
+                                      }`}
                                   >
                                     <button
                                       type="button"
@@ -1752,7 +1835,7 @@ results
               </div>
             )}
             {/* SELECT ALGORITHM */}
-            {currentStep === 2 && (
+            {((currentStep === 2) || (currentStep===2.5)) && (
               <div className=" h-full w-full place-content-center flex flex-col">
                 <h2 className="text-4xl font-bold text-gray-700 pt-10 ">
                   Select Algorithm
@@ -1822,131 +1905,54 @@ results
                             {/* Needleman-Wunsch Settings */}
                             {(formData.algorithm === "ndw" ||
                               formData.algorithm === "sw") && (
-                              <div className="flex flex-row gap-3 content-center">
-                                <div className="w-5/10">
-                                  {/* Match Bonus*/}
-                                  <div className="flex justify-between items-center text-md font-medium text-gray-700">
-                                    <label htmlFor="matchBonus">
-                                      Match Bonus
-                                    </label>
-                                  </div>
+                                <div className="flex flex-row gap-3 content-center">
+                                  <div className="w-5/10">
+                                    {/* Match Bonus*/}
+                                    <div className="flex justify-between items-center text-md font-medium text-gray-700">
+                                      <label htmlFor="matchBonus">
+                                        Match Bonus
+                                      </label>
+                                    </div>
 
-                                  <input
-                                    id="matchBonus"
-                                    type="number"
-                                    value={
-                                      Number.isNaN(formData.settings.matchBonus)
-                                        ? ""
-                                        : formData.settings.matchBonus
-                                    }
-                                    onChange={(e) =>
-                                      handleSettingChange(
-                                        "matchBonus",
-                                        isNaN(e.target.valueAsNumber)
-                                          ? null
-                                          : e.target.valueAsNumber < 0
-                                            ? -e.target.valueAsNumber
-                                            : e.target.valueAsNumber,
-                                      )
-                                    }
-                                    className="block w-full pl-3 pr-10 py-2 text-[0.8rem] bg-white rounded-md shadow-sm appearance-none focus:outline-none focus:shadow-md text-gray-700/60 focus:text-gray-700 focus:shadow-gray-700/70 sm:text-[0.8rem] transition-colors"
-                                  />
-
-                                  {/* Gap Penalty */}
-                                  <div className="flex justify-between items-center text-md font-medium text-gray-700">
-                                    <label htmlFor="gapPenalty">
-                                      Gap Penalty
-                                    </label>
-                                  </div>
-                                  <div className="flex flex-row text-gray-500 text-lg place-items-center gap-1">
                                     <input
-                                      id="gapPenalty"
+                                      id="matchBonus"
                                       type="number"
                                       value={
-                                        isNaN(formData.settings.gapPenalty)
+                                        Number.isNaN(formData.settings.matchBonus)
                                           ? ""
-                                          : formData.settings.gapPenalty
+                                          : formData.settings.matchBonus
                                       }
                                       onChange={(e) =>
                                         handleSettingChange(
-                                          "gapPenalty",
+                                          "matchBonus",
                                           isNaN(e.target.valueAsNumber)
                                             ? null
                                             : e.target.valueAsNumber < 0
-                                              ? e.target.valueAsNumber
-                                              : -e.target.valueAsNumber,
+                                              ? -e.target.valueAsNumber
+                                              : e.target.valueAsNumber,
                                         )
                                       }
                                       className="block w-full pl-3 pr-10 py-2 text-[0.8rem] bg-white rounded-md shadow-sm appearance-none focus:outline-none focus:shadow-md text-gray-700/60 focus:text-gray-700 focus:shadow-gray-700/70 sm:text-[0.8rem] transition-colors"
                                     />
-                                  </div>
-                                  {/* Mismatch Penalty */}
-                                  <div className="flex justify-between items-center text-md font-medium text-gray-700">
-                                    <label htmlFor="mismatchPenalty">
-                                      Mismatch Penalty
-                                    </label>
-                                  </div>
 
-                                  <input
-                                    id="mismatchPenalty"
-                                    type="number"
-                                    value={
-                                      isNaN(formData.settings.mismatchPenalty)
-                                        ? ""
-                                        : formData.settings.mismatchPenalty
-                                    }
-                                    onChange={(e) =>
-                                      handleSettingChange(
-                                        "mismatchPenalty",
-                                        isNaN(e.target.valueAsNumber)
-                                          ? null
-                                          : e.target.valueAsNumber < 0
-                                            ? e.target.valueAsNumber
-                                            : -e.target.valueAsNumber,
-                                      )
-                                    }
-                                    className="block w-full pl-3 pr-10 py-2 text-[0.8rem] bg-white rounded-md shadow-sm appearance-none focus:outline-none focus:shadow-md text-gray-700/60 focus:text-gray-700 focus:shadow-gray-700/70 sm:text-[0.8rem] transition-colors"
-                                  />
-                                  <div className="flex flex-row gap-3 content-center items-center text-md pt-2 font-medium text-gray-700">
-                                    <input
-                                      type="checkbox"
-                                      checked={formData.settings.spaceStrip}
-                                      onChange={(handleSpaceStrip)}
-                                      className={`rounded-full  accent-cyan-500 text-white border-1 border-none shadow-sm shadow-gray-700/70 hover:shadow-md outline-none w-4 h-4 appearance-none 
-                  ${formData.settings.spaceStrip ? "bg-cyan-700 inset-shadow-xs inset-shadow-cyan-200" : "bg-white"}`}
-                                    />
-                                    <label className="">
-                                      <div className="">
-                                        Remove Whitespace From Text
-                                      </div>
-                                    </label>
-                                  </div>
-                                </div>
-                                <div className="w-6/10">
-                                  {/* Optional Special Character Bonus */}
-                                  <p className="font-medium text-[1.1rem] text-cyan-800 pb-1">
-                                    Optional Settings
-                                  </p>
-                                  {formData.algorithm === "ndw" && (
-                                    <div>
-                                      {/* Affine Gap Penalty */}
-                                      <div className="flex justify-between items-center text-md font-medium text-gray-700">
-                                        <label htmlFor="affinePenalty">
-                                          Affine Penalty
-                                        </label>
-                                      </div>
-
+                                    {/* Gap Penalty */}
+                                    <div className="flex justify-between items-center text-md font-medium text-gray-700">
+                                      <label htmlFor="gapPenalty">
+                                        Gap Penalty
+                                      </label>
+                                    </div>
+                                    <div className="flex flex-row text-gray-500 text-lg place-items-center gap-1">
                                       <input
-                                        id="affinePenalty"
+                                        id="gapPenalty"
                                         type="number"
                                         value={
-                                          isNaN(formData.settings.affinePenalty)
+                                          isNaN(formData.settings.gapPenalty)
                                             ? ""
-                                            : formData.settings.affinePenalty
+                                            : formData.settings.gapPenalty
                                         }
                                         onChange={(e) =>
                                           handleSettingChange(
-                                            "affinePenalty",
+                                            "gapPenalty",
                                             isNaN(e.target.valueAsNumber)
                                               ? null
                                               : e.target.valueAsNumber < 0
@@ -1957,174 +1963,251 @@ results
                                         className="block w-full pl-3 pr-10 py-2 text-[0.8rem] bg-white rounded-md shadow-sm appearance-none focus:outline-none focus:shadow-md text-gray-700/60 focus:text-gray-700 focus:shadow-gray-700/70 sm:text-[0.8rem] transition-colors"
                                       />
                                     </div>
-                                  )}
-                                  {/* Label */}
-                                  <label
-                                    htmlFor="special"
-                                    className="block text-md font-medium text-gray-700 place-content-start"
-                                  >
-                                    Optional Special Character Bonus
-                                  </label>
+                                    {/* Mismatch Penalty */}
+                                    <div className="flex justify-between items-center text-md font-medium text-gray-700">
+                                      <label htmlFor="mismatchPenalty">
+                                        Mismatch Penalty
+                                      </label>
+                                    </div>
 
-                                  {/* Select Container with Custom Arrow */}
-                                  <div className="relative">
-                                    <select
-                                      id="special"
-                                      className="block w-full pl-3 pr-10 py-2 text-[0.8rem] bg-white rounded-md shadow-sm appearance-none focus:outline-none focus:shadow-md text-gray-700/60 focus:text-gray-700 focus:shadow-gray-700/70 sm:text-[0.8rem] cursor-pointer transition-colors"
-                                      value={formData.settings.special.join(
-                                        ",",
-                                      )}
-                                      onChange={(e) => {
-                                        const val = e.target.value;
-                                        if (!val) {
-                                          handleSettingChange("special", []);
-                                          handleSettingChange(
-                                            "specialOther",
-                                            false,
-                                          );
-                                        } else if (val === "Other") {
-                                          handleSettingChange("special", [
-                                            "Other",
-                                          ]);
-                                          handleSettingChange(
-                                            "specialOther",
-                                            true,
-                                          );
-                                        } else {
-                                          // Split the comma-separated value string into a clean array
-                                          handleSettingChange(
-                                            "special",
-                                            val.split(","),
-                                          );
-                                          handleSettingChange(
-                                            "specialOther",
-                                            false,
-                                          );
-                                        }
-                                      }}
-                                    >
-                                      <option
-                                        value=""
-                                        className="text-gray-400/20"
-                                      >
-                                        None
-                                      </option>
-                                      {/* Pass standard comma-separated strings as values */}
-                                      <option
-                                        value="ך,ם,ן,ף,ץ"
-                                        className="text-gray-800"
-                                      >
-                                        Sofit Letters
-                                      </option>
-                                      <option
-                                        value="A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z"
-                                        className="text-gray-800"
-                                      >
-                                        Capital Letters (Latin Alphabet)
-                                      </option>
-                                      <option
-                                        value="Other"
-                                        className="text-gray-800"
-                                      >
-                                        Custom
-                                      </option>
-                                    </select>
-                                    {/* Custom Dropdown Chevron Icon */}
-                                    <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-3 text-gray-500">
-                                      <svg
-                                        className="w-4 h-4"
-                                        fill="none"
-                                        stroke="currentColor"
-                                        viewBox="0 0 24 24"
-                                      >
-                                        <path
-                                          strokeLinecap="round"
-                                          strokeLinejoin="round"
-                                          strokeWidth={2}
-                                          d="M19 9l-7 7-7-7"
-                                        />
-                                      </svg>
+                                    <input
+                                      id="mismatchPenalty"
+                                      type="number"
+                                      value={
+                                        isNaN(formData.settings.mismatchPenalty)
+                                          ? ""
+                                          : formData.settings.mismatchPenalty
+                                      }
+                                      onChange={(e) =>
+                                        handleSettingChange(
+                                          "mismatchPenalty",
+                                          isNaN(e.target.valueAsNumber)
+                                            ? null
+                                            : e.target.valueAsNumber < 0
+                                              ? e.target.valueAsNumber
+                                              : -e.target.valueAsNumber,
+                                        )
+                                      }
+                                      className="block w-full pl-3 pr-10 py-2 text-[0.8rem] bg-white rounded-md shadow-sm appearance-none focus:outline-none focus:shadow-md text-gray-700/60 focus:text-gray-700 focus:shadow-gray-700/70 sm:text-[0.8rem] transition-colors"
+                                    />
+                                    <div className="flex flex-row gap-3 content-center items-center text-md pt-2 font-medium text-gray-700">
+                                      <input
+                                        type="checkbox"
+                                        checked={formData.settings.spaceStrip}
+                                        onChange={(handleSpaceStrip)}
+                                        className={`rounded-full  accent-cyan-500 text-white border-1 border-none shadow-sm shadow-gray-700/70 hover:shadow-md outline-none w-4 h-4 appearance-none 
+                  ${formData.settings.spaceStrip ? "bg-cyan-700 inset-shadow-xs inset-shadow-cyan-200" : "bg-white"}`}
+                                      />
+                                      <label className="">
+                                        <div className="">
+                                          Remove Whitespace From Text
+                                        </div>
+                                      </label>
                                     </div>
                                   </div>
+                                  <div className="w-6/10">
+                                    {/* Optional Special Character Bonus */}
+                                    <p className="font-medium text-[1.1rem] text-cyan-800 pb-1">
+                                      Optional Settings
+                                    </p>
+                                    {formData.algorithm === "ndw" && (
+                                      <div>
+                                        {/* Affine Gap Penalty */}
+                                        <div className="flex justify-between items-center text-md font-medium text-gray-700">
+                                          <label htmlFor="affinePenalty">
+                                            Affine Penalty
+                                          </label>
+                                        </div>
 
-                                  {formData.settings.specialOther === true && (
-                                    <div>
-                                      <label
-                                        htmlFor="otherSpecial"
-                                        className="block pt-2 text-md font-medium text-gray-700 place-content-start"
+                                        <input
+                                          id="affinePenalty"
+                                          type="number"
+                                          value={
+                                            isNaN(formData.settings.affinePenalty)
+                                              ? ""
+                                              : formData.settings.affinePenalty
+                                          }
+                                          onChange={(e) =>
+                                            handleSettingChange(
+                                              "affinePenalty",
+                                              isNaN(e.target.valueAsNumber)
+                                                ? null
+                                                : e.target.valueAsNumber < 0
+                                                  ? e.target.valueAsNumber
+                                                  : -e.target.valueAsNumber,
+                                            )
+                                          }
+                                          className="block w-full pl-3 pr-10 py-2 text-[0.8rem] bg-white rounded-md shadow-sm appearance-none focus:outline-none focus:shadow-md text-gray-700/60 focus:text-gray-700 focus:shadow-gray-700/70 sm:text-[0.8rem] transition-colors"
+                                        />
+                                      </div>
+                                    )}
+                                    {/* Label */}
+                                    <label
+                                      htmlFor="special"
+                                      className="block text-md font-medium text-gray-700 place-content-start"
+                                    >
+                                      Optional Special Character Bonus
+                                    </label>
+
+                                    {/* Select Container with Custom Arrow */}
+                                    <div className="relative">
+                                      <select
+                                        id="special"
+                                        className="block w-full pl-3 pr-10 py-2 text-[0.8rem] bg-white rounded-md shadow-sm appearance-none focus:outline-none focus:shadow-md text-gray-700/60 focus:text-gray-700 focus:shadow-gray-700/70 sm:text-[0.8rem] cursor-pointer transition-colors"
+                                        value={formData.settings.special.join(
+                                          ",",
+                                        )}
+                                        onChange={(e) => {
+                                          const val = e.target.value;
+                                          if (!val) {
+                                            handleSettingChange("special", []);
+                                            handleSettingChange(
+                                              "specialOther",
+                                              false,
+                                            );
+                                          } else if (val === "Other") {
+                                            handleSettingChange("special", [
+                                              "Other",
+                                            ]);
+                                            handleSettingChange(
+                                              "specialOther",
+                                              true,
+                                            );
+                                          } else {
+                                            // Split the comma-separated value string into a clean array
+                                            handleSettingChange(
+                                              "special",
+                                              val.split(","),
+                                            );
+                                            handleSettingChange(
+                                              "specialOther",
+                                              false,
+                                            );
+                                          }
+                                        }}
                                       >
-                                        Enter a space-separated list of
-                                        characters.
-                                      </label>
-                                      <input
-                                        type="text"
-                                        id="otherSpecial"
-                                        onChange={(e) =>
-                                          handleSettingChange(
-                                            "special",
-                                            e.target.value.split(" "),
-                                          )
-                                        }
-                                        value={
-                                          formData.settings.special.includes(
-                                            "Other",
-                                          )
-                                            ? ""
-                                            : formData.settings.special.join(
+                                        <option
+                                          value=""
+                                          className="text-gray-400/20"
+                                        >
+                                          None
+                                        </option>
+                                        {/* Pass standard comma-separated strings as values */}
+                                        <option
+                                          value="ך,ם,ן,ף,ץ"
+                                          className="text-gray-800"
+                                        >
+                                          Sofit Letters
+                                        </option>
+                                        <option
+                                          value="A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z"
+                                          className="text-gray-800"
+                                        >
+                                          Capital Letters (Latin Alphabet)
+                                        </option>
+                                        <option
+                                          value="Other"
+                                          className="text-gray-800"
+                                        >
+                                          Custom
+                                        </option>
+                                      </select>
+                                      {/* Custom Dropdown Chevron Icon */}
+                                      <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-3 text-gray-500">
+                                        <svg
+                                          className="w-4 h-4"
+                                          fill="none"
+                                          stroke="currentColor"
+                                          viewBox="0 0 24 24"
+                                        >
+                                          <path
+                                            strokeLinecap="round"
+                                            strokeLinejoin="round"
+                                            strokeWidth={2}
+                                            d="M19 9l-7 7-7-7"
+                                          />
+                                        </svg>
+                                      </div>
+                                    </div>
+
+                                    {formData.settings.specialOther === true && (
+                                      <div>
+                                        <label
+                                          htmlFor="otherSpecial"
+                                          className="block pt-2 text-md font-medium text-gray-700 place-content-start"
+                                        >
+                                          Enter a space-separated list of
+                                          characters.
+                                        </label>
+                                        <input
+                                          type="text"
+                                          id="otherSpecial"
+                                          onChange={(e) =>
+                                            handleSettingChange(
+                                              "special",
+                                              e.target.value.split(" "),
+                                            )
+                                          }
+                                          value={
+                                            formData.settings.special.includes(
+                                              "Other",
+                                            )
+                                              ? ""
+                                              : formData.settings.special.join(
                                                 " ",
                                               )
-                                        }
-                                        placeholder="1 2 3"
-                                        className="shadow-md pt-2 w-full text-gray-700 focus:shadow-gray-700/70 outline-none border-none appearance-none p-1"
-                                      />
+                                          }
+                                          placeholder="1 2 3"
+                                          className="shadow-md pt-2 w-full text-gray-700 focus:shadow-gray-700/70 outline-none border-none appearance-none p-1"
+                                        />
+                                      </div>
+                                    )}
+                                    <div className="pt-2">
+                                      {formData.settings.special.includes(
+                                        "Other",
+                                      ) === false && (
+                                          <label className="pt-2 text-cyan-700">
+                                            {formData.settings.special.join(" ")}
+                                          </label>
+                                        )}
                                     </div>
-                                  )}
-                                  <div className="pt-2">
-                                    {formData.settings.special.includes(
-                                      "Other",
-                                    ) === false && (
-                                      <label className="pt-2 text-cyan-700">
-                                        {formData.settings.special.join(" ")}
-                                      </label>
+
+                                    {formData.settings.special?.length > 0 && (
+                                      <div>
+                                        <div className="flex justify-between items-center text-md  font-medium text-gray-700">
+                                          <label
+                                            htmlFor="specialBonus"
+                                            className="pt-2"
+                                          >
+                                            Special Character Bonus
+                                          </label>
+                                        </div>
+
+                                        <input
+                                          id="specialBonus"
+                                          type="number"
+                                          value={
+                                            Number.isNaN(
+                                              formData.settings.specialBonus,
+                                            )
+                                              ? ""
+                                              : formData.settings.specialBonus
+                                          }
+                                          onChange={(e) =>
+                                            handleSettingChange(
+                                              "specialBonus",
+                                              isNaN(e.target.valueAsNumber)
+                                                ? null
+                                                : e.target.valueAsNumber,
+                                            )
+                                          }
+                                          className="block w-full pl-3 pr-10 py-2 text-[0.8rem] bg-white rounded-md shadow-sm appearance-none focus:outline-none focus:shadow-md text-gray-700/60 focus:text-gray-700 focus:shadow-gray-700/70 sm:text-[0.8rem] transition-colors"
+                                        />
+                                      </div>
                                     )}
                                   </div>
-
-                                  {formData.settings.special?.length > 0 && (
-                                    <div>
-                                      <div className="flex justify-between items-center text-md  font-medium text-gray-700">
-                                        <label
-                                          htmlFor="specialBonus"
-                                          className="pt-2"
-                                        >
-                                          Special Character Bonus
-                                        </label>
-                                      </div>
-
-                                      <input
-                                        id="specialBonus"
-                                        type="number"
-                                        value={
-                                          Number.isNaN(
-                                            formData.settings.specialBonus,
-                                          )
-                                            ? ""
-                                            : formData.settings.specialBonus
-                                        }
-                                        onChange={(e) =>
-                                          handleSettingChange(
-                                            "specialBonus",
-                                            isNaN(e.target.valueAsNumber)
-                                              ? null
-                                              : e.target.valueAsNumber,
-                                          )
-                                        }
-                                        className="block w-full pl-3 pr-10 py-2 text-[0.8rem] bg-white rounded-md shadow-sm appearance-none focus:outline-none focus:shadow-md text-gray-700/60 focus:text-gray-700 focus:shadow-gray-700/70 sm:text-[0.8rem] transition-colors"
-                                      />
-                                    </div>
-                                  )}
                                 </div>
-                              </div>
-                            )}
+                              )}
 
                             {/* options for layout: 
                 <pre>
@@ -2138,16 +2221,16 @@ results
                           </div>
                         </div>
                         <div className="text-base pt-2 gap-2 text-cyan-700 shadow-lg/40 w-7/10 h-7/10 rounded-lg p-5  overflow-auto">
-                      <p className="text-lg font-bold">Description</p>
-                      <p>Description text</p>
-                    </div>
+                          <p className="text-lg font-bold">Description</p>
+                          <p>Description text</p>
+                        </div>
                       </div>
                     </div>
                   </div>
 
                   <div className="flex justify-between pt-2">
                     <button
-                      onClick={() => handleStepChange(1)}
+                      onClick={() => (currentStep===2 ? handleStepChange(1) : handleStepChange(1.5))}
                       className="px-5 py-2 border border-gray-300 text-gray-700 font-medium rounded-lg hover:bg-gray-50 transition"
                     >
                       Back
@@ -2173,32 +2256,72 @@ results
                     Alignment
                   </h1>
 
-                  <div className="h-9/10 w-full flex flex-row">
-                    <div className="flex flex-row gap-6">
-                      <div className="flex-row overflow-auto place-content-start place-items-start h-full place-self-start w-max flex pt-5 ">
-                        <div className="w-max ">
-                          <p className="text-gray-800 whitespace-pre-wrap text-justify font-mono" style={{ direction: rtlLangs.test(results.output_logs) ? "rtl" : "ltr", unicodeBidi: 'embed' }}>
+                  <div className="h-85/100 w-full flex flex-row">
+                    <div className="flex flex-row w-full gap-6">
+                      <div className="flex-row overflow-auto place-content-start place-items-start h-full place-self-start w-full flex pt-5 ">
+                        <div className="flex flex-col items-center content-center">
+                        <div className="w-max h-85/100">
+                        <p className="text-xs font-semibold text-gray-500 mb-1">
+                                  Base Text: {formData.baseText.split("_")[0]}
+                        </p>
+                          <p className="text-gray-800  whitespace-pre-wrap text-justify font-mono" style={{ direction: rtlLangs.test(results.output_logs) ? "rtl" : "ltr", unicodeBidi: 'embed' }}>
                             {results.output_logs}
                           </p>
                         </div>
+                        {prevBaseTexts.size > 1 && (
+                        <button
+                          className="px-5 py-2 bg-cyan-600 text-white font-medium h-max w-max rounded-lg hover:bg-cyan-700 cursor-pointer transition"
+                          onClick={() => setShowPrevious((prev) => !prev)}
+                        >
+                          {showPrevious ? "Hide Previous Alignments" : "View Previous Alignments"}
+                        </button>
+                      )}
+
+                      {/* Declaratively Render Previous Alignments */}
+                      {showPrevious &&
+                        allResults
+                          .filter(
+                            (dict) =>
+                              dict.baseText?.split("_")[0] !== formData.baseText?.split("_")[0]
+                          )
+                          .map((dict) => {
+                            const logText = dict.alignments || dict.output_logs || "";
+                            return (
+                              <div key={dict.baseText} className="w-full border-t border-gray-200 pt-4 mt-2">
+                                <p className="text-xs font-semibold text-gray-500 mb-1">
+                                  Base Text: {dict.baseText.split("_")[0]}
+                                </p>
+                                <p
+                                  className="text-gray-800 whitespace-pre-wrap text-justify font-mono"
+                                  style={{
+                                    direction: rtlLangs.test(logText) ? "rtl" : "ltr",
+                                    unicodeBidi: "embed",
+                                  }}
+                                >
+                                  {logText}
+                                </p>
+                              </div>
+                            );
+                          })}
                       </div>
-                      <div className="text-base w-[45dvw] h-[50dvh] pt-2 gap-2 text-cyan-700 shadow-lg/40  rounded-lg p-5  overflow-auto">
-                      <p className="text-lg font-bold">Description</p>
-                      <p>Description text</p>
-                    </div>
+                      </div>
+                      <div className="text-base w-full h-9/10 pt-2 gap-2 text-cyan-700 shadow-lg/40  rounded-lg p-5  overflow-auto">
+                        <p className="text-lg font-bold">Description</p>
+                        <p>Description text</p>
+                      </div>
                     </div>
                   </div>
-                  <div className="flex flex-row pt-2 justify-between content-start">
+                  <div className="flex flex-row pt-2 h-max justify-between items-start content-start">
                     <button
                       onClick={() => handleStepChange(2)}
-                      className="px-5 py-2 border border-gray-300 text-gray-700 font-medium rounded-lg hover:bg-gray-50 transition"
+                      className="px-5 py-2 border border-gray-300 h-max text-gray-700 font-medium rounded-lg hover:bg-gray-50 transition"
                     >
                       Back
                     </button>
                     <PDFDownloadLink
                       document={<AlignmentsDoc />}
                       fileName="alignments.pdf"
-                      className="px-5 py-2 bg-sky-600 text-white font-medium rounded-lg hover:bg-sky-700"
+                      className="px-5 py-2 bg-sky-600 h-max text-white font-medium rounded-lg hover:bg-sky-700"
                     >
                       {({ blob, url, loading, error }) =>
                         loading
@@ -2206,25 +2329,269 @@ results
                           : "Download Alignments"
                       }
                     </PDFDownloadLink>
-                    <button
-                      onClick={() => handleStepChange(4)}
-                      disabled={
-                        isProcessing || formData.settings.isPlot == false
-                      }
-                      className="px-5 py-2 bg-cyan-600 text-white font-medium rounded-lg hover:bg-cyan-700 disabled:bg-gray-400 disabled:cursor-not-allowed transition"
-                    >
-                      Continue
-                    </button>
+                    <div className="flex flex-col items-center w-max gap-2">
+                      <button
+                        onClick={() => handleStepChange(1.5)}
+                        disabled={
+                          isProcessing || formData.settings.isPlot == false
+                        }
+                        className="px-5 py-2 bg-cyan-600 text-white font-medium rounded-lg hover:bg-cyan-700 disabled:bg-gray-400 disabled:cursor-not-allowed transition"
+                      >
+                        Select Another Base Text
+                      </button>
+                      {prevBaseTexts.size===allBaseTexts.length && (
+                      <button
+                        onClick={() => handleStepChange(4)}
+                        disabled={
+                          isProcessing || formData.settings.isPlot == false
+                        }
+                        className="px-5 py-2 bg-cyan-600 text-white font-medium rounded-lg hover:bg-cyan-700 disabled:bg-gray-400 disabled:cursor-not-allowed transition"
+                      >
+                        Select Plot Settings
+                      </button>)}
+                    </div>
                   </div>
                 </div>
               </div>
             )}
+            {currentStep === 1.5 && (
+              <div className="pt-4 h-full">
+                 <h2 className="text-3xl font-bold text-gray-800">
+                        Select Next Base Text
+                      </h2>
+                <div className="h-95/100">
+              {
+                formData.multi === true && (
+                  <div className="flex flex-col gap-4 w-full h-full pt-10">
+                    <h2 className="text-3xl font-bold text-gray-800">
+                      Transcriptions
+                    </h2>
+                    {/* TOP PANEL: CONTROL BAR & SUBSECTION LIST */}
+                    <div className="border-2 border-dashed border-gray-300 flex-col overflow-auto h-full p-4 text-gray-500 w-full rounded-lg bg-gray-50 flex items-start justify-start">
+                      {/* Subsection Creator Header */}
+                      <div className="flex flex-row justify-between items-center w-full pb-2 border-b mb-3">
+                        <div className="flex items-center gap-2">
+                          <p className="text-md font-bold text-cyan-800">
+                            Uploaded Texts
+                          </p>
+                        </div>
+
+
+                      </div>
+
+
+                        <div className="text-[0.8rem] font-bold mb-3 overflow-wrap text-cyan-800">
+                        <p className={`${[...prevBaseTexts].map((text, index)=>(prevBaseTexts[index]=text.split("_")[0])).includes(formData.baseText.split("_")[0]) ? "text-orange-800" : "text-cyan-800"}`}>Base Text:{" "}
+                        {formData.baseText != "" ? formData.baseText.split("_")[0] : "None"}
+                        </p>
+                        <div className="flex flex-row items-center content-center gap-1">
+                        <p>
+                        Previous Base Texts: </p>
+                        {[...prevBaseTexts].map((text)=>(
+                          
+                          <p className={`${text.split("_")[0]==formData.baseText.split("_")[0] ? "text-orange-800" : "text-cyan-800"}`} key={text}> {" "} {text.split("_")[0]} |</p> 
+                        ))}</div>
+                      </div>
+
+
+                      {/* SUBSECTION BOXES */}
+                      <div className="w-full space-y-4 overflow-y-auto pr-1">
+                        {(Object.keys(formData.subsections).length > 0) && (
+                          Object.keys(formData.subsections).map(
+                            (sectionName) => (
+                              <div>
+
+                                {/* Header info */}
+                                <div className="flex items-center justify-between border-b pb-2 mb-2">
+                                  <div className="flex items-center gap-2 font-bold text-cyan-900 text-[0.8rem]">
+                                    <FolderOpen className="w-5 h-5 text-cyan-600" />
+                                    <span>{sectionName}</span>
+
+                                    <span className="text-[0.8rem] text-gray-400 font-normal">
+                                      ({formData.subsections[sectionName].length} {formData.subsections[sectionName].length === 1 ? "file" : "files"})
+                                    </span>
+                                  </div>
+
+
+                                </div>
+
+
+
+                                <ul className="space-y-1 mt-2">
+                                  {formData.subsections[sectionName].map((file, fileIndex) => (
+                                    <li
+                                      key={`${file.name}-${fileIndex}`}
+                                      className={`flex items-center justify-between px-2 py-1 rounded border text-[0.8rem] ${file.name === formData.baseText
+                                          ? "bg-cyan-100/60 border-cyan-300"
+                                          : "bg-gray-50 border-gray-100 hover:bg-gray-100"
+                                        }`}
+                                    >
+                                      <button
+                                        type="button"
+                                        onClick={(e) => {
+                                          e.stopPropagation();
+                                          setFormData((prev) => ({
+                                            ...prev,
+                                            baseText: file.name,
+                                          }));
+                                        }}
+                                        className={`bg-transparent text-cyan-600 rounded-lg flex-row w-98/100 flex gap-2 content-center items-center shrink-0 cursor-pointer `}
+                                      >
+                                        {file.name === formData.baseText ? (
+                                          <FileCheck className="w-5 h-5" />
+                                        ) : (
+                                          <FileText className="w-5 h-5" />
+                                        )}
+                                        <p className="text-[0.8rem] font-medium text-cyan-800">
+                                          {file.name}
+                                        </p>
+                                      </button>
+
+
+                                    </li>
+                                  ))}
+                                </ul>
+                                </div>
+
+
+
+                                
+                              
+                      )))}
+                    </div>
+
+                      </div>
+                    </div>
+                 
+
+              
+            )}
+
+            {/* SINGLE MODE standard upload */}
+            {formData.multi === false && (
+              <div className="flex flex-col gap-4 pt-10 w-full h-full">
+               
+
+                  {/* HEADER CONTROL BAR */}
+                  <div className="flex flex-row justify-between items-center w-full pb-2 border-b mb-3">
+                    <div className="flex items-center gap-2">
+                      <p className="text-md font-bold text-cyan-800">
+                        Transcriptions
+                      </p>
+                      <span className="text-[0.8rem] text-gray-400 font-normal">
+                        ({formData.files.length}{" "}
+                        {formData.files.length === 1 ? "file" : "files"})
+                      </span>
+                    </div>
+
+                  </div>
+
+                
+                  <div className="text-[0.8rem] font-bold mb-3 overflow-wrap text-cyan-800">
+                        <p className={`${prevBaseTexts.has(formData.baseText) ? "text-orange-800" : "text-cyan-800"}`}>Base Text:{" "}
+                        {formData.baseText != "" ? formData.baseText : "None"}
+                        </p>
+                        <div className="flex flex-row items-center content-center gap-1">
+                        <p>
+                        Previous Base Texts: </p>
+                        {[...prevBaseTexts].map((text)=>(
+                          text != "" ?
+                          <p className={`${text==formData.baseText ? "text-orange-800" : "text-cyan-800"}`} key={text}>  {" "} {text} | </p> :
+                          ""
+                        ))}</div>
+                      </div>
+
+             
+
+                  {/* SINGLE MAIN CONTENT BOX */}
+                  <div className="w-full p-3 border-2 border-dashed border-gray-300 rounded-lg bg-white shadow-xs transition-all hover:border-cyan-400">
+                    {/* INNER HEADER WITH UPLOAD BUTTONS */}
+                    <div className="flex items-center justify-between border-b pb-2 mb-2">
+                      <div className="flex items-center gap-2 font-bold text-cyan-900 text-sm">
+                        <FolderOpen className="w-5 h-5 text-cyan-600" />
+                        <span>Uploaded Files</span>
+                      </div>
+
+
+                    </div>
+
+                    {/* FILE LIST OR DROP HINT */}
+                    {formData.files.length > 0 && (
+                      <ul className="space-y-1 mt-2 max-h-full overflow-auto pr-1">
+                        {formData.files.map((file, fileIndex) => {
+                          let isBase = file.name === formData.baseText;
+                          return (
+                            <li
+                              key={`${file.name}-${fileIndex}`}
+                              className={`flex items-center justify-between px-2 py-1 rounded border text-[0.8rem] ${isBase
+                                  ? "bg-cyan-100/60 border-cyan-300"
+                                  : "bg-gray-50 border-gray-100 hover:bg-gray-100"
+                                }`}
+                            >
+                              <button
+                                type="button"
+                                onClick={(e) => {
+                                  e.stopPropagation();
+                                  setFormData((prev) => ({
+                                    ...prev,
+                                    baseText: file.name,
+                                  }));
+                                }}
+                                className="bg-transparent w-98/100 text-cyan-600 rounded-lg flex-row flex gap-2 items-center shrink-0 cursor-pointer text-left"
+                              >
+                                {isBase ? (
+                                  <FileCheck className="w-5 h-5" />
+                                ) : (
+                                  <FileText className="w-5 h-5" />
+                                )}
+                                <p className="text-[0.8rem] font-medium text-cyan-800 truncate max-w-[300px]">
+                                  {file.name}
+                                </p>
+                              </button>
+
+
+                            </li>
+                          );
+                        })}
+                      </ul>
+                    )}
+                  </div>
+                </div>
+              
+            )}
+            </div>
+             <div className="flex flex-row pt-2 h-max justify-between items-start content-start">
+                    <button
+                      onClick={() => handleStepChange(3)}
+                      className="px-5 py-2 border border-gray-300 h-max text-gray-700 font-medium rounded-lg hover:bg-gray-50 transition"
+                    >
+                      Back
+                    </button>
+              
+                    <div className="flex flex-col items-center w-max gap-2">
+                      <button
+                        onClick={() => handleStepChange(2.5)}
+                        disabled={
+                          isProcessing || formData.settings.isPlot == false
+                        }
+                        className="px-5 py-2 bg-cyan-600 text-white font-medium rounded-lg hover:bg-cyan-700 disabled:bg-gray-400 disabled:cursor-not-allowed transition"
+                      >
+                        Modify Algorithm Settings
+                      </button>
+                      <button
+                      onClick={handleSubmit}
+                      disabled={!isReady || isProcessing}
+                      className="px-5 py-2 bg-cyan-600 text-white font-medium rounded-lg hover:bg-cyan-700 disabled:opacity-50 transition"
+                    >
+                      {isProcessing ? "Processing..." : "Run Algorithm"}
+                    </button>
+                    </div>
+                  </div>
+            </div>
+            )}
             {currentStep === 4 && (
               <div className="flex content-start h-[71vh] pt-10 flex-col pt-4">
                 <h1 className="text-4xl w-5/10 font-bold text-gray-700 pt-10 pb-2">
-                  {formData.algorithm == "ndw"
-                    ? "Needleman-Wunsch"
-                    : "Smith-Waterman"}{" "}
                   Plot Settings
                 </h1>
 
@@ -2485,9 +2852,9 @@ results
                           </div>
                         </div>
                         <div className="text-base w-[45dvw] h-[50dvh] pt-2 gap-2 text-cyan-700 shadow-lg/40  rounded-lg p-5  overflow-auto">
-                      <p className="text-lg font-bold">Description</p>
-                      <p>Description text</p>
-                    </div>
+                          <p className="text-lg font-bold">Description</p>
+                          <p>Description text</p>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -2515,9 +2882,6 @@ results
             {currentStep === 5 && (
               <div className="flex content-start  pt-10 flex-col justify-between pt-4">
                 <h1 className="text-4xl w-5/10 font-bold text-gray-700 pt-10 pb-2">
-                  {formData.algorithm == "ndw"
-                    ? "Needleman-Wunsch"
-                    : "Smith-Waterman"}{" "}
                   Plot
                 </h1>
                 <div className="h-[71dvh] w-full justify-between flex flex-col ">
@@ -2529,20 +2893,20 @@ results
                           srcDoc={plotUrl}
                           className="  w-[50dvw] h-[50dvh] place-content-center border-none"
                           title="t-SNE Plot"
-                          // sandbox="allow-scripts allow-same-origin allow-downloads"
+                        sandbox="allow-scripts allow-same-origin allow-downloads"
                         />
                       </div>
                     )}
                     {(formData.plotSettings.plotType.includes("2d") ||
                       formData.plotSettings.plotType.includes("3ds")) && (
-                      <div className=" flex content-start h-[50dvh] justify-center pb-0 ">
-                        <img
-                          src={plotUrl}
-                          className="  border-none"
-                          title="t-SNE Plot"
-                        />
-                      </div>
-                    )}
+                        <div className=" flex content-start h-[50dvh] justify-center pb-0 ">
+                          <img
+                            src={plotUrl}
+                            className="  border-none"
+                            title="t-SNE Plot"
+                          />
+                        </div>
+                      )}
                     <div className="text-base pt-2 gap-2 text-cyan-700 shadow-lg/40 w-6/10 rounded-lg p-5  overflow-auto">
                       <p className="text-lg font-bold">Description</p>
                       <p>Description text</p>

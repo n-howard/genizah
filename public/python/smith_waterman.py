@@ -215,7 +215,7 @@ def run_sw(temp_dir, settings: AlgorithmSettings, base_text_pattern, is_plot, re
                     else:
                         records.append({
                             "BaseText": base_text_pattern,
-                            "TargetFile": text.name.split("_-")[0],
+                            "TargetFile": text.name.split("_")[0],
                             "Score": weighted_score,
                             "OrigScore": score,
                             "TextNamePair": [base_text.name, text.name]

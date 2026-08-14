@@ -43,7 +43,7 @@ from smith_waterman import compare_two_sw
 #     base_text: Optional[str] = Form(None),
 #     subsections_metadata: Optional[str] = Form(None)
 # ):
-def run_in_browser_process(algorithm, settings, file_dir, base_text, multi, base_text_list):
+def run_in_browser_process(algorithm, settings, file_dir, base_text, multi):
     root_dir = file_dir
     # try:
     #     raw_settings = json.loads(settings)
@@ -60,6 +60,7 @@ def run_in_browser_process(algorithm, settings, file_dir, base_text, multi, base
     #     clean_base_text = Path(base_text.filename).name.split("_")[0]
         
     #     base_text = clean_base_text
+
     base_text_pattern = base_text.split("_")[0]
     
 
@@ -234,7 +235,7 @@ def generate_spreadsheet(algorithm, settings, root_dir, base_text, base_text_lis
     base_text_pattern = base_text.split("_")[0]
     # fix this to be customizable
     # base_texts = set([Path(f.filename).name.split("_")[0] for f in files]) if files else set()
-    base_texts = set([f.split("_")[0] for f in base_text_list]) if base_text_list else set()
+    base_texts = set([f.split("_")[0] for f in base_text_list if "description" not in f.lower()]) if base_text_list else set()
     print("BaseText Prefixes:",base_texts)
     # df = None
     print("Creating matrix")

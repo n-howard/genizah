@@ -1,0 +1,78 @@
+-[x] change "only .txt" to "only files you want aligned" (fix wording)
+-[x] choose base text
+-[x] fix custom/other
+-[x] special character also needs gap and mismatch
+-[x] make it all numerical entry in a text box (make it so can only enter a positive integer/float)
+-[x] convert penalties to negative instead of making people type a negative
+-[x] Needleman-Wunch optional affine gap penalty
+ on focus on a setting a text box appears that gives description
+-[x] be able to click through the top
+-[x] back button
+
+-[x] Two options: whole text or subtext
+    -[x] Whole text (as is now)
+    -[x] subtext: add new folder (default name but editable)
+        -[x] drag in files/folders which are all taken out (as now)
+        -[x] select base text (trim off subsection folder name or at underscore if they don't name it maybe)
+        -[x] add new subsection and repeat
+        
+
+-[x] make it downloadable
+
+Steps before first deployment:
+-[x] check that subsections work with the algorithm
+-[x] make excel file downloadable
+-[x] work on the subsection import design
+-[x] make minimum 4 files for plot
+
+
+-[x] let users define name of base text
+-[x] select t-sne settings screen
+-[x] be able to drag into either subsection
+-[x] download alignments
+-[x] download moveable t-SNE as png
+    -[x] make it not download the graph twice in one image
+-[x] color the plot? 
+-[x] add options to do 3D static, 3D moveable, 2D 
+-[x] download static images
+-[x] download reports with manuscripts, what algorithms you used, what settings you used, date/time, you downloaded these files and here are the original file names, base text x text and score
+-[x] fix # having a 0 before it
+-[x] cache to fix efficiency
+
+-[x] start/welcome page
+
+-[x] keep in local storage?
+
+   
+
+ ✔   We should make a landing page. @done(26-08-10 15:16)
+ ✔    We need to give it a name other than 'TEXTEVOLVE Data Analysis Tool'. Is there a way for me to edit this myself? @done(26-08-10 15:16)
+    ✔ I think having text boxes on each page in which I can write comments instructions/activate as needed would help me @done(26-08-10 15:16)
+ ✔   The links for 'Entire Texts' and 'Subsections': I wonder if we can separate these out into new lines on the page and then under each I can add in explanations about what it means to align these two different types of texts. @done(26-08-10 15:16)
+
+2. Entire Text Upload:
+
+   ✔ I think the header should be renamed to 'Upload Transcriptions' @done(26-08-10 15:16)
+  ✔  'Entire Texts' is ambiguous here....it's not clear what it means? Why not something like 'loaded texts' or something else? @done(26-08-10 15:16)
+  ✔  The Base Text Prefix bit looks like a box where you type the prefix in (and I accidentally tried to do this). It's not a box like that. We need to have an instruction to either click the text we want as a base text, or [to allow the computer to run everything against every text.]<-does this currently by splitting on the underscore and taking the first part @done(26-08-10 15:16)
+    ☐ Also what if the unique identifier isn't a prefix? The files I uploaded when I tested had the unique bit as the suffix? I think the issue is in the name? Or should we instruct users to have a unique identifier for each file as a prefix?
+
+3. Entire Text Select Algorithm
+
+    ✔ Affine penalty and optional special characters shouldn't be default options. We should put these under a 'special' or 'non-standard' option section maybe? @done(26-08-10 15:16)
+  ✔   On reconsideration I think we need the typing of negative signs for the penalties? Or at least the negative signs to show. Otherwise it might confuse people. @done(26-08-10 15:16)
+✔  generate the spreadsheet once and check if the spreadsheet is @done(26-08-10 15:16)
+
+☐ little i symbol to hover over for clarification (see if feasible)
+☐  be able to rename subsections
+☐ base text suffix instead of prefix/customize base text split by
+☐  progress bar
+☐  let people upload their own spreadsheets if they want
+✔  delete spreadsheet on clear all @done(26-08-10 15:17)
+✔  xyz as labels, no numbers on 3d plot // check @done(26-08-10 15:17)
+☐  report doesn't show all comparisons (probably need to change variable from results to plotResults) // check
+☐  spreadsheet not showing all comparisons (maybe a caching issue, a filtering issue, or a variable name issue (need to change to plotResults?), experiment with this)
+☐ (ask Estara if looks fixed) 2D plot plotting based on colors rather than results 
+✔  2D plot shows two labels (with two packages) @done(26-08-10 15:16)
+☐  see alignments before doing t-SNE: so calculate again with a base text (change workflow so you don't do one base text then it calculates all for t-SNE)
+        ☐  one set of base texts, see alignments, do another? give option to select next base text ... once you've done all, see t-SNE?

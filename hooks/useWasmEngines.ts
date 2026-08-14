@@ -106,7 +106,8 @@ export function useWasmEngines() {
             'jsonlite',
             'base64enc', 
             'scatterplot3d',
-            'ggrepel'
+            'ggrepel',
+            'htmltools'
           ];
 
           // Query R to see which packages are missing from IndexedDB
@@ -145,9 +146,6 @@ export function useWasmEngines() {
           if (!rRes.ok) throw new Error(`Failed to fetch t-SNE.R`);
 
           let rCode = await rRes.text();
-          rCode = rCode
-            .replace(/library\s*\(\s*["']?webshot2["']?\s*\)/g, '# library(webshot2)')
-            .replace(/library\s*\(\s*["']?pandoc["']?\s*\)/g, '# library(pandoc)');
 
           const encoder = new TextEncoder();
           await webrInstance.FS.writeFile('/tmp/t-SNE.R', encoder.encode(rCode));
