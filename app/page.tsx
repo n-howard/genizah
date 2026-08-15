@@ -2379,7 +2379,7 @@ results
                     >
                       {isProcessing ? "Processing..." : "Run Algorithm"}
                     </button>
-                     {((prevBaseTexts.size===allBaseTexts.length)||(formData.spreadsheet!=null)) && (
+                     {((formData.spreadsheet!=null)) && (
                       <button
                         onClick={() => handleStepChange(4)}
                         disabled={

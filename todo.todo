@@ -67,7 +67,7 @@ Steps before first deployment:
 ☐  be able to rename subsections
 ☐ base text suffix instead of prefix/customize base text split by
 ☐  progress bar
-☐  let people upload their own spreadsheets if they want
+✔  let people upload their own spreadsheets if they want @done(26-08-15 08:49)
 ✔  delete spreadsheet on clear all @done(26-08-10 15:17)
 ✔  xyz as labels, no numbers on 3d plot // check @done(26-08-10 15:17)
 ✔  report doesn't show all comparisons (probably need to change variable from results to plotResults) // check @done(26-08-14 11:22)
