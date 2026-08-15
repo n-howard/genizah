@@ -221,9 +221,9 @@ run_tsne_browser <- function(df, perplexity, theta, plot_type, colors, color_tex
       color = colour_vec, 
       pch = 16, 
       main = "3D t-SNE Plot",
-      xlab = "t-SNE 1", 
-      ylab = "t-SNE 2", 
-      zlab = "t-SNE 3"
+      xlab = "x", 
+      ylab = "y", 
+      zlab = "z"
     )
     
     text(
@@ -252,8 +252,8 @@ run_tsne_browser <- function(df, perplexity, theta, plot_type, colors, color_tex
         colour=text_colour_vec
       ) +
       ggtitle("2D t-SNE Results") +
-      xlab("t-SNE Dimension 1") +
-      ylab("t-SNE Dimension 2") +
+      xlab("x") +
+      ylab("y") +
       theme_minimal() +
       scale_color_identity()
 

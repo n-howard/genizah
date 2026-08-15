@@ -182,6 +182,7 @@ export default function Pages() {
     subsections: {},
     algorithm: "",
     baseText: "",
+    spreadsheet: null,
     settings: {
       gapPenalty: -1,
       matchBonus: 1,
@@ -247,11 +248,11 @@ export default function Pages() {
 
   // React Dropzone Handler
   const {
-    getRootProps,
-    getInputProps,
+    getRootProps: getTextRootProps,
+    getInputProps: getTextInputProps,
     open: openFilePicker,
-    isDragActive,
-    isDragReject,
+    isDragActive: isTextDragActive,
+    isDragReject: isTextDragReject,
   } = useDropzone({
     onDrop: (acceptedFiles) => {
       setFormData((prev) => {
@@ -271,6 +272,32 @@ export default function Pages() {
     multiple: true,
     noClick: true,
   });
+
+  const {
+    getRootProps: getSpreadsheetRootProps,
+    getInputProps: getSpreadsheetInputProps,
+    isDragActive: isSpreadsheetDragActive, 
+    isDragReject: isSpreadsheetDragReject,
+  } = useDropzone({
+    onDrop: (acceptedFiles) => {
+      if (acceptedFiles[0]) {
+        setFormData((prev)=>({
+          ...prev, 
+          spreadsheet: acceptedFiles[0]
+        }))
+      }
+    },
+    accept: {
+    "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet": [
+      ".xlsx",
+    ],
+  },
+  multiple: false,
+  noClick: false,
+  })
+
+  
+  
   //   // Run Algorithm (Simulated)
   const handleRunAlgorithm = () => {
     setIsProcessing(true);
@@ -679,7 +706,12 @@ results
   //   }
   // };
 
+  const handleUploadSpreadsheet = async () => {
+    const arrayBuffer = await formData.spreadsheet.arrayBuffer();
+    const uint8Array = new Uint8Array(arrayBuffer);
 
+    pyodide.FS.writeFile("/tmp/alignment_matrix.xlsx", uint8Array);
+  }
 
   const generateSpreadsheet = async () => {
     setIsProcessing(true)
@@ -1083,7 +1115,7 @@ results
         return true;
       }
     };
-    const recs = plotResults.records.filter(recsFilter);
+    const recs = plotResults ? plotResults.records.filter(recsFilter) : [] ;
 
     return (
       <Document>
@@ -1181,7 +1213,8 @@ results
                     : "By Base Text"
                 : "Black"}
             </Text>
-
+            {recs.length > 0 && (
+            <View>
             <Text style={tw("text-lg pt-2")}>Resulting Scores</Text>
             {recs.map((item, index) => (
               <View>
@@ -1192,7 +1225,9 @@ results
                   Score: {item.OrigScore} | Average Score: {item.Score}
                 </Text>
               </View>
-            ))}
+              
+            ))}</View>
+            )}
           </View>
         </Page>
       </Document>
@@ -1446,7 +1481,7 @@ results
             </div>
             {/* STEP 1: UPLOAD FILES */}
             {currentStep === 1 && (
-              <div className="flex flex-col justify-between pt-10 h-10/10">
+              <div className="flex flex-col justify-between pt-10 h-9/10">
 
                 <div className="h-10/10">
                   {formData.multi === null && (
@@ -1656,15 +1691,15 @@ results
                     <div className="flex flex-col gap-4 pt-10 w-full h-full">
                       {/* MAIN UNIFIED CONTAINER */}
                       <div
-                        {...getRootProps()}
-                        className={`border-2 border-dashed border-gray-300 flex-col overflow-auto h-full p-4 text-gray-500 w-full rounded-lg bg-gray-50 flex items-start justify-start transition ${isDragReject
+                        {...getTextRootProps()}
+                        className={`border-2 border-dashed border-gray-300 flex-col overflow-auto h-full p-4 text-gray-500 w-full rounded-lg bg-gray-50 flex items-start justify-start transition ${isTextDragReject
                             ? "border-red-500 text-red-600 bg-red-50"
-                            : isDragActive
+                            : isTextDragActive
                               ? "border-cyan-500 text-cyan-600 bg-cyan-50"
                               : ""
                           }`}
                       >
-                        <input {...getInputProps()} />
+                        <input {...getTextInputProps()} />
 
                         {/* HEADER CONTROL BAR */}
                         <div className="flex flex-row justify-between items-center w-full pb-2 border-b mb-3">
@@ -1822,6 +1857,11 @@ results
                       >
                         Back
                       </button>
+                      <div className="flex flex-col w-max gap-2">
+                      <button 
+                      disabled={totalFilesCount < 2}
+                      onClick={()=>handleStepChange(1.2)}
+                      className="px-5 py-2 bg-green-600 text-white font-medium rounded-lg hover:bg-green-700 disabled:bg-gray-400 disabled:cursor-not-allowed transition">Optional: Upload Spreadsheet</button>
                       <button
                         disabled={totalFilesCount < 2}
                         onClick={() => handleStepChange(2)}
@@ -1829,22 +1869,118 @@ results
                       >
                         Continue
                       </button>
+                      </div>
                     </div>
                   )}
                 </div>
               </div>
             )}
+            {(currentStep===1.2)&& (
+              <div className="h-full w-full justify-between flex flex-col">
+                <h2 className="text-4xl font-bold h-max text-gray-700 pt-10 ">
+                  Optional: Upload Spreadsheet
+                </h2>
+                <div className="flex h-full w-full pt-10 gap-5 flex-row">
+               <div
+                        {...getSpreadsheetRootProps()}
+                        className={`border-2 border-dashed border-gray-300 flex-col place-content-center place-items-center h-full p-4 text-gray-500 w-full rounded-lg bg-gray-50 flex  transition ${isTextDragReject
+                            ? "border-red-500 text-red-600 bg-red-50"
+                            : isTextDragActive
+                              ? "border-cyan-500 text-cyan-600 bg-cyan-50"
+                              : ""
+                          }`}
+                      >
+                        <input {...getSpreadsheetInputProps()} />
+
+                        {/* HEADER CONTROL BAR */}
+                        <div className="w-full p-3 border-2 border-dashed border-gray-300 rounded-lg h-full bg-white shadow-xs transition-all hover:border-cyan-400">
+                        <div className="flex flex-row h-max justify-between items-center w-full pb-2  border-b mb-3">
+                          <div className="flex items-center gap-2">
+                            <p className="text-md font-bold text-cyan-800">
+                              Uploaded Alignment Matrix
+                            </p>
+                           
+                          </div>
+
+                          
+                        </div>
+                        {formData.spreadsheet != null ? (
+                            <ul className="space-y-1 mt-2 h-full w-full overflow-auto pr-1">
+                              <div className={`flex items-center justify-between flex-row w-full gap-2 px-2 py-1 text-cyan-800 rounded border text-[0.8rem] bg-gray-50 border-gray-100 hover:bg-gray-100
+                                      `}>
+                                        <div className="flex flex-row gap-2">
+                                        <FileText className="w-5 h-5" />
+                                        {formData.spreadsheet.name}
+                              </div>
+
+                                    <button
+                                      type="button"
+                                      onClick={(e) => {
+                                        e.stopPropagation();
+                                        setFormData((prev)=>({
+                                          ...prev,
+                                          spreadsheet: null
+                                        }))
+                                      }}
+                                      className="text-red-600 hover:bg-red-50 p-0.5 rounded transition cursor-pointer"
+                                    >
+                                      <Trash2 className="w-4 h-4" />
+                                    </button>
+                               </div>   
+                              
+                            </ul>
+                          ) : (
+                            <div className="py-8 text-center w-full h-full rounded-md bg-gray-50/50 text-[0.8rem] text-gray-400">
+                              Drag and drop or click to upload an .xlsx spreadsheet file.
+                            </div>
+                          )}
+              </div></div>
+              <div className="text-base pt-2 gap-2 text-cyan-700 shadow-lg/40 w-full h-full rounded-lg p-5  overflow-auto">
+                          <p className="text-lg font-bold">Description</p>
+                          <p>Explain what type of spreadsheet to upload (or maybe include a template to download)</p>
+                        </div>
+              </div>
+               <div className="flex flex-row justify-between content-center h-max items-center pt-2">
+                      <button
+                        onClick={() =>
+                          handleStepChange(1)
+                        }
+                        className="px-5 py-2 border border-gray-300 text-gray-700 font-medium rounded-lg hover:bg-gray-50 transition"
+                      >
+                        Back
+                      </button>
+                      <div className="flex flex-col gap-2 w-max"><button
+                      disabled = {formData.spreadsheet==null}
+                        onClick={() => {
+                          handleUploadSpreadsheet();
+                          handleStepChange(2.2);
+                        }}
+                        className="px-5 py-2 cursor-pointer bg-green-600 text-white font-medium rounded-lg hover:bg-green-700 disabled:bg-gray-400 disabled:cursor-not-allowed transition"
+                      >
+                        Confirm Upload
+                      </button>
+                        <button
+                        onClick={() => handleStepChange(2)}
+                        className="px-5 py-2 cursor-pointer bg-cyan-600 text-white font-medium rounded-lg hover:bg-cyan-700 disabled:bg-gray-400 disabled:cursor-not-allowed transition"
+                      >
+                        Skip
+                      </button>
+                      
+                      </div>
+                    </div>
+              </div>
+            )}
             {/* SELECT ALGORITHM */}
-            {((currentStep === 2) || (currentStep===2.5)) && (
+            {((currentStep === 2) || (currentStep===2.5) || (currentStep===2.2)) && (
               <div className=" h-full w-full place-content-center flex flex-col">
-                <h2 className="text-4xl font-bold text-gray-700 pt-10 ">
+                <h2 className="text-4xl font-bold text-gray-700  ">
                   Select Algorithm
                 </h2>
-                <div className="h-full">
-                  <div className="space-y-1 h-full flex  w-full pt-10">
+                <div className="h-8/10">
+                  <div className="space-y-1 h-full flex  w-full pt-10 pb-10">
                     <div className="flex flex-row h-full w-full content-center items-start">
                       <div className="flex flex-row h-full gap-10 content-center w-full">
-                        <div className="flex flex-col content-center items-center gap-2 w-1/3">
+                        <div className="flex flex-col h-full content-center items-center gap-2 w-1/3">
                           {/* <label className="block text-2xl font-medium text-gray-700 mb-1">Select Algorithm</label> */}
                           <div className="flex flex-col gap-2 pt-2 w-full">
                             {/* Label */}
@@ -2220,7 +2356,7 @@ results
                 text-xs, text-sm, text-base, text-lg, text-xl, text-2xl, etc.*/}
                           </div>
                         </div>
-                        <div className="text-base pt-2 gap-2 text-cyan-700 shadow-lg/40 w-7/10 h-7/10 rounded-lg p-5  overflow-auto">
+                        <div className="text-base pt-2 gap-2 text-cyan-700 shadow-lg/40 w-7/10 h-full rounded-lg p-5  overflow-auto">
                           <p className="text-lg font-bold">Description</p>
                           <p>Description text</p>
                         </div>
@@ -2228,13 +2364,14 @@ results
                     </div>
                   </div>
 
-                  <div className="flex justify-between pt-2">
+                  <div className="flex flex-row  justify-between">
                     <button
-                      onClick={() => (currentStep===2 ? handleStepChange(1) : handleStepChange(1.5))}
-                      className="px-5 py-2 border border-gray-300 text-gray-700 font-medium rounded-lg hover:bg-gray-50 transition"
+                      onClick={() => (currentStep===2 ? handleStepChange(1) : (currentStep===2.5? handleStepChange(1.5) : handleStepChange(1.2)))}
+                      className="px-5 py-2 border border-gray-300 text-gray-700 h-max font-medium rounded-lg hover:bg-gray-50 transition"
                     >
                       Back
                     </button>
+                    <div className="flex flex-col justify-normal h-max w-max gap-2">
                     <button
                       onClick={handleSubmit}
                       disabled={!isReady || isProcessing}
@@ -2242,6 +2379,17 @@ results
                     >
                       {isProcessing ? "Processing..." : "Run Algorithm"}
                     </button>
+                     {((prevBaseTexts.size===allBaseTexts.length)||(formData.spreadsheet!=null)) && (
+                      <button
+                        onClick={() => handleStepChange(4)}
+                        disabled={
+                          isProcessing 
+                        }
+                        className="px-5 py-2 bg-cyan-600 text-white font-medium rounded-lg hover:bg-cyan-700 disabled:bg-gray-400 disabled:cursor-not-allowed transition"
+                      >
+                        Select Plot Settings
+                      </button>)}
+                      </div>
                   </div>
                 </div>
               </div>
@@ -2333,17 +2481,17 @@ results
                       <button
                         onClick={() => handleStepChange(1.5)}
                         disabled={
-                          isProcessing || formData.settings.isPlot == false
+                          isProcessing 
                         }
                         className="px-5 py-2 bg-cyan-600 text-white font-medium rounded-lg hover:bg-cyan-700 disabled:bg-gray-400 disabled:cursor-not-allowed transition"
                       >
                         Select Another Base Text
                       </button>
-                      {prevBaseTexts.size===allBaseTexts.length && (
+                      {((prevBaseTexts.size===allBaseTexts.length)||(formData.spreadsheet!=null)) && (
                       <button
                         onClick={() => handleStepChange(4)}
                         disabled={
-                          isProcessing || formData.settings.isPlot == false
+                          isProcessing 
                         }
                         className="px-5 py-2 bg-cyan-600 text-white font-medium rounded-lg hover:bg-cyan-700 disabled:bg-gray-400 disabled:cursor-not-allowed transition"
                       >
@@ -2572,7 +2720,7 @@ results
                       <button
                         onClick={() => handleStepChange(2.5)}
                         disabled={
-                          isProcessing || formData.settings.isPlot == false
+                          isProcessing 
                         }
                         className="px-5 py-2 bg-cyan-600 text-white font-medium rounded-lg hover:bg-cyan-700 disabled:bg-gray-400 disabled:cursor-not-allowed transition"
                       >
@@ -2869,7 +3017,7 @@ results
                     <button
                       onClick={handlePlot}
                       disabled={
-                        isProcessing || formData.settings.isPlot == false
+                        isProcessing 
                       }
                       className="px-5 py-2 bg-cyan-600 text-white font-medium rounded-lg hover:bg-cyan-700 disabled:opacity-50 transition"
                     >
