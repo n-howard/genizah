@@ -531,7 +531,7 @@ export default function Pages() {
           baseTextFiles = formData.files;
         }
 
-        
+        baseTextFiles.filter((file)=>(!file.name.toLowerCase().includes("description")))
 
         if (allFilesToProcess.length === 0) {
           alert("No files selected for alignment.");
@@ -579,7 +579,7 @@ export default function Pages() {
       
       setFormData((prev) => ({ ...prev, baseText: effectiveBaseText }));
       
-      setPrevBaseTexts((prev) => new Set(prev).add(effectiveBaseText));
+      // setPrevBaseTexts((prev) => new Set(prev).add(effectiveBaseText));
       
 
       // // Extract file names (strings) instead of passing raw File objects
@@ -623,6 +623,8 @@ results
       const pyResult = await pyodide.runPythonAsync(runScript);
       const resultObj = pyResult.toJs({ dict_converter: Object.fromEntries });
 
+
+      
       setResults({
         status: "success",
         algorithm: formData.algorithm,
@@ -644,6 +646,8 @@ results
           alignments: resultObj.output_logs
         }
       ]))
+
+      setPrevBaseTexts((prev) => new Set(prev).add(effectiveBaseText));
 
       handleStepChange(3);
     } catch (error) {
