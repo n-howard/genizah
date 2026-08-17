@@ -78,3 +78,6 @@ Steps before first deployment:
         ✔  one set of base texts, see alignments, do another? give option to select next base text ... once you've done all, see t-SNE? @done(26-08-14 11:22)
 ☐ make it possible to download all alignments rather than just alignments for the current base text
 ☐ check if all of the fixes work for multiple subsections
+☐ make sure error doesn't happen if you try to skip ahead after changing the files (should not be able to skip ahead after adding/removing files)
+☐ Fix UX!! Settings button should either always be on top or always on bottom, different colors for buttons that do settings versus buttons that run algorithm (or at least all buttons on same page should have different colors). Need to make it clear what is cleared when clear all happens. Also need to make it clear why you can't click on run algorithm or why Firefox, etc. offers to stop it (maybe this is solved by two different progress indicators). Also everything always needs to stay in the box or just get rid of box altogether
+☐ Maybe add table of contents of alignments?

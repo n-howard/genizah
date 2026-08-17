@@ -54,10 +54,10 @@ function SubsectionItem({
   return (
     <div
       {...getRootProps()}
-      className={`p-3 border-2 border-dashed border-gray-300 rounded-lg bg-white shadow-xs transition-all hover:border-cyan-400 ${isDragReject
-          ? "border-red-500 text-red-600 bg-red-50"
+      className={`p-3 border-2 border-dashed border-gray-300 rounded-lg bg-gray-800 shadow-gray-600/40 shadow-xs transition-all hover:border-cyan-400 ${isDragReject
+          ? "border-red-500 text-red-400 bg-red-50"
           : isDragActive
-            ? "border-cyan-800 text-gray-600 bg-gray-100"
+            ? "border-cyan-800 text-gray-600 bg-gray-600"
             : ""
         }`}
     >
@@ -66,11 +66,11 @@ function SubsectionItem({
 
       {/* Header info */}
       <div className="flex items-center justify-between border-b pb-2 mb-2">
-        <div className="flex items-center gap-2 font-bold text-cyan-900 text-[0.8rem]">
-          <FolderOpen className="w-5 h-5 text-cyan-600" />
+        <div className="flex items-center gap-2 font-bold text-cyan-50 text-[0.8rem]">
+          <FolderOpen className="w-5 h-5 text-cyan-400" />
           <span>{sectionName}</span>
 
-          <span className="text-[0.8rem] text-gray-400 font-normal">
+          <span className="text-[0.8rem] text-gray-300 font-normal">
             ({files.length} {files.length === 1 ? "file" : "files"})
           </span>
         </div>
@@ -79,7 +79,7 @@ function SubsectionItem({
         <div className="flex items-center gap-2 text-[0.8rem]">
           {/* File Upload Trigger */}
           <label
-            className="cursor-pointer bg-cyan-50 hover:bg-cyan-100 text-cyan-800 font-semibold px-2 py-1 rounded border border-cyan-200 transition"
+            className="cursor-pointer bg-cyan-700 hover:bg-cyan-800 text-cyan-100 font-semibold px-2 py-1 rounded border border-cyan-200 transition"
             onClick={(e) => e.stopPropagation()} // Stop dropzone trigger
           >
             + Files
@@ -98,7 +98,7 @@ function SubsectionItem({
               e.stopPropagation(); // Stop dropzone trigger
               onSelectFolderTrigger(sectionName);
             }}
-            className="bg-cyan-50 hover:bg-cyan-100 text-cyan-800 font-semibold px-2 py-1 rounded border border-cyan-200 transition"
+            className="bg-cyan-700 hover:bg-cyan-800 text-cyan-100 font-semibold px-2 py-1 rounded border border-cyan-200 transition"
           >
             + Folder
           </button>
@@ -108,7 +108,7 @@ function SubsectionItem({
               e.stopPropagation();
               onRemoveSubsection(sectionName);
             }}
-            className="text-red-600 hover:bg-red-50 p-0.5 rounded flex flex-row gap-1 place-content-center"
+            className="text-red-400 hover:bg-gray-300 p-0.5 rounded flex flex-row gap-1 place-content-center"
           >
             <Trash2 className="w-5 h-5" />
           </button>
@@ -124,8 +124,8 @@ function SubsectionItem({
               draggable
               onDragStart={(e) => onDragStartFile(e, sectionName, fileIndex)}
               className={`flex items-center justify-between px-2 py-1 rounded border text-[0.8rem] ${file.name === baseText
-                  ? "bg-cyan-100/60 border-cyan-300"
-                  : "bg-gray-50 border-gray-100 hover:bg-gray-100"
+                  ? "bg-cyan-800/60 border-cyan-300"
+                  : "bg-gray-700 border-gray-100 hover:bg-gray-600"
                 }`}
             >
               <button
@@ -134,14 +134,14 @@ function SubsectionItem({
                   e.stopPropagation();
                   onSetBaseText(file);
                 }}
-                className={`bg-transparent text-cyan-600 rounded-lg flex-row w-98/100 flex gap-2 content-center items-center shrink-0 cursor-pointer `}
+                className={`bg-transparent text-cyan-400 rounded-lg flex-row w-98/100 flex gap-2 content-center items-center shrink-0 cursor-pointer `}
               >
                 {file.name === baseText ? (
                   <FileCheck className="w-5 h-5" />
                 ) : (
                   <FileText className="w-5 h-5" />
                 )}
-                <p className="text-[0.8rem] font-medium text-cyan-800">
+                <p className="text-[0.8rem] font-medium text-cyan-100">
                   {file.name}
                 </p>
               </button>
@@ -152,7 +152,7 @@ function SubsectionItem({
                   e.stopPropagation();
                   onRemoveFile(sectionName, file);
                 }}
-                className="text-red-600 hover:bg-red-50 p-0.5 rounded"
+                className="text-red-400 hover:bg-gray-300 p-0.5 rounded"
               >
                 <Trash2 className="w-4 h-4" />
               </button>
@@ -160,7 +160,7 @@ function SubsectionItem({
           ))}
         </ul>
       ) : (
-        <div className="py-4 text-center border-1 border-dashed border-gray-200 rounded-md bg-gray-50/50 text-[0.8rem] text-gray-400">
+        <div className="py-4 text-center border-1 border-dashed border-gray-200 rounded-md bg-gray-700/50 text-[0.8rem] text-gray-300">
           Drag and drop files or folders directly here
         </div>
       )}
@@ -1090,6 +1090,33 @@ results
       </Document>
     );
   }
+
+
+  const AllAlignmentsDoc = () => {
+    const rtlTested = rtlLangs.test(results.output_logs) ? "rtl" : "ltr"
+    
+    return (
+      <Document>
+        <Page size="A4">
+          <View wrap style={tw("p-10")}>
+            <Text style={tw("text-lg text-center font-mono")}>Alignment Results</Text>
+            {allResults.map((dict)=>(
+              <View>
+                <Text key={dict.baseText}>{dict.baseText}</Text>
+            {dict.alignments.split("\n").map((line, index) => (
+              <Text key={index} style={[tw("font-mono text-justify text-sm"), { direction: rtlTested }]}>
+                {line || " "}
+              </Text>
+            
+            ))}
+            </View>
+            ))}
+          </View>
+        </Page>
+      </Document>
+    );
+  }
+
   const months = [
     "January",
     "February",
@@ -1390,23 +1417,24 @@ results
       ...prev,
       subsections: {},
       files: [],
+      spreadsheet: null,
       baseText: ""
     }))
 
   };
 
   return (
-    <div className="bg-white w-screen h-screen flex flex-col items-center place-content-center content-center justify-items-center justify-content-center">
-      <div className="w-91/100 h-91/100 p-6 bg-white rounded-xl shadow-md border border-gray-100 flex flex-col justify-between">
+    <div className="bg-gray-800 w-screen h-screen flex flex-col items-center place-content-center content-center justify-items-center justify-content-center">
+      <div className="w-full h-full p-10 bg-gray-900 text-gray-100">
         {/* Progress Bar */}
         {currentStep == 0 && (
-          <div className="text-lg text-cyan-700  font-medium flex flex-col pt-5 h-100/100 justify-between">
+          <div className="text-lg text-cyan-200  font-medium flex flex-col pt-5 h-100/100 justify-between">
             <div className="gap-5 h-full">
-              <h1 className="text-3xl font-bold text-gray-800 pt-10 pb-10">
+              <h1 className="text-3xl font-bold text-gray-100 pt-10 pb-10">
                 {/* Change the title here */}
                 Welcome to the TEXTEVOLVE Data Analysis Tool
               </h1>
-              <div className="text-base pt-2 gap-2 text-cyan-700 shadow-lg/40 w-full h-8/10  rounded-lg p-5  overflow-auto">
+              <div className="text-base pt-2 gap-2  text-cyan-200 shadow-gray-600/40 shadow-lg/40 w-full h-8/10  rounded-lg p-5  overflow-auto">
                 <p className="text-lg font-medium">Description</p>
 
               </div>
@@ -1414,7 +1442,7 @@ results
             <div className="flex flex-row justify-end">
               <button
                 onClick={() => handleStepChange(1)}
-                className="px-5 py-2 bg-cyan-600 text-white text-center font-medium rounded-lg hover:bg-cyan-700 cursor-pointer w-max"
+                className="px-5 py-2 bg-cyan-600 text-gray-900 text-center font-medium rounded-lg hover:bg-cyan-700 cursor-pointer w-max"
               >
                 Continue
               </button>
@@ -1424,11 +1452,11 @@ results
         {currentStep !== 0 && (
           <div className="h-9/10">
             <div>
-              <div className="flex justify-between text-[0.8rem] font-medium text-gray-500 mb-2">
+              <div className="flex justify-between text-[0.8rem] font-medium text-gray-300 mb-2">
                 <button
                   type="button"
                   onClick={() => handleStepSkip(1)}
-                  className={`${furthestStep >= 1 ? "cursor-pointer" : ""} ${currentStep >= 1 ? "text-cyan-600 font-bold" : ""
+                  className={`${furthestStep >= 1 ? "cursor-pointer" : ""} ${currentStep >= 1 ? "text-cyan-400 font-bold" : ""
                     }`}
                 >
                   Upload Files
@@ -1436,7 +1464,7 @@ results
                 <button
                   type="button"
                   onClick={() => handleStepSkip(2)}
-                  className={`${furthestStep >= 2 ? "cursor-pointer" : ""} ${currentStep >= 2 ? "text-cyan-600 font-bold" : ""
+                  className={`${furthestStep >= 2 ? "cursor-pointer" : ""} ${currentStep >= 2 ? "text-cyan-400 font-bold" : ""
                     }`}
                 >
                   Select Algorithm
@@ -1444,7 +1472,7 @@ results
                 <button
                   type="button"
                   onClick={() => handleStepSkip(3)}
-                  className={`${furthestStep >= 3 ? "cursor-pointer" : ""} ${currentStep >= 3 ? "text-cyan-600 font-bold" : ""
+                  className={`${furthestStep >= 3 ? "cursor-pointer" : ""} ${currentStep >= 3 ? "text-cyan-400 font-bold" : ""
                     }`}
                 >
                   View Alignment
@@ -1453,7 +1481,7 @@ results
                 <button
                   type="button"
                   onClick={() => handleStepSkip(4)}
-                  className={`${furthestStep >= 4 ? "cursor-pointer" : ""} ${currentStep >= 4 ? "text-cyan-600 font-bold" : ""
+                  className={`${furthestStep >= 4 ? "cursor-pointer" : ""} ${currentStep >= 4 ? "text-cyan-400 font-bold" : ""
                     }`}
                 >
                   Adjust Plot Settings
@@ -1461,7 +1489,7 @@ results
                 <button
                   type="button"
                   onClick={() => handleStepSkip(5)}
-                  className={`${furthestStep >= 5 ? "cursor-pointer" : ""} ${currentStep >= 5 ? "text-cyan-600 font-bold" : ""
+                  className={`${furthestStep >= 5 ? "cursor-pointer" : ""} ${currentStep >= 5 ? "text-cyan-400 font-bold" : ""
                     }`}
                 >
                   View Plot
@@ -1470,13 +1498,13 @@ results
                 <button
                   type="button"
                   onClick={() => handleStepSkip(6)}
-                  className={`${furthestStep >= 6 ? "cursor-pointer" : ""} ${currentStep >= 6 ? "text-cyan-600 font-bold" : ""
+                  className={`${furthestStep >= 6 ? "cursor-pointer" : ""} ${currentStep >= 6 ? "text-cyan-400 font-bold" : ""
                     }`}
                 >
                   View Report
                 </button>
               </div>
-              <div className="w-full bg-gray-200 h-2 rounded-full overflow-hidden">
+              <div className="w-full bg-gray-600 h-2 rounded-full overflow-hidden">
                 <div
                   className="bg-cyan-600 h-2 transition-all duration-300"
                   style={{ width: `${(currentStep / 6) * 100}%` }}
@@ -1491,11 +1519,11 @@ results
                   {formData.multi === null && (
 
                     <div className=" h-10/10 ">
-                      <h2 className="text-3xl font-bold text-gray-800">
+                      <h2 className="text-3xl font-bold text-gray-100">
                         Choose Comparison Type
                       </h2>
                       <div className="h-full flex flex-col place-content-start">
-                        <h1 className="text-2xl leading-[2] pt-12 font-semibold text-cyan-600 overflow-wrap">
+                        <h1 className="text-2xl leading-[2] pt-12 font-semibold text-cyan-400 overflow-wrap">
 
                           Please begin by selecting whether you want to compare:
 
@@ -1507,12 +1535,12 @@ results
                               onClick={() =>
                                 setFormData((prev) => ({ ...prev, multi: false }))
                               }
-                              className="px-5 py-2 bg-cyan-600 text-white text-lg  font-semibold rounded-lg hover:bg-cyan-700 disabled:bg-gray-400 disabled:cursor-not-allowed transition"
+                              className="px-5 py-2 bg-cyan-600 text-gray-900 text-lg  font-semibold rounded-lg hover:bg-cyan-700 disabled:bg-gray-500 disabled:cursor-not-allowed transition"
                             >
                               Entire Texts
                             </button>
 
-                            <div className="text-base pt-2 gap-2 text-cyan-700 shadow-lg/40  rounded-lg p-5 h-9/10  overflow-auto">
+                            <div className="text-base pt-2 gap-2 text-cyan-200  shadow-gray-600/40 shadow-lg/40  rounded-lg p-5 h-9/10  overflow-auto">
                               <p className="text-lg font-medium">Description</p>
 
                             </div>
@@ -1524,11 +1552,11 @@ results
                               onClick={() =>
                                 setFormData((prev) => ({ ...prev, multi: true }))
                               }
-                              className="px-5 py-2 bg-cyan-600 text-white text-lg font-semibold rounded-lg hover:bg-cyan-700 disabled:bg-gray-400 disabled:cursor-not-allowed transition"
+                              className="px-5 py-2 bg-cyan-600 text-gray-900 text-lg font-semibold rounded-lg hover:bg-cyan-700 disabled:bg-gray-500 disabled:cursor-not-allowed transition"
                             >
                               Subsections of Texts
                             </button>
-                            <div className="text-base pt-2 gap-2 text-cyan-700 shadow-lg/40 rounded-lg p-5 h-9/10 overflow-auto">
+                            <div className="text-base pt-2 gap-2 text-cyan-200 shadow-gray-600/40  shadow-lg/40 rounded-lg p-5 h-9/10 overflow-auto">
                               <p className="text-lg h-full font-medium">Description</p>
 
                             </div>
@@ -1539,7 +1567,7 @@ results
                       <div className="flex flex-row place-content-start pt-2">
                         <button
                           onClick={() => handleStepChange(0)}
-                          className="px-5 py-2 border border-gray-300 text-gray-700 font-medium rounded-lg hover:bg-gray-50 transition"
+                          className="px-5 py-2 border border-gray-300 text-gray-200 font-medium rounded-lg hover:bg-gray-700 transition"
                         >
                           Back
                         </button>
@@ -1550,15 +1578,15 @@ results
                   {/* SUBSECTION MULTI-FILE MODE */}
                   {formData.multi === true && (
                     <div className="flex flex-col gap-4 w-full h-full pt-10">
-                      <h2 className="text-3xl font-bold text-gray-800">
+                      <h2 className="text-3xl font-bold text-gray-100">
                         Upload Transcriptions
                       </h2>
                       {/* TOP PANEL: CONTROL BAR & SUBSECTION LIST */}
-                      <div className="border-2 border-dashed border-gray-300 flex-col overflow-auto h-full p-4 text-gray-500 w-full rounded-lg bg-gray-50 flex items-start justify-start">
+                      <div className="border-2 border-dashed border-gray-300 flex-col overflow-auto h-full p-4 text-gray-300 w-full rounded-lg bg-gray-700 flex items-start justify-start">
                         {/* Subsection Creator Header */}
                         <div className="flex flex-row justify-between items-center w-full pb-2 border-b mb-3">
                           <div className="flex items-center gap-2">
-                            <p className="text-md font-bold text-cyan-800">
+                            <p className="text-md font-bold text-cyan-100">
                               Uploaded Texts
                             </p>
                           </div>
@@ -1572,7 +1600,7 @@ results
                               }}
                               className="flex flex-row gap-2 items-center"
                             >
-                              <div className="cursor-text rounded-md shadow-sm flex flex-row items-center px-2 py-0.5 text-cyan-700 bg-white border border-gray-200">
+                              <div className="cursor-text rounded-md shadow-gray-600/40 shadow-sm flex flex-row items-center px-2 py-0.5 text-cyan-200 bg-gray-800 border border-gray-200">
                                 <input
                                   type="text"
                                   placeholder={`Default: Subsection ${count}`}
@@ -1584,7 +1612,7 @@ results
                                 />
                                 <button
                                   type="submit"
-                                  className="hover:bg-cyan-50 rounded-full text-cyan-800"
+                                  className="hover:bg-cyan-700 rounded-full text-cyan-100"
                                 >
                                   <CirclePlus className="w-5 h-5" />
                                 </button>
@@ -1598,7 +1626,7 @@ results
                                 setCount(1);
 
                               }}
-                              className="hover:bg-gray-200/70 p-1 rounded-sm text-red-600 font-bold cursor-pointer flex flex-row items-center gap-1 text-[0.8rem]"
+                              className="hover:bg-gray-600/70 p-1 rounded-sm text-red-400 font-bold cursor-pointer flex flex-row items-center gap-1 text-[0.8rem]"
                             >
                               <p>Clear All</p>
                               <Eraser className="w-4 h-4" />
@@ -1607,15 +1635,15 @@ results
                         </div>
 
                         {/* Base Text Global Indicator */}
-                        {/* <div className="text-[0.8rem] font-bold text-cyan-800 mb-3 overflow-wrap">
+                        {/* <div className="text-[0.8rem] font-bold text-cyan-100 mb-3 overflow-wrap">
                     Base Text Prefix:{" "}
-                    <input className="font-normal text-gray-800 rounded-md appearance-none bg-white outline-none p-1 shadow-md hover:shadow-lg focus:shadow-lg "
+                    <input className="font-normal text-gray-100 rounded-md appearance-none bg-gray-800 outline-none p-1 shadow-gray-600/40 shadow-md hover:shadow-gray-600/40 shadow-lg focus:shadow-gray-600/40 shadow-lg "
                       type="text"
                       value={formData.baseText != "" ? formData.baseText : "None"}
                       onChange={(e)=>{setFormData((prev)=>({...prev, baseText:e.target.value}))}}
                     />
                   </div> */}
-                        <div className="text-[0.8rem] font-bold text-cyan-800 mb-3 overflow-wrap">
+                        <div className="text-[0.8rem] font-bold text-cyan-100 mb-3 overflow-wrap">
                           Base Text:{" "}
                           {formData.baseText != "" ? formData.baseText : "None"}
                         </div>
@@ -1680,7 +1708,7 @@ results
                               ),
                             )
                           ) : (
-                            <p className="text-[0.8rem] text-gray-400 italic py-4 text-center">
+                            <p className="text-[0.8rem] text-gray-300 italic py-4 text-center">
                               No subsections created. Add a subsection above to
                               begin organizing.
                             </p>
@@ -1696,10 +1724,10 @@ results
                       {/* MAIN UNIFIED CONTAINER */}
                       <div
                         {...getTextRootProps()}
-                        className={`border-2 border-dashed border-gray-300 flex-col overflow-auto h-full p-4 text-gray-500 w-full rounded-lg bg-gray-50 flex items-start justify-start transition ${isTextDragReject
-                            ? "border-red-500 text-red-600 bg-red-50"
+                        className={`border-2 border-dashed border-gray-300 flex-col overflow-auto h-full p-4 text-gray-300 w-full rounded-lg bg-gray-700 flex items-start justify-start transition ${isTextDragReject
+                            ? "border-red-500 text-red-400 bg-red-50"
                             : isTextDragActive
-                              ? "border-cyan-500 text-cyan-600 bg-cyan-50"
+                              ? "border-cyan-500 text-cyan-400 bg-cyan-700"
                               : ""
                           }`}
                       >
@@ -1708,10 +1736,10 @@ results
                         {/* HEADER CONTROL BAR */}
                         <div className="flex flex-row justify-between items-center w-full pb-2 border-b mb-3">
                           <div className="flex items-center gap-2">
-                            <p className="text-md font-bold text-cyan-800">
+                            <p className="text-md font-bold text-cyan-100">
                               Uploaded Texts
                             </p>
-                            <span className="text-[0.8rem] text-gray-400 font-normal">
+                            <span className="text-[0.8rem] text-gray-300 font-normal">
                               ({formData.files.length}{" "}
                               {formData.files.length === 1 ? "file" : "files"})
                             </span>
@@ -1725,7 +1753,7 @@ results
                                 e.stopPropagation();
                                 clearAll();
                               }}
-                              className="hover:bg-gray-200/70 p-1 rounded-sm text-red-600  font-bold cursor-pointer flex flex-row items-center gap-1 text-[0.8rem]"
+                              className="hover:bg-gray-600/70 p-1 rounded-sm text-red-400  font-bold cursor-pointer flex flex-row items-center gap-1 text-[0.8rem]"
                             >
                               <p>Clear All</p>
                               <Eraser className="w-4 h-4" />
@@ -1734,15 +1762,15 @@ results
                         </div>
 
                         {/* BASE TEXT INDICATOR */}
-                        {/* <div className="text-[0.8rem] font-bold text-cyan-800 mb-3 overflow-wrap">
+                        {/* <div className="text-[0.8rem] font-bold text-cyan-100 mb-3 overflow-wrap">
                     Base Text Prefix:{" "}
-                    <input className="font-normal text-gray-800 rounded-md appearance-none bg-white outline-none p-1 shadow-md hover:shadow-lg focus:shadow-lg "
+                    <input className="font-normal text-gray-100 rounded-md appearance-none bg-gray-800 outline-none p-1 shadow-gray-600/40 shadow-md hover:shadow-gray-600/40 shadow-lg focus:shadow-gray-600/40 shadow-lg "
                       type="text"
                       value={formData.baseText != "" ? formData.baseText : "None"}
                       onChange={(e)=>{setFormData((prev)=>({...prev, baseText:e.target.value}))}}
                     />
                   </div> */}
-                        <div className="text-[0.8rem] font-bold text-cyan-800 mb-3 overflow-wrap">
+                        <div className="text-[0.8rem] font-bold text-cyan-100 mb-3 overflow-wrap">
                           Base Text:{" "}
                           {formData.baseText != "" ? formData.baseText : "None"}
                         </div>
@@ -1759,11 +1787,11 @@ results
                         />
 
                         {/* SINGLE MAIN CONTENT BOX */}
-                        <div className="w-full p-3 border-2 border-dashed border-gray-300 rounded-lg bg-white shadow-xs transition-all hover:border-cyan-400">
+                        <div className="w-full p-3 border-2 border-dashed border-gray-300 rounded-lg bg-gray-800 shadow-gray-600/40 shadow-xs transition-all hover:border-cyan-400">
                           {/* INNER HEADER WITH UPLOAD BUTTONS */}
                           <div className="flex items-center justify-between border-b pb-2 mb-2">
-                            <div className="flex items-center gap-2 font-bold text-cyan-900 text-sm">
-                              <FolderOpen className="w-5 h-5 text-cyan-600" />
+                            <div className="flex items-center gap-2 font-bold text-cyan-50 text-sm">
+                              <FolderOpen className="w-5 h-5 text-cyan-400" />
                               <span>Uploaded Files</span>
                             </div>
 
@@ -1775,7 +1803,7 @@ results
                                   e.stopPropagation();
                                   openFilePicker();
                                 }}
-                                className="bg-cyan-50 hover:bg-cyan-100 text-cyan-800 font-semibold px-2 py-1 rounded border border-cyan-200 transition cursor-pointer"
+                                className="bg-cyan-700 hover:bg-cyan-800 text-cyan-100 font-semibold px-2 py-1 rounded border border-cyan-200 transition cursor-pointer"
                               >
                                 + Files
                               </button>
@@ -1786,7 +1814,7 @@ results
                                   e.stopPropagation();
                                   folderInput.current?.click();
                                 }}
-                                className="bg-cyan-50 hover:bg-cyan-100 text-cyan-800 font-semibold px-2 py-1 rounded border border-cyan-200 transition cursor-pointer"
+                                className="bg-cyan-700 hover:bg-cyan-800 text-cyan-100 font-semibold px-2 py-1 rounded border border-cyan-200 transition cursor-pointer"
                               >
                                 + Folder
                               </button>
@@ -1802,8 +1830,8 @@ results
                                   <li
                                     key={`${file.name}-${fileIndex}`}
                                     className={`flex items-center justify-between px-2 py-1 rounded border text-[0.8rem] ${isBase
-                                        ? "bg-cyan-100/60 border-cyan-300"
-                                        : "bg-gray-50 border-gray-100 hover:bg-gray-100"
+                                        ? "bg-cyan-800/60 border-cyan-300"
+                                        : "bg-gray-700 border-gray-100 hover:bg-gray-600"
                                       }`}
                                   >
                                     <button
@@ -1815,14 +1843,14 @@ results
                                           baseText: file.name,
                                         }));
                                       }}
-                                      className="bg-transparent w-98/100 text-cyan-600 rounded-lg flex-row flex gap-2 items-center shrink-0 cursor-pointer text-left"
+                                      className="bg-transparent w-98/100 text-cyan-400 rounded-lg flex-row flex gap-2 items-center shrink-0 cursor-pointer text-left"
                                     >
                                       {isBase ? (
                                         <FileCheck className="w-5 h-5" />
                                       ) : (
                                         <FileText className="w-5 h-5" />
                                       )}
-                                      <p className="text-[0.8rem] font-medium text-cyan-800 truncate max-w-[300px]">
+                                      <p className="text-[0.8rem] font-medium text-cyan-100 truncate max-w-[300px]">
                                         {file.name}
                                       </p>
                                     </button>
@@ -1833,7 +1861,7 @@ results
                                         e.stopPropagation();
                                         removeFile(file);
                                       }}
-                                      className="text-red-600 hover:bg-red-50 p-0.5 rounded transition cursor-pointer"
+                                      className="text-red-400 hover:bg-gray-300 p-0.5 rounded transition cursor-pointer"
                                     >
                                       <Trash2 className="w-4 h-4" />
                                     </button>
@@ -1842,7 +1870,7 @@ results
                               })}
                             </ul>
                           ) : (
-                            <div className="py-8 text-center border-1 border-dashed border-gray-200 rounded-md bg-gray-50/50 text-[0.8rem] text-gray-400">
+                            <div className="py-8 text-center border-1 border-dashed border-gray-200 rounded-md bg-gray-700/50 text-[0.8rem] text-gray-300">
                               Drag and drop files or folders directly anywhere
                               in this box
                             </div>
@@ -1857,7 +1885,7 @@ results
                         onClick={() =>
                           setFormData((prev) => ({ ...prev, multi: null }))
                         }
-                        className="px-5 py-2 border border-gray-300 text-gray-700 font-medium rounded-lg hover:bg-gray-50 transition"
+                        className="px-5 py-2 border border-gray-300 text-gray-200 font-medium rounded-lg hover:bg-gray-700 transition"
                       >
                         Back
                       </button>
@@ -1865,11 +1893,11 @@ results
                       <button 
                       disabled={totalFilesCount < 2}
                       onClick={()=>handleStepChange(1.2)}
-                      className="px-5 py-2 bg-green-600 text-white font-medium rounded-lg hover:bg-green-700 disabled:bg-gray-400 disabled:cursor-not-allowed transition">Optional: Upload Spreadsheet</button>
+                      className="px-5 py-2 bg-green-600 text-gray-900 font-medium rounded-lg hover:bg-green-700 disabled:bg-gray-500 disabled:cursor-not-allowed transition">Optional: Upload Spreadsheet</button>
                       <button
                         disabled={totalFilesCount < 2}
                         onClick={() => handleStepChange(2)}
-                        className="px-5 py-2 bg-cyan-600 text-white font-medium rounded-lg hover:bg-cyan-700 disabled:bg-gray-400 disabled:cursor-not-allowed transition"
+                        className="px-5 py-2 bg-cyan-600 text-gray-900 font-medium rounded-lg hover:bg-cyan-700 disabled:bg-gray-500 disabled:cursor-not-allowed transition"
                       >
                         Continue
                       </button>
@@ -1881,26 +1909,26 @@ results
             )}
             {(currentStep===1.2)&& (
               <div className="h-full w-full justify-between flex flex-col">
-                <h2 className="text-4xl font-bold h-max text-gray-700 pt-10 ">
+                <h2 className="text-4xl font-bold h-max text-gray-200 pt-10 ">
                   Optional: Upload Spreadsheet
                 </h2>
                 <div className="flex h-full w-full pt-10 gap-5 flex-row">
                <div
                         {...getSpreadsheetRootProps()}
-                        className={`border-2 border-dashed border-gray-300 flex-col place-content-center place-items-center h-full p-4 text-gray-500 w-full rounded-lg bg-gray-50 flex  transition ${isTextDragReject
-                            ? "border-red-500 text-red-600 bg-red-50"
+                        className={`border-2 border-dashed border-gray-300 flex-col place-content-center place-items-center h-full p-4 text-gray-300 w-full rounded-lg bg-gray-700 flex  transition ${isTextDragReject
+                            ? "border-red-500 text-red-400 bg-red-50"
                             : isTextDragActive
-                              ? "border-cyan-500 text-cyan-600 bg-cyan-50"
+                              ? "border-cyan-500 text-cyan-400 bg-cyan-700"
                               : ""
                           }`}
                       >
                         <input {...getSpreadsheetInputProps()} />
 
                         {/* HEADER CONTROL BAR */}
-                        <div className="w-full p-3 border-2 border-dashed border-gray-300 rounded-lg h-full bg-white shadow-xs transition-all hover:border-cyan-400">
+                        <div className="w-full p-3 border-2 place-content-center border-dashed border-gray-300 rounded-lg h-full bg-gray-800 shadow-gray-600/40 shadow-xs transition-all hover:border-cyan-400">
                         <div className="flex flex-row h-max justify-between items-center w-full pb-2  border-b mb-3">
                           <div className="flex items-center gap-2">
-                            <p className="text-md font-bold text-cyan-800">
+                            <p className="text-md font-bold text-cyan-100">
                               Uploaded Alignment Matrix
                             </p>
                            
@@ -1910,7 +1938,7 @@ results
                         </div>
                         {formData.spreadsheet != null ? (
                             <ul className="space-y-1 mt-2 h-full w-full overflow-auto pr-1">
-                              <div className={`flex items-center justify-between flex-row w-full gap-2 px-2 py-1 text-cyan-800 rounded border text-[0.8rem] bg-gray-50 border-gray-100 hover:bg-gray-100
+                              <div className={`flex items-center justify-between flex-row w-full gap-2 px-2 py-1 text-cyan-100 rounded border text-[0.8rem] bg-gray-700 border-gray-100 hover:bg-gray-600
                                       `}>
                                         <div className="flex flex-row gap-2">
                                         <FileText className="w-5 h-5" />
@@ -1926,7 +1954,7 @@ results
                                           spreadsheet: null
                                         }))
                                       }}
-                                      className="text-red-600 hover:bg-red-50 p-0.5 rounded transition cursor-pointer"
+                                      className="text-red-400 hover:bg-gray-300 p-0.5 rounded transition cursor-pointer"
                                     >
                                       <Trash2 className="w-4 h-4" />
                                     </button>
@@ -1934,12 +1962,12 @@ results
                               
                             </ul>
                           ) : (
-                            <div className="py-8 text-center w-full h-full rounded-md bg-gray-50/50 text-[0.8rem] text-gray-400">
+                            <div className="py-8 text-center w-full h-9/10 rounded-md bg-gray-700/50 text-[0.8rem] text-gray-300">
                               Drag and drop or click to upload an .xlsx spreadsheet file.
                             </div>
                           )}
               </div></div>
-              <div className="text-base pt-2 gap-2 text-cyan-700 shadow-lg/40 w-full h-full rounded-lg p-5  overflow-auto">
+              <div className="text-base pt-2 gap-2 text-cyan-200  shadow-gray-600/40 shadow-lg/40 w-full h-full rounded-lg p-5  overflow-auto">
                           <p className="text-lg font-bold">Description</p>
                           <p>Explain what type of spreadsheet to upload (or maybe include a template to download)</p>
                         </div>
@@ -1949,7 +1977,7 @@ results
                         onClick={() =>
                           handleStepChange(1)
                         }
-                        className="px-5 py-2 border border-gray-300 text-gray-700 font-medium rounded-lg hover:bg-gray-50 transition"
+                        className="px-5 py-2 border border-gray-300 text-gray-200 font-medium rounded-lg hover:bg-gray-700 transition"
                       >
                         Back
                       </button>
@@ -1959,13 +1987,13 @@ results
                           handleUploadSpreadsheet();
                           handleStepChange(2.2);
                         }}
-                        className="px-5 py-2 cursor-pointer bg-green-600 text-white font-medium rounded-lg hover:bg-green-700 disabled:bg-gray-400 disabled:cursor-not-allowed transition"
+                        className="px-5 py-2 cursor-pointer bg-green-600 text-gray-900 font-medium rounded-lg hover:bg-green-700 disabled:bg-gray-500 disabled:cursor-not-allowed transition"
                       >
                         Confirm Upload
                       </button>
                         <button
                         onClick={() => handleStepChange(2)}
-                        className="px-5 py-2 cursor-pointer bg-cyan-600 text-white font-medium rounded-lg hover:bg-cyan-700 disabled:bg-gray-400 disabled:cursor-not-allowed transition"
+                        className="px-5 py-2 cursor-pointer bg-cyan-600 text-gray-900 font-medium rounded-lg hover:bg-cyan-700 disabled:bg-gray-500 disabled:cursor-not-allowed transition"
                       >
                         Skip
                       </button>
@@ -1977,7 +2005,7 @@ results
             {/* SELECT ALGORITHM */}
             {((currentStep === 2) || (currentStep===2.5) || (currentStep===2.2)) && (
               <div className=" h-full w-full place-content-center flex flex-col">
-                <h2 className="text-4xl font-bold text-gray-700  ">
+                <h2 className="text-4xl font-bold text-gray-200  ">
                   Select Algorithm
                 </h2>
                 <div className="h-8/10">
@@ -1985,12 +2013,12 @@ results
                     <div className="flex flex-row h-full w-full content-center items-start">
                       <div className="flex flex-row h-full gap-10 content-center w-full">
                         <div className="flex flex-col h-full content-center items-center gap-2 w-1/3">
-                          {/* <label className="block text-2xl font-medium text-gray-700 mb-1">Select Algorithm</label> */}
+                          {/* <label className="block text-2xl font-medium text-gray-200 mb-1">Select Algorithm</label> */}
                           <div className="flex flex-col gap-2 pt-2 w-full">
                             {/* Label */}
                             <label
                               htmlFor="algorithm"
-                              className="block text-md font-medium text-gray-700 place-content-start"
+                              className="block text-md font-medium text-gray-200 place-content-start"
                             >
                               Choose an Algorithm
                             </label>
@@ -1999,7 +2027,7 @@ results
                             <div className="relative ">
                               <select
                                 id="algorithm"
-                                className="block w-full pl-3 pr-10 py-2 text-[0.8rem] outline-none border-none  bg-white  rounded-md shadow-md appearance-none focus:outline-none focus:shadow-md text-gray-700/60 focus:text-gray-700 focus:shadow-gray-700/70
+                                className="block w-full pl-3 pr-10 py-2 text-[0.8rem] outline-none border-none  bg-gray-800  rounded-md shadow-gray-600/40 shadow-md appearance-none focus:outline-none focus:shadow-gray-600/40 shadow-md text-gray-200/60 focus:text-gray-200 focus:shadow-gray-600/40 shadow-gray-700/70
                      rounded-md   cursor-pointer transition-colors"
                                 defaultValue={formData.algorithm}
                                 onChange={(e) =>
@@ -2012,20 +2040,20 @@ results
                                 <option
                                   disabled
                                   value=""
-                                  className="text-gray-400/20"
+                                  className="text-gray-300/20"
                                 >
                                   Select an Algorithm
                                 </option>
-                                <option value="ndw" className="text-gray-800">
+                                <option value="ndw" className="text-gray-100">
                                   Needleman-Wunsch Algorithm
                                 </option>
-                                <option value="sw" className="text-gray-800">
+                                <option value="sw" className="text-gray-100">
                                   Smith-Waterman Algorithm
                                 </option>
                               </select>
 
                               {/* Custom Dropdown Chevron Icon */}
-                              <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-3 text-gray-500">
+                              <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-3 text-gray-300">
                                 <svg
                                   className="w-4 h-4"
                                   fill="none"
@@ -2048,7 +2076,7 @@ results
                                 <div className="flex flex-row gap-3 content-center">
                                   <div className="w-5/10">
                                     {/* Match Bonus*/}
-                                    <div className="flex justify-between items-center text-md font-medium text-gray-700">
+                                    <div className="flex justify-between items-center text-md font-medium text-gray-200">
                                       <label htmlFor="matchBonus">
                                         Match Bonus
                                       </label>
@@ -2072,16 +2100,16 @@ results
                                               : e.target.valueAsNumber,
                                         )
                                       }
-                                      className="block w-full pl-3 pr-10 py-2 text-[0.8rem] bg-white rounded-md shadow-sm appearance-none focus:outline-none focus:shadow-md text-gray-700/60 focus:text-gray-700 focus:shadow-gray-700/70 sm:text-[0.8rem] transition-colors"
+                                      className="block w-full pl-3 pr-10 py-2 text-[0.8rem] bg-gray-800 rounded-md shadow-gray-600/40 shadow-sm appearance-none focus:outline-none focus:shadow-gray-600/40 shadow-md text-gray-200/60 focus:text-gray-200 focus:shadow-gray-600/40 shadow-gray-700/70 sm:text-[0.8rem] transition-colors"
                                     />
 
                                     {/* Gap Penalty */}
-                                    <div className="flex justify-between items-center text-md font-medium text-gray-700">
+                                    <div className="flex justify-between items-center text-md font-medium text-gray-200">
                                       <label htmlFor="gapPenalty">
                                         Gap Penalty
                                       </label>
                                     </div>
-                                    <div className="flex flex-row text-gray-500 text-lg place-items-center gap-1">
+                                    <div className="flex flex-row text-gray-300 text-lg place-items-center gap-1">
                                       <input
                                         id="gapPenalty"
                                         type="number"
@@ -2100,11 +2128,11 @@ results
                                                 : -e.target.valueAsNumber,
                                           )
                                         }
-                                        className="block w-full pl-3 pr-10 py-2 text-[0.8rem] bg-white rounded-md shadow-sm appearance-none focus:outline-none focus:shadow-md text-gray-700/60 focus:text-gray-700 focus:shadow-gray-700/70 sm:text-[0.8rem] transition-colors"
+                                        className="block w-full pl-3 pr-10 py-2 text-[0.8rem] bg-gray-800 rounded-md shadow-gray-600/40 shadow-sm appearance-none focus:outline-none focus:shadow-gray-600/40 shadow-md text-gray-200/60 focus:text-gray-200 focus:shadow-gray-600/40 shadow-gray-700/70 sm:text-[0.8rem] transition-colors"
                                       />
                                     </div>
                                     {/* Mismatch Penalty */}
-                                    <div className="flex justify-between items-center text-md font-medium text-gray-700">
+                                    <div className="flex justify-between items-center text-md font-medium text-gray-200">
                                       <label htmlFor="mismatchPenalty">
                                         Mismatch Penalty
                                       </label>
@@ -2128,15 +2156,15 @@ results
                                               : -e.target.valueAsNumber,
                                         )
                                       }
-                                      className="block w-full pl-3 pr-10 py-2 text-[0.8rem] bg-white rounded-md shadow-sm appearance-none focus:outline-none focus:shadow-md text-gray-700/60 focus:text-gray-700 focus:shadow-gray-700/70 sm:text-[0.8rem] transition-colors"
+                                      className="block w-full pl-3 pr-10 py-2 text-[0.8rem] bg-gray-800 rounded-md shadow-gray-600/40 shadow-sm appearance-none focus:outline-none focus:shadow-gray-600/40 shadow-md text-gray-200/60 focus:text-gray-200 focus:shadow-gray-600/40 shadow-gray-700/70 sm:text-[0.8rem] transition-colors"
                                     />
-                                    <div className="flex flex-row gap-3 content-center items-center text-md pt-2 font-medium text-gray-700">
+                                    <div className="flex flex-row gap-3 content-center items-center text-md pt-2 font-medium text-gray-200">
                                       <input
                                         type="checkbox"
                                         checked={formData.settings.spaceStrip}
                                         onChange={(handleSpaceStrip)}
-                                        className={`rounded-full  accent-cyan-500 text-white border-1 border-none shadow-sm shadow-gray-700/70 hover:shadow-md outline-none w-4 h-4 appearance-none 
-                  ${formData.settings.spaceStrip ? "bg-cyan-700 inset-shadow-xs inset-shadow-cyan-200" : "bg-white"}`}
+                                        className={`rounded-full  accent-cyan-500 text-gray-300 border-1 border-none shadow-gray-600/40 shadow-sm shadow-gray-600/40 shadow-gray-700/70 hover:shadow-gray-600/40 shadow-md outline-none w-4 h-4 appearance-none 
+                  ${formData.settings.spaceStrip ? "bg-cyan-700 shadow-gray-600/40 shadow-xs shadow-gray-600/40 shadow-cyan-200" : "bg-gray-800"}`}
                                       />
                                       <label className="">
                                         <div className="">
@@ -2147,13 +2175,13 @@ results
                                   </div>
                                   <div className="w-6/10">
                                     {/* Optional Special Character Bonus */}
-                                    <p className="font-medium text-[1.1rem] text-cyan-800 pb-1">
+                                    <p className="font-medium text-[1.1rem] text-cyan-100 pb-1">
                                       Optional Settings
                                     </p>
                                     {formData.algorithm === "ndw" && (
                                       <div>
                                         {/* Affine Gap Penalty */}
-                                        <div className="flex justify-between items-center text-md font-medium text-gray-700">
+                                        <div className="flex justify-between items-center text-md font-medium text-gray-200">
                                           <label htmlFor="affinePenalty">
                                             Affine Penalty
                                           </label>
@@ -2177,14 +2205,14 @@ results
                                                   : -e.target.valueAsNumber,
                                             )
                                           }
-                                          className="block w-full pl-3 pr-10 py-2 text-[0.8rem] bg-white rounded-md shadow-sm appearance-none focus:outline-none focus:shadow-md text-gray-700/60 focus:text-gray-700 focus:shadow-gray-700/70 sm:text-[0.8rem] transition-colors"
+                                          className="block w-full pl-3 pr-10 py-2 text-[0.8rem] bg-gray-800 rounded-md shadow-gray-600/40 shadow-sm appearance-none focus:outline-none focus:shadow-gray-600/40 shadow-md text-gray-200/60 focus:text-gray-200 focus:shadow-gray-600/40 shadow-gray-700/70 sm:text-[0.8rem] transition-colors"
                                         />
                                       </div>
                                     )}
                                     {/* Label */}
                                     <label
                                       htmlFor="special"
-                                      className="block text-md font-medium text-gray-700 place-content-start"
+                                      className="block text-md font-medium text-gray-200 place-content-start"
                                     >
                                       Optional Special Character Bonus
                                     </label>
@@ -2193,7 +2221,7 @@ results
                                     <div className="relative">
                                       <select
                                         id="special"
-                                        className="block w-full pl-3 pr-10 py-2 text-[0.8rem] bg-white rounded-md shadow-sm appearance-none focus:outline-none focus:shadow-md text-gray-700/60 focus:text-gray-700 focus:shadow-gray-700/70 sm:text-[0.8rem] cursor-pointer transition-colors"
+                                        className="block w-full pl-3 pr-10 py-2 text-[0.8rem] bg-gray-800 rounded-md shadow-gray-600/40 shadow-sm appearance-none focus:outline-none focus:shadow-gray-600/40 shadow-md text-gray-200/60 focus:text-gray-200 focus:shadow-gray-600/40 shadow-gray-700/70 sm:text-[0.8rem] cursor-pointer transition-colors"
                                         value={formData.settings.special.join(
                                           ",",
                                         )}
@@ -2228,32 +2256,32 @@ results
                                       >
                                         <option
                                           value=""
-                                          className="text-gray-400/20"
+                                          className="text-gray-300/20"
                                         >
                                           None
                                         </option>
                                         {/* Pass standard comma-separated strings as values */}
                                         <option
                                           value="ך,ם,ן,ף,ץ"
-                                          className="text-gray-800"
+                                          className="text-gray-100"
                                         >
                                           Sofit Letters
                                         </option>
                                         <option
                                           value="A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z"
-                                          className="text-gray-800"
+                                          className="text-gray-100"
                                         >
                                           Capital Letters (Latin Alphabet)
                                         </option>
                                         <option
                                           value="Other"
-                                          className="text-gray-800"
+                                          className="text-gray-100"
                                         >
                                           Custom
                                         </option>
                                       </select>
                                       {/* Custom Dropdown Chevron Icon */}
-                                      <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-3 text-gray-500">
+                                      <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-3 text-gray-300">
                                         <svg
                                           className="w-4 h-4"
                                           fill="none"
@@ -2274,7 +2302,7 @@ results
                                       <div>
                                         <label
                                           htmlFor="otherSpecial"
-                                          className="block pt-2 text-md font-medium text-gray-700 place-content-start"
+                                          className="block pt-2 text-md font-medium text-gray-200 place-content-start"
                                         >
                                           Enter a space-separated list of
                                           characters.
@@ -2298,7 +2326,7 @@ results
                                               )
                                           }
                                           placeholder="1 2 3"
-                                          className="shadow-md pt-2 w-full text-gray-700 focus:shadow-gray-700/70 outline-none border-none appearance-none p-1"
+                                          className="shadow-gray-600/40 shadow-md pt-2 w-full text-gray-200 focus:shadow-gray-600/40 shadow-gray-700/70 outline-none border-none appearance-none p-1"
                                         />
                                       </div>
                                     )}
@@ -2306,7 +2334,7 @@ results
                                       {formData.settings.special.includes(
                                         "Other",
                                       ) === false && (
-                                          <label className="pt-2 text-cyan-700">
+                                          <label className="pt-2 text-cyan-200">
                                             {formData.settings.special.join(" ")}
                                           </label>
                                         )}
@@ -2314,7 +2342,7 @@ results
 
                                     {formData.settings.special?.length > 0 && (
                                       <div>
-                                        <div className="flex justify-between items-center text-md  font-medium text-gray-700">
+                                        <div className="flex justify-between items-center text-md  font-medium text-gray-200">
                                           <label
                                             htmlFor="specialBonus"
                                             className="pt-2"
@@ -2341,7 +2369,7 @@ results
                                                 : e.target.valueAsNumber,
                                             )
                                           }
-                                          className="block w-full pl-3 pr-10 py-2 text-[0.8rem] bg-white rounded-md shadow-sm appearance-none focus:outline-none focus:shadow-md text-gray-700/60 focus:text-gray-700 focus:shadow-gray-700/70 sm:text-[0.8rem] transition-colors"
+                                          className="block w-full pl-3 pr-10 py-2 text-[0.8rem] bg-gray-800 rounded-md shadow-gray-600/40 shadow-sm appearance-none focus:outline-none focus:shadow-gray-600/40 shadow-md text-gray-200/60 focus:text-gray-200 focus:shadow-gray-600/40 shadow-gray-700/70 sm:text-[0.8rem] transition-colors"
                                         />
                                       </div>
                                     )}
@@ -2360,7 +2388,7 @@ results
                 text-xs, text-sm, text-base, text-lg, text-xl, text-2xl, etc.*/}
                           </div>
                         </div>
-                        <div className="text-base pt-2 gap-2 text-cyan-700 shadow-lg/40 w-7/10 h-full rounded-lg p-5  overflow-auto">
+                        <div className="text-base pt-2 gap-2 text-cyan-200  shadow-gray-600/40 shadow-lg/40 w-7/10 h-full rounded-lg p-5  overflow-auto">
                           <p className="text-lg font-bold">Description</p>
                           <p>Description text</p>
                         </div>
@@ -2370,8 +2398,8 @@ results
 
                   <div className="flex flex-row  justify-between">
                     <button
-                      onClick={() => (currentStep===2 ? handleStepChange(1) : (currentStep===2.5? handleStepChange(1.5) : handleStepChange(1.2)))}
-                      className="px-5 py-2 border border-gray-300 text-gray-700 h-max font-medium rounded-lg hover:bg-gray-50 transition"
+                      onClick={() => (currentStep===2 ? handleStepChange(1) : (currentStep===2.5? handleStepChange(3.5) : handleStepChange(1.2)))}
+                      className="px-5 py-2 border border-gray-300 text-gray-200 h-max font-medium rounded-lg hover:bg-gray-700 transition"
                     >
                       Back
                     </button>
@@ -2379,7 +2407,7 @@ results
                     <button
                       onClick={handleSubmit}
                       disabled={!isReady || isProcessing}
-                      className="px-5 py-2 bg-cyan-600 text-white font-medium rounded-lg hover:bg-cyan-700 disabled:opacity-50 transition"
+                      className="px-5 py-2 bg-cyan-600 text-gray-900 font-medium rounded-lg hover:bg-cyan-700 disabled:opacity-50 transition"
                     >
                       {isProcessing ? "Processing..." : "Run Algorithm"}
                     </button>
@@ -2389,7 +2417,7 @@ results
                         disabled={
                           isProcessing 
                         }
-                        className="px-5 py-2 bg-cyan-600 text-white font-medium rounded-lg hover:bg-cyan-700 disabled:bg-gray-400 disabled:cursor-not-allowed transition"
+                        className="px-5 py-2 bg-cyan-600 text-gray-900 font-medium rounded-lg hover:bg-cyan-700 disabled:bg-gray-500 disabled:cursor-not-allowed transition"
                       >
                         Select Plot Settings
                       </button>)}
@@ -2401,33 +2429,27 @@ results
             {currentStep === 3 && (
               <div className="flex h-full self-start place-content-start w-full">
                 <div className="flex flex-col justify-between place-content-start pt-4  w-full">
-                  <h1 className="text-4xl w-5/10 font-bold text-gray-700 pt-10 pb-2">
+                  <h1 className="text-4xl w-5/10 font-bold text-gray-200 pt-10 pb-2">
                     {formData.algorithm == "ndw"
                       ? "Needleman-Wunsch"
                       : "Smith-Waterman"}{" "}
                     Alignment
                   </h1>
 
-                  <div className="h-85/100 w-full flex flex-row">
+                  <div className="h-8/10 w-full flex flex-row">
+                
                     <div className="flex flex-row w-full gap-6">
                       <div className="flex-row overflow-auto place-content-start place-items-start h-full place-self-start w-full flex pt-5 ">
                         <div className="flex flex-col items-center content-center">
                         <div className="w-max h-85/100">
-                        <p className="text-xs font-semibold text-gray-500 mb-1">
+                        <p className="text-xs font-semibold text-gray-300 mb-1">
                                   Base Text: {formData.baseText.split("_")[0]}
                         </p>
-                          <p className="text-gray-800  whitespace-pre-wrap text-justify font-mono" style={{ direction: rtlLangs.test(results.output_logs) ? "rtl" : "ltr", unicodeBidi: 'embed' }}>
+                          <p className="text-gray-100  whitespace-pre-wrap text-justify font-mono" style={{ direction: rtlLangs.test(results.output_logs) ? "rtl" : "ltr", unicodeBidi: 'embed' }}>
                             {results.output_logs}
                           </p>
                         </div>
-                        {prevBaseTexts.size > 1 && (
-                        <button
-                          className="px-5 py-2 bg-cyan-600 text-white font-medium h-max w-max rounded-lg hover:bg-cyan-700 cursor-pointer transition"
-                          onClick={() => setShowPrevious((prev) => !prev)}
-                        >
-                          {showPrevious ? "Hide Previous Alignments" : "View Previous Alignments"}
-                        </button>
-                      )}
+                        
 
                       {/* Declaratively Render Previous Alignments */}
                       {showPrevious &&
@@ -2440,11 +2462,11 @@ results
                             const logText = dict.alignments || dict.output_logs || "";
                             return (
                               <div key={dict.baseText} className="w-full border-t border-gray-200 pt-4 mt-2">
-                                <p className="text-xs font-semibold text-gray-500 mb-1">
+                                <p className="text-xs font-semibold text-gray-300 mb-1">
                                   Base Text: {dict.baseText.split("_")[0]}
                                 </p>
                                 <p
-                                  className="text-gray-800 whitespace-pre-wrap text-justify font-mono"
+                                  className="text-gray-100 whitespace-pre-wrap text-justify font-mono"
                                   style={{
                                     direction: rtlLangs.test(logText) ? "rtl" : "ltr",
                                     unicodeBidi: "embed",
@@ -2456,48 +2478,79 @@ results
                             );
                           })}
                       </div>
+                      
                       </div>
-                      <div className="text-base w-full h-9/10 pt-2 gap-2 text-cyan-700 shadow-lg/40  rounded-lg p-5  overflow-auto">
+                    
+                     
+                      <div className="text-base w-full h-9/10 pt-2 gap-2  text-cyan-200 shadow-gray-600/40 shadow-lg/40  rounded-lg p-5  overflow-auto">
                         <p className="text-lg font-bold">Description</p>
                         <p>Description text</p>
                       </div>
                     </div>
                   </div>
+                  
+                  <div className="flex flex-row w-4/10 pt-2 place-content-center">
+                   {prevBaseTexts.size > 1 && (
+                        <button
+                          className="px-5 py-2 bg-cyan-600  text-gray-900 font-medium h-max w-max rounded-lg hover:bg-cyan-700 cursor-pointer transition"
+                          onClick={() => setShowPrevious((prev) => !prev)}
+                        >
+                          {showPrevious ? "Hide Previous Alignments" : "View Previous Alignments"}
+                        </button>
+                      )}
+                      </div>
                   <div className="flex flex-row pt-2 h-max justify-between items-start content-start">
+                     
                     <button
                       onClick={() => handleStepChange(2)}
-                      className="px-5 py-2 border border-gray-300 h-max text-gray-700 font-medium rounded-lg hover:bg-gray-50 transition"
+                      className="px-5 py-2 border border-gray-300 h-max text-gray-200 font-medium rounded-lg hover:bg-gray-700 transition"
                     >
                       Back
                     </button>
+                    <div className="flex flex-col items-center w-max gap-2">
                     <PDFDownloadLink
                       document={<AlignmentsDoc />}
                       fileName="alignments.pdf"
-                      className="px-5 py-2 bg-sky-600 h-max text-white font-medium rounded-lg hover:bg-sky-700"
+                      className="px-5 py-2 bg-sky-600 h-max text-gray-900 font-medium rounded-lg hover:bg-sky-700"
                     >
                       {({ blob, url, loading, error }) =>
                         loading
                           ? "Generating Alignments File..."
-                          : "Download Alignments"
+                          : "Download New Alignments Only"
                       }
                     </PDFDownloadLink>
+                    <PDFDownloadLink
+                      document={<AllAlignmentsDoc />}
+                      fileName="alignments.pdf"
+                      className="px-5 py-2 bg-sky-700 h-max text-gray-900 font-medium rounded-lg hover:bg-sky-800"
+                    >
+                      {({ blob, url, loading, error }) =>
+                        loading
+                          ? "Generating Alignments File..."
+                          : "Download All Generated Alignments"
+                      }
+                    </PDFDownloadLink>
+                    </div>
+                  
                     <div className="flex flex-col items-center w-max gap-2">
-                      <button
-                        onClick={() => handleStepChange(1.5)}
+                        {(prevBaseTexts.size!=allBaseTexts.length) && (
+                          <button
+                        onClick={() => handleStepChange(3.5)}
                         disabled={
                           isProcessing 
                         }
-                        className="px-5 py-2 bg-cyan-600 text-white font-medium rounded-lg hover:bg-cyan-700 disabled:bg-gray-400 disabled:cursor-not-allowed transition"
+                        className="px-5 py-2 bg-cyan-600 text-gray-900 font-medium rounded-lg hover:bg-cyan-700 disabled:bg-gray-500 disabled:cursor-not-allowed transition"
                       >
                         Select Another Base Text
                       </button>
+                      )}
                       {((prevBaseTexts.size===allBaseTexts.length)||(formData.spreadsheet!=null)) && (
                       <button
                         onClick={() => handleStepChange(4)}
                         disabled={
                           isProcessing 
                         }
-                        className="px-5 py-2 bg-cyan-600 text-white font-medium rounded-lg hover:bg-cyan-700 disabled:bg-gray-400 disabled:cursor-not-allowed transition"
+                        className="px-5 py-2 bg-cyan-600 text-gray-900 font-medium rounded-lg hover:bg-cyan-700 disabled:bg-gray-500 disabled:cursor-not-allowed transition"
                       >
                         Select Plot Settings
                       </button>)}
@@ -2506,24 +2559,24 @@ results
                 </div>
               </div>
             )}
-            {currentStep === 1.5 && (
+            {currentStep === 3.5 && (
               <div className="pt-4 h-full">
-                 <h2 className="text-3xl font-bold text-gray-800">
+                 <h2 className="text-3xl font-bold text-gray-100">
                         Select Next Base Text
                       </h2>
                 <div className="h-95/100">
               {
                 formData.multi === true && (
                   <div className="flex flex-col gap-4 w-full h-full pt-10">
-                    <h2 className="text-3xl font-bold text-gray-800">
+                    <h2 className="text-3xl font-bold text-gray-100">
                       Transcriptions
                     </h2>
                     {/* TOP PANEL: CONTROL BAR & SUBSECTION LIST */}
-                    <div className="border-2 border-dashed border-gray-300 flex-col overflow-auto h-full p-4 text-gray-500 w-full rounded-lg bg-gray-50 flex items-start justify-start">
+                    <div className="border-2 border-dashed border-gray-300 flex-col overflow-auto h-full p-4 text-gray-300 w-full rounded-lg bg-gray-700 flex items-start justify-start">
                       {/* Subsection Creator Header */}
                       <div className="flex flex-row justify-between items-center w-full pb-2 border-b mb-3">
                         <div className="flex items-center gap-2">
-                          <p className="text-md font-bold text-cyan-800">
+                          <p className="text-md font-bold text-cyan-100">
                             Uploaded Texts
                           </p>
                         </div>
@@ -2532,8 +2585,8 @@ results
                       </div>
 
 
-                        <div className="text-[0.8rem] font-bold mb-3 overflow-wrap text-cyan-800">
-                        <p className={`${[...prevBaseTexts].map((text, index)=>(prevBaseTexts[index]=text.split("_")[0])).includes(formData.baseText.split("_")[0]) ? "text-orange-800" : "text-cyan-800"}`}>Base Text:{" "}
+                        <div className="text-[0.8rem] font-bold mb-3 overflow-wrap text-cyan-100">
+                        <p className={`${[...prevBaseTexts].map((text, index)=>(prevBaseTexts[index]=text.split("_")[0])).includes(formData.baseText.split("_")[0]) ? "text-red-300 " : "text-cyan-100"}`}>Base Text:{" "}
                         {formData.baseText != "" ? formData.baseText.split("_")[0] : "None"}
                         </p>
                         <div className="flex flex-row items-center content-center gap-1">
@@ -2541,7 +2594,7 @@ results
                         Previous Base Texts: </p>
                         {[...prevBaseTexts].map((text)=>(
                           
-                          <p className={`${text.split("_")[0]==formData.baseText.split("_")[0] ? "text-orange-800" : "text-cyan-800"}`} key={text}> {" "} {text.split("_")[0]} |</p> 
+                          <p className={`${text.split("_")[0]==formData.baseText.split("_")[0] ? "text-red-300 " : "text-cyan-100"}`} key={text}> {" "} {text.split("_")[0]} |</p> 
                         ))}</div>
                       </div>
 
@@ -2555,11 +2608,11 @@ results
 
                                 {/* Header info */}
                                 <div className="flex items-center justify-between border-b pb-2 mb-2">
-                                  <div className="flex items-center gap-2 font-bold text-cyan-900 text-[0.8rem]">
-                                    <FolderOpen className="w-5 h-5 text-cyan-600" />
+                                  <div className="flex items-center gap-2 font-bold text-cyan-50 text-[0.8rem]">
+                                    <FolderOpen className="w-5 h-5 text-cyan-400" />
                                     <span>{sectionName}</span>
 
-                                    <span className="text-[0.8rem] text-gray-400 font-normal">
+                                    <span className="text-[0.8rem] text-gray-300 font-normal">
                                       ({formData.subsections[sectionName].length} {formData.subsections[sectionName].length === 1 ? "file" : "files"})
                                     </span>
                                   </div>
@@ -2574,8 +2627,8 @@ results
                                     <li
                                       key={`${file.name}-${fileIndex}`}
                                       className={`flex items-center justify-between px-2 py-1 rounded border text-[0.8rem] ${file.name === formData.baseText
-                                          ? "bg-cyan-100/60 border-cyan-300"
-                                          : "bg-gray-50 border-gray-100 hover:bg-gray-100"
+                                          ? "bg-cyan-800/60 border-cyan-300"
+                                          : "bg-gray-700 border-gray-100 hover:bg-gray-600"
                                         }`}
                                     >
                                       <button
@@ -2587,14 +2640,14 @@ results
                                             baseText: file.name,
                                           }));
                                         }}
-                                        className={`bg-transparent text-cyan-600 rounded-lg flex-row w-98/100 flex gap-2 content-center items-center shrink-0 cursor-pointer `}
+                                        className={`bg-transparent text-cyan-400 rounded-lg flex-row w-98/100 flex gap-2 content-center items-center shrink-0 cursor-pointer `}
                                       >
                                         {file.name === formData.baseText ? (
                                           <FileCheck className="w-5 h-5" />
                                         ) : (
                                           <FileText className="w-5 h-5" />
                                         )}
-                                        <p className="text-[0.8rem] font-medium text-cyan-800">
+                                        <p className="text-[0.8rem] font-medium text-cyan-100">
                                           {file.name}
                                         </p>
                                       </button>
@@ -2627,10 +2680,10 @@ results
                   {/* HEADER CONTROL BAR */}
                   <div className="flex flex-row justify-between items-center w-full pb-2 border-b mb-3">
                     <div className="flex items-center gap-2">
-                      <p className="text-md font-bold text-cyan-800">
+                      <p className="text-md font-bold text-cyan-100">
                         Transcriptions
                       </p>
-                      <span className="text-[0.8rem] text-gray-400 font-normal">
+                      <span className="text-[0.8rem] text-gray-300 font-normal">
                         ({formData.files.length}{" "}
                         {formData.files.length === 1 ? "file" : "files"})
                       </span>
@@ -2639,8 +2692,8 @@ results
                   </div>
 
                 
-                  <div className="text-[0.8rem] font-bold mb-3 overflow-wrap text-cyan-800">
-                        <p className={`${prevBaseTexts.has(formData.baseText) ? "text-orange-800" : "text-cyan-800"}`}>Base Text:{" "}
+                  <div className="text-[0.8rem] font-bold mb-3 overflow-wrap text-cyan-100">
+                        <p className={`${prevBaseTexts.has(formData.baseText) ? "text-red-300 " : "text-cyan-100"}`}>Base Text:{" "}
                         {formData.baseText != "" ? formData.baseText : "None"}
                         </p>
                         <div className="flex flex-row items-center content-center gap-1">
@@ -2648,7 +2701,7 @@ results
                         Previous Base Texts: </p>
                         {[...prevBaseTexts].map((text)=>(
                           text != "" ?
-                          <p className={`${text==formData.baseText ? "text-orange-800" : "text-cyan-800"}`} key={text}>  {" "} {text} | </p> :
+                          <p className={`${text==formData.baseText ? "text-red-300 " : "text-cyan-100"}`} key={text}>  {" "} {text} | </p> :
                           ""
                         ))}</div>
                       </div>
@@ -2656,11 +2709,11 @@ results
              
 
                   {/* SINGLE MAIN CONTENT BOX */}
-                  <div className="w-full p-3 border-2 border-dashed border-gray-300 rounded-lg bg-white shadow-xs transition-all hover:border-cyan-400">
+                  <div className="w-full p-3 border-2 border-dashed border-gray-300 rounded-lg bg-gray-800 shadow-gray-600/40 shadow-xs transition-all hover:border-cyan-400">
                     {/* INNER HEADER WITH UPLOAD BUTTONS */}
                     <div className="flex items-center justify-between border-b pb-2 mb-2">
-                      <div className="flex items-center gap-2 font-bold text-cyan-900 text-sm">
-                        <FolderOpen className="w-5 h-5 text-cyan-600" />
+                      <div className="flex items-center gap-2 font-bold text-cyan-50 text-sm">
+                        <FolderOpen className="w-5 h-5 text-cyan-400" />
                         <span>Uploaded Files</span>
                       </div>
 
@@ -2676,8 +2729,8 @@ results
                             <li
                               key={`${file.name}-${fileIndex}`}
                               className={`flex items-center justify-between px-2 py-1 rounded border text-[0.8rem] ${isBase
-                                  ? "bg-cyan-100/60 border-cyan-300"
-                                  : "bg-gray-50 border-gray-100 hover:bg-gray-100"
+                                  ? "bg-cyan-800/60 border-cyan-300"
+                                  : "bg-gray-700 border-gray-100 hover:bg-gray-600"
                                 }`}
                             >
                               <button
@@ -2689,14 +2742,14 @@ results
                                     baseText: file.name,
                                   }));
                                 }}
-                                className="bg-transparent w-98/100 text-cyan-600 rounded-lg flex-row flex gap-2 items-center shrink-0 cursor-pointer text-left"
+                                className="bg-transparent w-98/100 text-cyan-400 rounded-lg flex-row flex gap-2 items-center shrink-0 cursor-pointer text-left"
                               >
                                 {isBase ? (
                                   <FileCheck className="w-5 h-5" />
                                 ) : (
                                   <FileText className="w-5 h-5" />
                                 )}
-                                <p className="text-[0.8rem] font-medium text-cyan-800 truncate max-w-[300px]">
+                                <p className="text-[0.8rem] font-medium text-cyan-100 truncate max-w-[300px]">
                                   {file.name}
                                 </p>
                               </button>
@@ -2715,35 +2768,36 @@ results
              <div className="flex flex-row pt-2 h-max justify-between items-start content-start">
                     <button
                       onClick={() => handleStepChange(3)}
-                      className="px-5 py-2 border border-gray-300 h-max text-gray-700 font-medium rounded-lg hover:bg-gray-50 transition"
+                      className="px-5 py-2 border border-gray-300 h-max text-gray-200 font-medium rounded-lg hover:bg-gray-700 transition"
                     >
                       Back
                     </button>
               
                     <div className="flex flex-col items-center w-max gap-2">
+                       <button
+                      onClick={handleSubmit}
+                      disabled={!isReady || isProcessing}
+                      className="px-5 py-2 bg-cyan-600 text-gray-900 font-medium rounded-lg hover:bg-cyan-700 disabled:opacity-50 transition"
+                    >
+                      {isProcessing ? "Processing..." : "Run Algorithm"}
+                    </button>
                       <button
                         onClick={() => handleStepChange(2.5)}
                         disabled={
                           isProcessing 
                         }
-                        className="px-5 py-2 bg-cyan-600 text-white font-medium rounded-lg hover:bg-cyan-700 disabled:bg-gray-400 disabled:cursor-not-allowed transition"
+                        className="px-5 py-2 bg-cyan-400 text-gray-800 font-medium rounded-lg hover:bg-cyan-700 disabled:bg-gray-500 disabled:cursor-not-allowed transition"
                       >
                         Modify Algorithm Settings
                       </button>
-                      <button
-                      onClick={handleSubmit}
-                      disabled={!isReady || isProcessing}
-                      className="px-5 py-2 bg-cyan-600 text-white font-medium rounded-lg hover:bg-cyan-700 disabled:opacity-50 transition"
-                    >
-                      {isProcessing ? "Processing..." : "Run Algorithm"}
-                    </button>
+                     
                     </div>
                   </div>
             </div>
             )}
             {currentStep === 4 && (
               <div className="flex content-start h-[71vh] pt-10 flex-col pt-4">
-                <h1 className="text-4xl w-5/10 font-bold text-gray-700 pt-10 pb-2">
+                <h1 className="text-4xl w-5/10 font-bold text-gray-200 pt-10 pb-2">
                   Plot Settings
                 </h1>
 
@@ -2756,7 +2810,7 @@ results
                             {/* Label */}
                             <label
                               htmlFor="plotDimensions"
-                              className="block text-md font-medium text-gray-700 place-content-start"
+                              className="block text-md font-medium text-gray-200 place-content-start"
                             >
                               Choose a Plot Format
                             </label>
@@ -2764,7 +2818,7 @@ results
                             <div className="relative ">
                               <select
                                 id="plotDimensions"
-                                className="block w-full pl-3 pr-10 py-2 text-[0.8rem] outline-none border-none  bg-white  rounded-md shadow-md appearance-none focus:outline-none focus:shadow-md text-gray-700/60 focus:text-gray-700 focus:shadow-gray-700/70
+                                className="block w-full pl-3 pr-10 py-2 text-[0.8rem] outline-none border-none  bg-gray-800  rounded-md shadow-gray-600/40 shadow-md appearance-none focus:outline-none focus:shadow-gray-600/40 shadow-md text-gray-200/60 focus:text-gray-200 focus:shadow-gray-600/40 shadow-gray-700/70
               rounded-md   cursor-pointer transition-colors"
                                 defaultValue={formData.plotSettings.plotType}
                                 onChange={(e) => {
@@ -2780,23 +2834,23 @@ results
                                 <option
                                   disabled
                                   value=""
-                                  className="text-gray-400/20"
+                                  className="text-gray-300/20"
                                 >
                                   Select an Plot Type
                                 </option>
-                                <option value="3da" className="text-gray-800">
+                                <option value="3da" className="text-gray-100">
                                   3D Interactive
                                 </option>
-                                <option value="3ds" className="text-gray-800">
+                                <option value="3ds" className="text-gray-100">
                                   3D Static
                                 </option>
-                                <option value="2d" className="text-gray-800">
+                                <option value="2d" className="text-gray-100">
                                   2D
                                 </option>
                               </select>
 
                               {/* Custom Dropdown Chevron Icon */}
-                              <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-3 text-gray-500">
+                              <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-3 text-gray-300">
                                 <svg
                                   className="w-4 h-4"
                                   fill="none"
@@ -2812,7 +2866,7 @@ results
                                 </svg>
                               </div>
                             </div>
-                            <div className="flex justify-between items-center text-md  font-medium text-gray-700">
+                            <div className="flex justify-between items-center text-md  font-medium text-gray-200">
                               <label htmlFor="perplexity" className="pt-2">
                                 Perplexity Value
                               </label>
@@ -2836,10 +2890,10 @@ results
                                   },
                                 }));
                               }}
-                              className="block w-full pl-3 pr-10 py-2 text-[0.8rem] bg-white rounded-md shadow-sm appearance-none focus:outline-none focus:shadow-md text-gray-700/60 focus:text-gray-700 focus:shadow-gray-700/70 sm:text-[0.8rem] transition-colors"
+                              className="block w-full pl-3 pr-10 py-2 text-[0.8rem] bg-gray-800 rounded-md shadow-gray-600/40 shadow-sm appearance-none focus:outline-none focus:shadow-gray-600/40 shadow-md text-gray-200/60 focus:text-gray-200 focus:shadow-gray-600/40 shadow-gray-700/70 sm:text-[0.8rem] transition-colors"
                             />
 
-                            <div className="flex justify-between items-center text-md  font-medium text-gray-700">
+                            <div className="flex justify-between items-center text-md  font-medium text-gray-200">
                               <label htmlFor="theta" className="pt-2">
                                 Theta Value
                               </label>
@@ -2863,20 +2917,20 @@ results
                                   },
                                 }));
                               }}
-                              className="block w-full pl-3 pr-10 py-2 text-[0.8rem] bg-white rounded-md shadow-sm appearance-none focus:outline-none focus:shadow-md text-gray-700/60 focus:text-gray-700 focus:shadow-gray-700/70 sm:text-[0.8rem] transition-colors"
+                              className="block w-full pl-3 pr-10 py-2 text-[0.8rem] bg-gray-800 rounded-md shadow-gray-600/40 shadow-sm appearance-none focus:outline-none focus:shadow-gray-600/40 shadow-md text-gray-200/60 focus:text-gray-200 focus:shadow-gray-600/40 shadow-gray-700/70 sm:text-[0.8rem] transition-colors"
                             />
                             {formData.plotSettings.plotType == "2d" && (
                               <div>
                                 <label
                                   htmlFor="plotDimensions"
-                                  className="block text-md font-medium text-gray-700 place-content-start"
+                                  className="block text-md font-medium text-gray-200 place-content-start"
                                 >
                                   Optional Plot Color Settings
                                 </label>
                                 <div className="relative ">
                                   <select
                                     id="colors"
-                                    className="block w-full pl-3 pr-10 py-2 text-[0.8rem] outline-none border-none  bg-white  rounded-md shadow-md appearance-none focus:outline-none focus:shadow-md text-gray-700/60 focus:text-gray-700 focus:shadow-gray-700/70
+                                    className="block w-full pl-3 pr-10 py-2 text-[0.8rem] outline-none border-none  bg-gray-800  rounded-md shadow-gray-600/40 shadow-md appearance-none focus:outline-none focus:shadow-gray-600/40 shadow-md text-gray-200/60 focus:text-gray-200 focus:shadow-gray-600/40 shadow-gray-700/70
               rounded-md   cursor-pointer transition-colors"
                                     defaultValue={formData.plotSettings.colors}
                                     onChange={(e) => {
@@ -2891,26 +2945,26 @@ results
                                   >
                                     <option
                                       value="black"
-                                      className="text-gray-800"
+                                      className="text-gray-100"
                                     >
                                       Black (Default)
                                     </option>
                                     <option
                                       value="base"
-                                      className="text-gray-800"
+                                      className="text-gray-100"
                                     >
                                       By Base Text
                                     </option>
                                     <option
                                       value="grouping"
-                                      className="text-gray-800"
+                                      className="text-gray-100"
                                     >
                                       By Group
                                     </option>
                                   </select>
 
                                   {/* Custom Dropdown Chevron Icon */}
-                                  <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-3 text-gray-500">
+                                  <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-3 text-gray-300">
                                     <svg
                                       className="w-4 h-4"
                                       fill="none"
@@ -2932,14 +2986,14 @@ results
                               <div>
                                 <label
                                   htmlFor="plotDimensions"
-                                  className="block text-md font-medium text-gray-700 place-content-start"
+                                  className="block text-md font-medium text-gray-200 place-content-start"
                                 >
                                   Optional Plot Color Settings
                                 </label>
                                 <div className="relative ">
                                   <select
                                     id="colors"
-                                    className="block w-full pl-3 pr-10 py-2 text-[0.8rem] outline-none border-none  bg-white  rounded-md shadow-md appearance-none focus:outline-none focus:shadow-md text-gray-700/60 focus:text-gray-700 focus:shadow-gray-700/70
+                                    className="block w-full pl-3 pr-10 py-2 text-[0.8rem] outline-none border-none  bg-gray-800  rounded-md shadow-gray-600/40 shadow-md appearance-none focus:outline-none focus:shadow-gray-600/40 shadow-md text-gray-200/60 focus:text-gray-200 focus:shadow-gray-600/40 shadow-gray-700/70
               rounded-md   cursor-pointer transition-colors"
                                     defaultValue={formData.plotSettings.colors}
                                     onChange={(e) => {
@@ -2954,20 +3008,20 @@ results
                                   >
                                     <option
                                       value="black"
-                                      className="text-gray-800"
+                                      className="text-gray-100"
                                     >
                                       Black (Default)
                                     </option>
                                     <option
                                       value="base"
-                                      className="text-gray-800"
+                                      className="text-gray-100"
                                     >
                                       By Base Text
                                     </option>
                                   </select>
 
                                   {/* Custom Dropdown Chevron Icon */}
-                                  <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-3 text-gray-500">
+                                  <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-3 text-gray-300">
                                     <svg
                                       className="w-4 h-4"
                                       fill="none"
@@ -2986,13 +3040,13 @@ results
                               </div>
                             )}
                             {formData.plotSettings.plotType !== "" && (
-                              <div className="flex flex-row gap-3 content-center items-center text-md pt-2 font-medium text-gray-700">
+                              <div className="flex flex-row gap-3 content-center items-center text-md pt-2 font-medium text-gray-200">
                                 <input
                                   type="checkbox"
                                   checked={formData.plotSettings.colorText}
                                   onChange={handleColorText}
-                                  className={`rounded-full  accent-cyan-500 text-white border-1 border-none shadow-sm shadow-gray-700/70 hover:shadow-md outline-none w-4 h-4 appearance-none 
-              ${formData.plotSettings.colorText ? "bg-cyan-700 inset-shadow-xs inset-shadow-cyan-200" : "bg-white"}`}
+                                  className={`rounded-full  accent-cyan-500 text-gray-300 border-1 border-none shadow-gray-600/40 shadow-sm shadow-gray-600/40 shadow-gray-700/70 hover:shadow-gray-600/40 shadow-md outline-none w-4 h-4 appearance-none 
+              ${formData.plotSettings.colorText ? "bg-cyan-700 shadow-gray-600/40 shadow-xs shadow-gray-600/40 shadow-cyan-200" : "bg-gray-800"}`}
                                 />
                                 <label className="">
                                   <div className="">
@@ -3003,7 +3057,7 @@ results
                             )}
                           </div>
                         </div>
-                        <div className="text-base w-[45dvw] h-[50dvh] pt-2 gap-2 text-cyan-700 shadow-lg/40  rounded-lg p-5  overflow-auto">
+                        <div className="text-base w-45/100 h-5/10 pt-2 gap-2 text-cyan-200 shadow-gray-600/40 shadow-lg/40  rounded-lg p-5  overflow-auto">
                           <p className="text-lg font-bold">Description</p>
                           <p>Description text</p>
                         </div>
@@ -3014,7 +3068,7 @@ results
                   <div className="w-full flex justify-between content-start flex-row">
                     <button
                       onClick={() => handleStepChange(3)}
-                      className="px-5 py-2 border border-gray-300 text-gray-700 font-medium rounded-lg w-max hover:bg-gray-50 transition"
+                      className="px-5 py-2 border border-gray-300 text-gray-200 font-medium rounded-lg w-max hover:bg-gray-700 transition"
                     >
                       Back
                     </button>
@@ -3023,7 +3077,7 @@ results
                       disabled={
                         isProcessing 
                       }
-                      className="px-5 py-2 bg-cyan-600 text-white font-medium rounded-lg hover:bg-cyan-700 disabled:opacity-50 transition"
+                      className="px-5 py-2 bg-cyan-600 text-gray-900 font-medium rounded-lg hover:bg-cyan-700 disabled:opacity-50 transition"
                     >
                       {isProcessing ? "Processing..." : "Run t-SNE Algorithm"}
                     </button>
@@ -3033,7 +3087,7 @@ results
             )}
             {currentStep === 5 && (
               <div className="flex content-start  pt-10 flex-col justify-between pt-4">
-                <h1 className="text-4xl w-5/10 font-bold text-gray-700 pt-10 pb-2">
+                <h1 className="text-4xl w-5/10 font-bold text-gray-200 pt-10 pb-2">
                   Plot
                 </h1>
                 <div className="h-[71dvh] w-full justify-between flex flex-col ">
@@ -3059,7 +3113,7 @@ results
                           />
                         </div>
                       )}
-                    <div className="text-base pt-2 gap-2 text-cyan-700 shadow-lg/40 w-6/10 rounded-lg p-5  overflow-auto">
+                    <div className="text-base pt-2 gap-2 text-cyan-200 shadow-gray-600/40 shadow-lg/40 w-6/10 rounded-lg p-5  overflow-auto">
                       <p className="text-lg font-bold">Description</p>
                       <p>Description text</p>
                     </div>
@@ -3067,7 +3121,7 @@ results
                   <div className="w-full flex justify-between  items-end pb-20 flex-row">
                     <button
                       onClick={() => handleStepChange(4)}
-                      className="px-5 py-2 border border-gray-300 text-gray-700 font-medium rounded-lg w-max hover:bg-gray-50 transition"
+                      className="px-5 py-2 border border-gray-300 text-gray-200 font-medium rounded-lg w-max hover:bg-gray-700 transition"
                     >
                       Back
                     </button>
@@ -3082,7 +3136,7 @@ results
                               "2D_plot.png",
                             ])
                           }
-                          className="px-5 py-2 bg-sky-600 text-white font-medium text-center rounded-lg hover:bg-sky-700"
+                          className="px-5 py-2 bg-sky-600 text-gray-900 font-medium text-center rounded-lg hover:bg-sky-700"
                         >
                           Download Plot as Image
                         </a>
@@ -3097,7 +3151,7 @@ results
                               "static_3D_plot.png",
                             ])
                           }
-                          className="px-5 py-2 bg-sky-600 text-white font-medium text-center rounded-lg hover:bg-sky-700"
+                          className="px-5 py-2 bg-sky-600 text-gray-900 font-medium text-center rounded-lg hover:bg-sky-700"
                         >
                           Download Plot as Image
                         </a>
@@ -3105,21 +3159,21 @@ results
                       {formData.plotSettings.plotType.includes("3da") && (
                         <button
                           onClick={download3dPlot}
-                          className="px-5 py-2 bg-sky-600 text-white font-medium text-center rounded-lg hover:bg-sky-700"
+                          className="px-5 py-2 bg-sky-600 text-gray-900 font-medium text-center rounded-lg hover:bg-sky-700"
                         >
                           Download Plot as Image
                         </button>
                       )}
                       <button
                         onClick={handleDownload}
-                        className="px-5 py-2 bg-green-600 text-white text-center font-medium rounded-lg hover:bg-green-700"
+                        className="px-5 py-2 bg-green-600 text-gray-900 text-center font-medium rounded-lg hover:bg-green-700"
                       >
                         Download Matrix as Spreadsheet
                       </button>
                     </div>
                     <button
                       onClick={() => handleStepChange(6)}
-                      className="px-5 py-2 bg-cyan-600 text-white font-medium rounded-lg hover:bg-cyan-700 disabled:bg-gray-400 disabled:cursor-not-allowed transition"
+                      className="px-5 py-2 bg-cyan-600 text-gray-900 font-medium rounded-lg hover:bg-cyan-700 disabled:bg-gray-500 disabled:cursor-not-allowed transition"
                     >
                       Continue
                     </button>
@@ -3130,7 +3184,7 @@ results
             {currentStep === 6 && (
               <div className="h-[71dvh]">
                 <div className="flex flex-col h-full justify-center content-start">
-                  <h1 className="text-4xl w-5/10 font-bold text-gray-700 pt-10 pb-2">
+                  <h1 className="text-4xl w-5/10 font-bold text-gray-200 pt-10 pb-2">
                     Summary Report
                   </h1>
                   <div className="h-full">
@@ -3140,7 +3194,7 @@ results
                     <div className="w-full flex justify-between content-start flex-row pt-2">
                       <button
                         onClick={() => handleStepChange(5)}
-                        className="px-5 py-2 border border-gray-300 text-gray-700 font-medium rounded-lg w-max hover:bg-gray-50 transition"
+                        className="px-5 py-2 border border-gray-300 text-gray-200 font-medium rounded-lg w-max hover:bg-gray-700 transition"
                       >
                         Back
                       </button>
@@ -3148,7 +3202,7 @@ results
                       <PDFDownloadLink
                         document={<Report />}
                         fileName="report.pdf"
-                        className="px-5 py-2 bg-cyan-600 text-white font-medium w-max rounded-lg hover:bg-cyan-700"
+                        className="px-5 py-2 bg-cyan-600 text-gray-900 font-medium w-max rounded-lg hover:bg-cyan-700"
                       >
                         {({ blob, url, loading, error }) =>
                           loading ? "Generating Report..." : "Download Report"
@@ -3398,41 +3452,41 @@ results
 //   };
 
 //   return (
-//     <div className="bg-white w-screen h-screen flex flex-col items-center place-content-center content-center justify-items-center justify-content-center">
-//       <div className="w-[82dvw] h-[82dvh] p-6 bg-white rounded-xl shadow-md border border-gray-100">
+//     <div className="bg-gray-800 w-screen h-screen flex flex-col items-center place-content-center content-center justify-items-center justify-content-center">
+//       <div className="w-[82dvw] h-[82dvh] p-6 bg-gray-800 rounded-xl shadow-gray-600/40 shadow-md border border-gray-100">
 //         {/* Progress Bar */}
 //         <div className="mb-8">
-//           <div className="flex justify-between text-[0.8rem] font-medium text-gray-500 mb-2">
+//           <div className="flex justify-between text-[0.8rem] font-medium text-gray-300 mb-2">
 //             <button
 //               type="button"
 //               onClick={() => handleStepSkip(1)}
-//               className={`${furthestStep >= 1 ? "cursor-pointer" : ""} ${currentStep >= 1 ? "text-cyan-600 font-bold" : ""}`}
+//               className={`${furthestStep >= 1 ? "cursor-pointer" : ""} ${currentStep >= 1 ? "text-cyan-400 font-bold" : ""}`}
 //             >
 //               Upload Files
 //             </button>
 //             <button
 //               type="button"
 //               onClick={() => handleStepSkip(2)}
-//               className={`${furthestStep >= 2 ? "cursor-pointer" : ""} ${currentStep >= 2 ? "text-cyan-600 font-bold" : ""}`}
+//               className={`${furthestStep >= 2 ? "cursor-pointer" : ""} ${currentStep >= 2 ? "text-cyan-400 font-bold" : ""}`}
 //             >
 //               Select Algorithm
 //             </button>
 //             <button
 //               type="button"
 //               onClick={() => handleStepSkip(3)}
-//               className={`${furthestStep >= 3 ? "cursor-pointer" : ""} ${currentStep >= 3 ? "text-cyan-600 font-bold" : ""}`}
+//               className={`${furthestStep >= 3 ? "cursor-pointer" : ""} ${currentStep >= 3 ? "text-cyan-400 font-bold" : ""}`}
 //             >
 //               View Alignment
 //             </button>
 //             <button
 //               type="button"
 //               onClick={() => handleStepSkip(4)}
-//               className={`${furthestStep >= 4 ? "cursor-pointer" : ""} ${currentStep >= 4 ? "text-cyan-600 font-bold" : ""}`}
+//               className={`${furthestStep >= 4 ? "cursor-pointer" : ""} ${currentStep >= 4 ? "text-cyan-400 font-bold" : ""}`}
 //             >
 //               View Plot
 //             </button>
 //           </div>
-//           <div className="w-full bg-gray-200 h-2 rounded-full overflow-hidden">
+//           <div className="w-full bg-gray-600 h-2 rounded-full overflow-hidden">
 //             <div
 //               className="bg-cyan-600 h-2 transition-all duration-300"
 //               style={{ width: `${(currentStep / 4) * 100}%` }}
@@ -3443,13 +3497,13 @@ results
 //         {/* upload folder */}
 //         {currentStep === 1 && (
 //           <div className="space-y-6 h-[52dvh]">
-//             <h2 className="text-4xl font-bold text-gray-800 pt-10 ">
+//             <h2 className="text-4xl font-bold text-gray-100 pt-10 ">
 //               Upload Transcription Files or a Folder of Transcriptions
 //             </h2>
 //             {/* upload folder */}
 //             {formData.multi == null && (
 //               <div className="h-full place-content-start">
-//                 <h1 className="text-3xl pt-20 font-semibold text-cyan-600 overflow-wrap">
+//                 <h1 className="text-3xl pt-20 font-semibold text-cyan-400 overflow-wrap">
 //                   Welcome to the TEXTEVOLVE Data Analysis tool. <br />
 //                   <br />
 //                   Please begin by selecting whether you want to compare{" "}
@@ -3458,7 +3512,7 @@ results
 //                     onClick={() =>
 //                       setFormData((prev) => ({ ...prev, multi: false }))
 //                     }
-//                     className="font-semibold text-cyan-600 underline underline-offset-2 hover:text-cyan-700 focus:outline-none focus:ring-2 focus:ring-cyan-500 rounded px-0.5 transition-colors cursor-pointer"
+//                     className="font-semibold text-cyan-400 underline underline-offset-2 hover:text-cyan-200 focus:outline-none focus:ring-2 focus:ring-cyan-500 rounded px-0.5 transition-colors cursor-pointer"
 //                   >
 //                     entire texts
 //                   </button>{" "}
@@ -3468,7 +3522,7 @@ results
 //                     onClick={() =>
 //                       setFormData((prev) => ({ ...prev, multi: true }))
 //                     }
-//                     className="font-semibold text-cyan-600 underline underline-offset-2 hover:text-cyan-700 focus:outline-none focus:ring-2 focus:ring-cyan-500 rounded px-0.5 transition-colors cursor-pointer"
+//                     className="font-semibold text-cyan-400 underline underline-offset-2 hover:text-cyan-200 focus:outline-none focus:ring-2 focus:ring-cyan-500 rounded px-0.5 transition-colors cursor-pointer"
 //                   >
 //                     subsections of texts
 //                   </button>
@@ -3478,22 +3532,22 @@ results
 //             )}
 
 //             <div className="h-full place-content-start flex pt-[4dvh] flex-col ">
-//               {/* <div className="border-2 border-dashed border-gray-300 h-[50dvh]  w-[50dvh] rounded-lg p-8 text-center bg-gray-50 hover:bg-gray-100 transition flex place-content-center place-items-center"> */}
+//               {/* <div className="border-2 border-dashed border-gray-300 h-[50dvh]  w-[50dvh] rounded-lg p-8 text-center bg-gray-700 hover:bg-gray-600 transition flex place-content-center place-items-center"> */}
 
 //               {/* <p className="mt-2 text-xl text-gray-600">
-//                   <span className="font-semibold text-cyan-600">Click to select folder</span>
+//                   <span className="font-semibold text-cyan-400">Click to select folder</span>
 //                 </p>
-//                 <p className="text-md text-gray-500 mt-1">Only .txt files will be processed</p> */}
+//                 <p className="text-md text-gray-300 mt-1">Only .txt files will be processed</p> */}
 
 //               {formData.multi == true && (
 
 //                 <div className="flex text-center place-content-center place-items-center pl-20 pr-20 pt-[2dvh] w-10/10 pb-[2dvh]">
-//                   <div className="border-2 border-dashed border-gray-300 flex-col h-[50dvh] items-center content-center w-[70dvw] rounded-lg p-8 text-center bg-gray-50  transition flex">
+//                   <div className="border-2 border-dashed border-gray-300 flex-col h-[50dvh] items-center content-center w-[70dvw] rounded-lg p-8 text-center bg-gray-700  transition flex">
 //                     <div className="flex flex-col  overflow-auto text-center">
-//                       <p className="justify-start items-start content-start text-start text-lg font-bold text-cyan-800 pb-2 pl-1">
+//                       <p className="justify-start items-start content-start text-start text-lg font-bold text-cyan-100 pb-2 pl-1">
 //                         Enter the name of a subsection
 //                       </p>
-//                       <div className="w-full cursor-text rounded-md shadow-md pt-2 flex flex-row content-center justify-between p-2 text-cyan-700 text-semibold focus:shadow-gray-700/70 bg-white">
+//                       <div className="w-full cursor-text rounded-md shadow-gray-600/40 shadow-md pt-2 flex flex-row content-center justify-between p-2 text-cyan-200 text-semibold focus:shadow-gray-600/40 shadow-gray-700/70 bg-gray-800">
 //                         <input
 //                           type="text"
 //                           placeholder={`Default: Subsection ${count}`}
@@ -3503,7 +3557,7 @@ results
 
 //                         <button
 //                           onClick={handleSubsection}
-//                           className="hover:bg-cyan-50 rounded-full"
+//                           className="hover:bg-cyan-700 rounded-full"
 //                         >
 //                           <CirclePlus className="w-8 h-8" />
 //                         </button>
@@ -3512,7 +3566,7 @@ results
 //                       {formData.files.length > 0 && (
 //                         <ul>
 //                           <div className="flex flex-row items-center justify-between content-between ">
-//                             <div className="justify-start items-start content-start text-start text-lg font-bold text-cyan-800">
+//                             <div className="justify-start items-start content-start text-start text-lg font-bold text-cyan-100">
 //                               <p>
 //                                 Base Text:{" "}
 //                                 {formData.baseText != null
@@ -3520,7 +3574,7 @@ results
 //                                   : "None"}
 //                               </p>
 //                             </div>
-//                             <div className="flex items-end justify-end content-end text-end  justify-content-end px-1 py-1 relative hover:bg-gray-200/70 rounded-sm text-red-600 text-lg">
+//                             <div className="flex items-end justify-end content-end text-end  justify-content-end px-1 py-1 relative hover:bg-gray-600/70 rounded-sm text-red-400 text-lg">
 //                               <button
 //                                 type="button"
 //                                 onClick={() =>
@@ -3529,7 +3583,7 @@ results
 //                                     files: [],
 //                                   }))
 //                                 }
-//                                 className="bg-transparent text-red-600 rounded-lg shrink-0 flex flex-row items-center font-bold cursor-pointer items-right"
+//                                 className="bg-transparent text-red-400 rounded-lg shrink-0 flex flex-row items-center font-bold cursor-pointer items-right"
 //                               >
 //                                 <p className="pr-3">Clear All</p>
 //                                 <Eraser className="w-8 h-8" />
@@ -3544,27 +3598,27 @@ results
 //                               <div
 //                               key={subsection||i}
 //                                 {...getRootProps()}
-//                                 className={`border-2 border-dashed border-gray-300 flex-col  items-center content-center  rounded-lg p-8 text-center bg-gray-50  transition flex
+//                                 className={`border-2 border-dashed border-gray-300 flex-col  items-center content-center  rounded-lg p-8 text-center bg-gray-700  transition flex
 //                         ${
 //                           isDragReject
-//                             ? "border-red-500 text-red-600 bg-red-50"
+//                             ? "border-red-500 text-red-400 bg-red-50"
 //                             : isDragActive
-//                               ? "border-gray-300 text-gray-600 bg-gray-100 border-gray-400"
+//                               ? "border-gray-300 text-gray-600 bg-gray-600 border-gray-400"
 //                               : ""
 //                         }`}
 
 //                               >
 //                                 <input {...getInputProps()}
 //                                 />
-//                                 <div className="w-full place-content-start  text-left shadow-md p-2">
-//                                 <h1 className="text-start text-md text-cyan-700">
+//                                 <div className="w-full place-content-start  text-left shadow-gray-600/40 shadow-md p-2">
+//                                 <h1 className="text-start text-md text-cyan-200">
 //                                   {subsection}
 //                                 </h1>
 //                                 </div>
 //                                 <label className="flex flex-col pt-2 items-center place-content-center content-center justify-center w-full">
 
 //                                 <svg
-//                                   className="mx-auto h-12 w-12 text-cyan-800"
+//                                   className="mx-auto h-12 w-12 text-cyan-100"
 //                                   fill="none"
 //                                   stroke="currentColor"
 //                                   viewBox="0 0 24 24"
@@ -3588,12 +3642,12 @@ results
 //                                           ref={folderInput}
 //                                         />
 //                                         <div className="flex flex-col items-center justify-center text-center w-full my-1">
-//                                         <p className="font-semibold text-cyan-600 text-xl flex flex-wrap items-center justify-center gap-x-1.5 gap-y-1 text-center font-semibold text-cyan-600 text-xl leading-snug">
+//                                         <p className="font-semibold text-cyan-400 text-xl flex flex-wrap items-center justify-center gap-x-1.5 gap-y-1 text-center font-semibold text-cyan-400 text-xl leading-snug">
 //                                           Drag and Drop Here or Click to Browse{" "}
 //                                           <button
 //                                             type="button"
 //                                             onClick={openFilePicker}
-//                                             className="font-semibold text-cyan-600 underline underline-offset-2 hover:text-cyan-700 focus:outline-none focus:ring-2 focus:ring-cyan-500 rounded px-0.5 transition-colors cursor-pointer"
+//                                             className="font-semibold text-cyan-400 underline underline-offset-2 hover:text-cyan-200 focus:outline-none focus:ring-2 focus:ring-cyan-500 rounded px-0.5 transition-colors cursor-pointer"
 //                                           >
 //                                             Files
 //                                           </button>{" "}
@@ -3603,7 +3657,7 @@ results
 //                                             onClick={() =>
 //                                               folderInput.current?.click()
 //                                             }
-//                                             className="font-semibold text-cyan-600 underline underline-offset-2 hover:text-cyan-700 focus:outline-none focus:ring-2 focus:ring-cyan-500 rounded px-0.5 transition-colors cursor-pointer"
+//                                             className="font-semibold text-cyan-400 underline underline-offset-2 hover:text-cyan-200 focus:outline-none focus:ring-2 focus:ring-cyan-500 rounded px-0.5 transition-colors cursor-pointer"
 //                                           >
 //                                             Folders
 //                                           </button>
@@ -3611,7 +3665,7 @@ results
 //                                           <input />
 //                                         </p>
 //                                         </div>
-//                                         <p className="text-gray-500 text-center text-md">
+//                                         <p className="text-gray-300 text-center text-md">
 //                                           Only upload files you want aligned.
 //                                         </p>
 //                                         </label>
@@ -3620,10 +3674,10 @@ results
 //                                   {filesList.map((file, index) => (
 //                                     <li
 //                                       key={`${file.name}-${index}`}
-//                                       className={`flex items-left justify-between px-1 py-1 relative w-[47dvh] hover:bg-gray-200/70 rounded-sm ${
+//                                       className={`flex items-left justify-between px-1 py-1 relative w-[47dvh] hover:bg-gray-600/70 rounded-sm ${
 //                                         file == formData.baseText
-//                                           ? "bg-gray-300/55"
-//                                           : "bg-gray-50"
+//                                           ? "bg-gray-500/55"
+//                                           : "bg-gray-700"
 //                                       }`}
 //                                     >
 //                                       {/* File Icon & Name */}
@@ -3637,14 +3691,14 @@ results
 //                                                 baseText: file,
 //                                               }))
 //                                             }
-//                                             className="bg-transparent text-cyan-600 w-[43dvh] rounded-lg flex-row flex gap-2 content-center items-center shrink-0 cursor-pointer"
+//                                             className="bg-transparent text-cyan-400 w-[43dvh] rounded-lg flex-row flex gap-2 content-center items-center shrink-0 cursor-pointer"
 //                                           >
 //                                             {file == formData.baseText ? (
 //                                               <FileCheck className="w-8 h-8" />
 //                                             ) : (
 //                                               <FileText className="w-8 h-8" />
 //                                             )}
-//                                             <p className="text-md font-medium text-cyan-800 ">
+//                                             <p className="text-md font-medium text-cyan-100 ">
 //                                               {file.name}
 //                                             </p>
 //                                           </button>
@@ -3653,7 +3707,7 @@ results
 //                                             <button
 //                                               type="button"
 //                                               onClick={() => removeFile(file)}
-//                                               className="bg-transparent text-red-600 rounded-lg shrink-0 cursor-pointer items-right hover:bg-red-50"
+//                                               className="bg-transparent text-red-400 rounded-lg shrink-0 cursor-pointer items-right hover:bg-red-50"
 //                                             >
 //                                               <Trash2 className="w-8 h-8" />
 //                                             </button>
@@ -3684,19 +3738,19 @@ results
 //                 <div className="flex flex-row justify-between pl-20 pr-20 pt-[4dvh] w-10/10">
 //                   <div
 //                     {...getRootProps()}
-//                     className={`border-2 border-dashed border-gray-300 h-[50dvh]  w-[50dvh] rounded-lg p-8 text-center bg-gray-50  transition flex place-content-center place-items-center
+//                     className={`border-2 border-dashed border-gray-300 h-[50dvh]  w-[50dvh] rounded-lg p-8 text-center bg-gray-700  transition flex place-content-center place-items-center
 //                   ${
 //                     isDragReject
-//                       ? "border-red-500 text-red-600 bg-red-50"
+//                       ? "border-red-500 text-red-400 bg-red-50"
 //                       : isDragActive
-//                         ? "border-gray-300 text-gray-600 bg-gray-100 border-gray-400"
+//                         ? "border-gray-300 text-gray-600 bg-gray-600 border-gray-400"
 //                         : ""
 //                   }`}
 //                   >
 //                     <input {...getInputProps()} />
 //                     <label htmlFor="folder-upload" className="block">
 //                       <svg
-//                         className="mx-auto h-12 w-12 text-cyan-800"
+//                         className="mx-auto h-12 w-12 text-cyan-100"
 //                         fill="none"
 //                         stroke="currentColor"
 //                         viewBox="0 0 24 24"
@@ -3717,13 +3771,13 @@ results
 //                         className="hidden"
 //                         ref={folderInput}
 //                       />
-//                       <p className="font-semibold text-center text-cyan-600 text-xl">
+//                       <p className="font-semibold text-center text-cyan-400 text-xl">
 //                         Drag and Drop Here <br />
 //                         or Click to Browse{" "}
 //                         <button
 //                           type="button"
 //                           onClick={openFilePicker}
-//                           className="font-semibold text-cyan-600 underline underline-offset-2 hover:text-cyan-700 focus:outline-none focus:ring-2 focus:ring-cyan-500 rounded px-0.5 transition-colors cursor-pointer"
+//                           className="font-semibold text-cyan-400 underline underline-offset-2 hover:text-cyan-200 focus:outline-none focus:ring-2 focus:ring-cyan-500 rounded px-0.5 transition-colors cursor-pointer"
 //                         >
 //                           Files
 //                         </button>{" "}
@@ -3731,13 +3785,13 @@ results
 //                         <button
 //                           type="button"
 //                           onClick={() => folderInput.current?.click()}
-//                           className="font-semibold text-cyan-600 underline underline-offset-2 hover:text-cyan-700 focus:outline-none focus:ring-2 focus:ring-cyan-500 rounded px-0.5 transition-colors cursor-pointer"
+//                           className="font-semibold text-cyan-400 underline underline-offset-2 hover:text-cyan-200 focus:outline-none focus:ring-2 focus:ring-cyan-500 rounded px-0.5 transition-colors cursor-pointer"
 //                         >
 //                           Folders
 //                         </button>
 //                         <input />
 //                       </p>
-//                       <p className="text-gray-500 ptext-center text-md">
+//                       <p className="text-gray-300 ptext-center text-md">
 //                         Only upload files you want aligned.
 //                       </p>
 //                     </label>
@@ -3747,11 +3801,11 @@ results
 
 //                   {/* View File Names and document icon */}
 
-//                   <div className="border-2 border-dashed border-gray-300 flex-col overflow-auto  h-[50dvh] p-2 text-gray-500 w-[50dvh]  rounded-lg text-center bg-gray-50 flex place-content-top place-items-top ">
+//                   <div className="border-2 border-dashed border-gray-300 flex-col overflow-auto  h-[50dvh] p-2 text-gray-300 w-[50dvh]  rounded-lg text-center bg-gray-700 flex place-content-top place-items-top ">
 //                     {formData.files.length > 0 && (
 //                       <ul>
 //                         <div className="flex flex-row items-center justify-between content-between w-[47dvh]">
-//                           <div className="justify-start items-start content-start text-start text-lg font-bold text-cyan-800">
+//                           <div className="justify-start items-start content-start text-start text-lg font-bold text-cyan-100">
 //                             <p>
 //                               Base Text:{" "}
 //                               {formData.baseText != null
@@ -3759,13 +3813,13 @@ results
 //                                 : "None"}
 //                             </p>
 //                           </div>
-//                           <div className="flex items-end justify-end content-end text-end  justify-content-end px-1 py-1 relative hover:bg-gray-200/70 rounded-sm text-red-600 text-lg">
+//                           <div className="flex items-end justify-end content-end text-end  justify-content-end px-1 py-1 relative hover:bg-gray-600/70 rounded-sm text-red-400 text-lg">
 //                             <button
 //                               type="button"
 //                               onClick={() =>
 //                                 setFormData((prev) => ({ ...prev, files: [] }))
 //                               }
-//                               className="bg-transparent text-red-600 rounded-lg shrink-0 flex flex-row items-center font-bold cursor-pointer items-right"
+//                               className="bg-transparent text-red-400 rounded-lg shrink-0 flex flex-row items-center font-bold cursor-pointer items-right"
 //                             >
 //                               <p className="pr-3">Clear All</p>
 //                               <Eraser className="w-8 h-8" />
@@ -3775,10 +3829,10 @@ results
 //                         {formData.files.map((file, index) => (
 //                           <li
 //                             key={`${file.name}-${index}`}
-//                             className={`flex items-left justify-between px-1 py-1 relative w-[47dvh] hover:bg-gray-200/70 rounded-sm ${
+//                             className={`flex items-left justify-between px-1 py-1 relative w-[47dvh] hover:bg-gray-600/70 rounded-sm ${
 //                               file == formData.baseText
-//                                 ? "bg-gray-300/55"
-//                                 : "bg-gray-50"
+//                                 ? "bg-gray-500/55"
+//                                 : "bg-gray-700"
 //                             }`}
 //                           >
 //                             {/* File Icon & Name */}
@@ -3791,14 +3845,14 @@ results
 //                                     baseText: file,
 //                                   }))
 //                                 }
-//                                 className="bg-transparent text-cyan-600 w-[43dvh] rounded-lg flex-row flex gap-2 content-center items-center shrink-0 cursor-pointer"
+//                                 className="bg-transparent text-cyan-400 w-[43dvh] rounded-lg flex-row flex gap-2 content-center items-center shrink-0 cursor-pointer"
 //                               >
 //                                 {file == formData.baseText ? (
 //                                   <FileCheck className="w-8 h-8" />
 //                                 ) : (
 //                                   <FileText className="w-8 h-8" />
 //                                 )}
-//                                 <p className="text-md font-medium text-cyan-800 ">
+//                                 <p className="text-md font-medium text-cyan-100 ">
 //                                   {file.name}
 //                                 </p>
 //                               </button>
@@ -3807,7 +3861,7 @@ results
 //                                 <button
 //                                   type="button"
 //                                   onClick={() => removeFile(file)}
-//                                   className="bg-transparent text-red-600 rounded-lg shrink-0 cursor-pointer items-right hover:bg-red-50"
+//                                   className="bg-transparent text-red-400 rounded-lg shrink-0 cursor-pointer items-right hover:bg-red-50"
 //                                 >
 //                                   <Trash2 className="w-8 h-8" />
 //                                 </button>
@@ -3828,14 +3882,14 @@ results
 //                       onClick={() =>
 //                         setFormData((prev) => ({ ...prev, multi: null }))
 //                       }
-//                       className="px-5 py-2 border border-gray-300 text-gray-700 font-medium rounded-lg hover:bg-gray-50 transition"
+//                       className="px-5 py-2 border border-gray-300 text-gray-200 font-medium rounded-lg hover:bg-gray-700 transition"
 //                     >
 //                       Back
 //                     </button>
 //                     <button
 //                       disabled={(formData.files.length === 1 ) && (formData.files[0][Object.keys(formData.files[0])[0]].length ===0)}
 //                       onClick={() => handleStepChange(2)}
-//                       className="px-5 py-2 bg-cyan-600 text-white font-medium rounded-lg hover:bg-cyan-700 disabled:bg-gray-500 disabled:cursor-not-allowed relative transition"
+//                       className="px-5 py-2 bg-cyan-600 text-gray-900 font-medium rounded-lg hover:bg-cyan-700 disabled:bg-gray-7000 disabled:cursor-not-allowed relative transition"
 //                     >
 //                       Continue
 //                     </button>
@@ -3847,14 +3901,14 @@ results
 //                 onClick={() =>
 //                   setFormData((prev) => ({ ...prev, multi: null }))
 //                 }
-//                 className="px-5 py-2 border border-gray-300 text-gray-700 font-medium rounded-lg hover:bg-gray-50 transition"
+//                 className="px-5 py-2 border border-gray-300 text-gray-200 font-medium rounded-lg hover:bg-gray-700 transition"
 //               >
 //                 Back
 //               </button>
 //               <button
 //                 disabled={formData.files.length === 0}
 //                 onClick={() => handleStepChange(2)}
-//                 className="px-5 py-2 bg-cyan-600 text-white font-medium rounded-lg hover:bg-cyan-700 disabled:bg-gray-500 disabled:cursor-not-allowed relative transition"
+//                 className="px-5 py-2 bg-cyan-600 text-gray-900 font-medium rounded-lg hover:bg-cyan-700 disabled:bg-gray-7000 disabled:cursor-not-allowed relative transition"
 //               >
 //                 Continue
 //               </button>
@@ -3868,19 +3922,19 @@ results
 //         {/* select algorithm */}
 //         {currentStep === 2 && (
 //           <div className="space-y-6">
-//             <h2 className="text-4xl font-bold text-gray-700 pt-10 ">
+//             <h2 className="text-4xl font-bold text-gray-200 pt-10 ">
 //               Select Algorithm
 //             </h2>
 
 //             <div className="space-y-1 place-content-start h-[55dvh] flex  w-10/10 pt-5">
 //               <div className="flex flex-row content-between">
 //                 <div className="flex flex-col content-center items-center gap-2 w-[20dvw]">
-//                   {/* <label className="block text-2xl font-medium text-gray-700 mb-1">Select Algorithm</label> */}
+//                   {/* <label className="block text-2xl font-medium text-gray-200 mb-1">Select Algorithm</label> */}
 //                   <div className="flex flex-col gap-2 pt-2 w-full">
 //                     {/* Label */}
 //                     <label
 //                       htmlFor="algorithm"
-//                       className="block text-md font-medium text-gray-700 place-content-start"
+//                       className="block text-md font-medium text-gray-200 place-content-start"
 //                     >
 //                       Choose an Algorithm
 //                     </label>
@@ -3889,7 +3943,7 @@ results
 //                     <div className="relative ">
 //                       <select
 //                         id="algorithm"
-//                         className="block w-full pl-3 pr-10 py-2 text-[0.8rem] outline-none border-none  bg-white  rounded-md shadow-md appearance-none focus:outline-none focus:shadow-md text-gray-700/60 focus:text-gray-700 focus:shadow-gray-700/70
+//                         className="block w-full pl-3 pr-10 py-2 text-[0.8rem] outline-none border-none  bg-gray-800  rounded-md shadow-gray-600/40 shadow-md appearance-none focus:outline-none focus:shadow-gray-600/40 shadow-md text-gray-200/60 focus:text-gray-200 focus:shadow-gray-600/40 shadow-gray-700/70
 //                      rounded-md   cursor-pointer transition-colors"
 //                         defaultValue={formData.algorithm}
 //                         onChange={(e) =>
@@ -3899,19 +3953,19 @@ results
 //                           }))
 //                         }
 //                       >
-//                         <option disabled value="" className="text-gray-400/20">
+//                         <option disabled value="" className="text-gray-300/20">
 //                           Select an Algorithm
 //                         </option>
-//                         <option value="ndw" className="text-gray-800">
+//                         <option value="ndw" className="text-gray-100">
 //                           Needleman-Wunsch Algorithm
 //                         </option>
-//                         <option value="sw" className="text-gray-800">
+//                         <option value="sw" className="text-gray-100">
 //                           Smith-Waterman Algorithm
 //                         </option>
 //                       </select>
 
 //                       {/* Custom Dropdown Chevron Icon */}
-//                       <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-3 text-gray-500">
+//                       <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-3 text-gray-300">
 //                         <svg
 //                           className="w-4 h-4"
 //                           fill="none"
@@ -3933,7 +3987,7 @@ results
 //                       formData.algorithm === "sw") && (
 //                       <div className="">
 //                         {/* Match Bonus*/}
-//                         <div className="flex justify-between items-center text-md font-medium text-gray-700">
+//                         <div className="flex justify-between items-center text-md font-medium text-gray-200">
 //                           <label htmlFor="matchBonus">Match Bonus</label>
 //                         </div>
 
@@ -3947,11 +4001,11 @@ results
 //                               Number(e.target.value),
 //                             )
 //                           }
-//                           className="block w-full pl-3 pr-10 py-2 text-[0.8rem] bg-white rounded-md shadow-sm appearance-none focus:outline-none focus:shadow-md text-gray-700/60 focus:text-gray-700 focus:shadow-gray-700/70 sm:text-[0.8rem] transition-colors"
+//                           className="block w-full pl-3 pr-10 py-2 text-[0.8rem] bg-gray-800 rounded-md shadow-gray-600/40 shadow-sm appearance-none focus:outline-none focus:shadow-gray-600/40 shadow-md text-gray-200/60 focus:text-gray-200 focus:shadow-gray-600/40 shadow-gray-700/70 sm:text-[0.8rem] transition-colors"
 //                         />
 
 //                         {/* Gap Penalty */}
-//                         <div className="flex justify-between items-center text-md font-medium text-gray-700">
+//                         <div className="flex justify-between items-center text-md font-medium text-gray-200">
 //                           <label htmlFor="gapPenalty">Gap Penalty</label>
 //                         </div>
 
@@ -3965,11 +4019,11 @@ results
 //                               Number(-e.target.value),
 //                             )
 //                           }
-//                           className="block w-full pl-3 pr-10 py-2 text-[0.8rem] bg-white rounded-md shadow-sm appearance-none focus:outline-none focus:shadow-md text-gray-700/60 focus:text-gray-700 focus:shadow-gray-700/70 sm:text-[0.8rem] transition-colors"
+//                           className="block w-full pl-3 pr-10 py-2 text-[0.8rem] bg-gray-800 rounded-md shadow-gray-600/40 shadow-sm appearance-none focus:outline-none focus:shadow-gray-600/40 shadow-md text-gray-200/60 focus:text-gray-200 focus:shadow-gray-600/40 shadow-gray-700/70 sm:text-[0.8rem] transition-colors"
 //                         />
 
 //                         {/* Mismatch Penalty */}
-//                         <div className="flex justify-between items-center text-md font-medium text-gray-700">
+//                         <div className="flex justify-between items-center text-md font-medium text-gray-200">
 //                           <label htmlFor="mismatchPenalty">
 //                             Mismatch Penalty
 //                           </label>
@@ -3985,14 +4039,14 @@ results
 //                               Number(-e.target.value),
 //                             )
 //                           }
-//                           className="block w-full pl-3 pr-10 py-2 text-[0.8rem] bg-white rounded-md shadow-sm appearance-none focus:outline-none focus:shadow-md text-gray-700/60 focus:text-gray-700 focus:shadow-gray-700/70 sm:text-[0.8rem] transition-colors"
+//                           className="block w-full pl-3 pr-10 py-2 text-[0.8rem] bg-gray-800 rounded-md shadow-gray-600/40 shadow-sm appearance-none focus:outline-none focus:shadow-gray-600/40 shadow-md text-gray-200/60 focus:text-gray-200 focus:shadow-gray-600/40 shadow-gray-700/70 sm:text-[0.8rem] transition-colors"
 //                         />
 
 //                         {/* Optional Special Character Bonus */}
 //                         {/* Label */}
 //                         <label
 //                           htmlFor="special"
-//                           className="block text-md font-medium text-gray-700 place-content-start"
+//                           className="block text-md font-medium text-gray-200 place-content-start"
 //                         >
 //                           Optional Special Character Bonus
 //                         </label>
@@ -4001,7 +4055,7 @@ results
 //                         <div className="relative">
 //                           <select
 //                             id="special"
-//                             className="block w-full pl-3 pr-10 py-2 text-[0.8rem] bg-white rounded-md shadow-sm appearance-none focus:outline-none focus:shadow-md text-gray-700/60 focus:text-gray-700 focus:shadow-gray-700/70 sm:text-[0.8rem] cursor-pointer transition-colors"
+//                             className="block w-full pl-3 pr-10 py-2 text-[0.8rem] bg-gray-800 rounded-md shadow-gray-600/40 shadow-sm appearance-none focus:outline-none focus:shadow-gray-600/40 shadow-md text-gray-200/60 focus:text-gray-200 focus:shadow-gray-600/40 shadow-gray-700/70 sm:text-[0.8rem] cursor-pointer transition-colors"
 //                             defaultValue=""
 //                             onChange={(e) => {
 //                               const val = e.target.value;
@@ -4018,25 +4072,25 @@ results
 //                               }
 //                             }}
 //                           >
-//                             <option value="" className="text-gray-400/20">
+//                             <option value="" className="text-gray-300/20">
 //                               None
 //                             </option>
 //                             {/* Pass standard comma-separated strings as values */}
-//                             <option value="ך,ם,ן,ף,ץ" className="text-gray-800">
+//                             <option value="ך,ם,ן,ף,ץ" className="text-gray-100">
 //                               Sofit Letters
 //                             </option>
 //                             <option
 //                               value="A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z"
-//                               className="text-gray-800"
+//                               className="text-gray-100"
 //                             >
 //                               Capital Letters (Latin Alphabet)
 //                             </option>
-//                             <option value="Other" className="text-gray-800">
+//                             <option value="Other" className="text-gray-100">
 //                               Custom
 //                             </option>
 //                           </select>
 //                           {/* Custom Dropdown Chevron Icon */}
-//                           <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-3 text-gray-500">
+//                           <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-3 text-gray-300">
 //                             <svg
 //                               className="w-4 h-4"
 //                               fill="none"
@@ -4057,7 +4111,7 @@ results
 //                           <div>
 //                             <label
 //                               htmlFor="otherSpecial"
-//                               className="block pt-2 text-md font-medium text-gray-700 place-content-start"
+//                               className="block pt-2 text-md font-medium text-gray-200 place-content-start"
 //                             >
 //                               Enter a space-separated list of characters.
 //                             </label>
@@ -4071,7 +4125,7 @@ results
 //                                 )
 //                               }
 //                               placeholder="1 2 3"
-//                               className="shadow-md pt-2 w-full text-gray-700 focus:shadow-gray-700/70 outline-none border-none appearance-none p-1"
+//                               className="shadow-gray-600/40 shadow-md pt-2 w-full text-gray-200 focus:shadow-gray-600/40 shadow-gray-700/70 outline-none border-none appearance-none p-1"
 //                             />
 //                           </div>
 //                         )}
@@ -4080,7 +4134,7 @@ results
 //                             false && (
 //                             <label
 //                               htmlFor="specialList"
-//                               className="pt-2 text-cyan-700"
+//                               className="pt-2 text-cyan-200"
 //                             >
 //                               {formData.settings.special.join(" ")}
 //                             </label>
@@ -4089,7 +4143,7 @@ results
 
 //                         {formData.settings.special?.length > 0 && (
 //                           <div>
-//                             <div className="flex justify-between items-center text-md  font-medium text-gray-700">
+//                             <div className="flex justify-between items-center text-md  font-medium text-gray-200">
 //                               <label htmlFor="specialBonus" className="pt-2">
 //                                 Special Character Bonus
 //                               </label>
@@ -4105,10 +4159,10 @@ results
 //                                   Number(e.target.value),
 //                                 )
 //                               }
-//                               className="block w-full pl-3 pr-10 py-2 text-[0.8rem] bg-white rounded-md shadow-sm appearance-none focus:outline-none focus:shadow-md text-gray-700/60 focus:text-gray-700 focus:shadow-gray-700/70 sm:text-[0.8rem] transition-colors"
+//                               className="block w-full pl-3 pr-10 py-2 text-[0.8rem] bg-gray-800 rounded-md shadow-gray-600/40 shadow-sm appearance-none focus:outline-none focus:shadow-gray-600/40 shadow-md text-gray-200/60 focus:text-gray-200 focus:shadow-gray-600/40 shadow-gray-700/70 sm:text-[0.8rem] transition-colors"
 //                             />
 
-//                             <div className="flex justify-between items-center text-md  font-medium text-gray-700">
+//                             <div className="flex justify-between items-center text-md  font-medium text-gray-200">
 //                               <label htmlFor="specialGap" className="pt-2">
 //                                 Special Character Gap Penalty
 //                               </label>
@@ -4124,10 +4178,10 @@ results
 //                                   Number(-e.target.value),
 //                                 )
 //                               }
-//                               className="block w-full pl-3 pr-10 py-2 text-[0.8rem] bg-white rounded-md shadow-sm appearance-none focus:outline-none focus:shadow-md text-gray-700/60 focus:text-gray-700 focus:shadow-gray-700/70 sm:text-[0.8rem] transition-colors"
+//                               className="block w-full pl-3 pr-10 py-2 text-[0.8rem] bg-gray-800 rounded-md shadow-gray-600/40 shadow-sm appearance-none focus:outline-none focus:shadow-gray-600/40 shadow-md text-gray-200/60 focus:text-gray-200 focus:shadow-gray-600/40 shadow-gray-700/70 sm:text-[0.8rem] transition-colors"
 //                             />
 
-//                             <div className="flex justify-between items-center text-md  font-medium text-gray-700">
+//                             <div className="flex justify-between items-center text-md  font-medium text-gray-200">
 //                               <label htmlFor="specialMismatch" className="pt-2">
 //                                 Special Character Mismatch Penalty
 //                               </label>
@@ -4143,7 +4197,7 @@ results
 //                                   Number(-e.target.value),
 //                                 )
 //                               }
-//                               className="block w-full pl-3 pr-10 py-2 text-[0.8rem] bg-white rounded-md shadow-sm appearance-none focus:outline-none focus:shadow-md text-gray-700/60 focus:text-gray-700 focus:shadow-gray-700/70 sm:text-[0.8rem] transition-colors"
+//                               className="block w-full pl-3 pr-10 py-2 text-[0.8rem] bg-gray-800 rounded-md shadow-gray-600/40 shadow-sm appearance-none focus:outline-none focus:shadow-gray-600/40 shadow-md text-gray-200/60 focus:text-gray-200 focus:shadow-gray-600/40 shadow-gray-700/70 sm:text-[0.8rem] transition-colors"
 //                             />
 //                           </div>
 //                         )}
@@ -4152,7 +4206,7 @@ results
 //                     {formData.algorithm === "ndw" && (
 //                       <div>
 //                         {/* Affine Gap Penalty */}
-//                         <div className="flex justify-between items-center text-md font-medium text-gray-700">
+//                         <div className="flex justify-between items-center text-md font-medium text-gray-200">
 //                           <label htmlFor="affinePenalty">Affine Penalty</label>
 //                         </div>
 
@@ -4166,7 +4220,7 @@ results
 //                               Number(-e.target.value),
 //                             )
 //                           }
-//                           className="block w-full pl-3 pr-10 py-2 text-[0.8rem] bg-white rounded-md shadow-sm appearance-none focus:outline-none focus:shadow-md text-gray-700/60 focus:text-gray-700 focus:shadow-gray-700/70 sm:text-[0.8rem] transition-colors"
+//                           className="block w-full pl-3 pr-10 py-2 text-[0.8rem] bg-gray-800 rounded-md shadow-gray-600/40 shadow-sm appearance-none focus:outline-none focus:shadow-gray-600/40 shadow-md text-gray-200/60 focus:text-gray-200 focus:shadow-gray-600/40 shadow-gray-700/70 sm:text-[0.8rem] transition-colors"
 //                         />
 //                       </div>
 //                     )}
@@ -4181,14 +4235,14 @@ results
 //             <div className="flex justify-between pt-4">
 //               <button
 //                 onClick={() => handleStepChange(1)}
-//                 className="px-5 py-2 border border-gray-300 text-gray-700 font-medium rounded-lg hover:bg-gray-50 transition"
+//                 className="px-5 py-2 border border-gray-300 text-gray-200 font-medium rounded-lg hover:bg-gray-700 transition"
 //               >
 //                 Back
 //               </button>
 //               <button
 //                 onClick={handleRunAlgorithm}
 //                 disabled={isProcessing}
-//                 className="px-5 py-2 bg-cyan-600 text-white font-medium rounded-lg hover:bg-cyan-700 disabled:opacity-50 transition"
+//                 className="px-5 py-2 bg-cyan-600 text-gray-900 font-medium rounded-lg hover:bg-cyan-700 disabled:opacity-50 transition"
 //               >
 //                 {isProcessing ? "Processing..." : "Run Algorithm"}
 //               </button>
@@ -4199,14 +4253,14 @@ results
 //           <div className="flex justify-between pt-4">
 //             <button
 //               onClick={() => handleStepChange(2)}
-//               className="px-5 py-2 border border-gray-300 text-gray-700 font-medium rounded-lg hover:bg-gray-50 transition"
+//               className="px-5 py-2 border border-gray-300 text-gray-200 font-medium rounded-lg hover:bg-gray-700 transition"
 //             >
 //               Back
 //             </button>
 //             <button
 //               onClick={() => handleStepChange(4)}
 //               disabled={isProcessing}
-//               className="px-5 py-2 bg-cyan-600 text-white font-medium rounded-lg hover:bg-cyan-700 disabled:opacity-50 transition"
+//               className="px-5 py-2 bg-cyan-600 text-gray-900 font-medium rounded-lg hover:bg-cyan-700 disabled:opacity-50 transition"
 //             >
 //               {isProcessing ? "Processing..." : "Run Algorithm"}
 //             </button>
@@ -4216,7 +4270,7 @@ results
 //           <div className="flex justify-between pt-4">
 //             <button
 //               onClick={() => handleStepChange(3)}
-//               className="px-5 py-2 border border-gray-300 text-gray-700 font-medium rounded-lg hover:bg-gray-50 transition"
+//               className="px-5 py-2 border border-gray-300 text-gray-200 font-medium rounded-lg hover:bg-gray-700 transition"
 //             >
 //               Back
 //             </button>
@@ -4241,7 +4295,7 @@ results
 // {
 //   /* //   return (
 // //     <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-// //       <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
+// //       <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-gray-800 dark:bg-black sm:items-start">
 // //         {/* <Image
 // //           className="dark:invert"
 // //           src="/next.svg"
