@@ -2862,7 +2862,7 @@ results
                     <button
                       onClick={handleSubmit}
                       disabled={!isReady || isProcessing}
-                      className = {`relative overflow-hidden px-5 py-2 w-max h-max font-medium rounded-lg transition-all duration-200 ${
+                      className = {`relative overflow-hidden px-5 py-2 font-medium rounded-lg transition-all duration-200 ${
                       isProcessing
                         ? "bg-gray-400 text-gray-900 cursor-not-allowed"
                         : "bg-cyan-500 text-gray-900 hover:bg-cyan-700 disabled:bg-gray-300"
