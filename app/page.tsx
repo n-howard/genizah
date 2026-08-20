@@ -1182,7 +1182,14 @@ results
         return true;
       }
     };
-    const recs = plotResults ? plotResults.records.filter(recsFilter) : [] ;
+
+    let allRecords = []
+      allResults.map((dict)=> {
+        allRecords.push(dict.records)
+      })
+
+      allRecords = allRecords.flat()
+    const recs = plotResults ? plotResults.records.filter(recsFilter) : allRecords.filter(recsFilter) ;
 
     return (
       <Document>
@@ -1284,7 +1291,7 @@ results
             <View>
             <Text style={tw("text-lg pt-2")}>Resulting Scores</Text>
             {recs.map((item, index) => (
-              <View>
+              <View key={`${index}-view`}>
                 <Text key={`${index}-title`} style={tw("text-sm font-bold")}>
                   {item.TextNamePair[0]} & {item.TextNamePair[1]}:
                 </Text>
@@ -1458,6 +1465,7 @@ results
     }))
     setAllResults([])
     setPrevBaseTexts(new Set())
+    setPlotUrl(null)
 
   };
 
@@ -2447,7 +2455,7 @@ results
                     <button
                       onClick={handleSubmit}
                       disabled={!isReady || isProcessing}
-                      className = {`relative overflow-hidden px-5 py-2 w-max h-max font-medium rounded-lg transition-all duration-200 ${
+                      className = {`relative overflow-hidden px-5 py-2  font-medium rounded-lg transition-all duration-200 ${
                       isProcessing
                         ? "bg-gray-400 text-gray-900 cursor-not-allowed"
                         : "bg-cyan-500 text-gray-900 hover:bg-cyan-700 disabled:bg-gray-300"
@@ -3167,25 +3175,11 @@ results
                     <button
                       onClick={handlePlot}
                       disabled={
-                        isProcessing 
+                        !isReady || isProcessing 
                       }
-                      className={`relative overflow-hidden px-5 py-2 w-max h-max font-medium rounded-lg transition-all duration-200 ${
-                      isProcessing
-                        ? "bg-gray-400 text-gray-900 cursor-not-allowed"
-                        : "bg-cyan-500 text-gray-900 hover:bg-cyan-700 disabled:bg-gray-300"
-                    }`}
+                      className="px-5 py-2 bg-cyan-600 text-gray-900 font-medium rounded-lg hover:bg-cyan-700 disabled:opacity-50 transition"
                     >
-                      
-                      {isProcessing && (
-                          <div
-                            className="absolute inset-y-0 left-0 bg-cyan-500 transition-all duration-150 ease-out"
-                            style={{ width: `${progress}%` }}
-                          />
-                        )}
-                        <span className="relative z-10 flex items-center justify-center">
-                          {isProcessing ? `Processing: ${progress}% Completed` : "Run t-SNE Algorithm"}
-                        </span>
-                     
+                      {isProcessing ? "Processing..." : "Run t-SNE Algorithm"}
                     </button>
                   
                   </div>
