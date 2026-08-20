@@ -2,6 +2,8 @@ from numpy import full
 import os
 from base import AlgorithmSettings
 
+import asyncio
+
 import re
 
 def _generate_traceback_array(seq1, seq2, settings):
@@ -141,7 +143,7 @@ def smith_waterman(seq1, seq2, settings):
     return seq1, seq2, score
 
 
-def run_sw(temp_dir, settings: AlgorithmSettings, base_text_pattern, is_plot, records=[]):
+async def run_sw(temp_dir, settings: AlgorithmSettings, base_text_pattern, file_length, is_plot, records=[], progress_callback=None):
     ''' Is the loop to run through the files and apply the algorithm '''
     os.getcwd()
     # within the os module, returns the current working directory of a process.
@@ -153,6 +155,7 @@ def run_sw(temp_dir, settings: AlgorithmSettings, base_text_pattern, is_plot, re
 
     scores_table = {}
     seen_files = [d.get("BaseText") for d in records if (base_text_pattern in d.get("TargetFile") and ("BaseText" in d) and ("TargetFile" in d))]
+    curr_index = 0
     # joins the current working directory and the subfile which we want to read under the object 'basedirectory'
     with os.scandir(base_directory) as folders:
         folders = [folder for folder in folders if folder.is_dir()]
@@ -160,6 +163,7 @@ def run_sw(temp_dir, settings: AlgorithmSettings, base_text_pattern, is_plot, re
             print(folder)
             # 'scans' basedirectory, iterates through all folders in the subfolder (if any exist), and lists them.
             test_directory = os.path.join(base_directory, folder)
+            
             # creates an object called 'testdirectory' which joins the basedirectory with the specific folder we want to
             # read. we have now told the computer exactly which folders we want to read and how to find them.
             with os.scandir(test_directory) as texts:
@@ -185,7 +189,8 @@ def run_sw(temp_dir, settings: AlgorithmSettings, base_text_pattern, is_plot, re
                 texts = filter(filter_func, texts)
                 # texts = [text for text in texts if base_text_pattern not in text.name]
                 # tells the computer to iterate through all the files in the folder where the name does not have 'JTS'
-                for text in texts:
+                for index, text in enumerate(texts):
+                    curr_index+=index
                     # call the entire algorithm within this loop
                     # print(text)
                     text_filepath = os.path.join(test_directory, text)
@@ -220,6 +225,12 @@ def run_sw(temp_dir, settings: AlgorithmSettings, base_text_pattern, is_plot, re
                             "OrigScore": score,
                             "TextNamePair": [base_text.name, text.name]
                         })
+                    if progress_callback:
+                        percent = int(((curr_index + 1) / file_length) * 100)
+                        progress_callback(percent)
+            
+            
+                        await asyncio.sleep(0)
     
     return records
 

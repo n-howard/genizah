@@ -25,7 +25,10 @@ import {
 } from "@react-pdf/renderer";
 import ReactPDF from "@react-pdf/renderer";
 import { createTw } from "react-pdf-tailwind";
+import NProgress from 'nprogress';
+
 import { useWasmEngines } from "../hooks/useWasmEngines";
+
 
 
 const download = require("downloadjs");
@@ -492,7 +495,12 @@ export default function Pages() {
   const [jobId, setJobId] = useState<string | null>(null);
   const [plotUrl, setPlotUrl] = useState(null);
 
+  const [fileLength, setFileLength] = useState(0)
+
   const { pyodide, webR, isReady, loadingStatus } = useWasmEngines();
+
+  const [progress, setProgress] = useState(0)
+
   const handleSubmit = async () => {
     if (!pyodide || !isReady) {
       alert("Python engine is still loading in browser. Please wait a moment.");
@@ -500,12 +508,18 @@ export default function Pages() {
     }
 
     setIsProcessing(true);
+    setProgress(0);
+    
+    
 
     const targetDir = "/tmp/input_files/Alignment Data0";
+
+    let totalFileCount;
 
     try {
       if (allResults.length==0){
         // 1. Clear & create virtual input directory in Pyodide
+        
         try {
           pyodide.FS.mkdirTree(targetDir);
         } catch (e) { }
@@ -523,6 +537,7 @@ export default function Pages() {
           });
           if (subKeys.length > 0) {
             baseTextFiles = formData.subsections[subKeys[0]];
+            
           }
         } else {
           formData.files.forEach((f: File) =>
@@ -537,6 +552,9 @@ export default function Pages() {
           alert("No files selected for alignment.");
           return;
         }
+
+        totalFileCount = allFilesToProcess.length;
+        setFileLength(totalFileCount);
 
         setAllBaseTexts((prev) => [...prev, ...baseTextFiles]);
 
@@ -553,6 +571,8 @@ export default function Pages() {
           } catch (e) { }
           pyodide.FS.writeFile(path, new Uint8Array(arrayBuffer));
         }
+    } else{
+      totalFileCount=fileLength;
     }
       
     
@@ -590,25 +610,29 @@ export default function Pages() {
       pyodide.globals.set("js_algorithm", formData.algorithm || "");
       pyodide.globals.set("js_base_text", effectiveBaseText);
       pyodide.globals.set("js_multi", Boolean(formData.multi));
+      pyodide.globals.set("file_length", Math.max(1, totalFileCount));
       // pyodide.globals.set("js_base_text_list", pyodide.toPy(baseTextListNames));
-      console.log(
-        "Pyodide MEMFS targetDir contents:",
-        pyodide.FS.readdir(targetDir),
-      );
-      // 5. Clean, safe Python execution script
+      pyodide.globals.set("update_progress", (percent: number) => {
+      setProgress(Math.min(100, Math.max(0, percent)));
+    });
+      
       const runScript = `
 import main
 import pandas as pd
+import asyncio
 
 settings = main.AlgorithmSettings.from_dict(js_settings)
 
 # Execute alignment inside browser RAM
-results = main.run_in_browser_process(
+results = await main.run_in_browser_process(
     algorithm=js_algorithm,
     settings=settings,
     file_dir="/tmp/input_files",
     base_text=js_base_text,
-    multi=js_multi
+    multi=js_multi,
+    file_length=file_length,
+    progress_callback=update_progress
+    
 )
 
 if results is None:
@@ -648,6 +672,8 @@ results
       ]))
 
       setPrevBaseTexts((prev) => new Set(prev).add(effectiveBaseText));
+
+      
 
       handleStepChange(3);
     } catch (error) {
@@ -718,7 +744,9 @@ results
   }
 
   const generateSpreadsheet = async () => {
-    setIsProcessing(true)
+    
+
+    
     if (!pyodide || !webR) {
       alert("WebAssembly engines are still loading. Please wait a moment.");
       return;
@@ -806,7 +834,6 @@ results
     } catch (error: any) {
       console.error("Plot generation error:", error);
       alert(`Plot generation failed: ${error.message || String(error)}`);
-      setIsProcessing(false)
     }
   }
 
@@ -907,6 +934,7 @@ results
     //   const htmlText = new TextDecoder().decode(htmlBytes);
     //   setPlotUrl(htmlText);
     // }
+    
     setIsProcessing(false)
     // Advance to plot step
     handleStepChange(5);
@@ -1070,6 +1098,14 @@ results
     },
   });
 
+  const containerRef = useRef(null);
+  const scrollToSection = (id) => {
+    const element = containerRef.current?.querySelector(`[id="${id}"]`);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  };
+
   const rtlLangs = /[\p{sc=Hebrew}\p{sc=Arabic}\p{sc=Syriac}\p{sc=Thaana}\p{sc=Nko}]/u;
 
 
@@ -1101,7 +1137,7 @@ results
           <View wrap style={tw("p-10")}>
             <Text style={tw("text-lg text-center font-mono")}>Alignment Results</Text>
             {allResults.map((dict)=>(
-              <View>
+              <View key={dict.baseText}>
                 <Text key={dict.baseText}>{dict.baseText}</Text>
             {dict.alignments.split("\n").map((line, index) => (
               <Text key={index} style={[tw("font-mono text-justify text-sm"), { direction: rtlTested }]}>
@@ -1420,6 +1456,8 @@ results
       spreadsheet: null,
       baseText: ""
     }))
+    setAllResults([])
+    setPrevBaseTexts(new Set())
 
   };
 
@@ -1890,10 +1928,7 @@ results
                         Back
                       </button>
                       <div className="flex flex-col w-max gap-2">
-                      <button 
-                      disabled={totalFilesCount < 2}
-                      onClick={()=>handleStepChange(1.2)}
-                      className="px-5 py-2 bg-green-600 text-gray-900 font-medium rounded-lg hover:bg-green-700 disabled:bg-gray-500 disabled:cursor-not-allowed transition">Optional: Upload Spreadsheet</button>
+                      
                       <button
                         disabled={totalFilesCount < 2}
                         onClick={() => handleStepChange(2)}
@@ -1901,6 +1936,11 @@ results
                       >
                         Continue
                       </button>
+                      <button 
+                      disabled={totalFilesCount < 2}
+                      onClick={()=>handleStepChange(1.2)}
+                      className="px-5 py-2 bg-green-600 text-gray-900 font-medium rounded-lg hover:bg-green-700 disabled:bg-gray-500 disabled:cursor-not-allowed transition">
+                        Optional: Upload Spreadsheet</button>
                       </div>
                     </div>
                   )}
@@ -2407,9 +2447,23 @@ results
                     <button
                       onClick={handleSubmit}
                       disabled={!isReady || isProcessing}
-                      className="px-5 py-2 bg-cyan-600 text-gray-900 font-medium rounded-lg hover:bg-cyan-700 disabled:opacity-50 transition"
+                      className = {`relative overflow-hidden px-5 py-2 w-max h-max font-medium rounded-lg transition-all duration-200 ${
+                      isProcessing
+                        ? "bg-gray-400 text-gray-900 cursor-not-allowed"
+                        : "bg-cyan-500 text-gray-900 hover:bg-cyan-700 disabled:bg-gray-300"
+                    }`}
+                      // className="relative overflow-hidden px-5 py-2 w-max h-max bg-cyan-600 text-gray-900 font-medium rounded-lg hover:bg-cyan-700 disabled:bg-gray-600 transition"
                     >
-                      {isProcessing ? "Processing..." : "Run Algorithm"}
+                      {isProcessing && (
+                          <div
+                            className="absolute inset-y-0 left-0 bg-cyan-500 transition-all duration-150 ease-out"
+                            style={{ width: `${progress}%` }}
+                          />
+                        )}
+                        <span className="relative z-10 flex items-center justify-center">
+                          {isProcessing ? `Processing: ${progress}% Completed` : "Run Algorithm"}
+                        </span>
+                      {/* {isProcessing ? "Processing..." : "Run Algorithm"} */}
                     </button>
                      {((formData.spreadsheet!=null)) && (
                       <button
@@ -2437,31 +2491,54 @@ results
                   </h1>
 
                   <div className="h-8/10 w-full flex flex-row">
-                
-                    <div className="flex flex-row w-full gap-6">
-                      <div className="flex-row overflow-auto place-content-start place-items-start h-full place-self-start w-full flex pt-5 ">
+                      
+                      
+                        {showPrevious && (
+                          <nav className="w-max border-1 border-white p-2 h-max">
+                          <h3 className="font-bold mb-2">Skip to Base Text</h3>
+                          <ul className="gap-2 cursor-pointer">
+                            {[...prevBaseTexts].reverse().map((text) => (
+                            
+                            <li key={text.split("_")[0]} onClick={() => scrollToSection(text.split("_")[0])}>{text.split("_")[0]}</li>
+                            
+                            ))}
+                          </ul>
+                        </nav>
+                        )}
+                      
+                    <div className="pl-5 flex flex-row w-full gap-6">
+                      <div className="flex-col overflow-auto place-content-start place-items-start h-full place-self-start w-full flex pt-5 " ref={containerRef}>
+                        
                         <div className="flex flex-col items-center content-center">
-                        <div className="w-max h-85/100">
+                        <section
+                        id={formData.baseText.split("_")[0]}
+                        className="flex flex-col items-center w-full"
+                      >
+                        <div className="w-max h-max">
                         <p className="text-xs font-semibold text-gray-300 mb-1">
                                   Base Text: {formData.baseText.split("_")[0]}
                         </p>
                           <p className="text-gray-100  whitespace-pre-wrap text-justify font-mono" style={{ direction: rtlLangs.test(results.output_logs) ? "rtl" : "ltr", unicodeBidi: 'embed' }}>
                             {results.output_logs}
                           </p>
+                          
                         </div>
+                        </section>
                         
-
+                      
                       {/* Declaratively Render Previous Alignments */}
+                      
                       {showPrevious &&
-                        allResults
-                          .filter(
+                        allResults.
+                          reverse().filter(
                             (dict) =>
                               dict.baseText?.split("_")[0] !== formData.baseText?.split("_")[0]
                           )
                           .map((dict) => {
                             const logText = dict.alignments || dict.output_logs || "";
                             return (
-                              <div key={dict.baseText} className="w-full border-t border-gray-200 pt-4 mt-2">
+                              <section id={dict.baseText.split("_")[0]} key={dict.baseText}>
+                              <div  className="w-full border-t h-max border-gray-200 pt-4 mt-2">
                                 <p className="text-xs font-semibold text-gray-300 mb-1">
                                   Base Text: {dict.baseText.split("_")[0]}
                                 </p>
@@ -2475,6 +2552,7 @@ results
                                   {logText}
                                 </p>
                               </div>
+                              </section>
                             );
                           })}
                       </div>
@@ -2772,28 +2850,42 @@ results
                     >
                       Back
                     </button>
-              
                     <div className="flex flex-col items-center w-max gap-2">
-                       <button
+                    <button
                       onClick={handleSubmit}
                       disabled={!isReady || isProcessing}
-                      className="px-5 py-2 bg-cyan-600 text-gray-900 font-medium rounded-lg hover:bg-cyan-700 disabled:opacity-50 transition"
+                      className = {`relative overflow-hidden px-5 py-2 w-max h-max font-medium rounded-lg transition-all duration-200 ${
+                      isProcessing
+                        ? "bg-gray-400 text-gray-900 cursor-not-allowed"
+                        : "bg-cyan-500 text-gray-900 hover:bg-cyan-700 disabled:bg-gray-300"
+                    }`}
+                     
                     >
-                      {isProcessing ? "Processing..." : "Run Algorithm"}
+                      {isProcessing && (
+                          <div
+                            className="absolute inset-y-0 left-0 bg-cyan-500 transition-all duration-150 ease-out"
+                            style={{ width: `${progress}%` }}
+                          />
+                        )}
+                        <span className="relative z-10 flex items-center justify-center">
+                          {isProcessing ? `Processing: ${progress}% Completed` : "Run Algorithm"}
+                        </span>
+                      
                     </button>
                       <button
                         onClick={() => handleStepChange(2.5)}
                         disabled={
                           isProcessing 
                         }
-                        className="px-5 py-2 bg-cyan-400 text-gray-800 font-medium rounded-lg hover:bg-cyan-700 disabled:bg-gray-500 disabled:cursor-not-allowed transition"
+                        className="px-5 py-2 bg-cyan-600 text-gray-800 font-medium rounded-lg hover:bg-cyan-700 disabled:bg-gray-500 disabled:cursor-not-allowed transition"
                       >
                         Modify Algorithm Settings
                       </button>
-                     
+                     </div>
                     </div>
                   </div>
-            </div>
+                  
+            
             )}
             {currentStep === 4 && (
               <div className="flex content-start h-[71vh] pt-10 flex-col pt-4">
@@ -3077,10 +3169,25 @@ results
                       disabled={
                         isProcessing 
                       }
-                      className="px-5 py-2 bg-cyan-600 text-gray-900 font-medium rounded-lg hover:bg-cyan-700 disabled:opacity-50 transition"
+                      className={`relative overflow-hidden px-5 py-2 w-max h-max font-medium rounded-lg transition-all duration-200 ${
+                      isProcessing
+                        ? "bg-gray-400 text-gray-900 cursor-not-allowed"
+                        : "bg-cyan-500 text-gray-900 hover:bg-cyan-700 disabled:bg-gray-300"
+                    }`}
                     >
-                      {isProcessing ? "Processing..." : "Run t-SNE Algorithm"}
+                      
+                      {isProcessing && (
+                          <div
+                            className="absolute inset-y-0 left-0 bg-cyan-500 transition-all duration-150 ease-out"
+                            style={{ width: `${progress}%` }}
+                          />
+                        )}
+                        <span className="relative z-10 flex items-center justify-center">
+                          {isProcessing ? `Processing: ${progress}% Completed` : "Run t-SNE Algorithm"}
+                        </span>
+                     
                     </button>
+                  
                   </div>
                 </div>
               </div>
@@ -3361,7 +3468,7 @@ results
 
 //   const handleMultiFolder = (subsectionObject, folder) => {
 //     const uploadedFiles = Array.from(folder.target.files).filter((file) =>
-//       file.name.endsWith(".txt"),
+//       file.name.donesWith(".txt"),
 //     );
 
 //     const [subsection, filesList] = Object.entries(subsectionObject)[0];
@@ -3380,7 +3487,7 @@ results
 //   // Handle Folder Upload (OLD)
 //   const handleFolderUpload = (e) => {
 //     const uploadedFiles = Array.from(e.target.files).filter((file) =>
-//       file.name.endsWith(".txt"),
+//       file.name.donesWith(".txt"),
 //     );
 //     // setFormData((prev) => ({ ...prev, files: uploadedFiles }));
 //     setFormData((prev) => {

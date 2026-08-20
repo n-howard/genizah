@@ -11,6 +11,7 @@ import subprocess
 import uuid
 from typing import List, Callable, Any, Dict, Optional
 import numpy as np
+import asyncio
 
 from base import AlgorithmSettings, PlotSettings
 from needleman_wunsch import run_nw
@@ -43,7 +44,7 @@ from smith_waterman import compare_two_sw
 #     base_text: Optional[str] = Form(None),
 #     subsections_metadata: Optional[str] = Form(None)
 # ):
-def run_in_browser_process(algorithm, settings, file_dir, base_text, multi):
+async def run_in_browser_process(algorithm, settings, file_dir, base_text, multi, file_length, progress_callback=None):
     root_dir = file_dir
     # try:
     #     raw_settings = json.loads(settings)
@@ -138,13 +139,13 @@ def run_in_browser_process(algorithm, settings, file_dir, base_text, multi):
             
             # Redirect print() outputs into string buffer
             with contextlib.redirect_stdout(buffer):
-                records = records + run_nw(root_dir, settings, base_text_pattern, is_plot, records)
+                records =  await run_nw(root_dir, settings, base_text_pattern, file_length, is_plot, records,  progress_callback)
                     
                 
         elif "sw" in algorithm:
             # Redirect print() outputs into string buffer
             with contextlib.redirect_stdout(buffer):
-                records = records + run_sw(root_dir, settings, base_text_pattern, is_plot, records)
+                records = await run_sw(root_dir, settings, base_text_pattern, file_length, is_plot, records,  progress_callback)
         
         # if is_plot:
         #     # fix this to be customizable
