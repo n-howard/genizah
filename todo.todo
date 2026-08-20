@@ -66,7 +66,7 @@ Steps before first deployment:
 ☐ little i symbol to hover over for clarification (see if feasible)
 ☐  be able to rename subsections
 ☐ base text suffix instead of prefix/customize base text split by
-☐  progress bar
+✔  progress bar @done(26-08-20 09:41)
 ✔  let people upload their own spreadsheets if they want @done(26-08-15 08:49)
 ✔  delete spreadsheet on clear all @done(26-08-10 15:17)
 ✔  xyz as labels, no numbers on 3d plot // check @done(26-08-10 15:17)
@@ -78,7 +78,8 @@ Steps before first deployment:
         ✔  one set of base texts, see alignments, do another? give option to select next base text ... once you've done all, see t-SNE? @done(26-08-14 11:22)
 ✔ make it possible to download all alignments rather than just alignments for the current base text @done(26-08-16 20:03)
 ✔ check if all of the fixes work for multiple subsections @done(26-08-20 09:35)
-☐ make sure error doesn't happen if you try to skip ahead after changing the files (should not be able to skip ahead after adding/removing files)
-☐ Fix UX!! Settings button should either always be on top or always on bottom, different colors for buttons that do settings versus buttons that run algorithm (or at least all buttons on same page should have different colors). Need to make it clear what is cleared when clear all happens. Also need to make it clear why you can't click on run algorithm or why Firefox, etc. offers to stop it (maybe this is solved by two different progress indicators). Also everything always needs to stay in the box or just get rid of box altogether
-☐ Maybe add table of contents of alignments?
-☐ check if spreadsheet upload works even if you generate alignments
+✔ make sure error doesn't happen if you try to skip ahead after changing the files (should not be able to skip ahead after adding/removing files) @done(26-08-20 09:40)
+✔ Fix UX!! Settings button should either always be on top or always on bottom, different colors for buttons that do settings versus buttons that run algorithm (or at least all buttons on same page should have different colors). Need to make it clear what is cleared when clear all happens. Also need to make it clear why you can't click on run algorithm or why Firefox, etc. offers to stop it (maybe this is solved by two different progress indicators). Also everything always needs to stay in the box or just get rid of box altogether @done(26-08-20 09:40)
+✔ Maybe add table of contents of alignments? @done(26-08-20 09:40)
+✔ check if spreadsheet upload works even if you generate alignments @done(26-08-20 09:41)
+✔ Signal to user why button is disabled if !isReady @done(26-08-20 09:41)

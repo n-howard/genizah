@@ -2470,7 +2470,7 @@ results
                           />
                         )}
                         <span className="relative z-10 flex items-center justify-center">
-                          {isProcessing ? `Processing: ${progress}% Completed` : "Run Algorithm"}
+                          {isProcessing ? `Processing: ${progress}% Completed` : (isReady ? "Run Algorithm" : "Preparing Algorithm...")}
                         </span>
                       {/* {isProcessing ? "Processing..." : "Run Algorithm"} */}
                     </button>
@@ -2877,7 +2877,7 @@ results
                           />
                         )}
                         <span className="relative z-10 flex items-center justify-center">
-                          {isProcessing ? `Processing: ${progress}% Completed` : "Run Algorithm"}
+                          {isProcessing ? `Processing: ${progress}% Completed` : (isReady ? "Run Algorithm" : "Preparing Algorithm...")}
                         </span>
                       
                     </button>
@@ -3180,7 +3180,7 @@ results
                       }
                       className="px-5 py-2 bg-cyan-600 text-gray-900 font-medium rounded-lg hover:bg-cyan-700 disabled:opacity-50 transition"
                     >
-                      {isProcessing ? "Processing..." : "Run t-SNE Algorithm"}
+                      {isProcessing ? "Processing..." : (isReady ? "Run t-SNE Algorithm" : "Preparing t-SNE Algorithm...")}
                     </button>
                   
                   </div>
