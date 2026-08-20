@@ -1466,6 +1466,7 @@ results
     setAllResults([])
     setPrevBaseTexts(new Set())
     setPlotUrl(null)
+    setFurthestStep(currentStep)
 
   };
 
