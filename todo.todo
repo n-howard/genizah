@@ -83,3 +83,8 @@ Steps before first deployment:
 ✔ Maybe add table of contents of alignments? @done(26-08-20 09:40)
 ✔ check if spreadsheet upload works even if you generate alignments @done(26-08-20 09:41)
 ✔ Signal to user why button is disabled if !isReady @done(26-08-20 09:41)
+
+To Do This Week
+☐ rename subsections
+☐ download alignments as pdf or txt 
+☐ fix issues based on estara's responses

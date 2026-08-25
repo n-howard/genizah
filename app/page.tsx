@@ -475,6 +475,8 @@ export default function Pages() {
     }));
   };
 
+  const [prevStep, setPrevStep] = useState(null)
+
   const handleStepSkip = (step: number) => {
     if (step <= furthestStep) {
       setCurrentStep(step);
@@ -489,6 +491,7 @@ export default function Pages() {
       setCurrentStep(step);
     }
   };
+
 
 
 
@@ -1136,8 +1139,8 @@ results
         <Page size="A4">
           <View wrap style={tw("p-10")}>
             <Text style={tw("text-lg text-center font-mono")}>Alignment Results</Text>
-            {allResults.map((dict)=>(
-              <View key={dict.baseText}>
+            {allResults.map((dict, index)=>(
+              <View>
                 <Text key={dict.baseText}>{dict.baseText}</Text>
             {dict.alignments.split("\n").map((line, index) => (
               <Text key={index} style={[tw("font-mono text-justify text-sm"), { direction: rtlTested }]}>
@@ -1203,8 +1206,8 @@ results
             {formData.multi == true &&
               Object.keys(formData.subsections).map((key) => (
                 <View key={key} style={tw("text-sm")}>
-                  <Text>Subsection: {key}</Text>
-                  <Text style={tw("pl-4")}> Files: </Text>
+                  <Text key={`sub-${key}`}>Subsection: {key}</Text>
+                  <Text key={`fi-${key}`} style={tw("pl-4")}> Files: </Text>
 
                   {formData.subsections[key].map((f) => (
                     <Text key={f.name} style={tw("text-sm pl-8")}>
@@ -1223,7 +1226,7 @@ results
             {downloadedFiles.length == 0 ? (
               <Text style={tw("text-sm pl-4 pt-0")}>None</Text>
             ) : (
-              downloadedFiles.map((fi) => <Text style={tw("pl-4")}>{fi}</Text>)
+              downloadedFiles.map((fi) => <Text key={fi} style={tw("pl-4")}>{fi}</Text>)
             )}
 
             <Text style={tw("text-lg pt-2")}>Algorithm Settings</Text>
@@ -1946,7 +1949,6 @@ results
                         Continue
                       </button>
                       <button 
-                      disabled={totalFilesCount < 2}
                       onClick={()=>handleStepChange(1.2)}
                       className="px-5 py-2 bg-green-600 text-gray-900 font-medium rounded-lg hover:bg-green-700 disabled:bg-gray-500 disabled:cursor-not-allowed transition">
                         Optional: Upload Spreadsheet</button>
@@ -2031,17 +2033,19 @@ results
                         Back
                       </button>
                       <div className="flex flex-col gap-2 w-max"><button
-                      disabled = {formData.spreadsheet==null}
+                      disabled = {!isReady || formData.spreadsheet==null}
+                    
                         onClick={() => {
                           handleUploadSpreadsheet();
-                          handleStepChange(2.2);
+                          setPrevStep(1.2)
+                          handleStepChange(4);
                         }}
                         className="px-5 py-2 cursor-pointer bg-green-600 text-gray-900 font-medium rounded-lg hover:bg-green-700 disabled:bg-gray-500 disabled:cursor-not-allowed transition"
                       >
-                        Confirm Upload
+                        {isReady ? "Confirm Upload" : "Processing..."}
                       </button>
                         <button
-                        onClick={() => handleStepChange(2)}
+                        onClick={() => (handleStepChange(2))}
                         className="px-5 py-2 cursor-pointer bg-cyan-600 text-gray-900 font-medium rounded-lg hover:bg-cyan-700 disabled:bg-gray-500 disabled:cursor-not-allowed transition"
                       >
                         Skip
@@ -2212,7 +2216,7 @@ results
                                         type="checkbox"
                                         checked={formData.settings.spaceStrip}
                                         onChange={(handleSpaceStrip)}
-                                        className={`rounded-full  accent-cyan-500 text-gray-300 border-1 border-none shadow-gray-600/40 shadow-sm shadow-gray-600/40 shadow-gray-700/70 hover:shadow-gray-600/40 shadow-md outline-none w-4 h-4 appearance-none 
+                                        className={`rounded-full  accent-cyan-500 text-gray-300 border-1 border-none shadow-gray-600/40 shadow-sm shadow-gray-600/40 shadow-gray-700/70 hover:shadow-gray-600/40 shadow-md outline-none w-4 h-4
                   ${formData.settings.spaceStrip ? "bg-cyan-700 shadow-gray-600/40 shadow-xs shadow-gray-600/40 shadow-cyan-200" : "bg-gray-800"}`}
                                       />
                                       <label className="">
@@ -2470,7 +2474,7 @@ results
                           />
                         )}
                         <span className="relative z-10 flex items-center justify-center">
-                          {isProcessing ? `Processing: ${progress}% Completed` : (isReady ? "Run Algorithm" : "Preparing Algorithm...")}
+                          {isProcessing ? `Processing: ${progress}% Completed` : (isReady ? "Run Algorithm" : "Preparing Algorithm")}
                         </span>
                       {/* {isProcessing ? "Processing..." : "Run Algorithm"} */}
                     </button>
@@ -2877,7 +2881,7 @@ results
                           />
                         )}
                         <span className="relative z-10 flex items-center justify-center">
-                          {isProcessing ? `Processing: ${progress}% Completed` : (isReady ? "Run Algorithm" : "Preparing Algorithm...")}
+                          {isProcessing ? `Processing: ${progress}% Completed` : (isReady ? "Run Algorithm" : "Preparing Algorithm")}
                         </span>
                       
                     </button>
@@ -3146,7 +3150,7 @@ results
                                   type="checkbox"
                                   checked={formData.plotSettings.colorText}
                                   onChange={handleColorText}
-                                  className={`rounded-full  accent-cyan-500 text-gray-300 border-1 border-none shadow-gray-600/40 shadow-sm shadow-gray-600/40 shadow-gray-700/70 hover:shadow-gray-600/40 shadow-md outline-none w-4 h-4 appearance-none 
+                                  className={`rounded-full  accent-cyan-500 text-gray-300 border-1 border-none shadow-gray-600/40 shadow-sm shadow-gray-600/40 shadow-gray-700/70 hover:shadow-gray-600/40 shadow-md outline-none w-4 h-4 
               ${formData.plotSettings.colorText ? "bg-cyan-700 shadow-gray-600/40 shadow-xs shadow-gray-600/40 shadow-cyan-200" : "bg-gray-800"}`}
                                 />
                                 <label className="">
@@ -3168,7 +3172,7 @@ results
 
                   <div className="w-full flex justify-between content-start flex-row">
                     <button
-                      onClick={() => handleStepChange(3)}
+                      onClick={() => handleStepChange(prevStep?prevStep:3)}
                       className="px-5 py-2 border border-gray-300 text-gray-200 font-medium rounded-lg w-max hover:bg-gray-700 transition"
                     >
                       Back
@@ -3180,7 +3184,7 @@ results
                       }
                       className="px-5 py-2 bg-cyan-600 text-gray-900 font-medium rounded-lg hover:bg-cyan-700 disabled:opacity-50 transition"
                     >
-                      {isProcessing ? "Processing..." : (isReady ? "Run t-SNE Algorithm" : "Preparing t-SNE Algorithm...")}
+                      {isProcessing ? "Processing..." : (isReady ? "Run t-SNE Algorithm" : "Preparing t-SNE Algorithm")}
                     </button>
                   
                   </div>
@@ -3272,13 +3276,13 @@ results
                       >
                         Download Matrix as Spreadsheet
                       </button>
-                    </div>
+                    </div>{prevStep!=1.2 && (
                     <button
                       onClick={() => handleStepChange(6)}
                       className="px-5 py-2 bg-cyan-600 text-gray-900 font-medium rounded-lg hover:bg-cyan-700 disabled:bg-gray-500 disabled:cursor-not-allowed transition"
                     >
                       Continue
-                    </button>
+                    </button>)}
                   </div>
                 </div>
               </div>
