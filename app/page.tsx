@@ -9,6 +9,8 @@ import {
   CirclePlus,
   FolderOpen,
   Pencil,
+  Check,
+  CircleCheck
 } from "lucide-react";
 import ReactDOM from "react-dom";
 import { useDropzone } from "react-dropzone";
@@ -44,6 +46,7 @@ function SubsectionItem({
   onSelectFilesTrigger,
   onDragStartFile,
   onRemoveSubsection,
+  onRenameSubsection,
 }) {
   // Each child gets its OWN useDropzone instance bound to its sectionName
   const { getRootProps, getInputProps, isDragActive, isDragReject } =
@@ -53,6 +56,12 @@ function SubsectionItem({
       },
       noClick: true,
     });
+
+    const [editSection, setEditSection] = useState(false)
+
+    const [subInputValue, setSubInputValue] = useState(null)
+
+    
 
   return (
     <div
@@ -71,8 +80,34 @@ function SubsectionItem({
       <div className="flex items-center justify-between border-b pb-2 mb-2">
         <div className="flex items-center gap-2 font-bold text-cyan-50 text-[0.8rem]">
           <FolderOpen className="w-5 h-5 text-cyan-400" />
-          <span>{sectionName}</span>
-
+          {!editSection ? (
+          <div className="gap-2 flex">
+          <button onClick={()=>setEditSection(true)}>{sectionName}</button>
+          <button onClick={()=>setEditSection(true)}>
+          <Pencil className="w-4 h-4 text-cyan-400"/>
+          </button>
+          </div>
+          ) : (
+            <form
+            className="gap-2 flex"
+            onSubmit={(e) => {
+              e.preventDefault();
+              onRenameSubsection((subInputValue||sectionName), sectionName);
+              setEditSection(false)
+              setSubInputValue(null)
+            }}>
+              <input
+              type="text"
+              defaultValue={sectionName}
+              onChange={(e)=>(setSubInputValue(e.target.value))}/>
+              <button
+                type="submit"
+                className="rounded-full text-cyan-400"
+              >
+                <CircleCheck className="w-4 h-4" />
+              </button>
+            </form>
+          )}
           <span className="text-[0.8rem] text-gray-300 font-normal">
             ({files.length} {files.length === 1 ? "file" : "files"})
           </span>
@@ -83,7 +118,7 @@ function SubsectionItem({
           {/* File Upload Trigger */}
           <label
             className="cursor-pointer bg-cyan-700 hover:bg-cyan-800 text-cyan-100 font-semibold px-2 py-1 rounded border border-cyan-200 transition"
-            onClick={(e) => e.stopPropagation()} // Stop dropzone trigger
+            onClick={(e) => e.stopPropagation()} 
           >
             + Files
             <input
@@ -98,7 +133,7 @@ function SubsectionItem({
           <button
             type="button"
             onClick={(e) => {
-              e.stopPropagation(); // Stop dropzone trigger
+              e.stopPropagation(); 
               onSelectFolderTrigger(sectionName);
             }}
             className="bg-cyan-700 hover:bg-cyan-800 text-cyan-100 font-semibold px-2 py-1 rounded border border-cyan-200 transition"
@@ -405,17 +440,24 @@ export default function Pages() {
       subsections: newSections,
     }));
   };
-  const [rename, setRename] = useState(false);
+
   const renameSubsection = (newName, oldName) => {
     const sectionContents = formData.subsections[oldName];
-    let newSections = formData.subsections;
-    delete newSections[oldName];
-    newSections[newName] = sectionContents;
+    const tempSub = formData.subsections
+    
+    const newSections = Object.keys(tempSub).reduce((tempNew, key)=>{
+      if (key===oldName){
+        tempNew[newName]=sectionContents
+      } else {
+        tempNew[key] = tempSub[key]
+      }
+      return tempNew;
+    }, {})
     setFormData((prev) => ({
       ...prev,
       subsections: newSections,
     }));
-    setRename(false);
+
   };
   // Subsection Drag-and-Drop Handlers
   const handleDragStart = (
@@ -1754,6 +1796,7 @@ results
                                   }}
                                   onDragStartFile={handleDragStart}
                                   onRemoveSubsection={removeSubsection}
+                                  onRenameSubsection={(newName, oldName)=>renameSubsection(newName, oldName)}
                                 />
                               ),
                             )
