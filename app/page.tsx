@@ -1182,7 +1182,7 @@ results
           <View wrap style={tw("p-10")}>
             <Text style={tw("text-lg text-center font-mono")}>Alignment Results</Text>
             {allResults.map((dict, index)=>(
-              <View>
+              <View key={index}>
                 <Text key={dict.baseText}>{dict.baseText}</Text>
             {dict.alignments.split("\n").map((line, index) => (
               <Text key={index} style={[tw("font-mono text-justify text-sm"), { direction: rtlTested }]}>
