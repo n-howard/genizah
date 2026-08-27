@@ -26,6 +26,7 @@
     "react-dom": "19.2.4",
     "react-dropzone": "^19.1.1",
     "react-pdf-tailwind": "^3.0.0",
+    "reactjs-popup": "^2.0.6",
     "uuid": "^14.0.1",
     "vercel": "^58.4.4",
     "webr": "^0.6.0",

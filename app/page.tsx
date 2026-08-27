@@ -10,7 +10,8 @@ import {
   FolderOpen,
   Pencil,
   Check,
-  CircleCheck
+  CircleCheck,
+  X
 } from "lucide-react";
 import ReactDOM from "react-dom";
 import { useDropzone } from "react-dropzone";
@@ -24,10 +25,12 @@ import {
   PDFDownloadLink,
   usePDF,
   PDFViewer,
+  BlobProvider,
 } from "@react-pdf/renderer";
 import ReactPDF from "@react-pdf/renderer";
 import { createTw } from "react-pdf-tailwind";
 import NProgress from 'nprogress';
+import Popup from "reactjs-popup";
 
 import { useWasmEngines } from "../hooks/useWasmEngines";
 
@@ -1153,9 +1156,13 @@ results
 
   const rtlLangs = /[\p{sc=Hebrew}\p{sc=Arabic}\p{sc=Syriac}\p{sc=Thaana}\p{sc=Nko}]/u;
 
+  const rtlTestResults = (text) => {
+    return rtlLangs.test(text) ? `\u2066` : ``
+  }
 
   const AlignmentsDoc = () => {
     const rtlTested = rtlLangs.test(results.output_logs) ? "rtl" : "ltr"
+    setDownloadedFiles((prev)=>[...prev, "alignments.pdf"])
     return (
       <Document>
         <Page size="A4">
@@ -1172,9 +1179,29 @@ results
     );
   }
 
+  const txtAlignments = () => {
+    const rtlTested = rtlLangs.test(results.output_logs) ? `\u202B` : ``
+    const tempOutputText = results.output_logs.split("\n").map((line)=> (
+      `${rtlTested}${line}` || `\n`
+    )).join("\n")
+    const outputText = `Alignment Results
+    ${tempOutputText}`
+    const blob = new Blob([outputText], {type: "text/plain"})
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement("a");
+    link.href = url;
+    link.download = "alignments.txt"
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    URL.revokeObjectURL(url);
+    setDownloadedFiles((prev)=>[...prev, "alignments.txt"])
+  }
+
 
   const AllAlignmentsDoc = () => {
     const rtlTested = rtlLangs.test(results.output_logs) ? "rtl" : "ltr"
+    setDownloadedFiles((prev)=>[...prev, "allAlignments.pdf"])
     
     return (
       <Document>
@@ -1196,6 +1223,37 @@ results
         </Page>
       </Document>
     );
+  }
+
+  
+
+  const allTxtAlignments = () => {
+    const rtlTested = rtlLangs.test(results.output_logs) ? `\u202B` : ``
+    const tempOutputText = allResults.map((dict, index)=>(
+      `
+      \u200E${dict.baseText}
+     
+      ${dict.alignments.split("\n").map((line) => (
+
+        `${rtlTested}${line}` || `\n`
+      )).join("\n")}`
+
+    )).join("\n")
+
+    const outputText = `Alignment Results
+    ${tempOutputText}`
+    
+    const blob = new Blob([outputText], {type: "text/plain"})
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement("a");
+    link.href = url;
+    link.download = "allAlignments.txt"
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    URL.revokeObjectURL(url);
+
+    setDownloadedFiles((prev)=>[...prev, "allAlignments.txt"])
   }
 
   const months = [
@@ -2641,7 +2699,20 @@ results
                     >
                       Back
                     </button>
-                    <div className="flex flex-col items-center w-max gap-2">
+                    
+                    <div className="flex w-max flex-col items-center  gap-2">
+                     <Popup
+                     
+                    trigger={
+                      <button className="px-5 py-2 w-max bg-sky-600 h-max text-gray-900 font-medium rounded-lg hover:bg-sky-700">
+                        Download Current Alignments
+                      </button>
+                    }
+                    modal
+                    nested> 
+                    
+                      
+                    <div className="flex flex-row gap-2 place-content-center w-max h-max bg-gray-800 p-10 rounded-md">
                     <PDFDownloadLink
                       document={<AlignmentsDoc />}
                       fileName="alignments.pdf"
@@ -2649,21 +2720,40 @@ results
                     >
                       {({ blob, url, loading, error }) =>
                         loading
-                          ? "Generating Alignments File..."
-                          : "Download New Alignments Only"
+                          ? "Generating PDF..."
+                          : "Download As PDF"
                       }
                     </PDFDownloadLink>
+                    <button onClick={txtAlignments} className="px-5 py-2 bg-sky-600 h-max text-gray-900 font-medium rounded-lg hover:bg-sky-700">
+                      Download As TXT
+                    </button>
+                    </div>
+                    
+                    </Popup>
+                    <Popup
+                    trigger={
+                      <button className="px-5 w-full py-2 bg-sky-600 h-max text-gray-900 font-medium rounded-lg hover:bg-sky-700">
+                        Download All Alignments
+                      </button>
+                    }
+                    modal
+                    nested>
+                    <div className="flex flex-row gap-2 place-content-center w-max h-max bg-gray-800 p-10 rounded-md">
                     <PDFDownloadLink
                       document={<AllAlignmentsDoc />}
-                      fileName="alignments.pdf"
+                      fileName="allAlignments.pdf"
                       className="px-5 py-2 bg-sky-700 h-max text-gray-900 font-medium rounded-lg hover:bg-sky-800"
                     >
                       {({ blob, url, loading, error }) =>
                         loading
-                          ? "Generating Alignments File..."
-                          : "Download All Generated Alignments"
+                          ? "Generating PDF..."
+                          : "Download as PDF"
                       }
                     </PDFDownloadLink>
+                    <button onClick={allTxtAlignments} className="px-5 py-2 bg-sky-600 h-max text-gray-900 font-medium rounded-lg hover:bg-sky-700">
+                      Download As TXT
+                    </button>
+                    </div></Popup>
                     </div>
                   
                     <div className="flex flex-col items-center w-max gap-2">
@@ -2673,7 +2763,7 @@ results
                         disabled={
                           isProcessing 
                         }
-                        className="px-5 py-2 bg-cyan-600 text-gray-900 font-medium rounded-lg hover:bg-cyan-700 disabled:bg-gray-500 disabled:cursor-not-allowed transition"
+                        className="px-5 py-2 bg-cyan-600 text-gray-900 w-max font-medium rounded-lg hover:bg-cyan-700 disabled:bg-gray-500 disabled:cursor-not-allowed transition"
                       >
                         Select Another Base Text
                       </button>
@@ -2910,7 +3000,7 @@ results
                     <button
                       onClick={handleSubmit}
                       disabled={!isReady || isProcessing}
-                      className = {`relative overflow-hidden px-5 py-2 font-medium rounded-lg transition-all duration-200 ${
+                      className = {`relative w-full overflow-hidden px-5 py-2 font-medium rounded-lg transition-all duration-200 ${
                       isProcessing
                         ? "bg-gray-400 text-gray-900 cursor-not-allowed"
                         : "bg-cyan-500 text-gray-900 hover:bg-cyan-700 disabled:bg-gray-300"
@@ -2933,7 +3023,7 @@ results
                         disabled={
                           isProcessing 
                         }
-                        className="px-5 py-2 bg-cyan-600 text-gray-800 font-medium rounded-lg hover:bg-cyan-700 disabled:bg-gray-500 disabled:cursor-not-allowed transition"
+                        className="px-5 py-2 w-full bg-cyan-600 text-gray-800 font-medium rounded-lg hover:bg-cyan-700 disabled:bg-gray-500 disabled:cursor-not-allowed transition"
                       >
                         Modify Algorithm Settings
                       </button>
